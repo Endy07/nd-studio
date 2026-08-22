@@ -2,17 +2,26 @@
 
 import { keszitTarolo } from "./tarolo.js";
 import { ADMIN_TOKEN_KULCS, adminToken, betoltKatalogus } from "./admin-osszefoglalo.js";
+import {
+  HIBAJELZESEK,
+  kellMegerosites,
+  megerositoSzoveg,
+  publikusErtekeles,
+  regibolOlvas,
+} from "./ertekeles.js";
 
-const STATUSZOK = [
-  { kulcs: "hibas", felirat: "❌ Hibás" },
-  { kulcs: "reszben", felirat: "⚠️ Részben" },
-  { kulcs: "jo", felirat: "✅ Jó" },
-  { kulcs: "elfogadva", felirat: "⭐ Elfogadva" },
-];
+const HIBAJELZES_FELIRAT = Object.fromEntries(
+  HIBAJELZESEK.map((jelzes) => [jelzes.kulcs, jelzes.felirat]),
+);
 
-const VALASZ_FELIRAT = { tetszik: "👍 Tetszik", talan: "🤔 Talán", nem: "👎 Nem", "": "–" };
+/** Az ügyfél böngészője is letölti — az admin hash nem kerülhet a nevébe. */
+export function ugyfelFajlnev(utvonalNev) {
+  return `${utvonalNev}-admin.json`;
+}
 
 export function sorAdat(terv, adminErtekeles, ugyfelErtekeles) {
+  const enyem = regibolOlvas(adminErtekeles);
+  const ove = ugyfelErtekeles ?? {};
   return {
     id: terv.id,
     cim: terv.cim,
@@ -20,11 +29,15 @@ export function sorAdat(terv, adminErtekeles, ugyfelErtekeles) {
     modell: terv.modell ?? "–",
     prompt: terv.prompt ?? "–",
     publikus: Boolean(terv.publikus),
-    enPont: adminErtekeles?.pont ?? null,
-    enStatusz: adminErtekeles?.statusz ?? "",
-    enMegjegyzes: adminErtekeles?.megjegyzes ?? "",
-    oValasz: ugyfelErtekeles?.valasz ?? "",
-    oMegjegyzes: ugyfelErtekeles?.megjegyzes ?? "",
+    enPont: enyem.pont,
+    enHibajelzes: enyem.hibajelzes,
+    enMegjegyzes: enyem.megjegyzes,
+    enElfogadva: enyem.elfogadva,
+    enJegyzet: adminErtekeles?.jegyzet ?? "",
+    oPont: ove.pont ?? null,
+    oHibajelzes: ove.hibajelzes ?? "",
+    oMegjegyzes: ove.megjegyzes ?? "",
+    oValasztott: Boolean(ove.valasztott),
   };
 }
 
@@ -35,7 +48,8 @@ function keszitSor(sor, ugyfelUt, mentes) {
     <td class="meta"></td>
     <td class="pontok"></td>
     <td class="statuszok"></td>
-    <td><textarea class="en-megjegyzes"></textarea></td>
+    <td><textarea class="en-megjegyzes" placeholder="Megjegyzés — az ügyfél is látja"></textarea>
+        <textarea class="en-jegyzet" placeholder="Belső jegyzet — csak te látod"></textarea></td>
     <td class="ovalasz"></td>`;
 
   elem.querySelector("strong").textContent = sor.cim;
@@ -49,44 +63,76 @@ function keszitSor(sor, ugyfelUt, mentes) {
     gomb.className = "pont" + (sor.enPont === pont ? " aktiv" : "");
     gomb.textContent = pont;
     gomb.addEventListener("click", () => {
+      if (kellMegerosites(sor.enPont, pont)
+          && !confirm(megerositoSzoveg("Pont", sor.enPont, pont))) return;
+      sor.enPont = pont;
       pontok.querySelectorAll("button").forEach((g) => g.classList.remove("aktiv"));
       gomb.classList.add("aktiv");
-      mentes(sor.id, { pont });
+      mentes(sor.id, { pont }, "publikus");
     });
     pontok.append(gomb);
   }
 
   const statuszok = elem.querySelector(".statuszok");
-  for (const statusz of STATUSZOK) {
+  for (const jelzes of HIBAJELZESEK) {
     const gomb = document.createElement("button");
     gomb.type = "button";
-    gomb.className = sor.enStatusz === statusz.kulcs ? "aktiv" : "";
-    gomb.textContent = statusz.felirat;
+    gomb.className = sor.enHibajelzes === jelzes.kulcs ? "aktiv" : "";
+    gomb.textContent = jelzes.felirat;
     gomb.addEventListener("click", () => {
+      const regiFelirat = HIBAJELZES_FELIRAT[sor.enHibajelzes] ?? "";
+      if (kellMegerosites(regiFelirat, jelzes.felirat)
+          && !confirm(megerositoSzoveg("Hibajelzés", regiFelirat, jelzes.felirat))) return;
+      sor.enHibajelzes = jelzes.kulcs;
       statuszok.querySelectorAll("button").forEach((g) => g.classList.remove("aktiv"));
       gomb.classList.add("aktiv");
-      mentes(sor.id, { statusz: statusz.kulcs });
+      mentes(sor.id, { hibajelzes: jelzes.kulcs }, "publikus");
     });
     statuszok.append(gomb);
   }
 
+  const elfogad = document.createElement("button");
+  elfogad.type = "button";
+  elfogad.className = "elfogad" + (sor.enElfogadva ? " aktiv" : "");
+  elfogad.textContent = "⭐ Elfogadva";
+  elfogad.addEventListener("click", () => {
+    if (sor.enElfogadva && !confirm("Visszavonod az elfogadást?")) return;
+    sor.enElfogadva = !sor.enElfogadva;
+    elfogad.classList.toggle("aktiv", sor.enElfogadva);
+    mentes(sor.id, { elfogadva: sor.enElfogadva }, "publikus");
+  });
+  statuszok.append(elfogad);
+
   // A publikus/nem publikus állapot itt CSAK látszik. Átállítani a Műhelyben lehet:
   // ez az oldal a GitHub Pages-en fut, onnan nincs elérése a lokális kiszolgálóhoz.
-  const jelzes = document.createElement("span");
-  jelzes.className = "kapcsolo";
-  jelzes.textContent = sor.publikus ? "Publikus ✓" : "Nem publikus";
-  statuszok.append(jelzes);
+  const jelzo = document.createElement("span");
+  jelzo.className = "kapcsolo";
+  jelzo.textContent = sor.publikus ? "Publikus ✓" : "Nem publikus";
+  statuszok.append(jelzo);
 
   const megjegyzes = elem.querySelector(".en-megjegyzes");
   megjegyzes.value = sor.enMegjegyzes;
   let idozito = null;
   megjegyzes.addEventListener("input", () => {
     clearTimeout(idozito);
-    idozito = setTimeout(() => mentes(sor.id, { megjegyzes: megjegyzes.value }), 800);
+    idozito = setTimeout(() => mentes(sor.id, { megjegyzes: megjegyzes.value }, "publikus"), 800);
   });
 
-  elem.querySelector(".ovalasz").textContent =
-    `${VALASZ_FELIRAT[sor.oValasz] ?? "–"}${sor.oMegjegyzes ? " — " + sor.oMegjegyzes : ""}`;
+  const jegyzet = elem.querySelector(".en-jegyzet");
+  jegyzet.value = sor.enJegyzet;
+  let jegyzetIdozito = null;
+  jegyzet.addEventListener("input", () => {
+    clearTimeout(jegyzetIdozito);
+    jegyzetIdozito = setTimeout(() => mentes(sor.id, { jegyzet: jegyzet.value }, "belso"), 800);
+  });
+
+  const oveCella = elem.querySelector(".ovalasz");
+  const reszek = [];
+  if (sor.oPont !== null) reszek.push(`${sor.oPont}/10`);
+  if (sor.oHibajelzes) reszek.push(HIBAJELZES_FELIRAT[sor.oHibajelzes]);
+  if (sor.oValasztott) reszek.push("⭐ Ezt választja");
+  if (sor.oMegjegyzes) reszek.push(`„${sor.oMegjegyzes}”`);
+  oveCella.textContent = reszek.length ? reszek.join(" · ") : "–";
   return elem;
 }
 
@@ -135,20 +181,72 @@ export async function inditAdminUgyfel(beallitas, kornyezet = {}) {
   }
   cimElem.textContent = ugyfel.nev;
 
-  const fajlnev = `admin-${beallitas.adminHash}.json`;
-  const adminErtekelesek = await tarolo.betolt(fajlnev);
+  // KET fajl: a belso jegyzet a titkos nevu adminfajlban marad, a kimeno mezok
+  // az ugyfel altal is olvashato fajlba kerulnek. Az admin hash igy sosem jut ki.
+  const belsoFajlnev = `admin-${beallitas.adminHash}.json`;
+  const publikusFajlnev = ugyfelFajlnev(ugyfel.utvonal_nev);
+  const belsoErtekelesek = await tarolo.betolt(belsoFajlnev);
+  const sajatPublikus = await tarolo.betolt(publikusFajlnev);
   const ugyfelErtekelesek = await tarolo.betolt(`${ugyfel.utvonal_nev}.json`);
 
-  async function mentes(tervId, valtozas) {
+  // A ket forras egyesitese: a publikus fajl nyer, mert az az uj hely. Ami meg csak
+  // a regi belso fajlban van, azt onnan olvassuk — igy a korabbi pontjaid nem
+  // tunnek el az atallaskor.
+  const sajatOsszes = {};
+  for (const tervId of new Set([
+    ...Object.keys(belsoErtekelesek),
+    ...Object.keys(sajatPublikus),
+  ])) {
+    sajatOsszes[tervId] = { ...belsoErtekelesek[tervId], ...sajatPublikus[tervId] };
+  }
+
+  async function mentes(tervId, valtozas, hova) {
     jelzo.textContent = "Mentés…";
-    const eredmeny = await tarolo.ment(fajlnev, tervId, valtozas);
+    const fajl = hova === "belso" ? belsoFajlnev : publikusFajlnev;
+    const adat = hova === "belso" ? valtozas : publikusErtekeles(valtozas);
+    const eredmeny = await tarolo.ment(fajl, tervId, adat);
     jelzo.textContent = eredmeny.mentve ? "Elmentve ✓" : "Mentés folyamatban…";
   }
+
+  keszitMegosztoGomb(tarolo, sajatOsszes, sajatPublikus, publikusFajlnev, jelzo);
 
   const ugyfelUt = `../u/${ugyfel.utvonal_nev}/`;
   sorokElem.replaceChildren(
     ...ugyfel.tervek.map((terv) =>
-      keszitSor(sorAdat(terv, adminErtekelesek[terv.id], ugyfelErtekelesek[terv.id]), ugyfelUt, mentes)
+      keszitSor(sorAdat(terv, sajatOsszes[terv.id], ugyfelErtekelesek[terv.id]), ugyfelUt, mentes)
     )
   );
+}
+
+/**
+ * A regi ertekelesek egyszeri megosztasa. Gomb es nem automatikus: a velemenyed
+ * egyszerre jelenne meg az ugyfelnel, legyen a te dontesed, mikor.
+ * Kotegelt iras: tervenkenti mentes 88 tervnel a GitHub rate limitjebe futna.
+ */
+function keszitMegosztoGomb(tarolo, sajatOsszes, sajatPublikus, publikusFajlnev, jelzo) {
+  const megosztando = {};
+  for (const [tervId, ertekeles] of Object.entries(sajatOsszes)) {
+    if (sajatPublikus[tervId]) continue;
+    const publikus = publikusErtekeles(regibolOlvas(ertekeles));
+    if (publikus.pont !== null || publikus.hibajelzes || publikus.elfogadva) {
+      megosztando[tervId] = publikus;
+    }
+  }
+
+  const darab = Object.keys(megosztando).length;
+  if (!darab) return;
+
+  const gomb = document.createElement("button");
+  gomb.type = "button";
+  gomb.className = "megosztas";
+  gomb.textContent = `Korábbi értékeléseim megosztása az ügyféllel (${darab} terv)`;
+  gomb.addEventListener("click", async () => {
+    gomb.disabled = true;
+    gomb.textContent = "Megosztás…";
+    const eredmeny = await tarolo.mentTobb(publikusFajlnev, megosztando);
+    gomb.textContent = eredmeny.mentve
+      ? "Megosztva."
+      : "Nem sikerült feltölteni — a következő betöltéskor újrapróbáljuk.";
+  });
+  jelzo.after(gomb);
 }

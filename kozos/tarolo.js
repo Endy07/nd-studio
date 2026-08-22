@@ -144,5 +144,24 @@ export function keszitTarolo({ repo, token, fetchImpl = fetch, tarhely = localSt
     return feltolt(fajlnev, egyesitett);
   }
 
-  return { betolt, ment, ujraprobal };
+  /**
+   * Több bejegyzés EGY feltöltéssel. A `ment` tervenként hívna API-t; 88 tervnél
+   * az a GitHub rate limitjébe futna.
+   */
+  async function mentTobb(fajlnev, bejegyzesek) {
+    let adat = helyiOlvas(fajlnev);
+    const most = new Date().toISOString();
+    for (const [tervId, ertekeles] of Object.entries(bejegyzesek)) {
+      adat[tervId] = { ...adat[tervId], ...ertekeles, modositva: ertekeles.modositva || most };
+    }
+    helyiIr(fajlnev, adat);
+
+    if (!shaCache.has(fajlnev)) {
+      adat = osszefesul(adat, await tavoliOlvas(fajlnev));
+      helyiIr(fajlnev, adat);
+    }
+    return feltolt(fajlnev, adat);
+  }
+
+  return { betolt, ment, mentTobb, ujraprobal };
 }

@@ -52,12 +52,12 @@ body.ugyfel header p { color: var(--halvany); margin-top: .4rem; }
   display: inline-block; background: var(--kiemel); color: #fff;
   padding: .5rem 1rem; border-radius: 6px; text-decoration: none; font-size: .9rem;
 }
-.valaszok { display: flex; gap: .4rem; margin: .9rem 0 .6rem; }
-.valaszok button {
+.valaszok, .hibajelzesek { display: flex; gap: .4rem; margin: .9rem 0 .6rem; }
+.valaszok button, .hibajelzesek button {
   flex: 1; background: none; border: 1px solid var(--keret); color: var(--szoveg);
   padding: .5rem; border-radius: 6px; cursor: pointer; font-size: .9rem;
 }
-.valaszok button.aktiv { background: var(--kiemel); border-color: var(--kiemel); color: #fff; }
+.valaszok button.aktiv, .hibajelzesek button.aktiv { background: var(--kiemel); border-color: var(--kiemel); color: #fff; }
 .megjegyzes {
   width: 100%; min-height: 3.5rem; background: var(--hatter); color: var(--szoveg);
   border: 1px solid var(--keret); border-radius: 6px; padding: .5rem; font: inherit; font-size: .9rem;
@@ -94,3 +94,12 @@ button.pont.aktiv { background: var(--kiemel); border-color: var(--kiemel); colo
 .statuszok button.aktiv { border-color: var(--kiemel); color: var(--kiemel); }
 .kapcsolo { color: var(--halvany); font-size: .8rem; margin-top: .3rem; }
 .en-megjegyzes { width: 100%; min-width: 180px; min-height: 3rem; background: var(--hatter); color: var(--szoveg); border: 1px solid var(--keret); border-radius: 6px; padding: .4rem; font: inherit; font-size: .85rem; }
+
+/* --- Ketoldalu ertekeles --- */
+.pontok { display: flex; gap: .25rem; flex-wrap: wrap; margin: .9rem 0 .4rem; }
+.valasztom { margin: .2rem 0 .6rem; padding: .35rem .7rem; background: var(--hatter); border: 1px solid var(--keret); color: var(--halvany); border-radius: 6px; cursor: pointer; }
+.valasztom.aktiv, button.elfogad.aktiv { background: var(--kiemel); border-color: var(--kiemel); color: #fff; }
+.admin-velemeny { margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--keret); color: var(--halvany); font-size: .9rem; }
+.kartya.elfogadott { border-color: var(--kiemel); box-shadow: 0 0 0 2px var(--kiemel); }
+.en-jegyzet { margin-top: .3rem; opacity: .85; }
+button.megosztas { margin: .5rem 0; padding: .4rem .8rem; cursor: pointer; }
