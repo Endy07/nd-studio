@@ -1,0 +1,1802 @@
+﻿<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Mihály Kárai — Digitális Kiállítás</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Philosopher:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* ═══════════════════════════════════════════════════════════
+   ATMOSPHERE PALETTES — 60-30-10 COLOR RULE
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #2a2a2a;
+  --text-primary: #f0e6d3;
+  --text-secondary: #c4b59a;
+  --accent: #c9a96e;
+  --accent-glow: rgba(201,169,110,0.3);
+  --transition-speed: 0.8s;
+}
+
+/* Atmosphere 1: Amber Gallery (default dark) */
+[data-atmosphere="amber"] {
+  --bg-primary: #0a0806;
+  --bg-secondary: #1a1410;
+  --bg-tertiary: #2a2018;
+  --text-primary: #f5e6c8;
+  --text-secondary: #c9b896;
+  --accent: #d4a056;
+  --accent-glow: rgba(212,160,86,0.35);
+}
+
+/* Atmosphere 2: Moonlit White */
+[data-atmosphere="moonlit"] {
+  --bg-primary: #e8e4df;
+  --bg-secondary: #d5d0c8;
+  --bg-tertiary: #c2bdb3;
+  --text-primary: #2c2825;
+  --text-secondary: #5a534a;
+  --accent: #7a6e5d;
+  --accent-glow: rgba(122,110,93,0.25);
+}
+
+/* Atmosphere 3: Deep Ocean */
+[data-atmosphere="ocean"] {
+  --bg-primary: #060d17;
+  --bg-secondary: #0c1a2e;
+  --bg-tertiary: #142840;
+  --text-primary: #d0e0f0;
+  --text-secondary: #8aa8c8;
+  --accent: #4a9fd4;
+  --accent-glow: rgba(74,159,212,0.3);
+}
+
+/* Atmosphere 4: Crimson Velvet */
+[data-atmosphere="crimson"] {
+  --bg-primary: #120608;
+  --bg-secondary: #240c10;
+  --bg-tertiary: #361218;
+  --text-primary: #f0d0d5;
+  --text-secondary: #c8909a;
+  --accent: #c44050;
+  --accent-glow: rgba(196,64,80,0.3);
+}
+
+/* Atmosphere 5: Garden Green */
+[data-atmosphere="garden"] {
+  --bg-primary: #0a120a;
+  --bg-secondary: #142014;
+  --bg-tertiary: #1e301e;
+  --text-primary: #d8e8d0;
+  --text-secondary: #9ab890;
+  --accent: #6aaa5a;
+  --accent-glow: rgba(106,170,90,0.3);
+}
+
+/* Atmosphere 6: Golden Dawn */
+[data-atmosphere="golden"] {
+  --bg-primary: #f5efe0;
+  --bg-secondary: #e8dcc8;
+  --bg-tertiary: #d8c8a8;
+  --text-primary: #3a2e1a;
+  --text-secondary: #6a5a3a;
+  --accent: #b8860b;
+  --accent-glow: rgba(184,134,11,0.3);
+}
+
+/* Atmosphere 7: Twilight Violet */
+[data-atmosphere="twilight"] {
+  --bg-primary: #0e0814;
+  --bg-secondary: #1a1028;
+  --bg-tertiary: #261838;
+  --text-primary: #e0d0f0;
+  --text-secondary: #a890c0;
+  --accent: #9060c0;
+  --accent-glow: rgba(144,96,192,0.3);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════ */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--bg-secondary);
+}
+
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+/* ═══════════════════════════════════════════════════════════
+   LOADING SCREEN
+   ═══════════════════════════════════════════════════════════ */
+
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0a0806;
+  transition: opacity 1.2s ease, visibility 1.2s ease;
+}
+
+#loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-brush {
+  width: 120px;
+  height: 4px;
+  background: var(--bg-tertiary);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.loader-brush::after {
+  content: '';
+  position: absolute;
+  left: -50%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: brushStroke 1.5s ease-in-out infinite;
+}
+
+@keyframes brushStroke {
+  0% { left: -50%; }
+  100% { left: 100%; }
+}
+
+.loader-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(14px, 2vw, 18px);
+  color: var(--text-secondary);
+  margin-top: 24px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  animation: breathe 2s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   AMBIENT PARTICLES
+   ═══════════════════════════════════════════════════════════ */
+
+#particles-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HEADER / HERO
+   ═══════════════════════════════════════════════════════════ */
+
+.hero-section {
+  position: relative;
+  z-index: 5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  overflow: hidden;
+}
+
+.hero-bg-texture {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, var(--accent-glow) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, var(--accent-glow) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 0%, var(--accent-glow) 0%, transparent 40%);
+  opacity: 0.3;
+  animation: heroGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes heroGlow {
+  0% { opacity: 0.2; transform: scale(1); }
+  100% { opacity: 0.4; transform: scale(1.05); }
+}
+
+.hero-subtitle {
+  font-family: 'Philosopher', sans-serif;
+  font-size: clamp(11px, 1.5vw, 14px);
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeSlideUp 1s ease 0.5s forwards;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 10vw, 140px);
+  font-weight: 300;
+  line-height: 0.95;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeSlideUp 1.2s ease 0.8s forwards;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 50%, var(--text-primary) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeSlideUp 1.2s ease 0.8s forwards, shimmer 6s ease-in-out infinite 2s;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 200% center; }
+}
+
+.hero-year {
+  font-family: 'Philosopher', sans-serif;
+  font-size: clamp(14px, 2vw, 20px);
+  color: var(--text-secondary);
+  letter-spacing: 6px;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeSlideUp 1s ease 1.1s forwards;
+}
+
+.hero-description {
+  max-width: 600px;
+  font-size: clamp(16px, 2vw, 22px);
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-style: italic;
+  opacity: 0;
+  animation: fadeSlideUp 1s ease 1.4s forwards;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeSlideUp 1s ease 2s forwards;
+}
+
+.scroll-indicator span {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: var(--accent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(1); opacity: 0.3; }
+  50% { transform: scaleY(0.5); opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ATMOSPHERE PALETTE PANEL
+   ═══════════════════════════════════════════════════════════ */
+
+.palette-toggle {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 9000;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  background: var(--bg-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+}
+
+.palette-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px var(--accent-glow);
+}
+
+.palette-toggle svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--accent);
+  transition: transform 0.4s ease;
+}
+
+.palette-toggle.active svg {
+  transform: rotate(180deg);
+}
+
+.palette-panel {
+  position: fixed;
+  top: 92px;
+  right: 24px;
+  z-index: 8999;
+  width: 280px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--accent);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  transform: translateY(-20px) scale(0.95);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.palette-panel.open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+.palette-panel h3 {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.palette-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.palette-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.palette-option:hover {
+  background: var(--bg-tertiary);
+}
+
+.palette-option.active {
+  border-color: var(--accent);
+  background: var(--bg-tertiary);
+}
+
+.palette-colors {
+  display: flex;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.palette-swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.palette-name {
+  font-size: 14px;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.palette-option.active .palette-name {
+  color: var(--text-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════════════════ */
+
+.nav-bar {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GALLERY SECTION
+   ═══════════════════════════════════════════════════════════ */
+
+.gallery-section {
+  position: relative;
+  z-index: 5;
+  padding: 100px 40px 100px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.section-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 300;
+  margin-bottom: 16px;
+}
+
+.section-header p {
+  font-size: clamp(14px, 1.5vw, 18px);
+  color: var(--text-secondary);
+  font-style: italic;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PAINTING CARD — MAGNIFIER EFFECT
+   ═══════════════════════════════════════════════════════════ */
+
+.painting-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 500px), 1fr));
+  gap: 60px;
+  justify-items: center;
+}
+
+.painting-card {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  cursor: none;
+  group: painting;
+}
+
+.painting-frame {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.2),
+    0 20px 60px rgba(0,0,0,0.4);
+  transition: box-shadow 0.5s ease, transform 0.5s ease;
+}
+
+.painting-card:hover .painting-frame {
+  box-shadow:
+    0 4px 8px rgba(0,0,0,0.3),
+    0 30px 80px rgba(0,0,0,0.5),
+    0 0 40px var(--accent-glow);
+  transform: translateY(-4px);
+}
+
+.painting-image-container {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: auto;
+}
+
+.painting-image-container img {
+  width: 100%;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.painting-card:hover .painting-image-container img {
+  transform: scale(1.02);
+}
+
+/* Frame overlay */
+.frame-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 12px solid transparent;
+  transition: border-color 0.5s ease;
+}
+
+.painting-card[data-frame="yes"] .frame-overlay {
+  border-color: #8b7355;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+}
+
+.painting-card[data-frame="no"] .frame-overlay {
+  border-color: transparent;
+}
+
+/* Magnifier Lens */
+.magnifier-lens {
+  position: fixed;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  pointer-events: none;
+  z-index: 7000;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6), 0 0 80px var(--accent-glow);
+  backdrop-filter: brightness(1.1);
+}
+
+.magnifier-lens.visible {
+  opacity: 1;
+}
+
+.magnifier-lens img {
+  position: absolute;
+  width: 560px;
+  height: 560px;
+  object-fit: cover;
+  transition: opacity 0.4s ease;
+}
+
+.magnifier-inner {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.magnifier-label {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Philosopher', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background: rgba(0,0,0,0.7);
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+  backdrop-filter: blur(10px);
+}
+
+/* Painting Info */
+.painting-info {
+  padding: 24px 8px;
+  text-align: center;
+}
+
+.painting-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 400;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.painting-meta {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 13px;
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+}
+
+.painting-description {
+  font-size: 15px;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-top: 8px;
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.5s ease;
+}
+
+.painting-card:hover .painting-description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MAGNIFIER MODE TOGGLE (for each painting)
+   ═══════════════════════════════════════════════════════════ */
+
+.view-toggle {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(0,0,0,0.7);
+  border: 1px solid var(--accent);
+  border-radius: 24px;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.painting-card:hover .view-toggle {
+  opacity: 1;
+}
+
+.view-toggle span {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.view-toggle .toggle-dot {
+  width: 36px;
+  height: 18px;
+  background: var(--bg-tertiary);
+  border-radius: 9px;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.view-toggle .toggle-dot::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.3s ease;
+}
+
+.view-toggle.active .toggle-dot {
+  background: var(--accent);
+}
+
+.view-toggle.active .toggle-dot::after {
+  transform: translateX(18px);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   INTERIOR / FRAME TOGGLE BUTTON
+   ═══════════════════════════════════════════════════════════ */
+
+.state-toggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.painting-card:hover .state-toggle {
+  opacity: 1;
+}
+
+.state-btn {
+  padding: 6px 12px;
+  background: rgba(0,0,0,0.7);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-family: 'Philosopher', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.state-btn:hover, .state-btn.active {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FULLSCREEN VIEWER
+   ═══════════════════════════════════════════════════════════ */
+
+.fullscreen-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9500;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease;
+  backdrop-filter: blur(20px);
+}
+
+.fullscreen-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.fullscreen-close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--accent);
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.fullscreen-close:hover {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+
+.fullscreen-content {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.fullscreen-image-wrap {
+  position: relative;
+  max-width: 60vw;
+  max-height: 85vh;
+}
+
+.fullscreen-image-wrap img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.fullscreen-info {
+  max-width: 300px;
+}
+
+.fullscreen-info h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.fullscreen-info .meta {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.fullscreen-info .desc {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ABOUT / BIO SECTION
+   ═══════════════════════════════════════════════════════════ */
+
+.about-section {
+  position: relative;
+  z-index: 5;
+  padding: 120px 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+
+.about-section p {
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 1.9;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.about-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--accent);
+  margin: 40px auto;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════ */
+
+.footer-section {
+  position: relative;
+  z-index: 5;
+  padding: 60px 40px;
+  text-align: center;
+  border-top: 1px solid var(--bg-tertiary);
+}
+
+.footer-section p {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 13px;
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+}
+
+.footer-section .signature {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-style: italic;
+  color: var(--accent);
+  margin-top: 16px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL ANIMATIONS
+   ═══════════════════════════════════════════════════════════ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .fullscreen-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .fullscreen-image-wrap {
+    max-width: 80vw;
+  }
+  .fullscreen-info {
+    max-width: 80vw;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .gallery-section { padding: 60px 20px; }
+  .painting-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .painting-card { max-width: 100%; }
+  .magnifier-lens { width: 200px; height: 200px; }
+  .magnifier-lens img { width: 400px; height: 400px; }
+  .palette-panel { right: 12px; width: 240px; }
+  .palette-toggle { top: 16px; right: 12px; width: 48px; height: 48px; }
+  .nav-bar { top: 16px; left: 16px; }
+  .fullscreen-content { padding: 20px; }
+  .about-section { padding: 80px 20px; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: clamp(36px, 12vw, 60px); }
+  .painting-grid { gap: 30px; }
+  .magnifier-lens { width: 160px; height: 160px; }
+  .magnifier-lens img { width: 320px; height: 320px; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CUSTOM CURSOR
+   ═══════════════════════════════════════════════════════════ */
+
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.15s ease, opacity 0.3s ease;
+  mix-blend-mode: difference;
+}
+
+.custom-cursor.hover {
+  transform: scale(2.5);
+  background: var(--accent-glow);
+}
+
+@media (max-width: 768px) {
+  .custom-cursor { display: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BRUSH STROKE DECORATION
+   ═══════════════════════════════════════════════════════════ */
+
+.brush-stroke {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.3;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   IMAGE PLACEHOLDER
+   ═══════════════════════════════════════════════════════════ */
+
+.placeholder-img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PAINTING COUNTER
+   ═══════════════════════════════════════════════════════════ */
+
+.painting-counter {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 9000;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--text-secondary);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.painting-counter.visible {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MAGNIFIER MODE INDICATOR
+   ═══════════════════════════════════════════════════════════ */
+
+.magnifier-mode-hint {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9000;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(0,0,0,0.7);
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: 1px solid var(--accent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  backdrop-filter: blur(10px);
+}
+
+.magnifier-mode-hint.visible {
+  opacity: 1;
+}
+</style>
+</head>
+<body data-atmosphere="amber">
+
+<!-- ═══════════════════════════════════════════════════════════
+     LOADING SCREEN
+     ═══════════════════════════════════════════════════════════ -->
+<div id="loading-screen">
+  <div class="loader-brush"></div>
+  <div class="loader-text">A kiállítás megnyitása...</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CUSTOM CURSOR
+     ═══════════════════════════════════════════════════════════ -->
+<div class="custom-cursor" id="customCursor"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PARTICLES
+     ═══════════════════════════════════════════════════════════ -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════════════════════════════ -->
+<nav class="nav-bar">
+  <a href="#" class="nav-logo">Kárai M.</a>
+  <ul class="nav-links">
+    <li><a href="#gallery">Galéria</a></li>
+    <li><a href="#about">Rólam</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PALETTE TOGGLE
+     ═══════════════════════════════════════════════════════════ -->
+<button class="palette-toggle" id="paletteToggle" aria-label="Atmoszféra váltás">
+  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="8" cy="9" r="2"/><circle cx="13" cy="7" r="2"/><circle cx="16" cy="10" r="2"/><circle cx="7" cy="13" r="2"/><circle cx="11" cy="14" r="2"/></svg>
+</button>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PALETTE PANEL
+     ═══════════════════════════════════════════════════════════ -->
+<div class="palette-panel" id="palettePanel">
+  <h3>Atmoszféra</h3>
+  <div class="palette-options">
+    <div class="palette-option active" data-set="amber">
+      <div class="palette-colors">
+        <div class="palette-swatch" style="background:#0a0806"></div>
+        <div class="palette-swatch" style="background:#1a1410"></div>
+        <div class="palette-swatch" style="background:#d4a056"></div>
+      </div>
+      <span class="palette-name">🕯️ Amber Galéria</span>
+    </div>
+    <div class="palette-option" data-set="moonlit">
+      <div class="palette-colors">
+        <div class="palette-swatch" style="background:#e8e4df"></div>
+        <div class="palette-swatch" style="background:#d5d0c8"></div>
+        <div class="palette-swatch" style="background:#7a6e5d"></div>
+      </div>
+      <span class="palette-name">🌙 Holdvilág</span>
+    </div>
+    <div class="palette-option" data-set="ocean">
+      <div class="palette-colors">
+        <div class="palette-swatch" style="background:#060d17"></div>
+        <div class="palette-swatch" style="background:#0c1a2e"></div>
+        <div class="palette-swatch" style="background:#4a9fd4"></div>
+      </div>
+      <span class="palette-name">🌊 Mélytenger</span>
+    </div>
+    <div class="palette-option" data-set="crimson">
+      <div class="palette-colors">
+        <div class="palette-swatch" style="background:#120608"></div>
+        <div class="palette-swatch" style="background:#240c10"></div>
+        <div class="palette-swatch" style="background:#c44050"></div>
+      </div>
+      <span class="palette-name">🍷 Vörös Bársony</span>
+    </div>
+    <div class="palette-option" data-set="garden">
+      <div class="palette-colors">
+        <div class="palette-swatch" style="background:#0a120a"></div>
+        <div class="palette-swatch" style="background:#142014"></div>
+        <div class="palette-swatch" style="background:#6aaa5a"></div>
+      </div>
+      <span class="palette-name">🌿 Kerti Szép</span>
+    </div>
+    <div class="palette-option" data-set="golden">
+      <div class="palette-colors">
+        <div class="palette-swatch" style="background:#f5efe0"></div>
+        <div class="palette-swatch" style="background:#e8dcc8"></div>
+        <div class="palette-swatch" style="background:#b8860b"></div>
+      </div>
+      <span class="palette-name">🌅 Aranyhajnal</span>
+    </div>
+    <div class="palette-option" data-set="twilight">
+      <div class="palette-colors">
+        <div class="palette-swatch" style="background:#0e0814"></div>
+        <div class="palette-swatch" style="background:#1a1028"></div>
+        <div class="palette-swatch" style="background:#9060c0"></div>
+      </div>
+      <span class="palette-name">🌆 Szürkület</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO SECTION
+     ═══════════════════════════════════════════════════════════ -->
+<section class="hero-section">
+  <div class="hero-bg-texture"></div>
+  <p class="hero-subtitle">Digitális Kiállítás</p>
+  <h1 class="hero-title">Mihály<br>Kárai</h1>
+  <p class="hero-year">sz. 1961 · Festőművész</p>
+  <p class="hero-description">
+    A festészet az a nyelv, amelyben a lélek beszél.
+    Minden ecsetvonás egy történet, minden szín egy érzelem.
+  </p>
+  <div class="scroll-indicator">
+    <span>Fedezd fel</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     GALLERY SECTION
+     ═══════════════════════════════════════════════════════════ -->
+<section class="gallery-section" id="gallery">
+  <div class="section-header reveal">
+    <h2>A Művek</h2>
+    <p>Helyezd az egeret a festményekre, és fedezd fel a rejtett rétegeket a varázslatos nagyítóval.</p>
+  </div>
+
+  <div class="painting-grid" id="paintingGrid">
+    <!-- Paintings will be generated by JS -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ABOUT SECTION
+     ═══════════════════════════════════════════════════════════ -->
+<section class="about-section" id="about">
+  <div class="reveal">
+    <h2>A Művész</h2>
+    <p>
+      Kárai Mihály (1961) magyar festőművész, akinek munkássága a
+      képi kifejezés mély rétegeibe kalauzol. Festményei az érzelmi
+      és spirituális világok határmezsgyéjén születnek, ahol a szín
+      és az forma egy harmonikus egységet alkot.
+    </p>
+    <div class="about-divider"></div>
+    <p>
+      Művészete a hagyományos festészeti technikákat ötvözi a modern
+      expresszió formáival, létrehozva egyedi vizuális világot, amely
+      a nézőt belső utazásra invitálja.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════════════ -->
+<footer class="footer-section">
+  <p>© 2026 — Kárai Mihály Festőművész Digitális Kiállítótere</p>
+  <p class="signature">A művészet örökké él</p>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MAGNIFIER LENS
+     ═══════════════════════════════════════════════════════════ -->
+<div class="magnifier-lens" id="magnifierLens">
+  <div class="magnifier-inner">
+    <img id="magnifierImg" src="" alt="">
+  </div>
+  <div class="magnifier-label" id="magnifierLabel">Keret nélkül</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FULLSCREEN OVERLAY
+     ═══════════════════════════════════════════════════════════ -->
+<div class="fullscreen-overlay" id="fullscreenOverlay">
+  <button class="fullscreen-close" id="fullscreenClose">✕</button>
+  <div class="fullscreen-content">
+    <div class="fullscreen-image-wrap" id="fullscreenImageWrap">
+      <img id="fullscreenImg" src="" alt="">
+    </div>
+    <div class="fullscreen-info">
+      <h3 id="fullscreenTitle"></h3>
+      <p class="meta" id="fullscreenMeta"></p>
+      <p class="desc" id="fullscreenDesc"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAINTING COUNTER
+     ═══════════════════════════════════════════════════════════ -->
+<div class="painting-counter" id="paintingCounter">
+  <span id="counterCurrent">1</span> / <span id="counterTotal">0</span>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MAGNIFIER MODE HINT
+     ═══════════════════════════════════════════════════════════ -->
+<div class="magnifier-mode-hint" id="magnifierHint">
+  Mozgasd az egeret a festményen a nagyítóhoz
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// PAINTING DATA — Update paths to match your actual images
+// ═══════════════════════════════════════════════════════════
+const paintings = [
+  {
+    id: 1,
+    title: "Csendes reggel",
+    year: "2024",
+    technique: "Olajvászon",
+    dimensions: "80 × 60 cm",
+    description: "A hajnal első fényeiben megpengező csend festménye, ahol a szín és a fény egyensúlya a belső béke állapotát idézi.",
+    image: "./apa_festmenyek/festmeny_01.jpg",
+    interior: "./apa_festmenyek/festmeny_01_interior.jpg",
+    frameYes: "./apa_festmenyek/festmeny_01_keret.jpg",
+    frameNo: "./apa_festmenyek/festmeny_01_keretnelkul.jpg"
+  },
+  {
+    id: 2,
+    title: "Tengeri álom",
+    year: "2023",
+    technique: "Olajvászon",
+    dimensions: "100 × 70 cm",
+    description: "Az óceán mélyéről felszínre törő fantázia világa, ahol a hullámok ritmusa az emberi lélek rezdüléseivel összhangban jár.",
+    image: "./apa_festmenyek/festmeny_02.jpg",
+    interior: "./apa_festmenyek/festmeny_02_interior.jpg",
+    frameYes: "./apa_festmenyek/festmeny_02_keret.jpg",
+    frameNo: "./apa_festmenyek/festmeny_02_keretnelkul.jpg"
+  },
+  {
+    id: 3,
+    title: "Őszi hangulat",
+    year: "2023",
+    technique: "Akrilvászon",
+    dimensions: "70 × 50 cm",
+    description: "Az őszi táj aranybarna színei között megbúvó érzelemvilág, amely a mulandóság szépségét ünnepli.",
+    image: "./apa_festmenyek/festmeny_03.jpg",
+    interior: "./apa_festmenyek/festmeny_03_interior.jpg",
+    frameYes: "./apa_festmenyek/festmeny_03_keret.jpg",
+    frameNo: "./apa_festmenyek/festmeny_03_keretnelkul.jpg"
+  },
+  {
+    id: 4,
+    title: "Városi szimfónia",
+    year: "2022",
+    technique: "Olajvászon",
+    dimensions: "120 × 80 cm",
+    description: "A modern város ritmusának festői megjelenítése, ahol az épületek és az emberek egy szimfonikus egységet alkotnak.",
+    image: "./apa_festmenyek/festmeny_04.jpg",
+    interior: "./apa_festmenyek/festmeny_04_interior.jpg",
+    frameYes: "./apa_festmenyek/festmeny_04_keret.jpg",
+    frameNo: "./apa_festmenyek/festmeny_04_keretnelkul.jpg"
+  },
+  {
+    id: 5,
+    title: "Virágzó kert",
+    year: "2022",
+    technique: "Olajvászon",
+    dimensions: "90 × 65 cm",
+    description: "Az élet erőteljes kitörése a színek teljes skáláján, egy kert virágzásának örök pillanata.",
+    image: "./apa_festmenyek/festmeny_05.jpg",
+    interior: "./apa_festmenyek/festmeny_05_interior.jpg",
+    frameYes: "./apa_festmenyek/festmeny_05_keret.jpg",
+    frameNo: "./apa_festmenyek/festmeny_05_keretnelkul.jpg"
+  },
+  {
+    id: 6,
+    title: "Éjszakai csend",
+    year: "2021",
+    technique: "Olajvászon",
+    dimensions: "80 × 60 cm",
+    description: "Az éjszaka titokzatos bájának megidézése, ahol a csillagok fénye és a sötétség mélysége egyensúlyban van.",
+    image: "./apa_festmenyek/festmeny_06.jpg",
+    interior: "./apa_festmenyek/festmeny_06_interior.jpg",
+    frameYes: "./apa_festmenyek/festmeny_06_keret.jpg",
+    frameNo: "./apa_festmenyek/festmeny_06_keretnelkul.jpg"
+  },
+  {
+    id: 7,
+    title: "Tájkép a hegyek között",
+    year: "2021",
+    technique: "Akrilvászon",
+    dimensions: "110 × 75 cm",
+    description: "A hegyek magasztossága és a természet őszi ereje egyszerre jelenik meg ebben a monumentális alkotásban.",
+    image: "./apa_festmenyek/festmeny_07.jpg",
+    interior: "./apa_festmenyek/festmeny_07_interior.jpg",
+    frameYes: "./apa_festmenyek/festmeny_07_keret.jpg",
+    frameNo: "./apa_festmenyek/festmeny_07_keretnelkul.jpg"
+  },
+  {
+    id: 8,
+    title: "Absztrakt kompozíció",
+    year: "2020",
+    technique: "Olajvászon",
+    dimensions: "100 × 100 cm",
+    description: "Az absztrakt formák és színek szabad táncának kifejező ereje, amely a tudattalan mélységeibe kalauzol.",
+    image: "./apa_festmenyek/festmeny_08.jpg",
+    interior: "./apa_festmenyek/festmeny_08_interior.jpg",
+    frameYes: "./apa_festmenyek/festmeny_08_keret.jpg",
+    frameNo: "./apa_festmenyek/festmeny_08_keretnelkul.jpg"
+  }
+];
+
+// ═══════════════════════════════════════════════════════════
+// GALLERY RENDERING
+// ═══════════════════════════════════════════════════════════
+const paintingGrid = document.getElementById('paintingGrid');
+const magnifierLens = document.getElementById('magnifierLens');
+const magnifierImg = document.getElementById('magnifierImg');
+const magnifierLabel = document.getElementById('magnifierLabel');
+const counterCurrent = document.getElementById('counterCurrent');
+const counterTotal = document.getElementById('counterTotal');
+const paintingCounter = document.getElementById('paintingCounter');
+const magnifierHint = document.getElementById('magnifierHint');
+
+counterTotal.textContent = paintings.length;
+
+paintings.forEach((painting, index) => {
+  const card = document.createElement('div');
+  card.className = 'painting-card reveal';
+  card.setAttribute('data-frame', 'yes');
+  card.setAttribute('data-view', 'normal');
+  card.setAttribute('data-index', index);
+
+  card.innerHTML = `
+    <div class="painting-frame" data-painting-id="${painting.id}">
+      <div class="painting-image-container">
+        <img src="${painting.image}" alt="${painting.title}" loading="lazy"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="placeholder-img" style="display:none;">
+          <span>${painting.title}</span>
+        </div>
+        <div class="frame-overlay"></div>
+      </div>
+      <div class="state-toggle">
+        <button class="state-btn active" data-action="frame">Keretben</button>
+        <button class="state-btn" data-action="noframe">Keret nélkül</button>
+        <button class="state-btn" data-action="interior">Enteriőr</button>
+      </div>
+    </div>
+    <div class="painting-info">
+      <h3 class="painting-title">${painting.title}</h3>
+      <p class="painting-meta">${painting.year} · ${painting.technique} · ${painting.dimensions}</p>
+      <p class="painting-description">${painting.description}</p>
+    </div>
+  `;
+
+  paintingGrid.appendChild(card);
+
+  // ═════════════════════════════════════════════════════════
+  // STATE TOGGLE BUTTONS
+  // ═════════════════════════════════════════════════════════
+  const stateBtns = card.querySelectorAll('.state-btn');
+  stateBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const action = btn.dataset.action;
+
+      stateBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      if (action === 'frame') {
+        card.setAttribute('data-frame', 'yes');
+        card.querySelector('.painting-image-container img').src = painting.frameYes || painting.image;
+      } else if (action === 'noframe') {
+        card.setAttribute('data-frame', 'no');
+        card.querySelector('.painting-image-container img').src = painting.frameNo || painting.image;
+      } else if (action === 'interior') {
+        card.setAttribute('data-frame', 'interior');
+        card.querySelector('.painting-image-container img').src = painting.interior || painting.image;
+      }
+    });
+  });
+
+  // ═════════════════════════════════════════════════════════
+  // MAGNIFIER LENS ON HOVER
+  // ═════════════════════════════════════════════════════════
+  const frame = card.querySelector('.painting-frame');
+
+  frame.addEventListener('mouseenter', () => {
+    magnifierLens.classList.add('visible');
+    magnifierHint.classList.add('visible');
+    paintingCounter.classList.add('visible');
+    counterCurrent.textContent = index + 1;
+    magnifierImg.src = painting.image;
+  });
+
+  frame.addEventListener('mouseleave', () => {
+    magnifierLens.classList.remove('visible');
+    magnifierHint.classList.remove('visible');
+  });
+
+  frame.addEventListener('mousemove', (e) => {
+    const lensSize = 280;
+    const img = card.querySelector('.painting-image-container img');
+    const rect = card.querySelector('.painting-image-container').getBoundingClientRect();
+
+    // Calculate position relative to viewport
+    let x = e.clientX - lensSize / 2;
+    let y = e.clientY - lensSize / 2;
+
+    // Keep lens in viewport
+    x = Math.max(0, Math.min(x, window.innerWidth - lensSize));
+    y = Math.max(0, Math.min(y, window.innerHeight - lensSize));
+
+    magnifierLens.style.left = x + 'px';
+    magnifierLens.style.top = y + 'px';
+
+    // Calculate image offset for zoom effect
+    const imgRect = img.getBoundingClientRect();
+    const scaleX = imgRect.width / img.naturalWidth;
+    const scaleY = imgRect.height / img.naturalHeight;
+
+    const mouseX = e.clientX - imgRect.left;
+    const mouseY = e.clientY - imgRect.top;
+
+    const bgX = -(mouseX * 2 - lensSize / 2) * (imgRect.width / img.naturalWidth);
+    const bgY = -(mouseY * 2 - lensSize / 2) * (imgRect.height / img.naturalHeight);
+
+    const magnifierInnerImg = magnifierLens.querySelector('img');
+    magnifierInnerImg.style.width = (imgRect.width * 2) + 'px';
+    magnifierInnerImg.style.height = (imgRect.height * 2) + 'px';
+    magnifierInnerImg.style.left = bgX + 'px';
+    magnifierInnerImg.style.top = bgY + 'px';
+  });
+
+  // ═════════════════════════════════════════════════════════
+  // CLICK TO FULLSCREEN
+  // ═════════════════════════════════════════════════════════
+  frame.addEventListener('click', () => {
+    openFullscreen(painting);
+  });
+});
+
+// ═══════════════════════════════════════════════════════════
+// FULLSCREEN VIEWER
+// ═══════════════════════════════════════════════════════════
+const fullscreenOverlay = document.getElementById('fullscreenOverlay');
+const fullscreenClose = document.getElementById('fullscreenClose');
+const fullscreenImg = document.getElementById('fullscreenImg');
+const fullscreenTitle = document.getElementById('fullscreenTitle');
+const fullscreenMeta = document.getElementById('fullscreenMeta');
+const fullscreenDesc = document.getElementById('fullscreenDesc');
+const fullscreenImageWrap = document.getElementById('fullscreenImageWrap');
+
+function openFullscreen(painting) {
+  fullscreenImg.src = painting.image;
+  fullscreenTitle.textContent = painting.title;
+  fullscreenMeta.textContent = `${painting.year} · ${painting.technique} · ${painting.dimensions}`;
+  fullscreenDesc.textContent = painting.description;
+  fullscreenOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeFullscreen() {
+  fullscreenOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+fullscreenClose.addEventListener('click', closeFullscreen);
+fullscreenOverlay.addEventListener('click', (e) => {
+  if (e.target === fullscreenOverlay) closeFullscreen();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeFullscreen();
+});
+
+// ═══════════════════════════════════════════════════════════
+// ATMOSPHERE PALETTE
+// ═══════════════════════════════════════════════════════════
+const paletteToggle = document.getElementById('paletteToggle');
+const palettePanel = document.getElementById('palettePanel');
+const paletteOptions = document.querySelectorAll('.palette-option');
+
+paletteToggle.addEventListener('click', () => {
+  paletteToggle.classList.toggle('active');
+  palettePanel.classList.toggle('open');
+});
+
+paletteOptions.forEach(option => {
+  option.addEventListener('click', () => {
+    const set = option.dataset.set;
+    document.body.setAttribute('data-atmosphere', set);
+
+    paletteOptions.forEach(o => o.classList.remove('active'));
+    option.classList.add('active');
+
+    palettePanel.classList.remove('open');
+    paletteToggle.classList.remove('active');
+  });
+});
+
+// ═══════════════════════════════════════════════════════════
+// CUSTOM CURSOR
+// ═══════════════════════════════════════════════════════════
+const customCursor = document.getElementById('customCursor');
+let cursorX = 0, cursorY = 0;
+let cursorTargetX = 0, cursorTargetY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  cursorTargetX = e.clientX;
+  cursorTargetY = e.clientY;
+});
+
+function animateCursor() {
+  cursorX += (cursorTargetX - cursorX) * 0.15;
+  cursorY += (cursorTargetY - cursorY) * 0.15;
+  customCursor.style.left = (cursorX - 10) + 'px';
+  customCursor.style.top = (cursorY - 10) + 'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// Hover effects for cursor
+document.querySelectorAll('.painting-card, .palette-toggle, .state-btn, a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => customCursor.classList.add('hover'));
+  el.addEventListener('mouseleave', () => customCursor.classList.remove('hover'));
+});
+
+// ═══════════════════════════════════════════════════════════
+// PARTICLES
+// ═══════════════════════════════════════════════════════════
+const particlesCanvas = document.getElementById('particles-canvas');
+const pCtx = particlesCanvas.getContext('2d');
+let particles = [];
+
+function resizeParticles() {
+  particlesCanvas.width = window.innerWidth;
+  particlesCanvas.height = window.innerHeight;
+}
+resizeParticles();
+window.addEventListener('resize', resizeParticles);
+
+class Particle {
+  constructor() {
+    this.reset();
+  }
+  reset() {
+    this.x = Math.random() * particlesCanvas.width;
+    this.y = Math.random() * particlesCanvas.height;
+    this.size = Math.random() * 2 + 0.5;
+    this.speedX = (Math.random() - 0.5) * 0.3;
+    this.speedY = (Math.random() - 0.5) * 0.3;
+    this.opacity = Math.random() * 0.5 + 0.1;
+    this.life = Math.random() * 200 + 100;
+    this.age = 0;
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    this.age++;
+    if (this.age > this.life || this.x < 0 || this.x > particlesCanvas.width || this.y < 0 || this.y > particlesCanvas.height) {
+      this.reset();
+    }
+  }
+  draw() {
+    const fade = 1 - (this.age / this.life);
+    pCtx.beginPath();
+    pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    pCtx.fillStyle = `rgba(201, 169, 110, ${this.opacity * fade})`;
+    pCtx.fill();
+  }
+}
+
+for (let i = 0; i < 60; i++) {
+  particles.push(new Particle());
+}
+
+function animateParticles() {
+  pCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
+  particles.forEach(p => {
+    p.update();
+    p.draw();
+  });
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// ═══════════════════════════════════════════════════════════
+// SCROLL REVEAL
+// ═══════════════════════════════════════════════════════════
+const revealElements = document.querySelectorAll('.reveal');
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// ═══════════════════════════════════════════════════════════
+// LOADING SCREEN
+// ═══════════════════════════════════════════════════════════
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loading-screen').classList.add('hidden');
+  }, 1500);
+});
+
+// ═══════════════════════════════════════════════════════════
+// SMOOTH SCROLL FOR NAV LINKS
+// ═══════════════════════════════════════════════════════════
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// ═══════════════════════════════════════════════════════════
+// TOUCH SUPPORT FOR MAGNIFIER (MOBILE)
+// ═══════════════════════════════════════════════════════════
+let touchMagnifierActive = false;
+
+paintingGrid.addEventListener('touchstart', (e) => {
+  const card = e.target.closest('.painting-card');
+  if (card) {
+    touchMagnifierActive = true;
+    const index = parseInt(card.dataset.index);
+    magnifierImg.src = paintings[index].image;
+    magnifierLens.classList.add('visible');
+    magnifierHint.classList.add('visible');
+    counterCurrent.textContent = index + 1;
+  }
+}, { passive: true });
+
+paintingGrid.addEventListener('touchmove', (e) => {
+  if (!touchMagnifierActive) return;
+  const touch = e.touches[0];
+  const lensSize = 200;
+  let x = touch.clientX - lensSize / 2;
+  let y = touch.clientY - lensSize / 2;
+  x = Math.max(0, Math.min(x, window.innerWidth - lensSize));
+  y = Math.max(0, Math.min(y, window.innerHeight - lensSize));
+  magnifierLens.style.left = x + 'px';
+  magnifierLens.style.top = y + 'px';
+}, { passive: true });
+
+paintingGrid.addEventListener('touchend', () => {
+  touchMagnifierActive = false;
+  magnifierLens.classList.remove('visible');
+  magnifierHint.classList.remove('visible');
+}, { passive: true });
+
+// ═══════════════════════════════════════════════════════════
+// KEYBOARD NAVIGATION
+// ═══════════════════════════════════════════════════════════
+document.addEventListener('keydown', (e) => {
+  const cards = document.querySelectorAll('.painting-card');
+  let currentIndex = -1;
+
+  cards.forEach((card, i) => {
+    const rect = card.getBoundingClientRect();
+    if (rect.top > 0 && rect.top < window.innerHeight / 2) {
+      currentIndex = i;
+    }
+  });
+
+  if (e.key === 'ArrowRight' && currentIndex < paintings.length - 1) {
+    cards[currentIndex + 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+    cards[currentIndex - 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+});
+
+console.log('%c🎨 Kárai Mihály — Digitális Kiállítás', 'font-size: 20px; color: #c9a96e; font-family: serif;');
+console.log('%cA festmények digitális kiállítótere', 'font-size: 14px; color: #888; font-family: serif;');
+</script>
+</body>
+</html>
+

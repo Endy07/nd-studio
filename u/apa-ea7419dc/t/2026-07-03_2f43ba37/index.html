@@ -1,0 +1,2564 @@
+<!DOCTYPE html>
+<html lang="hu" data-theme="olive">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kárai Mihály – Festőművész</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   CSS CUSTOM PROPERTIES - 7 THEMES
+   ============================================ */
+:root {
+  --transition-speed: 0.6s;
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Jost', 'Segoe UI', sans-serif;
+  --font-accent: 'Caveat', cursive;
+}
+
+/* THEME 1: OLIVE (Dark, painterly olive-gold) */
+[data-theme="olive"] {
+  --bg-primary: #1a1f14;
+  --bg-secondary: #242b1e;
+  --bg-tertiary: #2d3625;
+  --bg-card: rgba(45, 54, 37, 0.7);
+  --text-primary: #e8e0c8;
+  --text-secondary: #c4b896;
+  --text-muted: #8a8060;
+  --accent: #c9a84c;
+  --accent-hover: #d4b85a;
+  --accent-glow: rgba(201, 168, 76, 0.3);
+  --border: rgba(201, 168, 76, 0.2);
+  --gradient-hero: linear-gradient(135deg, #1a1f14 0%, #2d3625 50%, #1a1f14 100%);
+  --gradient-section: linear-gradient(180deg, #1a1f14 0%, #242b1e 100%);
+  --shadow: 0 8px 32px rgba(0,0,0,0.4);
+  --shadow-accent: 0 0 40px rgba(201, 168, 76, 0.15);
+  --grain-opacity: 0.04;
+  --overlay-color: rgba(26, 31, 20, 0.85);
+  --nav-bg: rgba(26, 31, 20, 0.92);
+  --scrollbar-track: #1a1f14;
+  --scrollbar-thumb: #c9a84c;
+}
+
+/* THEME 2: CYPRUS (Dark deep green-cream) */
+[data-theme="cyprus"] {
+  --bg-primary: #1c2321;
+  --bg-secondary: #252e2a;
+  --bg-tertiary: #2e3a35;
+  --bg-card: rgba(46, 58, 53, 0.7);
+  --text-primary: #e5e8e3;
+  --text-secondary: #b8c4b5;
+  --text-muted: #7a8a76;
+  --accent: #7fb069;
+  --accent-hover: #8fc479;
+  --accent-glow: rgba(127, 176, 105, 0.3);
+  --border: rgba(127, 176, 105, 0.2);
+  --gradient-hero: linear-gradient(135deg, #1c2321 0%, #2e3a35 50%, #1c2321 100%);
+  --gradient-section: linear-gradient(180deg, #1c2321 0%, #252e2a 100%);
+  --shadow: 0 8px 32px rgba(0,0,0,0.4);
+  --shadow-accent: 0 0 40px rgba(127, 176, 105, 0.15);
+  --grain-opacity: 0.04;
+  --overlay-color: rgba(28, 35, 33, 0.85);
+  --nav-bg: rgba(28, 35, 33, 0.92);
+  --scrollbar-track: #1c2321;
+  --scrollbar-thumb: #7fb069;
+}
+
+/* THEME 3: ESOM (Dark coffee-cream) */
+[data-theme="esom"] {
+  --bg-primary: #1e1a17;
+  --bg-secondary: #2a2420;
+  --bg-tertiary: #362f2a;
+  --bg-card: rgba(54, 47, 42, 0.7);
+  --text-primary: #f0e6d8;
+  --text-secondary: #c9b89e;
+  --text-muted: #8a7d6b;
+  --accent: #d4a056;
+  --accent-hover: #e0b06a;
+  --accent-glow: rgba(212, 160, 86, 0.3);
+  --border: rgba(212, 160, 86, 0.2);
+  --gradient-hero: linear-gradient(135deg, #1e1a17 0%, #362f2a 50%, #1e1a17 100%);
+  --gradient-section: linear-gradient(180deg, #1e1a17 0%, #2a2420 100%);
+  --shadow: 0 8px 32px rgba(0,0,0,0.4);
+  --shadow-accent: 0 0 40px rgba(212, 160, 86, 0.15);
+  --grain-opacity: 0.04;
+  --overlay-color: rgba(30, 26, 23, 0.85);
+  --nav-bg: rgba(30, 26, 23, 0.92);
+  --scrollbar-track: #1e1a17;
+  --scrollbar-thumb: #d4a056;
+}
+
+/* THEME 4: HOPETYUK (Light cream-navy) */
+[data-theme="hopetyuk"] {
+  --bg-primary: #f5f0e8;
+  --bg-secondary: #ede6d8;
+  --bg-tertiary: #e5ddd0;
+  --bg-card: rgba(237, 230, 216, 0.8);
+  --text-primary: #2a2a3a;
+  --text-secondary: #4a4a5a;
+  --text-muted: #8a8a9a;
+  --accent: #3a506b;
+  --accent-hover: #4a6a8a;
+  --accent-glow: rgba(58, 80, 107, 0.2);
+  --border: rgba(58, 80, 107, 0.15);
+  --gradient-hero: linear-gradient(135deg, #f5f0e8 0%, #ede6d8 50%, #f5f0e8 100%);
+  --gradient-section: linear-gradient(180deg, #f5f0e8 0%, #ede6d8 100%);
+  --shadow: 0 8px 32px rgba(0,0,0,0.08);
+  --shadow-accent: 0 0 40px rgba(58, 80, 107, 0.1);
+  --grain-opacity: 0.03;
+  --overlay-color: rgba(245, 240, 232, 0.85);
+  --nav-bg: rgba(245, 240, 232, 0.92);
+  --scrollbar-track: #f5f0e8;
+  --scrollbar-thumb: #3a506b;
+}
+
+/* THEME 5: TENGERPART (Light sand-turquoise) */
+[data-theme="tengerpart"] {
+  --bg-primary: #faf6f0;
+  --bg-secondary: #f0ebe0;
+  --bg-tertiary: #e8e2d4;
+  --bg-card: rgba(240, 235, 224, 0.8);
+  --text-primary: #1a3a4a;
+  --text-secondary: #2a5a6a;
+  --text-muted: #7a9aaa;
+  --accent: #2a9d8f;
+  --accent-hover: #3ab0a2;
+  --accent-glow: rgba(42, 157, 143, 0.25);
+  --border: rgba(42, 157, 143, 0.15);
+  --gradient-hero: linear-gradient(135deg, #faf6f0 0%, #f0ebe0 50%, #faf6f0 100%);
+  --gradient-section: linear-gradient(180deg, #faf6f0 0%, #f0ebe0 100%);
+  --shadow: 0 8px 32px rgba(0,0,0,0.06);
+  --shadow-accent: 0 0 40px rgba(42, 157, 143, 0.1);
+  --grain-opacity: 0.03;
+  --overlay-color: rgba(250, 246, 240, 0.85);
+  --nav-bg: rgba(250, 246, 240, 0.92);
+  --scrollbar-track: #faf6f0;
+  --scrollbar-thumb: #2a9d8f;
+}
+
+/* THEME 6: ROZSASZIN_HAJNAL (Light rose-gold) */
+[data-theme="rozsaszin_hajnal"] {
+  --bg-primary: #fdf6f0;
+  --bg-secondary: #f8ece2;
+  --bg-tertiary: #f2e0d4;
+  --bg-card: rgba(248, 236, 226, 0.8);
+  --text-primary: #3a2a2a;
+  --text-secondary: #5a4a4a;
+  --text-muted: #9a8a8a;
+  --accent: #c97b5a;
+  --accent-hover: #d98b6a;
+  --accent-glow: rgba(201, 123, 90, 0.25);
+  --border: rgba(201, 123, 90, 0.15);
+  --gradient-hero: linear-gradient(135deg, #fdf6f0 0%, #f8ece2 50%, #fdf6f0 100%);
+  --gradient-section: linear-gradient(180deg, #fdf6f0 0%, #f8ece2 100%);
+  --shadow: 0 8px 32px rgba(0,0,0,0.06);
+  --shadow-accent: 0 0 40px rgba(201, 123, 90, 0.1);
+  --grain-opacity: 0.03;
+  --overlay-color: rgba(253, 246, 240, 0.85);
+  --nav-bg: rgba(253, 246, 240, 0.92);
+  --scrollbar-track: #fdf6f0;
+  --scrollbar-thumb: #c97b5a;
+}
+
+/* THEME 7: KOSZIN (Gray-white-gold) */
+[data-theme="koszin"] {
+  --bg-primary: #f8f6f4;
+  --bg-secondary: #eeebE7;
+  --bg-tertiary: #e4e0da;
+  --bg-card: rgba(238, 235, 231, 0.8);
+  --text-primary: #2a2a2a;
+  --text-secondary: #4a4a4a;
+  --text-muted: #8a8a8a;
+  --accent: #b8860b;
+  --accent-hover: #d4a017;
+  --accent-glow: rgba(184, 134, 11, 0.2);
+  --border: rgba(184, 134, 11, 0.15);
+  --gradient-hero: linear-gradient(135deg, #f8f6f4 0%, #eeebE7 50%, #f8f6f4 100%);
+  --gradient-section: linear-gradient(180deg, #f8f6f4 0%, #eeebE7 100%);
+  --shadow: 0 8px 32px rgba(0,0,0,0.06);
+  --shadow-accent: 0 0 40px rgba(184, 134, 11, 0.1);
+  --grain-opacity: 0.03;
+  --overlay-color: rgba(248, 246, 244, 0.85);
+  --nav-bg: rgba(248, 246, 244, 0.92);
+  --scrollbar-track: #f8f6f4;
+  --scrollbar-thumb: #b8860b;
+}
+
+/* ============================================
+   BASE & RESET
+   ============================================ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 4px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+  line-height: 1.7;
+  cursor: none;
+}
+
+/* Custom Cursor */
+.cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.15s ease;
+  mix-blend-mode: difference;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+  mix-blend-mode: difference;
+}
+
+.cursor-ring.hover {
+  width: 60px;
+  height: 60px;
+  border-color: var(--accent-hover);
+}
+
+/* Canvas Grain Texture Overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.2rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.4s ease;
+  background: transparent;
+}
+
+.nav.scrolled {
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 0.8rem 3rem;
+  box-shadow: 0 2px 30px rgba(0,0,0,0.1);
+}
+
+.nav-logo {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color 0.3s;
+}
+
+.nav-logo span {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  position: relative;
+  padding: 0.3rem 0;
+  transition: color 0.3s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width 0.4s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001;
+  background: none;
+  border: none;
+  padding: 5px;
+}
+
+.nav-hamburger span {
+  width: 28px;
+  height: 1.5px;
+  background: var(--text-primary);
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.nav-hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 4px);
+}
+.nav-hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.nav-hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -4px);
+}
+
+/* Mobile Nav */
+.mobile-nav {
+  position: fixed;
+  top: 0; right: -100%;
+  width: 100%;
+  height: 100vh;
+  background: var(--bg-primary);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.mobile-nav.open {
+  right: 0;
+}
+
+.mobile-nav a {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
+}
+
+.mobile-nav a:hover {
+  color: var(--accent);
+}
+
+/* ============================================
+   THEME SWITCHER PANEL
+   ============================================ */
+.theme-switcher {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 8px;
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px 0 0 16px;
+  border: 1px solid var(--border);
+  border-right: none;
+  transition: all var(--transition-speed) ease;
+  box-shadow: var(--shadow);
+}
+
+.theme-switcher-label {
+  font-family: var(--font-accent);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-align: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 0.15em;
+  margin-bottom: 4px;
+  user-select: none;
+}
+
+.theme-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.theme-btn:hover {
+  transform: scale(1.2);
+}
+
+.theme-btn.active {
+  border-color: var(--text-primary);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.theme-btn::after {
+  content: attr(data-name);
+  position: absolute;
+  right: 42px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  background: var(--bg-card);
+  padding: 4px 10px;
+  border-radius: 6px;
+  backdrop-filter: blur(10px);
+}
+
+.theme-btn:hover::after {
+  opacity: 1;
+}
+
+/* Theme preview colors */
+.theme-btn[data-theme="olive"] {
+  background: linear-gradient(135deg, #1a1f14, #c9a84c);
+}
+.theme-btn[data-theme="cyprus"] {
+  background: linear-gradient(135deg, #1c2321, #7fb069);
+}
+.theme-btn[data-theme="esom"] {
+  background: linear-gradient(135deg, #1e1a17, #d4a056);
+}
+.theme-btn[data-theme="hopetyuk"] {
+  background: linear-gradient(135deg, #f5f0e8, #3a506b);
+}
+.theme-btn[data-theme="tengerpart"] {
+  background: linear-gradient(135deg, #faf6f0, #2a9d8f);
+}
+.theme-btn[data-theme="rozsaszin_hajnal"] {
+  background: linear-gradient(135deg, #fdf6f0, #c97b5a);
+}
+.theme-btn[data-theme="koszin"] {
+  background: linear-gradient(135deg, #f8f6f4, #b8860b);
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--gradient-hero);
+  transition: background var(--transition-speed) ease;
+}
+
+.hero-bg-art {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0.15;
+  background:
+    radial-gradient(ellipse at 20% 50%, var(--accent) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, var(--accent) 0%, transparent 40%),
+    radial-gradient(ellipse at 60% 80%, var(--accent) 0%, transparent 45%);
+  animation: heroFloat 20s ease-in-out infinite;
+}
+
+@keyframes heroFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 15px) scale(0.98); }
+}
+
+.hero-particles {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 50%;
+  opacity: 0;
+  animation: particleFloat linear infinite;
+}
+
+@keyframes particleFloat {
+  0% { opacity: 0; transform: translateY(100vh) rotate(0deg); }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { opacity: 0; transform: translateY(-10vh) rotate(720deg); }
+}
+
+.hero-content {
+  text-align: center;
+  z-index: 2;
+  padding: 2rem;
+  max-width: 900px;
+}
+
+.hero-subtitle {
+  font-family: var(--font-accent);
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: var(--accent);
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.3s forwards;
+  letter-spacing: 0.05em;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.6s forwards;
+  letter-spacing: 0.02em;
+}
+
+.hero-title .last-name {
+  display: block;
+  font-weight: 600;
+  color: var(--accent);
+  font-size: clamp(3.5rem, 9vw, 8rem);
+}
+
+.hero-description {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-weight: 200;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.8;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.9s forwards;
+}
+
+.hero-cta {
+  display: inline-flex;
+  gap: 1.5rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease 1.2s forwards;
+}
+
+.btn-primary {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  background: var(--accent);
+  color: var(--bg-primary);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px var(--accent-glow);
+}
+
+.btn-outline {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.btn-outline:hover {
+  background: var(--accent);
+  color: var(--bg-primary);
+  transform: translateY(-2px);
+}
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease 1.5s forwards;
+}
+
+.hero-scroll-indicator span {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 50px;
+  background: var(--accent);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  width: 100%;
+  height: 50%;
+  background: var(--text-primary);
+  animation: scrollDown 2s ease-in-out infinite;
+}
+
+@keyframes scrollDown {
+  0% { top: -50%; }
+  100% { top: 150%; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   SECTION COMMON
+   ============================================ */
+.section {
+  padding: 8rem 3rem;
+  position: relative;
+  transition: background var(--transition-speed) ease;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-label {
+  font-family: var(--font-accent);
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.section-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--accent);
+  margin: 1.5rem auto;
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 200;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* Reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ============================================
+   ABOUT SECTION
+   ============================================ */
+.about {
+  background: var(--gradient-section);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.about-image-wrapper {
+  position: relative;
+}
+
+.about-image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--accent);
+  opacity: 0.3;
+  transition: all 0.5s ease;
+}
+
+.about-image-wrapper:hover::before {
+  top: -10px;
+  left: -10px;
+  opacity: 0.6;
+}
+
+.about-image {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  filter: grayscale(20%);
+  transition: all 0.5s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.about-image-wrapper:hover .about-image {
+  filter: grayscale(0%);
+  transform: scale(1.02);
+}
+
+.about-text h3 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.about-text h3 span {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.about-text p {
+  font-size: 0.95rem;
+  font-weight: 200;
+  color: var(--text-secondary);
+  margin-bottom: 1.2rem;
+  line-height: 1.9;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--accent);
+  display: block;
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* ============================================
+   GALLERY SECTION
+   ============================================ */
+.gallery {
+  background: var(--bg-primary);
+}
+
+.gallery-filters {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.5rem;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  color: var(--bg-primary);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4/3;
+  transition: all 0.5s ease;
+}
+
+.gallery-item.tall {
+  aspect-ratio: 3/4;
+}
+
+.gallery-item.wide {
+  aspect-ratio: 16/9;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s ease;
+  filter: brightness(0.85) saturate(0.9);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+  filter: brightness(1) saturate(1);
+}
+
+.gallery-overlay {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  padding: 2rem;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  transform: translateY(100%);
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  transform: translateY(0);
+}
+
+.gallery-overlay h4 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
+
+.gallery-overlay p {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 200;
+  color: rgba(255,255,255,0.7);
+}
+
+.gallery-overlay .gallery-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.gallery-tag {
+  font-size: 0.65rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   LIGHTBOX
+   ============================================ */
+.lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.95);
+  z-index: 10000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.lightbox.active {
+  display: flex;
+  opacity: 1;
+}
+
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 85vh;
+  position: relative;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.lightbox-info {
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.lightbox-info h4 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 300;
+}
+
+.lightbox-info p {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  font-weight: 200;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.lightbox-close:hover {
+  border-color: #fff;
+  transform: rotate(90deg);
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.lightbox-nav:hover {
+  border-color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+
+.lightbox-prev { left: 2rem; }
+.lightbox-next { right: 2rem; }
+
+/* ============================================
+   TIMELINE / BIOGRAPHY
+   ============================================ */
+.biography {
+  background: var(--gradient-section);
+}
+
+.timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--accent);
+  opacity: 0.3;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  display: flex;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.timeline-item:nth-child(odd) {
+  flex-direction: row;
+  padding-right: calc(50% + 2rem);
+  text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+  flex-direction: row-reverse;
+  padding-left: calc(50% + 2rem);
+  text-align: left;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 0.5rem;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  transition: transform 0.3s;
+}
+
+.timeline-item:hover .timeline-dot {
+  transform: translateX(-50%) scale(1.5);
+}
+
+.timeline-year {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--accent);
+  margin-bottom: 0.3rem;
+}
+
+.timeline-title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-desc {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 200;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ============================================
+   PAINTING DESCRIPTIONS SECTION
+   ============================================ */
+.paintings-desc {
+  background: var(--bg-primary);
+}
+
+.paintings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.painting-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 2.5rem;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.painting-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.painting-card:hover::before {
+  transform: scaleX(1);
+}
+
+.painting-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-accent);
+}
+
+.painting-card-number {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--accent);
+  opacity: 0.2;
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+}
+
+.painting-card h4 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.painting-card .painting-meta {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.painting-card p {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 200;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ============================================
+   QUOTE SECTION
+   ============================================ */
+.quote-section {
+  padding: 10rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.quote-section::before {
+  content: '"';
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-heading);
+  font-size: 15rem;
+  color: var(--accent);
+  opacity: 0.08;
+  line-height: 1;
+}
+
+.quote-text {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-primary);
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.quote-author {
+  font-family: var(--font-accent);
+  font-size: 1.3rem;
+  color: var(--accent);
+}
+
+/* ============================================
+   CONTACT SECTION
+   ============================================ */
+.contact {
+  background: var(--gradient-section);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.contact-info h3 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.contact-info p {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 200;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.contact-detail {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.contact-icon {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.contact-detail-text {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.contact-detail-text strong {
+  display: block;
+  font-weight: 400;
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 1rem 0;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 200;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  outline: none;
+  transition: border-color 0.3s;
+  resize: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-bottom-color: var(--accent);
+}
+
+.form-group label {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 200;
+  color: var(--text-muted);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label,
+.form-group textarea:focus ~ label,
+.form-group textarea:not(:placeholder-shown) ~ label {
+  top: -0.8rem;
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.form-submit {
+  align-self: flex-start;
+  margin-top: 1rem;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  padding: 4rem 3rem 2rem;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.footer-logo span {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.footer-text {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 200;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-links a {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.footer-copy {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 1024px) {
+  .about-grid {
+    gap: 3rem;
+  }
+  
+  .contact-grid {
+    gap: 3rem;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 1rem 1.5rem;
+  }
+  
+  .nav.scrolled {
+    padding: 0.8rem 1.5rem;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+  
+  .nav-hamburger {
+    display: flex;
+  }
+  
+  .section {
+    padding: 5rem 1.5rem;
+  }
+  
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .about-image-wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .about-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .gallery-item {
+    aspect-ratio: 4/3;
+  }
+  
+  .timeline::before {
+    left: 20px;
+  }
+  
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    flex-direction: row;
+    padding-right: 0;
+    padding-left: 3.5rem;
+    text-align: left;
+  }
+  
+  .timeline-dot {
+    left: 20px;
+  }
+  
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .paintings-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .theme-switcher {
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: 0;
+    transform: translateX(-50%);
+    flex-direction: row;
+    border-radius: 16px 16px 0 0;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    padding: 8px 12px;
+  }
+  
+  .theme-switcher-label {
+    writing-mode: horizontal-tb;
+    margin-bottom: 0;
+  }
+  
+  .cursor-dot, .cursor-ring {
+    display: none;
+  }
+  
+  body {
+    cursor: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 4rem 1rem;
+  }
+  
+  .section-header {
+    margin-bottom: 3rem;
+  }
+  
+  .about-stats {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .hero-title {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+  
+  .hero-title .last-name {
+    font-size: clamp(3rem, 12vw, 5rem);
+  }
+}
+
+/* ============================================
+   LOADING SCREEN
+   ============================================ */
+.loader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: var(--bg-primary);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-text {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+}
+
+.loader-bar {
+  width: 200px;
+  height: 1px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.loader-bar::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: var(--accent);
+  animation: loadBar 2s ease forwards;
+}
+
+@keyframes loadBar {
+  to { left: 0; }
+}
+
+/* ============================================
+   PAINTING TEXTURE EFFECTS
+   ============================================ */
+.painting-texture {
+  position: relative;
+}
+
+.painting-texture::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.02) 2px,
+      rgba(0,0,0,0.02) 4px
+    );
+  pointer-events: none;
+}
+
+/* ============================================
+   DECORATIVE ELEMENTS
+   ============================================ */
+.deco-line {
+  position: absolute;
+  width: 1px;
+  height: 100px;
+  background: var(--accent);
+  opacity: 0.1;
+}
+
+.deco-circle {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0.03;
+}
+
+/* ============================================
+   SMOOTH PAGE TRANSITIONS
+   ============================================ */
+.page-transition {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: var(--accent);
+  z-index: 99998;
+  transform: translateY(100%);
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div class="loader" id="loader">
+  <div class="loader-text">Kárai Mihály</div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- Custom Cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Grain Texture Overlay -->
+<div class="grain-overlay"></div>
+
+<!-- Theme Switcher Panel -->
+<div class="theme-switcher" id="themeSwitcher">
+  <div class="theme-switcher-label">Téma</div>
+  <button class="theme-btn active" data-theme="olive" data-name="Oliv"></button>
+  <button class="theme-btn" data-theme="cyprus" data-name="Ciprus"></button>
+  <button class="theme-btn" data-theme="esom" data-name="Éjféli Kávé"></button>
+  <button class="theme-btn" data-theme="hopetyuk" data-name="Hópehely"></button>
+  <button class="theme-btn" data-theme="tengerpart" data-name="Tengerpart"></button>
+  <button class="theme-btn" data-theme="rozsaszin_hajnal" data-name="Rózsaszín Hajnal"></button>
+  <button class="theme-btn" data-theme="koszin" data-name="Kőszín"></button>
+</div>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <a href="#hero" class="nav-logo">Kárai <span>M.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">Rólam</a></li>
+    <li><a href="#gallery">Galéria</a></li>
+    <li><a href="#paintings">Festmények</a></li>
+    <li><a href="#biography">Életrajz</a></li>
+    <li><a href="#contact">Kapcsolat</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menü">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- Mobile Navigation -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#about" onclick="closeMobileNav()">Rólam</a>
+  <a href="#gallery" onclick="closeMobileNav()">Galéria</a>
+  <a href="#paintings" onclick="closeMobileNav()">Festmények</a>
+  <a href="#biography" onclick="closeMobileNav()">Életrajz</a>
+  <a href="#contact" onclick="closeMobileNav()">Kapcsolat</a>
+</div>
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+  <div class="hero-bg-art"></div>
+  <div class="hero-particles" id="heroParticles"></div>
+  
+  <div class="hero-content">
+    <p class="hero-subtitle">Festőművész</p>
+    <h1 class="hero-title">
+      Kárai
+      <span class="last-name">Mihály</span>
+    </h1>
+    <p class="hero-description">
+      A szín és a forma nyelvén beszélő művész, aki 1961 óta formálja a láthatót láthatatlanná. 
+      Minden ecsetvonás egy történet, minden palettaszín egy érzelem.
+    </p>
+    <div class="hero-cta">
+      <a href="#gallery" class="btn-primary">Galéria Megtekintése</a>
+      <a href="#about" class="btn-outline">Tovább</a>
+    </div>
+  </div>
+  
+  <div class="hero-scroll-indicator">
+    <span>Görgess</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="section about" id="about">
+  <div class="section-header reveal">
+    <span class="section-label">Bemutatkozás</span>
+    <h2 class="section-title">A Művész</h2>
+    <div class="section-divider"></div>
+    <p class="section-subtitle">
+      Egy életmű, amely a színek varázslatát hivatott megörökíteni a vásznon.
+    </p>
+  </div>
+  
+  <div class="about-grid">
+    <div class="about-image-wrapper reveal">
+      <img src="apa_festmenyek/interior_1.jpg" alt="Kárai Mihály műterme" class="about-image painting-texture"
+           onerror="this.src='https://images.unsplash.com/photo-1460661419207-f775bc6c8e57?w=600&h=800&fit=crop'">
+    </div>
+    <div class="about-text reveal reveal-delay-2">
+      <h3>Kárai <span>Mihály</span></h3>
+      <p>
+        1961-ben született festőművész, akinek életműve a színek és formák szabad nyelvén 
+        kommunizál a nézővel. Művészete mélyen gyökerezik a hagyományos festészetben, 
+        mégis folyamatosan keresi az új kifejezési módokat.
+      </p>
+      <p>
+        Munkássága során a természet, az emberi érzelem és az absztrakt formák 
+        találkozásából születnek meg alkotásai. Minden festmény egy utazás – 
+        az ecsetnyomtól a vászon teljes felületéig.
+      </p>
+      <p>
+        Képei magángyűjteményekben és kiállításokon egyaránt helyet kaptak, 
+        művészete tiszteletet és elismerést élvez a művészetkedvelők körében.
+      </p>
+      
+      <div class="about-stats">
+        <div class="stat-item">
+          <span class="stat-number">1961</span>
+          <span class="stat-label">Születés</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">25+</span>
+          <span class="stat-label">Év tapasztalat</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">∞</span>
+          <span class="stat-label">Alkotás</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quote Section -->
+<section class="quote-section">
+  <div class="reveal">
+    <p class="quote-text">
+      „A festészet nem azt látod, amit látsz, 
+      hanem azt, amit mások látnak."
+    </p>
+    <p class="quote-author">— Edgar Degas</p>
+  </div>
+</section>
+
+<!-- Gallery Section -->
+<section class="section gallery" id="gallery">
+  <div class="section-header reveal">
+    <span class="section-label">Képgaléria</span>
+    <h2 class="section-title">Alkotások</h2>
+    <div class="section-divider"></div>
+    <p class="section-subtitle">
+      Válassz kategóriát, és merülj el a színek világában.
+    </p>
+  </div>
+  
+  <div class="gallery-filters reveal">
+    <button class="filter-btn active" data-filter="all">Összes</button>
+    <button class="filter-btn" data-filter="interior">Beltéri</button>
+    <button class="filter-btn" data-filter="keretezve">Keretezve</button>
+    <button class="filter-btn" data-filter="keretnelkul">Keret nélkül</button>
+  </div>
+  
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- Interior 1 -->
+    <div class="gallery-item reveal" data-category="interior" data-index="0">
+      <img src="apa_festmenyek/interior_1.jpg" alt="Festmény beltérben"
+           onerror="this.src='https://images.unsplash.com/photo-1579783902614-a3fb3927b665?w=600&h=450&fit=crop'">
+      <div class="gallery-overlay">
+        <h4>Belépés a világba</h4>
+        <p>Kárai Mihály – Festmény</p>
+        <div class="gallery-tags">
+          <span class="gallery-tag">Beltéri</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Interior 2 -->
+    <div class="gallery-item reveal reveal-delay-1" data-category="interior" data-index="1">
+      <img src="apa_festmenyek/interior_2.jpg" alt="Festmény beltérben"
+           onerror="this.src='https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&h=450&fit=crop'">
+      <div class="gallery-overlay">
+        <h4>Színek harmóniája</h4>
+        <p>Kárai Mihály – Festmény</p>
+        <div class="gallery-tags">
+          <span class="gallery-tag">Beltéri</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Keretezve 1 -->
+    <div class="gallery-item reveal reveal-delay-2" data-category="keretezve" data-index="2">
+      <img src="apa_festmenyek/keretezve_1.jpg" alt="Keretezett festmény"
+           onerror="this.src='https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=600&h=450&fit=crop'">
+      <div class="gallery-overlay">
+        <h4>Arany keretben</h4>
+        <p>Kárai Mihály – Keretezett festmény</p>
+        <div class="gallery-tags">
+          <span class="gallery-tag">Keretezve</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Keretezve 2 -->
+    <div class="gallery-item reveal" data-category="keretezve" data-index="3">
+      <img src="apa_festmenyek/keretezve_2.jpg" alt="Keretezett festmény"
+           onerror="this.src='https://images.unsplash.com/photo-1549887534-1541e9326642?w=600&h=450&fit=crop'">
+      <div class="gallery-overlay">
+        <h4>Időtlenség</h4>
+        <p>Kárai Mihály – Keretezett festmény</p>
+        <div class="gallery-tags">
+          <span class="gallery-tag">Keretezve</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Keretnélkül 1 -->
+    <div class="gallery-item reveal reveal-delay-1" data-category="keretnelkul" data-index="4">
+      <img src="apa_festmenyek/keretnelkul_1.jpg" alt="Keret nélküli festmény"
+           onerror="this.src='https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?w=600&h=450&fit=crop'">
+      <div class="gallery-overlay">
+        <h4>Szabad expresszió</h4>
+        <p>Kárai Mihály – Keret nélkül</p>
+        <div class="gallery-tags">
+          <span class="gallery-tag">Keret nélkül</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Keretnélkül 2 -->
+    <div class="gallery-item reveal reveal-delay-2" data-category="keretnelkul" data-index="5">
+      <img src="apa_festmenyek/keretnelkul_2.jpg" alt="Keret nélküli festmény"
+           onerror="this.src='https://images.unsplash.com/photo-1579783928621-7a13d66a62d1?w=600&h=450&fit=crop'">
+      <div class="gallery-overlay">
+        <h4>Tiszta vászon</h4>
+        <p>Kárai Mihály – Keret nélkül</p>
+        <div class="gallery-tags">
+          <span class="gallery-tag">Keret nélkül</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Paintings Descriptions Section -->
+<section class="section paintings-desc" id="paintings">
+  <div class="section-header reveal">
+    <span class="section-label">Festmények</span>
+    <h2 class="section-title">Alkotások Leírása</h2>
+    <div class="section-divider"></div>
+    <p class="section-subtitle">
+      Ismerd meg a festmények mögötti történeteket és gondolatokat.
+    </p>
+  </div>
+  
+  <div class="paintings-grid">
+    <div class="painting-card reveal">
+      <span class="painting-card-number">01</span>
+      <h4>Interior – 1. kép</h4>
+      <div class="painting-meta">Beltéri elhelyezés • Fotó dokumentáció</div>
+      <p>
+        A festmény beltéri környezetben, elegáns keretben bemutatva. 
+        A kompozíció a tér és a szín viszonyát kutatja, 
+        ahol a világítás játéka új dimenziókat nyit az alkotásban.
+      </p>
+    </div>
+    
+    <div class="painting-card reveal reveal-delay-1">
+      <span class="painting-card-number">02</span>
+      <h4>Interior – 2. kép</h4>
+      <div class="painting-meta">Beltéri elhelyezés • Fotó dokumentáció</div>
+      <p>
+        A második beltéri fotó egy másik alkotást mutat be, 
+        amely a művész stílusjegyeit – a dinamikus ecsetvonásokat 
+        és a gazdag színvilágot – teljes egészében bemutatja.
+      </p>
+    </div>
+    
+    <div class="painting-card reveal reveal-delay-2">
+      <span class="painting-card-number">03</span>
+      <h4>Keretezve – 1. kép</h4>
+      <div class="painting-meta">Keretezett változat</div>
+      <p>
+        A mű keretezett változata, amely a festményt elegáns keretbe 
+        ágyazza. A keret kiemeli az alkotás szépségét, 
+        és új kontextusba helyezi a művészeti élményt.
+      </p>
+    </div>
+    
+    <div class="painting-card reveal reveal-delay-3">
+      <span class="painting-card-number">04</span>
+      <h4>Keretezve – 2. kép</h4>
+      <div class="painting-meta">Keretezett változat</div>
+      <p>
+        A második keretezett kép, amely a művész alapos 
+        munkájának és precizitásának bizonyítéka. 
+        A keret és a festmény harmóniája tökéletes egységet alkot.
+      </p>
+    </div>
+    
+    <div class="painting-card reveal">
+      <span class="painting-card-number">05</span>
+      <h4>Keret nélkül – 1. kép</h4>
+      <div class="painting-meta">Keret nélküli változat</div>
+      <p>
+        A keret nélküli változat szabadabb, nyitottabb élményt nyújt. 
+        A vászon szélei szabadon hagyják a nézőt, 
+        hogy teljesen magába szívja az alkotás energiáját.
+      </p>
+    </div>
+    
+    <div class="painting-card reveal reveal-delay-1">
+      <span class="painting-card-number">06</span>
+      <h4>Keret nélkül – 2. kép</h4>
+      <div class="painting-meta">Keret nélküli változat</div>
+      <p>
+        Az utolsó kép a keret nélküli változatok sorából, 
+        amely a művészet tisztaságát és közvetlenségét 
+        képviseli. Nincs keret, ami elválasztana – csak a mű és a néző.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Biography / Timeline Section -->
+<section class="section biography" id="biography">
+  <div class="section-header reveal">
+    <span class="section-label">Életrajz</span>
+    <h2 class="section-title">Az Út</h2>
+    <div class="section-divider"></div>
+    <p class="section-subtitle">
+      Az alkotói út állomásai, amelyek formálták a művészt.
+    </p>
+  </div>
+  
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">1961</div>
+      <div class="timeline-title">Születés</div>
+      <div class="timeline-desc">
+        Kárai Mihály születése – egy olyan emberé, akinek élete 
+        a színek és formák világába vezet.
+      </div>
+    </div>
+    
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">1980-as</div>
+      <div class="timeline-title">Művészeti tanulmányok</div>
+      <div class="timeline-desc">
+        Az első ecsetvonások, a tanulási folyamat, a saját stílus 
+        keresése és megtalálása.
+      </div>
+    </div>
+    
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">1990-es</div>
+      <div class="timeline-title">Első kiállítások</div>
+      <div class="timeline-desc">
+        Az alkotások először kerülnek kiállításra, a nyilvánosság 
+        előtt mutatkozik be a művész világa.
+      </div>
+    </div>
+    
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2000-es</div>
+      <div class="timeline-title">Stíluscsúcspont</div>
+      <div class="timeline-desc">
+        A művészi kifejezés teljessé válik. A színek, a formák 
+        és az érzelmek tökéletes harmóniája.
+      </div>
+    </div>
+    
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2026</div>
+      <div class="timeline-title">Folyamatos alkotás</div>
+      <div class="timeline-desc">
+        A művészet sosem áll meg. Kárai Mihály ma is alkot, 
+        újabb és újabb világokat festve a vászonra.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="section contact" id="contact">
+  <div class="section-header reveal">
+    <span class="section-label">Kapcsolat</span>
+    <h2 class="section-title">Lépj Velünk Kapcsolatba</h2>
+    <div class="section-divider"></div>
+    <p class="section-subtitle">
+      Kérdésed van? Érdekel egy alkotás? Írj nekünk!
+    </p>
+  </div>
+  
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <h3>Kárai Mihály</h3>
+      <p>
+        Ha érdekel a művészete, ha vásárolni szeretnél egy alkotást, 
+        vagy ha csak meg akarod osztani benyomásaidat – bármikor 
+        keress bizalommal.
+      </p>
+      
+      <div class="contact-detail">
+        <div class="contact-icon">✉</div>
+        <div class="contact-detail-text">
+          <strong>E-mail</strong>
+          <span>kara.mihaly@email.hu</span>
+        </div>
+      </div>
+      
+      <div class="contact-detail">
+        <div class="contact-icon">☎</div>
+        <div class="contact-detail-text">
+          <strong>Telefon</strong>
+          <span>+36 30 123 4567</span>
+        </div>
+      </div>
+      
+      <div class="contact-detail">
+        <div class="contact-icon">◎</div>
+        <div class="contact-detail-text">
+          <strong>Műterem</strong>
+          <span>Budapest, Magyarország</span>
+        </div>
+      </div>
+    </div>
+    
+    <form class="contact-form reveal reveal-delay-2" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <input type="text" id="name" placeholder=" " required>
+        <label for="name">Név</label>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" placeholder=" " required>
+        <label for="email">E-mail cím</label>
+      </div>
+      <div class="form-group">
+        <input type="text" id="subject" placeholder=" ">
+        <label for="subject">Tárgy</label>
+      </div>
+      <div class="form-group">
+        <textarea id="message" rows="4" placeholder=" " required></textarea>
+        <label for="message">Üzenet</label>
+      </div>
+      <button type="submit" class="btn-primary form-submit">Üzenet Küldése</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-logo">Kárai <span>Mihály</span></div>
+  <p class="footer-text">Festőművész – 1961 –</p>
+  <div class="footer-links">
+    <a href="#hero">Főoldal</a>
+    <a href="#about">Rólam</a>
+    <a href="#gallery">Galéria</a>
+    <a href="#biography">Életrajz</a>
+    <a href="#contact">Kapcsolat</a>
+  </div>
+  <p class="footer-copy">© 2026 Kárai Mihály. Minden jog fenntartva.</p>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">‹</button>
+  <div class="lightbox-content">
+    <img id="lightboxImg" src="" alt="Festmény">
+    <div class="lightbox-info">
+      <h4 id="lightboxTitle"></h4>
+      <p id="lightboxDesc"></p>
+    </div>
+  </div>
+  <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">›</button>
+</div>
+
+<script>
+// ============================================
+// LOADING SCREEN
+// ============================================
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 2200);
+});
+
+// ============================================
+// CUSTOM CURSOR
+// ============================================
+const cursorDot = document.getElementById('cursorDot');
+const cursorRing = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursorDot.style.left = mouseX - 4 + 'px';
+  cursorDot.style.top = mouseY - 4 + 'px';
+});
+
+function animateCursorRing() {
+  ringX += (mouseX - ringX) * 0.15;
+  ringY += (mouseY - ringY) * 0.15;
+  cursorRing.style.left = ringX - 20 + 'px';
+  cursorRing.style.top = ringY - 20 + 'px';
+  requestAnimationFrame(animateCursorRing);
+}
+animateCursorRing();
+
+// Hover effect on interactive elements
+const hoverElements = document.querySelectorAll('a, button, .gallery-item, .theme-btn, .filter-btn');
+hoverElements.forEach(el => {
+  el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
+  el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
+});
+
+// ============================================
+// NAVIGATION
+// ============================================
+const nav = document.getElementById('nav');
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileNav.classList.toggle('open');
+  document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+});
+
+function closeMobileNav() {
+  hamburger.classList.remove('active');
+  mobileNav.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ============================================
+// THEME SWITCHER
+// ============================================
+const themeBtns = document.querySelectorAll('.theme-btn');
+const html = document.documentElement;
+
+// Load saved theme
+const savedTheme = localStorage.getItem('karaitheme') || 'olive';
+html.setAttribute('data-theme', savedTheme);
+updateActiveThemeBtn(savedTheme);
+
+themeBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const theme = btn.getAttribute('data-theme');
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem('karaitheme', theme);
+    updateActiveThemeBtn(theme);
+  });
+});
+
+function updateActiveThemeBtn(theme) {
+  themeBtns.forEach(b => b.classList.remove('active'));
+  const active = document.querySelector(`.theme-btn[data-theme="${theme}"]`);
+  if (active) active.classList.add('active');
+}
+
+// ============================================
+// HERO PARTICLES
+// ============================================
+const particlesContainer = document.getElementById('heroParticles');
+for (let i = 0; i < 40; i++) {
+  const particle = document.createElement('div');
+  particle.classList.add('particle');
+  particle.style.left = Math.random() * 100 + '%';
+  particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+  particle.style.animationDelay = (Math.random() * 10) + 's';
+  particle.style.width = (Math.random() * 3 + 1) + 'px';
+  particle.style.height = particle.style.width;
+  particlesContainer.appendChild(particle);
+}
+
+// ============================================
+// SCROLL REVEAL ANIMATIONS
+// ============================================
+const revealElements = document.querySelectorAll('.reveal');
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+});
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// ============================================
+// GALLERY FILTER
+// ============================================
+const filterBtns = document.querySelectorAll('.filter-btn');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    const filter = btn.getAttribute('data-filter');
+    
+    galleryItems.forEach(item => {
+      if (filter === 'all' || item.getAttribute('data-category') === filter) {
+        item.style.display = 'block';
+        setTimeout(() => {
+          item.style.opacity = '1';
+          item.style.transform = 'scale(1)';
+        }, 50);
+      } else {
+        item.style.opacity = '0';
+        item.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          item.style.display = 'none';
+        }, 400);
+      }
+    });
+  });
+});
+
+// ============================================
+// LIGHTBOX
+// ============================================
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxTitle = document.getElementById('lightboxTitle');
+const lightboxDesc = document.getElementById('lightboxDesc');
+let currentLightboxIndex = 0;
+let visibleItems = [];
+
+function getVisibleItems() {
+  return Array.from(galleryItems).filter(item => item.style.display !== 'none');
+}
+
+galleryItems.forEach((item, index) => {
+  item.addEventListener('click', () => {
+    visibleItems = getVisibleItems();
+    currentLightboxIndex = visibleItems.indexOf(item);
+    openLightbox(item);
+  });
+});
+
+function openLightbox(item) {
+  const img = item.querySelector('img');
+  const title = item.querySelector('.gallery-overlay h4');
+  const desc = item.querySelector('.gallery-overlay p');
+  
+  lightboxImg.src = img.src;
+  lightboxTitle.textContent = title ? title.textContent : '';
+  lightboxDesc.textContent = desc ? desc.textContent : '';
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function navigateLightbox(direction) {
+  visibleItems = getVisibleItems();
+  currentLightboxIndex += direction;
+  
+  if (currentLightboxIndex < 0) currentLightboxIndex = visibleItems.length - 1;
+  if (currentLightboxIndex >= visibleItems.length) currentLightboxIndex = 0;
+  
+  const item = visibleItems[currentLightboxIndex];
+  openLightbox(item);
+}
+
+// Close lightbox on background click
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) closeLightbox();
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (!lightbox.classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') navigateLightbox(-1);
+  if (e.key === 'ArrowRight') navigateLightbox(1);
+});
+
+// ============================================
+// SMOOTH SCROLL FOR NAV LINKS
+// ============================================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// ============================================
+// PARALLAX EFFECT ON HERO
+// ============================================
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const hero = document.querySelector('.hero-content');
+  if (hero && scrolled < window.innerHeight) {
+    hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+    hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.8;
+  }
+});
+
+// ============================================
+// FORM HANDLER
+// ============================================
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type="submit"]');
+  const originalText = btn.textContent;
+  btn.textContent = '✓ Elküldve!';
+  btn.style.background = '#2a9d8f';
+  setTimeout(() => {
+    btn.textContent = originalText;
+    btn.style.background = '';
+    e.target.reset();
+  }, 3000);
+}
+
+// ============================================
+// COUNTER ANIMATION FOR STATS
+// ============================================
+const statNumbers = document.querySelectorAll('.stat-number');
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const text = el.textContent;
+      if (text === '∞') return;
+      const num = parseInt(text);
+      if (isNaN(num)) return;
+      
+      let current = 0;
+      const increment = num / 60;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= num) {
+          el.textContent = text;
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(current);
+        }
+      }, 20);
+      statsObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+statNumbers.forEach(el => statsObserver.observe(el));
+
+// ============================================
+// THEME TRANSITION SOUND EFFECT (visual pulse)
+// ============================================
+document.querySelectorAll('.theme-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.body.style.transition = 'none';
+    document.body.style.filter = 'brightness(1.1)';
+    setTimeout(() => {
+      document.body.style.transition = 'all 0.6s ease';
+      document.body.style.filter = 'brightness(1)';
+    }, 150);
+  });
+});
+
+// ============================================
+// ACTIVE NAV LINK HIGHLIGHT ON SCROLL
+// ============================================
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 200;
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+  
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+</body>
+</html>

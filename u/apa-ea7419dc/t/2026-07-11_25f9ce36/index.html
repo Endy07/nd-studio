@@ -1,0 +1,1601 @@
+﻿<!DOCTYPE html>
+<html lang="hu" data-theme="vaszon">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kárai Mihály — Festőművész | Kortárs Absztrakt Expresszionizmus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   THEME ENGINE — 7 paletták, 60-30-10 szabály
+   ═══════════════════════════════════════════ */
+
+/* 1. VASZON (alap) — klasszikus festői, meleg */
+[data-theme="vaszon"] {
+  --bg-primary: #f5f0e8;       /* 60% — vaszon fehér, meleg */
+  --bg-secondary: #e8dfd2;     /* 30% — krémes, elhasznált vászon */
+  --bg-tertiary: #d4c8b4;      /* átmenet */
+  --accent: #8b4513;           /* 10% — sötétbarna, festékcső */
+  --accent-light: #c9a84c;     /* arany kiemelés */
+  --text-primary: #2c1810;
+  --text-secondary: #5a4030;
+  --text-muted: #8b7355;
+  --glass-bg: rgba(245,240,232,0.6);
+  --glass-border: rgba(139,69,19,0.15);
+  --nav-bg: rgba(245,240,232,0.85);
+  --blob-1: rgba(201,168,76,0.25);
+  --blob-2: rgba(139,69,19,0.15);
+  --blob-3: rgba(180,140,100,0.2);
+  --grain-opacity: 0.03;
+  --gallery-bg: rgba(232,223,210,0.5);
+  --card-shadow: 0 20px 60px rgba(44,24,16,0.1);
+  --card-hover-shadow: 0 30px 80px rgba(44,24,16,0.18);
+  --divider: rgba(139,69,19,0.12);
+  --hero-overlay: linear-gradient(135deg, rgba(245,240,232,0.3), rgba(232,223,210,0.5));
+}
+
+/* 2. FEHÉR — galériai tisztaság, minimalista */
+[data-theme="feher"] {
+  --bg-primary: #fafafa;
+  --bg-secondary: #f0f0f0;
+  --bg-tertiary: #e5e5e5;
+  --accent: #1a1a1a;
+  --accent-light: #666666;
+  --text-primary: #111111;
+  --text-secondary: #444444;
+  --text-muted: #888888;
+  --glass-bg: rgba(250,250,250,0.7);
+  --glass-border: rgba(0,0,0,0.08);
+  --nav-bg: rgba(250,250,250,0.9);
+  --blob-1: rgba(0,0,0,0.04);
+  --blob-2: rgba(0,0,0,0.02);
+  --blob-3: rgba(0,0,0,0.03);
+  --grain-opacity: 0.02;
+  --gallery-bg: rgba(240,240,240,0.5);
+  --card-shadow: 0 20px 60px rgba(0,0,0,0.06);
+  --card-hover-shadow: 0 30px 80px rgba(0,0,0,0.12);
+  --divider: rgba(0,0,0,0.08);
+  --hero-overlay: linear-gradient(135deg, rgba(250,250,250,0.2), rgba(240,240,240,0.4));
+}
+
+/* 3. ÉJSZAKAI — sötét, intim, esteli műterem */
+[data-theme="est"] {
+  --bg-primary: #0d0d0f;
+  --bg-secondary: #1a1a1f;
+  --bg-tertiary: #2a2a30;
+  --accent: #c9a84c;
+  --accent-light: #e8d5b7;
+  --text-primary: #e8e4de;
+  --text-secondary: #b0a898;
+  --text-muted: #706858;
+  --glass-bg: rgba(13,13,15,0.7);
+  --glass-border: rgba(201,168,76,0.15);
+  --nav-bg: rgba(13,13,15,0.9);
+  --blob-1: rgba(201,168,76,0.12);
+  --blob-2: rgba(180,120,60,0.08);
+  --blob-3: rgba(100,80,50,0.1);
+  --grain-opacity: 0.04;
+  --gallery-bg: rgba(26,26,31,0.6);
+  --card-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  --card-hover-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  --divider: rgba(201,168,76,0.15);
+  --hero-overlay: linear-gradient(135deg, rgba(13,13,15,0.4), rgba(26,26,31,0.6));
+}
+
+/* 4. GALÉRIA — professzionális kiállítási fény */
+[data-theme="gal"] {
+  --bg-primary: #1c1c1c;
+  --bg-secondary: #282828;
+  --bg-tertiary: #353535;
+  --accent: #d4a843;
+  --accent-light: #f0d890;
+  --text-primary: #f5f0e8;
+  --text-secondary: #c8c0b0;
+  --text-muted: #807868;
+  --glass-bg: rgba(28,28,28,0.75);
+  --glass-border: rgba(212,168,67,0.12);
+  --nav-bg: rgba(28,28,28,0.92);
+  --blob-1: rgba(212,168,67,0.1);
+  --blob-2: rgba(180,140,50,0.07);
+  --blob-3: rgba(140,110,40,0.08);
+  --grain-opacity: 0.035;
+  --gallery-bg: rgba(40,40,40,0.5);
+  --card-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  --card-hover-shadow: 0 30px 80px rgba(0,0,0,0.7);
+  --divider: rgba(212,168,67,0.12);
+  --hero-overlay: linear-gradient(135deg, rgba(28,28,28,0.3), rgba(40,40,40,0.5));
+}
+
+/* 5. BOHÉM — meleg, földes, műteremhangulat */
+[data-theme="bohem"] {
+  --bg-primary: #2a1f1a;
+  --bg-secondary: #3a2a22;
+  --bg-tertiary: #4a3830;
+  --accent: #d4845a;
+  --accent-light: #e8b88a;
+  --text-primary: #f0e0d0;
+  --text-secondary: #c8a890;
+  --text-muted: #8a7060;
+  --glass-bg: rgba(42,31,26,0.7);
+  --glass-border: rgba(212,132,90,0.15);
+  --nav-bg: rgba(42,31,26,0.9);
+  --blob-1: rgba(212,132,90,0.15);
+  --blob-2: rgba(180,100,60,0.1);
+  --blob-3: rgba(150,80,50,0.12);
+  --grain-opacity: 0.04;
+  --gallery-bg: rgba(58,42,34,0.6);
+  --card-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  --card-hover-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  --divider: rgba(212,132,90,0.15);
+  --hero-overlay: linear-gradient(135deg, rgba(42,31,26,0.3), rgba(58,42,34,0.5));
+}
+
+/* 6. MELEG — napfényes, tavaszi, vidám */
+[data-theme="meleg"] {
+  --bg-primary: #fdf6ee;
+  --bg-secondary: #f5e8d8;
+  --bg-tertiary: #eddcc8;
+  --accent: #c45c3a;
+  --accent-light: #e89060;
+  --text-primary: #3a2010;
+  --text-secondary: #6a4030;
+  --text-muted: #9a7060;
+  --glass-bg: rgba(253,246,238,0.65);
+  --glass-border: rgba(196,92,58,0.12);
+  --nav-bg: rgba(253,246,238,0.88);
+  --blob-1: rgba(232,144,96,0.2);
+  --blob-2: rgba(196,92,58,0.12);
+  --blob-3: rgba(220,180,140,0.15);
+  --grain-opacity: 0.025;
+  --gallery-bg: rgba(245,232,216,0.5);
+  --card-shadow: 0 20px 60px rgba(58,32,16,0.1);
+  --card-hover-shadow: 0 30px 80px rgba(58,32,16,0.18);
+  --divider: rgba(196,92,58,0.1);
+  --hero-overlay: linear-gradient(135deg, rgba(253,246,238,0.2), rgba(245,232,216,0.4));
+}
+
+/* 7. ERDŐ — mélyzöld, erdei, organikus */
+[data-theme="erd"] {
+  --bg-primary: #0f1a14;
+  --bg-secondary: #1a2e22;
+  --bg-tertiary: #253e30;
+  --accent: #4db89a;
+  --accent-light: #80e8c0;
+  --text-primary: #e0f0e8;
+  --text-secondary: #a0c8b8;
+  --text-muted: #609080;
+  --glass-bg: rgba(15,26,20,0.7);
+  --glass-border: rgba(77,184,154,0.15);
+  --nav-bg: rgba(15,26,20,0.9);
+  --blob-1: rgba(77,184,154,0.12);
+  --blob-2: rgba(42,122,106,0.08);
+  --blob-3: rgba(60,100,80,0.1);
+  --grain-opacity: 0.035;
+  --gallery-bg: rgba(26,46,34,0.6);
+  --card-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  --card-hover-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  --divider: rgba(77,184,154,0.12);
+  --hero-overlay: linear-gradient(135deg, rgba(15,26,20,0.3), rgba(26,46,34,0.5));
+}
+
+/* ═══════════════════════════════════════════
+   GLOBAL TRANSITIONS — zökkenőmentes téma váltás
+   ═══════════════════════════════════════════ */
+*, *::before, *::after {
+  transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ═══════════════════════════════════════════
+   BASE RESET & TYPOGRAPHY
+   ═══════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ═══════════════════════════════════════════
+   GRAIN TEXTURE OVERLAY
+   ═══════════════════════════════════════════ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  mix-blend-mode: multiply;
+}
+
+/* ═══════════════════════════════════════════
+   CUSTOM SCROLLBAR
+   ═══════════════════════════════════════════ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+/* ═══════════════════════════════════════════
+   CANVAS HERO BACKGROUND
+   ═══════════════════════════════════════════ */
+#hero-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════
+   NAVIGATION — lebegő, pill-shaped
+   ═══════════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav.scrolled {
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 0.7rem 2rem;
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+.nav-logo span {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover::after { width: 100%; }
+
+/* Theme switcher pill */
+.theme-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 100px;
+  padding: 0.4rem 0.6rem;
+}
+
+.theme-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.theme-dot:hover { transform: scale(1.3); }
+.theme-dot.active {
+  border-color: var(--accent);
+  transform: scale(1.2);
+}
+
+.theme-dot[data-set-theme="vaszon"] { background: #d4c8b4; }
+.theme-dot[data-set-theme="feher"] { background: #e5e5e5; border-color: #ccc; }
+.theme-dot[data-set-theme="est"] { background: #2a2a30; }
+.theme-dot[data-set-theme="gal"] { background: #353535; }
+.theme-dot[data-set-theme="bohem"] { background: #4a3830; }
+.theme-dot[data-set-theme="meleg"] { background: #eddcc8; }
+.theme-dot[data-set-theme="erd"] { background: #253e30; }
+
+/* Burger */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.burger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--text-primary);
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.burger.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 5px); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -5px); }
+
+/* ═══════════════════════════════════════════
+   HERO SECTION — aszimmetrikus, canvas + blob
+   ═══════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 6rem 4rem 4rem;
+  gap: 2rem;
+  position: relative;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1.05;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 480px;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 2.2rem;
+  background: var(--accent);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 100px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.hero-cta svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.hero-cta:hover svg { transform: translateX(4px); }
+
+/* Hero visual — morphing blob */
+.hero-visual {
+  position: relative;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-blob {
+  width: 400px;
+  height: 400px;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  background: linear-gradient(135deg, var(--blob-1), var(--blob-2), var(--blob-3));
+  animation: blobMorph 8s ease-in-out infinite;
+  position: relative;
+  mix-blend-mode: multiply;
+  filter: blur(0px);
+}
+
+[data-theme="est"],
+[data-theme="gal"],
+[data-theme="bohem"],
+[data-theme="erd"] {
+  --blob-blend: screen;
+}
+
+[data-theme="est"] .hero-blob,
+[data-theme="gal"] .hero-blob,
+[data-theme="bohem"] .hero-blob,
+[data-theme="erd"] .hero-blob {
+  mix-blend-mode: screen;
+}
+
+.hero-blob::after {
+  content: '';
+  position: absolute;
+  inset: 20%;
+  border-radius: inherit;
+  background: linear-gradient(225deg, var(--accent-light), transparent);
+  opacity: 0.3;
+  animation: blobInner 6s ease-in-out infinite reverse;
+}
+
+@keyframes blobMorph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 50% 60% 30% 60% / 30% 50% 70% 60%; }
+  75% { border-radius: 60% 30% 60% 40% / 70% 40% 50% 60%; }
+}
+
+@keyframes blobInner {
+  0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+  50% { border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%; }
+}
+
+/* ═══════════════════════════════════════════
+   SECTION COMMON
+   ═══════════════════════════════════════════ */
+.section {
+  padding: 6rem 4rem;
+  position: relative;
+}
+
+.section-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-label::before {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  color: var(--text-primary);
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.section-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--accent);
+  margin: 2rem 0;
+  opacity: 0.5;
+}
+
+/* ═══════════════════════════════════════════
+   ABOUT — diagonális split
+   ═══════════════════════════════════════════ */
+.about {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: center;
+  background: var(--bg-secondary);
+  clip-path: polygon(0 3%, 100% 0, 100% 97%, 0 100%);
+  padding: 8rem 6rem;
+}
+
+.about-text p {
+  font-weight: 300;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.9;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.stat {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+}
+
+.stat-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 2.5rem;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+/* ═══════════════════════════════════════════
+   QUOTE — full bleed
+   ═══════════════════════════════════════════ */
+.quote-section {
+  padding: 8rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.quote-section::before {
+  content: '\201C';
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20rem;
+  color: var(--accent);
+  opacity: 0.06;
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+}
+
+.quote-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: var(--text-primary);
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  line-height: 1.5;
+}
+
+.quote-author {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════
+   GALLERY — masonry, organikusról organikusra
+   ═══════════════════════════════════════════ */
+.gallery-section {
+  background: var(--bg-secondary);
+  clip-path: polygon(0 2%, 100% 0, 100% 98%, 0 100%);
+  padding: 8rem 4rem;
+}
+
+.gallery-grid {
+  columns: 3;
+  column-gap: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--gallery-bg);
+  box-shadow: var(--card-shadow);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-item:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.gallery-item img {
+  width: 100%;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.03);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+}
+
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+
+.gallery-overlay-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
+
+.gallery-overlay-size {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.1em;
+}
+
+/* ═══════════════════════════════════════════
+   LIGHTBOX
+   ═══════════════════════════════════════════ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0,0,0,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  backdrop-filter: blur(20px);
+}
+
+.lightbox.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  background: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.lightbox-close:hover {
+  border-color: rgba(255,255,255,0.5);
+  transform: rotate(90deg);
+}
+
+.lightbox-info {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff;
+}
+
+.lightbox-info h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1.4rem;
+  margin-bottom: 0.3rem;
+}
+
+.lightbox-info p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.1em;
+}
+
+/* ═══════════════════════════════════════════
+   CONTACT — floating label form
+   ═══════════════════════════════════════════ */
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 1.2rem 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--divider);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-bottom-color: var(--accent);
+}
+
+.form-group label {
+  position: absolute;
+  left: 0;
+  top: 1.2rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label,
+.form-group textarea:focus ~ label,
+.form-group textarea:not(:placeholder-shown) ~ label {
+  top: -0.5rem;
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.form-submit {
+  align-self: flex-start;
+  padding: 0.9rem 2.5rem;
+  background: var(--accent);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 100px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.form-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════ */
+.footer {
+  padding: 3rem 4rem;
+  text-align: center;
+  border-top: 1px solid var(--divider);
+}
+
+.footer p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+   ═══════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ═══════════════════════════════════════════
+   PAINT DRIP DECORATION
+   ═══════════════════════════════════════════ */
+.paint-drip {
+  position: absolute;
+  width: 3px;
+  background: var(--accent);
+  opacity: 0.15;
+  border-radius: 0 0 3px 3px;
+  animation: drip 4s ease-in-out infinite;
+}
+
+@keyframes drip {
+  0%, 100% { height: 40px; opacity: 0.1; }
+  50% { height: 80px; opacity: 0.2; }
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+  }
+
+  .hero-eyebrow { justify-content: center; }
+  .hero-subtitle { margin-left: auto; margin-right: auto; }
+  .hero-visual { height: 300px; }
+  .hero-blob { width: 280px; height: 280px; }
+
+  .about {
+    grid-template-columns: 1fr;
+    padding: 6rem 2rem;
+    clip-path: polygon(0 1%, 100% 0, 100% 99%, 0 100%);
+  }
+
+  .gallery-grid { columns: 2; }
+
+  .contact { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background: var(--nav-bg);
+    backdrop-filter: blur(30px);
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-left: 1px solid var(--glass-border);
+  }
+
+  .nav-links.open { right: 0; }
+  .burger { display: flex; }
+
+  .theme-switcher {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 999;
+    padding: 0.5rem 0.7rem;
+  }
+
+  .hero { padding: 7rem 1.5rem 3rem; }
+  .hero-title { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+  .hero-visual { height: 220px; }
+  .hero-blob { width: 200px; height: 200px; }
+
+  .section { padding: 4rem 1.5rem; }
+  .about { padding: 5rem 1.5rem; }
+  .about-stats { grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .gallery-section { padding: 5rem 1.5rem; }
+  .gallery-grid { columns: 1; column-gap: 1rem; }
+
+  .quote-section { padding: 5rem 1.5rem; }
+  .quote-text { font-size: 1.4rem; }
+
+  .contact { gap: 2rem; }
+  .footer { padding: 2rem 1.5rem; }
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE NAV OVERLAY
+   ═══════════════════════════════════════════ */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ═══════════════════════════════════════════
+   THEME TRANSITION FLASH
+   ═══════════════════════════════════════════ */
+.theme-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.theme-flash.active {
+  opacity: 1;
+  animation: themeFlash 0.8s ease-out forwards;
+}
+
+@keyframes themeFlash {
+  0% { opacity: 0.08; }
+  100% { opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- Canvas Background -->
+<canvas id="hero-canvas"></canvas>
+
+<!-- Theme Transition Flash -->
+<div class="theme-flash" id="themeFlash"></div>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <a href="#hero" class="nav-logo">Kárai <span>Mihály</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#rolam">Rólam</a></li>
+    <li><a href="#galeria">Galéria</a></li>
+    <li><a href="#idezet">Elv</a></li>
+    <li><a href="#kapcsolat">Kapcsolat</a></li>
+    <li>
+      <div class="theme-switcher">
+        <div class="theme-dot active" data-set-theme="vaszon" title="Vászon"></div>
+        <div class="theme-dot" data-set-theme="feher" title="Galéria fehér"></div>
+        <div class="theme-dot" data-set-theme="est" title="Esti műterem"></div>
+        <div class="theme-dot" data-set-theme="gal" title="Galéria"></div>
+        <div class="theme-dot" data-set-theme="bohem" title="Bohém"></div>
+        <div class="theme-dot" data-set-theme="meleg" title="Meleg"></div>
+        <div class="theme-dot" data-set-theme="erd" title="Erdő"></div>
+      </div>
+    </li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow reveal">Kortárs absztrakt expresszionizmus</div>
+    <h1 class="hero-title reveal reveal-delay-1">
+      A festék <em>nyelvezete</em> —<br>szín, forma, érzelem
+    </h1>
+    <p class="hero-subtitle reveal reveal-delay-2">
+      Karai Mihály (sz. 1961) festményei a tűz és jég, a kaosz és harmónia határán táncolnak. Akril és olaj, vastag impasto és expresszív ecsetvonás — minden vonás egy belső világot hoz létre.
+    </p>
+    <a href="#galeria" class="hero-cta reveal reveal-delay-3">
+      Művek felfedezése
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="hero-visual reveal reveal-delay-2">
+    <div class="hero-blob"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ABOUT
+     ═══════════════════════════════════════════ -->
+<section class="about section" id="rolam">
+  <div class="about-text">
+    <div class="section-label reveal">Művész</div>
+    <h2 class="section-title reveal reveal-delay-1">
+      Karai Mihály — <em>a szín mestere</em>
+    </h2>
+    <div class="section-divider reveal reveal-delay-2"></div>
+    <p class="reveal reveal-delay-2">
+      1961-ben született Karai Mihály kortárs magyar festőművész, akinek munkássága az absztrakt expresszionizmus és a lírai absztrakció határmezsgyéjén helyezkedik el. Műveiben az extrém meleg színpaletta — tűzpiros, kadmium narancs, napraforgó sárga — az erős kontrasztképző hideg tónusokkal — ciánkék, smaragdzöld — áll szemben.
+    </p>
+    <p class="reveal reveal-delay-3">
+      Akril és olaj technika, vastag impasto rétegzés, palettakés-kaparások és dinamikus ecsetvonások jellemzik munkásságát. Kompozícióiban a térbeli mélység illúziója, az atmoszferikus horizontok és a ritmikus geometriai blokkok találkozása különleges vizuális nyelvet teremt.
+    </p>
+  </div>
+  <div class="about-stats reveal reveal-delay-3">
+    <div class="stat">
+      <div class="stat-number">60+</div>
+      <div class="stat-label">Év tapasztalat</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">50+</div>
+      <div class="stat-label">Festmény</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">30+</div>
+      <div class="stat-label">Kiállítás</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">∞</div>
+      <div class="stat-label">Érzelem</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     QUOTE
+     ═══════════════════════════════════════════ -->
+<section class="quote-section" id="idezet">
+  <blockquote class="quote-text reveal">
+    A festészet nem a valóság másolása — hanem a belső világ külsőre hozása. Minden ecsetvonás egy érzelem, minden szín egy emlékezet.
+  </blockquote>
+  <div class="section-divider reveal reveal-delay-1" style="margin: 2rem auto;"></div>
+  <cite class="quote-author reveal reveal-delay-2">— Karai Mihály</cite>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     GALLERY
+     ═══════════════════════════════════════════ -->
+<section class="gallery-section section" id="galeria">
+  <div class="section-label reveal">Művek</div>
+  <h2 class="section-title reveal reveal-delay-1">
+    A <em>festmények</em> világa
+  </h2>
+  <div class="section-divider reveal reveal-delay-2"></div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- Items injected by JS -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CONTACT
+     ═══════════════════════════════════════════ -->
+<section class="section" id="kapcsolat">
+  <div class="contact">
+    <div>
+      <div class="section-label reveal">Kapcsolat</div>
+      <h2 class="section-title reveal reveal-delay-1">
+        Lépjen <em>kapcsolatba</em>
+      </h2>
+      <p class="reveal reveal-delay-2" style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.8;">
+        Festmények vásárlása, kiállítási lehetőségek, vagy egyéni megrendelések érdekében forduljon hozzám bizalommal. Minden mű egyedi, és minden kapcsolat személyes.
+      </p>
+      <div class="reveal reveal-delay-3" style="color: var(--text-muted); font-size: 0.9rem; line-height: 2;">
+        <div>Műterem: Magyarország</div>
+        <div>Email: kapcsolat@karaimihaly.hu</div>
+      </div>
+    </div>
+    <form class="contact-form reveal reveal-delay-2" onsubmit="event.preventDefault();">
+      <div class="form-group">
+        <input type="text" id="name" placeholder=" " required>
+        <label for="name">Név</label>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" placeholder=" " required>
+        <label for="email">E-mail cím</label>
+      </div>
+      <div class="form-group">
+        <textarea id="message" placeholder=" " rows="4" required></textarea>
+        <label for="message">Üzenet</label>
+      </div>
+      <button type="submit" class="form-submit">Üzenet küldése</button>
+    </form>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ -->
+<footer class="footer">
+  <p>© 2026 Karai Mihály — Minden jog fenntartva</p>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     LIGHTBOX
+     ═══════════════════════════════════════════ -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">×</button>
+  <img src="" alt="" id="lightboxImg">
+  <div class="lightbox-info">
+    <h3 id="lightboxTitle"></h3>
+    <p id="lightboxSize"></p>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ═══════════════════════════════════════════
+  // PAINTING DATA — from apa_festmenyek folder
+  // ═══════════════════════════════════════════
+  const paintings = [
+    {
+      file: '014fb97bae01374ff673a7f51de018af-karai-mihaly-absztrakt-festmeny-kepmeret-80x60-cm.jpg',
+      title: 'Absztrakt festmény',
+      size: '80 × 60 cm'
+    },
+    {
+      file: '579ee3610e2f00108ae1ad3b4efe881f-karai-mihaly-a-kep-merete-80x60-cm.jpg',
+      title: 'Geometriai absztrakció',
+      size: '80 × 60 cm'
+    },
+    {
+      file: '732e9d819fbbee1e6b2126f580f51743-karai-mihaly-szines-modern-absztrakt-festmeny-90-x-90-cm.jpg',
+      title: 'Színes modern absztrakt',
+      size: '90 × 90 cm'
+    },
+    {
+      file: '76a52a2610ed517750b4d73efabbe595-karai-mihaly-absztrakt-festmeny-140x40x4-cm.jpg',
+      title: 'Panoráma — naplemente és város',
+      size: '140 × 40 cm'
+    },
+    {
+      file: '8548dfcda68a1463e1ed276bce0b0b0c-karai-mihaly-absztrakt-festmeny-kepmeret-140x40-cm.jpg',
+      title: 'Városi tükröződés',
+      size: '140 × 40 cm'
+    },
+    {
+      file: '9714f6cd20df8b60a6cfa68e340bdcb2-karai-mihaly-absztrakt-festmeny-40x70-cm.jpg',
+      title: 'Sivatagi oázis',
+      size: '40 × 70 cm'
+    },
+    {
+      file: 'c74fb23ff889ff7fc5bc22904e957ac7-karai-mihaly-kortars-absztrakt-festmeny-kepmeret-70x30-cm.jpg',
+      title: 'Kortárs absztrakt — víztükör',
+      size: '70 × 30 cm'
+    },
+    {
+      file: 'cf6c30f8ab61eea749199ee138ae02df-karai-mihaly-nyari-hoseg-kepmeret-100x70-cm.jpg',
+      title: 'Nyári hőség',
+      size: '100 × 70 cm'
+    },
+    {
+      file: 'd0e8f21d863d3647ce7ce2705fbb0aeb-karai-mihaly-absztrakt-festmeny-kepmeret-70x70-cm.jpg',
+      title: 'Szív motívum — szenvedély',
+      size: '70 × 70 cm'
+    },
+    {
+      file: 'd45190df18d013a48540242d4e02b588-karai-mihaly-szines-modern-absztrakt-festmeny-90x100-cm.jpg',
+      title: 'Pasztell örvény',
+      size: '90 × 100 cm'
+    },
+    {
+      file: 'e862397c8ee36bfab0bbe2de56b503e2-karai-mihaly-absztrakt-festmeny-kepmeret-60x60-cm.jpg',
+      title: 'Városi mozaik',
+      size: '60 × 60 cm'
+    },
+    {
+      file: 'keretnelkul_1.jpg',
+      title: 'Drámai chiaroscuro',
+      size: '~70 × 100 cm'
+    },
+    {
+      file: 'keretnelkul_2.jpg',
+      title: 'Hangulat',
+      size: '80 × 60 cm'
+    },
+    {
+      file: 'interior_1.jpg',
+      title: 'Interior — pasztell harmónia',
+      size: '90 × 100 cm'
+    },
+    {
+      file: 'interior_2.jpg',
+      title: 'Interior — tűz és jég',
+      size: '90 × 90 cm'
+    }
+  ];
+
+  const IMG_BASE = '../apa_festmenyek/';
+
+  // ═══════════════════════════════════════════
+  // GALLERY RENDER
+  // ═══════════════════════════════════════════
+  const galleryGrid = document.getElementById('galleryGrid');
+
+  paintings.forEach((p, i) => {
+    const item = document.createElement('div');
+    item.className = `gallery-item reveal reveal-delay-${(i % 4) + 1}`;
+    item.innerHTML = `
+      <img src="${IMG_BASE}${p.file}" alt="${p.title}" loading="lazy">
+      <div class="gallery-overlay">
+        <div class="gallery-overlay-title">${p.title}</div>
+        <div class="gallery-overlay-size">${p.size}</div>
+      </div>
+    `;
+    item.addEventListener('click', () => openLightbox(p));
+    galleryGrid.appendChild(item);
+  });
+
+  // ═══════════════════════════════════════════
+  // LIGHTBOX
+  // ═══════════════════════════════════════════
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxSize = document.getElementById('lightboxSize');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  function openLightbox(p) {
+    lightboxImg.src = IMG_BASE + p.file;
+    lightboxImg.alt = p.title;
+    lightboxTitle.textContent = p.title;
+    lightboxSize.textContent = p.size;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  // ═══════════════════════════════════════════
+  // THEME ENGINE
+  // ═══════════════════════════════════════════
+  const themeDots = document.querySelectorAll('.theme-dot');
+  const themeFlash = document.getElementById('themeFlash');
+  const html = document.documentElement;
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('karai-theme') || 'vaszon';
+  html.setAttribute('data-theme', savedTheme);
+  updateActiveDot(savedTheme);
+
+  themeDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const theme = dot.getAttribute('data-set-theme');
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('karai-theme', theme);
+      updateActiveDot(theme);
+
+      // Flash effect
+      const computedAccent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+      themeFlash.style.background = computedAccent;
+      themeFlash.classList.remove('active');
+      void themeFlash.offsetWidth; // reflow
+      themeFlash.classList.add('active');
+    });
+  });
+
+  function updateActiveDot(theme) {
+    themeDots.forEach(d => d.classList.remove('active'));
+    const active = document.querySelector(`.theme-dot[data-set-theme="${theme}"]`);
+    if (active) active.classList.add('active');
+  }
+
+  // ═══════════════════════════════════════════
+  // NAV SCROLL
+  // ═══════════════════════════════════════════
+  const nav = document.getElementById('nav');
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  }, { passive: true });
+
+  // ═══════════════════════════════════════════
+  // BURGER MENU
+  // ═══════════════════════════════════════════
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  const navOverlay = document.getElementById('navOverlay');
+
+  function toggleMenu() {
+    burger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+    navOverlay.classList.toggle('open');
+  }
+
+  burger.addEventListener('click', toggleMenu);
+  navOverlay.addEventListener('click', toggleMenu);
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (navLinks.classList.contains('open')) toggleMenu();
+    });
+  });
+
+  // ═══════════════════════════════════════════
+  // SCROLL REVEAL
+  // ═══════════════════════════════════════════
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  document.querySelectorAll('.reveal').forEach(el => {
+    revealObserver.observe(el);
+  });
+
+  // ═══════════════════════════════════════════
+  // CANVAS ANIMATION — morphing blobs + particles
+  // ═══════════════════════════════════════════
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+  let particles = [];
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  // Create particles
+  for (let i = 0; i < 40; i++) {
+    particles.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 2 + 0.5,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      opacity: Math.random() * 0.3 + 0.1
+    });
+  }
+
+  // Blob class
+  class Blob {
+    constructor(x, y, radius, color, speed) {
+      this.baseX = x;
+      this.baseY = y;
+      this.radius = radius;
+      this.color = color;
+      this.speed = speed;
+      this.phase = Math.random() * Math.PI * 2;
+    }
+
+    draw(time) {
+      const x = this.baseX + Math.sin(time * this.speed + this.phase) * 80;
+      const y = this.baseY + Math.cos(time * this.speed * 0.7 + this.phase) * 60;
+
+      const gradient = ctx.createRadialGradient(x, y, 0, x, y, this.radius);
+      gradient.addColorStop(0, this.color);
+      gradient.addColorStop(1, 'transparent');
+
+      ctx.beginPath();
+      ctx.arc(x, y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+    }
+  }
+
+  let blobs = [];
+
+  function initBlobs() {
+    const cs = getComputedStyle(document.documentElement);
+    blobs = [
+      new Blob(w * 0.3, h * 0.4, w * 0.35, cs.getPropertyValue('--blob-1').trim(), 0.0008),
+      new Blob(w * 0.7, h * 0.3, w * 0.3, cs.getPropertyValue('--blob-2').trim(), 0.0006),
+      new Blob(w * 0.5, h * 0.7, w * 0.25, cs.getPropertyValue('--blob-3').trim(), 0.001),
+    ];
+  }
+
+  initBlobs();
+
+  // Re-init blobs on theme change via MutationObserver
+  const themeObserver = new MutationObserver(() => {
+    initBlobs();
+  });
+  themeObserver.observe(html, { attributes: true, attributeFilter: ['data-theme'] });
+
+  function animate(time) {
+    // Background
+    const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg-primary').trim();
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, w, h);
+
+    // Blobs
+    blobs.forEach(blob => blob.draw(time));
+
+    // Particles
+    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0) p.x = w;
+      if (p.x > w) p.x = 0;
+      if (p.y < 0) p.y = h;
+      if (p.y > h) p.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = accent;
+      ctx.globalAlpha = p.opacity;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
+
+  // ═══════════════════════════════════════════
+  // SMOOTH SCROLL for anchor links
+  // ═══════════════════════════════════════════
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+})();
+</script>
+</body>
+</html>

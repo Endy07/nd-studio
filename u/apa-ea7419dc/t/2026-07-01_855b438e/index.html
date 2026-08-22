@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály | Festőművész</title>
+    
+    <!-- Google Fonts: Elegancia és Modernitás -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* 
+         * =========================================
+         *  CORE VARIABLES & THEMES (60-30-10 Rule)
+         * =========================================
+         */
+        :root {
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --transition-speed: 0.6s;
+            --cursor-size: 20px;
+        }
+
+        /* Téma 1: A Múzeum (Alapértelmezett - Sötét, drámai) */
+        [data-theme="museum"] {
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #1a1a1a;
+            --text-main: #e0e0e0;
+            --text-muted: #888888;
+            --accent: #d4af37; /* Arany */
+            --overlay: rgba(0,0,0,0.7);
+        }
+
+        /* Téma 2: A Galéria (Tiszta, fehér, minimalista) */
+        [data-theme="gallery"] {
+            --bg-primary: #f4f4f0; /* Meleg fehér */
+            --bg-secondary: #e8e8e4;
+            --text-main: #1a1a1a;
+            --text-muted: #555555;
+            --accent: #2c3e50; /* Sötétkék */
+            --overlay: rgba(255,255,255,0.8);
+        }
+
+        /* Téma 3: Az Atelier (Festői, barna, papír hatású) */
+        [data-theme="atelier"] {
+            --bg-primary: #dcd6c9; /* Régi papír */
+            --bg-secondary: #cbbfa8;
+            --text-main: #3e2723;
+            --text-muted: #5d4037;
+            --accent: #8d6e63;
+            --overlay: rgba(62, 39, 35, 0.6);
+        }
+
+        /* Téma 4: Az Éjszaka (Mélykék, misztikus) */
+        [data-theme="midnight"] {
+            --bg-primary: #0b1021;
+            --bg-secondary: #162038;
+            --text-main: #a8b2d1;
+            --text-muted: #8892b0;
+            --accent: #64ffda; /* Cián */
+            --overlay: rgba(11, 16, 33, 0.8);
+        }
+
+        /* Téma 5: A Tavasz (Lágy zöld, élettel teli) */
+        [data-theme="spring"] {
+            --bg-primary: #f0f7f4;
+            --bg-secondary: #dceee5;
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --accent: #00b894;
+            --overlay: rgba(240, 247, 244, 0.85);
+        }
+
+        /* Téma 6: A Terrakotta (Meleg, földes, modern) */
+        [data-theme="terracotta"] {
+            --bg-primary: #fdfbf7;
+            --bg-secondary: #f2e8d5;
+            --text-main: #4a3b32;
+            --text-muted: #7f6a5c;
+            --accent: #c05746;
+            --overlay: rgba(253, 251, 247, 0.8);
+        }
+
+        /* 
+         * =========================================
+         *  GLOBAL STYLES & RESET
+         * =========================================
+         */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Festői textúra (Szemcsézés) */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        /* Egyedi kurzor */
+        .custom-cursor {
+            width: var(--cursor-size);
+            height: var(--cursor-size);
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            mix-blend-mode: difference;
+        }
+
+        .custom-cursor.hovered {
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent);
+            opacity: 0.5;
+            border: none;
+        }
+
+        /* 
+         * =========================================
+         *  THEME SWITCHER PANEL
+         * =========================================
+         */
+        .theme-switcher {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .theme-btn {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid var(--text-muted);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .theme-btn:hover, .theme-btn.active {
+            transform: scale(1.3);
+            border-color: var(--accent);
+        }
+
+        /* Színek a gombokhoz */
+        .btn-museum { background: #0f0f0f; }
+        .btn-gallery { background: #f4f4f0; }
+        .btn-atelier { background: #dcd6c9; }
+        .btn-midnight { background: #0b1021; }
+        .btn-spring { background: #f0f7f4; }
+        .btn-terracotta { background: #fdfbf7; }
+
+        /* 
+         * =========================================
+         *  HERO SECTION
+         * =========================================
+         */
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Ide kerülhetne egy nagy festmény háttérnek */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.4;
+            filter: grayscale(30%);
+            transition: opacity 1s ease;
+        }
+
+        .hero-content {
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.5s;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--accent);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.8s;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.7;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: var(--text-main);
+            animation: scrollLine 2s infinite;
+        }
+
+        /* 
+         * =========================================
+         *  SECTIONS GENERAL
+         * =========================================
+         */
+        section {
+            padding: 100px 5vw;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--text-main);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        /* 
+         * =========================================
+         *  ABOUT SECTION
+         * =========================================
+         */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            text-align: justify;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .about-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+
+        .about-image-wrapper:hover .about-image {
+            transform: scale(1.05);
+        }
+
+        /* 
+         * =========================================
+         *  GALLERY SECTION (Masonry-ish)
+         * =========================================
+         */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 3/4; /* Alap arány */
+        }
+
+        .gallery-item.wide { aspect-ratio: 16/9; }
+        .gallery-item.tall { aspect-ratio: 2/3; }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--overlay);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .painting-title {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+
+        .painting-desc {
+            font-size: 0.9rem;
+            color: var(--accent);
+            transform: translateY(20px);
+            transition: transform 0.4s ease 0.1s;
+        }
+
+        .gallery-item:hover .painting-title,
+        .gallery-item:hover .painting-desc {
+            transform: translateY(0);
+        }
+
+        /* 
+         * =========================================
+         *  LIGHTBOX (Modal)
+         * =========================================
+         */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 85vh;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            font-family: var(--font-sans);
+        }
+
+        /* 
+         * =========================================
+         *  FOOTER
+         * =========================================
+         */
+        footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--text-muted);
+            margin-top: 4rem;
+        }
+
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* 
+         * =========================================
+         *  ANIMATIONS
+         * =========================================
+         */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scrollLine {
+            0% { height: 0; opacity: 0; } 
+            50% { height: 60px; opacity: 1; } 
+            100% { height: 60px; opacity: 0; } 
+        }
+
+        /* Reveal on Scroll Class */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 
+         * =========================================
+         *  RESPONSIVE
+         * =========================================
+         */
+        @media (max-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            .theme-switcher {
+                right: 10px;
+                gap: 10px;
+            }
+            .theme-btn {
+                width: 15px;
+                height: 15px;
+            }
+        }
+    </style>
+</head>
+<body data-theme="museum">
+
+    <!-- Egyedi kurzor -->
+    <div class="custom-cursor"></div>
+
+    <!-- Témaváltó Panel -->
+    <div class="theme-switcher">
+        <div class="theme-btn btn-museum active" onclick="setTheme('museum')" title="A Múzeum (Sötét)"></div>
+        <div class="theme-btn btn-gallery" onclick="setTheme('gallery')" title="A Galéria (Fehér)"></div>
+        <div class="theme-btn btn-atelier" onclick="setTheme('atelier')" title="Az Atelier (Barna)"></div>
+        <div class="theme-btn btn-midnight" onclick="setTheme('midnight')" title="Az Éjszaka (Kék)"></div>
+        <div class="theme-btn btn-spring" onclick="setTheme('spring')" title="A Tavasz (Zöld)"></div>
+        <div class="theme-btn btn-terracotta" onclick="setTheme('terracotta')" title="Terrakotta (Meleg)"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <header>
+        <!-- 
+             FONTOS: Ide tegyél egy nagy, lenyűgöző festményt háttérnek. 
+             Pl: apa_festmenyek/interior_1.jpg vagy egy külön banner kép.
+        -->
+        <div class="hero-bg" style="background-image: url('apa_festmenyek/interior_1.jpg');"></div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">Kárai Mihály</h1>
+            <p class="hero-subtitle">Festőművész • 1961 -</p>
+        </div>
+
+        <div class="scroll-indicator">
+            <span style="font-size: 0.8rem; letter-spacing: 2px;">FEDEZD FEL</span>
+            <div class="scroll-line"></div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title reveal">Az Művész</h2>
+        <div class="about-container reveal">
+            <div class="about-image-wrapper">
+                <!-- Ide a művész portréja vagy egy részlet -->
+                <img src="apa_festmenyek/interior_2.jpg" alt="Kárai Mihály stúdiója" class="about-image">
+            </div>
+            <div class="about-text">
+                <p>
+                    Kárai Mihály, 1961-ben született festőművész, munkássága a hagyományos technikák és a modern érzékiség szinergiáját tükrözi. Festményei nem csupán képek; ablakok egy mélyebb valóságba, ahol a fény és az árnyék táncot jár.
+                </p>
+                <p>
+                    Művészete során a természet erejét és az emberi lélek finom rezdüléseit próbálja megörökíteni. A vászonra kerülő színek nem véletlenszerűek: mindegyik egy-egy érzelmi hullám, egy-egy megélt pillanat tanúja.
+                </p>
+                <p style="font-family: var(--font-serif); font-style: italic; color: var(--accent);">
+                    "A festészet nem az, amit látsz, hanem az, amit másokra kényszerítesz, hogy lássanak."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h2 class="section-title reveal">Válogatás a Művekből</h2>
+        
+        <div class="gallery-grid">
+            <!-- 
+                 FONTOS: A 'src' attribútumokat cseréld le a saját mappádban lévő képekre! 
+                 Pl: src="apa_festmenyek/keretezve_1.jpg"
+            -->
+
+            <!-- Festmény 1 -->
+            <div class="gallery-item reveal" onclick="openLightbox(this)">
+                <!-- Helyettesítő kép (placeholder) - Cseréld le a sajátodra! -->
+                <img src="apa_festmenyek/keretezve_1.jpg" alt="Festmény 1" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="painting-title">Cím (Példa)</h3>
+                    <p class="painting-desc">Olaj, vászon • 2024</p>
+                </div>
+            </div>
+
+            <!-- Festmény 2 -->
+            <div class="gallery-item tall reveal" onclick="openLightbox(this)">
+                <img src="apa_festmenyek/keretnelkul_1.jpg" alt="Festmény 2" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="painting-title">Cím (Példa)</h3>
+                    <p class="painting-desc">Akvarell • 2023</p>
+                </div>
+            </div>
+
+            <!-- Festmény 3 -->
+            <div class="gallery-item wide reveal" onclick="openLightbox(this)">
+                <img src="apa_festmenyek/keretezve_2.jpg" alt="Festmény 3" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="painting-title">Cím (Példa)</h3>
+                    <p class="painting-desc">Olaj, vászon • 2025</p>
+                </div>
+            </div>
+
+             <!-- Festmény 4 -->
+             <div class="gallery-item reveal" onclick="openLightbox(this)">
+                <img src="apa_festmenyek/keretnelkul_2.jpg" alt="Festmény 4" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="painting-title">Cím (Példa)</h3>
+                    <p class="painting-desc">Technika ismeretlen • 2026</p>
+                </div>
+            </div>
+
+             <!-- További képek ide másolhatók -->
+             <div class="gallery-item reveal" onclick="openLightbox(this)">
+                <img src="apa_festmenyek/interior_1.jpg" alt="Belső tér" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="painting-title">Belső Tér I.</h3>
+                    <p class="painting-desc">Stúdió nézet</p>
+                </div>
+            </div>
+
+             <div class="gallery-item reveal" onclick="openLightbox(this)">
+                <img src="apa_festmenyek/interior_2.jpg" alt="Belső tér" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="painting-title">Belső Tér II.</h3>
+                    <p class="painting-desc">Stúdió nézet</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">Kárai Mihály</div>
+        <p class="copyright">&copy; 2026 Minden jog fenntartva. Tervezte: Hermes.</p>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img src="" alt="Nagyított kép" class="lightbox-img" id="lightbox-img">
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // --- 1. Theme Switcher Logic ---
+        function setTheme(themeName) {
+            document.body.setAttribute('data-theme', themeName);
+            
+            // Update active button state
+            const buttons = document.querySelectorAll('.theme-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.btn-${themeName}`).classList.add('active');
+        }
+
+        // --- 2. Custom Cursor Logic ---
+        const cursor = document.querySelector('.custom-cursor');
+        const hoverElements = document.querySelectorAll('a, .gallery-item, .theme-btn');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+
+        // --- 3. Scroll Reveal Animation ---
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+
+            revealElements.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        // Trigger once on load
+        revealOnScroll();
+
+        // --- 4. Lightbox Logic ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            lightboxImg.src = img.src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Close on clicking outside image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

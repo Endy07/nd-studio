@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hirudo — Merényi Krisztián piócaterápiás praxisa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Public+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2a1a;
+    --ink-soft:#2a3a27;
+    --parchment:#ece4d2;
+    --parchment-deep:#e1d7bf;
+    --card:#f6f1e5;
+    --moss:#4f6b4a;
+    --moss-deep:#3a4f37;
+    --wine:#6f2331;
+    --wine-bright:#8a2c3c;
+    --ochre:#b6883a;
+    --ochre-light:#d6ad6a;
+    --line:rgba(28,42,26,0.16);
+    --line-on-dark:rgba(236,228,210,0.18);
+    --display: 'Fraunces', serif;
+    --body: 'Public Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--ochre-light);color:var(--ink);}
+  a{color:inherit;}
+  img,svg{display:block;max-width:100%;}
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--wine);
+    display:flex;
+    align-items:center;
+    gap:0.6em;
+  }
+  .eyebrow::before{
+    content:"";
+    width:18px;height:1px;
+    background:var(--wine);
+    display:inline-block;
+  }
+  .eyebrow.on-dark{color:var(--ochre-light);}
+  .eyebrow.on-dark::before{background:var(--ochre-light);}
+
+  h1,h2,h3{
+    font-family:var(--display);
+    font-weight:500;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .wrap{
+    max-width:1140px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  section{position:relative;}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(28,42,26,0.0);
+    backdrop-filter:blur(0px);
+    transition:background .4s ease, backdrop-filter .4s ease, border-color .4s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.nav.scrolled{
+    background:rgba(28,42,26,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line-on-dark);
+  }
+  .nav-inner{
+    max-width:1140px;margin:0 auto;padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{
+    font-family:var(--display);
+    font-size:1.3rem;
+    color:var(--parchment);
+    letter-spacing:0.02em;
+    display:flex;align-items:baseline;gap:8px;
+  }
+  .brand b{font-weight:600;}
+  .brand span{font-family:var(--mono);font-size:0.62rem;color:var(--ochre-light);letter-spacing:0.1em;text-transform:uppercase;}
+  nav.links{display:flex;gap:28px;font-size:0.88rem;}
+  nav.links a{
+    color:var(--parchment);
+    text-decoration:none;
+    opacity:0.78;
+    transition:opacity .2s ease;
+    position:relative;
+  }
+  nav.links a:hover{opacity:1;}
+  .nav-cta{
+    font-family:var(--mono);
+    font-size:0.76rem;
+    letter-spacing:0.04em;
+    color:var(--ink);
+    background:var(--ochre-light);
+    padding:9px 18px;
+    border-radius:2px;
+    text-decoration:none;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .nav-cta:hover{background:var(--ochre);transform:translateY(-1px);}
+  .nav-toggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(ellipse 900px 600px at 78% -10%, rgba(111,35,49,0.35), transparent 60%),
+      linear-gradient(180deg, var(--ink) 0%, var(--ink-soft) 100%);
+    color:var(--parchment);
+    padding:170px 0 120px;
+    overflow:hidden;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:60px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5.4vw, 4.4rem);
+    line-height:1.04;
+    color:var(--parchment);
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--ochre-light);
+    font-weight:400;
+  }
+  .hero p.lede{
+    font-size:1.12rem;
+    max-width:46ch;
+    color:rgba(236,228,210,0.82);
+    margin-top:24px;
+  }
+  .hero-cta-row{
+    display:flex;gap:16px;align-items:center;
+    margin-top:38px;flex-wrap:wrap;
+  }
+  .btn-primary{
+    font-family:var(--mono);
+    font-size:0.8rem;
+    letter-spacing:0.04em;
+    background:var(--wine);
+    color:var(--parchment);
+    padding:15px 28px;
+    text-decoration:none;
+    border-radius:2px;
+    border:1px solid var(--wine-bright);
+    transition:background .2s ease, transform .2s ease;
+  }
+  .btn-primary:hover{background:var(--wine-bright);transform:translateY(-1px);}
+  .btn-ghost{
+    font-family:var(--mono);
+    font-size:0.8rem;
+    color:var(--parchment);
+    text-decoration:none;
+    border-bottom:1px solid var(--ochre-light);
+    padding-bottom:2px;
+    opacity:0.85;
+  }
+  .btn-ghost:hover{opacity:1;}
+
+  .hero-figure{
+    position:relative;
+  }
+  .hero-figure svg{width:100%;height:auto;}
+
+  .hero-stats{
+    display:flex;gap:34px;
+    margin-top:56px;
+    padding-top:28px;
+    border-top:1px solid var(--line-on-dark);
+    flex-wrap:wrap;
+  }
+  .hero-stats div{font-family:var(--mono);font-size:0.74rem;color:rgba(236,228,210,0.62);letter-spacing:0.03em;}
+  .hero-stats div b{display:block;color:var(--ochre-light);font-family:var(--display);font-size:1.5rem;font-weight:500;letter-spacing:0;margin-bottom:2px;}
+
+  /* ---------- INTRO ---------- */
+  .intro{
+    padding:120px 0 90px;
+  }
+  .intro-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:70px;
+    align-items:start;
+  }
+  .intro h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin-top:14px;line-height:1.15;}
+  .intro-text p{font-size:1.02rem;color:var(--ink-soft);margin:0 0 18px;}
+  .intro-text strong{color:var(--wine);font-weight:600;}
+  .intro-side{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:30px 28px;
+  }
+  .intro-side h3{font-size:1.1rem;margin-bottom:14px;}
+  .compound-list{list-style:none;margin:0;padding:0;}
+  .compound-list li{
+    display:flex;justify-content:space-between;gap:12px;
+    padding:12px 0;
+    border-bottom:1px dashed var(--line);
+    font-size:0.9rem;
+  }
+  .compound-list li:last-child{border-bottom:none;}
+  .compound-list .name{font-family:var(--display);font-style:italic;color:var(--ink);}
+  .compound-list .role{font-family:var(--mono);font-size:0.7rem;color:var(--moss);text-align:right;text-transform:uppercase;letter-spacing:0.04em;}
+
+  /* ---------- BODY DIAGRAM (signature) ---------- */
+  .diagram-section{
+    background:var(--ink);
+    color:var(--parchment);
+    padding:110px 0 120px;
+    position:relative;
+  }
+  .diagram-head{max-width:640px;margin-bottom:54px;}
+  .diagram-head h2{color:var(--parchment);font-size:clamp(1.9rem,3.4vw,2.6rem);margin-top:14px;}
+  .diagram-head p{color:rgba(236,228,210,0.7);font-size:1.02rem;margin-top:16px;}
+  .diagram-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:50px;
+    align-items:center;
+  }
+  .figure-wrap{position:relative;}
+  .figure-wrap svg{width:100%;max-width:380px;margin:0 auto;display:block;}
+  .hotspot{
+    cursor:pointer;
+    fill:var(--ochre-light);
+    stroke:var(--ink);
+    stroke-width:2;
+    transition:r .25s ease, fill .25s ease;
+  }
+  .hotspot:hover, .hotspot.active{
+    fill:var(--wine-bright);
+  }
+  .hotspot-pulse{
+    fill:none;
+    stroke:var(--ochre-light);
+    stroke-width:1.5;
+    opacity:0.55;
+    pointer-events:none;
+    animation:pulse 2.6s ease-out infinite;
+  }
+  @keyframes pulse{
+    0%{ r:9; opacity:0.55; }
+    100%{ r:20; opacity:0; }
+  }
+  .condition-list{display:flex;flex-direction:column;gap:2px;}
+  .condition-item{
+    border-bottom:1px solid var(--line-on-dark);
+    padding:18px 4px;
+    cursor:pointer;
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    transition:padding-left .25s ease;
+  }
+  .condition-item:first-child{border-top:1px solid var(--line-on-dark);}
+  .condition-item .num{font-family:var(--mono);font-size:0.72rem;color:var(--ochre-light);min-width:24px;}
+  .condition-item h4{
+    font-family:var(--display);font-weight:500;font-size:1.08rem;margin:0;
+    color:var(--parchment);
+  }
+  .condition-item p{
+    margin:6px 0 0;font-size:0.88rem;color:rgba(236,228,210,0.62);
+    display:none;
+  }
+  .condition-item.active{padding-left:14px;background:rgba(236,228,210,0.04);}
+  .condition-item.active p{display:block;}
+  .condition-item.active h4{color:var(--ochre-light);}
+  .condition-item.active .num{color:var(--wine-bright);}
+
+  /* ---------- WARNING ---------- */
+  .warning{
+    padding:90px 0;
+  }
+  .warning-box{
+    border:2px solid var(--wine);
+    background:var(--card);
+    border-radius:4px;
+    padding:44px;
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:32px;
+    align-items:center;
+    position:relative;
+  }
+  .stamp{
+    font-family:var(--mono);
+    font-size:0.78rem;
+    letter-spacing:0.12em;
+    color:var(--wine);
+    border:2px solid var(--wine);
+    padding:14px 16px;
+    transform:rotate(-6deg);
+    text-transform:uppercase;
+    text-align:center;
+    border-radius:2px;
+    white-space:nowrap;
+  }
+  .warning-box h3{font-size:1.4rem;color:var(--wine);margin-bottom:8px;}
+  .warning-box p{margin:0;font-size:1rem;color:var(--ink-soft);}
+
+  /* ---------- PROCESS TIMELINE ---------- */
+  .process{
+    padding:100px 0 110px;
+    background:var(--parchment-deep);
+  }
+  .process-head{max-width:600px;margin-bottom:60px;}
+  .process-head h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin-top:14px;}
+  .timeline{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+    position:relative;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    top:18px;left:0;right:0;
+    height:1px;
+    background:var(--line);
+  }
+  .t-stage{padding:0 26px 0 0;position:relative;}
+  .t-stage:first-child{padding-left:0;}
+  .t-stage .marker{
+    width:36px;height:36px;
+    border-radius:50%;
+    background:var(--moss);
+    color:var(--parchment);
+    font-family:var(--mono);
+    font-size:0.82rem;
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:22px;
+    position:relative;z-index:2;
+  }
+  .t-stage h3{font-size:1.2rem;margin-bottom:14px;}
+  .t-stage ul{margin:0;padding-left:18px;font-size:0.92rem;color:var(--ink-soft);}
+  .t-stage li{margin-bottom:9px;}
+  .t-stage li b{color:var(--wine);font-weight:600;}
+
+  /* ---------- PRICING ---------- */
+  .pricing{padding:110px 0;}
+  .pricing-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:50px;flex-wrap:wrap;}
+  .pricing-head h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin-top:14px;}
+  .pricing-note{font-family:var(--mono);font-size:0.78rem;color:var(--moss-deep);max-width:30ch;}
+  .price-table{
+    border-top:1px solid var(--ink);
+  }
+  .price-row{
+    display:grid;
+    grid-template-columns:1fr auto auto;
+    gap:24px;
+    align-items:baseline;
+    padding:24px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .price-row .label{font-family:var(--display);font-size:1.25rem;}
+  .price-row .desc{font-size:0.86rem;color:var(--moss-deep);grid-column:1;margin-top:6px;}
+  .price-row .amount{font-family:var(--mono);font-size:1.1rem;color:var(--wine);white-space:nowrap;}
+  .price-row .unit{font-family:var(--mono);font-size:0.72rem;color:var(--ink-soft);opacity:0.6;white-space:nowrap;}
+
+  /* ---------- COURSE ---------- */
+  .course{
+    background:var(--ink);
+    color:var(--parchment);
+    padding:100px 0;
+  }
+  .course-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:60px;
+    align-items:center;
+  }
+  .course h2{color:var(--parchment);font-size:clamp(1.9rem,3.4vw,2.5rem);margin-top:14px;}
+  .course p{color:rgba(236,228,210,0.75);font-size:1.02rem;margin-top:18px;max-width:48ch;}
+  .course-card{
+    background:rgba(236,228,210,0.05);
+    border:1px solid var(--line-on-dark);
+    border-radius:4px;
+    padding:36px;
+  }
+  .course-card .big{font-family:var(--display);font-size:2.6rem;color:var(--ochre-light);margin-bottom:4px;}
+  .course-card .sub{font-family:var(--mono);font-size:0.74rem;color:rgba(236,228,210,0.6);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:24px;}
+  .course-card ul{list-style:none;margin:0 0 28px;padding:0;}
+  .course-card li{
+    padding:10px 0;border-bottom:1px solid var(--line-on-dark);
+    font-size:0.9rem;color:rgba(236,228,210,0.82);
+    display:flex;gap:10px;
+  }
+  .course-card li::before{content:"—";color:var(--ochre-light);}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact{
+    padding:110px 0 60px;
+  }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+  }
+  .contact h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin-top:14px;}
+  .contact p{color:var(--ink-soft);font-size:1.02rem;margin-top:18px;max-width:42ch;}
+  .contact-form{
+    display:flex;flex-direction:column;gap:16px;
+  }
+  .contact-form input, .contact-form textarea{
+    font-family:var(--body);
+    font-size:0.95rem;
+    padding:14px 16px;
+    border:1px solid var(--line);
+    background:var(--card);
+    border-radius:3px;
+    color:var(--ink);
+    resize:vertical;
+  }
+  .contact-form input:focus, .contact-form textarea:focus{
+    outline:2px solid var(--moss);
+    outline-offset:1px;
+  }
+  .contact-form button{
+    font-family:var(--mono);
+    font-size:0.82rem;
+    letter-spacing:0.04em;
+    background:var(--wine);
+    color:var(--parchment);
+    padding:15px 22px;
+    border:none;
+    border-radius:3px;
+    cursor:pointer;
+    transition:background .2s ease;
+  }
+  .contact-form button:hover{background:var(--wine-bright);}
+  .contact-info{margin-top:34px;display:flex;flex-direction:column;gap:14px;font-size:0.95rem;}
+  .contact-info .row{display:flex;gap:14px;}
+  .contact-info .k{font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;color:var(--moss);min-width:90px;padding-top:2px;}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:34px 0;
+    margin-top:40px;
+  }
+  .footer-inner{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:0.72rem;color:var(--ink-soft);
+    flex-wrap:wrap;gap:14px;
+  }
+
+  @media (max-width: 880px){
+    .nav-inner{padding:16px 22px;}
+    nav.links{display:none;}
+    .wrap{padding:0 22px;}
+    .hero{padding:140px 0 80px;}
+    .hero-grid, .intro-grid, .diagram-grid, .course-grid, .contact-grid{
+      grid-template-columns:1fr;
+    }
+    .hero-figure{order:-1;max-width:280px;margin:0 auto 20px;}
+    .timeline{grid-template-columns:1fr;gap:40px;}
+    .timeline::before{display:none;}
+    .t-stage{padding-right:0;}
+    .pricing-head{flex-direction:column;align-items:flex-start;}
+    .warning-box{grid-template-columns:1fr;text-align:left;}
+    .stamp{justify-self:start;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="siteNav">
+  <div class="nav-inner">
+    <div class="brand"><b>Hirudo</b><span>Merényi Krisztián</span></div>
+    <nav class="links">
+      <a href="#modszer">Módszer</a>
+      <a href="#javallatok">Javallatok</a>
+      <a href="#folyamat">Folyamat</a>
+      <a href="#arak">Árak</a>
+      <a href="#tanfolyam">Tanfolyam</a>
+    </nav>
+    <a class="nav-cta" href="#kapcsolat">Időpontfoglalás</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow on-dark">Hirudoterápia · Ősi módszer, mai praxis</div>
+      <h1>A test saját<br>gyógyulását<br><em>segítjük útjára.</em></h1>
+      <p class="lede">Merényi Krisztián piócaterápiás praxisa Magyarországon. Holisztikus, kiegészítő kezelés gyulladásos, keringési és bőrproblémákra — több ezer éves tudás, körültekintő, egyénre szabott alkalmazásban.</p>
+      <div class="hero-cta-row">
+        <a class="btn-primary" href="#kapcsolat">Konzultáció kérése</a>
+        <a class="btn-ghost" href="#javallatok">Mire jó a kezelés? ↓</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>10</b>kezelés a teljes kúrában</div>
+        <div><b>~2 óra</b>egy alkalom időtartama</div>
+        <div><b>36 óra</b>a seb természetes záródása</div>
+      </div>
+    </div>
+    <div class="hero-figure">
+      <svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="leechGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#8a2c3c"/>
+            <stop offset="100%" stop-color="#4f6b4a"/>
+          </linearGradient>
+        </defs>
+        <path d="M160 20 C 230 40, 270 110, 250 180 C 235 235, 270 260, 250 310 C 235 355, 175 400, 150 395 C 95 385, 60 320, 75 250 C 85 205, 50 180, 60 130 C 72 70, 110 10, 160 20 Z"
+          fill="none" stroke="url(#leechGrad)" stroke-width="2.2" opacity="0.85"/>
+        <path d="M160 20 C 230 40, 270 110, 250 180 C 235 235, 270 260, 250 310 C 235 355, 175 400, 150 395 C 95 385, 60 320, 75 250 C 85 205, 50 180, 60 130 C 72 70, 110 10, 160 20 Z"
+          fill="none" stroke="#ece4d2" stroke-width="0.6" opacity="0.3" transform="scale(0.92) translate(13,18)"/>
+        <g stroke="#ece4d2" stroke-width="0.5" opacity="0.25">
+          <path d="M95 60 C 130 90, 130 320, 110 360"/>
+          <path d="M130 35 C 165 90, 165 330, 145 385"/>
+          <path d="M180 30 C 200 90, 205 330, 185 390"/>
+          <path d="M220 60 C 235 110, 230 280, 200 340"/>
+        </g>
+        <circle cx="160" cy="35" r="3" fill="#d6ad6a"/>
+        <circle cx="150" cy="392" r="4" fill="#d6ad6a"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="intro" id="modszer">
+  <div class="wrap intro-grid">
+    <div class="reveal">
+      <div class="eyebrow">A módszer</div>
+      <h2>Mi történik valójában a bőr alatt?</h2>
+    </div>
+    <div class="intro-text reveal">
+      <p>A piócaterápia egy alternatív, holisztikus gyógyászati eljárás és egyben ősi kezelési módszer. Kezelés közben a pióca nyálában lévő biokémiai és bioaktív anyagok — köztük a <strong>hirudin</strong> — fejtik ki jótékony hatásukat: gyulladáscsökkentő, véralvadásgátló és mikrokeringést javító hatásmechanizmusok lépnek működésbe egyszerre, egyetlen, néhány perces beavatkozás során.</p>
+      <p>Ezen túl a piócának energetikai hatása is van: segít az energetikai egyensúly helyreállításában, miközben lazító és nyugtató élményt nyújt. A harapás maga enyhe, csípésszerű érzet — a folyamat lényege nem a fájdalom, hanem az, ami utána, a szervezet saját regenerációs folyamataiban történik.</p>
+      <div class="intro-side">
+        <h3>Amit a nyál a bőrbe juttat</h3>
+        <ul class="compound-list">
+          <li><span class="name">Hirudin</span><span class="role">véralvadásgátló</span></li>
+          <li><span class="name">Gyulladáscsökkentő enzimek</span><span class="role">duzzanat ellen</span></li>
+          <li><span class="name">Vazodilatáló anyagok</span><span class="role">mikrokeringés</span></li>
+          <li><span class="name">Enyhe érzéstelenítő hatás</span><span class="role">csípésérzet</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="diagram-section" id="javallatok">
+  <div class="wrap">
+    <div class="diagram-head reveal">
+      <div class="eyebrow on-dark">Javallatok</div>
+      <h2>Hol és milyen panaszra alkalmazható?</h2>
+      <p>Az alábbi testtájakon kiegészítő vagy fenntartó kezelésként alkalmazható a piócaterápia. Érintsd meg vagy kattints egy pontra a részletekért.</p>
+    </div>
+    <div class="diagram-grid">
+      <div class="figure-wrap reveal">
+        <svg id="bodySvg" viewBox="0 0 220 460" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="rgba(236,228,210,0.4)" stroke-width="1.6">
+            <circle cx="110" cy="42" r="30"/>
+            <path d="M110 72 L110 110"/>
+            <path d="M70 130 C 70 100, 150 100, 150 130 L 155 250 L 130 250 L 125 160 L 95 160 L 90 250 L 65 250 Z"/>
+            <path d="M75 130 L 35 230 L 45 240 L 88 150"/>
+            <path d="M145 130 L 185 230 L 175 240 L 132 150"/>
+            <path d="M95 250 L 88 380 L 100 385 L 108 260"/>
+            <path d="M125 250 L 132 380 L 120 385 L 112 260"/>
+            <path d="M88 380 L 80 410 L 102 412 L 100 385"/>
+            <path d="M132 380 L 140 410 L 118 412 L 120 385"/>
+          </g>
+          <circle class="hotspot-pulse" cx="110" cy="42" r="9"/>
+          <circle class="hotspot" data-id="foginy" cx="110" cy="42" r="6"/>
+          <circle class="hotspot-pulse" cx="110" cy="120" r="9" style="animation-delay:.3s"/>
+          <circle class="hotspot" data-id="pajzsmirigy" cx="110" cy="120" r="6"/>
+          <circle class="hotspot-pulse" cx="110" cy="170" r="9" style="animation-delay:.6s"/>
+          <circle class="hotspot" data-id="sziv" cx="110" cy="170" r="6"/>
+          <circle class="hotspot-pulse" cx="40" cy="235" r="9" style="animation-delay:.9s"/>
+          <circle class="hotspot" data-id="ganglion" cx="40" cy="235" r="6"/>
+          <circle class="hotspot-pulse" cx="95" cy="385" r="9" style="animation-delay:1.2s"/>
+          <circle class="hotspot" data-id="izulet" cx="95" cy="385" r="6"/>
+          <circle class="hotspot-pulse" cx="91" cy="405" r="9" style="animation-delay:1.5s"/>
+          <circle class="hotspot" data-id="labszar" cx="91" cy="405" r="6"/>
+          <circle class="hotspot-pulse" cx="170" cy="60" r="9" style="animation-delay:1.8s"/>
+          <circle class="hotspot" data-id="ful" cx="170" cy="60" r="6"/>
+        </svg>
+      </div>
+      <div class="condition-list reveal" id="conditionList">
+        <div class="condition-item active" data-id="izulet">
+          <span class="num">01</span>
+          <div>
+            <h4>Ízületi problémák</h4>
+            <p>Ízületi fájdalmak, gyulladások csillapítása — a mikrokeringés javításával és a gyulladáscsökkentő hatóanyagok révén.</p>
+          </div>
+        </div>
+        <div class="condition-item" data-id="sziv">
+          <span class="num">02</span>
+          <div>
+            <h4>Szív- és érrendszer</h4>
+            <p>Keringési panaszok enyhítése, mikrokeringés javítása, magas vérnyomás kiegészítő kezelése: fejzúgás, ingerlékenység, stressz csökkentése.</p>
+          </div>
+        </div>
+        <div class="condition-item" data-id="bor">
+          <span class="num">03</span>
+          <div>
+            <h4>Bőrbetegségek</h4>
+            <p>A nyálban lévő bioaktív anyagok segítik a bőr regenerációját és a gyulladt területek nyugalmát.</p>
+          </div>
+        </div>
+        <div class="condition-item" data-id="ganglion">
+          <span class="num">04</span>
+          <div>
+            <h4>Ciszták, csomók</h4>
+            <p>Baker-ciszta (térd alatt), ganglion-ciszta (pl. tenyéren). Lipóma esetén kevés a tapasztalat, daganatféle jellege miatt fokozott körültekintést igényel.</p>
+          </div>
+        </div>
+        <div class="condition-item" data-id="foginy">
+          <span class="num">05</span>
+          <div>
+            <h4>Szájüreg és fül</h4>
+            <p>Fogínygyulladás heves gyulladás nélkül, fogínyciszták — kizárólag tapasztalt terapeuta végezheti. Fülbetegségek kiegészítő kezelése.</p>
+          </div>
+        </div>
+        <div class="condition-item" data-id="pajzsmirigy">
+          <span class="num">06</span>
+          <div>
+            <h4>Pajzsmirigy</h4>
+            <p>Pajzsmirigy-problémák kiegészítő, fenntartó kezelése a nyaki terület mikrokeringésének javításával.</p>
+          </div>
+        </div>
+        <div class="condition-item" data-id="labszar">
+          <span class="num">07</span>
+          <div>
+            <h4>Lábszárfekély, ödéma</h4>
+            <p>Lábszárfekély és lábszárödéma esetén a keringésjavító hatás kifejezetten célzottan alkalmazható.</p>
+          </div>
+        </div>
+        <div class="condition-item" data-id="ful">
+          <span class="num">08</span>
+          <div>
+            <h4>Daganatos betegség mellett</h4>
+            <p>Bizonyos esetekben alternatív kiegészítésként szóba jöhet, kizárólag nagy felelősséggel és körültekintéssel, kezelőorvossal egyeztetve.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="warning reveal">
+  <div class="wrap">
+    <div class="warning-box">
+      <div class="stamp">Szigorúan<br>ellenjavallt</div>
+      <div>
+        <h3>Véralvadásgátlót (vérhígítót) szed?</h3>
+        <p>Ez esetben a piócakezelés <strong>nem alkalmazható</strong>. Vérnyomáscsökkentő vagy bétablokkoló szedése esetén a kezelés előtt mindenképp tájékoztassa a terapeutát — ez minden konzultáció kötelező, első lépése.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="folyamat">
+  <div class="wrap">
+    <div class="process-head reveal">
+      <div class="eyebrow">A kezelés menete</div>
+      <h2>Három szakasz, egyetlen alkalom</h2>
+    </div>
+    <div class="timeline">
+      <div class="t-stage reveal">
+        <div class="marker">01</div>
+        <h3>Kezelés előtt</h3>
+        <ul>
+          <li>Kényelmes, <b>sötét színű, laza</b> ruházat (a kötés és az esetleges átszivárgás miatt)</li>
+          <li>Mellőzze az illatosított tusfürdőt, testápolót, krémet</li>
+          <li><b>Ne dohányozzon</b> a kezelés előtt — a piócák nem viselik a dohányfüstöt</li>
+          <li>Mindig jelezze, ha vérnyomáscsökkentőt, bétablokkolót vagy véralvadásgátlót szed</li>
+        </ul>
+      </div>
+      <div class="t-stage reveal">
+        <div class="marker">02</div>
+        <h3>Maga a kezelés</h3>
+        <ul>
+          <li>Egy alkalom körülbelül <b>2 órát</b> vesz igénybe</li>
+          <li>A harapás enyhe, csípésszerű érzet</li>
+          <li>Kezdetben kevés pióca kerül felhelyezésre, a reakciótól függően egyénre szabottan nő a számuk</li>
+          <li>A teljes kúra jellemzően <b>10 kezelés</b>, heti rendszerességgel</li>
+        </ul>
+      </div>
+      <div class="t-stage reveal">
+        <div class="marker">03</div>
+        <h3>Kezelés után</h3>
+        <ul>
+          <li>A vastag, nedvszívó kötést <b>24 óra</b> elteltével szabad csak levenni</li>
+          <li>A seb akár <b>36 órán át</b> is szivároghat — tartson otthon steril mullt, ragtapaszt</li>
+          <li>Tilos a sebet vakargatni; viszketésre jegelés vagy Fenistil gél javasolt</li>
+          <li>A kezelés napján kerülje a megerőltető tevékenységet és igyon sok folyadékot</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="arak">
+  <div class="wrap">
+    <div class="pricing-head reveal">
+      <div>
+        <div class="eyebrow">Díjszabás</div>
+        <h2>Árak és szolgáltatások</h2>
+      </div>
+      <div class="pricing-note">Az árak tájékoztató jellegűek, a mindenkori aktuális díjszabás konzultáció során kerül egyeztetésre.</div>
+    </div>
+    <div class="price-table reveal">
+      <div class="price-row">
+        <div>
+          <div class="label">Konzultáció / állapotfelmérés</div>
+          <div class="desc">Részletes anamnézis és az egyéni kezelési terv felállítása</div>
+        </div>
+        <div class="amount">11.000 Ft</div>
+        <div class="unit">/ alkalom</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="label">Piócakezelés munkadíja</div>
+          <div class="desc">A terápiás alkalom levezetése, kötözéssel</div>
+        </div>
+        <div class="amount">10.000 Ft</div>
+        <div class="unit">/ alkalom</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="label">Pióca</div>
+          <div class="desc">Egyedi, állapotfüggő darabszámban kerül felhasználásra</div>
+        </div>
+        <div class="amount">3.000 Ft</div>
+        <div class="unit">/ db</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="course" id="tanfolyam">
+  <div class="wrap course-grid">
+    <div class="reveal">
+      <div class="eyebrow on-dark">Oktatás</div>
+      <h2>Népi piócaterápia — tanfolyam otthoni alkalmazáshoz</h2>
+      <p>Akik saját vagy családtagjaik kezelésére szeretnék elsajátítani a módszert, egy kétnapos, gyakorlatorientált tanfolyam keretében sajátíthatják el az alapokat. A terápia otthon is végezhető, de nagy felelősséggel jár — ezért a felkészülés és a szabályok szigorú betartása elengedhetetlen.</p>
+      <a class="btn-ghost" href="#kapcsolat" style="margin-top:20px;display:inline-block;">Jelentkezés a következő kurzusra ↓</a>
+    </div>
+    <div class="course-card reveal">
+      <div class="big">2 nap</div>
+      <div class="sub">Népi piócaterápia tanfolyam · 2026</div>
+      <ul>
+        <li>Elméleti alapok: hatásmechanizmus, indikációk, ellenjavallatok</li>
+        <li>Gyakorlati bemutató és felügyelt önálló gyakorlás</li>
+        <li>Biztonsági protokoll: kezelés előtt, alatt, után</li>
+        <li>Otthoni alkalmazáshoz szükséges eszközök áttekintése</li>
+      </ul>
+      <div class="price-row" style="border:none;padding:0;">
+        <div></div>
+        <div class="amount" style="font-size:1.4rem;">85.000 Ft</div>
+        <div class="unit">/ fő</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="kapcsolat">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <div class="eyebrow">Kapcsolat</div>
+      <h2>Foglaljon időpontot vagy kérjen konzultációt</h2>
+      <p>Első alkalommal mindig részletes állapotfelmérésre kerül sor — ez alapozza meg az Önre szabott kezelési tervet.</p>
+      <div class="contact-info">
+        <div class="row"><span class="k">Terapeuta</span><span>Merényi Krisztián</span></div>
+        <div class="row"><span class="k">Telefon</span><span>+36 30 000 0000</span></div>
+        <div class="row"><span class="k">E-mail</span><span>info@hirudo-praxis.hu</span></div>
+        <div class="row"><span class="k">Rendelés</span><span>Hétfő–Péntek, előzetes egyeztetés alapján</span></div>
+      </div>
+    </div>
+    <form class="contact-form reveal" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Köszönjük, hamarosan jelentkezünk!';">
+      <input type="text" placeholder="Teljes név" required>
+      <input type="tel" placeholder="Telefonszám" required>
+      <textarea rows="4" placeholder="Röviden írja le a panaszát..."></textarea>
+      <button type="submit">Üzenet küldése</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 Merényi Krisztián — Hirudoterápia</span>
+    <span>Kiegészítő, holisztikus kezelés — nem helyettesíti az orvosi ellátást</span>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Body diagram <-> condition list sync
+  const hotspots = document.querySelectorAll('.hotspot');
+  const items = document.querySelectorAll('.condition-item');
+
+  function activate(id) {
+    hotspots.forEach(h => h.classList.toggle('active', h.dataset.id === id));
+    items.forEach(it => it.classList.toggle('active', it.dataset.id === id));
+  }
+
+  hotspots.forEach(h => h.addEventListener('click', () => activate(h.dataset.id)));
+  items.forEach(it => it.addEventListener('click', () => activate(it.dataset.id)));
+
+  // respect reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.hotspot-pulse').forEach(p => p.style.animation = 'none');
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>

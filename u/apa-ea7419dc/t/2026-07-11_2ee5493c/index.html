@@ -1,0 +1,1247 @@
+﻿<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály | Kortárs Absztrakt Festőművész</title>
+    <meta name="description" content="Kárai Mihály festőművész (sz. 1961) kortárs absztrakt expresszionista portfóliója. Impasto technika, palettakés, lírai absztrakció.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+/* ═══════════════════════════════════════════════════════════
+   KÁRAI MIHÁLY — THEME SYSTEM (60-30-10 Rule, 2026)
+   7 Themes | Vanilla CSS :root Variables
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+    --bg-primary: #0d0705;
+    --bg-secondary: #1a0f0a;
+    --bg-tertiary: #2a1a12;
+    --bg-glass: rgba(26, 15, 10, 0.65);
+    --bg-glass-border: rgba(209, 65, 36, 0.15);
+    --text-primary: #f5efe6;
+    --text-secondary: #b8a898;
+    --text-muted: #6b5d52;
+    --border-subtle: rgba(245, 239, 230, 0.08);
+    --border-accent: rgba(209, 65, 36, 0.3);
+    --accent-primary: #d14124;
+    --accent-secondary: #c9a84c;
+    --accent-glow: rgba(209, 65, 36, 0.4);
+    --accent-soft: rgba(201, 168, 76, 0.15);
+    --canvas-blob-1: #d14124;
+    --canvas-blob-2: #c9a84c;
+    --canvas-blob-3: #8b2500;
+    --canvas-particle: rgba(209, 65, 36, 0.6);
+    --canvas-grain: rgba(0, 0, 0, 0.03);
+    --font-heading: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --scrollbar-track: #1a0f0a;
+    --scrollbar-thumb: #d14124;
+}
+
+[data-theme="city-night"] {
+    --bg-primary: #060a14; --bg-secondary: #0c1525; --bg-tertiary: #152035;
+    --bg-glass: rgba(12, 21, 37, 0.65); --bg-glass-border: rgba(240, 192, 64, 0.12);
+    --text-primary: #e8e4df; --text-secondary: #9aa8b8; --text-muted: #4a5568;
+    --border-subtle: rgba(232, 228, 223, 0.06); --border-accent: rgba(240, 192, 64, 0.25);
+    --accent-primary: #f0c040; --accent-secondary: #40d8c8;
+    --accent-glow: rgba(240, 192, 64, 0.35); --accent-soft: rgba(64, 216, 200, 0.12);
+    --canvas-blob-1: #f0c040; --canvas-blob-2: #40d8c8; --canvas-blob-3: #1a3050;
+    --canvas-particle: rgba(240, 192, 64, 0.5); --scrollbar-thumb: #f0c040;
+}
+
+[data-theme="pastel-dream"] {
+    --bg-primary: #faf6f1; --bg-secondary: #f0e8df; --bg-tertiary: #e8ddd0;
+    --bg-glass: rgba(250, 246, 241, 0.7); --bg-glass-border: rgba(230, 160, 130, 0.2);
+    --text-primary: #2a1a12; --text-secondary: #6b5040; --text-muted: #a08878;
+    --border-subtle: rgba(42, 26, 18, 0.08); --border-accent: rgba(230, 160, 130, 0.3);
+    --accent-primary: #e6a082; --accent-secondary: #d4829a;
+    --accent-glow: rgba(230, 160, 130, 0.3); --accent-soft: rgba(212, 130, 154, 0.12);
+    --canvas-blob-1: #e6a082; --canvas-blob-2: #d4829a; --canvas-blob-3: #f0d0c0;
+    --canvas-particle: rgba(230, 160, 130, 0.5); --canvas-grain: rgba(0, 0, 0, 0.015);
+    --scrollbar-thumb: #e6a082;
+}
+
+[data-theme="oasis"] {
+    --bg-primary: #f5efe0; --bg-secondary: #e8dcc8; --bg-tertiary: #d8c8b0;
+    --bg-glass: rgba(232, 220, 200, 0.6); --bg-glass-border: rgba(64, 180, 200, 0.15);
+    --text-primary: #1a2a28; --text-secondary: #4a6a68; --text-muted: #8a9a98;
+    --border-subtle: rgba(26, 42, 40, 0.08); --border-accent: rgba(64, 180, 200, 0.25);
+    --accent-primary: #40b4c8; --accent-secondary: #c9a84c;
+    --accent-glow: rgba(64, 180, 200, 0.3); --accent-soft: rgba(201, 168, 76, 0.15);
+    --canvas-blob-1: #40b4c8; --canvas-blob-2: #c9a84c; --canvas-blob-3: #2a8a9a;
+    --canvas-particle: rgba(64, 180, 200, 0.5); --canvas-grain: rgba(0, 0, 0, 0.015);
+    --scrollbar-thumb: #40b4c8;
+}
+
+[data-theme="industry"] {
+    --bg-primary: #141416; --bg-secondary: #1e1e22; --bg-tertiary: #2a2a30;
+    --bg-glass: rgba(30, 30, 34, 0.7); --bg-glass-border: rgba(209, 65, 36, 0.12);
+    --text-primary: #e0dcd8; --text-secondary: #8a8682; --text-muted: #4a4846;
+    --border-subtle: rgba(224, 220, 216, 0.06); --border-accent: rgba(209, 65, 36, 0.2);
+    --accent-primary: #d14124; --accent-secondary: #f0f0f0;
+    --accent-glow: rgba(209, 65, 36, 0.35); --accent-soft: rgba(240, 240, 240, 0.08);
+    --canvas-blob-1: #d14124; --canvas-blob-2: #6a6a70; --canvas-blob-3: #3a3a40;
+    --canvas-particle: rgba(209, 65, 36, 0.4); --scrollbar-thumb: #d14124;
+}
+
+[data-theme="fire-ice"] {
+    --bg-primary: #0e0e12; --bg-secondary: #161620; --bg-tertiary: #20202e;
+    --bg-glass: rgba(22, 22, 32, 0.65); --bg-glass-border: rgba(209, 65, 36, 0.15);
+    --text-primary: #ece8e4; --text-secondary: #989490; --text-muted: #4a4846;
+    --border-subtle: rgba(236, 232, 228, 0.06); --border-accent: rgba(209, 65, 36, 0.2);
+    --accent-primary: #d14124; --accent-secondary: #4090d0;
+    --accent-glow: rgba(209, 65, 36, 0.35); --accent-soft: rgba(64, 144, 208, 0.12);
+    --canvas-blob-1: #d14124; --canvas-blob-2: #4090d0; --canvas-blob-3: #2a1a10;
+    --canvas-particle: rgba(209, 65, 36, 0.4); --scrollbar-thumb: #d14124;
+}
+
+[data-theme="morning-mist"] {
+    --bg-primary: #f2f0ee; --bg-secondary: #e8e4e0; --bg-tertiary: #d8d4d0;
+    --bg-glass: rgba(232, 228, 224, 0.6); --bg-glass-border: rgba(139, 37, 36, 0.12);
+    --text-primary: #1a1210; --text-secondary: #5a4a44; --text-muted: #9a8a84;
+    --border-subtle: rgba(26, 18, 16, 0.06); --border-accent: rgba(139, 37, 36, 0.2);
+    --accent-primary: #8b2524; --accent-secondary: #c9a84c;
+    --accent-glow: rgba(139, 37, 36, 0.25); --accent-soft: rgba(201, 168, 76, 0.12);
+    --canvas-blob-1: #8b2524; --canvas-blob-2: #c9a84c; --canvas-blob-3: #d4c0b0;
+    --canvas-particle: rgba(139, 37, 36, 0.4); --canvas-grain: rgba(0, 0, 0, 0.015);
+    --scrollbar-thumb: #8b2524;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
+::selection { background: var(--accent-primary); color: var(--bg-primary); }
+
+/* Typography */
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 300; line-height: 1.2; }
+h1 { font-size: clamp(2.5rem, 8vw, 8rem); letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.8rem, 4vw, 3.5rem); }
+h3 { font-size: clamp(1.2rem, 2vw, 1.6rem); }
+p { font-size: clamp(0.9rem, 1.2vw, 1.05rem); color: var(--text-secondary); }
+.italic-accent { font-family: var(--font-heading); font-style: italic; font-weight: 300; }
+
+/* ═══════════════════════════════════════════════════════════
+   PRELOADER
+   ═══════════════════════════════════════════════════════════ */
+.preloader {
+    position: fixed; inset: 0; z-index: 10001;
+    background: var(--bg-primary);
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+.preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.preloader-name {
+    font-family: var(--font-heading); font-size: clamp(2rem, 6vw, 5rem);
+    font-weight: 300; letter-spacing: 0.15em; color: var(--text-primary);
+    overflow: hidden;
+}
+.preloader-name span {
+    display: inline-block;
+    animation: preloaderReveal 0.6s ease forwards;
+    opacity: 0; transform: translateY(100%);
+}
+@keyframes preloaderReveal {
+    to { opacity: 1; transform: translateY(0); }
+}
+.preloader-year {
+    margin-top: 1rem; font-size: 0.85rem; letter-spacing: 0.3em;
+    color: var(--text-muted); text-transform: uppercase;
+    animation: fadeIn 1s ease 0.8s forwards; opacity: 0;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* ═══════════════════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════════════════ */
+.nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 1.5rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: transparent;
+    transition: all 0.5s ease;
+}
+.nav.scrolled {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 1rem 3rem;
+}
+.nav-logo {
+    font-family: var(--font-heading); font-size: 1.4rem;
+    font-weight: 400; letter-spacing: 0.15em; color: var(--text-primary);
+    text-decoration: none;
+}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+    font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-secondary); text-decoration: none;
+    position: relative; padding-bottom: 4px;
+    transition: color 0.3s ease;
+}
+.nav-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 1px; background: var(--accent-primary);
+    transition: width 0.3s ease;
+}
+.nav-links a:hover { color: var(--text-primary); }
+.nav-links a:hover::after { width: 100%; }
+
+/* Burger */
+.burger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 8px; background: none; border: none; z-index: 1001;
+}
+.burger span {
+    width: 24px; height: 1.5px; background: var(--text-primary);
+    transition: all 0.3s ease; display: block;
+}
+.burger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 4px); }
+.burger.active span:nth-child(2) { opacity: 0; }
+.burger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -4px); }
+
+/* Mobile Nav */
+.mobile-nav {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: var(--bg-primary);
+    flex-direction: column; justify-content: center; align-items: center; gap: 2rem;
+    opacity: 0; visibility: hidden; transition: all 0.4s ease;
+}
+.mobile-nav.open { opacity: 1; visibility: visible; }
+.mobile-nav a {
+    font-family: var(--font-heading); font-size: 2rem; font-weight: 300;
+    color: var(--text-primary); text-decoration: none;
+    transition: color 0.3s ease;
+}
+.mobile-nav a:hover { color: var(--accent-primary); }
+
+/* ═══════════════════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════════════════ */
+.hero {
+    position: relative; min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    overflow: hidden;
+}
+#hero-canvas {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    z-index: 0; opacity: 0.25;
+}
+.hero-content {
+    position: relative; z-index: 2; text-align: center;
+    padding: 2rem;
+}
+.hero-title {
+    font-size: clamp(2.5rem, 10vw, 10rem);
+    font-weight: 300; letter-spacing: 0.05em;
+    color: var(--text-primary);
+    line-height: 0.95;
+    margin-bottom: 1rem;
+}
+.hero-subtitle {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.8rem);
+    font-weight: 300; color: var(--text-secondary);
+    letter-spacing: 0.05em;
+}
+.hero-scroll {
+    position: absolute; bottom: 3rem; left: 50%;
+    transform: translateX(-50%); z-index: 2;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-muted);
+}
+.hero-scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--accent-primary), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
+    50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STATEMENT
+   ═══════════════════════════════════════════════════════════ */
+.statement {
+    padding: 15vh 10vw;
+    display: flex; justify-content: flex-end;
+}
+.statement blockquote {
+    max-width: 65%;
+    font-family: var(--font-heading); font-style: italic;
+    font-size: clamp(1.3rem, 2.5vw, 2.2rem);
+    font-weight: 300; line-height: 1.5;
+    color: var(--text-primary);
+    border-left: 2px solid var(--accent-primary);
+    padding-left: 2rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   VISUAL BREAK (B-Roll)
+   ═══════════════════════════════════════════════════════════ */
+.visual-break {
+    width: 100%; height: 70vh; overflow: hidden;
+    position: relative;
+}
+.visual-break img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: brightness(0.7) contrast(1.1);
+    transition: transform 0.8s ease;
+}
+.visual-break:hover img { transform: scale(1.03); }
+
+/* ═══════════════════════════════════════════════════════════
+   GALLERY — Asymmetric Bento Grid
+   ═══════════════════════════════════════════════════════════ */
+.gallery {
+    padding: 10vh 4vw;
+    max-width: 1600px; margin: 0 auto;
+}
+.gallery-header {
+    text-align: center; margin-bottom: 8vh;
+}
+.gallery-header h2 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 300; color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+.gallery-header p {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    color: var(--text-secondary);
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(200px, auto);
+    gap: 1.5rem;
+}
+.gallery-item {
+    position: relative; overflow: hidden;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1), filter 0.5s ease;
+    filter: brightness(0.9);
+}
+.gallery-item:hover img {
+    transform: scale(1.05);
+    filter: brightness(1);
+}
+.gallery-item-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+}
+.gallery-item:hover .gallery-item-overlay { opacity: 1; }
+.gallery-item-title {
+    font-family: var(--font-heading); font-size: 1.1rem;
+    font-weight: 400; color: #fff; margin-bottom: 0.3rem;
+}
+.gallery-item-meta {
+    font-size: 0.75rem; color: rgba(255,255,255,0.7);
+    letter-spacing: 0.05em;
+}
+.gallery-item-desc {
+    font-size: 0.8rem; color: rgba(255,255,255,0.85);
+    font-style: italic; margin-top: 0.5rem;
+    font-family: var(--font-heading);
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+.gallery-item:hover .gallery-item-desc { max-height: 100px; }
+
+/* Asymmetric grid placement */
+.gallery-item:nth-child(1) { grid-column: 1 / 6; grid-row: 1 / 4; }
+.gallery-item:nth-child(2) { grid-column: 6 / 9; grid-row: 1 / 3; }
+.gallery-item:nth-child(3) { grid-column: 9 / 13; grid-row: 1 / 4; }
+.gallery-item:nth-child(4) { grid-column: 1 / 4; grid-row: 4 / 6; }
+.gallery-item:nth-child(5) { grid-column: 4 / 8; grid-row: 3 / 6; }
+.gallery-item:nth-child(6) { grid-column: 8 / 13; grid-row: 3 / 5; }
+.gallery-item:nth-child(7) { grid-column: 1 / 5; grid-row: 6 / 8; }
+.gallery-item:nth-child(8) { grid-column: 5 / 9; grid-row: 6 / 8; }
+.gallery-item:nth-child(9) { grid-column: 9 / 13; grid-row: 5 / 8; }
+.gallery-item:nth-child(10) { grid-column: 1 / 7; grid-row: 8 / 10; }
+.gallery-item:nth-child(11) { grid-column: 7 / 13; grid-row: 8 / 10; }
+.gallery-item:nth-child(12) { grid-column: 1 / 13; grid-row: 10 / 12; }
+
+/* ═══════════════════════════════════════════════════════════
+   INTERIOR CONTEXT
+   ═══════════════════════════════════════════════════════════ */
+.interior-section {
+    padding: 15vh 0;
+    position: relative; overflow: hidden;
+}
+.interior-bg {
+    position: absolute; inset: 0; z-index: 0;
+}
+.interior-bg img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: brightness(0.35) saturate(0.8);
+}
+.interior-content {
+    position: relative; z-index: 2;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 80vh;
+}
+.interior-text {
+    text-align: center; max-width: 700px; padding: 2rem;
+}
+.interior-text h2 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 300; color: #fff; margin-bottom: 1.5rem;
+}
+.interior-text p {
+    font-family: var(--font-heading); font-style: italic;
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    color: rgba(255,255,255,0.8); line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FRAME TOGGLE — Organic Layered View
+   ═══════════════════════════════════════════════════════════ */
+.frame-section {
+    padding: 15vh 8vw;
+    display: flex; flex-direction: column; align-items: center;
+}
+.frame-display {
+    position: relative; width: 100%; max-width: 600px;
+    aspect-ratio: 3/4; overflow: hidden;
+    border-radius: 4px;
+    cursor: crosshair;
+}
+.frame-display img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+    transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.frame-display .img-unframed { z-index: 2; opacity: 1; }
+.frame-display .img-framed { z-index: 1; opacity: 0; }
+.frame-display.show-framed .img-unframed { opacity: 0; transform: scale(1.05); }
+.frame-display.show-framed .img-framed { opacity: 1; transform: scale(1); }
+
+.frame-hint {
+    margin-top: 2rem; text-align: center;
+    font-family: var(--font-heading); font-style: italic;
+    font-size: 0.95rem; color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+.frame-hint.active { color: var(--accent-primary); }
+
+/* ═══════════════════════════════════════════════════════════
+   B-ROLL SEQUENCE — Horizontal Scroll
+   ═══════════════════════════════════════════════════════════ */
+.broll-section {
+    padding: 10vh 0;
+    overflow: hidden;
+}
+.broll-header {
+    padding: 0 4vw; margin-bottom: 4vh;
+}
+.broll-header h2 {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 300; color: var(--text-primary);
+}
+.broll-scroll {
+    display: flex; gap: 3rem;
+    padding: 0 4vw;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.broll-scroll::-webkit-scrollbar { display: none; }
+.broll-item {
+    flex: 0 0 auto;
+    width: clamp(300px, 40vw, 500px);
+    scroll-snap-align: center;
+    overflow: hidden; border-radius: 4px;
+}
+.broll-item img {
+    width: 100%; height: auto;
+    display: block;
+    filter: brightness(0.85) contrast(1.05);
+    transition: filter 0.5s ease, transform 0.5s ease;
+}
+.broll-item:hover img {
+    filter: brightness(1) contrast(1.1);
+    transform: scale(1.02);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════ */
+.footer {
+    padding: 10vh 4vw;
+    border-top: 1px solid var(--border-subtle);
+    text-align: center;
+}
+.footer-logo {
+    font-family: var(--font-heading); font-size: 2rem;
+    font-weight: 300; letter-spacing: 0.1em;
+    color: var(--text-primary); margin-bottom: 1rem;
+}
+.footer p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+.footer-links {
+    display: flex; justify-content: center; gap: 2rem;
+    margin-top: 2rem; list-style: none;
+}
+.footer-links a {
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-secondary); text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer-links a:hover { color: var(--accent-primary); }
+
+/* ═══════════════════════════════════════════════════════════
+   THEME SWITCHER — Organic Morphing Pills
+   ═══════════════════════════════════════════════════════════ */
+.theme-switcher {
+    position: fixed; right: 20px; top: 50%;
+    transform: translateY(-50%); z-index: 999;
+    display: flex; flex-direction: column; gap: 10px;
+    padding: 14px 8px;
+    background: var(--bg-glass);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--bg-glass-border);
+    border-radius: 36px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.theme-pill {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    cursor: pointer; position: relative;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.theme-pill:hover {
+    transform: scale(1.4);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 18px var(--accent-glow);
+}
+.theme-pill.active {
+    transform: scale(1.2);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 14px var(--accent-glow);
+}
+.theme-pill.active::after {
+    content: ''; position: absolute;
+    inset: 3px; border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+}
+.theme-pill .tooltip {
+    position: absolute; right: 38px; top: 50%;
+    transform: translateY(-50%) translateX(8px);
+    background: var(--bg-glass); backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: var(--text-primary);
+    padding: 5px 12px; border-radius: 18px;
+    font-family: var(--font-body); font-size: 0.65rem;
+    font-weight: 300; letter-spacing: 0.08em;
+    text-transform: uppercase; white-space: nowrap;
+    opacity: 0; pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    border: 1px solid var(--border-subtle);
+}
+.theme-pill:hover .tooltip {
+    opacity: 1; transform: translateY(-50%) translateX(0);
+}
+.theme-pill[data-theme="default"] { background: linear-gradient(135deg, #0d0705 50%, #d14124 50%); }
+.theme-pill[data-theme="city-night"] { background: linear-gradient(135deg, #060a14 50%, #f0c040 50%); }
+.theme-pill[data-theme="pastel-dream"] { background: linear-gradient(135deg, #faf6f1 50%, #e6a082 50%); }
+.theme-pill[data-theme="oasis"] { background: linear-gradient(135deg, #f5efe0 50%, #40b4c8 50%); }
+.theme-pill[data-theme="industry"] { background: linear-gradient(135deg, #141416 50%, #d14124 50%); }
+.theme-pill[data-theme="fire-ice"] { background: linear-gradient(135deg, #0e0e12 50%, #d14124 50%); border-color: rgba(64,144,208,0.3); }
+.theme-pill[data-theme="morning-mist"] { background: linear-gradient(135deg, #f2f0ee 50%, #8b2524 50%); }
+
+/* Theme transition flash */
+.theme-flash {
+    position: fixed; inset: 0; z-index: 10000;
+    pointer-events: none; opacity: 0;
+}
+.theme-flash.active {
+    animation: themeFlash 0.5s ease forwards;
+}
+@keyframes themeFlash {
+    0% { opacity: 0; background: var(--accent-primary); }
+    25% { opacity: 0.06; }
+    100% { opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GRAIN OVERLAY
+   ═══════════════════════════════════════════════════════════ */
+.grain-overlay {
+    position: fixed; inset: 0; z-index: 9997;
+    pointer-events: none; opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat; background-size: 256px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL REVEAL
+   ═══════════════════════════════════════════════════════════ */
+.reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(6, 1fr);
+        grid-auto-rows: minmax(150px, auto);
+    }
+    .gallery-item:nth-child(1) { grid-column: 1 / 4; grid-row: 1 / 3; }
+    .gallery-item:nth-child(2) { grid-column: 4 / 7; grid-row: 1 / 2; }
+    .gallery-item:nth-child(3) { grid-column: 1 / 4; grid-row: 3 / 4; }
+    .gallery-item:nth-child(4) { grid-column: 4 / 7; grid-row: 2 / 4; }
+    .gallery-item:nth-child(5) { grid-column: 1 / 3; grid-row: 4 / 6; }
+    .gallery-item:nth-child(6) { grid-column: 3 / 7; grid-row: 4 / 6; }
+    .gallery-item:nth-child(7) { grid-column: 1 / 4; grid-row: 6 / 8; }
+    .gallery-item:nth-child(8) { grid-column: 4 / 7; grid-row: 6 / 8; }
+    .gallery-item:nth-child(9) { grid-column: 1 / 7; grid-row: 8 / 10; }
+    .gallery-item:nth-child(10) { grid-column: 1 / 4; grid-row: 10 / 12; }
+    .gallery-item:nth-child(11) { grid-column: 4 / 7; grid-row: 10 / 12; }
+    .gallery-item:nth-child(12) { grid-column: 1 / 7; grid-row: 12 / 14; }
+    .nav { padding: 1.2rem 2rem; }
+    .nav.scrolled { padding: 0.8rem 2rem; }
+}
+
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .burger { display: flex; }
+    .mobile-nav { display: flex; }
+    .hero-title { font-size: clamp(2rem, 12vw, 4rem); }
+    .statement blockquote { max-width: 100%; padding-left: 1.5rem; font-size: 1.1rem; }
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: minmax(200px, auto);
+    }
+    .gallery-item:nth-child(n) { grid-column: 1 / -1; grid-row: auto; }
+    .gallery-item:nth-child(12) { grid-row: auto; min-height: 300px; }
+    .theme-switcher { right: 10px; padding: 10px 6px; gap: 8px; }
+    .theme-pill { width: 22px; height: 22px; }
+    .theme-pill .tooltip { display: none; }
+    .frame-section { padding: 10vh 4vw; }
+    .broll-item { width: 80vw; }
+    .footer-links { flex-wrap: wrap; gap: 1rem; }
+}
+
+/* Focus visible */
+:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 3px; }
+
+/* Transition helper */
+body, h1, h2, h3, h4, h5, h6, p, span, a, button, label, .glass-card {
+    transition: color 0.5s ease, background-color 0.5s ease, border-color 0.5s ease;
+}
+    </style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div class="preloader" id="preloader">
+    <div class="preloader-name" id="preloader-name"></div>
+    <div class="preloader-year">Est. 1961</div>
+</div>
+
+<!-- Grain Overlay -->
+<div class="grain-overlay"></div>
+
+<!-- Theme Flash -->
+<div class="theme-flash" id="theme-flash"></div>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+    <a href="#" class="nav-logo">KÁRAI</a>
+    <ul class="nav-links">
+        <li><a href="#gallery">Katalógus</a></li>
+        <li><a href="#interior">Enteriőr</a></li>
+        <li><a href="#frame">Keret</a></li>
+        <li><a href="#contact">Kapcsolat</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menü">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobile-nav">
+    <a href="#gallery" onclick="closeMobileNav()">Katalógus</a>
+    <a href="#interior" onclick="closeMobileNav()">Enteriőr</a>
+    <a href="#frame" onclick="closeMobileNav()">Keret</a>
+    <a href="#contact" onclick="closeMobileNav()">Kapcsolat</a>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-content">
+        <h1 class="hero-title reveal">KÁRAI<br>MIHÁLY</h1>
+        <p class="hero-subtitle italic-accent reveal reveal-delay-2">Kortárs Absztrakt Expresszionizmus</p>
+    </div>
+    <div class="hero-scroll">
+        <span>Katalógus</span>
+        <div class="hero-scroll-line"></div>
+    </div>
+</section>
+
+<!-- Statement -->
+<section class="statement">
+    <blockquote class="reveal">
+        „A festészetemben a nyers, zsigeri energia és a geometrikus rend fúzióját keresem. A színek sosem csak felületek; érzelmek, lüktetések, a tűz és a mélység állandó párbeszédei a vásznon."
+    </blockquote>
+</section>
+
+<!-- Visual Break -->
+<section class="visual-break reveal">
+    <img src="../../assets/broll_palette.png" alt="A művész palettája — színek és textúrák" loading="lazy">
+</section>
+
+<!-- Gallery -->
+<section class="gallery" id="gallery">
+    <div class="gallery-header">
+        <h2 class="reveal">Katalógus</h2>
+        <p class="italic-accent reveal reveal-delay-1">12 alkotás · 1961–</p>
+    </div>
+    <div class="gallery-grid" id="gallery-grid">
+        <!-- Items injected by JS -->
+    </div>
+</section>
+
+<!-- Interior Context 1 -->
+<section class="interior-section" id="interior">
+    <div class="interior-bg">
+        <img src="../../assets/interior_1.jpg" alt="Pasztell Álmok enteriőr nézetben" loading="lazy">
+    </div>
+    <div class="interior-content">
+        <div class="interior-text reveal">
+            <h2 class="italic-accent">A festmény az térben</h2>
+            <p>A „Pasztell Álmok" (90×100 cm) elegáns, feminin atmoszférája különleges helyet követel. A lazacszín, mályva és púderrózsaszín színek harmonikus örvénylése olyan, mint egy szétnyíló virág makró fotója — vagy gyűrött selyem textúrája.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Interior Context 2 -->
+<section class="interior-section">
+    <div class="interior-bg">
+        <img src="../../assets/interior_2.jpg" alt="Színes modern absztrakt enteriőr nézetben" loading="lazy">
+    </div>
+    <div class="interior-content">
+        <div class="interior-text reveal">
+            <h2 class="italic-accent">Elementáris Erők</h2>
+            <p>A „Színes Modern Absztrakt" (90×90 cm) geológiai erőket idéz: mélykék jéghegy és lángnyelvszerű piros alakzat összecsapása a fehér-pasztell felhőzetben. Frissesség és elementáris erő egyben.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Frame Toggle -->
+<section class="frame-section" id="frame">
+    <div class="gallery-header">
+        <h2 class="reveal">Keret · Keret Nélkül</h2>
+        <p class="italic-accent reveal reveal-delay-1">Organikus nézetváltás</p>
+    </div>
+    <div class="frame-display reveal reveal-delay-2" id="frame-display">
+        <img src="../../assets/keretnelkul_1.jpg" alt="Sötét Káosz — keret nélkül" class="img-unframed" id="img-unframed">
+        <img src="../../assets/keretezve_1.jpg" alt="Sötét Káosz — keretezve" class="img-framed" id="img-framed">
+    </div>
+    <p class="frame-hint reveal reveal-delay-3" id="frame-hint">Kattints a váltáshoz</p>
+</section>
+
+<!-- B-Roll Sequence -->
+<section class="broll-section">
+    <div class="broll-header">
+        <h2 class="reveal">A teremtés eszközei</h2>
+    </div>
+    <div class="broll-scroll" id="broll-scroll">
+        <div class="broll-item reveal"><img src="../../assets/broll_brushes.png" alt="Ecsetek" loading="lazy"></div>
+        <div class="broll-item reveal reveal-delay-1"><img src="../../assets/broll_paint.png" alt="Festékek" loading="lazy"></div>
+        <div class="broll-item reveal reveal-delay-2"><img src="../../assets/broll_palette.png" alt="Paletta" loading="lazy"></div>
+        <div class="broll-item reveal reveal-delay-3"><img src="../../assets/broll_texture.png" alt="Textúrák" loading="lazy"></div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer" id="contact">
+    <div class="footer-logo reveal">KÁRAI MIHÁLY</div>
+    <p class="reveal reveal-delay-1">Kortárs absztrakt festőművész · Sz. 1961</p>
+    <p class="reveal reveal-delay-2 italic-accent" style="color: var(--text-secondary); margin-top: 1rem;">
+        Akril · Olaj · Impasto · Palettakés · Vászon
+    </p>
+    <ul class="footer-links reveal reveal-delay-3">
+        <li><a href="mailto:kapcsolat@karaimihaly.hu">E-mail</a></li>
+        <li><a href="#">Galéria</a></li>
+        <li><a href="#">Eladás</a></li>
+    </ul>
+    <p class="reveal reveal-delay-4" style="margin-top: 3rem; font-size: 0.7rem;">&copy; 2026 Kárai Mihály. Minden jog fenntartva.</p>
+</footer>
+
+<!-- Theme Switcher -->
+<div class="theme-switcher" id="theme-switcher"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     JAVASCRIPT
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+    'use strict';
+
+    /* ─── PAINTING DATA ─── */
+    const paintings = [
+        {
+            id: 'viharos-rend',
+            filename: '014fb97bae01374ff673a7f51de018af-karai-mihaly-absztrakt-festmeny-kepmeret-80x60-cm.jpg',
+            title: 'Viharos Rend',
+            dimensions: '80×60 cm',
+            desc: 'Grid szerkezetű kompozíció. Okker és lazac színű blokkokat átvágó fehér hasításszerű vonalak, impasto plasztikum.',
+            colors: ['#c4956a', '#e6a082', '#d14124', '#f5efe6']
+        },
+        {
+            id: 'vizualis-dualitas',
+            filename: '579ee3610e2f00108ae1ad3b4efe881f-karai-mihaly-a-kep-merete-80x60-cm.jpg',
+            title: 'Vizuális Dualitás',
+            dimensions: '80×60 cm',
+            desc: 'Ciánkék mezők és tűzpiros oszlopok találkozása. Mozaikszerű textúra és dinamikus X forma.',
+            colors: ['#4090d0', '#d14124', '#f0c040', '#1a1a1a']
+        },
+        {
+            id: 'szines-modern',
+            filename: '732e9d819fbbee1e6b2126f580f51743-karai-mihaly-szines-modern-absztrakt-festmeny-90-x-90-cm.jpg',
+            title: 'Színes Modern Absztrakt',
+            dimensions: '90×90 cm',
+            desc: 'Fluid landscape absztrakció. Mélykék jéghegy és lángnyelvszerű piros a pasztell felhőzetben.',
+            colors: ['#1a3050', '#d14124', '#faf6f1', '#40b4c8']
+        },
+        {
+            id: 'eszakai-tukrozodes-i',
+            filename: '76a52a2610ed517750b4d73efabbe595-karai-mihaly-absztrakt-festmeny-140x40x4-cm.jpg',
+            title: 'Éjszakai Tükröződés I.',
+            dimensions: '140×40 cm',
+            desc: 'Panorámaszerű naplemente, izzó narancsból éjszakai nagyvárosi neonfények vízi tükörbe.',
+            colors: ['#8b2500', '#f0c040', '#1a3050', '#f5efe6']
+        },
+        {
+            id: 'eszakai-tukrozodes-ii',
+            filename: '8548dfcda68a1463e1ed276bce0b0b0c-karai-mihaly-absztrakt-festmeny-kepmeret-140x40-cm.jpg',
+            title: 'Éjszakai Tükröződés II.',
+            dimensions: '140×40 cm',
+            desc: 'Vérvörös égboltból kiugró izzó torony. Tüzes ég és hullámzó hideg víz kontrasztja.',
+            colors: ['#8b2524', '#f0c040', '#e6a082', '#1a3050']
+        },
+        {
+            id: 'oazis',
+            filename: '9714f6cd20df8b60a6cfa68e340bdcb2-karai-mihaly-absztrakt-festmeny-40x70-cm.jpg',
+            title: 'Oázis a Sivatagban',
+            dimensions: '40×70 cm',
+            desc: 'Sivatagi naplementét átszelő éles, horizontális ciánkék vonal. Meditatív, fókuszált alkotás.',
+            colors: ['#c9a84c', '#d14124', '#40b4c8', '#6b5040']
+        },
+        {
+            id: 'lencsefeny',
+            filename: 'c74fb23ff889ff7fc5bc22904e957ac7-karai-mihaly-kortars-absztrakt-festmeny-kepmeret-70x30-cm.jpg',
+            title: 'Lencsefény a Vízen',
+            dimensions: '70×30 cm',
+            desc: 'Vakító fehér fénysugár málna-rózsaszín és kárminpiros fodrozódó víztükörbe.',
+            colors: ['#f5efe6', '#d4829a', '#8b2524', '#d0e0f0']
+        },
+        {
+            id: 'nyari-hoseg',
+            filename: 'cf6c30f8ab61eea749199ee138ae02df-karai-mihaly-nyari-hoseg-kepmeret-100x70-cm.jpg',
+            title: 'Nyári Hőség',
+            dimensions: '100×70 cm',
+            desc: 'Figurális-absztrakt fúzió. Női torzó izzó narancs, vörös, sárga háttérben. A hőség fizikai ereje.',
+            colors: ['#f0c040', '#d14124', '#e6a082', '#f5efe6']
+        },
+        {
+            id: 'indusztrialis-sziv',
+            filename: 'd0e8f21d863d3647ce7ce2705fbb0aeb-karai-mihaly-absztrakt-festmeny-kepmeret-70x70-cm.jpg',
+            title: 'Indusztriális Szív',
+            dimensions: '70×70 cm',
+            desc: 'Rozsdabarna, hamuszürke betonfalból kirobbanó aszimmetrikus kadmium piros szív. Melankólia és szenvedély.',
+            colors: ['#6b5d52', '#d14124', '#f5efe6', '#3a3a40']
+        },
+        {
+            id: 'pasztell-alom',
+            filename: 'd45190df18d013a48540242d4e02b588-karai-mihaly-szines-modern-absztrakt-festmeny-90x100-cm.jpg',
+            title: 'Pasztell Álmok',
+            dimensions: '90×100 cm',
+            desc: 'Lazac, mályva, púderrózsaszín. Ecsetvonások örvénylenek, mint egy szétnyíló virág szirmai.',
+            colors: ['#e6a082', '#d4829a', '#f0e8df', '#c9a84c']
+        },
+        {
+            id: 'kozmicus-mozaik',
+            filename: 'e862397c8ee36bfab0bbe2de56b503e2-karai-mihaly-absztrakt-festmeny-kepmeret-60x60-cm.jpg',
+            title: 'Kozmikus Mozaik',
+            dimensions: '60×60 cm',
+            desc: 'Kozmikus örvények és városi mozaik. Sárga, narancs, piros, zöld, ciánkék vibráló négyszögek.',
+            colors: ['#f0c040', '#d14124', '#4090d0', '#2d8a6e']
+        },
+        {
+            id: 'sotet-kaosz',
+            filename: 'keretnelkul_1.jpg',
+            title: 'Sötét Káosz',
+            dimensions: '~70×100 cm',
+            desc: 'Burgundi vörös, mélybarna, karmazsin. Hófehér kaparások törik át a sötét alapot. Chiaroscuro dráma.',
+            colors: ['#4a0a0a', '#f5efe6', '#c9a84c', '#1a0a0a'],
+            hasAlternate: true,
+            alternateType: 'framed'
+        }
+    ];
+
+    /* ─── RENDER GALLERY ─── */
+    const galleryGrid = document.getElementById('gallery-grid');
+    paintings.forEach((p, i) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item reveal';
+        item.style.transitionDelay = (i % 4) * 0.08 + 's';
+        item.innerHTML = `
+            <img src="../apa_festmenyek/${p.filename}" alt="${p.title}" loading="lazy">
+            <div class="gallery-item-overlay">
+                <div class="gallery-item-title">${p.title}</div>
+                <div class="gallery-item-meta">${p.dimensions}</div>
+                <div class="gallery-item-desc">${p.desc}</div>
+            </div>
+        `;
+        galleryGrid.appendChild(item);
+    });
+
+    /* ─── PRELOADER ─── */
+    const preloaderName = document.getElementById('preloader-name');
+    const nameStr = 'KÁRAI MIHÁLY';
+    nameStr.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        span.style.animationDelay = (i * 0.06) + 's';
+        preloaderName.appendChild(span);
+    });
+
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('preloader').classList.add('hidden');
+        }, 1800);
+    });
+
+    /* ─── NAV SCROLL ─── */
+    const nav = document.getElementById('nav');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        const st = window.pageYOffset;
+        nav.classList.toggle('scrolled', st > 80);
+        lastScroll = st;
+    }, { passive: true });
+
+    /* ─── BURGER MENU ─── */
+    const burger = document.getElementById('burger');
+    const mobileNav = document.getElementById('mobile-nav');
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        mobileNav.classList.toggle('open');
+        document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+    window.closeMobileNav = function() {
+        burger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+    };
+
+    /* ─── SCROLL REVEAL ─── */
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    /* ─── THEME SWITCHER ─── */
+    const THEME_NAMES = {
+        'default': 'Vörös Mélység', 'city-night': 'Éjszakai Város',
+        'pastel-dream': 'Pasztell Álom', 'oasis': 'Oázis',
+        'industry': 'Indusztria', 'fire-ice': 'Tűz & Jég',
+        'morning-mist': 'Reggeli Köd'
+    };
+    let currentTheme = 'default';
+
+    function switchTheme(themeName) {
+        if (!THEME_NAMES[themeName]) return;
+        const prev = currentTheme;
+        currentTheme = themeName;
+        document.documentElement.setAttribute('data-theme',
+            themeName === 'default' ? '' : themeName);
+
+        // Flash
+        const flash = document.getElementById('theme-flash');
+        flash.classList.remove('active');
+        void flash.offsetWidth;
+        flash.classList.add('active');
+        setTimeout(() => flash.classList.remove('active'), 500);
+
+        // Active pill
+        document.querySelectorAll('.theme-pill').forEach(p => {
+            p.classList.toggle('active', p.dataset.theme === themeName);
+        });
+
+        // Canvas sync
+        if (typeof syncCanvasTheme === 'function') syncCanvasTheme(themeName);
+
+        // Persist
+        try { localStorage.setItem('karai-theme', themeName); } catch(e) {}
+
+        document.dispatchEvent(new CustomEvent('themechange', {
+            detail: { from: prev, to: themeName }
+        }));
+    }
+
+    // Build switcher
+    const switcher = document.getElementById('theme-switcher');
+    Object.keys(THEME_NAMES).forEach(tn => {
+        const pill = document.createElement('div');
+        pill.className = 'theme-pill';
+        pill.dataset.theme = tn;
+        const tip = document.createElement('span');
+        tip.className = 'tooltip';
+        tip.textContent = THEME_NAMES[tn];
+        pill.appendChild(tip);
+        pill.addEventListener('click', () => switchTheme(tn));
+        switcher.appendChild(pill);
+    });
+
+    // Restore
+    let saved;
+    try { saved = localStorage.getItem('karai-theme'); } catch(e) {}
+    if (saved && THEME_NAMES[saved]) switchTheme(saved);
+    else { const dp = switcher.querySelector('[data-theme="default"]'); if (dp) dp.classList.add('active'); }
+
+    // Observe theme changes
+    new MutationObserver(mutations => {
+        mutations.forEach(m => {
+            if (m.attributeName === 'data-theme') {
+                const t = document.documentElement.getAttribute('data-theme') || 'default';
+                if (typeof syncCanvasTheme === 'function') syncCanvasTheme(t);
+            }
+        });
+    }).observe(document.documentElement, { attributes: true });
+
+    /* ─── FRAME TOGGLE ─── */
+    const frameDisplay = document.getElementById('frame-display');
+    const frameHint = document.getElementById('frame-hint');
+    let isFramed = false;
+    frameDisplay.addEventListener('click', () => {
+        isFramed = !isFramed;
+        frameDisplay.classList.toggle('show-framed', isFramed);
+        frameHint.textContent = isFramed ? 'Keret nélkül' : 'Keretes nézet';
+        frameHint.classList.toggle('active', true);
+        setTimeout(() => frameHint.classList.remove('active'), 2000);
+    });
+
+    /* ─── CANVAS HERO — Morphing Blobs ─── */
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H;
+    let blobs = [];
+    let particles = [];
+    let animFrame;
+
+    function resizeCanvas() {
+        W = canvas.width = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+    }
+
+    function getThemeColors() {
+        const cs = getComputedStyle(document.documentElement);
+        return {
+            blob1: cs.getPropertyValue('--canvas-blob-1').trim() || '#d14124',
+            blob2: cs.getPropertyValue('--canvas-blob-2').trim() || '#c9a84c',
+            blob3: cs.getPropertyValue('--canvas-blob-3').trim() || '#8b2500',
+            particle: cs.getPropertyValue('--canvas-particle').trim() || 'rgba(209,65,36,0.6)',
+            bg: cs.getPropertyValue('--bg-primary').trim() || '#0d0705'
+        };
+    }
+
+    function hexToRgb(hex) {
+        const r = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return r ? { r: parseInt(r[1],16), g: parseInt(r[2],16), b: parseInt(r[3],16) } : { r:0, g:0, b:0 };
+    }
+
+    function initBlobs(colors) {
+        blobs = [
+            { x: W*0.3, y: H*0.4, r: Math.min(W,H)*0.25, dx: 0.3, dy: 0.2, color: colors.blob1, phase: 0 },
+            { x: W*0.7, y: H*0.5, r: Math.min(W,H)*0.2, dx: -0.2, dy: 0.3, color: colors.blob2, phase: 2 },
+            { x: W*0.5, y: H*0.6, r: Math.min(W,H)*0.18, dx: 0.15, dy: -0.25, color: colors.blob3, phase: 4 }
+        ];
+    }
+
+    function initParticles(colors) {
+        particles = [];
+        const count = Math.floor(W * H / 15000);
+        for (let i = 0; i < count; i++) {
+            particles.push({
+                x: Math.random() * W,
+                y: Math.random() * H,
+                r: Math.random() * 1.5 + 0.5,
+                speed: Math.random() * 0.3 + 0.1,
+                opacity: Math.random() * 0.5 + 0.2
+            });
+        }
+    }
+
+    function drawBlob(blob, time) {
+        const rgb = hexToRgb(blob.color);
+        const wobble = Math.sin(time * 0.001 + blob.phase) * 15;
+        const wobbleY = Math.cos(time * 0.0008 + blob.phase) * 10;
+
+        ctx.save();
+        ctx.globalAlpha = 0.35;
+        ctx.globalCompositeOperation = 'screen';
+
+        const gradient = ctx.createRadialGradient(
+            blob.x + wobble, blob.y + wobbleY, 0,
+            blob.x + wobble, blob.y + wobbleY, blob.r + wobble
+        );
+        gradient.addColorStop(0, `rgba(${rgb.r},${rgb.g},${rgb.b},0.6)`);
+        gradient.addColorStop(0.5, `rgba(${rgb.r},${rgb.g},${rgb.b},0.2)`);
+        gradient.addColorStop(1, `rgba(${rgb.r},${rgb.g},${rgb.b},0)`);
+
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(blob.x + wobble, blob.y + wobbleY, blob.r + wobble, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+    }
+
+    function drawParticles(colors) {
+        const rgb = hexToRgb(colors.particle.replace(/[0-9.]+\)$/, ''));
+        const alphaMatch = colors.particle.match(/([0-9.]+)\)$/);
+        const alpha = alphaMatch ? parseFloat(alphaMatch[1]) : 0.6;
+
+        particles.forEach(p => {
+            p.y -= p.speed;
+            if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; }
+            ctx.save();
+            ctx.globalAlpha = p.opacity * 0.5;
+            ctx.fillStyle = colors.particle;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        });
+    }
+
+    let canvasTime = 0;
+    function animateCanvas() {
+        canvasTime++;
+        const colors = getThemeColors();
+        ctx.clearRect(0, 0, W, H);
+
+        drawParticles(colors);
+        blobs.forEach(b => drawBlob(b, canvasTime));
+
+        animFrame = requestAnimationFrame(animateCanvas);
+    }
+
+    function syncCanvasTheme(themeName) {
+        const colors = getThemeColors();
+        initBlobs(colors);
+        initParticles(colors);
+    }
+
+    // Init canvas
+    function initCanvas() {
+        resizeCanvas();
+        const colors = getThemeColors();
+        initBlobs(colors);
+        initParticles(colors);
+        animateCanvas();
+    }
+
+    window.addEventListener('resize', () => {
+        resizeCanvas();
+        initParticles(getThemeColors());
+    });
+
+    // Start canvas after preloader
+    setTimeout(initCanvas, 2000);
+
+    /* ─── BROLL HORIZONTAL SCROLL ─── */
+    const brollScroll = document.getElementById('broll-scroll');
+    let brollDragging = false;
+    let brollStartX, brollScrollLeft;
+
+    brollScroll.addEventListener('mousedown', e => {
+        brollDragging = true;
+        brollStartX = e.pageX - brollScroll.offsetLeft;
+        brollScrollLeft = brollScroll.scrollLeft;
+        brollScroll.style.cursor = 'grabbing';
+    });
+    brollScroll.addEventListener('mouseleave', () => {
+        brollDragging = false;
+        brollScroll.style.cursor = 'grab';
+    });
+    brollScroll.addEventListener('mouseup', () => {
+        brollDragging = false;
+        brollScroll.style.cursor = 'grab';
+    });
+    brollScroll.addEventListener('mousemove', e => {
+        if (!brollDragging) return;
+        e.preventDefault();
+        const x = e.pageX - brollScroll.offsetLeft;
+        const walk = (x - brollStartX) * 1.5;
+        brollScroll.scrollLeft = brollScrollLeft - walk;
+    });
+    brollScroll.style.cursor = 'grab';
+
+    /* ─── SMOOTH SCROLL FOR NAV ─── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+})();
+</script>
+</body>
+</html>

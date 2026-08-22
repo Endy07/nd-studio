@@ -1,0 +1,2732 @@
+﻿<!DOCTYPE html>
+<html lang="hu" data-theme="midnight-canvas">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály – Festőművész</title>
+    <meta name="description" content="Kárai Mihály festőművész hivatalos weboldala. Eredeti festmények, vászonképek, belsőépítészeti alkotások.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Outfit:wght@100;200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           CSS CUSTOM PROPERTIES – THEME SYSTEM
+           7 HARMONIOUS THEMES
+           ============================================ */
+        :root {
+            --transition-speed: 0.6s;
+            --transition-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* THEME 1: Midnight Canvas – Sötét, mélykék/arany */
+        [data-theme="midnight-canvas"] {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-tertiary: #1a2035;
+            --bg-card: #151d30;
+            --text-primary: #f0ebe3;
+            --text-secondary: #b8b0a0;
+            --text-muted: #7a7568;
+            --accent: #c9a84c;
+            --accent-light: #e8d5a0;
+            --accent-dark: #8a7230;
+            --border: rgba(201, 168, 76, 0.15);
+            --border-hover: rgba(201, 168, 76, 0.4);
+            --gradient-hero: linear-gradient(135deg, #0a0e1a 0%, #1a2035 50%, #0f1525 100%);
+            --gradient-accent: linear-gradient(135deg, #c9a84c, #e8d5a0);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 0 40px rgba(201, 168, 76, 0.1);
+            --grain-opacity: 0.03;
+            --overlay-dark: rgba(10, 14, 26, 0.7);
+            --nav-bg: rgba(10, 14, 26, 0.92);
+            --scrollbar-track: #111827;
+            --scrollbar-thumb: #c9a84c;
+            --particle-color: rgba(201, 168, 76, 0.3);
+        }
+
+        /* THEME 2: Warm Gallery – Meleg, krémszín/barna */
+        [data-theme="warm-gallery"] {
+            --bg-primary: #faf6f0;
+            --bg-secondary: #f0e9dd;
+            --bg-tertiary: #e8dfd0;
+            --bg-card: #fffdf8;
+            --text-primary: #2c2418;
+            --text-secondary: #6b5d4a;
+            --text-muted: #9a8b76;
+            --accent: #8b6914;
+            --accent-light: #c9a84c;
+            --accent-dark: #5a4510;
+            --border: rgba(139, 105, 20, 0.15);
+            --border-hover: rgba(139, 105, 20, 0.4);
+            --gradient-hero: linear-gradient(135deg, #faf6f0 0%, #f0e9dd 50%, #e8dfd0 100%);
+            --gradient-accent: linear-gradient(135deg, #8b6914, #c9a84c);
+            --shadow-card: 0 8px 32px rgba(44, 36, 24, 0.08);
+            --shadow-glow: 0 0 40px rgba(139, 105, 20, 0.08);
+            --grain-opacity: 0.04;
+            --overlay-dark: rgba(250, 246, 240, 0.7);
+            --nav-bg: rgba(250, 246, 240, 0.92);
+            --scrollbar-track: #f0e9dd;
+            --scrollbar-thumb: #8b6914;
+            --particle-color: rgba(139, 105, 20, 0.2);
+        }
+
+        /* THEME 3: Nordic Light – Világos, fehér/szürke/kék */
+        [data-theme="nordic-light"] {
+            --bg-primary: #f5f7fa;
+            --bg-secondary: #e8ecf1;
+            --bg-tertiary: #dde3eb;
+            --bg-card: #ffffff;
+            --text-primary: #1a2332;
+            --text-secondary: #5a6a7e;
+            --text-muted: #8a96a8;
+            --accent: #4a7c9b;
+            --accent-light: #7ab0d4;
+            --accent-dark: #2d5a76;
+            --border: rgba(74, 124, 155, 0.12);
+            --border-hover: rgba(74, 124, 155, 0.35);
+            --gradient-hero: linear-gradient(135deg, #f5f7fa 0%, #dde3eb 50%, #e8ecf1 100%);
+            --gradient-accent: linear-gradient(135deg, #4a7c9b, #7ab0d4);
+            --shadow-card: 0 8px 32px rgba(26, 35, 50, 0.06);
+            --shadow-glow: 0 0 40px rgba(74, 124, 155, 0.06);
+            --grain-opacity: 0.02;
+            --overlay-dark: rgba(245, 247, 250, 0.7);
+            --nav-bg: rgba(245, 247, 250, 0.92);
+            --scrollbar-track: #e8ecf1;
+            --scrollbar-thumb: #4a7c9b;
+            --particle-color: rgba(74, 124, 155, 0.2);
+        }
+
+        /* THEME 4: Tuscan Sunset – Meleg, terrakotta/arany */
+        [data-theme="tuscan-sunset"] {
+            --bg-primary: #1c1410;
+            --bg-secondary: #2a1f18;
+            --bg-tertiary: #352820;
+            --bg-card: #2e2218;
+            --text-primary: #f5e6d3;
+            --text-secondary: #c4a882;
+            --text-muted: #8a7560;
+            --accent: #d4764e;
+            --accent-light: #e8a07a;
+            --accent-dark: #a05535;
+            --border: rgba(212, 118, 78, 0.15);
+            --border-hover: rgba(212, 118, 78, 0.4);
+            --gradient-hero: linear-gradient(135deg, #1c1410 0%, #352820 50%, #2a1f18 100%);
+            --gradient-accent: linear-gradient(135deg, #d4764e, #e8a07a);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.35);
+            --shadow-glow: 0 0 40px rgba(212, 118, 78, 0.1);
+            --grain-opacity: 0.03;
+            --overlay-dark: rgba(28, 20, 16, 0.7);
+            --nav-bg: rgba(28, 20, 16, 0.92);
+            --scrollbar-track: #2a1f18;
+            --scrollbar-thumb: #d4764e;
+            --particle-color: rgba(212, 118, 78, 0.3);
+        }
+
+        /* THEME 5: Monochrome – Fekete/fehér/ezüst */
+        [data-theme="monochrome"] {
+            --bg-primary: #0d0d0d;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #252525;
+            --bg-card: #141414;
+            --text-primary: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --text-muted: #606060;
+            --accent: #c0c0c0;
+            --accent-light: #e0e0e0;
+            --accent-dark: #808080;
+            --border: rgba(192, 192, 192, 0.12);
+            --border-hover: rgba(192, 192, 192, 0.35);
+            --gradient-hero: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #141414 100%);
+            --gradient-accent: linear-gradient(135deg, #808080, #e0e0e0);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 40px rgba(192, 192, 192, 0.05);
+            --grain-opacity: 0.04;
+            --overlay-dark: rgba(13, 13, 13, 0.7);
+            --nav-bg: rgba(13, 13, 13, 0.92);
+            --scrollbar-track: #1a1a1a;
+            --scrollbar-thumb: #808080;
+            --particle-color: rgba(192, 192, 192, 0.2);
+        }
+
+        /* THEME 6: Forest Whisper – Zöld/krém/arany */
+        [data-theme="forest-whisper"] {
+            --bg-primary: #0f1a14;
+            --bg-secondary: #162418;
+            --bg-tertiary: #1e3020;
+            --bg-card: #17281c;
+            --text-primary: #e8f0e4;
+            --text-secondary: #a0b898;
+            --text-muted: #6a8060;
+            --accent: #6db85a;
+            --accent-light: #a0d88a;
+            --accent-dark: #3a7a2a;
+            --border: rgba(109, 184, 90, 0.12);
+            --border-hover: rgba(109, 184, 90, 0.35);
+            --gradient-hero: linear-gradient(135deg, #0f1a14 0%, #1e3020 50%, #162418 100%);
+            --gradient-accent: linear-gradient(135deg, #6db85a, #a0d88a);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 0 40px rgba(109, 184, 90, 0.08);
+            --grain-opacity: 0.03;
+            --overlay-dark: rgba(15, 26, 20, 0.7);
+            --nav-bg: rgba(15, 26, 20, 0.92);
+            --scrollbar-track: #162418;
+            --scrollbar-thumb: #6db85a;
+            --particle-color: rgba(109, 184, 90, 0.25);
+        }
+
+        /* THEME 7: Rose Garden – Rózsaszín/krém/arany */
+        [data-theme="rose-garden"] {
+            --bg-primary: #1a1018;
+            --bg-secondary: #251820;
+            --bg-tertiary: #302028;
+            --bg-card: #221620;
+            --text-primary: #f5e8ee;
+            --text-secondary: #c4a0b0;
+            --text-muted: #8a6878;
+            --accent: #c47a9a;
+            --accent-light: #e8a0c0;
+            --accent-dark: #8a4a6a;
+            --border: rgba(196, 122, 154, 0.12);
+            --border-hover: rgba(196, 122, 154, 0.35);
+            --gradient-hero: linear-gradient(135deg, #1a1018 0%, #302028 50%, #251820 100%);
+            --gradient-accent: linear-gradient(135deg, #c47a9a, #e8a0c0);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.35);
+            --shadow-glow: 0 0 40px rgba(196, 122, 154, 0.08);
+            --grain-opacity: 0.03;
+            --overlay-dark: rgba(26, 16, 24, 0.7);
+            --nav-bg: rgba(26, 16, 24, 0.92);
+            --scrollbar-track: #251820;
+            --scrollbar-thumb: #c47a9a;
+            --particle-color: rgba(196, 122, 154, 0.25);
+        }
+
+        /* ============================================
+           GLOBAL RESET & BASE STYLES
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            transition: background-color var(--transition-speed) var(--transition-ease),
+                        color var(--transition-speed) var(--transition-ease);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-light);
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        /* ============================================
+           GRAIN TEXTURE OVERLAY
+           ============================================ */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: var(--grain-opacity);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+
+        /* ============================================
+           CUSTOM CURSOR
+           ============================================ */
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 100000;
+            transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease;
+            mix-blend-mode: difference;
+        }
+        .custom-cursor.hover {
+            transform: scale(2.5);
+            background-color: var(--accent);
+            opacity: 0.5;
+        }
+        .custom-cursor-dot {
+            width: 5px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 100001;
+            transition: transform 0.08s ease;
+        }
+
+        @media (max-width: 768px) {
+            .custom-cursor, .custom-cursor-dot { display: none; }
+        }
+
+        /* ============================================
+           LOADING SCREEN
+           ============================================ */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader-brush {
+            width: 60px;
+            height: 60px;
+            position: relative;
+        }
+        .loader-brush svg {
+            width: 100%;
+            height: 100%;
+        }
+        .loader-brush svg path {
+            stroke: var(--accent);
+            stroke-width: 2;
+            fill: none;
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            animation: drawBrush 2s ease forwards;
+        }
+        @keyframes drawBrush {
+            to { stroke-dashoffset: 0; }
+        }
+        .loader-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-top: 24px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+        .loader-bar {
+            width: 120px;
+            height: 1px;
+            background: var(--border);
+            margin-top: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        .loader-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: var(--accent);
+            animation: loadBar 2s ease forwards;
+        }
+        @keyframes loadBar {
+            to { width: 100%; }
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+        .nav.scrolled {
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 14px 40px;
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+        .nav-logo span {
+            color: var(--accent);
+            font-style: italic;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 36px;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s ease;
+            padding: 4px 0;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.4s ease;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle-btn {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .theme-toggle-btn:hover {
+            border-color: var(--accent);
+            transform: rotate(30deg);
+        }
+        .theme-toggle-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--accent);
+        }
+
+        /* Theme Panel */
+        .theme-panel {
+            position: fixed;
+            top: 50%;
+            right: -320px;
+            transform: translateY(-50%);
+            width: 300px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-right: none;
+            border-radius: 20px 0 0 20px;
+            padding: 28px 24px;
+            z-index: 999;
+            transition: right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: var(--shadow-card);
+        }
+        .theme-panel.open {
+            right: 0;
+        }
+        .theme-panel-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        .theme-panel-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .theme-option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 6px;
+            border: 1px solid transparent;
+        }
+        .theme-option:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--border);
+        }
+        .theme-option.active {
+            background: var(--bg-tertiary);
+            border-color: var(--accent);
+        }
+        .theme-colors {
+            display: flex;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+        .theme-color-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+        }
+        .theme-option-name {
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            font-weight: 400;
+        }
+        .theme-option-desc {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+        .mobile-menu-btn span {
+            width: 28px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+            display: block;
+        }
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        .mobile-nav.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-nav a {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: 3px;
+            transition: color 0.3s ease;
+        }
+        .mobile-nav a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: flex; }
+            .mobile-nav { display: flex; }
+            .nav { padding: 16px 20px; }
+            .nav.scrolled { padding: 12px 20px; }
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--gradient-hero);
+        }
+        .hero-bg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--particle-color);
+            border-radius: 50%;
+            animation: floatParticle linear infinite;
+        }
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 20px;
+            max-width: 900px;
+        }
+        .hero-subtitle-top {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 2.5s forwards;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 700;
+            line-height: 1.05;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 2.7s forwards;
+        }
+        .hero-title em {
+            font-style: italic;
+            color: var(--accent);
+            font-weight: 400;
+        }
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 2.9s forwards;
+        }
+        .hero-divider {
+            width: 60px;
+            height: 1px;
+            background: var(--accent);
+            margin: 0 auto 40px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 3.1s forwards;
+        }
+        .hero-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 48px;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 1s ease 3.3s forwards;
+        }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 40px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 1s ease 3.5s forwards;
+        }
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+        .hero-cta:hover {
+            color: var(--bg-primary);
+        }
+        .hero-cta:hover::before {
+            left: 0;
+        }
+        .hero-scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 3.8s forwards;
+        }
+        .hero-scroll-indicator span {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            animation: scrollDown 2s ease infinite;
+        }
+        @keyframes scrollDown {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============================================
+           SECTION COMMON STYLES
+           ============================================ */
+        section {
+            padding: 120px 40px;
+            position: relative;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+            display: block;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .section-title em {
+            font-style: italic;
+            color: var(--accent);
+            font-weight: 400;
+        }
+        .section-line {
+            width: 50px;
+            height: 1px;
+            background: var(--accent);
+            margin: 0 auto;
+        }
+        .section-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ============================================
+           ABOUT SECTION
+           ============================================ */
+        .about {
+            background: var(--bg-secondary);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .about-image-wrapper {
+            position: relative;
+        }
+        .about-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: 4px;
+            filter: grayscale(20%);
+            transition: filter 0.5s ease;
+        }
+        .about-image:hover {
+            filter: grayscale(0%);
+        }
+        .about-image-frame {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            z-index: -1;
+            opacity: 0.4;
+        }
+        .about-text h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            line-height: 1.3;
+        }
+        .about-text h3 em {
+            color: var(--accent);
+            font-style: italic;
+        }
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.9;
+            font-size: 0.95rem;
+        }
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .about-image-frame {
+                top: -10px;
+                left: -10px;
+                right: 10px;
+                bottom: 10px;
+            }
+        }
+
+        /* ============================================
+           GALLERY SECTION
+           ============================================ */
+        .gallery {
+            background: var(--bg-primary);
+        }
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 10px 28px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            opacity: 1;
+            transform: scale(1);
+        }
+        .gallery-item.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            position: absolute;
+            pointer-events: none;
+        }
+        .gallery-item.tall {
+            grid-row: span 2;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease, filter 0.5s ease;
+            display: block;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+            filter: brightness(0.7);
+        }
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px 24px 24px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        .gallery-overlay h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .gallery-overlay p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            font-style: italic;
+        }
+        .gallery-overlay .gallery-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 900px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+        }
+        @media (max-width: 500px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        /* ============================================
+           INTERIOR SECTION
+           ============================================ */
+        .interior {
+            background: var(--bg-secondary);
+            overflow: hidden;
+        }
+        .interior-showcase {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .interior-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+        .interior-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s ease;
+        }
+        .interior-card:hover img {
+            transform: scale(1.05);
+        }
+        .interior-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(transparent 40%, rgba(0,0,0,0.7));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 32px;
+            transition: background 0.5s ease;
+        }
+        .interior-card:hover .interior-card-overlay {
+            background: linear-gradient(transparent 20%, rgba(0,0,0,0.8));
+        }
+        .interior-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .interior-card p {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        @media (max-width: 700px) {
+            .interior-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================
+           FRAMED SECTION
+           ============================================ */
+        .framed-section {
+            background: var(--bg-primary);
+        }
+        .framed-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .framed-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .framed-comparison .framed-card {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .framed-comparison .framed-card img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .framed-comparison .framed-card:hover img {
+            transform: scale(1.05);
+        }
+        .framed-comparison .framed-card .label {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            padding: 4px 12px;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            backdrop-filter: blur(10px);
+        }
+        .framed-text h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        .framed-text h3 em {
+            color: var(--accent);
+            font-style: italic;
+        }
+        .framed-text p {
+            color: var(--text-secondary);
+            line-height: 1.9;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 900px) {
+            .framed-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        /* ============================================
+           TIMELINE / JOURNEY SECTION
+           ============================================ */
+        .journey {
+            background: var(--bg-secondary);
+        }
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 100%;
+            background: var(--border);
+        }
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+        .timeline-item:nth-child(odd) .timeline-content {
+            padding-right: 60px;
+            padding-left: 0;
+        }
+        .timeline-item:nth-child(even) .timeline-content {
+            padding-left: 60px;
+        }
+        .timeline-content {
+            flex: 1;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--bg-secondary);
+            z-index: 2;
+        }
+        .timeline-year {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .timeline-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        .timeline-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 700px) {
+            .timeline::before {
+                left: 20px;
+            }
+            .timeline-item,
+            .timeline-item:nth-child(odd) {
+                flex-direction: row;
+                text-align: left;
+            }
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                padding-left: 50px;
+                padding-right: 0;
+            }
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+
+        /* ============================================
+           LIGHTBOX
+           ============================================ */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+        }
+        .lightbox.active img {
+            transform: scale(1);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            background: transparent;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .lightbox-close:hover {
+            border-color: #fff;
+            transform: rotate(90deg);
+        }
+        .lightbox-caption {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #fff;
+        }
+        .lightbox-caption h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+        }
+        .lightbox-caption p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+            font-style: italic;
+        }
+
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        .contact {
+            background: var(--bg-primary);
+        }
+        .contact-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+        .contact-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+        .contact-info p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 32px;
+            font-size: 0.95rem;
+        }
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .contact-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--accent);
+        }
+        .contact-detail-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .contact-detail-text strong {
+            display: block;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .form-group {
+            position: relative;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+        .form-submit {
+            padding: 16px 40px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+        .form-submit:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(201, 168, 76, 0.2);
+        }
+
+        @media (max-width: 700px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--bg-secondary);
+            padding: 60px 40px 30px;
+            border-top: 1px solid var(--border);
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+        .footer-logo span {
+            color: var(--accent);
+            font-style: italic;
+        }
+        .footer-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* ============================================
+           SCROLL REVEAL ANIMATIONS
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ============================================
+           DECORATIVE ELEMENTS
+           ============================================ */
+        .deco-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            pointer-events: none;
+        }
+        .deco-circle-1 {
+            width: 400px;
+            height: 400px;
+            top: -200px;
+            right: -100px;
+            opacity: 0.3;
+        }
+        .deco-circle-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -150px;
+            left: -100px;
+            opacity: 0.2;
+        }
+
+        /* ============================================
+           PAINT BRUSH DIVIDER
+           ============================================ */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
+            gap: 16px;
+        }
+        .section-divider .line {
+            width: 80px;
+            height: 1px;
+            background: var(--border);
+        }
+        .section-divider .brush-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--accent);
+            opacity: 0.6;
+        }
+
+        /* ============================================
+           RESPONSIVE FINE-TUNING
+           ============================================ */
+        @media (max-width: 600px) {
+            section {
+                padding: 80px 20px;
+            }
+            .section-header {
+                margin-bottom: 50px;
+            }
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+            }
+            .stat-number {
+                font-size: 1.8rem;
+            }
+            .gallery-filters {
+                gap: 8px;
+            }
+            .filter-btn {
+                padding: 8px 18px;
+                font-size: 0.65rem;
+            }
+            .theme-panel {
+                width: 260px;
+                right: -280px;
+            }
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* ============================================
+           BACK TO TOP
+           ============================================ */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            background: var(--bg-card);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow-card);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+        .back-to-top svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--accent);
+        }
+
+        /* ============================================
+           QUOTE SECTION
+           ============================================ */
+        .quote-section {
+            background: var(--bg-tertiary);
+            padding: 100px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .quote-section::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 15rem;
+            color: var(--accent);
+            opacity: 0.06;
+            line-height: 1;
+        }
+        .quote-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            font-style: italic;
+            color: var(--text-primary);
+            max-width: 800px;
+            margin: 0 auto 24px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+        .quote-author {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        /* ============================================
+           PROCESS SECTION
+           ============================================ */
+        .process {
+            background: var(--bg-primary);
+        }
+        .process-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        .process-card {
+            text-align: center;
+            padding: 48px 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .process-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        .process-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-glow);
+            border-color: var(--border-hover);
+        }
+        .process-card:hover::before {
+            transform: scaleX(1);
+        }
+        .process-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+        }
+        .process-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--accent);
+        }
+        .process-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+        .process-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 700px) {
+            .process-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LOADING SCREEN -->
+    <div class="loader" id="loader">
+        <div class="loader-brush">
+            <svg viewBox="0 0 60 60">
+                <path d="M30 5 C30 5 50 20 50 35 C50 46 41 55 30 55 C19 55 10 46 10 35 C10 20 30 5 30 5Z" />
+            </svg>
+        </div>
+        <div class="loader-text">Kárai Mihály</div>
+        <div class="loader-bar"></div>
+    </div>
+
+    <!-- CUSTOM CURSOR -->
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor-dot" id="cursorDot"></div>
+
+    <!-- NAVIGATION -->
+    <nav class="nav" id="nav">
+        <a href="#hero" class="nav-logo">Kárai <span>Mihály</span></a>
+        <ul class="nav-links">
+            <li><a href="#about">Rólam</a></li>
+            <li><a href="#gallery">Galéria</a></li>
+            <li><a href="#interior">Belstílus</a></li>
+            <li><a href="#framed">Keretezés</a></li>
+            <li><a href="#journey">Útmutató</a></li>
+            <li><a href="#contact">Kapcsolat</a></li>
+            <li>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Témaváltás">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                </button>
+            </li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menü">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- MOBILE NAV -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#about" onclick="closeMobileMenu()">Rólam</a>
+        <a href="#gallery" onclick="closeMobileMenu()">Galéria</a>
+        <a href="#interior" onclick="closeMobileMenu()">Belstílus</a>
+        <a href="#framed" onclick="closeMobileMenu()">Keretezés</a>
+        <a href="#journey" onclick="closeMobileMenu()">Útmutató</a>
+        <a href="#contact" onclick="closeMobileMenu()">Kapcsolat</a>
+        <button class="theme-toggle-btn" onclick="openThemePanel()" aria-label="Témaváltás" style="margin-top: 20px;">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+    </div>
+
+    <!-- THEME PANEL -->
+    <div class="theme-panel" id="themePanel">
+        <div class="theme-panel-title">Színtémák</div>
+        <div class="theme-panel-subtitle">Válassz stílust</div>
+        
+        <div class="theme-option active" data-theme="midnight-canvas" onclick="switchTheme('midnight-canvas')">
+            <div class="theme-colors">
+                <div class="theme-color-dot" style="background:#0a0e1a"></div>
+                <div class="theme-color-dot" style="background:#c9a84c"></div>
+                <div class="theme-color-dot" style="background:#f0ebe3"></div>
+            </div>
+            <div>
+                <div class="theme-option-name">Midnight Canvas</div>
+                <div class="theme-option-desc">Mélykék · Arany</div>
+            </div>
+        </div>
+
+        <div class="theme-option" data-theme="warm-gallery" onclick="switchTheme('warm-gallery')">
+            <div class="theme-colors">
+                <div class="theme-color-dot" style="background:#faf6f0"></div>
+                <div class="theme-color-dot" style="background:#8b6914"></div>
+                <div class="theme-color-dot" style="background:#2c2418"></div>
+            </div>
+            <div>
+                <div class="theme-option-name">Warm Gallery</div>
+                <div class="theme-option-desc">Krém · Barna</div>
+            </div>
+        </div>
+
+        <div class="theme-option" data-theme="nordic-light" onclick="switchTheme('nordic-light')">
+            <div class="theme-colors">
+                <div class="theme-color-dot" style="background:#f5f7fa"></div>
+                <div class="theme-color-dot" style="background:#4a7c9b"></div>
+                <div class="theme-color-dot" style="background:#1a2332"></div>
+            </div>
+            <div>
+                <div class="theme-option-name">Nordic Light</div>
+                <div class="theme-option-desc">Fehér · Kék</div>
+            </div>
+        </div>
+
+        <div class="theme-option" data-theme="tuscan-sunset" onclick="switchTheme('tuscan-sunset')">
+            <div class="theme-colors">
+                <div class="theme-color-dot" style="background:#1c1410"></div>
+                <div class="theme-color-dot" style="background:#d4764e"></div>
+                <div class="theme-color-dot" style="background:#f5e6d3"></div>
+            </div>
+            <div>
+                <div class="theme-option-name">Tuscan Sunset</div>
+                <div class="theme-option-desc">Terrakotta · Arany</div>
+            </div>
+        </div>
+
+        <div class="theme-option" data-theme="monochrome" onclick="switchTheme('monochrome')">
+            <div class="theme-colors">
+                <div class="theme-color-dot" style="background:#0d0d0d"></div>
+                <div class="theme-color-dot" style="background:#808080"></div>
+                <div class="theme-color-dot" style="background:#f0f0f0"></div>
+            </div>
+            <div>
+                <div class="theme-option-name">Monochrome</div>
+                <div class="theme-option-desc">Fekete · Ezüst</div>
+            </div>
+        </div>
+
+        <div class="theme-option" data-theme="forest-whisper" onclick="switchTheme('forest-whisper')">
+            <div class="theme-colors">
+                <div class="theme-color-dot" style="background:#0f1a14"></div>
+                <div class="theme-color-dot" style="background:#6db85a"></div>
+                <div class="theme-color-dot" style="background:#e8f0e4"></div>
+            </div>
+            <div>
+                <div class="theme-option-name">Forest Whisper</div>
+                <div class="theme-option-desc">Zöld · Krém</div>
+            </div>
+        </div>
+
+        <div class="theme-option" data-theme="rose-garden" onclick="switchTheme('rose-garden')">
+            <div class="theme-colors">
+                <div class="theme-color-dot" style="background:#1a1018"></div>
+                <div class="theme-color-dot" style="background:#c47a9a"></div>
+                <div class="theme-color-dot" style="background:#f5e8ee"></div>
+            </div>
+            <div>
+                <div class="theme-option-name">Rose Garden</div>
+                <div class="theme-option-desc">Rózsaszín · Krém</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <canvas class="hero-bg-canvas" id="heroCanvas"></canvas>
+        <div class="hero-particles" id="heroParticles"></div>
+        
+        <div class="hero-content">
+            <div class="hero-subtitle-top">Festőművész · 1961</div>
+            <h1 class="hero-title">Kárai <em>Mihály</em></h1>
+            <p class="hero-tagline">A színek zenéje, a vászon beszélője</p>
+            <div class="hero-divider"></div>
+            <p class="hero-description">
+                Több mint három évtizede formálom a látottat és érzett festménnyé. 
+                Minden ecsetvonás egy történet, minden szín egy érzelem.
+            </p>
+            <a href="#gallery" class="hero-cta">
+                <span>Fedezd fel a műveimet</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+
+        <div class="hero-scroll-indicator">
+            <span>Görgess</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <div class="deco-circle deco-circle-1"></div>
+        <div class="deco-circle deco-circle-2"></div>
+        
+        <div class="section-header reveal">
+            <span class="section-label">A művész</span>
+            <h2 class="section-title">Rólam <em>bölcs</em></h2>
+            <div class="section-line"></div>
+            <p class="section-subtitle">A festészet nem hivatás – hanem életforma</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-image-wrapper reveal reveal-delay-1">
+                <img src="../../assets/interior_1.jpg" alt="Kárai Mihály műteremben" class="about-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 533%22%3E%3Crect fill=%22%231a2035%22 width=%22400%22 height=%22533%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23c9a84c%22 font-family=%22serif%22 font-size=%2224%22 text-anchor=%22middle%22 dy=%22.3em%22%3EKárai Mihály%3C/text%3E%3C/svg%3E'">
+                <div class="about-image-frame"></div>
+            </div>
+            <div class="about-text reveal reveal-delay-2">
+                <h3>Az ecset a <em>nyelvem</em>, a vászon a <em>világom</em></h3>
+                <p>
+                    1961-ben születtem, és gyermekkorem óta a festészet volt az életem része. 
+                    A színek világa mindig is vonzott, és máig nem hagyott fel ezzel a vonzalommal.
+                </p>
+                <p>
+                    Műveim során a természet szépségét, az emberi érzelmek mélységét és a mindennapi 
+                    élet poézisát próbálom megörökíteni. Minden alkotásom egy utazás – az enyém és 
+                    a nézőé egyaránt.
+                </p>
+                <p>
+                    Hiszek abban, hogy a művészet nem csupán díszítés, hanem a lélek tükre, 
+                    amely képes megmozdítani a legmélyebb érzéseinket.
+                </p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">63</div>
+                        <div class="stat-label">Életkor</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">Év tapasztalat</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Alkotás</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="gallery" id="gallery">
+        <div class="section-header reveal">
+            <span class="section-label">Kollekció</span>
+            <h2 class="section-title">Festmény <em>Galéria</em></h2>
+            <div class="section-line"></div>
+            <p class="section-subtitle">Válogatás az alkotások világából</p>
+        </div>
+
+        <div class="gallery-filters reveal reveal-delay-1">
+            <button class="filter-btn active" data-filter="all">Összes</button>
+            <button class="filter-btn" data-filter="general">Festmények</button>
+            <button class="filter-btn" data-filter="interior">Belső tér</button>
+            <button class="filter-btn" data-filter="framed">Keretezve</button>
+            <button class="filter-btn" data-filter="unframed">Keret nélkül</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- General Paintings -->
+            <div class="gallery-item tall reveal" data-category="general" onclick="openLightbox(this)">
+                <img src="../../assets/interior_1.jpg" alt="Festmény" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 600%22%3E%3Crect fill=%22%231a2035%22 width=%22400%22 height=%22600%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23c9a84c%22 font-family=%22serif%22 font-size=%2218%22 text-anchor=%22middle%22 dy=%22.3em%22%3EFestmény%3C/text%3E%3C/svg%3E'">
+                <div class="gallery-overlay">
+                    <h4>Festmény</h4>
+                    <p>Eredeti alkotás</p>
+                    <span class="gallery-tag">Festmény</span>
+                </div>
+            </div>
+
+            <div class="gallery-item reveal reveal-delay-1" data-category="general" onclick="openLightbox(this)">
+                <img src="../../assets/interior_2.jpg" alt="Festmény" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%231a2035%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23c9a84c%22 font-family=%22serif%22 font-size=%2218%22 text-anchor=%22middle%22 dy=%22.3em%22%3EFestmény%3C/text%3E%3C/svg%3E'">
+                <div class="gallery-overlay">
+                    <h4>Festmény</h4>
+                    <p>Eredeti alkotás</p>
+                    <span class="gallery-tag">Festmény</span>
+                </div>
+            </div>
+
+            <!-- Interior -->
+            <div class="gallery-item reveal reveal-delay-2" data-category="interior" onclick="openLightbox(this)">
+                <img src="../../assets/interior_1.jpg" alt="Belső tér" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%231a2035%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23c9a84c%22 font-family=%22serif%22 font-size=%2218%22 text-anchor=%22middle%22 dy=%22.3em%22%3EBelső tér%3C/text%3E%3C/svg%3E'">
+                <div class="gallery-overlay">
+                    <h4>Belső tér</h4>
+                    <p>Interior kompozíció</p>
+                    <span class="gallery-tag">Belső tér</span>
+                </div>
+            </div>
+
+            <div class="gallery-item reveal reveal-delay-3" data-category="interior" onclick="openLightbox(this)">
+                <img src="../../assets/interior_2.jpg" alt="Belső tér" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%231a2035%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23c9a84c%22 font-family=%22serif%22 font-size=%2218%22 text-anchor=%22middle%22 dy=%22.3em%22%3EBelső tér%3C/text%3E%3C/svg%3E'">
+                <div class="gallery-overlay">
+                    <h4>Belső tér</h4>
+                    <p>Interior kompozíció</p>
+                    <span class="gallery-tag">Belső tér</span>
+                </div>
+            </div>
+
+            <!-- Framed -->
+            <div class="gallery-item reveal reveal-delay-1" data-category="framed" onclick="openLightbox(this)">
+                <img src="../../assets/keretezve_1.jpg" alt="Keretezve" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%231a2035%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23c9a84c%22 font-family=%22serif%22 font-size=%2218%22 text-anchor=%22middle%22 dy=%22.3em%22%3EKeretezve%3C/text%3E%3C/svg%3E'">
+                <div class="gallery-overlay">
+                    <h4>Keretezve</h4>
+                    <p>Keretes kivitel</p>
+                    <span class="gallery-tag">Keretezve</span>
+                </div>
+            </div>
+
+            <div class="gallery-item reveal reveal-delay-2" data-category="framed" onclick="openLightbox(this)">
+                <img src="../../assets/keretezve_2.jpg" alt="Keretezve" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%231a2035%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23c9a84c%22 font-family=%22serif%22 font-size=%2218%22 text-anchor=%22middle%22 dy=%22.3em%22%3EKeretezve%3C/text%3E%3C/svg%3E'">
+                <div class="gallery-overlay">
+                    <h4>Keretezve</h4>
+                    <p>Keretes kivitel</p>
+                    <span class="gallery-tag">Keretezve</span>
+                </div>
+            </div>
+
+            <!-- Unframed -->
+            <div class="gallery-item reveal reveal-delay-1" data-category="unframed" onclick="openLightbox(this)">
+                <img src="../../assets/keretnelkul_1.jpg" alt="Keret nélkül" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%231a2035%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23c9a84c%22 font-family=%22serif%22 font-size=%2218%22 text-anchor=%22middle%22 dy=%22.3em%22%3EKeret nélkül%3C/text%3E%3C/svg%3E'">
+                <div class="gallery-overlay">
+                    <h4>Keret nélkül</h4>
+                    <p>Tiszta vászon</p>
+                    <span class="gallery-tag">Keret nélkül</span>
+                </div>
+            </div>
+
+            <div class="gallery-item reveal reveal-delay-2" data-category="unframed" onclick="openLightbox(this)">
+                <img src="../../assets/keretnelkul_2.jpg" alt="Keret nélkül" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%231a2035%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23c9a84c%22 font-family=%22serif%22 font-size=%2218%22 text-anchor=%22middle%22 dy=%22.3em%22%3EKeret nélkül%3C/text%3E%3C/svg%3E'">
+                <div class="gallery-overlay">
+                    <h4>Keret nélkül</h4>
+                    <p>Tiszta vászon</p>
+                    <span class="gallery-tag">Keret nélkül</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUOTE SECTION -->
+    <div class="quote-section">
+        <div class="reveal">
+            <p class="quote-text">
+                „A festészet az a nyelv, amelyen a lélek beszél, 
+                amikor a hangszerek elhallgatnak."
+            </p>
+            <span class="quote-author">— Kárai Mihály</span>
+        </div>
+    </div>
+
+    <!-- INTERIOR SECTION -->
+    <section class="interior" id="interior">
+        <div class="section-header reveal">
+            <span class="section-label">Belstílus</span>
+            <h2 class="section-title">Belső terek <em>művészete</em></h2>
+            <div class="section-line"></div>
+            <p class="section-subtitle">Amikor a festmény és az építészet találkozik</p>
+        </div>
+
+        <div class="interior-showcase">
+            <div class="interior-card reveal reveal-delay-1" onclick="openLightbox(this.querySelector('img'))">
+                <img src="../../assets/interior_1.jpg" alt="Belső tér kompozíció" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 600%22%3E%3Crect fill=%22%231a2035%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23c9a84c%22 font-family=%22serif%22 font-size=%2224%22 text-anchor=%22middle%22 dy=%22.3em%22%3EBelső tér I%3C/text%3E%3C/svg%3E'">
+                <div class="interior-card-overlay">
+                    <h4>Belső tér I.</h4>
+                    <p>A festmény és a tér harmóniája</p>
+                </div>
+            </div>
+            <div class="interior-card reveal reveal-delay-2" onclick="openLightbox(this.querySelector('img'))">
+                <img src="../../assets/interior_2.jpg" alt="Belső tér kompozíció" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 600%22%3E%3Crect fill=%22%231a2035%22 width=%22800%22 height=%22600%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23c9a84c%22 font-family=%22serif%22 font-size=%2224%22 text-anchor=%22middle%22 dy=%22.3em%22%3EBelső tér II%3C/text%3E%3C/svg%3E'">
+                <div class="interior-card-overlay">
+                    <h4>Belső tér II.</h4>
+                    <p>Szín és forma egyensúlya</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FRAMED SECTION -->
+    <section class="framed-section" id="framed">
+        <div class="section-header reveal">
+            <span class="section-label">Keretezés</span>
+            <h2 class="section-title">Keretezett és <em>keret nélküli</em></h2>
+            <div class="section-line"></div>
+            <p class="section-subtitle">A keret nem korlát – hanem keret</p>
+        </div>
+
+        <div class="framed-grid">
+            <div class="framed-text reveal reveal-delay-1">
+                <h3>A keret <em>kiterjesztése</em></h3>
+                <p>
+                    A keretezett változatok eleganciát és klasszikus megjelenést kölcsönöznek az alkotásoknak. 
+                    A keret nem csupán védelmet nyújt, hanem keretet ad a nézés élményének is.
+                </p>
+                <p>
+                    A keret nélküli változatok modern, letisztult megjelenést kínálnak, 
+                    ahol a festmény maga beszél, anélkül, hogy bármilyen keret korlátozná a látványt.
+                </p>
+                <p>
+                    Mindkét verzió ugyanazt az érzést hivatott közvetíteni – csak más-más stílusban.
+                </p>
+            </div>
+            <div class="framed-comparison reveal reveal-delay-2">
+                <div class="framed-card">
+                    <img src="../../assets/keretezve_1.jpg" alt="Keretezve" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 533%22%3E%3Crect fill=%22%231a2035%22 width=%22400%22 height=%22533%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23c9a84c%22 font-family=%22serif%22 font-size=%2218%22 text-anchor=%22middle%22 dy=%22.3em%22%3EKeretezve%3C/text%3E%3C/svg%3E'">
+                    <span class="label">Keretezve</span>
+                </div>
+                <div class="framed-card">
+                    <img src="../../assets/keretnelkul_1.jpg" alt="Keret nélkül" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 533%22%3E%3Crect fill=%22%231a2035%22 width=%22400%22 height=%22533%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23c9a84c%22 font-family=%22serif%22 font-size=%2218%22 text-anchor=%22middle%22 dy=%22.3em%22%3EKeret nélkül%3C/text%3E%3C/svg%3E'">
+                    <span class="label">Keret nélkül</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS SECTION -->
+    <section class="process" id="process">
+        <div class="section-header reveal">
+            <span class="section-label">Alkotás</span>
+            <h2 class="section-title">Az alkotás <em>folyamata</em></h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="process-grid">
+            <div class="process-card reveal reveal-delay-1">
+                <div class="process-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                </div>
+                <h4>Inspiráció</h4>
+                <p>A természet, az emberi érzelmek, a mindennapi élet pillanatai – minden adhat ihletet.</p>
+            </div>
+            <div class="process-card reveal reveal-delay-2">
+                <div class="process-icon">
+                    <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                </div>
+                <h4>Ecsetvonás</h4>
+                <p>Az ötlet formát ölten, a szín életre kel, a vászon lassan elmeséli a történetet.</p>
+            </div>
+            <div class="process-card reveal reveal-delay-3">
+                <div class="process-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </div>
+                <h4>Érzelem</h4>
+                <p>Minden festmény egy érzelem megtestesítője – a művész és a néző közötti híd.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- JOURNEY / TIMELINE SECTION -->
+    <section class="journey" id="journey">
+        <div class="section-header reveal">
+            <span class="section-label">Útmutató</span>
+            <h2 class="section-title">Művészeti <em>útja</em></h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">1961</div>
+                    <div class="timeline-title">Születés</div>
+                    <div class="timeline-desc">A művész születése – egy új világ nyílt meg a színekkel.</div>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">1980-as</div>
+                    <div class="timeline-title">Az első ecsetvonások</div>
+                    <div class="timeline-desc">Gyermeki kíváncsisággal kezdte el felfedezni a festészet világát.</div>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">1990-es</div>
+                    <div class="timeline-title">Stílus megtalálása</div>
+                    <div class="timeline-desc">Megformálta saját egyedi festői hangját és stílusát.</div>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2000-es</div>
+                    <div class="timeline-title">Kiállítások</div>
+                    <div class="timeline-desc">Egyéni és csoportos kiállítások, elismerések és díjak.</div>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2026</div>
+                    <div class="timeline-title">Folyamatos alkotás</div>
+                    <div class="timeline-desc">Máig alkot, tanul és inspirál – a művészet sosem ér véget.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+        <div class="section-header reveal">
+            <span class="section-label">Kapcsolat</span>
+            <h2 class="section-title">Lépj velünk <em>kapcsolatba</em></h2>
+            <div class="section-line"></div>
+            <p class="section-subtitle">Kérdésed van? Szeretnél festményt rendelni? Írj nekünk!</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-info reveal reveal-delay-1">
+                <h3>Hallgatlak</h3>
+                <p>
+                    Ha érdekelnek az alkotások, szeretnél festményt vásárolni, 
+                    vagy csak megosztanád velem benyomásaidat a műveimről – 
+                    bármikor keress!
+                </p>
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </div>
+                    <div class="contact-detail-text">
+                        <strong>E-mail</strong>
+                        kapcsolat@karaimihaly.hu
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    </div>
+                    <div class="contact-detail-text">
+                        <strong>Telefon</strong>
+                        +36 30 123 4567
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    </div>
+                    <div class="contact-detail-text">
+                        <strong>Helyszín</strong>
+                        Magyarország
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form reveal reveal-delay-2" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <input type="text" placeholder="A neved" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="E-mail cím" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Tárgy">
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Üzenet..." required></textarea>
+                </div>
+                <button type="submit" class="form-submit">Üzenet küldése</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Kárai <span>Mihály</span></div>
+            <div class="footer-text">© 2026 Kárai Mihály. Minden jog fenntartva.</div>
+            <div class="footer-links">
+                <a href="#hero">Főoldal</a>
+                <a href="#gallery">Galéria</a>
+                <a href="#contact">Kapcsolat</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP -->
+    <button class="back-to-top" id="backToTop" aria-label="Vissza a tetejére">
+        <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+    </button>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <img src="" alt="Nagyított kép" id="lightboxImg">
+        <div class="lightbox-caption">
+            <h4 id="lightboxTitle"></h4>
+            <p id="lightboxDesc"></p>
+        </div>
+    </div>
+
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script>
+        // ==========================================
+        // LOADER
+        // ==========================================
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 2200);
+        });
+
+        // ==========================================
+        // CUSTOM CURSOR
+        // ==========================================
+        const cursor = document.getElementById('cursor');
+        const cursorDot = document.getElementById('cursorDot');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorDot.style.left = mouseX - 2.5 + 'px';
+            cursorDot.style.top = mouseY - 2.5 + 'px';
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            cursor.style.left = cursorX - 10 + 'px';
+            cursor.style.top = cursorY - 10 + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Hover effect on interactive elements
+        document.querySelectorAll('a, button, .gallery-item, .filter-btn, .theme-option, .interior-card, .process-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // ==========================================
+        // HERO PARTICLES
+        // ==========================================
+        function createParticles() {
+            const container = document.getElementById('heroParticles');
+            const count = window.innerWidth < 768 ? 20 : 40;
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = (Math.random() * 4 + 1) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                particle.style.animationDelay = (Math.random() * 10) + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // ==========================================
+        // HERO CANVAS – PAINT TEXTURE
+        // ==========================================
+        const heroCanvas = document.getElementById('heroCanvas');
+        const ctx = heroCanvas.getContext('2d');
+
+        function resizeCanvas() {
+            heroCanvas.width = window.innerWidth;
+            heroCanvas.height = window.innerHeight;
+            drawPaintTexture();
+        }
+
+        function drawPaintTexture() {
+            const w = heroCanvas.width;
+            const h = heroCanvas.height;
+            
+            // Base gradient
+            const grad = ctx.createRadialGradient(w * 0.3, h * 0.4, 0, w * 0.5, h * 0.5, w * 0.8);
+            grad.addColorStop(0, 'rgba(201, 168, 76, 0.03)');
+            grad.addColorStop(0.5, 'rgba(201, 168, 76, 0.01)');
+            grad.addColorStop(1, 'transparent');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, w, h);
+
+            // Abstract brush strokes
+            for (let i = 0; i < 15; i++) {
+                ctx.beginPath();
+                const x = Math.random() * w;
+                const y = Math.random() * h;
+                const w1 = Math.random() * 300 + 100;
+                const h1 = Math.random() * 4 + 1;
+                const angle = Math.random() * Math.PI * 2;
+                
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.rotate(angle);
+                ctx.strokeStyle = `rgba(201, 168, 76, ${Math.random() * 0.04 + 0.01})`;
+                ctx.lineWidth = h1;
+                ctx.lineCap = 'round';
+                ctx.moveTo(-w1 / 2, 0);
+                ctx.bezierCurveTo(-w1 / 4, -20, w1 / 4, 20, w1 / 2, 0);
+                ctx.stroke();
+                ctx.restore();
+            }
+
+            // Soft circles
+            for (let i = 0; i < 8; i++) {
+                ctx.beginPath();
+                const x = Math.random() * w;
+                const y = Math.random() * h;
+                const r = Math.random() * 150 + 50;
+                const grad2 = ctx.createRadialGradient(x, y, 0, x, y, r);
+                grad2.addColorStop(0, `rgba(201, 168, 76, ${Math.random() * 0.03})`);
+                grad2.addColorStop(1, 'transparent');
+                ctx.fillStyle = grad2;
+                ctx.arc(x, y, r, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // ==========================================
+        // NAVIGATION
+        // ==========================================
+        const nav = document.getElementById('nav');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+
+            if (window.scrollY > 600) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ==========================================
+        // MOBILE MENU
+        // ==========================================
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        function closeMobileMenu() {
+            mobileMenuBtn.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ==========================================
+        // THEME SYSTEM
+        // ==========================================
+        function switchTheme(themeName) {
+            document.documentElement.setAttribute('data-theme', themeName);
+            localStorage.setItem('karai-theme', themeName);
+            
+            // Update active state in panel
+            document.querySelectorAll('.theme-option').forEach(opt => {
+                opt.classList.toggle('active', opt.dataset.theme === themeName);
+            });
+
+            // Close panel after selection
+            setTimeout(() => {
+                document.getElementById('themePanel').classList.remove('open');
+            }, 300);
+        }
+
+        function openThemePanel() {
+            document.getElementById('themePanel').classList.toggle('open');
+        }
+
+        // Theme toggle button
+        document.getElementById('themeToggleBtn').addEventListener('click', () => {
+            openThemePanel();
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('karai-theme');
+        if (savedTheme) {
+            switchTheme(savedTheme);
+        }
+
+        // ==========================================
+        // GALLERY FILTER
+        // ==========================================
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.classList.remove('hidden');
+                        item.style.position = 'relative';
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // ==========================================
+        // LIGHTBOX
+        // ==========================================
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        const lightboxDesc = document.getElementById('lightboxDesc');
+
+        function openLightbox(el) {
+            const img = el.querySelector ? el.querySelector('img') : el;
+            if (!img) return;
+            
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            
+            const overlay = el.closest('.gallery-item, .interior-card')?.querySelector('.gallery-overlay, .interior-card-overlay');
+            if (overlay) {
+                lightboxTitle.textContent = overlay.querySelector('h4')?.textContent || '';
+                lightboxDesc.textContent = overlay.querySelector('p')?.textContent || '';
+            }
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // ==========================================
+        // SCROLL REVEAL
+        // ==========================================
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ==========================================
+        // SMOOTH SCROLL FOR ANCHOR LINKS
+        // ==========================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ==========================================
+        // FORM HANDLER
+        // ==========================================
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('.form-submit');
+            btn.textContent = 'Küldve ✓';
+            btn.style.background = '#6db85a';
+            setTimeout(() => {
+                btn.textContent = 'Üzenet küldése';
+                btn.style.background = '';
+                e.target.reset();
+            }, 3000);
+        }
+
+        // ==========================================
+        // PARALLAX EFFECT ON SCROLL
+        // ==========================================
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroContent = document.querySelector('.hero-content');
+            if (heroContent && scrolled < window.innerHeight) {
+                heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+                heroContent.style.opacity = 1 - (scrolled / window.innerHeight) * 0.8;
+            }
+        });
+
+        // ==========================================
+        // COUNTER ANIMATION
+        // ==========================================
+        function animateCounters() {
+            document.querySelectorAll('.stat-number').forEach(counter => {
+                const text = counter.textContent;
+                if (text === '∞') return;
+                
+                const target = parseInt(text);
+                if (isNaN(target)) return;
+                
+                let current = 0;
+                const increment = target / 60;
+                const suffix = text.includes('+') ? '+' : '';
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = text;
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.floor(current) + suffix;
+                    }
+                }, 25);
+            });
+        }
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.about-stats');
+        if (statsSection) statsObserver.observe(statsSection);
+
+        // ==========================================
+        // THEME PANEL CLOSE ON OUTSIDE CLICK
+        // ==========================================
+        document.addEventListener('click', (e) => {
+            const panel = document.getElementById('themePanel');
+            const btn = document.getElementById('themeToggleBtn');
+            if (panel.classList.contains('open') && !panel.contains(e.target) && !btn.contains(e.target)) {
+                panel.classList.remove('open');
+            }
+        });
+
+        // ==========================================
+        // TILT EFFECT ON GALLERY ITEMS (Desktop)
+        // ==========================================
+        if (window.innerWidth > 768) {
+            document.querySelectorAll('.gallery-item, .process-card').forEach(item => {
+                item.addEventListener('mousemove', (e) => {
+                    const rect = item.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / 20;
+                    const rotateY = (centerX - x) / 20;
+                    
+                    item.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+                });
+            });
+        }
+
+        // ==========================================
+        // CONSOLE EASTER EGG
+        // ==========================================
+        console.log('%c🎨 Kárai Mihály – Festőművész', 'font-size: 24px; font-weight: bold; color: #c9a84c; font-family: serif;');
+        console.log('%cA színek zenéje, a vászon beszélője', 'font-size: 14px; color: #888; font-style: italic;');
+    </script>
+</body>
+</html>

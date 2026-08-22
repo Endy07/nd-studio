@@ -1,0 +1,2598 @@
+﻿<!DOCTYPE html>
+<html lang="hu" data-theme="classical-white">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály — Festőművész Portfólió</title>
+    <meta name="description" content="Kárai Mihály festőművész (szül. 1961) prémium portfólió — olajfestmények, akvarell, enteriőrök és keretes alkotások.">
+
+    <!-- Google Fonts: Modern 2026 Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================================
+           THEME SYSTEM — 7 Themes, 60-30-10 Color Rule
+           ============================================================ */
+
+        /* ── Theme 1: Classical White (60:30:10) ── */
+        [data-theme="classical-white"] {
+            --bg-primary: #FAF8F5;
+            --bg-secondary: #F0EDE8;
+            --bg-tertiary: #E8E4DD;
+            --text-primary: #2C2420;
+            --text-secondary: #5A4E44;
+            --text-muted: #8A7E72;
+            --accent: #B8860B;
+            --accent-light: #D4A843;
+            --accent-dark: #8B6508;
+            --surface: #FFFFFF;
+            --surface-hover: #F5F2ED;
+            --border: #E0DBD4;
+            --shadow: rgba(44, 36, 32, 0.08);
+            --shadow-strong: rgba(44, 36, 32, 0.15);
+            --texture-overlay: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b8860b' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            --grain-opacity: 0.02;
+            --canvas-texture: radial-gradient(ellipse at 20% 50%, rgba(184,134,11,0.03) 0%, transparent 50%),
+                              radial-gradient(ellipse at 80% 20%, rgba(184,134,11,0.02) 0%, transparent 50%);
+            --hero-gradient: linear-gradient(135deg, #FAF8F5 0%, #F0EDE8 50%, #E8E4DD 100%);
+            --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ── Theme 2: Charcoal Noir ── */
+        [data-theme="charcoal-noir"] {
+            --bg-primary: #1A1A1E;
+            --bg-secondary: #222228;
+            --bg-tertiary: #2C2C34;
+            --text-primary: #F0EDE8;
+            --text-secondary: #B8B4AE;
+            --text-muted: #7A7670;
+            --accent: #D4A843;
+            --accent-light: #E8C76A;
+            --accent-dark: #B8860B;
+            --surface: #26262E;
+            --surface-hover: #2E2E38;
+            --border: #3A3A44;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --shadow-strong: rgba(0, 0, 0, 0.5);
+            --texture-overlay: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23D4A843' fill-opacity='0.04' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+            --grain-opacity: 0.04;
+            --canvas-texture: radial-gradient(ellipse at 30% 40%, rgba(212,168,67,0.05) 0%, transparent 50%),
+                              radial-gradient(ellipse at 70% 60%, rgba(212,168,67,0.03) 0%, transparent 50%);
+            --hero-gradient: linear-gradient(135deg, #1A1A1E 0%, #222228 50%, #2C2C34 100%);
+            --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ── Theme 3: Stone Gallery ── */
+        [data-theme="stone-gallery"] {
+            --bg-primary: #E8E4DF;
+            --bg-secondary: #D8D2CB;
+            --bg-tertiary: #C8C0B7;
+            --text-primary: #3A322A;
+            --text-secondary: #6A5E52;
+            --text-muted: #9A8E82;
+            --accent: #C4623A;
+            --accent-light: #D4825A;
+            --accent-dark: #A44A28;
+            --surface: #F2EDE8;
+            --surface-hover: #E8E0D8;
+            --border: #C8C0B7;
+            --shadow: rgba(58, 50, 42, 0.08);
+            --shadow-strong: rgba(58, 50, 42, 0.15);
+            --texture-overlay: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C4623A' fill-opacity='0.03'%3E%3Ccircle cx='40' cy='40' r='1'/%3E%3Ccircle cx='0' cy='0' r='1'/%3E%3Ccircle cx='80' cy='0' r='1'/%3E%3Ccircle cx='0' cy='80' r='1'/%3E%3Ccircle cx='80' cy='80' r='1'/%3E%3C/g%3E%3C/svg%3E");
+            --grain-opacity: 0.03;
+            --canvas-texture: radial-gradient(ellipse at 50% 30%, rgba(196,98,58,0.04) 0%, transparent 50%);
+            --hero-gradient: linear-gradient(135deg, #E8E4DF 0%, #D8D2CB 50%, #C8C0B7 100%);
+            --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ── Theme 4: Midnight Velvet ── */
+        [data-theme="midnight-velvet"] {
+            --bg-primary: #0F1525;
+            --bg-secondary: #161D30;
+            --bg-tertiary: #1E2740;
+            --text-primary: #E8E4F0;
+            --text-secondary: #A8A0C0;
+            --text-muted: #6A6288;
+            --accent: #8B7EC8;
+            --accent-light: #A898E0;
+            --accent-dark: #6B5EA8;
+            --surface: #1A2238;
+            --surface-hover: #222C48;
+            --border: #2A3458;
+            --shadow: rgba(15, 21, 37, 0.4);
+            --shadow-strong: rgba(15, 21, 37, 0.6);
+            --texture-overlay: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0L100 50L50 100L0 50Z' fill='%238B7EC8' fill-opacity='0.02'/%3E%3C/svg%3E");
+            --grain-opacity: 0.03;
+            --canvas-texture: radial-gradient(ellipse at 40% 40%, rgba(139,126,200,0.06) 0%, transparent 50%),
+                              radial-gradient(ellipse at 60% 70%, rgba(139,126,200,0.03) 0%, transparent 50%);
+            --hero-gradient: linear-gradient(135deg, #0F1525 0%, #161D30 50%, #1E2740 100%);
+            --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ── Theme 5: Warm Canvas ── */
+        [data-theme="warm-canvas"] {
+            --bg-primary: #F5EDE0;
+            --bg-secondary: #EDE0CC;
+            --bg-tertiary: #E0D0B8;
+            --text-primary: #3A2E1E;
+            --text-secondary: #6A5A44;
+            --text-muted: #9A8A72;
+            --accent: #7A8B3A;
+            --accent-light: #98A858;
+            --accent-dark: #5A6B28;
+            --surface: #FAF5EE;
+            --surface-hover: #F0E8D8;
+            --border: #D8C8B0;
+            --shadow: rgba(58, 46, 30, 0.08);
+            --shadow-strong: rgba(58, 46, 30, 0.15);
+            --texture-overlay: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%237A8B3A' fill-opacity='0.03'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z'/%3E%3C/g%3E%3C/svg%3E");
+            --grain-opacity: 0.025;
+            --canvas-texture: radial-gradient(ellipse at 30% 60%, rgba(122,139,58,0.04) 0%, transparent 50%);
+            --hero-gradient: linear-gradient(135deg, #F5EDE0 0%, #EDE0CC 50%, #E0D0B8 100%);
+            --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ── Theme 6: Nordic Frost ── */
+        [data-theme="nordic-frost"] {
+            --bg-primary: #F2F4F6;
+            --bg-secondary: #E8EBEE;
+            --bg-tertiary: #D8DCE2;
+            --text-primary: #2A3040;
+            --text-secondary: #5A6478;
+            --text-muted: #8A94A8;
+            --accent: #5B8FA8;
+            --accent-light: #7BAAC0;
+            --accent-dark: #3B6F88;
+            --surface: #FAFBFC;
+            --surface-hover: #F0F2F5;
+            --border: #D8DCE2;
+            --shadow: rgba(42, 48, 64, 0.06);
+            --shadow-strong: rgba(42, 48, 64, 0.12);
+            --texture-overlay: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%235B8FA8' fill-opacity='0.025'%3E%3Cpath d='M20 0L40 20L20 40L0 20Z'/%3E%3C/g%3E%3C/svg%3E");
+            --grain-opacity: 0.015;
+            --canvas-texture: radial-gradient(ellipse at 60% 30%, rgba(91,143,168,0.04) 0%, transparent 50%);
+            --hero-gradient: linear-gradient(135deg, #F2F4F6 0%, #E8EBEE 50%, #D8DCE2 100%);
+            --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ── Theme 7: Tuscan Sun ── */
+        [data-theme="tuscan-sun"] {
+            --bg-primary: #F8F0E4;
+            --bg-secondary: #F0E4D0;
+            --bg-tertiary: #E8D8C0;
+            --text-primary: #3A2818;
+            --text-secondary: #6A5440;
+            --text-muted: #9A8268;
+            --accent: #C4703A;
+            --accent-light: #D89060;
+            --accent-dark: #A45828;
+            --surface: #FDF8F0;
+            --surface-hover: #F5EDE0;
+            --border: #E0D0B8;
+            --shadow: rgba(58, 40, 24, 0.08);
+            --shadow-strong: rgba(58, 40, 24, 0.15);
+            --texture-overlay: url("data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C4703A' fill-opacity='0.03'%3E%3Ccircle cx='25' cy='25' r='2'/%3E%3C/g%3E%3C/svg%3E");
+            --grain-opacity: 0.02;
+            --canvas-texture: radial-gradient(ellipse at 50% 50%, rgba(196,112,58,0.04) 0%, transparent 50%);
+            --hero-gradient: linear-gradient(135deg, #F8F0E4 0%, #F0E4D0 50%, #E8D8C0 100%);
+            --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ============================================================
+           GLOBAL RESET & BASE STYLES
+           ============================================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.6s var(--transition-smooth),
+                        color 0.6s var(--transition-smooth);
+        }
+
+        /* Grain texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: var(--grain-opacity);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+            background-size: 256px 256px;
+        }
+
+        /* Canvas texture overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background: var(--canvas-texture);
+        }
+
+        /* ============================================================
+           TYPOGRAPHY — 2026 Modern Principles
+           ============================================================ */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 { font-size: clamp(2.8rem, 6vw, 5.5rem); font-weight: 300; }
+        h2 { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 400; }
+        h3 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 400; }
+        h4 { font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 500; }
+
+        p {
+            font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s var(--transition-smooth);
+        }
+
+        a:hover {
+            color: var(--accent-light);
+        }
+
+        /* ============================================================
+           THEME SWITCHER — Elegant Floating Panel
+           ============================================================ */
+        .theme-switcher {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s var(--transition-smooth);
+            box-shadow: 0 2px 12px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 4px 20px var(--shadow-strong);
+            border-color: var(--accent);
+        }
+
+        .theme-toggle-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-primary);
+            transition: fill 0.3s;
+        }
+
+        .theme-panel {
+            position: absolute;
+            top: 56px;
+            right: 0;
+            width: 280px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 12px 40px var(--shadow-strong);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.96);
+            transition: all 0.4s var(--transition-smooth);
+            backdrop-filter: blur(20px);
+        }
+
+        .theme-panel.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .theme-panel-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s var(--transition-smooth);
+            margin-bottom: 4px;
+        }
+
+        .theme-option:hover {
+            background: var(--surface-hover);
+        }
+
+        .theme-option.active {
+            background: var(--surface-hover);
+            box-shadow: inset 0 0 0 1.5px var(--accent);
+        }
+
+        .theme-colors {
+            display: flex;
+            gap: 3px;
+            flex-shrink: 0;
+        }
+
+        .theme-color-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .theme-option-label {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            letter-spacing: 0.02em;
+        }
+
+        /* ============================================================
+           NAVIGATION
+           ============================================================ */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9998;
+            padding: 20px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.5s var(--transition-smooth);
+            background: transparent;
+        }
+
+        .main-nav.scrolled {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 48px;
+            box-shadow: 0 2px 20px var(--shadow);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            letter-spacing: 0.04em;
+            transition: color 0.3s;
+        }
+
+        .nav-brand span {
+            font-weight: 300;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            position: relative;
+            padding: 4px 0;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--accent);
+            transition: width 0.4s var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile nav toggle */
+        .nav-mobile-toggle {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            z-index: 10001;
+        }
+
+        .nav-mobile-toggle span {
+            display: block;
+            width: 24px;
+            height: 1.5px;
+            background: var(--text-primary);
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .nav-mobile-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(4px, 5px);
+        }
+        .nav-mobile-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-mobile-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(4px, -5px);
+        }
+
+        /* ============================================================
+           HERO SECTION
+           ============================================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--hero-gradient);
+            transition: background 0.6s var(--transition-smooth);
+        }
+
+        .hero-bg-art {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .hero-bg-art .brush-stroke {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero-bg-art .brush-stroke:nth-child(1) {
+            width: 500px;
+            height: 500px;
+            background: var(--accent);
+            top: -10%;
+            right: -5%;
+            animation-delay: 0s;
+        }
+
+        .hero-bg-art .brush-stroke:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-dark);
+            bottom: -15%;
+            left: -10%;
+            animation-delay: -7s;
+        }
+
+        .hero-bg-art .brush-stroke:nth-child(3) {
+            width: 300px;
+            height: 300px;
+            background: var(--accent-light);
+            top: 40%;
+            left: 30%;
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 0 24px;
+            max-width: 900px;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s var(--transition-smooth) 0.3s forwards;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            font-weight: 300;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            line-height: 1.05;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s var(--transition-smooth) 0.5s forwards;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--accent);
+            font-weight: 400;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 1.8vw, 1.3rem);
+            font-weight: 300;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 48px;
+            line-height: 1.8;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s var(--transition-smooth) 0.7s forwards;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            padding: 16px 40px;
+            border: 1.5px solid var(--accent);
+            border-radius: 60px;
+            transition: all 0.4s var(--transition-smooth);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s var(--transition-smooth) 0.9s forwards;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .hero-cta:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--shadow-strong);
+        }
+
+        .hero-cta svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateY(4px);
+        }
+
+        .hero-scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeUp 1s var(--transition-smooth) 1.2s forwards;
+        }
+
+        .hero-scroll-indicator span {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            animation: scrollDown 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollDown {
+            0% { top: -100%; }
+            50% { top: 100%; }
+            100% { top: 100%; }
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+           SECTION COMMON STYLES
+           ============================================================ */
+        .section {
+            padding: 120px 48px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-eyebrow {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            margin-bottom: 20px;
+        }
+
+        .section-desc {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1.5px;
+            background: var(--accent);
+            margin: 24px auto 0;
+        }
+
+        /* ============================================================
+           ABOUT SECTION
+           ============================================================ */
+        .about {
+            background: var(--bg-secondary);
+            transition: background 0.6s var(--transition-smooth);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+        }
+
+        .about-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 60px var(--shadow-strong);
+        }
+
+        .about-image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+            color: var(--text-muted);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .about-image-frame {
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            right: 12px;
+            bottom: 12px;
+            border: 1.5px solid var(--accent);
+            border-radius: 12px;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            border-radius: 12px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-top: 6px;
+        }
+
+        .about-text h3 {
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .about-text p {
+            margin-bottom: 16px;
+        }
+
+        .about-signature {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--accent);
+            margin-top: 32px;
+            opacity: 0.7;
+        }
+
+        /* ============================================================
+           GALLERY SECTION — Main Portfolio
+           ============================================================ */
+        .gallery {
+            background: var(--bg-primary);
+        }
+
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            padding: 10px 24px;
+            border-radius: 60px;
+            border: 1.5px solid var(--border);
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .filter-chip:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .filter-chip.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--surface);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 32px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ============================================================
+           PAINTING CARD — Organic Interaction Design
+           ============================================================ */
+        .painting-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.5s var(--transition-smooth);
+            group: painting;
+        }
+
+        .painting-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px var(--shadow-strong);
+            border-color: var(--accent);
+        }
+
+        .painting-image-container {
+            position: relative;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+
+        .painting-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s var(--transition-smooth);
+        }
+
+        .painting-card:hover .painting-image-container img {
+            transform: scale(1.04);
+        }
+
+        /* Interactive reveal overlay — no buttons! */
+        .painting-reveal {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.7) 100%);
+            opacity: 0;
+            transition: opacity 0.5s var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 28px;
+        }
+
+        .painting-card:hover .painting-reveal {
+            opacity: 1;
+        }
+
+        .painting-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #FFFFFF;
+            margin-bottom: 6px;
+            transform: translateY(15px);
+            transition: transform 0.5s var(--transition-smooth) 0.05s;
+        }
+
+        .painting-card:hover .painting-title {
+            transform: translateY(0);
+        }
+
+        .painting-meta {
+            font-size: 0.78rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 0.04em;
+            transform: translateY(15px);
+            transition: transform 0.5s var(--transition-smooth) 0.1s;
+        }
+
+        .painting-card:hover .painting-meta {
+            transform: translateY(0);
+        }
+
+        /* View alternatives hint */
+        .painting-view-hint {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.4s var(--transition-smooth);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .painting-card:hover .painting-view-hint {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .painting-view-hint svg {
+            width: 16px;
+            height: 16px;
+            fill: white;
+        }
+
+        /* View mode switcher — appears on hover */
+        .painting-view-switcher {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            display: flex;
+            gap: 6px;
+            opacity: 0;
+            transition: all 0.4s var(--transition-smooth) 0.15s;
+        }
+
+        .painting-card:hover .painting-view-switcher {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .view-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            padding: 0;
+        }
+
+        .view-dot:hover, .view-dot.active {
+            background: white;
+            transform: scale(1.3);
+        }
+
+        /* ============================================================
+           LIGHTBOX / IMAGE VIEWER
+           ============================================================ */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(30px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s var(--transition-smooth);
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            max-width: 85vw;
+            max-height: 85vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-image-wrapper {
+            position: relative;
+            max-width: 100%;
+            max-height: 75vh;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-image-wrapper img {
+            max-width: 100%;
+            max-height: 75vh;
+            object-fit: contain;
+            display: block;
+            transition: opacity 0.4s var(--transition-smooth);
+        }
+
+        .lightbox-info {
+            text-align: center;
+            margin-top: 28px;
+            color: white;
+        }
+
+        .lightbox-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .lightbox-desc {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 500px;
+        }
+
+        /* View mode tabs in lightbox */
+        .lightbox-view-modes {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .view-mode-tab {
+            padding: 8px 20px;
+            border-radius: 60px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .view-mode-tab:hover {
+            border-color: rgba(255,255,255,0.5);
+            color: white;
+        }
+
+        .view-mode-tab.active {
+            background: white;
+            color: #111;
+            border-color: white;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .lightbox-close svg {
+            width: 20px;
+            height: 20px;
+            stroke: white;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .lightbox-nav svg {
+            width: 20px;
+            height: 20px;
+            stroke: white;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .lightbox-prev { left: 24px; }
+        .lightbox-next { right: 24px; }
+
+        /* ============================================================
+           COMPARISON SLIDER (Interior vs Framed)
+           ============================================================ */
+        .comparison-section {
+            background: var(--bg-secondary);
+        }
+
+        .comparison-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .comparison-slider {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/10;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: ew-resize;
+            box-shadow: 0 20px 60px var(--shadow-strong);
+        }
+
+        .comparison-slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .comparison-slider .img-overlay {
+            clip-path: inset(0 50% 0 0);
+            transition: clip-path 0.05s;
+        }
+
+        .comparison-slider .slider-handle {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: white;
+            transform: translateX(-50%);
+            z-index: 5;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        .comparison-slider .slider-handle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .comparison-label {
+            position: absolute;
+            bottom: 20px;
+            padding: 8px 18px;
+            border-radius: 60px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            z-index: 6;
+            pointer-events: none;
+        }
+
+        .comparison-label.left { left: 20px; }
+        .comparison-label.right { right: 20px; }
+
+        /* ============================================================
+           EXHIBITIONS / TIMELINE
+           ============================================================ */
+        .exhibitions {
+            background: var(--bg-primary);
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--border);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+            text-align: right;
+            padding-right: calc(50% + 40px);
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+            text-align: left;
+            padding-left: calc(50% + 40px);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--bg-primary);
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .timeline-year {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .timeline-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================
+           CONTACT SECTION
+           ============================================================ */
+        .contact {
+            background: var(--bg-secondary);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 24px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .contact-detail-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .contact-detail-value {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 400;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            background: var(--surface);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            transition: all 0.3s var(--transition-smooth);
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-submit {
+            align-self: flex-start;
+            padding: 16px 48px;
+            border: 1.5px solid var(--accent);
+            border-radius: 60px;
+            background: transparent;
+            color: var(--text-primary);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.4s var(--transition-smooth);
+        }
+
+        .form-submit:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--shadow-strong);
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            padding: 48px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            background: var(--bg-primary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .footer-copy {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================
+           SCROLL ANIMATIONS
+           ============================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s var(--transition-smooth);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ============================================================
+           RESPONSIVE DESIGN
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .section {
+                padding: 80px 32px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .about-image-wrapper {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                flex-direction: row;
+                text-align: left;
+                padding-left: 60px;
+                padding-right: 0;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-nav {
+                padding: 16px 24px;
+            }
+
+            .main-nav.scrolled {
+                padding: 12px 24px;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--surface);
+                flex-direction: column;
+                justify-content: center;
+                gap: 32px;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.4s var(--transition-smooth);
+                z-index: 9999;
+            }
+
+            .nav-links.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            .nav-mobile-toggle {
+                display: flex;
+            }
+
+            .theme-switcher {
+                top: 16px;
+                right: 60px;
+            }
+
+            .section {
+                padding: 64px 20px;
+            }
+
+            .section-header {
+                margin-bottom: 48px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .hero-title {
+                font-size: clamp(2.2rem, 10vw, 3.5rem);
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+
+            .stat-item {
+                padding: 14px 8px;
+            }
+
+            .stat-number {
+                font-size: 1.6rem;
+            }
+
+            .lightbox-prev { left: 8px; }
+            .lightbox-next { right: 8px; }
+
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+            }
+
+            .lightbox-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-cta {
+                padding: 14px 32px;
+                font-size: 1rem;
+            }
+
+            .gallery-filters {
+                gap: 6px;
+            }
+
+            .filter-chip {
+                padding: 8px 16px;
+                font-size: 0.72rem;
+            }
+
+            .theme-panel {
+                width: 240px;
+                right: -4px;
+            }
+        }
+
+        /* ============================================================
+           LOADING SCREEN
+           ============================================================ */
+        .loader {
+            position: fixed;
+            inset: 0;
+            z-index: 999999;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 24px;
+            transition: opacity 0.6s var(--transition-smooth),
+                        visibility 0.6s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--text-primary);
+            letter-spacing: 0.1em;
+        }
+
+        .loader-bar {
+            width: 120px;
+            height: 2px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loader-bar::after {
+            content: '';
+            display: block;
+            width: 40%;
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+            animation: loaderSlide 1.2s ease-in-out infinite;
+        }
+
+        @keyframes loaderSlide {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(350%); }
+        }
+
+        /* ============================================================
+           PAINTING CARD STAGGER ANIMATION
+           ============================================================ */
+        .painting-card {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .painting-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s var(--transition-smooth);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-text">Kárai Mihály</div>
+        <div class="loader-bar"></div>
+    </div>
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher">
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Témaválasztó">
+            <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
+        </button>
+        <div class="theme-panel" id="themePanel">
+            <div class="theme-panel-title">Témaválasztó</div>
+            <div class="theme-option active" data-theme="classical-white">
+                <div class="theme-colors">
+                    <div class="theme-color-dot" style="background:#FAF8F5"></div>
+                    <div class="theme-color-dot" style="background:#E8E4DD"></div>
+                    <div class="theme-color-dot" style="background:#B8860B"></div>
+                </div>
+                <span class="theme-option-label">Klasszikus Fehér</span>
+            </div>
+            <div class="theme-option" data-theme="charcoal-noir">
+                <div class="theme-colors">
+                    <div class="theme-color-dot" style="background:#1A1A1E"></div>
+                    <div class="theme-color-dot" style="background:#2C2C34"></div>
+                    <div class="theme-color-dot" style="background:#D4A843"></div>
+                </div>
+                <span class="theme-option-label">Szénfekete Noir</span>
+            </div>
+            <div class="theme-option" data-theme="stone-gallery">
+                <div class="theme-colors">
+                    <div class="theme-color-dot" style="background:#E8E4DF"></div>
+                    <div class="theme-color-dot" style="background:#C8C0B7"></div>
+                    <div class="theme-color-dot" style="background:#C4623A"></div>
+                </div>
+                <span class="theme-option-label">Kő Galéria</span>
+            </div>
+            <div class="theme-option" data-theme="midnight-velvet">
+                <div class="theme-colors">
+                    <div class="theme-color-dot" style="background:#0F1525"></div>
+                    <div class="theme-color-dot" style="background:#1E2740"></div>
+                    <div class="theme-color-dot" style="background:#8B7EC8"></div>
+                </div>
+                <span class="theme-option-label">Éjfekete Samet</span>
+            </div>
+            <div class="theme-option" data-theme="warm-canvas">
+                <div class="theme-colors">
+                    <div class="theme-color-dot" style="background:#F5EDE0"></div>
+                    <div class="theme-color-dot" style="background:#E0D0B8"></div>
+                    <div class="theme-color-dot" style="background:#7A8B3A"></div>
+                </div>
+                <span class="theme-option-label">Meleg Vászon</span>
+            </div>
+            <div class="theme-option" data-theme="nordic-frost">
+                <div class="theme-colors">
+                    <div class="theme-color-dot" style="background:#F2F4F6"></div>
+                    <div class="theme-color-dot" style="background:#D8DCE2"></div>
+                    <div class="theme-color-dot" style="background:#5B8FA8"></div>
+                </div>
+                <span class="theme-option-label">Északi Tavas</span>
+            </div>
+            <div class="theme-option" data-theme="tuscan-sun">
+                <div class="theme-colors">
+                    <div class="theme-color-dot" style="background:#F8F0E4"></div>
+                    <div class="theme-color-dot" style="background:#E8D8C0"></div>
+                    <div class="theme-color-dot" style="background:#C4703A"></div>
+                </div>
+                <span class="theme-option-label">Toszkán Nap</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav" id="mainNav">
+        <a href="#" class="nav-brand">Kárai <span>Mihály</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#hero">Főoldal</a></li>
+            <li><a href="#about">Rólam</a></li>
+            <li><a href="#gallery">Galéria</a></li>
+            <li><a href="#comparison">Élőhelyzet</a></li>
+            <li><a href="#exhibitions">Kiállítások</a></li>
+            <li><a href="#contact">Kapcsolat</a></li>
+        </ul>
+        <button class="nav-mobile-toggle" id="navMobileToggle" aria-label="Menü">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-art">
+            <div class="brush-stroke"></div>
+            <div class="brush-stroke"></div>
+            <div class="brush-stroke"></div>
+        </div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Festőművész · Született 1961</p>
+            <h1 class="hero-title">Kárai <em>Mihály</em></h1>
+            <p class="hero-subtitle">Színek és formák csendes párbeszéde — olajfestmények, amelyek az élet mélységét és szépségét örökítik meg.</p>
+            <a href="#gallery" class="hero-cta">
+                Művek felfedezése
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                </svg>
+            </a>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span>Görgess</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="section-header reveal">
+            <p class="section-eyebrow">A Művész</p>
+            <h2 class="section-title">Életmű és Hivatás</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="about-grid">
+            <div class="about-image-wrapper reveal">
+                <div class="about-image">
+                    <div class="about-image-placeholder">
+                        <div style="text-align:center">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="margin-bottom:12px;opacity:0.4">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <br>Kárai Mihály
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image-frame"></div>
+            </div>
+            <div class="about-text reveal reveal-delay-2">
+                <h3>A festészet az életem</h3>
+                <p>Kárai Mihály 1961-ben született, művészi élete pedig évtizedek óta szorosan kapcsolódik a magyar festészeti hagyományokhoz és a kortárs művészeti kifejezéshez.</p>
+                <p>Művei között megtalálhatók az csendéletek, tájképek, portrék és az enteriőrök világa. Olajfestményei gazdag színpalettával és mély érzelmi tartalommal rendelkeznek, amelyek a megfigyelőt egy csendes, de intenzív élménybe vezetik.</p>
+                <p>Kreativitását a természet megfigyelése, az emberi érzések ábrázolása és a hagyományos festészeti technikák modern értelmezése inspirálja.</p>
+                <div class="about-signature">K. Mihály</div>
+            </div>
+        </div>
+        <div class="about-stats reveal reveal-delay-3">
+            <div class="stat-item">
+                <div class="stat-number">60+</div>
+                <div class="stat-label">Év művészi pályafutás</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Festmény</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Kiállítás</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery" id="gallery">
+        <div class="section-header reveal">
+            <p class="section-eyebrow">Kreatív Galéria</p>
+            <h2 class="section-title">Válogatott Művek</h2>
+            <p class="section-desc">Fedezd fel a festmények világát — mozgasd az egeret a részletek felfedezéséhez.</p>
+            <div class="divider"></div>
+        </div>
+
+        <div class="gallery-filters reveal">
+            <button class="filter-chip active" data-filter="all">Összes</button>
+            <button class="filter-chip" data-filter="csendelet">Csendélet</button>
+            <button class="filter-chip" data-filter="tajak">Tájképek</button>
+            <button class="filter-chip" data-filter="portre">Portrék</button>
+            <button class="filter-chip" data-filter="enteriőr">Enteriőrök</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Paintings will be dynamically generated by JS -->
+        </div>
+    </section>
+
+    <!-- Comparison Section (Interior / Framed) -->
+    <section class="section comparison-section" id="comparison">
+        <div class="section-header reveal">
+            <p class="section-eyebrow">Élőhelyzet & Keret</p>
+            <h2 class="section-title">A Festmény Az Otthonban</h2>
+            <p class="section-desc">Húzd az csúszkát a festmény különböző megjelenítési formáinak összehasonlításához.</p>
+            <div class="divider"></div>
+        </div>
+
+        <div class="comparison-container reveal">
+            <div class="comparison-slider" id="comparisonSlider">
+                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200&h=750&fit=crop" alt="Festmény keret nélkül" id="compImgUnframed">
+                <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=1200&h=750&fit=crop" alt="Festmény keretben" class="img-overlay" id="compImgFramed">
+                <div class="slider-handle" id="sliderHandle"></div>
+                <div class="comparison-label left">Keret nélkül</div>
+                <div class="comparison-label right">Keretben</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exhibitions Section -->
+    <section class="section exhibitions" id="exhibitions">
+        <div class="section-header reveal">
+            <p class="section-eyebrow">Pályafutás</p>
+            <h2 class="section-title">Válogatott Kiállítások</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div>
+                    <div class="timeline-year">1985</div>
+                    <div class="timeline-title">Első egyéni kiállítás</div>
+                    <div class="timeline-desc">Budapest, Galéria — Olajfestmények és akvarellek</div>
+                </div>
+            </div>
+            <div class="timeline-item reveal reveal-delay-1">
+                <div class="timeline-dot"></div>
+                <div>
+                    <div class="timeline-year">1992</div>
+                    <div class="timeline-title">Nemzetközi Művészeti Biennále</div>
+                    <div class="timeline-desc">Velence, Olaszország — Csoportos kiállítás</div>
+                </div>
+            </div>
+            <div class="timeline-item reveal reveal-delay-2">
+                <div class="timeline-dot"></div>
+                <div>
+                    <div class="timeline-year">1998</div>
+                    <div class="timeline-title">Tájképek és Enteriőrök</div>
+                    <div class="timeline-desc">Műcsarnok, Budapest — Egyéni kiállítás</div>
+                </div>
+            </div>
+            <div class="timeline-item reveal reveal-delay-3">
+                <div class="timeline-dot"></div>
+                <div>
+                    <div class="timeline-year">2005</div>
+                    <div class="timeline-title">Európai Művészek Találkozója</div>
+                    <div class="timeline-desc">Prága, Csehország — Nemzetközi csoportos kiállítás</div>
+                </div>
+            </div>
+            <div class="timeline-item reveal reveal-delay-4">
+                <div class="timeline-dot"></div>
+                <div>
+                    <div class="timeline-year">2012</div>
+                    <div class="timeline-title">Színek és Érzelmek</div>
+                    <div class="timeline-desc">Ludwig Múzeum, Budapest — Válogatás 30 éves pályafutásból</div>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div>
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-title">Fények és Árnyékok</div>
+                    <div class="timeline-desc">Kortárs Galéria — Aktuális olajfestmények kiállítása</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="section-header reveal">
+            <p class="section-eyebrow">Kapcsolat</p>
+            <h2 class="section-title">Lépjen Kapcsolatba</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-info reveal">
+                <h3>Műterem & Megkeresés</h3>
+                <p style="margin-bottom:32px;">Képeim megvásárlásáról, kiállításokról vagy együttműködésről szívesen állok rendelkezésére.</p>
+
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-detail-label">Cím</div>
+                        <div class="contact-detail-value">Budapest, Magyarország</div>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-detail-label">E-mail</div>
+                        <div class="contact-detail-value">karai.mihaly@email.hu</div>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-detail-label">Telefon</div>
+                        <div class="contact-detail-value">+36 30 123 4567</div>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form reveal reveal-delay-2" onsubmit="event.preventDefault(); alert('Köszönjük üzenetét! Hamarosan válaszolok.');">
+                <div class="form-group">
+                    <input type="text" placeholder="Név" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="E-mail cím" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Tárgy">
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Üzenet..." required></textarea>
+                </div>
+                <button type="submit" class="form-submit">Üzenet küldése</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-brand">Kárai Mihály</div>
+        <p class="footer-copy">© 2025 Kárai Mihály Festőművész. Minden jog fenntartva.</p>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <div class="lightbox-content">
+            <div class="lightbox-image-wrapper">
+                <img id="lightboxImage" src="" alt="">
+            </div>
+            <div class="lightbox-info">
+                <h3 class="lightbox-title" id="lightboxTitle"></h3>
+                <p class="lightbox-desc" id="lightboxDesc"></p>
+                <div class="lightbox-view-modes">
+                    <button class="view-mode-tab active" data-view="original">Eredeti</button>
+                    <button class="view-mode-tab" data-view="interior">Enteriőr</button>
+                    <button class="view-mode-tab" data-view="keret">Keretezve</button>
+                    <button class="view-mode-tab" data-view="keretnelkul">Keret nélkül</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         JAVASCRIPT — All Logic
+         ============================================================ -->
+    <script>
+    (function() {
+        'use strict';
+
+        /* ─────────────────────────────────────────────────
+           ASSET MANAGER — Painting Data & File Logic
+           ───────────────────────────────────────────────── */
+
+        // Simulated painting data based on the described file structure
+        // In production, this would be loaded from festmenyek_leiras.txt
+        const PAINTING_DATA = [
+            {
+                id: 1,
+                title: 'Csendélet piros rózsa',
+                category: 'csendelet',
+                year: '2023',
+                technique: 'Olaj, vászon',
+                size: '80 × 60 cm',
+                description: 'Gazdag színekkel megfestett csendélet piros rózsa központi motívummal.',
+                images: {
+                    original: 'https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?w=800&h=1000&fit=crop',
+                    interior_1: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=1000&fit=crop',
+                    keretezve_1: 'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800&h=1000&fit=crop',
+                    keretnelkul: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&h=1000&fit=crop'
+                }
+            },
+            {
+                id: 2,
+                title: 'Táj naplementével',
+                category: 'tajak',
+                year: '2022',
+                technique: 'Olaj, vászon',
+                size: '100 × 70 cm',
+                description: 'Lenyűgöző tájkép naplemente színekben, a természet változatosságának ünnepe.',
+                images: {
+                    original: 'https://images.unsplash.com/photo-1549887534-1541e9326642?w=800&h=1000&fit=crop',
+                    interior_1: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=1000&fit=crop',
+                    keretezve_1: 'https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?w=800&h=1000&fit=crop',
+                    keretnelkul: 'https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=800&h=1000&fit=crop'
+                }
+            },
+            {
+                id: 3,
+                title: 'Portré — Csendes gondolat',
+                category: 'portre',
+                year: '2021',
+                technique: 'Olaj, vászon',
+                size: '70 × 90 cm',
+                description: 'Mély érzelmi tartalmú portréfestmény, a csendes elmélkedés pillanatát örökíti meg.',
+                images: {
+                    original: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&h=1000&fit=crop',
+                    interior_1: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=1000&fit=crop',
+                    keretezve_1: 'https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?w=800&h=1000&fit=crop',
+                    keretnelkul: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&h=1000&fit=crop'
+                }
+            },
+            {
+                id: 4,
+                title: 'Enteriőr — Nappali fényben',
+                category: 'enteriőr',
+                year: '2024',
+                technique: 'Olaj, vászon',
+                size: '90 × 70 cm',
+                description: 'Meleg nappali enteriőr, a napsütés és az árnyék játéka teremt békés hangulatot.',
+                images: {
+                    original: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=1000&fit=crop',
+                    interior_1: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=1000&fit=crop',
+                    keretezve_1: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=1000&fit=crop',
+                    keretnelkul: 'https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800&h=1000&fit=crop'
+                }
+            },
+            {
+                id: 5,
+                title: 'Tavaszi virágok',
+                category: 'csendelet',
+                year: '2023',
+                technique: 'Akvarell',
+                size: '50 × 40 cm',
+                description: 'Lágy akvarell technika, tavaszi virágok ragyogó színpalettával.',
+                images: {
+                    original: 'https://images.unsplash.com/photo-1490750967868-88aa4f44baee?w=800&h=1000&fit=crop',
+                    interior_1: 'https://images.unsplash.com/photo-1600210491892-03d53c9e4b9e?w=800&h=1000&fit=crop',
+                    keretezve_1: 'https://images.unsplash.com/photo-1579783900586-dffe41806a16?w=800&h=1000&fit=crop',
+                    keretnelkul: 'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&h=1000&fit=crop'
+                }
+            },
+            {
+                id: 6,
+                title: 'Éjszakai városkép',
+                category: 'tajak',
+                year: '2022',
+                technique: 'Olaj, vászon',
+                size: '120 × 80 cm',
+                description: 'Az éjszaka varázslatos fényei a városi tájban, mély kék és arany színekben.',
+                images: {
+                    original: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&h=1000&fit=crop',
+                    interior_1: 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&h=1000&fit=crop',
+                    keretezve_1: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=1000&fit=crop',
+                    keretnelkul: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&h=1000&fit=crop'
+                }
+            },
+            {
+                id: 7,
+                title: 'Enteriőr II — Műterem',
+                category: 'enteriőr',
+                year: '2024',
+                technique: 'Olaj, vászon',
+                size: '85 × 65 cm',
+                description: 'A műterem belső tere, a kreativitás szentélye, ecsetek és festmények világában.',
+                images: {
+                    original: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&h=1000&fit=crop',
+                    interior_1: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&h=1000&fit=crop',
+                    keretezve_1: 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&h=1000&fit=crop',
+                    keretnelkul: 'https://images.unsplash.com/photo-1600573472556-e636c2acda9e?w=800&h=1000&fit=crop'
+                }
+            },
+            {
+                id: 8,
+                title: 'Őszi fa',
+                category: 'tajak',
+                year: '2020',
+                technique: 'Olaj, vászon',
+                size: '90 × 70 cm',
+                description: 'Az ősz arany és vörös színei egyetlen fa formájában, a természet ciklusának megidézése.',
+                images: {
+                    original: 'https://images.unsplash.com/photo-1477414348463-c0eb7f1359b6?w=800&h=1000&fit=crop',
+                    interior_1: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&h=1000&fit=crop',
+                    keretezve_1: 'https://images.unsplash.com/photo-1600566753151-384129cf4e3e?w=800&h=1000&fit=crop',
+                    keretnelkul: 'https://images.unsplash.com/photo-1477414348463-c0eb7f1359b6?w=800&h=1000&fit=crop'
+                }
+            },
+            {
+                id: 9,
+                title: 'Aranykorona csendélet',
+                category: 'csendelet',
+                year: '2023',
+                technique: 'Olaj, vászon',
+                size: '60 × 50 cm',
+                description: 'Klasszikus csendélet arany érmékkel és gyümölcsökkel, a gazdagság és múlandóság témája.',
+                images: {
+                    original: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=1000&fit=crop',
+                    interior_1: 'https://images.unsplash.com/photo-1600585153490-76fb20a32601?w=800&h=1000&fit=crop',
+                    keretezve_1: 'https://images.unsplash.com/photo-1600566752229-2b07e610caff?w=800&h=1000&fit=crop',
+                    keretnelkul: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=1000&fit=crop'
+                }
+            }
+        ];
+
+        /* ─────────────────────────────────────────────────
+           THEME MANAGER
+           ───────────────────────────────────────────────── */
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themePanel = document.getElementById('themePanel');
+        const themeOptions = document.querySelectorAll('.theme-option');
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('karai-theme') || 'classical-white';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateActiveTheme(savedTheme);
+
+        themeToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            themePanel.classList.toggle('active');
+        });
+
+        document.addEventListener('click', () => {
+            themePanel.classList.remove('active');
+        });
+
+        themePanel.addEventListener('click', (e) => e.stopPropagation());
+
+        themeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const theme = option.getAttribute('data-theme');
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('karai-theme', theme);
+                updateActiveTheme(theme);
+                themePanel.classList.remove('active');
+            });
+        });
+
+        function updateActiveTheme(theme) {
+            themeOptions.forEach(opt => {
+                opt.classList.toggle('active', opt.getAttribute('data-theme') === theme);
+            });
+        }
+
+        /* ─────────────────────────────────────────────────
+           NAVIGATION
+           ───────────────────────────────────────────────── */
+        const mainNav = document.getElementById('mainNav');
+        const navMobileToggle = document.getElementById('navMobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        window.addEventListener('scroll', () => {
+            mainNav.classList.toggle('scrolled', window.scrollY > 80);
+        });
+
+        navMobileToggle.addEventListener('click', () => {
+            navMobileToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMobileToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        /* ─────────────────────────────────────────────────
+           GALLERY RENDERER
+           ───────────────────────────────────────────────── */
+        const galleryGrid = document.getElementById('galleryGrid');
+        let currentLightboxIndex = 0;
+        let currentLightboxView = 'original';
+
+        function renderGallery(filter = 'all') {
+            galleryGrid.innerHTML = '';
+            const filtered = filter === 'all'
+                ? PAINTING_DATA
+                : PAINTING_DATA.filter(p => p.category === filter);
+
+            filtered.forEach((painting, index) => {
+                const card = document.createElement('div');
+                card.className = 'painting-card';
+                card.setAttribute('data-index', PAINTING_DATA.indexOf(painting));
+                card.innerHTML = `
+                    <div class="painting-image-container">
+                        <img src="${painting.images.original}" alt="${painting.title}" loading="lazy">
+                        <div class="painting-reveal">
+                            <h3 class="painting-title">${painting.title}</h3>
+                            <p class="painting-meta">${painting.year} · ${painting.technique} · ${painting.size}</p>
+                        </div>
+                        <div class="painting-view-hint">
+                            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </div>
+                        <div class="painting-view-switcher">
+                            <button class="view-dot active" data-view="original" title="Eredeti"></button>
+                            <button class="view-dot" data-view="interior_1" title="Enteriőr"></button>
+                            <button class="view-dot" data-view="keretezve_1" title="Keretezve"></button>
+                            <button class="view-dot" data-view="keretnelkul" title="Keret nélkül"></button>
+                        </div>
+                    </div>
+                `;
+
+                // Card click → open lightbox
+                card.addEventListener('click', (e) => {
+                    // Don't open lightbox if clicking view dots
+                    if (e.target.closest('.view-dot')) return;
+                    const idx = parseInt(card.getAttribute('data-index'));
+                    openLightbox(idx, 'original');
+                });
+
+                galleryGrid.appendChild(card);
+
+                // Stagger animation
+                setTimeout(() => {
+                    card.classList.add('visible');
+                }, 100 + index * 100);
+            });
+
+            // View dot click handlers
+            document.querySelectorAll('.painting-view-switcher').forEach(switcher => {
+                switcher.querySelectorAll('.view-dot').forEach(dot => {
+                    dot.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const view = dot.getAttribute('data-view');
+                        const card = dot.closest('.painting-card');
+                        const img = card.querySelector('.painting-image-container img');
+                        const painting = PAINTING_DATA[parseInt(card.getAttribute('data-index'))];
+
+                        // Update active dot
+                        switcher.querySelectorAll('.view-dot').forEach(d => d.classList.remove('active'));
+                        dot.classList.add('active');
+
+                        // Switch image with fade
+                        img.style.opacity = '0';
+                        setTimeout(() => {
+                            img.src = painting.images[view] || painting.images.original;
+                            img.style.opacity = '1';
+                        }, 200);
+                    });
+                });
+            });
+        }
+
+        renderGallery();
+
+        /* ─────────────────────────────────────────────────
+           FILTER CHIPS
+           ───────────────────────────────────────────────── */
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                renderGallery(chip.getAttribute('data-filter'));
+            });
+        });
+
+        /* ─────────────────────────────────────────────────
+           LIGHTBOX
+           ───────────────────────────────────────────────── */
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        const lightboxDesc = document.getElementById('lightboxDesc');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+
+        function openLightbox(index, view = 'original') {
+            currentLightboxIndex = index;
+            currentLightboxView = view;
+            const painting = PAINTING_DATA[index];
+            const imgSrc = painting.images[view] || painting.images.original;
+
+            lightboxImage.src = imgSrc;
+            lightboxTitle.textContent = painting.title;
+            lightboxDesc.textContent = `${painting.year} · ${painting.technique} · ${painting.size} — ${painting.description}`;
+
+            // Update view mode tabs
+            document.querySelectorAll('.view-mode-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.getAttribute('data-view') === view);
+            });
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function navigateLightbox(direction) {
+            currentLightboxIndex = (currentLightboxIndex + direction + PAINTING_DATA.length) % PAINTING_DATA.length;
+            const painting = PAINTING_DATA[currentLightboxIndex];
+            const imgSrc = painting.images[currentLightboxView] || painting.images.original;
+
+            lightboxImage.style.opacity = '0';
+            setTimeout(() => {
+                lightboxImage.src = imgSrc;
+                lightboxTitle.textContent = painting.title;
+                lightboxDesc.textContent = `${painting.year} · ${painting.technique} · ${painting.size} — ${painting.description}`;
+                lightboxImage.style.opacity = '1';
+            }, 200);
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
+        lightboxNext.addEventListener('click', () => navigateLightbox(1));
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // View mode tabs in lightbox
+        document.querySelectorAll('.view-mode-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const view = tab.getAttribute('data-view');
+                currentLightboxView = view;
+                const painting = PAINTING_DATA[currentLightboxIndex];
+                const imgSrc = painting.images[view] || painting.images.original;
+
+                lightboxImage.style.opacity = '0';
+                setTimeout(() => {
+                    lightboxImage.src = imgSrc;
+                    lightboxImage.style.opacity = '1';
+                }, 200);
+
+                document.querySelectorAll('.view-mode-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+
+        /* ─────────────────────────────────────────────────
+           COMPARISON SLIDER (Before/After)
+           ───────────────────────────────────────────────── */
+        const comparisonSlider = document.getElementById('comparisonSlider');
+        const compImgFramed = document.getElementById('compImgFramed');
+        const sliderHandle = document.getElementById('sliderHandle');
+        let isDragging = false;
+
+        function updateComparison(x) {
+            const rect = comparisonSlider.getBoundingClientRect();
+            let percent = ((x - rect.left) / rect.width) * 100;
+            percent = Math.max(5, Math.min(95, percent));
+
+            compImgFramed.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+            sliderHandle.style.left = percent + '%';
+        }
+
+        comparisonSlider.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            updateComparison(e.clientX);
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            updateComparison(e.clientX);
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        // Touch support
+        comparisonSlider.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            updateComparison(e.touches[0].clientX);
+        });
+
+        comparisonSlider.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            updateComparison(e.touches[0].clientX);
+        });
+
+        comparisonSlider.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+
+        /* ─────────────────────────────────────────────────
+           SCROLL REVEAL ANIMATIONS
+           ───────────────────────────────────────────────── */
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        /* ─────────────────────────────────────────────────
+           LOADING SCREEN
+           ───────────────────────────────────────────────── */
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 800);
+        });
+
+        /* ─────────────────────────────────────────────────
+           SMOOTH SCROLL FOR NAV LINKS
+           ───────────────────────────────────────────────── */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        /* ─────────────────────────────────────────────────
+           PARALLAX EFFECT ON HERO
+           ───────────────────────────────────────────────── */
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.15}px)`;
+                hero.style.opacity = 1 - (scrolled / (window.innerHeight * 0.8));
+            }
+        });
+
+    })();
+    </script>
+
+</body>
+</html>
+

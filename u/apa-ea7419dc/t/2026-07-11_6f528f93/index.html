@@ -1,0 +1,502 @@
+﻿<!DOCTYPE html>
+<html lang="hu" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály - Festőművész Portfólió (2026)</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts (2026 Typography Standards) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Manrope:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Manrope"', 'sans-serif'],
+                    },
+                    colors: {
+                        // Base colors will be overridden by CSS variables defined in <style>
+                        primary: 'var(--color-primary)',
+                        secondary: 'var(--color-secondary)',
+                        accent: 'var(--color-accent)',
+                        surface: 'var(--color-surface)',
+                        text: 'var(--color-text)',
+                    },
+                    backgroundImage: {
+                        'noise': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Design & Theme Agent Output: Global Styles & Theme Variables -->
+    <style>
+        /* 
+         * THEME SYSTEM (6-7 Options)
+         * Rule: 60% Background, 30% Secondary/Surface, 10% Accent
+         */
+        
+        /* 1. Classic Gallery (Default - Light) */
+        :root {
+            --color-primary: #F9F7F2; /* Warm Canvas */
+            --color-secondary: #EAE5D9; /* Linen */
+            --color-accent: #8C6B5D; /* Burnt Sienna */
+            --color-surface: #FFFFFF;
+            --color-text: #2C2C2C;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Manrope', sans-serif;
+            --transition-speed: 0.6s;
+        }
+
+        /* 2. Midnight Museum (Dark) */
+        [data-theme="midnight"] {
+            --color-primary: #0F172A; /* Deep Slate */
+            --color-secondary: #1E293B; /* Navy */
+            --color-accent: #94A3B8; /* Silver */
+            --color-surface: #1E293B;
+            --color-text: #E2E8F0;
+        }
+
+        /* 3. Modern Minimal (High Contrast) */
+        [data-theme="modern"] {
+            --color-primary: #FFFFFF;
+            --color-secondary: #F3F4F6;
+            --color-accent: #000000;
+            --color-surface: #FFFFFF;
+            --color-text: #111827;
+        }
+
+        /* 4. Warm Earth (Cozy) */
+        [data-theme="earth"] {
+            --color-primary: #FDF6E3; /* Sand */
+            --color-secondary: #E6DCC8; /* Beige */
+            --color-accent: #D35400; /* Pumpkin */
+            --color-surface: #FAF3E0;
+            --color-text: #4A3B32;
+        }
+
+        /* 5. Cool Stone (Artistic) */
+        [data-theme="stone"] {
+            --color-primary: #F1F5F9;
+            --color-secondary: #CBD5E1;
+            --color-accent: #64748B;
+            --color-surface: #F8FAFC;
+            --color-text: #334155;
+        }
+
+        /* 6. Royal Velvet (Premium) */
+        [data-theme="royal"] {
+            --color-primary: #2C132A; /* Deep Purple */
+            --color-secondary: #442244;
+            --color-accent: #D4AF37; /* Gold */
+            --color-surface: #3A1D3A;
+            --color-text: #F3E5AB;
+        }
+
+        /* 7. Sunlight (Bright) */
+        [data-theme="sunlight"] {
+            --color-primary: #FFFDF5;
+            --color-secondary: #FFF3E0;
+            --color-accent: #FF9800;
+            --color-surface: #FFFFFF;
+            --color-text: #3E2723;
+        }
+
+        /* Global Styles */
+        body {
+            background-color: var(--color-primary);
+            color: var(--color-text);
+            font-family: var(--font-sans);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .serif-font {
+            font-family: var(--font-serif);
+        }
+
+        /* Texture Overlay */
+        .texture-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.4;
+            mix-blend-mode: multiply;
+        }
+
+        /* Organic UI Elements */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Frame Overlay Logic */
+        .frame-overlay {
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 12px solid var(--color-secondary); /* Fallback */
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Theme-specific frame colors */
+        [data-theme="classic"] .frame-overlay { border-color: #D4AF37; }
+        [data-theme="midnight"] .frame-overlay { border-color: #475569; }
+        [data-theme="modern"] .frame-overlay { border-color: #000000; }
+        [data-theme="earth"] .frame-overlay { border-color: #8B5A2B; }
+        [data-theme="stone"] .frame-overlay { border-color: #94A3B8; }
+        [data-theme="royal"] .frame-overlay { border-color: #D4AF37; }
+        [data-theme="sunlight"] .frame-overlay { border-color: #F59E0B; }
+
+        .gallery-item:hover .frame-overlay {
+            opacity: 1;
+        }
+
+        /* Interaction: Organic Reveal */
+        .reveal-on-hover {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            z-index: 20;
+        }
+
+        .gallery-item:hover .reveal-on-hover {
+            transform: translateY(0);
+        }
+
+        /* Theme Switcher UI */
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 1px solid var(--color-secondary);
+        }
+
+        .theme-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.3s;
+        }
+        .theme-dot:hover { transform: scale(1.2); }
+        .theme-dot.active { border-color: var(--color-text); }
+
+        /* Loader */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: var(--color-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            transition: opacity 1s ease;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Texture Overlay -->
+    <div class="texture-overlay bg-noise"></div>
+
+    <!-- Loader -->
+    <div id="loader">
+        <h1 class="text-4xl md:text-6xl font-serif italic tracking-widest animate-pulse">Kárai Mihály</h1>
+    </div>
+
+    <!-- Theme Switcher (Design Agent Output) -->
+    <div class="theme-switcher">
+        <div class="theme-dot active" style="background: #F9F7F2;" onclick="setTheme('classic')" title="Classic Gallery"></div>
+        <div class="theme-dot" style="background: #0F172A;" onclick="setTheme('midnight')" title="Midnight Museum"></div>
+        <div class="theme-dot" style="background: #FFFFFF; border: 1px solid #ccc;" onclick="setTheme('modern')" title="Modern Minimal"></div>
+        <div class="theme-dot" style="background: #FDF6E3;" onclick="setTheme('earth')" title="Warm Earth"></div>
+        <div class="theme-dot" style="background: #F1F5F9;" onclick="setTheme('stone')" title="Cool Stone"></div>
+        <div class="theme-dot" style="background: #2C132A;" onclick="setTheme('royal')" title="Royal Velvet"></div>
+        <div class="theme-dot" style="background: #FFFDF5;" onclick="setTheme('sunlight')" title="Sunlight"></div>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 left-0 w-full z-40 px-6 py-6 flex justify-between items-center mix-blend-difference text-white">
+        <div class="text-2xl md:text-3xl font-serif tracking-wider">KÁRAI MIHÁLY</div>
+        <nav class="hidden md:flex gap-8 text-sm uppercase tracking-widest font-sans">
+            <a href="#portfolio" class="hover:text-gray-300 transition">Művek</a>
+            <a href="#about" class="hover:text-gray-300 transition">Rólam</a>
+            <a href="#contact" class="hover:text-gray-300 transition">Kapcsolat</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center relative px-4">
+            <div class="text-center z-10 max-w-4xl mx-auto">
+                <p class="text-sm md:text-base uppercase tracking-[0.3em] mb-4 text-accent font-sans">Festőművész Portfólió</p>
+                <h1 class="text-6xl md:text-8xl lg:text-9xl font-serif font-light leading-tight mb-8">
+                    Az <span class="italic text-accent">Érzék</span><br>
+                    Tükre
+                </h1>
+                <div class="w-24 h-1 bg-accent mx-auto mb-8"></div>
+                <p class="font-sans text-lg md:text-xl max-w-2xl mx-auto opacity-80 leading-relaxed">
+                    1961 óta a valóság új dimenzióit keresem a vászonon. 
+                    A csend, a fény és az anyagok beszélgetése.
+                </p>
+                <button onclick="document.getElementById('portfolio').scrollIntoView()" class="mt-12 px-8 py-3 border border-current hover:bg-accent hover:text-white hover:border-accent transition-all duration-500 font-sans text-sm tracking-widest uppercase">
+                    Galéria Megtekintése
+                </button>
+            </div>
+            
+            <!-- Abstract Background Element -->
+            <div class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] bg-accent opacity-5 rounded-full blur-3xl"></div>
+        </section>
+
+        <!-- Portfolio Grid (Frontend Agent Output) -->
+        <section id="portfolio" class="px-4 md:px-12 py-24">
+            <div class="flex justify-between items-end mb-16 border-b border-gray-500/20 pb-4">
+                <h2 class="text-4xl md:text-5xl font-serif">Kiemelt Művek</h2>
+                <span class="font-sans text-xs uppercase tracking-widest opacity-60">2023 - 2026</span>
+            </div>
+
+            <!-- Grid Container -->
+            <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+                <!-- Items will be injected by JS -->
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24 px-4 md:px-24 bg-secondary/30">
+            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+                <div class="relative aspect-[3/4] overflow-hidden">
+                    <!-- Placeholder for Artist Portrait -->
+                    <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=1000" alt="Kárai Mihály műterem" class="object-cover w-full h-full hover:scale-105 transition duration-1000">
+                </div>
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-serif mb-8">A Műterem Tükre</h2>
+                    <p class="mb-6 leading-relaxed opacity-80">
+                        Kárai Mihály (sz. 1961) évtizedek óta járja utat a festészetnek. Művei a hagyományos olajfestés technikáját ötvözik a modern, expresszív tördelésekkel. Festményei nem csupán ábrázolások, hanem az idő pillanatai.
+                    </p>
+                    <p class="mb-8 leading-relaxed opacity-80">
+                        A művek szerte a világ magángyűjtőinél és közintézményeinél találhatóak. A stílusom a realitás és az álom határmezsgyéját keresi.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 border-t border-gray-500/20 pt-8">
+                        <div>
+                            <span class="block text-3xl font-serif text-accent">40+</span>
+                            <span class="text-xs uppercase tracking-wider opacity-60">Kiállítás</span>
+                        </div>
+                        <div>
+                            <span class="block text-3xl font-serif text-accent">150+</span>
+                            <span class="text-xs uppercase tracking-wider opacity-60">Műalkotás</span>
+                        </div>
+                        <div>
+                            <span class="block text-3xl font-serif text-accent">63</span>
+                            <span class="text-xs uppercase tracking-wider opacity-60">Év Művészi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-serif mb-8">Kapcsolat</h2>
+            <p class="opacity-70 mb-8 max-w-xl mx-auto">Vásárlás vagy megrendelés esetén keresse bizalommal.</p>
+            <a href="mailto:kapcsolat@karaipainting.hu" class="text-2xl md:text-4xl font-serif italic hover:text-accent transition underline decoration-1 underline-offset-8">
+                kapcsolat@karaipainting.hu
+            </a>
+            <div class="mt-12 text-sm uppercase tracking-widest opacity-50">
+                Budapest, Magyarország
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center border-t border-gray-500/20 text-xs uppercase tracking-widest opacity-40">
+        &copy; 2026 Kárai Mihály Művészet. Minden jog fenntartva.
+    </footer>
+
+    <!-- Asset Manager & Frontend Agent Logic -->
+    <script>
+        /**
+         * ASSET MANAGER AGENT OUTPUT
+         * Simulated parsing of `festmenyek_leiras.txt` and directory structure.
+         * Mapping logic for:
+         * - Basic Image (festmenyek_1.jpg)
+         * - Interior View (interior_1.jpg)
+         * - Framed View (keretezve_1.jpg)
+         */
+        
+        const artworksData = [
+            {
+                id: 1,
+                title: "Csendes Hajnal",
+                year: "2024",
+                desc: "Olaj, vászon. A reggeli fényjáték megörökítése a Balaton-parton.",
+                // Simulating file paths based on the requested directory structure
+                src: "https://images.unsplash.com/photo-1579783902614-a3fb39279c0f?auto=format&fit=crop&q=80&w=800", // Basic
+                interior: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&q=80&w=800", // Interior context
+                frame: "https://images.unsplash.com/photo-1577083288073-40892c0860a4?auto=format&fit=crop&q=80&w=800" // Framed context
+            },
+            {
+                id: 2,
+                title: "Az Öreg Fa",
+                year: "2023",
+                desc: "Buborékos technika. A természet ereje és az idő múlása.",
+                src: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?auto=format&fit=crop&q=80&w=800",
+                interior: "https://images.unsplash.com/photo-1549887552-93f954d1d660?auto=format&fit=crop&q=80&w=800",
+                frame: "https://images.unsplash.com/photo-1578320339910-ae1f35877346?auto=format&fit=crop&q=80&w=800"
+            },
+            {
+                id: 3,
+                title: "Vörös Szimfónia",
+                year: "2025",
+                desc: "Absztrakt kompozíció. Az érzelmek robbanása piros és fekete árnyalatokban.",
+                src: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?auto=format&fit=crop&q=80&w=800",
+                interior: "https://images.unsplash.com/photo-1582560475093-083997d6d707?auto=format&fit=crop&q=80&w=800",
+                frame: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&q=80&w=800"
+            },
+            {
+                id: 4,
+                title: "Tengeri Álom",
+                year: "2024",
+                desc: "Aqua technika. A hullámok ritmusa és a kék végtelensége.",
+                src: "https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?auto=format&fit=crop&q=80&w=800",
+                interior: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&q=80&w=800",
+                frame: "https://images.unsplash.com/photo-1577083288073-40892c0860a4?auto=format&fit=crop&q=80&w=800"
+            },
+            {
+                id: 5,
+                title: "Mezőgazdaság",
+                year: "2026",
+                desc: "Realisztikus tájkép. A magyar alföld aranybánya.",
+                src: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&q=80&w=800",
+                interior: "https://images.unsplash.com/photo-1549887552-93f954d1d660?auto=format&fit=crop&q=80&w=800",
+                frame: "https://images.unsplash.com/photo-1549887552-93f954d1d660?auto=format&fit=crop&q=80&w=800"
+            },
+            {
+                id: 6,
+                title: "Portré I.",
+                year: "2022",
+                desc: "Olajfestmény. Az emberi arc rejtett vonásainak feltárása.",
+                src: "https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?auto=format&fit=crop&q=80&w=800",
+                interior: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&q=80&w=800",
+                frame: "https://images.unsplash.com/photo-1577083288073-40892c0860a4?auto=format&fit=crop&q=80&w=800"
+            }
+        ];
+
+        /**
+         * FRONTEND DEVELOPER AGENT LOGIC
+         * - Renders the grid.
+         * - Handles organic hover effects (Frame/Interior reveal).
+         */
+
+        const gridContainer = document.getElementById('gallery-grid');
+
+        // Theme Switcher Logic
+        function setTheme(themeName) {
+            document.documentElement.setAttribute('data-theme', themeName);
+            
+            // Update active dot
+            document.querySelectorAll('.theme-dot').forEach(dot => {
+                dot.classList.remove('active');
+                dot.style.transform = 'scale(1)';
+            });
+            event.target.classList.add('active');
+            event.target.style.transform = 'scale(1.2)';
+        }
+
+        // Render Gallery
+        function renderGallery() {
+            gridContainer.innerHTML = '';
+            
+            artworksData.forEach((art, index) => {
+                const item = document.createElement('div');
+                // Organic staggered animation delay
+                item.style.animationDelay = `${index * 100}ms`;
+                item.className = `gallery-item group bg-noise`;
+                
+                item.innerHTML = `
+                    <div class="relative aspect-[4/5] overflow-hidden bg-gray-200">
+                        <!-- Main Image -->
+                        <img src="${art.src}" alt="${art.title}" class="w-full h-full object-cover transition duration-700 group-hover:brightness-90">
+                        
+                        <!-- Frame Overlay (Organic Interaction) -->
+                        <div class="frame-overlay bg-noise"></div>
+                        
+                        <!-- Interactive Hover Reveal (Interior/Frame Context) -->
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center z-20">
+                            <div class="text-center text-white p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                <p class="font-serif text-2xl mb-2">${art.title}</p>
+                                <p class="text-xs uppercase tracking-widest mb-4 opacity-80">${art.year}</p>
+                                <div class="flex justify-center gap-2 text-[10px] uppercase tracking-widest border-t border-white/30 pt-4">
+                                    <span class="px-2">Vászon</span>
+                                    <span class="px-2">Olaj</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-between items-baseline px-2">
+                        <h3 class="text-xl font-serif group-hover:text-accent transition-colors">${art.title}</h3>
+                        <span class="text-xs font-sans opacity-50 uppercase tracking-widest">${art.year}</span>
+                    </div>
+                    <p class="text-sm opacity-70 mt-1 px-2 line-clamp-2">${art.desc}</p>
+                `;
+                
+                gridContainer.appendChild(item);
+            });
+        }
+
+        // Initialization
+        window.addEventListener('DOMContentLoaded', () => {
+            renderGallery();
+            
+            // Hide loader
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                setTimeout(() => loader.remove(), 1000);
+            }, 1500);
+        });
+
+    </script>
+</body>
+</html>

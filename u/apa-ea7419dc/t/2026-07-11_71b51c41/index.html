@@ -1,0 +1,591 @@
+﻿<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály | Festőművész</title>
+    <style>
+        /* 
+         * KÁRAI MIHÁLY - VIZUÁLIS SOKK UI/UX
+         * No Bootstrap. Pure CSS/JS Art.
+         */
+
+        :root {
+            /* Default Theme: Nappali (60-30-10) */
+            --color-bg: #F5F1E8;      /* 60% - Warm White */
+            --color-text: #2C3E50;    /* 30% - Dark Slate */
+            --color-accent: #1A5276;  /* 10% - Deep Blue */
+            --color-secondary: #D4C4A8; /* 30% variant - Soft Ochre */
+            
+            --font-main: 'Playfair Display', serif;
+            --font-body: 'Cormorant Garamond', serif;
+            
+            --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        /* --- RESET & BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            transition: background-color 1.2s var(--ease-out), color 1.2s var(--ease-out);
+            cursor: none; /* Custom cursor */
+        }
+
+        /* --- TEXTURE & ATMOSPHERE --- */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.08;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* --- CUSTOM CURSOR --- */
+        .cursor {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--color-accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+            mix-blend-mode: difference;
+        }
+        .cursor.hovered {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(2px);
+            border-color: transparent;
+        }
+
+        /* --- NAVIGATION (Floating Pill) --- */
+        nav {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            gap: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-family: var(--font-main);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-accent);
+            transition: width 0.3s var(--ease-out);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* --- THEME SWITCHER --- */
+        .theme-switcher {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .theme-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s var(--ease-elastic);
+        }
+        .theme-btn:hover {
+            transform: scale(1.2);
+        }
+        .theme-btn.active {
+            border-color: var(--color-text);
+            transform: scale(1.1);
+        }
+
+        /* --- HERO SECTION --- */
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-text {
+            position: absolute;
+            font-family: var(--font-main);
+            font-size: 15vw;
+            color: var(--color-secondary);
+            opacity: 0.1;
+            white-space: nowrap;
+            z-index: -1;
+            animation: breathe 10s infinite alternate ease-in-out;
+        }
+
+        .hero-title {
+            font-family: var(--font-main);
+            font-size: clamp(3rem, 8vw, 8rem);
+            text-align: center;
+            line-height: 0.9;
+            mix-blend-mode: multiply;
+            position: relative;
+        }
+
+        .hero-title span {
+            display: block;
+            transform: translateY(100%);
+            animation: revealText 1.5s var(--ease-out) forwards;
+        }
+        .hero-title span:nth-child(2) {
+            animation-delay: 0.2s;
+            font-style: italic;
+            color: var(--color-accent);
+        }
+
+        /* --- GALLERY (Masonry & Parallax) --- */
+        .gallery-section {
+            padding: 10vh 5vw;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: var(--font-main);
+            font-size: 4rem;
+            margin-bottom: 5rem;
+            text-align: center;
+            position: relative;
+        }
+        .section-title::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+            opacity: 0.1;
+            filter: blur(20px);
+        }
+
+        .art-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .art-piece {
+            position: relative;
+            height: 60vh;
+            perspective: 1000px;
+        }
+
+        .art-image-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.6s var(--ease-out);
+        }
+
+        /* The "Framed" vs "Interior" Logic */
+        .art-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.8s var(--ease-out);
+        }
+
+        .img-interior {
+            opacity: 0;
+            transform: scale(1.1) rotate(2deg);
+            filter: sepia(0.2) brightness(0.9);
+        }
+
+        .img-outer {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+            filter: none;
+        }
+
+        /* Interaction States */
+        .art-piece:hover .img-interior,
+        .art-piece.scrolled-over .img-interior {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+            filter: none;
+        }
+        .art-piece:hover .img-outer,
+        .art-piece.scrolled-over .img-outer {
+            opacity: 0;
+            transform: scale(0.8) rotate(-5deg);
+        }
+
+        /* Frame Effect */
+        .art-piece::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+            border: 1px solid var(--color-text);
+            opacity: 0.2;
+            z-index: -1;
+            transition: all 0.5s;
+        }
+        .art-piece:hover::after {
+            top: 10px;
+            left: 10px;
+            right: -10px;
+            bottom: -10px;
+            opacity: 0.5;
+            border-color: var(--color-accent);
+        }
+
+        /* --- BIOGRAPHY (Text Flow) --- */
+        .bio-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem;
+            position: relative;
+        }
+
+        .bio-text {
+            font-size: clamp(1.5rem, 3vw, 3rem);
+            line-height: 1.4;
+            max-width: 800px;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .highlight {
+            color: var(--color-accent);
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+        }
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--color-accent);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.6s var(--ease-out);
+        }
+        .bio-text:hover .highlight::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 5rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--color-secondary);
+            margin-top: 10vh;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes breathe {
+            0% { transform: scale(1); opacity: 0.1; }
+            100% { transform: scale(1.05); opacity: 0.15; }
+        }
+
+        @keyframes revealText {
+            to { transform: translateY(0); }
+        }
+
+        /* --- MOBILE ADJUSTMENTS --- */
+        @media (max-width: 768px) {
+            nav {
+                width: 90%;
+                padding: 1rem;
+                gap: 1rem;
+                justify-content: center;
+            }
+            .hero-title { font-size: 3.5rem; }
+            .art-piece { height: 50vh; }
+            .bio-section { padding: 2rem; }
+            .theme-switcher { bottom: 1rem; right: 1rem; }
+        }
+
+    </style>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="noise-overlay"></div>
+    <div class="cursor" id="cursor"></div>
+
+    <nav>
+        <a href="#gallery">Galéria</a>
+        <a href="#bio">Életrajz</a>
+        <a href="#contact">Kapcsolat</a>
+    </nav>
+
+    <header>
+        <div class="hero-bg-text">KÁRAI MIHÁLY</div>
+        <h1 class="hero-title">
+            <span>KÁRAI</span>
+            <span>Mihály</span>
+        </h1>
+    </header>
+
+    <section id="gallery" class="gallery-section">
+        <h2 class="section-title">Válogatás</h2>
+        
+        <div class="art-grid">
+            <!-- Art Piece 1 -->
+            <div class="art-piece">
+                <div class="art-image-container">
+                    <!-- Placeholder paths pointing to user's directory -->
+                    <img src="C:\xampp\htdocs\2026\Hermes\apa_festmenyek/festmeny1_interior.jpg" alt="Belső tér" class="art-img img-interior">
+                    <img src="C:\xampp\htdocs\2026\Hermes\apa_festmenyek/festmeny1.jpg" alt="Festmény" class="art-img img-outer">
+                </div>
+            </div>
+
+            <!-- Art Piece 2 -->
+            <div class="art-piece">
+                <div class="art-image-container">
+                    <img src="C:\xampp\htdocs\2026\Hermes\apa_festmenyek/festmeny2_interior.jpg" alt="Belső tér" class="art-img img-interior">
+                    <img src="C:\xampp\htdocs\2026\Hermes\apa_festmenyek/festmeny2.jpg" alt="Festmény" class="art-img img-outer">
+                </div>
+            </div>
+
+            <!-- Art Piece 3 -->
+            <div class="art-piece">
+                <div class="art-image-container">
+                    <img src="C:\xampp\htdocs\2026\Hermes\apa_festmenyek/festmeny3_interior.jpg" alt="Belső tér" class="art-img img-interior">
+                    <img src="C:\xampp\htdocs\2026\Hermes\apa_festmenyek/festmeny3.jpg" alt="Festmény" class="art-img img-outer">
+                </div>
+            </div>
+             <!-- Art Piece 4 -->
+             <div class="art-piece">
+                <div class="art-image-container">
+                    <img src="C:\xampp\htdocs\2026\Hermes\apa_festmenyek/festmeny4_interior.jpg" alt="Belső tér" class="art-img img-interior">
+                    <img src="C:\xampp\htdocs\2026\Hermes\apa_festmenyek/festmeny4.jpg" alt="Festmény" class="art-img img-outer">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="bio" class="bio-section">
+        <p class="bio-text">
+            Kárai Mihály munkássága a <span class="highlight">reális ábrázolás</span> és a <span class="highlight">érzelmi többlet</span> határmezsgyéjén mozog. Festményei nem csupán képek, hanem ablakok egy másik valóságba, ahol a fény és az árnyék beszélgetése örök témát jelent. Művészete a múlt klasszikus értékeit ötvözi a kortárs felfogás szabadságával.
+        </p>
+    </section>
+
+    <footer id="contact">
+        <p>Kárai Mihály © 2026</p>
+        <p style="margin-top: 1rem; opacity: 0.6;">Budapest, Magyarország</p>
+    </footer>
+
+    <div class="theme-switcher">
+        <div class="theme-btn" data-theme="day" style="background: #F5F1E8;" title="Nappali"></div>
+        <div class="theme-btn" data-theme="night" style="background: #1A1A2E;" title="Éjszakai"></div>
+        <div class="theme-btn" data-theme="sepia" style="background: #D2B48C;" title="Sepia"></div>
+        <div class="theme-btn" data-theme="gallery" style="background: #FFFFFF; border-color: #ccc;" title="Galéria"></div>
+        <div class="theme-btn" data-theme="mars" style="background: #E07A5F;" title="Bolygó"></div>
+        <div class="theme-btn" data-theme="rain" style="background: #8D99AE;" title="Eső"></div>
+        <div class="theme-btn" data-theme="gold" style="background: #D4AF37;" title="Aranykor"></div>
+    </div>
+
+    <script>
+        /**
+         * KÁRAI MIHÁLY - INTERACTIVE ENGINE
+         */
+
+        // --- 1. THEME ENGINE ---
+        const themes = {
+            day: {
+                '--color-bg': '#F5F1E8',
+                '--color-text': '#2C3E50',
+                '--color-accent': '#1A5276',
+                '--color-secondary': '#D4C4A8'
+            },
+            night: {
+                '--color-bg': '#0F172A',
+                '--color-text': '#E2E8F0',
+                '--color-accent': '#F59E0B',
+                '--color-secondary': '#334155'
+            },
+            sepia: {
+                '--color-bg': '#F4ECD8',
+                '--color-text': '#5C4033',
+                '--color-accent': '#8B4513',
+                '--color-secondary': '#D2B48C'
+            },
+            gallery: {
+                '--color-bg': '#FFFFFF',
+                '--color-text': '#000000',
+                '--color-accent': '#000000',
+                '--color-secondary': '#E5E5E5'
+            },
+            mars: {
+                '--color-bg': '#FDF6F0',
+                '--color-text': '#4A1C1C',
+                '--color-accent': '#C04000',
+                '--color-secondary': '#E6B89C'
+            },
+            rain: {
+                '--color-bg': '#E8F1F2',
+                '--color-text': '#2C3E50',
+                '--color-accent': '#2E86C1',
+                '--color-secondary': '#AAB7B8'
+            },
+            gold: {
+                '--color-bg': '#FDFBF7',
+                '--color-text': '#3E2723',
+                '--color-accent': '#D4AF37',
+                '--color-secondary': '#E6D0A3'
+            }
+        };
+
+        const themeBtns = document.querySelectorAll('.theme-btn');
+        const root = document.documentElement;
+
+        function setTheme(themeName) {
+            const theme = themes[themeName];
+            if (!theme) return;
+
+            // Update CSS Variables
+            for (const [property, value] of Object.entries(theme)) {
+                root.style.setProperty(property, value);
+            }
+
+            // Update Active Button State
+            themeBtns.forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.theme-btn[data-theme="${themeName}"]`).classList.add('active');
+        }
+
+        themeBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                setTheme(e.target.dataset.theme);
+            });
+        });
+
+        // Initialize default theme
+        setTheme('day');
+
+
+        // --- 2. CUSTOM CURSOR ---
+        const cursor = document.getElementById('cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Add hover effect to interactive elements
+        const hoverElements = document.querySelectorAll('a, .art-piece, .theme-btn');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+
+
+        // --- 3. PARALLAX & INTERACTION ENGINE ---
+        
+        // Mouse movement parallax for Art Pieces
+        document.addEventListener('mousemove', (e) => {
+            const pieces = document.querySelectorAll('.art-piece');
+            const x = (window.innerWidth - e.pageX * 2) / 100;
+            const y = (window.innerHeight - e.pageY * 2) / 100;
+
+            pieces.forEach((piece, index) => {
+                // Subtle parallax based on index for depth
+                const speed = (index % 2 === 0) ? 1 : -1;
+                piece.style.transform = `translateX(${x * speed}px) translateY(${y * speed}px)`;
+            });
+        });
+
+        // Scroll Observer for "Scrolled-over" class
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('scrolled-over');
+                } else {
+                    entry.target.classList.remove('scrolled-over');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.art-piece').forEach(piece => {
+            observer.observe(piece);
+        });
+
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 100, // Offset for nav
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>

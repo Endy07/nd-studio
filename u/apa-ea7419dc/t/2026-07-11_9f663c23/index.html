@@ -1,0 +1,1079 @@
+﻿<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kárai Mihály — Festőművész</title>
+<meta name="description" content="Kárai Mihály festőművész kortárs absztrakt expresszionista művészete.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F5F0E8;
+  --bg2: #EDE5D5;
+  --text: #2C2420;
+  --accent: #8B4513;
+  --accent2: #D4A574;
+  --card: #FFFFFF;
+  --card-border: #D4C5B0;
+  --muted: #7A6B5D;
+  --light-text: #F5F0E8;
+  --section-alt: #EDE5D5;
+  --btn-bg: #8B4513;
+  --btn-text: #F5F0E8;
+  --btn-hover: #A0522D;
+  --nav-bg: rgba(245,240,232,0.92);
+  --shadow: rgba(139,69,19,0.12);
+  --gradient1: #D4A574;
+  --gradient2: #8B4513;
+  --blob1: #D4A574;
+  --blob2: #C4956A;
+  --grain-opacity: 0.03;
+  --hero-overlay: rgba(44,36,32,0.35);
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; overflow-x:hidden; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-weight: 300;
+  overflow-x: hidden;
+  transition: background 0.8s var(--ease-out-expo), color 0.8s var(--ease-out-expo);
+}
+img { max-width:100%; height:auto; display:block; }
+a { color:var(--accent); text-decoration:none; transition:color 0.3s ease; }
+a:hover { color:var(--accent2); }
+
+.grain-overlay {
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events:none; z-index:9999;
+  opacity:var(--grain-opacity);
+  background-image:url("data:image/svg+xml,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMDAnIGhlaWdodD0nMzAwJz48ZmlsdGVyIGlkPSduJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC42NScgbnVtT2N0YXZlcz0nMycgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjxmZUNvbG9yTWF0cml4IHR5cGU9J3NhdHVyYXRlJyB2YWx1ZXM9JzAnLz48L2ZpbHRlcj48L3N2Zz4=");
+  background-size:300px 300px;
+}
+
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  padding:1.2rem 3rem;
+  display:flex; justify-content:space-between; align-items:center;
+  background:var(--nav-bg);
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--card-border);
+  transition:all 0.5s var(--ease-out-expo);
+}
+nav.scrolled { padding:0.8rem 3rem; box-shadow:0 4px 30px var(--shadow); }
+.nav-logo {
+  font-family:var(--font-heading); font-size:1.6rem; font-weight:400;
+  letter-spacing:0.05em; color:var(--text);
+}
+.nav-logo span { font-weight:300; font-style:italic; color:var(--accent); }
+.nav-links {
+  display:flex; gap:2.5rem; list-style:none; align-items:center;
+}
+.nav-links a {
+  color:var(--text); font-size:0.85rem; font-weight:300;
+  letter-spacing:0.1em; text-transform:uppercase;
+  position:relative; padding-bottom:4px;
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:0; left:0;
+  width:0; height:1px; background:var(--accent);
+  transition:width 0.4s var(--ease-out-expo);
+}
+.nav-links a:hover::after, .nav-links a.active::after { width:100%; }
+
+.theme-switcher {
+  position:fixed; top:50%; right:0; transform:translateY(-50%);
+  z-index:1001; display:flex; flex-direction:column; gap:6px;
+  padding:10px 8px; background:var(--nav-bg);
+  backdrop-filter:blur(20px);
+  border-radius:12px 0 0 12px;
+  border:1px solid var(--card-border); border-right:none;
+  transition:all 0.5s var(--ease-out-expo);
+}
+.theme-switcher-btn {
+  width:32px; height:32px; border-radius:50%;
+  border:2px solid var(--card-border); cursor:pointer;
+  transition:all 0.3s ease; position:relative; overflow:hidden;
+}
+.theme-switcher-btn:hover { transform:scale(1.15); border-color:var(--accent); }
+.theme-switcher-btn.active {
+  border-color:var(--accent);
+  box-shadow:0 0 0 2px var(--accent);
+}
+.theme-switcher-btn .tooltip {
+  position:absolute; right:42px; top:50%; transform:translateY(-50%);
+  background:var(--text); color:var(--bg); padding:4px 12px;
+  border-radius:6px; font-size:0.7rem; white-space:nowrap;
+  opacity:0; pointer-events:none; transition:opacity 0.3s ease;
+  font-family:var(--font-body);
+}
+.theme-switcher-btn:hover .tooltip { opacity:1; }
+
+.burger {
+  display:none; flex-direction:column; gap:5px; cursor:pointer;
+  z-index:1002; background:none; border:none; padding:5px;
+}
+.burger span {
+  width:24px; height:1.5px; background:var(--text);
+  transition:all 0.3s ease; display:block;
+}
+.burger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+.burger.open span:nth-child(2) { opacity:0; }
+.burger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+
+.hero {
+  position:relative; height:100vh; min-height:700px;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+}
+.hero-bg {
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  background:linear-gradient(135deg, var(--gradient1), var(--gradient2));
+  opacity:0.15; z-index:0;
+}
+.hero-overlay {
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  background:var(--hero-overlay); z-index:2;
+}
+.hero-content {
+  position:relative; z-index:3; text-align:center; padding:2rem; max-width:900px;
+}
+.hero-subtitle {
+  font-family:var(--font-body); font-size:0.85rem; font-weight:300;
+  letter-spacing:0.3em; text-transform:uppercase; color:var(--accent);
+  margin-bottom:1.5rem; opacity:0; animation:fadeUp 1s var(--ease-out-expo) 0.3s forwards;
+}
+.hero-title {
+  font-family:var(--font-heading); font-size:clamp(3rem,8vw,7rem);
+  font-weight:300; line-height:1.05; margin-bottom:1.5rem;
+  opacity:0; animation:fadeUp 1s var(--ease-out-expo) 0.6s forwards;
+}
+.hero-title em { font-style:italic; font-weight:400; color:var(--accent); }
+.hero-tagline {
+  font-family:var(--font-heading); font-size:clamp(1.1rem,2.5vw,1.5rem);
+  font-weight:300; font-style:italic; color:var(--muted);
+  margin-bottom:2.5rem; opacity:0; animation:fadeUp 1s var(--ease-out-expo) 0.9s forwards;
+}
+.hero-cta {
+  display:inline-flex; align-items:center; gap:0.8rem;
+  padding:1rem 2.5rem; background:var(--btn-bg); color:var(--btn-text);
+  font-family:var(--font-body); font-size:0.85rem; font-weight:400;
+  letter-spacing:0.15em; text-transform:uppercase; border:none;
+  cursor:pointer; transition:all 0.4s var(--ease-out-expo);
+  opacity:0; animation:fadeUp 1s var(--ease-out-expo) 1.2s forwards;
+}
+.hero-cta:hover {
+  background:var(--btn-hover); transform:translateY(-2px);
+  box-shadow:0 8px 30px var(--shadow); color:var(--btn-text);
+}
+.hero-cta svg { width:18px; height:18px; transition:transform 0.3s ease; }
+.hero-cta:hover svg { transform:translateY(3px); }
+
+.blob {
+  position:absolute; border-radius:50%; filter:blur(80px);
+  opacity:0.2; z-index:1; animation:blobMorph 20s ease-in-out infinite;
+}
+.blob-1 { width:500px; height:500px; background:var(--blob1); top:-10%; left:-10%; animation-delay:0s; }
+.blob-2 { width:400px; height:400px; background:var(--blob2); bottom:-10%; right:-10%; animation-delay:-7s; }
+.blob-3 {
+  width:300px; height:300px; background:var(--accent2);
+  top:50%; left:50%; transform:translate(-50%,-50%);
+  animation-delay:-14s;
+}
+
+.scroll-indicator {
+  position:absolute; bottom:3rem; left:50%; transform:translateX(-50%);
+  z-index:3; display:flex; flex-direction:column; align-items:center; gap:0.8rem;
+  opacity:0; animation:fadeUp 1s var(--ease-out-expo) 1.5s forwards;
+}
+.scroll-indicator span { font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); }
+.scroll-line { width:1px; height:40px; background:var(--accent); animation:scrollPulse 2s ease-in-out infinite; }
+
+section { padding:8rem 3rem; position:relative; }
+.section-alt { background:var(--section-alt); }
+.section-header { text-align:center; margin-bottom:5rem; }
+.section-label {
+  font-family:var(--font-body); font-size:0.75rem; font-weight:400;
+  letter-spacing:0.3em; text-transform:uppercase; color:var(--accent);
+  margin-bottom:1rem; display:block;
+}
+.section-title {
+  font-family:var(--font-heading); font-size:clamp(2.2rem,5vw,4rem);
+  font-weight:300; line-height:1.15;
+}
+.section-title em { font-style:italic; color:var(--accent); }
+
+.about-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:5rem;
+  max-width:1200px; margin:0 auto; align-items:center;
+}
+.about-image {
+  position:relative; aspect-ratio:3/4; overflow:hidden;
+}
+.about-image-placeholder {
+  width:100%; height:100%;
+  background:linear-gradient(135deg, var(--accent2), var(--accent));
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-heading); font-size:5rem; font-weight:300;
+  color:var(--light-text); font-style:italic;
+}
+.about-image::after {
+  content:''; position:absolute; top:20px; left:20px;
+  right:-20px; bottom:-20px; border:1px solid var(--accent);
+  z-index:-1; opacity:0.3;
+}
+.about-text h3 {
+  font-family:var(--font-heading); font-size:2rem; font-weight:400;
+  margin-bottom:2rem; font-style:italic;
+}
+.about-text p { margin-bottom:1.5rem; font-size:1rem; line-height:1.9; color:var(--text); opacity:0.85; }
+.about-stats {
+  display:flex; gap:3rem; margin-top:3rem; padding-top:2rem;
+  border-top:1px solid var(--card-border);
+}
+.stat-number {
+  font-family:var(--font-heading); font-size:2.8rem; font-weight:300;
+  color:var(--accent); line-height:1;
+}
+.stat-label { font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-top:0.5rem; }
+
+.gallery-grid {
+  max-width:1400px; margin:0 auto;
+  display:grid; grid-template-columns:repeat(3,1fr); gap:2rem;
+}
+.gallery-item {
+  position:relative; overflow:hidden; cursor:pointer;
+  transition:transform 0.6s var(--ease-out-expo);
+  opacity:0; transform:translateY(40px);
+}
+.gallery-item.visible { opacity:1; transform:translateY(0); }
+.gallery-item:hover { transform:translateY(-8px); }
+.gallery-item:nth-child(1) { grid-row:span 2; }
+.gallery-item:nth-child(4) { grid-column:span 2; }
+.gallery-item:nth-child(7) { grid-row:span 2; }
+.gallery-item:nth-child(10) { grid-column:span 2; }
+.gallery-img-wrap { position:relative; overflow:hidden; }
+.gallery-item:nth-child(1) .gallery-img-wrap { aspect-ratio:3/4; }
+.gallery-item:nth-child(4) .gallery-img-wrap { aspect-ratio:16/9; }
+.gallery-item:nth-child(7) .gallery-img-wrap { aspect-ratio:3/4; }
+.gallery-item:nth-child(10) .gallery-img-wrap { aspect-ratio:16/9; }
+.gallery-item:not(:nth-child(1)):not(:nth-child(4)):not(:nth-child(7)):not(:nth-child(10)) .gallery-img-wrap { aspect-ratio:4/3; }
+.gallery-img-wrap img { width:100%; height:100%; object-fit:cover; transition:transform 0.8s var(--ease-out-expo); }
+.gallery-item:hover .gallery-img-wrap img { transform:scale(1.05); }
+.gallery-overlay {
+  position:absolute; bottom:0; left:0; right:0;
+  padding:3rem 2rem 2rem;
+  background:linear-gradient(transparent, rgba(0,0,0,0.7));
+  transform:translateY(100%);
+  transition:transform 0.5s var(--ease-out-expo);
+}
+.gallery-item:hover .gallery-overlay { transform:translateY(0); }
+.gallery-overlay h4 {
+  font-family:var(--font-heading); font-size:1.4rem; font-weight:400; color:#fff; margin-bottom:0.3rem;
+}
+.gallery-overlay .gallery-meta { font-size:0.8rem; color:rgba(255,255,255,0.7); font-weight:300; }
+
+.featured-section { padding:0; overflow:hidden; }
+.featured-scroll {
+  display:flex; overflow-x:auto; scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch; scrollbar-width:none; gap:0;
+}
+.featured-scroll::-webkit-scrollbar { display:none; }
+.featured-item {
+  flex:0 0 100vw; scroll-snap-align:start; height:85vh;
+  display:flex; align-items:center; position:relative; overflow:hidden;
+}
+.featured-item-bg {
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  background-size:cover; background-position:center;
+  filter:brightness(0.6); transition:transform 8s ease;
+}
+.featured-item:hover .featured-item-bg { transform:scale(1.05); }
+.featured-item-content {
+  position:relative; z-index:2; padding:4rem 6rem; max-width:600px; color:#fff;
+}
+.featured-item-content .section-label { color:var(--accent2); }
+.featured-item-content h3 {
+  font-family:var(--font-heading); font-size:clamp(2rem,4vw,3.5rem);
+  font-weight:300; margin-bottom:1rem; line-height:1.15;
+}
+.featured-item-content .size { font-size:0.9rem; color:var(--accent2); margin-bottom:1.5rem; font-weight:300; }
+.featured-item-content p { font-size:1rem; line-height:1.8; opacity:0.85; font-weight:300; }
+.featured-nav {
+  position:absolute; bottom:3rem; left:50%; transform:translateX(-50%);
+  z-index:3; display:flex; gap:1rem;
+}
+.featured-nav button {
+  width:50px; height:50px; border-radius:50%;
+  border:1px solid rgba(255,255,255,0.4); background:rgba(0,0,0,0.3);
+  color:#fff; cursor:pointer; font-size:1.2rem;
+  transition:all 0.3s ease; backdrop-filter:blur(10px);
+  display:flex; align-items:center; justify-content:center;
+}
+.featured-nav button:hover { background:rgba(255,255,255,0.2); border-color:#fff; }
+
+.quote-section {
+  min-height:60vh; display:flex; align-items:center; justify-content:center;
+  text-align:center; padding:8rem 3rem; position:relative;
+}
+.quote-section::before {
+  content:'"'; font-family:var(--font-heading); font-size:15rem;
+  color:var(--accent); opacity:0.1; position:absolute;
+  top:1rem; left:50%; transform:translateX(-50%); line-height:1;
+}
+.quote-text {
+  font-family:var(--font-heading); font-size:clamp(1.5rem,3.5vw,2.8rem);
+  font-weight:300; font-style:italic; line-height:1.5;
+  max-width:800px; margin:0 auto; color:var(--text); opacity:0.85;
+}
+.quote-author {
+  margin-top:2rem; font-size:0.85rem; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--accent); font-weight:400;
+}
+
+.contact-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:5rem;
+  max-width:1100px; margin:0 auto;
+}
+.contact-info h3 {
+  font-family:var(--font-heading); font-size:2rem; font-weight:400;
+  font-style:italic; margin-bottom:2rem;
+}
+.contact-info p { margin-bottom:1.5rem; line-height:1.8; color:var(--muted); }
+.contact-info .contact-detail {
+  display:flex; align-items:center; gap:1rem; margin-bottom:1.2rem;
+}
+.contact-icon {
+  width:40px; height:40px; border-radius:50%;
+  background:var(--accent); color:var(--light-text);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1rem; flex-shrink:0;
+}
+.contact-form {
+  display:flex; flex-direction:column; gap:1.5rem;
+}
+.form-group { position:relative; }
+.form-group input, .form-group textarea {
+  width:100%; padding:1rem 0; border:none;
+  border-bottom:1px solid var(--card-border); background:transparent;
+  color:var(--text); font-family:var(--font-body); font-size:1rem;
+  font-weight:300; transition:border-color 0.3s ease; outline:none;
+}
+.form-group input:focus, .form-group textarea:focus { border-bottom-color:var(--accent); }
+.form-group label {
+  position:absolute; left:0; top:1rem; font-size:0.9rem;
+  font-weight:300; color:var(--muted); pointer-events:none;
+  transition:all 0.3s var(--ease-out-expo);
+}
+.form-group input:focus + label, .form-group input:not(:placeholder-shown) + label,
+.form-group textarea:focus + label, .form-group textarea:not(:placeholder-shown) + label {
+  top:-0.5rem; font-size:0.7rem; color:var(--accent);
+  letter-spacing:0.1em; text-transform:uppercase;
+}
+.form-group textarea { resize:vertical; min-height:120px; }
+.form-submit {
+  padding:1rem 2.5rem; background:var(--btn-bg); color:var(--btn-text);
+  border:none; font-family:var(--font-body); font-size:0.85rem;
+  font-weight:400; letter-spacing:0.15em; text-transform:uppercase;
+  cursor:pointer; transition:all 0.4s var(--ease-out-expo); align-self:flex-start;
+}
+.form-submit:hover {
+  background:var(--btn-hover); transform:translateY(-2px);
+  box-shadow:0 8px 30px var(--shadow);
+}
+
+footer {
+  padding:4rem 3rem; text-align:center;
+  border-top:1px solid var(--card-border);
+}
+.footer-logo {
+  font-family:var(--font-heading); font-size:1.8rem; font-weight:300; margin-bottom:1rem;
+}
+.footer-logo span { font-style:italic; color:var(--accent); }
+footer p { font-size:0.8rem; color:var(--muted); font-weight:300; }
+
+.lightbox {
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.95); z-index:10000;
+  display:none; align-items:center; justify-content:center;
+  opacity:0; transition:opacity 0.4s ease; cursor:pointer;
+}
+.lightbox.active { display:flex; opacity:1; }
+.lightbox img { max-width:90vw; max-height:90vh; object-fit:contain; }
+.lightbox-close {
+  position:absolute; top:2rem; right:2rem; width:50px; height:50px;
+  border:1px solid rgba(255,255,255,0.3); border-radius:50%;
+  background:none; color:#fff; font-size:1.5rem; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:all 0.3s ease;
+}
+.lightbox-close:hover { border-color:#fff; background:rgba(255,255,255,0.1); }
+.lightbox-info {
+  position:absolute; bottom:3rem; left:50%; transform:translateX(-50%);
+  text-align:center; color:#fff;
+}
+.lightbox-info h4 { font-family:var(--font-heading); font-size:1.5rem; font-weight:400; margin-bottom:0.3rem; }
+.lightbox-info span { font-size:0.85rem; color:rgba(255,255,255,0.6); font-weight:300; }
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(30px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes blobMorph {
+  0%,100% { border-radius:60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius:30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius:50% 60% 30% 60% / 30% 60% 70% 40%; }
+  75% { border-radius:60% 30% 60% 40% / 70% 40% 50% 60%; }
+}
+@keyframes scrollPulse {
+  0%,100% { opacity:1; transform:scaleY(1); }
+  50% { opacity:0.3; transform:scaleY(0.6); }
+}
+
+.reveal {
+  opacity:0; transform:translateY(40px);
+  transition:all 0.8s var(--ease-out-expo);
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+@media (max-width:1024px) {
+  section { padding:6rem 2rem; }
+  .about-grid { gap:3rem; }
+  .gallery-grid { grid-template-columns:repeat(2,1fr); }
+  .gallery-item:nth-child(1) { grid-row:span 1; }
+  .gallery-item:nth-child(4) { grid-column:span 1; }
+  .gallery-item:nth-child(7) { grid-row:span 1; }
+  .gallery-item:nth-child(10) { grid-column:span 1; }
+  .featured-item-content { padding:3rem; }
+}
+@media (max-width:768px) {
+  nav { padding:1rem 1.5rem; }
+  .nav-links {
+    position:fixed; top:0; left:0; width:100%; height:100vh;
+    background:var(--nav-bg); backdrop-filter:blur(30px);
+    flex-direction:column; justify-content:center; gap:2rem;
+    transform:translateX(100%); transition:transform 0.5s var(--ease-out-expo);
+  }
+  .nav-links.open { transform:translateX(0); }
+  .nav-links a { font-size:1.2rem; letter-spacing:0.2em; }
+  .burger { display:flex; }
+  .theme-switcher {
+    top:auto; bottom:1rem; right:1rem; transform:none;
+    flex-direction:row; border-radius:12px; border:1px solid var(--card-border);
+  }
+  .theme-switcher-btn .tooltip { display:none; }
+  section { padding:5rem 1.5rem; }
+  .about-grid { grid-template-columns:1fr; gap:3rem; }
+  .about-image { max-width:400px; margin:0 auto; }
+  .about-image::after { display:none; }
+  .about-stats { gap:2rem; }
+  .gallery-grid { grid-template-columns:1fr; gap:1.5rem; }
+  .gallery-item:nth-child(n) { grid-row:span 1; grid-column:span 1; }
+  .gallery-overlay { transform:translateY(0); padding:2rem 1.5rem 1.5rem; }
+  .contact-grid { grid-template-columns:1fr; gap:3rem; }
+  .featured-item { height:70vh; }
+  .featured-item-content { padding:2rem; max-width:100%; }
+  .featured-item-content h3 { font-size:1.8rem; }
+  .quote-section { padding:5rem 1.5rem; }
+  .hero-tagline { font-size:1rem; }
+}
+@media (max-width:480px) {
+  html { font-size:14px; }
+  .hero { min-height:600px; }
+  .about-stats { flex-direction:column; gap:1.5rem; }
+  .stat-number { font-size:2.2rem; }
+  .theme-switcher { gap:4px; padding:8px 6px; }
+  .theme-switcher-btn { width:26px; height:26px; }
+}
+</style>
+</head>
+<body>
+<div class="grain-overlay"></div>
+
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Kárai <span>Mihály</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#rolam">Rólam</a></li>
+    <li><a href="#kiállítások">Művek</a></li>
+    <li><a href="#galéria">Galéria</a></li>
+    <li><a href="#kapcsolat">Kapcsolat</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="theme-switcher" id="themeSwitcher">
+  <button class="theme-switcher-btn active" data-theme="vaszon">
+    <div class="tooltip">Vászon</div>
+  </button>
+  <button class="theme-switcher-btn " data-theme="feher">
+    <div class="tooltip">Fehér Galéria</div>
+  </button>
+  <button class="theme-switcher-btn " data-theme="est">
+    <div class="tooltip">Éjszaka</div>
+  </button>
+  <button class="theme-switcher-btn " data-theme="gal">
+    <div class="tooltip">Fehér Galéria</div>
+  </button>
+  <button class="theme-switcher-btn " data-theme="bohem">
+    <div class="tooltip">Bohém</div>
+  </button>
+  <button class="theme-switcher-btn " data-theme="meleg">
+    <div class="tooltip">Meleg Tűz</div>
+  </button>
+  <button class="theme-switcher-btn " data-theme="erd">
+    <div class="tooltip">Erdő</div>
+  </button>
+
+</div>
+
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-subtitle">Kortárs absztrakt expresszionizmus</p>
+    <h1 class="hero-title">Kárai<br><em>Mihály</em></h1>
+    <p class="hero-tagline">A festészet az érzelmek nyelve — minden ecsetvonás egy történet</p>
+    <a href="#galéria" class="hero-cta">
+      Galéria megtekintése
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </a>
+  </div>
+  <div class="scroll-indicator">
+    <span>Görgess</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<section class="section-alt" id="rolam">
+  <div class="section-header reveal">
+    <span class="section-label">A művész</span>
+    <h2 class="section-title">Kárai <em>Mihály</em></h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-image reveal">
+      <div class="about-image-placeholder">KM</div>
+    </div>
+    <div class="about-text reveal">
+      <h3>A festészet az élet tükröze</h3>
+      <p>1961-ben született, élete során a festészet vált a létezés legmélyebb kifejezési formájává. Művészete a kortárs absztrakt expresszionizmus és a lírai absztrakció határán mozog, ahol a színek és textúrák saját nyelvet alkotnak.</p>
+      <p>Művei extrém meleg spektrumot használnak — tűzpirosat, kadmiumnarancsot, napraforgósárgát — melyeket erős kontrasztot képező hideg színek (ciánkék, sötétkék, smaragdzöld) metszenek át. Impasto technika, palettakéses kaparások és expresszív ecsetvonások jellemzik stílusát.</p>
+      <p>Kompozíciói térbeli mélységet varázsolnak a vászonra: rétegződés, elmosódó atmoszferikus horizontok, ritmikus geometriai blokkok és szétáradó organikus formák egyszerre jelennek meg műveiben.</p>
+      <div class="about-stats">
+        <div><div class="stat-number">1961</div><div class="stat-label">Születés</div></div>
+        <div><div class="stat-number">13+</div><div class="stat-label">Festmény</div></div>
+        <div><div class="stat-number">60+</div><div class="stat-label">Év alkotás</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="featured-section" id="kiállítások">
+  <div class="featured-scroll" id="featuredScroll">
+
+    <div class="featured-item">
+      <div class="featured-item-bg" style="background-image: url('festmenyek/014fb97bae01374ff673a7f51de018af-karai-mihaly-absztrakt-festmeny-kepmeret-80x60-cm.jpg');"></div>
+      <div class="featured-item-content">
+        <span class="section-label">Mű #1</span>
+        <h3>Absztrakt kompozíció I.</h3>
+        <div class="size">80×60 cm · Akril/Olaj vásznon</div>
+        <p>Meleg tónusú, textúrált kompozíció rácsszerű szerkezettel. Homályos okker és lazacszínű blokkokat erőteljes, sötétvörös és narancssárga sávok kereszteznek. A bal alsó sarokból kiinduló, átlós fehér és sárga hasításszerű vonalak úgy hatnak, mint a szélben hajladozó nád, vagy egy üveg felületébe karmolt fényjáték. Vastag impasto rétegek plasztikussá teszik a felületet.</p>
+      </div>
+    </div>
+    <div class="featured-item">
+      <div class="featured-item-bg" style="background-image: url('festmenyek/579ee3610e2f00108ae1ad3b4efe881f-karai-mihaly-a-kep-merete-80x60-cm.jpg');"></div>
+      <div class="featured-item-content">
+        <span class="section-label">Mű #2</span>
+        <h3>Dualitás</h3>
+        <div class="size">80×60 cm · Akril/Olaj vásznon</div>
+        <p>Geometrikus, color-blocking elveken alapuló, nagy kontrasztú festmény. A bal felső rész hűvös ciánkék mező, alatta tűzpiros oszlop. A jobb oldal kaotikusabb; apró ecsetvonásokból felépített mozaikszerű textúra sárga, rózsaszín, piros és fekete színekkel. A jobb alsó negyed sötétkék, vastag fekete és fehér X-formával. Nyugodt üres terek és sűrű, zajos textúrák találkozása.</p>
+      </div>
+    </div>
+    <div class="featured-item">
+      <div class="featured-item-bg" style="background-image: url('festmenyek/732e9d819fbbee1e6b2126f580f51743-karai-mihaly-szines-modern-absztrakt-festmeny-90-x-90-cm.jpg');"></div>
+      <div class="featured-item-content">
+        <span class="section-label">Mű #3</span>
+        <h3>Tűz és Jég</h3>
+        <div class="size">90×90 cm · Akril/Olaj vásznon</div>
+        <p>Szürreális, organikus formákból álló, tájképszerű absztrakció. Élő fehér és halvány pasztell rózsaszín felhőzetből emelkednek ki robusztus, masszív foltok: mélykék jéghegy-szerű forma és lángnyelvszerű, agresszív piros alakzat. Középen zöld és vörös foltok morzsolódó textúrával. Elementáris erők összecsapása.</p>
+      </div>
+    </div>
+    <div class="featured-item">
+      <div class="featured-item-bg" style="background-image: url('festmenyek/76a52a2610ed517750b4d73efabbe595-karai-mihaly-absztrakt-festmeny-140x40x4-cm.jpg');"></div>
+      <div class="featured-item-content">
+        <span class="section-label">Mű #4</span>
+        <h3>Éjszakai tükör</h3>
+        <div class="size">140×40 cm · Akril/Olaj vásznon</div>
+        <p>Extrém panorámaszerű elrendezés. A felső harmad sötét vörös, lefelé haladva izzó narancssárgába és napsárgába olvad. Az alsó harmad sötétkék alapon sűrű, négyzetes impasto blokkokból áll — neonfényű felhőkarcolók vízi tükröződése. Pulzáló éjszakai nagyvárosi hangulat.</p>
+      </div>
+    </div>
+    <div class="featured-item">
+      <div class="featured-item-bg" style="background-image: url('festmenyek/8548dfcda68a1463e1ed276bce0b0b0c-karai-mihaly-absztrakt-festmeny-kepmeret-140x40-cm.jpg');"></div>
+      <div class="featured-item-content">
+        <span class="section-label">Mű #5</span>
+        <h3>Izzó torony</h3>
+        <div class="size">140×40 cm · Akril/Olaj vásznon</div>
+        <p>Vérvörös háttérből élesen kiugrik fehér-sárga, felhőkarcoló-szerű középső forma, mint egy izzó torony. Az alsó negyedben vibráló rózsaszín és magenta lekerekített formák, sötétkék horizontvonal felett. A tüzes égbolt és a hideg víz radikális kontrasztja.</p>
+      </div>
+    </div>
+    <div class="featured-item">
+      <div class="featured-item-bg" style="background-image: url('festmenyek/9714f6cd20df8b60a6cfa68e340bdcb2-karai-mihaly-absztrakt-festmeny-40x70-cm.jpg');"></div>
+      <div class="featured-item-content">
+        <span class="section-label">Mű #6</span>
+        <h3>Sivatagi oázis</h3>
+        <div class="size">40×70 cm · Akril/Olaj vásznon</div>
+        <p>Horizontális tájkép-absztrakció. Arany, sárga és tompa piros meleg tónusai egy sivatagi naplementét idéznek. A vizuális súlypont egy éles, horizontális türkiz/ciánkék csík az alsó harmadban — mintha egy perzselő sivatag közepén hirtelen egy hűvös oázis vize csillanna meg. Meditatív, fókuszált alkotás.</p>
+      </div>
+    </div>
+    <div class="featured-item">
+      <div class="featured-item-bg" style="background-image: url('festmenyek/c74fb23ff889ff7fc5bc22904e957ac7-karai-mihaly-kortars-absztrakt-festmeny-kepmeret-70x30-cm.jpg');"></div>
+      <div class="featured-item-content">
+        <span class="section-label">Mű #7</span>
+        <h3>Fénysugár</h3>
+        <div class="size">70×30 cm · Akril/Olaj vásznon</div>
+        <p>Vékony, függőleges formátum két világosan elválasztható régióra. A felső rész meleg narancs és aranysárga hátterén fehéres, organikus körök — sejtek, napkorongok, lencse-becsillanás. A középpontból vakítóan fehér fénysugár ereszkedik le. Az alsó fele intenzív málna-rózsaszínbe és kárminpirosba megy át, halványkék szilánkokkal — fodrozódó víztükör élménye.</p>
+      </div>
+    </div>
+    <div class="featured-item">
+      <div class="featured-item-bg" style="background-image: url('festmenyek/cf6c30f8ab61eea749199ee138ae02df-karai-mihaly-nyari-hoseg-kepmeret-100x70-cm.jpg');"></div>
+      <div class="featured-item-content">
+        <span class="section-label">Mű #8</span>
+        <h3>Nyári hőség</h3>
+        <div class="size">100×70 cm · Akril/Olaj vásznon</div>
+        <p>Figurális-absztrakt fúzió. Központi téma egy női alak torzója, térdtől a nyakig, hófehér, kétrészes fürdőruhában. A testfelület és a körülötte lévő tér vad, izzó narancs, vörös, sárga és magenta színekben ég. A test szinte nincs lehatárolva, kontúrjai beleolvadnak a kaotikus, tüzes háttérbe — a nyári nap fizikai ereje.</p>
+      </div>
+    </div>
+    <div class="featured-item">
+      <div class="featured-item-bg" style="background-image: url('festmenyek/d0e8f21d863d3647ce7ce2705fbb0aeb-karai-mihaly-absztrakt-festmeny-kepmeret-70x70-cm.jpg');"></div>
+      <div class="featured-item-content">
+        <span class="section-label">Mű #9</span>
+        <h3>Szív</h3>
+        <div class="size">70×70 cm · Akril/Olaj vásznon</div>
+        <p>Négyzetes kompozíció, textúrájában a leginkább nyers és indusztriális. Rozsdabarnák, hamuszürkék és kopottas fehérek — málló vakolat, betonfal, viharvert fém. Ebből a komor környezetből tör elő a bal alsó negyedben egy hatalmas, aszimmetrikus, élénk kadmiumpiros/narancs szív. Melankólia és hirtelen felszakadó szenvedély allegóriája.</p>
+      </div>
+    </div>
+    <div class="featured-item">
+      <div class="featured-item-bg" style="background-image: url('festmenyek/d45190df18d013a48540242d4e02b588-karai-mihaly-szines-modern-absztrakt-festmeny-90x100-cm.jpg');"></div>
+      <div class="featured-item-content">
+        <span class="section-label">Mű #10</span>
+        <h3>Virágnyílás</h3>
+        <div class="size">90×100 cm · Akril/Olaj vásznon</div>
+        <p>Finom, elegáns, feminin atmoszférát árasztó festmény. Lazacszín, mályva, púderrózsaszín, halvány okker és off-white színek dominálnak. Az ecsetvonások úgy örvénylenek a középpont körül, mint egy szétnyíló virág szirmai, vagy széttört üvegablak szilánkjai. Vékony, légiesebb rétegek — harmonikus térélmény.</p>
+      </div>
+    </div>
+    <div class="featured-item">
+      <div class="featured-item-bg" style="background-image: url('festmenyek/e862397c8ee36bfab0bbe2de56b503e2-karai-mihaly-absztrakt-festmeny-kepmeret-60x60-cm.jpg');"></div>
+      <div class="featured-item-content">
+        <span class="section-label">Mű #11</span>
+        <h3>Kozmikus piac</h3>
+        <div class="size">60×60 cm · Akril/Olaj vásznon</div>
+        <p>Három sávra bontható négyzetes kép. A legfelső sáv világos arany-narancs alapon expresszív fehér és vörös koncentrikus köröket tartalmaz — forgó napokra utalva. Középen horizontális, stabil málnapiros sáv. Az alsó fele lüktető, sűrű városi mozaik: apró négyzetek sárga, narancs, piros, zöld és ciánkék színekben — madártávlati városkép perzselő napok alatt.</p>
+      </div>
+    </div>
+    <div class="featured-item">
+      <div class="featured-item-bg" style="background-image: url('festmenyek/keretnelkul_1.jpg');"></div>
+      <div class="featured-item-content">
+        <span class="section-label">Mű #12</span>
+        <h3>Destrukció</h3>
+        <div class="size">70×100 cm · Akril/Olaj vásznon</div>
+        <p>A gyűjtemény talán legsötétebb, legagresszívebb tónusú darabja. Szinte feketébe hajló burgundi vörös, mélybarna és karmazsin fojtogató alapját erőszakos, gyors kaparó mozdulatokkal felvitt hófehér és sárgás festékfoltok, valamint éles vonalak törik át. Kaotikus kompozíció, organikus formák küzdelme — nyers, zsigeri energia. Dramatikus chiaroscuro hatás.</p>
+      </div>
+    </div>
+    <div class="featured-item">
+      <div class="featured-item-bg" style="background-image: url('festmenyek/keretnelkul_2.jpg');"></div>
+      <div class="featured-item-content">
+        <span class="section-label">Mű #13</span>
+        <h3>Hangulat</h3>
+        <div class="size">80×60 cm · Akril/Olaj vásznon</div>
+        <p>Áramló, lüktető tiszta energia uralja. A vászon nagy részét hatalmas, ködszerű, homogén vörös-magenta felhő foglalja el. A szélek felé napsárga és fűzöld ecsethúzások bukkannak fel. A kép alján sötétebb, mélyvörös, forgó göc — fekete lyuk vagy szív — körül az egész kép örvénylik. Forró, misztikus és mélyen érzelmes atmoszféra.</p>
+      </div>
+    </div>
+  </div>
+  <div class="featured-nav">
+    <button id="featuredPrev" aria-label="Előző">&#8592;</button>
+    <button id="featuredNext" aria-label="Következő">&#8594;</button>
+  </div>
+</section>
+
+<section class="quote-section">
+  <div class="reveal">
+    <p class="quote-text">A festészet nem azt ábrázolja, ami látható, hanem amit láthatatlanná kell tenni.</p>
+    <p class="quote-author">— Paul Klee</p>
+  </div>
+</section>
+
+<section id="galéria">
+  <div class="section-header reveal">
+    <span class="section-label">Gyűjtemény</span>
+    <h2 class="section-title">Művek <em>galériája</em></h2>
+  </div>
+  <div class="gallery-grid">
+
+    <div class="gallery-item" data-index="0" onclick="openLightbox(0)">
+      <div class="gallery-img-wrap">
+        <img src="festmenyek/014fb97bae01374ff673a7f51de018af-karai-mihaly-absztrakt-festmeny-kepmeret-80x60-cm.jpg" alt="Absztrakt kompozíció I." loading="lazy">
+        <div class="gallery-overlay">
+          <h4>Absztrakt kompozíció I.</h4>
+          <span class="gallery-meta">80×60 cm · Akril/Olaj vásznon</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item" data-index="1" onclick="openLightbox(1)">
+      <div class="gallery-img-wrap">
+        <img src="festmenyek/579ee3610e2f00108ae1ad3b4efe881f-karai-mihaly-a-kep-merete-80x60-cm.jpg" alt="Dualitás" loading="lazy">
+        <div class="gallery-overlay">
+          <h4>Dualitás</h4>
+          <span class="gallery-meta">80×60 cm · Akril/Olaj vásznon</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item" data-index="2" onclick="openLightbox(2)">
+      <div class="gallery-img-wrap">
+        <img src="festmenyek/732e9d819fbbee1e6b2126f580f51743-karai-mihaly-szines-modern-absztrakt-festmeny-90-x-90-cm.jpg" alt="Tűz és Jég" loading="lazy">
+        <div class="gallery-overlay">
+          <h4>Tűz és Jég</h4>
+          <span class="gallery-meta">90×90 cm · Akril/Olaj vásznon</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item" data-index="3" onclick="openLightbox(3)">
+      <div class="gallery-img-wrap">
+        <img src="festmenyek/76a52a2610ed517750b4d73efabbe595-karai-mihaly-absztrakt-festmeny-140x40x4-cm.jpg" alt="Éjszakai tükör" loading="lazy">
+        <div class="gallery-overlay">
+          <h4>Éjszakai tükör</h4>
+          <span class="gallery-meta">140×40 cm · Akril/Olaj vásznon</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item" data-index="4" onclick="openLightbox(4)">
+      <div class="gallery-img-wrap">
+        <img src="festmenyek/8548dfcda68a1463e1ed276bce0b0b0c-karai-mihaly-absztrakt-festmeny-kepmeret-140x40-cm.jpg" alt="Izzó torony" loading="lazy">
+        <div class="gallery-overlay">
+          <h4>Izzó torony</h4>
+          <span class="gallery-meta">140×40 cm · Akril/Olaj vásznon</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item" data-index="5" onclick="openLightbox(5)">
+      <div class="gallery-img-wrap">
+        <img src="festmenyek/9714f6cd20df8b60a6cfa68e340bdcb2-karai-mihaly-absztrakt-festmeny-40x70-cm.jpg" alt="Sivatagi oázis" loading="lazy">
+        <div class="gallery-overlay">
+          <h4>Sivatagi oázis</h4>
+          <span class="gallery-meta">40×70 cm · Akril/Olaj vásznon</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item" data-index="6" onclick="openLightbox(6)">
+      <div class="gallery-img-wrap">
+        <img src="festmenyek/c74fb23ff889ff7fc5bc22904e957ac7-karai-mihaly-kortars-absztrakt-festmeny-kepmeret-70x30-cm.jpg" alt="Fénysugár" loading="lazy">
+        <div class="gallery-overlay">
+          <h4>Fénysugár</h4>
+          <span class="gallery-meta">70×30 cm · Akril/Olaj vásznon</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item" data-index="7" onclick="openLightbox(7)">
+      <div class="gallery-img-wrap">
+        <img src="festmenyek/cf6c30f8ab61eea749199ee138ae02df-karai-mihaly-nyari-hoseg-kepmeret-100x70-cm.jpg" alt="Nyári hőség" loading="lazy">
+        <div class="gallery-overlay">
+          <h4>Nyári hőség</h4>
+          <span class="gallery-meta">100×70 cm · Akril/Olaj vásznon</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item" data-index="8" onclick="openLightbox(8)">
+      <div class="gallery-img-wrap">
+        <img src="festmenyek/d0e8f21d863d3647ce7ce2705fbb0aeb-karai-mihaly-absztrakt-festmeny-kepmeret-70x70-cm.jpg" alt="Szív" loading="lazy">
+        <div class="gallery-overlay">
+          <h4>Szív</h4>
+          <span class="gallery-meta">70×70 cm · Akril/Olaj vásznon</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item" data-index="9" onclick="openLightbox(9)">
+      <div class="gallery-img-wrap">
+        <img src="festmenyek/d45190df18d013a48540242d4e02b588-karai-mihaly-szines-modern-absztrakt-festmeny-90x100-cm.jpg" alt="Virágnyílás" loading="lazy">
+        <div class="gallery-overlay">
+          <h4>Virágnyílás</h4>
+          <span class="gallery-meta">90×100 cm · Akril/Olaj vásznon</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item" data-index="10" onclick="openLightbox(10)">
+      <div class="gallery-img-wrap">
+        <img src="festmenyek/e862397c8ee36bfab0bbe2de56b503e2-karai-mihaly-absztrakt-festmeny-kepmeret-60x60-cm.jpg" alt="Kozmikus piac" loading="lazy">
+        <div class="gallery-overlay">
+          <h4>Kozmikus piac</h4>
+          <span class="gallery-meta">60×60 cm · Akril/Olaj vásznon</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item" data-index="11" onclick="openLightbox(11)">
+      <div class="gallery-img-wrap">
+        <img src="festmenyek/keretnelkul_1.jpg" alt="Destrukció" loading="lazy">
+        <div class="gallery-overlay">
+          <h4>Destrukció</h4>
+          <span class="gallery-meta">70×100 cm · Akril/Olaj vásznon</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item" data-index="12" onclick="openLightbox(12)">
+      <div class="gallery-img-wrap">
+        <img src="festmenyek/keretnelkul_2.jpg" alt="Hangulat" loading="lazy">
+        <div class="gallery-overlay">
+          <h4>Hangulat</h4>
+          <span class="gallery-meta">80×60 cm · Akril/Olaj vásznon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quote-section section-alt">
+  <div class="reveal">
+    <p class="quote-text">Minden festmény egy ajtó — ha elég nyitva van, beléphetsz egy másik világba.</p>
+    <p class="quote-author">— Kárai Mihály</p>
+  </div>
+</section>
+
+<section id="kapcsolat">
+  <div class="section-header reveal">
+    <span class="section-label">Kapcsolat</span>
+    <h2 class="section-title">Lépj <em>kapcsolatba</em></h2>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <h3>Megosznám veled a művészeti világomat</h3>
+      <p>Bármilyen kérdésed van a művekkel, kiállításokkal vagy megrendelésekkel kapcsolatban, bátran keress!</p>
+      <div class="contact-detail"><div class="contact-icon">📍</div><span>Magyarország</span></div>
+      <div class="contact-detail"><div class="contact-icon">✉</div><span>kara.mihaly@email.hu</span></div>
+      <div class="contact-detail"><div class="contact-icon">📞</div><span>+36 30 123 4567</span></div>
+    </div>
+    <form class="contact-form reveal" onsubmit="event.preventDefault(); alert('Köszönjük az üzenetet!');">
+      <div class="form-group">
+        <input type="text" id="name" placeholder=" " required>
+        <label for="name">Név</label>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" placeholder=" " required>
+        <label for="email">E-mail</label>
+      </div>
+      <div class="form-group">
+        <textarea id="message" placeholder=" " required></textarea>
+        <label for="message">Üzenet</label>
+      </div>
+      <button type="submit" class="form-submit">Üzenet küldése</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Kárai <span>Mihály</span></div>
+  <p>&copy; 2026 Kárai Mihály — Minden jog fenntartva</p>
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox(event)">&#10005;</button>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-info">
+    <h4 id="lightboxTitle"></h4>
+    <span id="lightboxMeta"></span>
+  </div>
+</div>
+
+<script>
+const themes = {"vaszon": {"name": "Vászon", "bg": "#F5F0E8", "bg2": "#EDE5D5", "text": "#2C2420", "accent": "#8B4513", "accent2": "#D4A574", "card": "#FFFFFF", "card_border": "#D4C5B0", "hero_overlay": "rgba(44,36,32,0.35)", "nav_bg": "rgba(245,240,232,0.92)", "shadow": "rgba(139,69,19,0.12)", "gradient1": "#D4A574", "gradient2": "#8B4513", "muted": "#7A6B5D", "light_text": "#F5F0E8", "section_alt": "#EDE5D5", "btn_bg": "#8B4513", "btn_text": "#F5F0E8", "btn_hover": "#A0522D", "blob1": "#D4A574", "blob2": "#C4956A", "grain_opacity": "0.03"}, "feher": {"name": "Fehér Galéria", "bg": "#FFFFFF", "bg2": "#FAFAFA", "text": "#1A1A1A", "accent": "#C45D3A", "accent2": "#E8A88A", "card": "#FFFFFF", "card_border": "#E8E8E8", "hero_overlay": "rgba(0,0,0,0.30)", "nav_bg": "rgba(255,255,255,0.95)", "shadow": "rgba(0,0,0,0.08)", "gradient1": "#E8A88A", "gradient2": "#C45D3A", "muted": "#888888", "light_text": "#FFFFFF", "section_alt": "#FAFAFA", "btn_bg": "#C45D3A", "btn_text": "#FFFFFF", "btn_hover": "#A84A2C", "blob1": "#E8A88A", "blob2": "#F0C4B0", "grain_opacity": "0.02"}, "est": {"name": "Éjszaka", "bg": "#0D0D1A", "bg2": "#141428", "text": "#E8E0F0", "accent": "#A855F7", "accent2": "#6366F1", "card": "#1A1A2E", "card_border": "#2D2B55", "hero_overlay": "rgba(13,13,26,0.50)", "nav_bg": "rgba(13,13,26,0.95)", "shadow": "rgba(168,85,247,0.15)", "gradient1": "#A855F7", "gradient2": "#6366F1", "muted": "#8888AA", "light_text": "#E8E0F0", "section_alt": "#141428", "btn_bg": "#A855F7", "btn_text": "#FFFFFF", "btn_hover": "#9333EA", "blob1": "#7C3AED", "blob2": "#4F46E5", "grain_opacity": "0.04"}, "gal": {"name": "Fehér Galéria", "bg": "#FFFFFF", "bg2": "#F8F8F8", "text": "#111111", "accent": "#222222", "accent2": "#666666", "card": "#FFFFFF", "card_border": "#EEEEEE", "hero_overlay": "rgba(0,0,0,0.25)", "nav_bg": "rgba(255,255,255,0.97)", "shadow": "rgba(0,0,0,0.06)", "gradient1": "#333333", "gradient2": "#111111", "muted": "#999999", "light_text": "#FFFFFF", "section_alt": "#F8F8F8", "btn_bg": "#111111", "btn_text": "#FFFFFF", "btn_hover": "#333333", "blob1": "#CCCCCC", "blob2": "#EEEEEE", "grain_opacity": "0.01"}, "bohem": {"name": "Bohém", "bg": "#FFF5EE", "bg2": "#FFE8D6", "text": "#3D1F0E", "accent": "#C0392B", "accent2": "#E67E22", "card": "#FFFAF5", "card_border": "#E8C9A0", "hero_overlay": "rgba(61,31,14,0.35)", "nav_bg": "rgba(255,245,238,0.93)", "shadow": "rgba(192,57,43,0.10)", "gradient1": "#E67E22", "gradient2": "#C0392B", "muted": "#8B6F5E", "light_text": "#FFF5EE", "section_alt": "#FFE8D6", "btn_bg": "#C0392B", "btn_text": "#FFF5EE", "btn_hover": "#A93226", "blob1": "#E67E22", "blob2": "#D35400", "grain_opacity": "0.04"}, "meleg": {"name": "Meleg Tűz", "bg": "#1A0A00", "bg2": "#2A1005", "text": "#FFE4C4", "accent": "#FF6B35", "accent2": "#FFB347", "card": "#2A1005", "card_border": "#4A2010", "hero_overlay": "rgba(26,10,0,0.55)", "nav_bg": "rgba(26,10,0,0.95)", "shadow": "rgba(255,107,53,0.15)", "gradient1": "#FF6B35", "gradient2": "#FFB347", "muted": "#CC9966", "light_text": "#FFE4C4", "section_alt": "#2A1005", "btn_bg": "#FF6B35", "btn_text": "#1A0A00", "btn_hover": "#FF8C5A", "blob1": "#FF6B35", "blob2": "#FF4500", "grain_opacity": "0.05"}, "erd": {"name": "Erdő", "bg": "#1A2E1A", "bg2": "#0F1F0F", "text": "#D4E8C2", "accent": "#4CAF50", "accent2": "#8BC34A", "card": "#1E3320", "card_border": "#2D4A2D", "hero_overlay": "rgba(26,46,26,0.45)", "nav_bg": "rgba(26,46,26,0.95)", "shadow": "rgba(76,175,80,0.12)", "gradient1": "#4CAF50", "gradient2": "#8BC34A", "muted": "#6B8E6B", "light_text": "#D4E8C2", "section_alt": "#0F1F0F", "btn_bg": "#4CAF50", "btn_text": "#1A2E1A", "btn_hover": "#66BB6A", "blob1": "#4CAF50", "blob2": "#388E3C", "grain_opacity": "0.04"}};
+let currentTheme = 'vaszon';
+
+function applyTheme(name) {
+  if (!themes[name]) return;
+  const t = themes[name];
+  const root = document.documentElement;
+  const pairs = [
+    ['--bg', t.bg], ['--bg2', t.bg2], ['--text', t.text], ['--accent', t.accent],
+    ['--accent2', t.accent2], ['--card', t.card], ['--card-border', t.card_border],
+    ['--muted', t.muted], ['--light-text', t.light_text], ['--section-alt', t.section_alt],
+    ['--btn-bg', t.btn_bg], ['--btn-text', t.btn_text], ['--btn-hover', t.btn_hover],
+    ['--nav-bg', t.nav_bg], ['--shadow', t.shadow], ['--gradient1', t.gradient1],
+    ['--gradient2', t.gradient2], ['--blob1', t.blob1], ['--blob2', t.blob2],
+    ['--grain-opacity', t.grain_opacity], ['--hero-overlay', t.hero_overlay]
+  ];
+  pairs.forEach(function(p) { root.style.setProperty(p[0], p[1]); });
+  currentTheme = name;
+  document.querySelectorAll('.theme-switcher-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.dataset.theme === name);
+  });
+  localStorage.setItem('karai-theme', name);
+}
+
+document.querySelectorAll('.theme-switcher-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() { applyTheme(btn.dataset.theme); });
+});
+
+const saved = localStorage.getItem('karai-theme');
+if (saved && themes[saved]) applyTheme(saved);
+
+var navbar = document.getElementById('navbar');
+var burger = document.getElementById('burger');
+var navLinks = document.getElementById('navLinks');
+
+window.addEventListener('scroll', function() {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+burger.addEventListener('click', function() {
+  burger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+
+document.querySelectorAll('.nav-links a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    burger.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+
+(function() {
+  var canvas = document.getElementById('heroCanvas');
+  var ctx = canvas.getContext('2d');
+  var w, h;
+  function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  var particles = [];
+  for (var i = 0; i < 60; i++) {
+    particles.push({
+      x: Math.random() * w, y: Math.random() * h,
+      r: Math.random() * 2 + 0.5,
+      dx: (Math.random() - 0.5) * 0.3, dy: (Math.random() - 0.5) * 0.3,
+      opacity: Math.random() * 0.5 + 0.1
+    });
+  }
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(function(p) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(200,160,120,' + p.opacity + ')';
+      ctx.fill();
+      p.x += p.dx; p.y += p.dy;
+      if (p.x < 0 || p.x > w) p.dx *= -1;
+      if (p.y < 0 || p.y > h) p.dy *= -1;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+var revealObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+
+var galleryObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      var idx = Array.from(entry.target.parentElement.children).indexOf(entry.target);
+      setTimeout(function() { entry.target.classList.add('visible'); }, idx * 100);
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('.gallery-item').forEach(function(el) { galleryObserver.observe(el); });
+
+(function() {
+  var scroll = document.getElementById('featuredScroll');
+  var prev = document.getElementById('featuredPrev');
+  var next = document.getElementById('featuredNext');
+  if (!scroll || !prev || !next) return;
+  var itemWidth = scroll.querySelector('.featured-item').offsetWidth;
+  prev.addEventListener('click', function() { scroll.scrollBy({ left: -itemWidth, behavior: 'smooth' }); });
+  next.addEventListener('click', function() { scroll.scrollBy({ left: itemWidth, behavior: 'smooth' }); });
+})();
+
+var paintings = [
+  { src: "festmenyek/014fb97bae01374ff673a7f51de018af-karai-mihaly-absztrakt-festmeny-kepmeret-80x60-cm.jpg", title: "Absztrakt kompozíció I.", meta: "80×60 cm · Akril/Olaj vásznon" },
+  { src: "festmenyek/579ee3610e2f00108ae1ad3b4efe881f-karai-mihaly-a-kep-merete-80x60-cm.jpg", title: "Dualitás", meta: "80×60 cm · Akril/Olaj vásznon" },
+  { src: "festmenyek/732e9d819fbbee1e6b2126f580f51743-karai-mihaly-szines-modern-absztrakt-festmeny-90-x-90-cm.jpg", title: "Tűz és Jég", meta: "90×90 cm · Akril/Olaj vásznon" },
+  { src: "festmenyek/76a52a2610ed517750b4d73efabbe595-karai-mihaly-absztrakt-festmeny-140x40x4-cm.jpg", title: "Éjszakai tükör", meta: "140×40 cm · Akril/Olaj vásznon" },
+  { src: "festmenyek/8548dfcda68a1463e1ed276bce0b0b0c-karai-mihaly-absztrakt-festmeny-kepmeret-140x40-cm.jpg", title: "Izzó torony", meta: "140×40 cm · Akril/Olaj vásznon" },
+  { src: "festmenyek/9714f6cd20df8b60a6cfa68e340bdcb2-karai-mihaly-absztrakt-festmeny-40x70-cm.jpg", title: "Sivatagi oázis", meta: "40×70 cm · Akril/Olaj vásznon" },
+  { src: "festmenyek/c74fb23ff889ff7fc5bc22904e957ac7-karai-mihaly-kortars-absztrakt-festmeny-kepmeret-70x30-cm.jpg", title: "Fénysugár", meta: "70×30 cm · Akril/Olaj vásznon" },
+  { src: "festmenyek/cf6c30f8ab61eea749199ee138ae02df-karai-mihaly-nyari-hoseg-kepmeret-100x70-cm.jpg", title: "Nyári hőség", meta: "100×70 cm · Akril/Olaj vásznon" },
+  { src: "festmenyek/d0e8f21d863d3647ce7ce2705fbb0aeb-karai-mihaly-absztrakt-festmeny-kepmeret-70x70-cm.jpg", title: "Szív", meta: "70×70 cm · Akril/Olaj vásznon" },
+  { src: "festmenyek/d45190df18d013a48540242d4e02b588-karai-mihaly-szines-modern-absztrakt-festmeny-90x100-cm.jpg", title: "Virágnyílás", meta: "90×100 cm · Akril/Olaj vásznon" },
+  { src: "festmenyek/e862397c8ee36bfab0bbe2de56b503e2-karai-mihaly-absztrakt-festmeny-kepmeret-60x60-cm.jpg", title: "Kozmikus piac", meta: "60×60 cm · Akril/Olaj vásznon" },
+  { src: "festmenyek/keretnelkul_1.jpg", title: "Destrukció", meta: "70×100 cm · Akril/Olaj vásznon" },
+  { src: "festmenyek/keretnelkul_2.jpg", title: "Hangulat", meta: "80×60 cm · Akril/Olaj vásznon" },
+
+];
+
+function openLightbox(index) {
+  var lb = document.getElementById('lightbox');
+  var img = document.getElementById('lightboxImg');
+  var title = document.getElementById('lightboxTitle');
+  var meta = document.getElementById('lightboxMeta');
+  var p = paintings[index];
+  img.src = p.src; img.alt = p.title;
+  title.textContent = p.title;
+  meta.textContent = p.meta;
+  lb.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(e) {
+  if (e.target === document.getElementById('lightbox') || e.target.closest('.lightbox-close')) {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+var sections = document.querySelectorAll('section[id]');
+var navAnchors = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', function() {
+  var current = '';
+  sections.forEach(function(section) {
+    var sectionTop = section.offsetTop - 200;
+    if (window.scrollY >= sectionTop) current = section.getAttribute('id');
+  });
+  navAnchors.forEach(function(a) {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+:root {
+  --hatter: #0b0f19; --felulet: #1a2235; --keret: #2e3c5a;
+  --szoveg: #e2e8f0; --halvany: #94a3b8; --kiemel: #3b82f6;
+  --jo: #10b981; --hiba: #ef4444;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 0 2rem 3rem;
+  font-family: system-ui, sans-serif;
+  background: var(--hatter); color: var(--szoveg); line-height: 1.5;
+}
+header { padding: 1.5rem 0 0; border-bottom: 1px solid var(--keret); }
+h1 { font-size: 1.5rem; margin: 0 0 1rem; }
+nav { display: flex; gap: .5rem; }
+.ful {
+  background: none; border: 1px solid var(--keret); border-bottom: none;
+  color: var(--halvany); padding: .6rem 1.2rem; border-radius: 8px 8px 0 0;
+  cursor: pointer; font-size: .95rem;
+}
+.ful.aktiv { background: var(--felulet); color: var(--szoveg); }
+.lap { display: none; padding-top: 1.5rem; }
+.lap.aktiv { display: block; }
+form { background: var(--felulet); border: 1px solid var(--keret); border-radius: 12px; padding: 1.25rem; max-width: 560px; }
+label { display: block; margin-bottom: .9rem; color: var(--halvany); font-size: .9rem; }
+input {
+  display: block; width: 100%; margin-top: .35rem; padding: .55rem .7rem;
+  background: var(--hatter); border: 1px solid var(--keret);
+  border-radius: 6px; color: var(--szoveg); font-size: 1rem;
+}
+button[type=submit] { background: var(--kiemel); color: #fff; border: none; padding: .6rem 1.2rem; border-radius: 6px; cursor: pointer; font-size: .95rem; }
+#urlap-uzenet { min-height: 1.4em; margin: .8rem 0 0; font-size: .9rem; }
+#urlap-uzenet.jo { color: var(--jo); }
+#urlap-uzenet.hiba { color: var(--hiba); }
+.ugyfel-sor { background: var(--felulet); border: 1px solid var(--keret); border-radius: 10px; padding: 1rem; margin-bottom: .75rem; }
+.ugyfel-sor h3 { margin: 0 0 .3rem; font-size: 1.05rem; }
+.link-sor { display: flex; gap: .5rem; align-items: center; margin-top: .6rem; }
+.link-sor code { background: var(--hatter); padding: .35rem .55rem; border-radius: 5px; color: var(--halvany); font-size: .85rem; }
+.link-sor button { background: none; border: 1px solid var(--keret); color: var(--szoveg); padding: .35rem .7rem; border-radius: 5px; cursor: pointer; }
+
+body.ugyfel { max-width: 1100px; margin: 0 auto; }
+body.ugyfel header { border: none; padding-top: 2.5rem; }
+body.ugyfel header p { color: var(--halvany); margin-top: .4rem; }
+#tervek { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.kartya { background: var(--felulet); border: 1px solid var(--keret); border-radius: 14px; padding: 1rem; }
+.kartya h2 { font-size: 1.15rem; margin: .9rem 0 .6rem; }
+.miniatur { height: 200px; overflow: hidden; border-radius: 10px; background: #fff; }
+.miniatur iframe {
+  width: 1280px; height: 800px; border: 0;
+  transform: scale(.25); transform-origin: 0 0; pointer-events: none;
+}
+.megnezem {
+  display: inline-block; background: var(--kiemel); color: #fff;
+  padding: .5rem 1rem; border-radius: 6px; text-decoration: none; font-size: .9rem;
+}
+.valaszok { display: flex; gap: .4rem; margin: .9rem 0 .6rem; }
+.valaszok button {
+  flex: 1; background: none; border: 1px solid var(--keret); color: var(--szoveg);
+  padding: .5rem; border-radius: 6px; cursor: pointer; font-size: .9rem;
+}
+.valaszok button.aktiv { background: var(--kiemel); border-color: var(--kiemel); color: #fff; }
+.megjegyzes {
+  width: 100%; min-height: 3.5rem; background: var(--hatter); color: var(--szoveg);
+  border: 1px solid var(--keret); border-radius: 6px; padding: .5rem; font: inherit; font-size: .9rem;
+}
+#mentes-jelzo { text-align: right; color: var(--jo); font-size: .85rem; min-height: 1.4em; }
+body.admin { max-width: 1000px; margin: 0 auto; }
+#sav { color: var(--halvany); font-size: .95rem; }
+.ugyfel-kartya { background: var(--felulet); border: 1px solid var(--keret); border-radius: 12px; padding: 1.1rem; margin-bottom: 1rem; }
+.ugyfel-kartya .fejlec { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.ugyfel-kartya h2 { font-size: 1.15rem; margin: 0; }
+.cimke { font-size: .8rem; padding: .2rem .6rem; border-radius: 999px; border: 1px solid var(--keret); color: var(--halvany); }
+.statusz-var_ram .cimke { border-color: var(--kiemel); color: var(--kiemel); }
+.statusz-var_ra .cimke { border-color: #f59e0b; color: #f59e0b; }
+.statusz-kesz .cimke { border-color: var(--jo); color: var(--jo); }
+.szamok, .legjobb { color: var(--halvany); font-size: .88rem; margin: .5rem 0 0; }
+.gombok { display: flex; gap: .5rem; margin-top: .9rem; flex-wrap: wrap; }
+.gombok a, .gombok button {
+  background: none; border: 1px solid var(--keret); color: var(--szoveg);
+  padding: .4rem .8rem; border-radius: 6px; cursor: pointer;
+  text-decoration: none; font-size: .85rem;
+}
+
+body.szeles { max-width: none; }
+.tabla-keret { overflow-x: auto; background: var(--felulet); border: 1px solid var(--keret); border-radius: 12px; }
+table { width: 100%; border-collapse: collapse; min-width: 1100px; }
+th, td { padding: .7rem .9rem; border-bottom: 1px solid var(--keret); vertical-align: top; text-align: left; }
+th { color: var(--halvany); font-size: .82rem; background: rgba(0,0,0,.2); }
+td.meta, td.ovalasz { color: var(--halvany); font-size: .85rem; }
+.pontok { display: flex; flex-wrap: wrap; gap: 2px; }
+button.pont { width: 26px; height: 26px; padding: 0; background: var(--hatter); border: 1px solid var(--keret); color: var(--halvany); border-radius: 4px; cursor: pointer; font-size: .78rem; }
+button.pont.aktiv { background: var(--kiemel); border-color: var(--kiemel); color: #fff; }
+.statuszok { display: flex; flex-direction: column; gap: .3rem; align-items: flex-start; }
+.statuszok button { background: none; border: 1px solid var(--keret); color: var(--szoveg); padding: .25rem .55rem; border-radius: 5px; cursor: pointer; font-size: .78rem; }
+.statuszok button.aktiv { border-color: var(--kiemel); color: var(--kiemel); }
+.kapcsolo { color: var(--halvany); font-size: .8rem; margin-top: .3rem; }
+.en-megjegyzes { width: 100%; min-width: 180px; min-height: 3rem; background: var(--hatter); color: var(--szoveg); border: 1px solid var(--keret); border-radius: 6px; padding: .4rem; font: inherit; font-size: .85rem; }

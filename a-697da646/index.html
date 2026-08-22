@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ND Studio</title>
+  <link rel="stylesheet" href="../kozos/studio.css">
+</head>
+<body class="admin">
+  <header>
+    <h1>ND Studio</h1>
+    <p id="sav">Betöltés…</p>
+    <button type="button" id="token-csere">Token cseréje</button>
+  </header>
+  <main id="ugyfelek"></main>
+
+  <script type="module">
+    import { BEALLITAS } from "./beallit.js";
+    import { inditAdminOsszefoglalo } from "../kozos/admin-osszefoglalo.js";
+    inditAdminOsszefoglalo(BEALLITAS);
+  </script>
+</body>
+</html>

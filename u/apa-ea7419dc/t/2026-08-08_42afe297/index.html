@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kárai Mihály — Festőművész</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+
+/* === EDITORIAL MUSEUM STYLE === */
+:root {
+  --cream: #F7F3EE;
+  --cream-dark: #EDE8E0;
+  --terracotta: #C4623A;
+  --terracotta-light: #D4845E;
+  --olive: #5C6B4F;
+  --olive-light: #7A8B6A;
+  --charcoal: #2C2C2C;
+  --warm-gray: #8A8279;
+  --light-gray: #C8C2B9;
+  --white: #FFFFFF;
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--charcoal);
+  line-height: 1.7;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 24px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background var(--ease), padding var(--ease);
+}
+.nav.scrolled {
+  background: rgba(247,243,238,0.95);
+  backdrop-filter: blur(10px);
+  padding: 16px 48px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+}
+.nav-brand {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--warm-gray);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  position: relative;
+  transition: color 0.3s var(--ease);
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--terracotta);
+  transition: width 0.4s var(--ease);
+}
+.nav-links a:hover { color: var(--charcoal); }
+.nav-links a:hover::after { width: 100%; }
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0 48px;
+  gap: 64px;
+}
+.hero-text { padding: 48px 0; }
+.hero-label {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-label::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--terracotta);
+}
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--charcoal);
+  margin-bottom: 24px;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--terracotta);
+}
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--warm-gray);
+  max-width: 400px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  text-decoration: none;
+  border-bottom: 1px solid var(--charcoal);
+  padding-bottom: 8px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.hero-cta:hover {
+  color: var(--terracotta);
+  border-color: var(--terracotta);
+}
+.hero-image {
+  position: relative;
+  height: 85vh;
+  overflow: hidden;
+}
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.5s var(--ease);
+}
+.hero-image:hover img { transform: scale(1.03); }
+.hero-image-frame {
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(255,255,255,0.3);
+  pointer-events: none;
+}
+.section { padding: 120px 48px; }
+.section-header { margin-bottom: 64px; }
+.section-number {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  color: var(--terracotta);
+  margin-bottom: 16px;
+  display: block;
+}
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.section-desc {
+  font-size: 1rem;
+  color: var(--warm-gray);
+  max-width: 500px;
+  line-height: 1.8;
+}
+.about { background: var(--white); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: start;
+}
+.about-portrait { position: relative; }
+.about-portrait img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  filter: grayscale(20%) sepia(10%);
+}
+.about-portrait-label {
+  position: absolute;
+  bottom: -16px;
+  right: -16px;
+  background: var(--terracotta);
+  color: var(--white);
+  padding: 16px 24px;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-style: italic;
+}
+.about-text h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-bottom: 24px;
+  color: var(--charcoal);
+}
+.about-text p {
+  margin-bottom: 20px;
+  color: var(--warm-gray);
+  font-size: 0.95rem;
+}
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+  padding-top: 48px;
+  border-top: 1px solid var(--cream-dark);
+}
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--terracotta);
+  display: block;
+}
+.stat-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  margin-top: 4px;
+}
+.gallery-section { padding: 120px 0; overflow: hidden; }
+.gallery-track {
+  display: flex;
+  gap: 40px;
+  padding: 0 48px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.gallery-track::-webkit-scrollbar { display: none; }
+.gallery-card {
+  flex: 0 0 420px;
+  scroll-snap-align: start;
+  position: relative;
+  cursor: pointer;
+}
+.gallery-card-image {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.gallery-card-image img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease);
+}
+.gallery-card:hover .gallery-card-image img { transform: scale(1.05); }
+.gallery-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(44,44,44,0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.5s var(--ease);
+}
+.gallery-card:hover .gallery-card-overlay { background: rgba(44,44,44,0.15); }
+.gallery-card-info { padding: 0 4px; }
+.gallery-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+.gallery-card-meta {
+  font-size: 0.8rem;
+  color: var(--warm-gray);
+  letter-spacing: 0.05em;
+}
+.gallery-scroll-hint {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 0.8rem;
+  color: var(--light-gray);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.gallery-scroll-hint svg { animation: scrollHint 2s ease-in-out infinite; }
+@keyframes scrollHint {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(8px); }
+}
+.exhibitions {
+  background: var(--charcoal);
+  color: var(--cream);
+}
+.exhibitions .section-title { color: var(--cream); }
+.exhibitions .section-desc { color: var(--light-gray); }
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--warm-gray);
+  opacity: 0.3;
+}
+.timeline-item {
+  padding-left: 48px;
+  padding-bottom: 48px;
+  position: relative;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 8px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--terracotta);
+}
+.timeline-year {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--terracotta-light);
+  margin-bottom: 8px;
+}
+.timeline-title {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+.timeline-venue {
+  font-size: 0.85rem;
+  color: var(--light-gray);
+  font-style: italic;
+}
+.frame-section { background: var(--cream-dark); }
+.frame-compare-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+.frame-compare {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  cursor: col-resize;
+}
+.frame-compare img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.frame-compare .frame-on {
+  clip-path: inset(0 50% 0 0);
+  z-index: 2;
+}
+.frame-slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: var(--terracotta);
+  z-index: 10;
+  transform: translateX(-50%);
+}
+.frame-slider::after {
+  content: '◀ ▶';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--terracotta);
+  color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+.contact {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.contact-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+.contact-text {
+  color: var(--warm-gray);
+  margin-bottom: 40px;
+  line-height: 1.8;
+}
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.contact-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--charcoal);
+  transition: color 0.3s;
+}
+.contact-link:hover { color: var(--terracotta); }
+.contact-link-icon {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--light-gray);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: border-color 0.3s, background 0.3s;
+}
+.contact-link:hover .contact-link-icon {
+  border-color: var(--terracotta);
+  background: var(--terracotta);
+  color: white;
+}
+.contact-link-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.footer {
+  padding: 40px 48px;
+  border-top: 1px solid var(--cream-dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--light-gray);
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+.lightbox.active { display: flex; }
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+}
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; padding: 120px 32px 48px; gap: 32px; }
+  .hero-image { height: 50vh; }
+  .section { padding: 80px 32px; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .gallery-card { flex: 0 0 320px; }
+  .nav { padding: 20px 32px; }
+  .nav.scrolled { padding: 14px 32px; }
+}
+@media (max-width: 720px) {
+  .nav-links { display: none; }
+  .hero { padding: 100px 20px 40px; }
+  .hero-title { font-size: 2.5rem; }
+  .section { padding: 60px 20px; }
+  .gallery-card { flex: 0 0 280px; }
+  .gallery-track { padding: 0 20px; gap: 24px; }
+  .about-stats { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .contact-links { flex-direction: column; gap: 24px; }
+  .footer { flex-direction: column; gap: 12px; text-align: center; }
+  .nav { padding: 16px 20px; }
+}
+
+</style>
+</head>
+<body>
+<nav class="nav" id="navbar">
+<a href="#" class="nav-brand">Kárai Mihály</a>
+<ul class="nav-links">
+<li><a href="#rolam">Rólam</a></li>
+<li><a href="#galéria">Galéria</a></li>
+<li><a href="#kiállítások">Kiállítások</a></li>
+<li><a href="#keret">Keret</a></li>
+<li><a href="#kapcsolat">Kapcsolat</a></li>
+</ul>
+</nav>
+<section class="hero" id="hero">
+<div class="hero-text">
+<div class="hero-label">Festőművész</div>
+<h1 class="hero-title">A művészet <em>beszéde</em></h1>
+<p class="hero-subtitle">Kárai Mihály festményei a csend, a fény és a szín üzenetét hordozzák. Minden ecsetvonás egy új történet.</p>
+<a href="#galéria" class="hero-cta">Galéria megtekintése →</a>
+</div>
+<div class="hero-image">
+<img src="../../assets/014fb97bae01374ff673a7f51de018af-karai-mihaly-absztrakt-festmeny-kepmeret-80x60-cm.jpg" alt="Kárai Mihály festménye" loading="eager">
+<div class="hero-image-frame"></div>
+</div>
+</section>
+<section class="section about" id="rolam">
+<div class="section-header reveal">
+<span class="section-number">01</span>
+<h2 class="section-title">Rólam</h2>
+</div>
+<div class="about-grid">
+<div class="about-portrait reveal">
+<img src="../../assets/579ee3610e2f00108ae1ad3b4efe881f-karai-mihaly-a-kep-merete-80x60-cm.jpg" alt="Kárai Mihály portré" loading="lazy">
+<div class="about-portrait-label">Sz. 1961</div>
+</div>
+<div class="about-text">
+<h3 class="reveal reveal-delay-1">Évtizedek művészi utazása</h3>
+<p class="reveal reveal-delay-1">Kárai Mihály 1961-ben született, és élete során a festészetben találta meg önmagát. Művészete a természet és az emberi érzések közötti hidat képezi, ahol a színek nemcsak látványt, hanem érzést is közvetítenek.</p>
+<p class="reveal reveal-delay-2">Művei számos magángyűjteményben és közterületen is megtalálhatók. Festményei a csend hatalmát és a szín szabadságát hordozzák magukban, minden ecsetvonás egy-egy belső monológ.</p>
+<div class="about-stats reveal reveal-delay-3">
+<div><span class="stat-number">40+</span><span class="stat-label">Év művészi gyakorlat</span></div>
+<div><span class="stat-number">200+</span><span class="stat-label">Festmény</span></div>
+<div><span class="stat-number">50+</span><span class="stat-label">Kiállítás</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section gallery-section" id="galéria">
+<div class="section-header reveal" style="padding: 0 48px;">
+<span class="section-number">02</span>
+<h2 class="section-title">Galéria</h2>
+<p class="section-desc">Görgess végig a munkákon — kattints a nagyításért.</p>
+</div>
+<div class="gallery-track">
+<div class="gallery-card reveal" data-title="Csend a térben" data-size="80x60 cm" data-artist="Kárai Mihály">
+<div class="gallery-card-image">
+<img src="../../assets/014fb97bae01374ff673a7f51de018af-karai-mihaly-absztrakt-festmeny-kepmeret-80x60-cm.jpg" alt="Csend a térben" loading="lazy">
+<div class="gallery-card-overlay"></div>
+</div>
+<div class="gallery-card-info">
+<h3 class="gallery-card-title">Csend a térben</h3>
+<p class="gallery-card-meta">80x60 cm · 2024 · olaj, vászon</p>
+</div>
+</div>
+<div class="gallery-card reveal" data-title="Reggeli fények" data-size="70x50 cm" data-artist="Kárai Mihály">
+<div class="gallery-card-image">
+<img src="../../assets/579ee3610e2f00108ae1ad3b4efe881f-karai-mihaly-a-kep-merete-80x60-cm.jpg" alt="Reggeli fények" loading="lazy">
+<div class="gallery-card-overlay"></div>
+</div>
+<div class="gallery-card-info">
+<h3 class="gallery-card-title">Reggeli fények</h3>
+<p class="gallery-card-meta">70x50 cm · 2023 · akril, vászon</p>
+</div>
+</div>
+<div class="gallery-card reveal" data-title="Színes moduláció" data-size="90x100 cm" data-artist="Kárai Mihály">
+<div class="gallery-card-image">
+<img src="../../assets/d45190df18d013a48540242d4e02b588-karai-mihaly-szines-modern-absztrakt-festmeny-90x100-cm.jpg" alt="Színes moduláció" loading="lazy">
+<div class="gallery-card-overlay"></div>
+</div>
+<div class="gallery-card-info">
+<h3 class="gallery-card-title">Színes moduláció</h3>
+<p class="gallery-card-meta">90x100 cm · 2024 · olaj, vászon</p>
+</div>
+</div>
+<div class="gallery-card reveal" data-title="Égi határ" data-size="100x80 cm" data-artist="Kárai Mihály">
+<div class="gallery-card-image">
+<img src="../../assets/keretnelkul_1.jpg" alt="Égi határ" loading="lazy">
+<div class="gallery-card-overlay"></div>
+</div>
+<div class="gallery-card-info">
+<h3 class="gallery-card-title">Égi határ</h3>
+<p class="gallery-card-meta">100x80 cm · 2023 · olaj, vászon</p>
+</div>
+</div>
+<div class="gallery-card reveal" data-title="Tavasz a kertben" data-size="60x40 cm" data-artist="Kárai Mihály">
+<div class="gallery-card-image">
+<img src="../../assets/interior_1.jpg" alt="Tavasz a kertben" loading="lazy">
+<div class="gallery-card-overlay"></div>
+</div>
+<div class="gallery-card-info">
+<h3 class="gallery-card-title">Tavasz a kertben</h3>
+<p class="gallery-card-meta">60x40 cm · 2022 · akril, vászon</p>
+</div>
+</div>
+<div class="gallery-card reveal" data-title="Alkotó erő" data-size="120x90 cm" data-artist="Kárai Mihály">
+<div class="gallery-card-image">
+<img src="../../assets/014fb97bae01374ff673a7f51de018af-karai-mihaly-absztrakt-festmeny-kepmeret-80x60-cm.jpg" alt="Alkotó erő" loading="lazy">
+<div class="gallery-card-overlay"></div>
+</div>
+<div class="gallery-card-info">
+<h3 class="gallery-card-title">Alkotó erő</h3>
+<p class="gallery-card-meta">120x90 cm · 2024 · olaj, vászon</p>
+</div>
+</div>
+<div class="gallery-card reveal" data-title="Vándorlás" data-size="80x120 cm" data-artist="Kárai Mihály">
+<div class="gallery-card-image">
+<img src="../../assets/579ee3610e2f00108ae1ad3b4efe881f-karai-mihaly-a-kep-merete-80x60-cm.jpg" alt="Vándorlás" loading="lazy">
+<div class="gallery-card-overlay"></div>
+</div>
+<div class="gallery-card-info">
+<h3 class="gallery-card-title">Vándorlás</h3>
+<p class="gallery-card-meta">80x120 cm · 2023 · olaj, vászon</p>
+</div>
+</div>
+<div class="gallery-card reveal" data-title="Arany nyár" data-size="70x70 cm" data-artist="Kárai Mihály">
+<div class="gallery-card-image">
+<img src="../../assets/d45190df18d013a48540242d4e02b588-karai-mihaly-szines-modern-absztrakt-festmeny-90x100-cm.jpg" alt="Arany nyár" loading="lazy">
+<div class="gallery-card-overlay"></div>
+</div>
+<div class="gallery-card-info">
+<h3 class="gallery-card-title">Arany nyár</h3>
+<p class="gallery-card-meta">70x70 cm · 2024 · akril, vászon</p>
+</div>
+</div>
+</div>
+<div class="gallery-scroll-hint">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+<span>Görgess jobbra</span>
+</div>
+</section>
+<section class="section exhibitions" id="kiállítások">
+<div class="section-header reveal">
+<span class="section-number">03</span>
+<h2 class="section-title">Kiállítások</h2>
+<p class="section-desc">Válogatás a jelentősebb kiállításokból.</p>
+</div>
+<div class="timeline">
+<div class="timeline-item reveal">
+<div class="timeline-year">2024</div>
+<div class="timeline-title">Csend és szín</div>
+<div class="timeline-venue">Művelődési Ház, Budapest</div>
+</div>
+<div class="timeline-item reveal">
+<div class="timeline-year">2023</div>
+<div class="timeline-title">Tavasz a képben</div>
+<div class="timeline-venue">Galéria 12, Debrecen</div>
+</div>
+<div class="timeline-item reveal">
+<div class="timeline-year">2022</div>
+<div class="timeline-title">Festői tájak</div>
+<div class="timeline-venue">Városi Múzeum, Szeged</div>
+</div>
+<div class="timeline-item reveal">
+<div class="timeline-year">2021</div>
+<div class="timeline-title">Ecsetvonások</div>
+<div class="timeline-venue">Kortárs Művészeti Központ, Pécs</div>
+</div>
+<div class="timeline-item reveal">
+<div class="timeline-year">2020</div>
+<div class="timeline-title">Színek világa</div>
+<div class="timeline-venue">Nemzeti Galéria, Budapest</div>
+</div>
+</div>
+</section>
+<section class="section frame-section" id="keret">
+<div class="section-header reveal" style="text-align:center;">
+<span class="section-number">04</span>
+<h2 class="section-title">Keret nélkül vagy kerettel?</h2>
+<p class="section-desc" style="margin:0 auto;">Húzd a csúszkát, és nézd meg, hogyan változik a festmény hatása.</p>
+</div>
+<div class="frame-compare-wrapper reveal">
+<div class="frame-compare" id="frameCompare">
+<img class="frame-on" src="../../assets/d45190df18d013a48540242d4e02b588-karai-mihaly-szines-modern-absztrakt-festmeny-90x100-cm.jpg" alt="Kárai Mihály — keret nélkül" data-frame="on">
+<img src="../../assets/keretnelkul_1.jpg" alt="Kárai Mihály — kerettel" data-frame="off">
+<div class="frame-slider" id="frameSlider"></div>
+</div>
+</div>
+</section>
+<section class="section" id="kapcsolat">
+<div class="contact reveal">
+<span class="section-number">05</span>
+<h2 class="contact-title">Kapcsolat</h2>
+<p class="contact-text">Érdekel egy festmény, kiállítás, vagy együttműködés? Keress bátran!</p>
+<div class="contact-links">
+<a href="tel:+36301234567" class="contact-link">
+<div class="contact-link-icon">☎</div>
+<span class="contact-link-label">Telefon</span>
+</a>
+<a href="mailto:karai.mihaly@email.hu" class="contact-link">
+<div class="contact-link-icon">✉</div>
+<span class="contact-link-label">Email</span>
+</a>
+<a href="#" class="contact-link">
+<div class="contact-link-icon">◎</div>
+<span class="contact-link-label">Instagram</span>
+</a>
+</div>
+</div>
+</section>
+<footer class="footer">
+<span>© 2026 Kárai Mihály — Minden jog fenntartva</span>
+<span>Festőművész, Sz. 1961</span>
+</footer>
+<div class="lightbox" id="lightbox">
+<div class="lightbox-close" id="lightboxClose">✕</div>
+<img src="" alt="" id="lightboxImg">
+</div>
+<script>
+(function() {
+'use strict';
+
+// === NAV SCROLL ===
+var navbar = document.getElementById("navbar");
+window.addEventListener("scroll", function() {
+  if (window.scrollY > 50) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
+  }
+});
+
+// === SMOOTH SCROLL ===
+document.querySelectorAll(".nav-links a, .hero-cta").forEach(function(link) {
+  link.addEventListener("click", function(e) {
+    e.preventDefault();
+    var target = document.querySelector(this.getAttribute("href"));
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+});
+
+// === REVEAL ON SCROLL ===
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+}, { threshold: 0.1, rootMargin: "0px 0px -60px 0px" });
+document.querySelectorAll(".reveal").forEach(function(el) {
+  observer.observe(el);
+});
+
+// === LIGHTBOX ===
+var lightbox = document.getElementById("lightbox");
+var lightboxImg = document.getElementById("lightboxImg");
+var lightboxClose = document.getElementById("lightboxClose");
+document.querySelectorAll(".gallery-card").forEach(function(card) {
+  card.addEventListener("click", function() {
+    var img = this.querySelector("img");
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add("active");
+  });
+});
+function closeLightbox() {
+  lightbox.classList.remove("active");
+}
+lightboxClose.addEventListener("click", closeLightbox);
+lightbox.addEventListener("click", function(e) {
+  if (e.target === lightbox) closeLightbox();
+});
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") closeLightbox();
+});
+
+// === FRAME SLIDER ===
+var frameCompare = document.getElementById("frameCompare");
+var frameSlider = document.getElementById("frameSlider");
+var frameOn = frameCompare.querySelector(".frame-on");
+var isDragging = false;
+frameCompare.addEventListener("mousedown", function() { isDragging = true; });
+document.addEventListener("mouseup", function() { isDragging = false; });
+document.addEventListener("mousemove", function(e) {
+  if (!isDragging) return;
+  var rect = frameCompare.getBoundingClientRect();
+  var x = e.clientX - rect.left;
+  var percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+  frameSlider.style.left = percent + "%";
+  frameOn.style.clipPath = "inset(0 " + (100 - percent) + "% 0 0)";
+});
+
+// === TOUCH SUPPORT ===
+frameCompare.addEventListener("touchstart", function() { isDragging = true; });
+document.addEventListener("touchend", function() { isDragging = false; });
+document.addEventListener("touchmove", function(e) {
+  if (!isDragging) return;
+  var touch = e.touches[0];
+  var rect = frameCompare.getBoundingClientRect();
+  var x = touch.clientX - rect.left;
+  var percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+  frameSlider.style.left = percent + "%";
+  frameOn.style.clipPath = "inset(0 " + (100 - percent) + "% 0 0)";
+});
+
+})();
+</script>
+</body>
+</html>

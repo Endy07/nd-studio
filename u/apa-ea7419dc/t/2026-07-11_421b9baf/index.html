@@ -1,0 +1,1805 @@
+﻿<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kárai Mihály — Digitális Kiállítás</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap');
+
+  /* ═══════════════════════════════════════════════════════════
+     ATOSFERA DEFINÍCIÓK — 60-30-10 SZÍNHARMÓNIÁK
+     ═══════════════════════════════════════════════════════════ */
+
+  :root {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --bg-tertiary: #2a2a2a;
+    --text-primary: #f5efe6;
+    --text-secondary: #c4b8a8;
+    --text-accent: #d4a853;
+    --accent-1: #d4a853;
+    --accent-2: #8b6914;
+    --accent-3: #f5efe6;
+    --gallery-bg: #0a0a0a;
+    --frame-glow: rgba(212,168,83,0.15);
+    --particle-color: rgba(212,168,83,0.3);
+    --transition-speed: 0.8s;
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'EB Garamond', serif;
+    --font-ui: 'Noto Serif', serif;
+  }
+
+  /* Atmoszféra 1: Búzakalász — meleg arany, világos */
+  [data-atmosphere="buzakalasz"] {
+    --bg-primary: #f5efe6;
+    --bg-secondary: #e8dcc8;
+    --bg-tertiary: #d4c4a8;
+    --text-primary: #2c2416;
+    --text-secondary: #5a4a32;
+    --text-accent: #8b6914;
+    --accent-1: #d4a853;
+    --accent-2: #b8922a;
+    --accent-3: #f5efe6;
+    --gallery-bg: #f5efe6;
+    --frame-glow: rgba(139,105,20,0.12);
+    --particle-color: rgba(212,168,83,0.25);
+  }
+
+  /* Atmoszféra 2: Éjszakai táj — mélykék, sötét */
+  [data-atmosphere="jeszakai-taj"] {
+    --bg-primary: #050a14;
+    --bg-secondary: #0d1a2e;
+    --bg-tertiary: #162844;
+    --text-primary: #c8d8e8;
+    --text-secondary: #7a9ab8;
+    --text-accent: #4a90d9;
+    --accent-1: #4a90d9;
+    --accent-2: #2a6090;
+    --accent-3: #c8d8e8;
+    --gallery-bg: #050a14;
+    --frame-glow: rgba(74,144,217,0.15);
+    --particle-color: rgba(74,144,217,0.2);
+  }
+
+  /* Atmoszféra 3: Tavaszi reggel — zöld/rozé, világos */
+  [data-atmosphere="tavaszi-reggel"] {
+    --bg-primary: #f0ebe4;
+    --bg-secondary: #ddd5c8;
+    --bg-tertiary: #c8bfb0;
+    --text-primary: #2a3a28;
+    --text-secondary: #5a6a52;
+    --text-accent: #6a9a5a;
+    --accent-1: #6a9a5a;
+    --accent-2: #4a7a3a;
+    --accent-3: #f0ebe4;
+    --gallery-bg: #f0ebe4;
+    --frame-glow: rgba(106,154,90,0.12);
+    --particle-color: rgba(106,154,90,0.2);
+  }
+
+  /* Atmoszféra 4: Őszi este — meleg narancs/barna, közepes */
+  [data-atmosphere="oszi-este"] {
+    --bg-primary: #1a1208;
+    --bg-secondary: #2a1e10;
+    --bg-tertiary: #3a2a18;
+    --text-primary: #e8d8c0;
+    --text-secondary: #a89070;
+    --text-accent: #d4782a;
+    --accent-1: #d4782a;
+    --accent-2: #a85a1a;
+    --accent-3: #e8d8c0;
+    --gallery-bg: #1a1208;
+    --frame-glow: rgba(212,120,42,0.15);
+    --particle-color: rgba(212,120,42,0.2);
+  }
+
+  /* Atmoszféra 5: Tengerpart — kék/fehér, világos */
+  [data-atmosphere="tengerpart"] {
+    --bg-primary: #e8f0f4;
+    --bg-secondary: #d0dce4;
+    --bg-tertiary: #b8ccd8;
+    --text-primary: #1a2a3a;
+    --text-secondary: #4a6a80;
+    --text-accent: #3a8ab8;
+    --accent-1: #3a8ab8;
+    --accent-2: #2a6a98;
+    --accent-3: #e8f0f4;
+    --gallery-bg: #e8f0f4;
+    --frame-glow: rgba(58,138,184,0.12);
+    --particle-color: rgba(58,138,184,0.2);
+  }
+
+  /* Atmoszféra 6: Vándorlás — sötétszürke/amber, hangulatos */
+  [data-atmosphere="vandorlas"] {
+    --bg-primary: #0e0e0e;
+    --bg-secondary: #1e1e1e;
+    --bg-tertiary: #2e2e2e;
+    --text-primary: #e0d8cc;
+    --text-secondary: #9a9080;
+    --text-accent: #c8a060;
+    --accent-1: #c8a060;
+    --accent-2: #a08040;
+    --accent-3: #e0d8cc;
+    --gallery-bg: #0e0e0e;
+    --frame-glow: rgba(200,160,96,0.15);
+    --particle-color: rgba(200,160,96,0.2);
+  }
+
+  /* Atmoszféra 7: Aranykor — gazdag arany/krém, elegáns */
+  [data-atmosphere="aranykor"] {
+    --bg-primary: #1a1410;
+    --bg-secondary: #2a2018;
+    --bg-tertiary: #3a3028;
+    --text-primary: #f0e8d8;
+    --text-secondary: #b8a888;
+    --text-accent: #c8a040;
+    --accent-1: #c8a040;
+    --accent-2: #a08030;
+    --accent-3: #f0e8d8;
+    --gallery-bg: #1a1410;
+    --frame-glow: rgba(200,160,64,0.2);
+    --particle-color: rgba(200,160,64,0.25);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     ALAP BEÁLLÍTÁSOK
+     ═══════════════════════════════════════════════════════════ */
+
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     KINCSZEMCSÉK / RÉSZECSKÉK HÁTTÉR
+     ═══════════════════════════════════════════════════════════ */
+
+  #particles-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     BEJÁRATI / NYITÓ ANIMÁCIÓ
+     ═══════════════════════════════════════════════════════════ */
+
+  .intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #050505;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
+
+  .intro-overlay.hidden {
+    opacity: 0;
+    transform: scale(1.05);
+    pointer-events: none;
+  }
+
+  .intro-line {
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-1), transparent);
+    margin: 12px 0;
+    transition: width 1.5s ease;
+  }
+
+  .intro-overlay:not(.hidden) .intro-line {
+    width: 300px;
+  }
+
+  .intro-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 6vw, 5rem);
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--text-primary);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+  }
+
+  .intro-overlay:not(.hidden) .intro-title {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .intro-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(0.9rem, 2vw, 1.3rem);
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 1s ease 1s, transform 1s ease 1s;
+  }
+
+  .intro-overlay:not(.hidden) .intro-subtitle {
+    opacity: 0.7;
+    transform: translateY(0);
+  }
+
+  .intro-enter {
+    margin-top: 50px;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-accent);
+    background: none;
+    border: 1px solid var(--text-accent);
+    padding: 14px 40px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 1s ease 1.8s, all 0.4s ease;
+  }
+
+  .intro-overlay:not(.hidden) .intro-enter {
+    opacity: 0.8;
+  }
+
+  .intro-enter:hover {
+    opacity: 1;
+    background: var(--text-accent);
+    color: var(--bg-primary);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     NAVIGÁCIÓ — Felső sáv
+     ═══════════════════════════════════════════════════════════ */
+
+  .top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(180deg, var(--bg-primary) 0%, transparent 100%);
+    transition: all 0.5s ease;
+  }
+
+  .nav-logo {
+    font-family: var(--font-heading);
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    color: var(--text-accent);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--text-accent);
+    transition: width 0.4s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--text-accent);
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     PALETTA PANEL — Lebegő színpaletta
+     ═══════════════════════════════════════════════════════════ */
+
+  .palette-trigger {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    border: 2px solid var(--accent-1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 20px var(--frame-glow);
+  }
+
+  .palette-trigger:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 30px var(--frame-glow);
+  }
+
+  .palette-trigger svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--text-accent);
+    transition: transform 0.4s ease;
+  }
+
+  .palette-trigger.open svg {
+    transform: rotate(180deg);
+  }
+
+  .palette-panel {
+    position: fixed;
+    right: -320px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--accent-1);
+    border-right: none;
+    border-radius: 16px 0 0 16px;
+    padding: 30px 25px;
+    z-index: 1999;
+    transition: right 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.4s ease,
+                background var(--transition-speed) ease;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.3);
+  }
+
+  .palette-panel.open {
+    right: 0;
+  }
+
+  .palette-title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    letter-spacing: 0.08em;
+  }
+
+  .palette-desc {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+    line-height: 1.6;
+  }
+
+  .palette-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .palette-option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+  }
+
+  .palette-option:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--accent-1);
+  }
+
+  .palette-option.active {
+    background: var(--bg-tertiary);
+    border-color: var(--accent-1);
+    box-shadow: 0 2px 12px var(--frame-glow);
+  }
+
+  .palette-colors {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .palette-colors span {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.15);
+  }
+
+  .palette-option-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .palette-option-name {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    letter-spacing: 0.05em;
+  }
+
+  .palette-option-type {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     HERO SZEKCIÓ
+     ═══════════════════════════════════════════════════════════ */
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-ornament {
+    width: 60px;
+    height: 1px;
+    background: var(--accent-1);
+    margin-bottom: 30px;
+    opacity: 0.6;
+  }
+
+  .hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 7vw, 6rem);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--text-accent);
+  }
+
+  .hero-years {
+    font-family: var(--font-body);
+    font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+    color: var(--text-secondary);
+    letter-spacing: 0.3em;
+    margin-bottom: 30px;
+  }
+
+  .hero-quote {
+    max-width: 600px;
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-family: var(--font-ui);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .hero-scroll .arrow {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(180deg, var(--text-accent), transparent);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(10px); }
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     GALÉRIA SZEKCIÓ
+     ═══════════════════════════════════════════════════════════ */
+
+  .gallery-section {
+    padding: 80px 40px 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+
+  .section-header h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+  }
+
+  .section-header p {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .section-divider {
+    width: 80px;
+    height: 1px;
+    background: var(--accent-1);
+    margin: 20px auto 0;
+    opacity: 0.5;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     FESTMÉNY KÁRTYÁK — MAGIC MAGNIFIER
+     ═══════════════════════════════════════════════════════════ */
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(400px, 100%), 1fr));
+    gap: 60px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .painting-card {
+    position: relative;
+    cursor: pointer;
+    perspective: 1200px;
+  }
+
+  .painting-frame {
+    position: relative;
+    background: var(--bg-secondary);
+    border: 3px solid var(--bg-tertiary);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.3),
+                0 0 0 1px var(--frame-glow);
+  }
+
+  .painting-card:hover .painting-frame {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4),
+                0 0 30px var(--frame-glow);
+    border-color: var(--accent-1);
+  }
+
+  .painting-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: var(--bg-tertiary);
+  }
+
+  .painting-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease, filter 0.6s ease;
+  }
+
+  .painting-card:hover .painting-image-wrapper img {
+    transform: scale(1.03);
+  }
+
+  /* Varázslatos nagyító */
+  .magic-lens {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-1);
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5),
+                inset 0 0 20px var(--frame-glow);
+    transform: translate(-50%, -50%);
+  }
+
+  .painting-card:hover .magic-lens {
+    opacity: 1;
+  }
+
+  .magic-lens-inner {
+    width: 280px;
+    height: 280px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+
+  .magic-lens-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Keret / keret nélkül jelölő */
+  .view-mode-indicator {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    z-index: 5;
+    display: flex;
+    gap: 6px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .painting-card:hover .view-mode-indicator {
+    opacity: 1;
+  }
+
+  .view-mode-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 1px solid var(--accent-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.6rem;
+    color: var(--text-accent);
+    font-family: var(--font-ui);
+  }
+
+  .view-mode-btn:hover,
+  .view-mode-btn.active {
+    background: var(--accent-1);
+    color: var(--bg-primary);
+  }
+
+  .painting-info {
+    padding: 20px 5px 5px;
+    transition: all 0.4s ease;
+  }
+
+  .painting-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .painting-meta {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+  }
+
+  .painting-meta span {
+    color: var(--text-accent);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     FÉNYSUGÁR / VEGYULÓ EFFEKTEK
+     ═══════════════════════════════════════════════════════════ */
+
+  .vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     RÓLAM SZEKCIÓ
+     ═══════════════════════════════════════════════════════════ */
+
+  .about-section {
+    padding: 100px 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .about-portrait {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--bg-secondary);
+    border: 2px solid var(--bg-tertiary);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  }
+
+  .about-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%);
+    transition: filter 0.6s ease;
+  }
+
+  .about-portrait:hover img {
+    filter: grayscale(0%);
+  }
+
+  .about-text h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 25px;
+    letter-spacing: 0.06em;
+  }
+
+  .about-text p {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.9;
+    margin-bottom: 18px;
+  }
+
+  .about-text .highlight {
+    color: var(--text-accent);
+    font-weight: 500;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     LÁBLÉC
+     ═══════════════════════════════════════════════════════════ */
+
+  .footer {
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--bg-tertiary);
+  }
+
+  .footer-logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    letter-spacing: 0.1em;
+    margin-bottom: 15px;
+  }
+
+  .footer p {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+  }
+
+  .footer .ornament {
+    width: 40px;
+    height: 1px;
+    background: var(--accent-1);
+    margin: 20px auto;
+    opacity: 0.4;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     LIGHTBOX
+     ═══════════════════════════════════════════════════════════ */
+
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.92);
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .lightbox.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .lightbox-content {
+    max-width: 80vw;
+    max-height: 80vh;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .lightbox.active .lightbox-content {
+    transform: scale(1);
+  }
+
+  .lightbox-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border: 3px solid var(--bg-tertiary);
+    border-radius: 4px;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--text-secondary);
+    border-radius: 50%;
+    background: none;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .lightbox-close:hover {
+    border-color: var(--text-accent);
+    color: var(--text-accent);
+  }
+
+  .lightbox-info {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .lightbox-info h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+  }
+
+  .lightbox-info p {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     SCROLL ANIMÁCIÓK
+     ═══════════════════════════════════════════════════════════ */
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     RESZPONZÍV KÉPEK — keret nélküli mód
+     ═══════════════════════════════════════════════════════════ */
+
+  .painting-frame.ungilded {
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--bg-tertiary);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+
+  .painting-frame.ungilded:hover {
+    border-color: var(--accent-1);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════════════════════════════ */
+
+  @media (max-width: 1024px) {
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 40px 30px;
+    }
+
+    .about-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .about-portrait {
+      max-width: 350px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .top-nav {
+      padding: 15px 20px;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .gallery-section {
+      padding: 60px 20px 80px;
+    }
+
+    .gallery-grid {
+      grid-template-columns: 1fr;
+      max-width: 500px;
+    }
+
+    .palette-panel {
+      right: -300px;
+      width: 280px;
+    }
+
+    .palette-trigger {
+      right: 15px;
+      width: 44px;
+      height: 44px;
+    }
+
+    .about-section {
+      padding: 60px 20px;
+    }
+
+    .magic-lens {
+      width: 110px;
+      height: 110px;
+    }
+
+    .magic-lens-inner {
+      width: 220px;
+      height: 220px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 {
+      font-size: 2.2rem;
+    }
+
+    .painting-image-wrapper {
+      aspect-ratio: 4/5;
+    }
+
+    .palette-panel {
+      width: 260px;
+      padding: 20px 18px;
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     EGYÉB ANIMÁCIÓK
+     ═══════════════════════════════════════════════════════════ */
+
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .shimmer-text {
+    background: linear-gradient(90deg, var(--text-primary), var(--text-accent), var(--text-primary));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 6s linear infinite;
+  }
+
+  /* Képregény-szerű betöltés */
+  .painting-image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .painting-card:hover .painting-image-wrapper::before {
+    opacity: 1;
+  }
+
+  /* Mobil hamburger */
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .mobile-menu-btn span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--text-primary);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu-btn {
+      display: block;
+    }
+  }
+</style>
+</head>
+
+<body data-atmosphere="eveszka">
+
+<!-- ═══════════════════════════════════════════════════════════
+     INTRO OVERLAY
+     ═══════════════════════════════════════════════════════════ -->
+<div class="intro-overlay" id="introOverlay">
+  <div class="intro-line"></div>
+  <h1 class="intro-title">Kárai <em>Mihály</em></h1>
+  <p class="intro-subtitle">Digitális Kiállítás</p>
+  <div class="intro-line"></div>
+  <button class="intro-enter" id="enterBtn">Belépés</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PARTICLES
+     ═══════════════════════════════════════════════════════════ -->
+<canvas id="particles-canvas"></canvas>
+<div class="vignette"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAVIGÁCIÓ
+     ═══════════════════════════════════════════════════════════ -->
+<nav class="top-nav" id="topNav">
+  <a href="#" class="nav-logo">Kárai <span>M.</span></a>
+  <ul class="nav-links">
+    <li><a href="#gallery">Galéria</a></li>
+    <li><a href="#about">Rólam</a></li>
+    <li><a href="#contact">Kapcsolat</a></li>
+  </ul>
+  <button class="mobile-menu-btn" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PALETTA PANEL
+     ═══════════════════════════════════════════════════════════ -->
+<button class="palette-trigger" id="paletteTrigger" aria-label="Színvilág váltás">
+  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><circle cx="5" cy="5" r="2.5" fill-opacity="0.6"/><circle cx="19" cy="5" r="2.5" fill-opacity="0.6"/><circle cx="5" cy="19" r="2.5" fill-opacity="0.6"/><circle cx="19" cy="19" r="2.5" fill-opacity="0.6"/></svg>
+</button>
+
+<div class="palette-panel" id="palettePanel">
+  <h3 class="palette-title">Atmoszféra</h3>
+  <p class="palette-desc">Válasszon hangulatot a kiállításhoz. Minden válassz más-más festői élményt nyújt.</p>
+  <div class="palette-options">
+    <div class="palette-option active" data-atmosphere="eveszka">
+      <div class="palette-colors">
+        <span style="background:#0a0a0a"></span>
+        <span style="background:#1a1a1a"></span>
+        <span style="background:#d4a853"></span>
+      </div>
+      <div class="palette-option-info">
+        <span class="palette-option-name">Éveszka</span>
+        <span class="palette-option-type">Sötét · Elegáns</span>
+      </div>
+    </div>
+    <div class="palette-option" data-atmosphere="buzakalasz">
+      <div class="palette-colors">
+        <span style="background:#f5efe6"></span>
+        <span style="background:#d4c4a8"></span>
+        <span style="background:#8b6914"></span>
+      </div>
+      <div class="palette-option-info">
+        <span class="palette-option-name">Búzakalász</span>
+        <span class="palette-option-type">Világos · Meleg</span>
+      </div>
+    </div>
+    <div class="palette-option" data-atmosphere="jeszakai-taj">
+      <div class="palette-colors">
+        <span style="background:#050a14"></span>
+        <span style="background:#162844"></span>
+        <span style="background:#4a90d9"></span>
+      </div>
+      <div class="palette-option-info">
+        <span class="palette-option-name">Éjszakai táj</span>
+        <span class="palette-option-type">Sötét · Nyugodt</span>
+      </div>
+    </div>
+    <div class="palette-option" data-atmosphere="tavaszi-reggel">
+      <div class="palette-colors">
+        <span style="background:#f0ebe4"></span>
+        <span style="background:#c8bfb0"></span>
+        <span style="background:#6a9a5a"></span>
+      </div>
+      <div class="palette-option-info">
+        <span class="palette-option-name">Tavaszi reggel</span>
+        <span class="palette-option-type">Világos · Friss</span>
+      </div>
+    </div>
+    <div class="palette-option" data-atmosphere="oszi-este">
+      <div class="palette-colors">
+        <span style="background:#1a1208"></span>
+        <span style="background:#3a2a18"></span>
+        <span style="background:#d4782a"></span>
+      </div>
+      <div class="palette-option-info">
+        <span class="palette-option-name">Őszi este</span>
+        <span class="palette-option-type">Sötét · Hangulatos</span>
+      </div>
+    </div>
+    <div class="palette-option" data-atmosphere="tengerpart">
+      <div class="palette-colors">
+        <span style="background:#e8f0f4"></span>
+        <span style="background:#b8ccd8"></span>
+        <span style="background:#3a8ab8"></span>
+      </div>
+      <div class="palette-option-info">
+        <span class="palette-option-name">Tengerpart</span>
+        <span class="palette-option-type">Világos · Lélegző</span>
+      </div>
+    </div>
+    <div class="palette-option" data-atmosphere="vandorlas">
+      <div class="palette-colors">
+        <span style="background:#0e0e0e"></span>
+        <span style="background:#2e2e2e"></span>
+        <span style="background:#c8a060"></span>
+      </div>
+      <div class="palette-option-info">
+        <span class="palette-option-name">Vándorlás</span>
+        <span class="palette-option-type">Sötét · Filozofikus</span>
+      </div>
+    </div>
+    <div class="palette-option" data-atmosphere="aranykor">
+      <div class="palette-colors">
+        <span style="background:#1a1410"></span>
+        <span style="background:#3a3028"></span>
+        <span style="background:#c8a040"></span>
+      </div>
+      <div class="palette-option-info">
+        <span class="palette-option-name">Aranykor</span>
+        <span class="palette-option-type">Sötét · Királyi</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-ornament"></div>
+  <h1>Kárai <em>Mihály</em></h1>
+  <p class="hero-years">sz. 1961</p>
+  <p class="hero-quote">
+    „A festészet nem a látottak másolása, hanem az érzett igazság megjelenítése — minden ecsetvonás egy csendes kiáltás a lélek mélyéről."
+  </p>
+  <div class="hero-scroll">
+    <span>Felfedezés</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     GALÉRIA
+     ═══════════════════════════════════════════════════════════ -->
+<section class="gallery-section" id="gallery">
+  <div class="section-header reveal">
+    <h2>A Művek</h2>
+    <p>Fedezze fel Kárai Mihály festményeit — mindegyik egy külön világ, amely várja a felfedezőt.</p>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- A festmények dinamikusan töltődnek be -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     RÓLAM
+     ═══════════════════════════════════════════════════════════ -->
+<section class="about-section" id="about">
+  <div class="about-content reveal">
+    <div class="about-portrait">
+      <img src="C:\xampp\htdocs\2026\Hermes\apa_festmenyek\apa_portre.jpg" alt="Kárai Mihály" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 400%22><rect fill=%22%231a1a1a%22 width=%22300%22 height=%22400%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%23d4a853%22 text-anchor=%22middle%22 font-size=%2216%22 font-family=%22serif%22>Kárai Mihály</text></svg>'">
+    </div>
+    <div class="about-text">
+      <h2>A Művész</h2>
+      <p>
+        <span class="highlight">Kárai Mihály</span> (sz. 1961) a kortárs magyar festészet kiemelkedő alakja. Művészete a realista alapokra épülő, mégis mélyen expresszív stílusjegyeket ötvözi, amelyben az érzelmi tartalom mindig elsőrangú.
+      </p>
+      <p>
+        Festményei a mindennapi élet pillanatait emelik ki, átalakítva őket időtlen, <span class="highlight">festői igazságokká</span>. Színpalettaja gazdag és változatos — a mély, hangulatos sötétségtől a ragyogó, napfényes melegig — minden alkotás egyedi atmoszférát teremt.
+      </p>
+      <p>
+        Munkássága során számos kiállításon vett részt hazánkban és külföldön egyaránt, alkotásai magángyűjtők és intézmények tulajdonában vannak szerte a világon.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     LÁBLÉC
+     ═══════════════════════════════════════════════════════════ -->
+<footer class="footer" id="contact">
+  <div class="footer-logo">Kárai Mihály</div>
+  <div class="ornament"></div>
+  <p>Digitális kiállítás · Minden jog fenntartva © 2026</p>
+  <p style="margin-top:8px; font-size:0.7rem; opacity:0.5;">Kapcsolat: info@karaimihaly.hu</p>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════
+     LIGHTBOX
+     ═══════════════════════════════════════════════════════════ -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <img id="lightboxImg" src="" alt="">
+    <div class="lightbox-info">
+      <h3 id="lightboxTitle"></h3>
+      <p id="lightboxMeta"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     JAVASCRIPT
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  // ═══════════════════════════════════════════════════════════
+  // FESTMÉNY ADATOK
+  // ═══════════════════════════════════════════════════════════
+  const paintings = [
+    {
+      id: 1,
+      title: "Csend a tájban",
+      year: "2023",
+      medium: "olaj, vászon",
+      size: "80 × 100 cm",
+      baseImg: "C:/xampp/htdocs/2026/Hermes/apa_festmenyek/festmeny_01.jpg",
+      interiorImg: "C:/xampp/htdocs/2026/Hermes/apa_festmenyek/festmeny_01_interior.jpg",
+      framed: true,
+      description: "A táj csendje és békéje örökítve meg"
+    },
+    {
+      id: 2,
+      title: "Aranyos est",
+      year: "2022",
+      medium: "olaj, vászon",
+      size: "70 × 90 cm",
+      baseImg: "C:/xampp/htdocs/2026/Hermes/apa_festmenyek/festmeny_02.jpg",
+      interiorImg: "C:/xampp/htdocs/2026/Hermes/apa_festmenyek/festmeny_02_interior.jpg",
+      framed: true,
+      description: "Az aranyóra hangulata"
+    },
+    {
+      id: 3,
+      title: "Tavaszi virágzás",
+      year: "2023",
+      medium: "olaj, vászon",
+      size: "60 × 80 cm",
+      baseImg: "C:/xampp/htdocs/2026/Hermes/apa_festmenyek/festmeny_03.jpg",
+      interiorImg: "C:/xampp/htdocs/2026/Hermes/apa_festmenyek/festmeny_03_interior.jpg",
+      framed: false,
+      description: "Az élet újjászületése tavasszal"
+    },
+    {
+      id: 4,
+      title: "Éjszakai csend",
+      year: "2021",
+      medium: "olaj, vászon",
+      size: "90 × 120 cm",
+      baseImg: "C:/xampp/htdocs/2026/Hermes/apa_festmenyek/festmeny_04.jpg",
+      interiorImg: "C:/xampp/htdocs/2026/Hermes/apa_festmenyek/festmeny_04_interior.jpg",
+      framed: true,
+      description: "Az éjszaka misztikája"
+    },
+    {
+      id: 5,
+      title: "Híd a semmibe",
+      year: "2024",
+      medium: "olaj, vászon",
+      size: "100 × 80 cm",
+      baseImg: "C:/xampp/htdocs/2026/Hermes/apa_festmenyek/festmeny_05.jpg",
+      interiorImg: "C:/xampp/htdocs/2026/Hermes/apa_festmenyek/festmeny_05_interior.jpg",
+      framed: false,
+      description: "Átmenet és átjárás"
+    },
+    {
+      id: 6,
+      title: "Őszi levél",
+      year: "2022",
+      medium: "olaj, vászon",
+      size: "50 × 70 cm",
+      baseImg: "C:/xampp/htdocs/2026/Hermes/apa_festmenyek/festmeny_06.jpg",
+      interiorImg: "C:/xampp/htdocs/2026/Hermes/apa_festmenyek/festmeny_06_interior.jpg",
+      framed: true,
+      description: "Az ősz elmúlása és szépsége"
+    },
+    {
+      id: 7,
+      title: "Tengeri álom",
+      year: "2023",
+      medium: "olaj, vászon",
+      size: "85 × 110 cm",
+      baseImg: "C:/xampp/htdocs/2026/Hermes/apa_festmenyek/festmeny_07.jpg",
+      interiorImg: "C:/xampp/htdocs/2026/Hermes/apa_festmenyek/festmeny_07_interior.jpg",
+      framed: true,
+      description: "A tenger végtelensége"
+    },
+    {
+      id: 8,
+      title: "Vándorlás",
+      year: "2024",
+      medium: "olaj, vászon",
+      size: "110 × 90 cm",
+      baseImg: "C:/xampp/htdocs/2026/Hermes/apa_festmenyek/festmeny_08.jpg",
+      interiorImg: "C:/xampp/htdocs/2026/Hermes/apa_festmenyek/festmeny_08_interior.jpg",
+      framed: false,
+      description: "Az élet útja és célja"
+    }
+  ];
+
+  // ═══════════════════════════════════════════════════════════
+  // GALÉRIA GENERÁLÁS
+  // ═══════════════════════════════════════════════════════════
+  const galleryGrid = document.getElementById('galleryGrid');
+
+  paintings.forEach((p, index) => {
+    const card = document.createElement('div');
+    card.className = 'painting-card reveal';
+    card.dataset.index = index;
+
+    const imgPath = p.baseImg;
+    const interiorPath = p.interiorImg;
+
+    card.innerHTML = `
+      <div class="painting-frame" data-framed="${p.framed}">
+        <div class="painting-image-wrapper">
+          <img src="${imgPath}" alt="${p.title}" loading="lazy"
+               onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 533%22><rect fill=%22%231a1a1a%22 width=%22400%22 height=%22533%22/><text x=%2250%25%22 y=%2245%25%22 fill=%22%23d4a853%22 text-anchor=%22middle%22 font-size=%2218%22 font-family=%22serif%22>${encodeURIComponent(p.title)}</text><text x=%2250%25%22 y=%2255%25%22 fill=%22%23888%22 text-anchor=%22middle%22 font-size=%2212%22 font-family=%22serif%22>${encodeURIComponent(p.year)}</text></svg>'">
+          <div class="magic-lens">
+            <div class="magic-lens-inner">
+              <img src="${interiorPath}" alt="${p.title} — belső nézet"
+                   onerror="this.src='${imgPath}'">
+            </div>
+          </div>
+          <div class="view-mode-indicator">
+            <button class="view-mode-btn ${p.framed ? 'active' : ''}" data-framed="true" title="Keretes">
+              <svg width="16" height="16" viewBox="0 0 16 16"><rect x="1" y="1" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+            <button class="view-mode-btn ${!p.framed ? 'active' : ''}" data-framed="false" title="Keret nélkül">
+              <svg width="16" height="16" viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="painting-info">
+        <h3 class="painting-title">${p.title}</h3>
+        <p class="painting-meta">
+          <span>${p.year}</span> · ${p.medium} · ${p.size}
+        </p>
+      </div>
+    `;
+
+    galleryGrid.appendChild(card);
+
+    // Varázslatos nagyító mozgatása
+    const lens = card.querySelector('.magic-lens');
+    const wrapper = card.querySelector('.painting-image-wrapper');
+    const lensInner = card.querySelector('.magic-lens-inner');
+    const lensImg = lensInner.querySelector('img');
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = wrapper.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      lens.style.left = x + 'px';
+      lens.style.top = y + 'px';
+
+      // A lens-ben lévő kép pozícionálása — a nagyítás effekt
+      const lensW = lens.offsetWidth;
+      const lensH = lens.offsetHeight;
+      const imgW = lensImg.naturalWidth || 400;
+      const imgH = lensImg.naturalHeight || 533;
+
+      const scaleX = imgW / rect.width;
+      const scaleY = imgH / rect.height;
+
+      lensImg.style.transform = `translate(${-x * scaleX + lensW/2}px, ${-y * scaleY + lensH/2}px)`;
+    });
+
+    // Keret / keret nélküli váltás
+    const framedBtns = card.querySelectorAll('.view-mode-btn');
+    const frame = card.querySelector('.painting-frame');
+
+    framedBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isFramed = btn.dataset.framed === 'true';
+
+        framedBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        if (isFramed) {
+          frame.classList.remove('ungilded');
+          frame.style.borderColor = '';
+        } else {
+          frame.classList.add('ungilded');
+        }
+      });
+    });
+
+    // Lightbox megnyitás
+    card.addEventListener('click', () => {
+      openLightbox(p);
+    });
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // LIGHTBOX LOGIKA
+  // ═══════════════════════════════════════════════════════════
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxMeta = document.getElementById('lightboxMeta');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  function openLightbox(painting) {
+    lightboxImg.src = painting.baseImg;
+    lightboxImg.onerror = function() {
+      this.src = `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 600%22><rect fill=%22%231a1a1a%22 width=%22800%22 height=%22600%22/><text x=%2250%25%22 y=%2245%25%22 fill=%22%23d4a853%22 text-anchor=%22middle%22 font-size=%2224%22 font-family=%22serif%22>${encodeURIComponent(painting.title)}</text><text x=%2250%25%22 y=%2255%25%22 fill=%22%23888%22 text-anchor=%22middle%22 font-size=%2214%22 font-family=%22serif%22>${encodeURIComponent(painting.year)}</text></svg>`;
+    };
+    lightboxTitle.textContent = painting.title;
+    lightboxMeta.textContent = `${painting.year} · ${painting.medium} · ${painting.size}`;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // INTRO
+  // ═══════════════════════════════════════════════════════════
+  const introOverlay = document.getElementById('introOverlay');
+  const enterBtn = document.getElementById('enterBtn');
+
+  enterBtn.addEventListener('click', () => {
+    introOverlay.classList.add('hidden');
+    setTimeout(() => {
+      introOverlay.style.display = 'none';
+      initRevealAnimations();
+    }, 1200);
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // PALETTA PANEL
+  // ═══════════════════════════════════════════════════════════
+  const paletteTrigger = document.getElementById('paletteTrigger');
+  const palettePanel = document.getElementById('palettePanel');
+  const paletteOptions = document.querySelectorAll('.palette-option');
+
+  paletteTrigger.addEventListener('click', () => {
+    paletteTrigger.classList.toggle('open');
+    palettePanel.classList.toggle('open');
+  });
+
+  paletteOptions.forEach(opt => {
+    opt.addEventListener('click', () => {
+      const atm = opt.dataset.atmosphere;
+      document.body.setAttribute('data-atmosphere', atm);
+
+      paletteOptions.forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+
+      // Zárjuk a panelt
+      paletteTrigger.classList.remove('open');
+      palettePanel.classList.remove('open');
+    });
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // SCROLL REVEAL
+  // ═══════════════════════════════════════════════════════════
+  function initRevealAnimations() {
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 100);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  // PARTICLES CANVAS
+  // ═══════════════════════════════════════════════════════════
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let animFrame;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  class Particle {
+    constructor() {
+      this.reset();
+    }
+
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 2 + 0.5;
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      this.speedY = (Math.random() - 0.5) * 0.3;
+      this.opacity = Math.random() * 0.5 + 0.1;
+      this.pulse = Math.random() * Math.PI * 2;
+      this.pulseSpeed = Math.random() * 0.02 + 0.005;
+    }
+
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      this.pulse += this.pulseSpeed;
+
+      if (this.x < -10 || this.x > canvas.width + 10 ||
+          this.y < -10 || this.y > canvas.height + 10) {
+        this.reset();
+      }
+    }
+
+    draw() {
+      const currentOpacity = this.opacity * (0.5 + 0.5 * Math.sin(this.pulse));
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(212, 168, 83, ${currentOpacity})`;
+      ctx.fill();
+    }
+  }
+
+  function initParticles() {
+    resizeCanvas();
+    const count = Math.min(Math.floor((canvas.width * canvas.height) / 15000), 80);
+    particles = [];
+    for (let i = 0; i < count; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+
+    // Kösse össze a közeli részecskéket
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(212, 168, 83, ${0.06 * (1 - dist / 120)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    animFrame = requestAnimationFrame(animateParticles);
+  }
+
+  window.addEventListener('resize', () => {
+    resizeCanvas();
+  });
+
+  // Indítás
+  initParticles();
+  animateParticles();
+
+  // ═══════════════════════════════════════════════════════════
+  // NAV SCROLL EFFECT
+  // ═══════════════════════════════════════════════════════════
+  const topNav = document.getElementById('topNav');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+
+    if (scrollY > 100) {
+      topNav.style.background = getComputedStyle(document.body).getPropertyValue('--bg-primary');
+      topNav.style.backdropFilter = 'blur(10px)';
+    } else {
+      topNav.style.background = 'transparent';
+      topNav.style.backdropFilter = 'none';
+    }
+
+    lastScroll = scrollY;
+  }, { passive: true });
+
+  // ═══════════════════════════════════════════════════════════
+  // KÉP BETÖLTÉS VÁLASZTÁS
+  // ═══════════════════════════════════════════════════════════
+  // Próbáljuk betölteni a képeket a megadott útvonalról
+  // Ha nem elérhetőek, SVG placeholder-öket használunk
+
+  // Ellenőrizzük, hogy a képek elérhetők-e
+  function testImageLoad(src) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = src;
+    });
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  // KÖVETKEZŐ / ELŐZŐ KÉP NAVIGÁCIÓA LIGHTBOXBAN
+  // ═══════════════════════════════════════════════════════════
+  let currentLightboxIndex = -1;
+
+  lightbox.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' && currentLightboxIndex < paintings.length - 1) {
+      currentLightboxIndex++;
+      openLightbox(paintings[currentLightboxIndex]);
+    } else if (e.key === 'ArrowLeft' && currentLightboxIndex > 0) {
+      currentLightboxIndex--;
+      openLightbox(paintings[currentLightboxIndex]);
+    }
+  });
+
+  // Track current index
+  const originalOpenLightbox = openLightbox;
+  window.openLightbox = function(painting) {
+    const idx = paintings.indexOf(painting);
+    currentLightboxIndex = idx;
+    originalOpenLightbox(painting);
+  };
+
+})();
+</script>
+
+</body>
+</html>
+

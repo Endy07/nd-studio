@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merényi Krisztián — Piócakezelés (Hirudoterápia)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg-deep:#0a0f0d;
+  --bg-card:rgba(20,35,28,0.45);
+  --glass:rgba(255,255,255,0.06);
+  --glass-border:rgba(255,255,255,0.1);
+  --gold:#c9a84c;
+  --gold-light:#e8d48b;
+  --teal:#2a7a6a;
+  --teal-light:#4db89a;
+  --text-primary:#f0ede6;
+  --text-secondary:rgba(240,237,230,0.65);
+  --danger:#d4563a;
+  --danger-bg:rgba(212,86,58,0.12);
+  --radius:20px;
+  --radius-sm:12px;
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{
+  font-family:'Inter',sans-serif;font-weight:300;color:var(--text-primary);
+  background:var(--bg-deep);line-height:1.7;overflow-x:hidden;
+}
+h1,h2,h3,h4,h5{font-family:'Cormorant Garamond',serif;font-weight:400;line-height:1.2}
+
+/* ===== ANIMATED BACKGROUND ===== */
+.bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-blob{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.3;animation:blobFloat 20s ease-in-out infinite}
+.bg-blob:nth-child(1){width:600px;height:600px;background:radial-gradient(circle,#2a7a6a,transparent 70%);top:-10%;left:-10%;animation-delay:0s}
+.bg-blob:nth-child(2){width:500px;height:500px;background:radial-gradient(circle,#c9a84c33,transparent 70%);bottom:-5%;right:-5%;animation-delay:-7s}
+.bg-blob:nth-child(3){width:400px;height:400px;background:radial-gradient(circle,#4db89a22,transparent 70%);top:40%;left:50%;animation-delay:-14s}
+@keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(60px,-40px) scale(1.1)}50%{transform:translate(-30px,60px) scale(0.95)}75%{transform:translate(40px,30px) scale(1.05)}}
+
+/* ===== GRAIN OVERLAY ===== */
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:128px 128px;
+}
+
+/* ===== NAVIGATION ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(10,15,13,0.6);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--glass-border);transition:all .4s}
+nav.scrolled{padding:10px 40px;background:rgba(10,15,13,0.85)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--gold);letter-spacing:0.02em}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--text-secondary);text-decoration:none;font-size:0.85rem;font-weight:400;letter-spacing:0.04em;text-transform:uppercase;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.nav-links a:hover{color:var(--text-primary)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--bg-deep);padding:10px 24px;border-radius:100px;text-decoration:none;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;transition:all .3s;border:none;cursor:pointer}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,0.3)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:110;background:none;border:none}
+.burger span{width:24px;height:1.5px;background:var(--text-primary);transition:all .3s}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:120px 60px 80px;gap:60px;position:relative;z-index:2}
+.hero-text{max-width:600px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--glass);border:1px solid var(--glass-border);border-radius:100px;padding:8px 20px;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;backdrop-filter:blur(12px)}
+.hero-badge svg{width:14px;height:14px}
+.hero h1{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:300;line-height:1.05;margin-bottom:24px}
+.hero h1 em{font-style:italic;color:var(--gold-light);font-weight:300}
+.hero-sub{font-size:1.1rem;color:var(--text-secondary);max-width:440px;margin-bottom:40px;font-weight:300}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--bg-deep);padding:16px 36px;border-radius:100px;text-decoration:none;font-size:0.9rem;font-weight:600;letter-spacing:0.04em;transition:all .35s;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(201,168,76,0.35)}
+.btn-secondary{background:var(--glass);color:var(--text-primary);padding:16px 36px;border-radius:100px;text-decoration:none;font-size:0.9rem;font-weight:400;letter-spacing:0.04em;transition:all .35s;border:1px solid var(--glass-border);cursor:pointer;display:inline-flex;align-items:center;gap:10px;backdrop-filter:blur(12px)}
+.btn-secondary:hover{background:rgba(255,255,255,0.1);transform:translateY(-3px);border-color:var(--gold)}
+.hero-visual{display:flex;align-items:center;justify-content:center;position:relative}
+.hero-circle{width:420px;height:420px;border-radius:50%;border:1px solid var(--glass-border);position:relative;animation:heroSpin 60s linear infinite}
+.hero-circle::before{content:'';position:absolute;inset:30px;border-radius:50%;border:1px solid rgba(201,168,76,0.15);animation:heroSpin 40s linear infinite reverse}
+.hero-circle::after{content:'';position:absolute;inset:60px;border-radius:50%;background:radial-gradient(circle,rgba(42,122,106,0.15),transparent 70%)}
+@keyframes heroSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.hero-center-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:120px;height:120px;display:flex;align-items:center;justify-content:center}
+.hero-center-icon svg{width:100%;height:100%}
+.orbit-dot{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 20px rgba(201,168,76,0.5)}
+.orbit-dot:nth-child(1){top:0;left:50%;animation:orbitPulse 3s ease-in-out infinite}
+.orbit-dot:nth-child(2){bottom:15%;right:5%;animation:orbitPulse 3s ease-in-out infinite 1s}
+.orbit-dot:nth-child(3){top:30%;left:0;animation:orbitPulse 3s ease-in-out infinite 2s}
+@keyframes orbitPulse{0%,100%{transform:scale(1);opacity:0.6}50%{transform:scale(1.8);opacity:1}}
+
+/* ===== FLOATING LEAF PARTICLES ===== */
+.particles{position:fixed;inset:0;z-index:1;pointer-events:none}
+.particle{position:absolute;width:4px;height:4px;background:var(--teal-light);border-radius:50%;opacity:0;animation:particleRise linear infinite}
+@keyframes particleRise{0%{opacity:0;transform:translateY(100vh) scale(0)}10%{opacity:0.6}90%{opacity:0.6}100%{opacity:0;transform:translateY(-10vh) scale(1)}}
+
+/* ===== SECTION COMMON ===== */
+section{position:relative;z-index:2;padding:100px 60px}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.section-label::before{content:'';width:30px;height:1px;background:var(--gold)}
+.section-title{font-size:clamp(2rem,4vw,3.2rem);margin-bottom:20px}
+.section-subtitle{color:var(--text-secondary);max-width:560px;font-size:1rem;margin-bottom:50px}
+
+/* ===== WARNING BANNER ===== */
+.warning-banner{margin:0 60px;position:relative;z-index:2;
+  background:linear-gradient(135deg,rgba(212,86,58,0.1),rgba(212,86,58,0.03));
+  border:1px solid rgba(212,86,58,0.25);border-radius:var(--radius);padding:32px 40px;
+  display:flex;align-items:flex-start;gap:24px;backdrop-filter:blur(16px);
+  animation:warningPulse 4s ease-in-out infinite}
+@keyframes warningPulse{0%,100%{border-color:rgba(212,86,58,0.25)}50%{border-color:rgba(212,86,58,0.5)}}
+.warning-icon{flex-shrink:0;width:48px;height:48px;background:rgba(212,86,58,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.warning-icon svg{width:24px;height:24px;color:var(--danger)}
+.warning-content h3{font-size:1.2rem;color:var(--danger);margin-bottom:8px;font-weight:600}
+.warning-content p{color:rgba(240,237,230,0.8);font-size:0.95rem;line-height:1.7}
+
+/* ===== BENTO GRID ===== */
+.bento{display:grid;gap:20px;max-width:1200px;margin:0 auto}
+.bento-2{grid-template-columns:1fr 1fr}
+.bento-3{grid-template-columns:1fr 1fr 1fr}
+.bento-asym{grid-template-columns:2fr 1fr}
+.bento-card{background:var(--bg-card);border:1px solid var(--glass-border);border-radius:var(--radius);padding:36px;
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transition:all .4s;position:relative;overflow:hidden}
+.bento-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--glass-border),transparent)}
+.bento-card:hover{transform:translateY(-4px);border-color:rgba(201,168,76,0.2);box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+.bento-card .card-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;position:relative}
+.bento-card .card-icon svg{width:24px;height:24px}
+.card-icon.teal{background:rgba(42,122,106,0.15);color:var(--teal-light)}
+.card-icon.gold{background:rgba(201,168,76,0.15);color:var(--gold)}
+.card-icon.danger{background:rgba(212,86,58,0.15);color:var(--danger)}
+.bento-card h3{font-size:1.3rem;margin-bottom:12px}
+.bento-card p{color:var(--text-secondary);font-size:0.9rem;line-height:1.7}
+
+/* ===== ABOUT SECTION ===== */
+.about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center;max-width:1200px;margin:0 auto}
+.about-visual{position:relative}
+.about-image-frame{width:100%;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;position:relative;
+  background:linear-gradient(135deg,rgba(42,122,106,0.2),rgba(201,168,76,0.1));border:1px solid var(--glass-border)}
+.about-image-frame .frame-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.about-image-frame .frame-inner svg{width:60%;opacity:0.15}
+.about-float-card{position:absolute;bottom:-20px;right:-20px;background:var(--bg-card);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:20px 24px;backdrop-filter:blur(20px);display:flex;align-items:center;gap:16px}
+.about-float-card .afc-num{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);font-weight:600;line-height:1}
+.about-float-card .afc-label{font-size:0.75rem;color:var(--text-secondary);line-height:1.4}
+.about-text h2{font-size:clamp(2rem,3.5vw,2.8rem);margin-bottom:24px}
+.about-text p{color:var(--text-secondary);margin-bottom:16px;font-size:0.95rem}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+.about-feat{display:flex;align-items:flex-start;gap:12px;padding:16px;background:var(--glass);border-radius:var(--radius-sm);border:1px solid transparent;transition:all .3s}
+.about-feat:hover{border-color:var(--glass-border);background:rgba(255,255,255,0.04)}
+.about-feat svg{width:20px;height:20px;color:var(--teal-light);flex-shrink:0;margin-top:2px}
+.about-feat span{font-size:0.85rem;color:var(--text-secondary)}
+
+/* ===== INDICATIONS ===== */
+.indications-section{max-width:1200px;margin:0 auto}
+.indications-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.indication-card{background:var(--bg-card);border:1px solid var(--glass-border);border-radius:var(--radius);padding:32px;
+  backdrop-filter:blur(16px);transition:all .4s;position:relative;overflow:hidden}
+.indication-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--gold));transform:scaleX(0);transition:transform .4s;transform-origin:left}
+.indication-card:hover::after{transform:scaleX(1)}
+.indication-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.3)}
+.indication-card .ind-icon{width:44px;height:44px;border-radius:12px;background:rgba(42,122,106,0.12);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.indication-card .ind-icon svg{width:20px;height:20px;color:var(--teal-light)}
+.indication-card h4{font-size:1.1rem;margin-bottom:8px;color:var(--text-primary)}
+.indication-card p{font-size:0.85rem;color:var(--text-secondary);line-height:1.6}
+
+/* ===== TREATMENT INFO ===== */
+.treatment-steps{max-width:1200px;margin:0 auto}
+.steps-timeline{position:relative;padding-left:40px}
+.steps-timeline::before{content:'';position:absolute;left:15px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--gold),var(--teal),transparent)}
+.step-item{position:relative;padding:0 0 48px 40px}
+.step-item:last-child{padding-bottom:0}
+.step-dot{position:absolute;left:-33px;top:4px;width:28px;height:28px;border-radius:50%;background:var(--bg-deep);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;z-index:1}
+.step-dot::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.step-number{font-family:'Cormorant Garamond',serif;font-size:0.75rem;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px}
+.step-item h4{font-size:1.2rem;margin-bottom:8px}
+.step-item p{color:var(--text-secondary);font-size:0.9rem;line-height:1.7}
+
+/* ===== FAQ ACCORDION ===== */
+.faq-container{max-width:900px;margin:0 auto}
+.faq-item{border:1px solid var(--glass-border);border-radius:var(--radius-sm);margin-bottom:12px;overflow:hidden;background:var(--bg-card);backdrop-filter:blur(16px);transition:all .3s}
+.faq-item:hover{border-color:rgba(201,168,76,0.2)}
+.faq-item.open{border-color:rgba(201,168,76,0.3)}
+.faq-question{width:100%;padding:22px 28px;background:none;border:none;color:var(--text-primary);font-family:'Inter',sans-serif;font-size:0.95rem;font-weight:400;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left;transition:color .3s}
+.faq-question:hover{color:var(--gold-light)}
+.faq-chevron{width:20px;height:20px;transition:transform .3s;flex-shrink:0;color:var(--text-secondary)}
+.faq-item.open .faq-chevron{transform:rotate(180deg);color:var(--gold)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease}
+.faq-answer-inner{padding:0 28px 22px;color:var(--text-secondary);font-size:0.9rem;line-height:1.8}
+.faq-answer-inner ul{list-style:none;padding:0}
+.faq-answer-inner ul li{position:relative;padding-left:20px;margin-bottom:6px}
+.faq-answer-inner ul li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;background:var(--teal-light)}
+
+/* ===== PRICING ===== */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:0 auto}
+.pricing-card{background:var(--bg-card);border:1px solid var(--glass-border);border-radius:var(--radius);padding:40px 32px;text-align:center;
+  backdrop-filter:blur(20px);transition:all .4s;position:relative;overflow:hidden}
+.pricing-card.featured{border-color:rgba(201,168,76,0.4);background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(20,35,28,0.5))}
+.pricing-card.featured::before{content:'Népszerű';position:absolute;top:16px;right:-32px;background:var(--gold);color:var(--bg-deep);padding:4px 40px;font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;transform:rotate(45deg)}
+.pricing-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.pricing-card .pc-icon{width:56px;height:56px;border-radius:50%;margin:0 auto 20px;display:flex;align-items:center;justify-content:center}
+.pricing-card .pc-icon svg{width:24px;height:24px}
+.pricing-card h3{font-size:1.2rem;margin-bottom:8px}
+.pricing-card .pc-desc{font-size:0.8rem;color:var(--text-secondary);margin-bottom:24px}
+.pricing-card .pc-price{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:600;color:var(--gold);margin-bottom:4px}
+.pricing-card .pc-unit{font-size:0.75rem;color:var(--text-secondary)}
+.pricing-card.featured .pc-price{font-size:3rem}
+
+/* ===== COURSE CTA ===== */
+.course-section{max-width:1200px;margin:0 auto}
+.course-card{background:linear-gradient(135deg,rgba(42,122,106,0.15),rgba(201,168,76,0.08));border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius);padding:60px;position:relative;overflow:hidden;display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:center}
+.course-card::before{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.08),transparent 70%);pointer-events:none}
+.course-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.course-text h2{font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:16px}
+.course-text h2 em{color:var(--gold-light);font-style:italic}
+.course-text p{color:var(--text-secondary);margin-bottom:16px;font-size:0.95rem}
+.course-details{display:flex;flex-wrap:wrap;gap:16px;margin:24px 0}
+.course-detail{display:flex;align-items:center;gap:10px;background:var(--glass);padding:10px 18px;border-radius:100px;border:1px solid var(--glass-border)}
+.course-detail svg{width:16px;height:16px;color:var(--gold)}
+.course-detail span{font-size:0.8rem;color:var(--text-secondary)}
+.course-price-box{text-align:center}
+.course-price{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:600;color:var(--gold);line-height:1}
+.course-price-label{font-size:0.85rem;color:var(--text-secondary);margin-top:8px;margin-bottom:24px}
+.course-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--bg-deep);padding:18px 40px;border-radius:100px;text-decoration:none;font-size:0.95rem;font-weight:600;letter-spacing:0.04em;transition:all .35s;border:none;cursor:pointer}
+.course-cta:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(201,168,76,0.4)}
+
+/* ===== QUOTE ===== */
+.quote-section{text-align:center;max-width:800px;margin:0 auto;padding:80px 60px}
+.quote-mark{font-family:'Cormorant Garamond',serif;font-size:5rem;color:var(--gold);line-height:0.5;opacity:0.4}
+.quote-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,2.5vw,1.8rem);font-style:italic;font-weight:300;line-height:1.6;margin:20px 0;color:var(--text-primary)}
+.quote-author{font-size:0.85rem;color:var(--text-secondary);letter-spacing:0.05em}
+
+/* ===== FOOTER ===== */
+footer{position:relative;z-index:2;padding:60px;border-top:1px solid var(--glass-border);text-align:center}
+footer .footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);margin-bottom:12px}
+footer p{font-size:0.8rem;color:var(--text-secondary)}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr;padding:120px 30px 60px}
+  .hero-visual{display:none}
+  .about-grid{grid-template-columns:1fr}
+  .about-visual{order:-1}
+  .pricing-grid{grid-template-columns:1fr}
+  .course-card{grid-template-columns:1fr}
+  section{padding:60px 24px}
+  .warning-banner{margin:0 24px;padding:24px}
+}
+@media(max-width:768px){
+  .nav-links{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,15,13,0.97);flex-direction:column;align-items:center;justify-content:center;gap:32px;backdrop-filter:blur(24px)}
+  .nav-links.open{display:flex}
+  .burger{display:flex}
+  .bento-2,.bento-3,.bento-asym{grid-template-columns:1fr}
+  .about-features{grid-template-columns:1fr}
+  .hero-actions{flex-direction:column}
+  .hero-actions .btn-primary,.hero-actions .btn-secondary{width:100%;justify-content:center}
+  .course-card{padding:32px}
+  .course-price{font-size:2.5rem}
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg-deep)}
+::-webkit-scrollbar-thumb{background:rgba(201,168,76,0.3);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(201,168,76,0.5)}
+</style>
+</head>
+<body>
+
+<!-- ANIMATED BACKGROUND -->
+<div class="bg-canvas">
+  <div class="bg-blob"></div>
+  <div class="bg-blob"></div>
+  <div class="bg-blob"></div>
+</div>
+<div class="grain"></div>
+
+<!-- PARTICLES -->
+<div class="particles" id="particles"></div>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <div class="nav-logo">Merényi Krisztián</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#rolam">Rólunk</a></li>
+    <li><a href="#javallatok">Javallatok</a></li>
+    <li><a href="#kezeles">Kezelés</a></li>
+    <li><a href="#gyik">GYIK</a></li>
+    <li><a href="#arak">Árak</a></li>
+    <li><a href="#tanfolyam">Tanfolyam</a></li>
+  </ul>
+  <a href="#idopont" class="nav-cta">Időpontfoglalás</a>
+  <button class="burger" id="burger" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Holisztikus Gyógyászat
+    </div>
+    <h1>A természet <em>öreg gyógymódja</em> a modern ember számára</h1>
+    <p class="hero-sub">Fedezd fel a piócakezelés (hirudoterápia) ősi erejét — egy olyan terápiát, amely évezredek óta segíti a szervezet öngyógyító erejét.</p>
+    <div class="hero-actions">
+      <a href="#idopont" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Időpontot foglalok
+      </a>
+      <a href="#rolam" class="btn-secondary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Tudj meg többet
+      </a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-circle">
+      <div class="orbit-dot"></div>
+      <div class="orbit-dot"></div>
+      <div class="orbit-dot"></div>
+    </div>
+    <div class="hero-center-icon">
+      <svg viewBox="0 0 120 120" fill="none">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="120" y2="120">
+            <stop offset="0%" stop-color="#c9a84c"/>
+            <stop offset="100%" stop-color="#4db89a"/>
+          </linearGradient>
+        </defs>
+        <circle cx="60" cy="60" r="40" stroke="url(#g1)" stroke-width="1" fill="none" opacity="0.3"/>
+        <circle cx="60" cy="60" r="25" stroke="url(#g1)" stroke-width="0.5" fill="none" opacity="0.2"/>
+        <!-- Leech-inspired organic shape -->
+        <path d="M60 20 C75 25, 85 40, 80 60 C75 80, 60 100, 60 100 C60 100, 45 80, 40 60 C35 40, 45 25, 60 20Z" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.6"/>
+        <circle cx="60" cy="50" r="4" fill="#c9a84c" opacity="0.8"/>
+        <circle cx="60" cy="65" r="3" fill="#4db89a" opacity="0.6"/>
+        <circle cx="60" cy="78" r="2" fill="#c9a84c" opacity="0.4"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- WARNING BANNER -->
+<div class="warning-banner reveal">
+  <div class="warning-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+  </div>
+  <div class="warning-content">
+    <h3>⚠ FONTOS FIGYELMEZTETÉS</h3>
+    <p>A piócakezelés <strong>szigorúan ellenjavallt</strong> abban az esetben, ha a páciens <strong>vérhígítót (véralvadásgátlót)</strong> szed! A kezelés megkezdése előtt a terapeutát minden esetben tájékoztatni kell a szedett gyógyszerekről.</p>
+  </div>
+</div>
+
+<!-- ABOUT SECTION -->
+<section id="rolam">
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-image-frame">
+        <div class="frame-inner">
+          <svg viewBox="0 0 200 200" fill="none">
+            <path d="M100 20 C130 30, 160 60, 150 100 C140 140, 110 180, 100 180 C90 180, 60 140, 50 100 C40 60, 70 30, 100 20Z" stroke="white" stroke-width="0.5" fill="none"/>
+            <path d="M100 40 C120 48, 140 70, 135 100 C130 130, 110 160, 100 160 C90 160, 70 130, 65 100 C60 70, 80 48, 100 40Z" stroke="white" stroke-width="0.3" fill="none"/>
+            <circle cx="100" cy="80" r="5" fill="white" opacity="0.2"/>
+            <circle cx="100" cy="100" r="4" fill="white" opacity="0.15"/>
+            <circle cx="100" cy="118" r="3" fill="white" opacity="0.1"/>
+          </svg>
+        </div>
+      </div>
+      <div class="about-float-card">
+        <div class="afc-num">10+</div>
+        <div class="afc-label">Év tapasztalat<br>hirudoterápiában</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-label reveal">Mi az a hirudoterápia?</div>
+      <h2 class="reveal reveal-delay-1">Ősi gyógyítás, <em style="color:var(--gold-light);font-style:italic">modern</em> felismerésekkel</h2>
+      <p class="reveal reveal-delay-2">A piócaterápia egy holisztikus gyógyászati eljárás, amely évezredek óta ismeri a természet egyik legkiválóbb gyógyítóját: a piócát. A kezelés során a pióca nyálában található biokémiai és bioaktív anyagok — köztük a híres hirudin — fejtik ki jótékony hatásukat.</p>
+      <p class="reveal reveal-delay-2">A pióca nemcsak a fizikai tüneteket kezeli, hanem <strong style="color:var(--teal-light)">energetikai hatással</strong> is bír: segít az energetikai egyensúly helyreállításában, lazító és nyugtató hatása van.</p>
+      <div class="about-features reveal reveal-delay-3">
+        <div class="about-feat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>Gyulladáscsökkentő hatás</span>
+        </div>
+        <div class="about-feat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>Véralvadásgátló</span>
+        </div>
+        <div class="about-feat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>Mikrokeringés javítás</span>
+        </div>
+        <div class="about-feat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>Energetikai egyensúly</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <div class="quote-mark reveal">"</div>
+  <p class="quote-text reveal reveal-delay-1">A természet nem siet, mégis minden elér. A pióca gyógyereje is ezt a bölcsességet idézi.</p>
+  <p class="quote-author reveal reveal-delay-2">— Merényi Krisztián</p>
+</div>
+
+<!-- INDICATIONS (BENTO) -->
+<section id="javallatok">
+  <div class="indications-section">
+    <div class="section-label reveal">Javallatok</div>
+    <h2 class="section-title reveal reveal-delay-1">Milyen panaszokra nyújthat <em style="color:var(--gold-light);font-style:italic">segítséget</em> a piócakezelés?</h2>
+    <p class="section-subtitle reveal reveal-delay-2">A hirudoterápia sokrétűen alkalmazható — az alábbi területeken mutat kiemelkedő eredményt.</p>
+    <div class="indications-grid">
+      <div class="indication-card reveal">
+        <div class="ind-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h4>Ízületi problémák</h4>
+        <p>Ízületi fájdalmak és gyulladások hatékony kezelése, mozgásszervi panaszok enyhítése.</p>
+      </div>
+      <div class="indication-card reveal reveal-delay-1">
+        <div class="ind-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <h4>Szív- és érrendszer</h4>
+        <p>Keringési betegségek tüneteinek enyhítése, magas vérnyomás kiegészítő kezelése, fejzúgás és stressz csökkentése.</p>
+      </div>
+      <div class="indication-card reveal reveal-delay-2">
+        <div class="ind-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <h4>Bőrbetegségek</h4>
+        <p>A pióca nyálában lévő bioaktív anyagok segítik a bőr regenerálódását és gyógyulását.</p>
+      </div>
+      <div class="indication-card reveal">
+        <div class="ind-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        </div>
+        <h4>Ciszták és csomók</h4>
+        <p>Baker-ciszta, Ganglion-ciszta és egyéb jóindulatú képletek támogatása. <em style="color:var(--danger)">Lipóma esetén óvatosság szükséges.</em></p>
+      </div>
+      <div class="indication-card reveal reveal-delay-1">
+        <div class="ind-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h4>Szájüreg és fül</h4>
+        <p>Fogínygyulladás, fogíny-ciszták, fülbetegségek. Kizárólag tapasztalt terapeuta által végezve.</p>
+      </div>
+      <div class="indication-card reveal reveal-delay-2">
+        <div class="ind-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        </div>
+        <h4>Egyéb panaszok</h4>
+        <p>Pajzsmirigy-problémák, lábszárfekély, lábszárödéma, daganatos betegek kiegészítő kezelése.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TREATMENT PROCESS -->
+<section id="kezeles">
+  <div class="treatment-steps">
+    <div class="section-label reveal">A kezelés menete</div>
+    <h2 class="section-title reveal reveal-delay-1">Mit <em style="color:var(--gold-light);font-style:italic">várható</em> tőled?</h2>
+    <p class="section-subtitle reveal reveal-delay-2">A kezelés minden lépését alaposan megtervezzük, hogy a lehető legkényelmesebb és leghatékonyabb legyen.</p>
+    <div class="steps-timeline">
+      <div class="step-item reveal">
+        <div class="step-dot"></div>
+        <div class="step-number">1. Lépés</div>
+        <h4>Előkészületek</h4>
+        <p>Kényelmes, sötét színű, laza ruházatban érkezz — vastag kötés és esetleges átszivárgó vérzés miatt. Mellőzd az illatosított tusfürdőket, testápolókat és krémeket. <strong style="color:var(--danger)">Ne dohányozz!</strong> A piócák nem bírják a dohányfüstöt. Tájékoztass a szedett gyógyszerekről (vérnyomáscsökkentő, bétablokkoló, véralvadásgátló).</p>
+      </div>
+      <div class="step-item reveal reveal-delay-1">
+        <div class="step-dot"></div>
+        <div class="step-number">2. Lépés</div>
+        <h4>A kezelés</h4>
+        <p>Egy alkalom körülbelül <strong style="color:var(--gold)">2 órát</strong> vesz igénybe. A piócák harapása enyhe fájdalomszerű, csípés érzetű. Kezdetben kevés piócát helyezünk fel, majd a reakciódtól függően egyénre szabottan növeljük a számukat.</p>
+      </div>
+      <div class="step-item reveal reveal-delay-2">
+        <div class="step-dot"></div>
+        <div class="step-number">3. Lépés</div>
+        <h4>Kezelési terv</h4>
+        <p>Általában <strong style="color:var(--gold)">10 kezelés</strong> javasolt heti rendszerességgel, egyéni eltérésekkel. A terapeuta személyre szabottan alakítja a kezelési tervet a panaszaid és a szervezeted reagálása alapján.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="gyik">
+  <div class="faq-container">
+    <div class="section-label reveal">Gyakran Ismételt Kérdések</div>
+    <h2 class="section-title reveal reveal-delay-1">Minden, <em style="color:var(--gold-light);font-style:italic">ami érdekel</em></h2>
+    <p class="section-subtitle reveal reveal-delay-2">Az alábbiakban összegyűjtöttük a leggyakoribb kérdéseket és válaszokat a piócakezeléssel kapcsolatban.</p>
+
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Hogyan kell felkészülnöm a kezelésre?</span>
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <ul>
+            <li>Kényelmes, sötét színű, laza ruházatban érkezz (vastag kötés és esetleges átszivárgó vérzés miatt).</li>
+            <li>Mellőzd az illatosított tusfürdőket, testápolókat és krémeket.</li>
+            <li>Ne dohányozz a kezelés előtt!</li>
+            <li>Tájékoztass a terapeutát a szedett gyógyszerekről, különösen vérnyomáscsökkentő, bétablokkoló vagy véralvadásgátló esetén.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal reveal-delay-1">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Milyen hatások várhatók a kezelés után?</span>
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <ul>
+            <li>A sebet vastag, nedvszívó réteggel kötik be — ezt 24 óra után szabad levenni.</li>
+            <li>A seb akár 36 órán keresztül is szivároghat, vérezhet. Tarts otthon steril mullpólyát és ragtapaszt.</li>
+            <li>A kezelés napján tilos az intenzív tevékenység, autóvezetés vagy hosszú gyaloglás (bágyadtság, álmosság léphet fel).</li>
+            <li>Igyál sok folyadékot a regeneráció támogatásához!</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal reveal-delay-2">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Mi van, ha viszket vagy duzzanat jelentkezik?</span>
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          Viszketés, bőrpír, feszülés vagy duzzanat esetén <strong style="color:var(--teal-light)">jegeléssel</strong> vagy <strong style="color:var(--teal-light)">hideg vizes borogatással</strong> enyhítheted a tüneteket. Fenistil géllel is kenhető. Erősebb tünetek esetén kalcium pezsgőtabletta vagy Calcimusc injekció (megivása) javasolt.
+          <br><br>
+          Ritkán előfordulhat láz vagy hidegrázás — ez általában arra utal, hogy valamilyen betegség már lappangott a szervezetben. Ezek az utóhatások a kezelés napján vagy egy héttel később jelentkezhetnek.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal reveal-delay-3">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Hány kezelés szükséges?</span>
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          Általában <strong style="color:var(--gold)">10 kezelés</strong> javasolt heti rendszerességgel, azonban a pontos számot mindig egyénre szabottan határozzuk meg a panaszaid és a szervezeted reakciói alapján. Kezdetben kevesebb piócát helyezünk fel, majd fokozatosan növeljük a számukat.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Meddig tart egy alkalom?</span>
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          Egy alkalom körülbelül <strong style="color:var(--gold)">2 órát</strong> vesz igénybe. Ez tartalmazza az állapotfelmérést, a piócák felhelyezését és a kezelés utáni kötés felvitelét.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="arak">
+  <div class="section-label reveal" style="text-align:center;display:flex;justify-content:center">Árak</div>
+  <h2 class="section-title reveal reveal-delay-1" style="text-align:center">Átlátható, <em style="color:var(--gold-light);font-style:italic">átlátható</em> költségek</h2>
+  <p class="section-subtitle reveal reveal-delay-2" style="text-align:center;margin-left:auto;margin-right:auto">Az alábbiakban összefoglaltuk a legfontosabb díjakat.</p>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <div class="pc-icon teal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      <h3>Konzultáció</h3>
+      <p class="pc-desc">Állapotfelmérés és tanácsadás</p>
+      <div class="pc-price">11 000 <span style="font-size:1.2rem">Ft</span></div>
+      <div class="pc-unit">/ alkalom</div>
+    </div>
+    <div class="pricing-card featured reveal reveal-delay-1">
+      <div class="pc-icon gold">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Pióca kezelés</h3>
+      <p class="pc-desc">Munkadíj piócás kezeléskor</p>
+      <div class="pc-price">10 000 <span style="font-size:1.2rem">Ft</span></div>
+      <div class="pc-unit">/ alkalom</div>
+    </div>
+    <div class="pricing-card reveal reveal-delay-2">
+      <div class="pc-icon teal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+      </div>
+      <h3>Pióca díja</h3>
+      <p class="pc-desc">Egyes pióca egysége</p>
+      <div class="pc-price">3 000 <span style="font-size:1.2rem">Ft</span></div>
+      <div class="pc-unit">/ db</div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSE CTA -->
+<section id="tanfolyam">
+  <div class="course-section">
+    <div class="course-card">
+      <div class="course-text">
+        <div class="section-label">Oktatás</div>
+        <h2>Népi Piócaterápia <em>Tanfolyam</em></h2>
+        <p>Akik otthoni használatra szeretnék elsajátítani a módszert — saját vagy családtagjaik kezelésére — részt vehetnek 2 napos tanfolyamunkon.</p>
+        <p style="color:var(--danger);font-size:0.85rem"><strong>Fontos:</strong> A terápia otthoni végzése nagy felelősséget igényel. Alapos felkészülés és a szabályok szigorú betartása szükséges.</p>
+        <div class="course-details">
+          <div class="course-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>2 napos képzés</span>
+          </div>
+          <div class="course-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            <span>Főenként</span>
+          </div>
+          <div class="course-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>Tanúsítvány</span>
+          </div>
+        </div>
+        <a href="#idopont" class="course-cta">
+          Jelentkezem a tanfolyamra
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="course-price-box">
+        <div class="course-price">85 000<br><span style="font-size:1.5rem">Ft</span></div>
+        <div class="course-price-label">/ fő · 2 napos képzés</div>
+        <a href="#idopont" class="course-cta">Időpontot foglalok</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section id="idopont" style="text-align:center">
+  <div class="section-label reveal" style="display:flex;justify-content:center">Kapcsolat</div>
+  <h2 class="section-title reveal reveal-delay-1" style="text-align:center">Készen állsz a <em style="color:var(--gold-light);font-style:italic">gyógyulásra</em>?</h2>
+  <p class="section-subtitle reveal reveal-delay-2" style="text-align:center;margin-left:auto;margin-right:auto">Lépj kapcsolatba velünk, és foglalj időpontot még ma. A természet gyógyereje vár rád.</p>
+  <div class="reveal reveal-delay-3" style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap">
+    <a href="#" class="btn-primary" style="font-size:1rem;padding:20px 48px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Időpontot foglalok
+    </a>
+    <a href="#" class="btn-secondary" style="font-size:1rem;padding:20px 48px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Jelentkezem kezelésre
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Merényi Krisztián</div>
+  <p>Piócakezelés (Hirudoterápia) — Holisztikus gyógyászat</p>
+  <p style="margin-top:8px;opacity:0.5">© 2026 Minden jog fenntartva.</p>
+</footer>
+
+<script>
+// ===== PARTICLES =====
+(function(){
+  const c=document.getElementById('particles');
+  for(let i=0;i<30;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    p.style.left=Math.random()*100+'%';
+    p.style.animationDuration=(8+Math.random()*12)+'s';
+    p.style.animationDelay=Math.random()*10+'s';
+    p.style.width=p.style.height=(2+Math.random()*3)+'px';
+    c.appendChild(p);
+  }
+})();
+
+// ===== NAV SCROLL =====
+(function(){
+  const nav=document.getElementById('navbar');
+  window.addEventListener('scroll',function(){
+    nav.classList.toggle('scrolled',window.scrollY>60);
+  });
+})();
+
+// ===== BURGER =====
+(function(){
+  const b=document.getElementById('burger');
+  const n=document.getElementById('navLinks');
+  b.addEventListener('click',function(){
+    n.classList.toggle('open');
+  });
+  n.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){n.classList.remove('open')});
+  });
+})();
+
+// ===== FAQ ACCORDION =====
+function toggleFaq(btn){
+  const item=btn.parentElement;
+  const answer=item.querySelector('.faq-answer');
+  const isOpen=item.classList.contains('open');
+  // close all
+  document.querySelectorAll('.faq-item').forEach(function(fi){
+    fi.classList.remove('open');
+    fi.querySelector('.faq-answer').style.maxHeight=null;
+  });
+  if(!isOpen){
+    item.classList.add('open');
+    answer.style.maxHeight=answer.scrollHeight+'px';
+  }
+}
+
+// ===== SCROLL REVEAL =====
+(function(){
+  const items=document.querySelectorAll('.reveal');
+  const observer=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  items.forEach(function(item){observer.observe(item)});
+})();
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    const target=document.querySelector(this.getAttribute('href'));
+    if(target){
+      e.preventDefault();
+      target.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  });
+});
+</script>
+</body>
+</html>

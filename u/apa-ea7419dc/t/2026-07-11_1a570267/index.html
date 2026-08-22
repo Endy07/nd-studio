@@ -1,0 +1,1276 @@
+﻿<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kárai Mihály — Digitális Kiállítás</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap');
+
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --text-primary: #f0ece2;
+    --text-secondary: #a89f91;
+    --accent: #c9a96e;
+    --accent-glow: rgba(201, 169, 110, 0.3);
+    --panel-bg: rgba(15, 15, 15, 0.85);
+    --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: 'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 1.2s var(--transition-smooth), color 1.2s var(--transition-smooth);
+  }
+
+  /* ===== ATMOSPHERE THEMES ===== */
+  body.theme-vilagos {
+    --bg-primary: #f5f0e8;
+    --bg-secondary: #e8e0d0;
+    --text-primary: #2c2418;
+    --text-secondary: #6b5d4f;
+    --accent: #8b6914;
+    --accent-glow: rgba(139, 105, 20, 0.2);
+    --panel-bg: rgba(245, 240, 232, 0.9);
+  }
+
+  body.theme-meleg {
+    --bg-primary: #1a1208;
+    --bg-secondary: #2a1f10;
+    --text-primary: #f0d9a8;
+    --text-secondary: #b8976a;
+    --accent: #d4a04a;
+    --accent-glow: rgba(212, 160, 74, 0.25);
+    --panel-bg: rgba(26, 18, 8, 0.9);
+  }
+
+  body.theme-estei {
+    --bg-primary: #0d0d1a;
+    --bg-secondary: #1a1a2e;
+    --text-primary: #d4d0e8;
+    --text-secondary: #8a85a8;
+    --accent: #7b68ae;
+    --accent-glow: rgba(123, 104, 174, 0.25);
+    --panel-bg: rgba(13, 13, 26, 0.9);
+  }
+
+  body.theme-erdő {
+    --bg-primary: #0a1a0a;
+    --bg-secondary: #142a14;
+    --text-primary: #c8e6c8;
+    --text-secondary: #6b8f6b;
+    --accent: #5a8f5a;
+    --accent-glow: rgba(90, 143, 90, 0.25);
+    --panel-bg: rgba(10, 26, 10, 0.9);
+  }
+
+  body.theme-tenger {
+    --bg-primary: #0a1520;
+    --bg-secondary: #142838;
+    --text-primary: #c0d8e8;
+    --text-secondary: #6a8fa8;
+    --accent: #4a9ab5;
+    --accent-glow: rgba(74, 154, 181, 0.25);
+    --panel-bg: rgba(10, 21, 32, 0.9);
+  }
+
+  body.theme-árnyék {
+    --bg-primary: #050505;
+    --bg-secondary: #0f0f0f;
+    --text-primary: #e0e0e0;
+    --text-secondary: #707070;
+    --accent: #a0a0a0;
+    --accent-glow: rgba(160, 160, 160, 0.2);
+    --panel-bg: rgba(5, 5, 5, 0.92);
+  }
+
+  body.theme-alkonyat {
+    --bg-primary: #1a0a14;
+    --bg-secondary: #2a1420;
+    --text-primary: #e8c0d8;
+    --text-secondary: #a86a88;
+    --accent: #c06090;
+    --accent-glow: rgba(192, 96, 144, 0.25);
+    --panel-bg: rgba(26, 10, 20, 0.9);
+  }
+
+  /* ===== LOADING SCREEN ===== */
+  #loader {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1.5s ease, visibility 1.5s ease;
+  }
+  #loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  #loader .brush-stroke {
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    animation: brushLoad 2s ease-in-out infinite;
+  }
+  #loader p {
+    margin-top: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.3em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+  }
+  @keyframes brushLoad {
+    0%, 100% { transform: scaleX(0.3); opacity: 0.3; }
+    50% { transform: scaleX(1); opacity: 1; }
+  }
+
+  /* ===== HERO SECTION ===== */
+  #hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, var(--accent-glow), transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(100,80,60,0.1), transparent 50%);
+    pointer-events: none;
+    transition: background 1.2s ease;
+  }
+  .hero-content {
+    text-align: center;
+    z-index: 2;
+    animation: heroFadeIn 2s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  @keyframes heroFadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+  }
+  .hero-content h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(3rem, 8vw, 8rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--text-primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-content .years {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-weight: 400;
+    color: var(--text-secondary);
+    letter-spacing: 0.15em;
+  }
+  .hero-content .divider-line {
+    width: 80px;
+    height: 1px;
+    background: var(--accent);
+    margin: 28px auto;
+    opacity: 0.6;
+  }
+  .hero-content .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: scrollBounce 2.5s ease-in-out infinite;
+    cursor: pointer;
+    z-index: 5;
+  }
+  .scroll-indicator span {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+  .scroll-indicator .arrow {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(10px); }
+  }
+
+  /* ===== FLOATING PALETTE ===== */
+  #palette-panel {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 12px;
+    background: var(--panel-bg);
+    backdrop-filter: blur(20px) saturate(1.2);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    transition: all 0.6s var(--transition-smooth);
+    opacity: 0.85;
+  }
+  #palette-panel:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  #palette-panel .palette-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 4px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+  .palette-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.4s var(--transition-smooth);
+    overflow: hidden;
+  }
+  .palette-btn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+    background: var(--panel-bg);
+    padding: 6px 14px;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .palette-btn:hover::after { opacity: 1; right: 44px; }
+  .palette-btn:hover {
+    transform: scale(1.25);
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+  .palette-btn.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 15px var(--accent-glow);
+    transform: scale(1.15);
+  }
+  .palette-btn.active::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent);
+  }
+
+  /* ===== GALLERY SECTION ===== */
+  #gallery {
+    position: relative;
+    padding: 100px 40px 140px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  .gallery-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .gallery-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .gallery-header p {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* ===== PAINTING CARDS ===== */
+  .paintings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 60px 40px;
+    justify-items: center;
+  }
+
+  .painting-card {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    cursor: pointer;
+    perspective: 1000px;
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .painting-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .painting-frame {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.03);
+    transition: all 0.6s var(--transition-smooth);
+  }
+  .painting-card:hover .painting-frame {
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06), 0 0 40px var(--accent-glow);
+    transform: translateY(-4px);
+  }
+
+  .painting-wrapper {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+  }
+
+  .painting-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s var(--transition-smooth), opacity 0.5s ease;
+  }
+
+  /* Magnifier overlay */
+  .magnifier-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .painting-card:hover .magnifier-overlay {
+    opacity: 1;
+  }
+  .magnifier-overlay img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(1.1) contrast(1.05);
+  }
+
+  /* Magnifier lens effect */
+  .magnifier-lens {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 40px var(--accent-glow), inset 0 0 30px rgba(0,0,0,0.3);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    overflow: hidden;
+    backdrop-filter: brightness(1.1);
+  }
+  .painting-card:hover .magnifier-lens {
+    opacity: 1;
+  }
+  .magnifier-lens img {
+    width: 300%;
+    height: 300%;
+    object-fit: cover;
+    position: absolute;
+    transform: translate(-33.33%, -33.33%);
+  }
+
+  /* Painting info */
+  .painting-info {
+    padding: 24px 8px 8px;
+    text-align: center;
+  }
+  .painting-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 1.3rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+  }
+  .painting-info .details {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  /* ===== MAGNIFIER MODE TOGGLE ===== */
+  .mode-toggle {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 8000;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 28px;
+    background: var(--panel-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 40px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    transition: all 0.6s ease;
+  }
+  .mode-toggle:hover {
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  }
+  .mode-toggle .toggle-label {
+    white-space: nowrap;
+  }
+  .toggle-switch {
+    width: 48px;
+    height: 26px;
+    border-radius: 13px;
+    background: rgba(255,255,255,0.1);
+    position: relative;
+    cursor: pointer;
+    transition: background 0.4s ease;
+  }
+  .toggle-switch::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    top: 3px;
+    left: 3px;
+    transition: transform 0.4s var(--transition-bounce);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .toggle-switch.active {
+    background: rgba(201, 169, 110, 0.3);
+  }
+  .toggle-switch.active::after {
+    transform: translateX(22px);
+  }
+
+  /* ===== LIGHTBOX ===== */
+  #lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9500;
+    background: rgba(0,0,0,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    backdrop-filter: blur(30px);
+  }
+  #lightbox.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  #lightbox .lightbox-content {
+    max-width: 85vw;
+    max-height: 85vh;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.5s var(--transition-smooth);
+  }
+  #lightbox.active .lightbox-content {
+    transform: scale(1);
+  }
+  #lightbox .lightbox-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 40px 120px rgba(0,0,0,0.6);
+  }
+  #lightbox .lightbox-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  #lightbox .lightbox-close:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  #lightbox .lightbox-info {
+    text-align: center;
+    margin-top: 20px;
+  }
+  #lightbox .lightbox-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+  #lightbox .lightbox-info p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+  }
+
+  /* ===== NAV ARROWS ===== */
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+  .nav-arrow:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000;
+  }
+  .nav-arrow.prev { left: 20px; }
+  .nav-arrow.next { right: 20px; }
+
+  /* ===== ABOUT SECTION ===== */
+  #about {
+    padding: 120px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  #about h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 40px;
+    letter-spacing: 0.03em;
+  }
+  #about p {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+  }
+  .about-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--accent);
+    margin: 40px auto;
+    opacity: 0.5;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    text-align: center;
+    padding: 60px 40px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  /* ===== AMBIENT PARTICLES ===== */
+  #particles-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.4;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .paintings-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px 30px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #palette-panel {
+      right: 12px;
+      gap: 8px;
+      padding: 12px 8px;
+      border-radius: 12px;
+    }
+    .palette-btn {
+      width: 26px;
+      height: 26px;
+    }
+    .palette-btn::after { display: none; }
+    .paintings-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 0 10px;
+    }
+    .painting-card {
+      max-width: 100%;
+    }
+    #gallery {
+      padding: 60px 20px 100px;
+    }
+    .mode-toggle {
+      padding: 10px 20px;
+      gap: 10px;
+      font-size: 0.6rem;
+    }
+    #about {
+      padding: 80px 24px;
+    }
+    .nav-arrow {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+    }
+    .nav-arrow.prev { left: 8px; }
+    .nav-arrow.next { right: 8px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-content h1 {
+      font-size: clamp(2.2rem, 10vw, 3.5rem);
+    }
+    #palette-panel {
+      right: 8px;
+      gap: 6px;
+      padding: 10px 6px;
+    }
+    .palette-btn {
+      width: 22px;
+      height: 22px;
+    }
+    .mode-toggle {
+      bottom: 16px;
+      padding: 8px 16px;
+    }
+    .mode-toggle .toggle-label {
+      font-size: 0.55rem;
+    }
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .painting-card .painting-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.03) 50%, transparent 60%);
+    background-size: 200% 200%;
+    z-index: 5;
+    pointer-events: none;
+    animation: shimmer 6s ease-in-out infinite;
+  }
+
+  /* ===== CUSTOM SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg-primary); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+  /* ===== TEXT SELECTION ===== */
+  ::selection {
+    background: var(--accent);
+    color: var(--bg-primary);
+  }
+</style>
+</head>
+<body class="theme-meleg">
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="brush-stroke"></div>
+  <p>Kárai Mihály</p>
+</div>
+
+<!-- PARTICLES -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <p class="subtitle">Festőművész</p>
+    <h1>Kárai<br>Mihály</h1>
+    <p class="years">sz. 1961</p>
+    <div class="divider-line"></div>
+    <p class="tagline">„A festészet az a nyelv, amelyen a lélek beszél a csenddel."</p>
+  </div>
+  <div class="scroll-indicator" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">
+    <span>Fedezd fel</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<!-- PALETTE PANEL -->
+<div id="palette-panel">
+  <div class="palette-label">Atmoszféra</div>
+  <button class="palette-btn active" data-theme="theme-meleg" data-tooltip="Meleg" style="background: linear-gradient(135deg, #d4a04a, #8b6914);"></button>
+  <button class="palette-btn" data-theme="theme-vilagos" data-tooltip="Világos" style="background: linear-gradient(135deg, #f5f0e8, #c9a96e);"></button>
+  <button class="palette-btn" data-theme="theme-estei" data-tooltip="Estei" style="background: linear-gradient(135deg, #7b68ae, #0d0d1a);"></button>
+  <button class="palette-btn" data-theme="theme-erdő" data-tooltip="Erdő" style="background: linear-gradient(135deg, #5a8f5a, #0a1a0a);"></button>
+  <button class="palette-btn" data-theme="theme-tenger" data-tooltip="Tenger" style="background: linear-gradient(135deg, #4a9ab5, #0a1520);"></button>
+  <button class="palette-btn" data-theme="theme-árnyék" data-tooltip="Árnyék" style="background: linear-gradient(135deg, #a0a0a0, #050505);"></button>
+  <button class="palette-btn" data-theme="theme-alkonyat" data-tooltip="Alkonyat" style="background: linear-gradient(135deg, #c06090, #1a0a14);"></button>
+</div>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gallery-header">
+    <h2>A Művek</h2>
+    <p>Válassz egy festményt, és merülj el a színek világában. Vigy az egeret a képre a varázslatos nagyító aktiválásához.</p>
+  </div>
+
+  <div class="paintings-grid" id="paintings-grid">
+    <!-- Cards will be injected by JS -->
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>A Művészről</h2>
+  <p>Kárai Mihály (sz. 1961) életműve a festészet mélyrétegeibe kalauzol bennünket. Művei a természet és az emberi lélek találkozását idézik, színpalettája a benne rejlő érzelmi tartalmakat meséli el.</p>
+  <p>Évtizedes alkotói munka eredményeként jöttek létre azok a képek, amelyek most digitális kiállításunkon láthatók — mindegyik egy-egy fejezet a festő belső világából.</p>
+  <div class="about-divider"></div>
+  <p style="font-style: italic; color: var(--accent); font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;">„A festészet nem azt mutatja meg, amit látunk, hanem amit láthatatlannak hiszünk."</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Kárai Mihály Digitális Kiállítás · 2025</p>
+</footer>
+
+<!-- MODE TOGGLE -->
+<div class="mode-toggle">
+  <span class="toggle-label">Keret nélkül</span>
+  <div class="toggle-switch active" id="frame-toggle"></div>
+  <span class="toggle-label">Keretezve</span>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightbox-close">✕</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-info">
+      <h3 id="lightbox-title"></h3>
+      <p id="lightbox-details"></p>
+    </div>
+  </div>
+  <button class="nav-arrow prev" id="lightbox-prev">‹</button>
+  <button class="nav-arrow next" id="lightbox-next">›</button>
+</div>
+
+<script>
+// ===== PAINTING DATA =====
+// A képek a C:\xampp\htdocs\2026\Hermes\apa_festmenyek mappából származnak
+// Itt csak példaképek vannak - cseréld le a saját fájlnevekre!
+const paintings = [
+  {
+    id: 1,
+    title: 'Harmat reggel',
+    technique: 'olaj, vászon',
+    dimensions: '80 × 60 cm',
+    year: '2023',
+    interior: '../apa_festmenyek/harmat_reggel_interior.jpg',
+    normal: '../apa_festmenyek/harmat_reggel.jpg'
+  },
+  {
+    id: 2,
+    title: 'Az erdő titka',
+    technique: 'olaj, vászon',
+    dimensions: '100 × 70 cm',
+    year: '2022',
+    interior: '../apa_festmenyek/erdotitka_interior.jpg',
+    normal: '../apa_festmenyek/erdotitka.jpg'
+  },
+  {
+    id: 3,
+    title: 'Tengerpart',
+    technique: 'akril, vászon',
+    dimensions: '90 × 65 cm',
+    year: '2023',
+    interior: '../apa_festmenyek/tengerpart_interior.jpg',
+    normal: '../apa_festmenyek/tengerpart.jpg'
+  },
+  {
+    id: 4,
+    title: 'Alkonyat',
+    technique: 'olaj, vászon',
+    dimensions: '120 × 80 cm',
+    year: '2021',
+    interior: '../apa_festmenyek/alkonyat_interior.jpg',
+    normal: '../apa_festmenyek/alkonyat.jpg'
+  },
+  {
+    id: 5,
+    title: 'Csendes kert',
+    technique: 'olaj, vászon',
+    dimensions: '70 × 50 cm',
+    year: '2024',
+    interior: '../apa_festmenyek/csendes_kert_interior.jpg',
+    normal: '../apa_festmenyek/csendes_kert.jpg'
+  },
+  {
+    id: 6,
+    title: 'Őszi hangulat',
+    technique: 'olaj, vászon',
+    dimensions: '85 × 60 cm',
+    year: '2023',
+    interior: '../apa_festmenyek/oszi_hangulat_interior.jpg',
+    normal: '../apa_festmenyek/oszi_hangulat.jpg'
+  },
+  {
+    id: 7,
+    title: 'Tavasz',
+    technique: 'akril, vászon',
+    dimensions: '95 × 70 cm',
+    year: '2024',
+    interior: '../apa_festmenyek/tavasz_interior.jpg',
+    normal: '../apa_festmenyek/tavasz.jpg'
+  },
+  {
+    id: 8,
+    title: 'Éjszakai táj',
+    technique: 'olaj, vászon',
+    dimensions: '110 × 75 cm',
+    year: '2022',
+    interior: '../apa_festmenyek/éjszakai_táj_interior.jpg',
+    normal: '../apa_festmenyek/éjszakai_táj.jpg'
+  },
+  {
+    id: 9,
+    title: 'Hegyi patak',
+    technique: 'olaj, vászon',
+    dimensions: '80 × 55 cm',
+    year: '2023',
+    interior: '../apa_festmenyek/hegyi_patak_interior.jpg',
+    normal: '../apa_festmenyek/hegyi_patak.jpg'
+  }
+];
+
+// ===== STATE =====
+let currentLightboxIndex = 0;
+let showInterior = true; // true = interior/keretezve, false = normal/keretnélkül
+let isFrameMode = true;
+
+// ===== LOADER =====
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 1800);
+});
+
+// ===== PALETTE SWITCHING =====
+document.querySelectorAll('.palette-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const theme = btn.dataset.theme;
+    document.body.className = theme;
+  });
+});
+
+// ===== FRAME TOGGLE =====
+document.getElementById('frame-toggle').addEventListener('click', function() {
+  this.classList.toggle('active');
+  isFrameMode = !this.classList.contains('active');
+  updatePaintingImages();
+});
+
+function updatePaintingImages() {
+  document.querySelectorAll('.painting-card').forEach((card, index) => {
+    const painting = paintings[index];
+    const normalImg = card.querySelector('.painting-wrapper > img');
+    const overlayImg = card.querySelector('.magnifier-overlay img');
+    const lensImg = card.querySelector('.magnifier-lens img');
+
+    if (isFrameMode) {
+      normalImg.src = painting.interior;
+      overlayImg.src = painting.normal;
+      lensImg.src = painting.interior;
+    } else {
+      normalImg.src = painting.normal;
+      overlayImg.src = painting.interior;
+      lensImg.src = painting.normal;
+    }
+  });
+}
+
+// ===== GENERATE PAINTING CARDS =====
+const grid = document.getElementById('paintings-grid');
+
+paintings.forEach((painting, index) => {
+  const card = document.createElement('div');
+  card.className = 'painting-card';
+  card.setAttribute('data-index', index);
+
+  card.innerHTML = `
+    <div class="painting-frame">
+      <div class="painting-wrapper">
+        <img src="${painting.interior}" alt="${painting.title}" loading="lazy">
+        <div class="magnifier-overlay">
+          <img src="${painting.normal}" alt="${painting.title} - keret nélkül">
+        </div>
+        <div class="magnifier-lens">
+          <img src="${painting.interior}" alt="">
+        </div>
+      </div>
+      <div class="painting-info">
+        <h3>${painting.title}</h3>
+        <p class="details">${painting.technique} · ${painting.dimensions} · ${painting.year}</p>
+      </div>
+    </div>
+  `;
+
+  grid.appendChild(card);
+});
+
+// ===== MAGNIFIER LENS TRACKING =====
+document.querySelectorAll('.painting-card').forEach(card => {
+  const wrapper = card.querySelector('.painting-wrapper');
+  const lens = card.querySelector('.magnifier-lens');
+  const lensImg = card.querySelector('.magnifier-lens img');
+  const overlay = card.querySelector('.magnifier-overlay');
+  const overlayImg = card.querySelector('.magnifier-overlay img');
+
+  card.addEventListener('mousemove', (e) => {
+    const rect = wrapper.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Position lens
+    const lensSize = 200;
+    let lensX = x - lensSize / 2;
+    let lensY = y - lensSize / 2;
+
+    lensX = Math.max(0, Math.min(lensX, rect.width - lensSize));
+    lensY = Math.max(0, Math.min(lensY, rect.height - lensSize));
+
+    lens.style.left = lensX + 'px';
+    lens.style.top = lensY + 'px';
+
+    // Move lens image
+    const px = (x / rect.width) * 100;
+    const py = (y / rect.height) * 100;
+    lensImg.style.left = `calc(${px}% - ${rect.width}px)`;
+    lensImg.style.top = `calc(${py}% - ${rect.height}px)`;
+
+    // Overlay fade based on distance from center
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const dist = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+    const maxDist = Math.sqrt(centerX ** 2 + centerY ** 2);
+    const ratio = dist / maxDist;
+    overlay.style.opacity = Math.max(0, 1 - ratio * 1.5);
+  });
+
+  card.addEventListener('mouseleave', () => {
+    lens.style.opacity = '0';
+    overlay.style.opacity = '0';
+  });
+
+  // Click to open lightbox
+  card.addEventListener('click', () => {
+    openLightbox(index);
+  });
+});
+
+// ===== SCROLL REVEAL =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, i * 120);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.painting-card').forEach(card => observer.observe(card));
+
+// ===== LIGHTBOX =====
+function openLightbox(index) {
+  currentLightboxIndex = index;
+  const painting = paintings[index];
+  const src = isFrameMode ? painting.interior : painting.normal;
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-title').textContent = painting.title;
+  document.getElementById('lightbox-details').textContent = `${painting.technique} · ${painting.dimensions} · ${painting.year}`;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function navigateLightbox(dir) {
+  currentLightboxIndex = (currentLightboxIndex + dir + paintings.length) % paintings.length;
+  const painting = paintings[currentLightboxIndex];
+  const src = isFrameMode ? painting.interior : painting.normal;
+  const img = document.getElementById('lightbox-img');
+  img.style.opacity = '0';
+  setTimeout(() => {
+    img.src = src;
+    img.style.opacity = '1';
+  }, 200);
+  document.getElementById('lightbox-title').textContent = painting.title;
+  document.getElementById('lightbox-details').textContent = `${painting.technique} · ${painting.dimensions} · ${painting.year}`;
+}
+
+document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+document.getElementById('lightbox-prev').addEventListener('click', () => navigateLightbox(-1));
+document.getElementById('lightbox-next').addEventListener('click', () => navigateLightbox(1));
+document.getElementById('lightbox').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+});
+document.addEventListener('keydown', (e) => {
+  if (!document.getElementById('lightbox').classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') navigateLightbox(-1);
+  if (e.key === 'ArrowRight') navigateLightbox(1);
+});
+
+// ===== AMBIENT PARTICLES =====
+(function() {
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let w, h;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Particle {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+      this.x = Math.random() * w;
+      this.y = Math.random() * h;
+      this.size = Math.random() * 2 + 0.5;
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      this.speedY = (Math.random() - 0.5) * 0.3;
+      this.opacity = Math.random() * 0.5 + 0.1;
+      this.pulse = Math.random() * Math.PI * 2;
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      this.pulse += 0.01;
+      if (this.x < -10 || this.x > w + 10 || this.y < -10 || this.y > h + 10) {
+        this.reset();
+      }
+    }
+    draw() {
+      const o = this.opacity * (0.5 + 0.5 * Math.sin(this.pulse));
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(201, 169, 110, ${o})`;
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < 60; i++) {
+    particles.push(new Particle());
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+// ===== TOUCH SUPPORT FOR MAGNIFIER =====
+document.querySelectorAll('.painting-card').forEach(card => {
+  const wrapper = card.querySelector('.painting-wrapper');
+  const lens = card.querySelector('.magnifier-lens');
+  const lensImg = card.querySelector('.magnifier-lens img');
+  const overlay = card.querySelector('.magnifier-overlay');
+
+  card.addEventListener('touchstart', (e) => {
+    const touch = e.touches[0];
+    const rect = wrapper.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    const lensSize = 200;
+
+    lens.style.opacity = '1';
+    let lensX = x - lensSize / 2;
+    let lensY = y - lensSize / 2;
+    lensX = Math.max(0, Math.min(lensX, rect.width - lensSize));
+    lensY = Math.max(0, Math.min(lensY, rect.height - lensSize));
+    lens.style.left = lensX + 'px';
+    lens.style.top = lensY + 'px';
+
+    const px = (x / rect.width) * 100;
+    const py = (y / rect.height) * 100;
+    lensImg.style.left = `calc(${px}% - ${rect.width}px)`;
+    lensImg.style.top = `calc(${py}% - ${rect.height}px)`;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const dist = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+    const maxDist = Math.sqrt(centerX ** 2 + centerY ** 2);
+    overlay.style.opacity = Math.max(0, 1 - (dist / maxDist) * 1.5);
+  });
+
+  card.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const rect = wrapper.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    const lensSize = 200;
+
+    let lensX = x - lensSize / 2;
+    let lensY = y - lensSize / 2;
+    lensX = Math.max(0, Math.min(lensX, rect.width - lensSize));
+    lensY = Math.max(0, Math.min(lensY, rect.height - lensSize));
+    lens.style.left = lensX + 'px';
+    lens.style.top = lensY + 'px';
+
+    const px = (x / rect.width) * 100;
+    const py = (y / rect.height) * 100;
+    lensImg.style.left = `calc(${px}% - ${rect.width}px)`;
+    lensImg.style.top = `calc(${py}% - ${rect.height}px)`;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const dist = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+    const maxDist = Math.sqrt(centerX ** 2 + centerY ** 2);
+    overlay.style.opacity = Math.max(0, 1 - (dist / maxDist) * 1.5);
+  });
+
+  card.addEventListener('touchend', () => {
+    lens.style.opacity = '0';
+    overlay.style.opacity = '0';
+  });
+});
+</script>
+</body>
+</html>
+

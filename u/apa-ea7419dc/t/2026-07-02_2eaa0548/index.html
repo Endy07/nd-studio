@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="hu" data-theme="warm-gallery">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K&#225;rai Mih&#225;ly &#8212; Fest&#245;muv&#233;sz</title>
+<meta name="description" content="K&#225;rai Mih&#225;ly kort&#225;bsztrakt fest&#245;muv&#233;sz alkot&#225;sainak gal&#233;ri&#225;ja.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cormorant+SC:wght@300;400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--transition-speed:0.6s;--font-display:"Playfair Display","Cormorant Garamond",Georgia,serif;--font-body:"EB Garamond","Cormorant Garamond",Georgia,serif;--font-accent:"Cormorant SC","Cormorant Garamond",Georgia,serif;--font-handwriting:"Lora",Georgia,serif}
+[data-theme="warm-gallery"]{--bg-primary:#F5F0E8;--bg-secondary:#EDE6D8;--bg-tertiary:#E3D9C8;--bg-card:#FFFDF8;--text-primary:#2C1810;--text-secondary:#5C3D2E;--text-muted:#8B7355;--text-light:#F5F0E8;--accent:#B85C38;--accent-light:#D4956A;--accent-glow:#C46B3F;--gold:#C9A84C;--gold-light:#E8D5A0;--border:rgba(184,92,56,0.2);--border-strong:rgba(184,92,56,0.4);--shadow:rgba(44,24,16,0.12);--shadow-strong:rgba(44,24,16,0.25);--texture-opacity:0.04;--canvas-texture:url("../apa_festmenyek/broll_texture.png");--gradient-hero:linear-gradient(135deg,#2C1810 0%,#5C3D2E 50%,#8B5E3C 100%);--gradient-accent:linear-gradient(135deg,#B85C38,#D4956A);--gradient-card:linear-gradient(180deg,#FFFDF8 0%,#F5F0E8 100%);--nav-bg:rgba(245,240,232,0.92);--nav-text:#2C1810;--section-alt:#EDE6D8;--divider:#C9A84C;--btn-bg:#B85C38;--btn-text:#F5F0E8;--btn-hover:#9A4A28;--scrollbar-track:#EDE6D8;--scrollbar-thumb:#B85C38;--theme-badge:#B85C38;--gallery-hover:rgba(184,92,56,0.15);--comparison-bg:#EDE6D8;--comparison-border:#C9A84C}
+[data-theme="deep-ocean"]{--bg-primary:#0A1628;--bg-secondary:#0F1F3A;--bg-tertiary:#162A4A;--bg-card:#132040;--text-primary:#E8E0D4;--text-secondary:#B8AFA4;--text-muted:#7A8B9E;--text-light:#E8E0D4;--accent:#4A9BD9;--accent-light:#6BB8F0;--accent-glow:#5AACF0;--gold:#D4AF37;--gold-light:#E8CC6E;--border:rgba(74,155,217,0.2);--border-strong:rgba(74,155,217,0.4);--shadow:rgba(0,0,0,0.3);--shadow-strong:rgba(0,0,0,0.5);--texture-opacity:0.03;--canvas-texture:url("../apa_festmenyek/broll_texture.png");--gradient-hero:linear-gradient(135deg,#0A1628 0%,#162A4A 50%,#1E3A5F 100%);--gradient-accent:linear-gradient(135deg,#4A9BD9,#6BB8F0);--gradient-card:linear-gradient(180deg,#132040 0%,#0F1F3A 100%);--nav-bg:rgba(10,22,40,0.95);--nav-text:#E8E0D4;--section-alt:#0F1F3A;--divider:#D4AF37;--btn-bg:#4A9BD9;--btn-text:#0A1628;--btn-hover:#3A8BC9;--scrollbar-track:#0F1F3A;--scrollbar-thumb:#4A9BD9;--theme-badge:#4A9BD9;--gallery-hover:rgba(74,155,217,0.15);--comparison-bg:#0F1F3A;--comparison-border:#D4AF37}
+[data-theme="dusty-rose"]{--bg-primary:#F8F0F0;--bg-secondary:#F0E4E4;--bg-tertiary:#E8D4D4;--bg-card:#FFF8F8;--text-primary:#3D2028;--text-secondary:#6B3A45;--text-muted:#9A6B75;--text-light:#F8F0F0;--accent:#C4788A;--accent-light:#D9A0AD;--accent-glow:#D08898;--gold:#C9A84C;--gold-light:#E8D5A0;--border:rgba(196,120,138,0.2);--border-strong:rgba(196,120,138,0.4);--shadow:rgba(61,32,40,0.1);--shadow-strong:rgba(61,32,40,0.2);--texture-opacity:0.04;--canvas-texture:url("../apa_festmenyek/broll_texture.png");--gradient-hero:linear-gradient(135deg,#3D2028 0%,#6B3A45 50%,#9A6B75 100%);--gradient-accent:linear-gradient(135deg,#C4788A,#D9A0AD);--gradient-card:linear-gradient(180deg,#FFF8F8 0%,#F8F0F0 100%);--nav-bg:rgba(248,240,240,0.92);--nav-text:#3D2028;--section-alt:#F0E4E4;--divider:#C4788A;--btn-bg:#C4788A;--btn-text:#FFF8F8;--btn-hover:#B06878;--scrollbar-track:#F0E4E4;--scrollbar-thumb:#C4788A;--theme-badge:#C4788A;--gallery-hover:rgba(196,120,138,0.15);--comparison-bg:#F0E4E4;--comparison-border:#C4788A}
+[data-theme="forest-whisper"]{--bg-primary:#F2F0E8;--bg-secondary:#E8E4D4;--bg-tertiary:#DDD8C4;--bg-card:#FAFAF4;--text-primary:#1A2E1A;--text-secondary:#3D5C3D;--text-muted:#6B8B6B;--text-light:#F2F0E8;--accent:#5A8A5A;--accent-light:#7EB07E;--accent-glow:#6A9A6A;--gold:#A08840;--gold-light:#C8B870;--border:rgba(90,138,90,0.2);--border-strong:rgba(90,138,90,0.4);--shadow:rgba(26,46,26,0.12);--shadow-strong:rgba(26,46,26,0.25);--texture-opacity:0.04;--canvas-texture:url("../apa_festmenyek/broll_texture.png");--gradient-hero:linear-gradient(135deg,#1A2E1A 0%,#3D5C3D 50%,#5A8A5A 100%);--gradient-accent:linear-gradient(135deg,#5A8A5A,#7EB07E);--gradient-card:linear-gradient(180deg,#FAFAF4 0%,#F2F0E8 100%);--nav-bg:rgba(242,240,232,0.92);--nav-text:#1A2E1A;--section-alt:#E8E4D4;--divider:#A08840;--btn-bg:#5A8A5A;--btn-text:#F2F0E8;--btn-hover:#4A7A4A;--scrollbar-track:#E8E4D4;--scrollbar-thumb:#5A8A5A;--theme-badge:#5A8A5A;--gallery-hover:rgba(90,138,90,0.15);--comparison-bg:#E8E4D4;--comparison-border:#A08840}
+
+[data-theme="midnight-gold"]{--bg-primary:#1C1410;--bg-secondary:#241C16;--bg-tertiary:#2C221A;--bg-card:#281E16;--text-primary:#F0E6D0;--text-secondary:#C8B898;--text-muted:#8B7B60;--text-light:#F0E6D0;--accent:#D4AF37;--accent-light:#E8CC6E;--accent-glow:#DAB848;--gold:#D4AF37;--gold-light:#E8CC6E;--border:rgba(212,175,55,0.2);--border-strong:rgba(212,175,55,0.4);--shadow:rgba(0,0,0,0.35);--shadow-strong:rgba(0,0,0,0.55);--texture-opacity:0.03;--canvas-texture:url("../apa_festmenyek/broll_texture.png");--gradient-hero:linear-gradient(135deg,#1C1410 0%,#2C221A 50%,#3C2E1E 100%);--gradient-accent:linear-gradient(135deg,#D4AF37,#E8CC6E);--gradient-card:linear-gradient(180deg,#281E16 0%,#241C16 100%);--nav-bg:rgba(28,20,16,0.95);--nav-text:#F0E6D0;--section-alt:#241C16;--divider:#D4AF37;--btn-bg:#D4AF37;--btn-text:#1C1410;--btn-hover:#C4A030;--scrollbar-track:#241C16;--scrollbar-thumb:#D4AF37;--theme-badge:#D4AF37;--gallery-hover:rgba(212,175,55,0.12);--comparison-bg:#241C16;--comparison-border:#D4AF37}
+[data-theme="alabaster"]{--bg-primary:#FAFAFA;--bg-secondary:#F0F0F0;--bg-tertiary:#E8E8E8;--bg-card:#FFFFFF;--text-primary:#1A1A1A;--text-secondary:#4A4A4A;--text-muted:#7A7A7A;--text-light:#FAFAFA;--accent:#666666;--accent-light:#888888;--accent-glow:#777777;--gold:#A08840;--gold-light:#C8B870;--border:rgba(102,102,102,0.15);--border-strong:rgba(102,102,102,0.3);--shadow:rgba(0,0,0,0.08);--shadow-strong:rgba(0,0,0,0.18);--texture-opacity:0.03;--canvas-texture:url("../apa_festmenyek/broll_texture.png");--gradient-hero:linear-gradient(135deg,#1A1A1A 0%,#3A3A3A 50%,#5A5A5A 100%);--gradient-accent:linear-gradient(135deg,#666666,#888888);--gradient-card:linear-gradient(180deg,#FFFFFF 0%,#FAFAFA 100%);--nav-bg:rgba(250,250,250,0.95);--nav-text:#1A1A1A;--section-alt:#F0F0F0;--divider:#A08840;--btn-bg:#333333;--btn-text:#FFFFFF;--btn-hover:#555555;--scrollbar-track:#F0F0F0;--scrollbar-thumb:#888888;--theme-badge:#666666;--gallery-hover:rgba(102,102,102,0.08);--comparison-bg:#F0F0F0;--comparison-border:#A08840}
+[data-theme="terracotta"]{--bg-primary:#F7EDE0;--bg-secondary:#EDD9C4;--bg-tertiary:#E0C4AA;--bg-card:#FDF8F2;--text-primary:#3D1E0A;--text-secondary:#6B3A1E;--text-muted:#9A6B45;--text-light:#F7EDE0;--accent:#D4713A;--accent-light:#E89860;--accent-glow:#DE804A;--gold:#C9A84C;--gold-light:#E8D5A0;--border:rgba(212,113,58,0.2);--border-strong:rgba(212,113,58,0.4);--shadow:rgba(61,30,10,0.12);--shadow-strong:rgba(61,30,10,0.25);--texture-opacity:0.04;--canvas-texture:url("../apa_festmenyek/broll_texture.png");--gradient-hero:linear-gradient(135deg,#3D1E0A 0%,#6B3A1E 50%,#9A5A30 100%);--gradient-accent:linear-gradient(135deg,#D4713A,#E89860);--gradient-card:linear-gradient(180deg,#FDF8F2 0%,#F7EDE0 100%);--nav-bg:rgba(247,237,224,0.92);--nav-text:#3D1E0A;--section-alt:#EDD9C4;--divider:#D4713A;--btn-bg:#D4713A;--btn-text:#F7EDE0;--btn-hover:#C06030;--scrollbar-track:#EDD9C4;--scrollbar-thumb:#D4713A;--theme-badge:#D4713A;--gallery-hover:rgba(212,113,58,0.15);--comparison-bg:#EDD9C4;--comparison-border:#D4713A}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px;overflow-x:hidden}
+body{font-family:var(--font-body);background-color:var(--bg-primary);color:var(--text-primary);line-height:1.7;transition:background-color var(--transition-speed) ease,color var(--transition-speed) ease;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+::selection{background:var(--accent);color:var(--bg-primary)}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--scrollbar-track)}::-webkit-scrollbar-thumb{background:var(--scrollbar-thumb);border-radius:4px}
+body::before{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background-image:var(--canvas-texture);background-size:200px 200px;opacity:var(--texture-opacity);pointer-events:none;z-index:9998;transition:opacity var(--transition-speed) ease}
+
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:all var(--transition-speed) ease}
+.navbar.scrolled{padding:0.8rem 3rem;box-shadow:0 4px 30px var(--shadow)}
+.nav-logo{font-family:var(--font-display);font-size:1.4rem;font-weight:600;color:var(--text-primary);text-decoration:none;letter-spacing:0.05em;transition:color var(--transition-speed) ease}
+.nav-logo span{font-weight:300;font-style:italic;color:var(--accent)}
+.nav-links{display:flex;list-style:none;gap:2.5rem;align-items:center}
+.nav-links a{font-family:var(--font-accent);font-size:0.95rem;color:var(--text-secondary);text-decoration:none;letter-spacing:0.12em;text-transform:uppercase;position:relative;transition:color 0.3s ease;padding:0.3rem 0}
+.nav-links a::after{content:"";position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--accent);transition:width 0.4s cubic-bezier(0.25,0.46,0.45,0.94)}
+.nav-links a:hover{color:var(--accent)}.nav-links a:hover::after{width:100%}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;background:none;border:none;z-index:1001}
+.nav-toggle span{display:block;width:28px;height:2px;background:var(--text-primary);transition:all 0.3s ease;border-radius:2px}
+.nav-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.nav-toggle.active span:nth-child(2){opacity:0}
+.nav-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.theme-switcher{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:0}
+.theme-toggle-btn{width:48px;height:48px;border-radius:50% 0 0 50%;border:none;background:var(--theme-badge);color:var(--btn-text);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:-4px 4px 20px var(--shadow-strong);transition:all 0.3s ease;position:relative;z-index:2}
+.theme-toggle-btn:hover{width:56px}
+.theme-panel{position:absolute;right:48px;top:50%;transform:translateY(-50%) translateX(20px);background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;box-shadow:0 20px 60px var(--shadow-strong);opacity:0;visibility:hidden;transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);min-width:220px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.theme-panel.open{opacity:1;visibility:visible;transform:translateY(-50%) translateX(0)}
+.theme-panel-title{font-family:var(--font-accent);font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem;text-align:center}
+.theme-option{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;cursor:pointer;transition:all 0.3s ease;border:2px solid transparent;margin-bottom:6px}
+.theme-option:hover{background:var(--gallery-hover)}.theme-option.active{border-color:var(--accent);background:var(--gallery-hover)}
+.theme-colors{display:flex;gap:3px;flex-shrink:0}
+.theme-dot{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,0.1)}
+.theme-name{font-family:var(--font-body);font-size:0.85rem;color:var(--text-secondary);white-space:nowrap}
+
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;top:0;left:0;width:100%;height:100%;background:var(--gradient-hero);z-index:0}
+.hero-bg::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at 20% 50%,rgba(212,175,55,0.08) 0%,transparent 60%),radial-gradient(ellipse at 80% 30%,rgba(184,92,56,0.06) 0%,transparent 50%),radial-gradient(ellipse at 50% 80%,rgba(100,60,30,0.08) 0%,transparent 60%)}
+.hero-brush{position:absolute;border-radius:50%;opacity:0.06;filter:blur(40px);animation:floatBrush 20s ease-in-out infinite}
+.hero-brush:nth-child(1){width:400px;height:200px;background:var(--accent);top:10%;left:-5%;animation-delay:0s;animation-duration:25s}
+.hero-brush:nth-child(2){width:300px;height:350px;background:var(--gold);top:60%;right:-3%;animation-delay:-5s;animation-duration:22s}
+.hero-brush:nth-child(3){width:250px;height:150px;background:var(--accent-light);bottom:10%;left:30%;animation-delay:-10s;animation-duration:28s}
+.hero-brush:nth-child(4){width:200px;height:200px;background:var(--gold-light);top:20%;right:20%;animation-delay:-15s;animation-duration:30s}
+@keyframes floatBrush{0%,100%{transform:translate(0,0) rotate(0deg) scale(1)}25%{transform:translate(30px,-40px) rotate(5deg) scale(1.05)}50%{transform:translate(-20px,20px) rotate(-3deg) scale(0.95)}75%{transform:translate(15px,35px) rotate(2deg) scale(1.02)}}
+#heroParticles{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.hero-content{position:relative;z-index:2;text-align:center;padding:2rem;max-width:900px}
+.hero-ornament{display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:2rem;opacity:0;animation:fadeInUp 1s ease 0.3s forwards}
+.hero-ornament-line{width:60px;height:1px;background:var(--gold);opacity:0.6}
+.hero-ornament-diamond{width:8px;height:8px;background:var(--gold);transform:rotate(45deg);opacity:0.7}
+.hero-subtitle{font-family:var(--font-accent);font-size:clamp(0.85rem,1.5vw,1.1rem);letter-spacing:0.35em;text-transform:uppercase;color:var(--gold-light);margin-bottom:1.5rem;opacity:0;animation:fadeInUp 1s ease 0.5s forwards}
+.hero-title{font-family:var(--font-display);font-size:clamp(3rem,8vw,7rem);font-weight:700;color:var(--text-light);line-height:1.1;margin-bottom:0.5rem;opacity:0;animation:fadeInUp 1s ease 0.7s forwards;text-shadow:0 4px 40px rgba(0,0,0,0.3)}
+.hero-title .last-name{display:block;font-style:italic;font-weight:300;background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--accent-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-years{font-family:var(--font-accent);font-size:clamp(0.9rem,1.5vw,1.15rem);letter-spacing:0.25em;color:var(--text-light);margin-bottom:2.5rem;opacity:0;animation:fadeInUp 1s ease 0.9s forwards}
+.hero-description{font-family:var(--font-handwriting);font-size:clamp(1rem,1.8vw,1.25rem);color:var(--text-light);opacity:0;max-width:600px;margin:0 auto 3rem;line-height:1.8;animation:fadeInUp 1s ease 1.1s forwards}
+.hero-cta{display:inline-flex;align-items:center;gap:0.8rem;padding:1rem 2.5rem;background:transparent;border:1px solid var(--gold);color:var(--gold-light);font-family:var(--font-accent);font-size:0.9rem;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all 0.4s ease;opacity:0;animation:fadeInUp 1s ease 1.3s forwards}
+.hero-cta:hover{background:var(--gold);color:var(--bg-primary);box-shadow:0 0 40px rgba(212,175,55,0.3)}
+.hero-cta svg{width:20px;height:20px;transition:transform 0.3s ease}
+.hero-cta:hover svg{transform:translateY(3px)}
+.scroll-indicator{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:0.5rem;opacity:0;animation:fadeIn 1s ease 2s forwards}
+.scroll-indicator span{font-family:var(--font-accent);font-size:0.7rem;letter-spacing:0.2em;color:var(--text-light);opacity:0.5;text-transform:uppercase}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:0.3;transform:scaleY(1)}50%{opacity:0.8;transform:scaleY(1.2)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+.section{padding:8rem 3rem;position:relative}
+.section-alt{background:var(--section-alt);transition:background-color var(--transition-speed) ease}
+.section-header{text-align:center;margin-bottom:5rem}
+.section-label{font-family:var(--font-accent);font-size:0.8rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:block}
+.section-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.5rem);font-weight:600;color:var(--text-primary);margin-bottom:1.5rem;line-height:1.2}
+.section-divider{width:60px;height:2px;background:var(--divider);margin:0 auto 1.5rem;position:relative}
+.section-divider::before{content:"";position:absolute;top:-4px;left:50%;transform:translateX(-50%);width:10px;height:10px;background:var(--divider);transform:translateX(-50%) rotate(45deg)}
+.section-text{max-width:700px;margin:0 auto;font-size:1.1rem;color:var(--text-secondary);line-height:1.9}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1200px;margin:0 auto;align-items:center}
+.about-image-wrapper{position:relative}
+.about-image-frame{position:relative;padding:1.5rem;border:1px solid var(--border);transition:border-color var(--transition-speed) ease}
+.about-image-frame::before{content:"";position:absolute;top:-8px;left:-8px;right:-8px;bottom:-8px;border:1px solid var(--border);transition:border-color var(--transition-speed) ease}
+.about-image{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;filter:grayscale(10%) contrast(1.05);transition:all 0.5s ease}
+.about-image-frame:hover .about-image{filter:grayscale(0%) contrast(1.1);transform:scale(1.02)}
+.about-accent{position:absolute;bottom:-20px;right:-20px;width:120px;height:120px;border:2px solid var(--gold);opacity:0.3;z-index:-1}
+.about-content{padding:1rem 0}
+.about-content .section-label{text-align:left}
+.about-content .section-title{text-align:left;margin-bottom:2rem}
+.about-text{font-size:1.05rem;color:var(--text-secondary);line-height:2;margin-bottom:1.5rem}
+.about-text:first-of-type::first-letter{font-family:var(--font-display);font-size:3.5rem;float:left;line-height:0.8;margin-right:0.5rem;margin-top:0.1rem;color:var(--accent);font-weight:700}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
+.stat-item{text-align:center}
+.stat-number{font-family:var(--font-display);font-size:2.5rem;font-weight:700;color:var(--accent);line-height:1;margin-bottom:0.5rem}
+.stat-label{font-family:var(--font-accent);font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted)}
+
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:2.5rem;max-width:1400px;margin:0 auto}
+.gallery-item{position:relative;background:var(--bg-card);border:1px solid var(--border);border-radius:4px;overflow:hidden;cursor:pointer;transition:all 0.5s cubic-bezier(0.25,0.46,0.45,0.94);box-shadow:0 4px 20px var(--shadow)}
+.gallery-item:hover{transform:translateY(-8px);box-shadow:0 20px 60px var(--shadow-strong);border-color:var(--border-strong)}
+.gallery-image-wrapper{position:relative;overflow:hidden;aspect-ratio:4/3}
+.gallery-image-wrapper.tall{aspect-ratio:3/4}
+.gallery-image-wrapper.panoramic{aspect-ratio:14/4}
+.gallery-image{width:100%;height:100%;object-fit:cover;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94)}
+.gallery-item:hover .gallery-image{transform:scale(1.08)}
+.gallery-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,transparent 50%);opacity:0;transition:opacity 0.5s ease;display:flex;align-items:flex-end;padding:1.5rem}
+.gallery-item:hover .gallery-overlay{opacity:1}
+.gallery-overlay-title{font-family:var(--font-display);font-size:1.1rem;color:#fff;font-weight:500}
+.gallery-info{padding:1.5rem;transition:background-color var(--transition-speed) ease}
+.gallery-item:hover .gallery-info{background:var(--gallery-hover)}
+.gallery-title{font-family:var(--font-display);font-size:1.15rem;font-weight:600;color:var(--text-primary);margin-bottom:0.5rem;transition:color var(--transition-speed) ease}
+.gallery-meta{display:flex;align-items:center;gap:1rem;margin-bottom:0.8rem}
+.gallery-size{font-family:var(--font-body);font-size:0.85rem;color:var(--text-muted);font-style:italic}
+.gallery-tech{font-family:var(--font-accent);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);padding:3px 8px;border:1px solid var(--border);border-radius:3px}
+.gallery-desc{font-size:0.9rem;color:var(--text-secondary);line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.92);z-index:10000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all 0.4s ease;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.lightbox.active{opacity:1;visibility:visible}
+.lightbox-content{max-width:90vw;max-height:90vh;display:flex;flex-direction:column;align-items:center;transform:scale(0.9);transition:transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)}
+.lightbox.active .lightbox-content{transform:scale(1)}
+.lightbox-image{max-width:100%;max-height:75vh;object-fit:contain;border:4px solid rgba(255,255,255,0.1);border-radius:2px}
+.lightbox-info{text-align:center;margin-top:1.5rem;color:#fff}
+.lightbox-title{font-family:var(--font-display);font-size:1.5rem;font-weight:500;margin-bottom:0.3rem}
+.lightbox-desc{font-family:var(--font-body);font-size:1rem;opacity:0.7;max-width:500px}
+.lightbox-close{position:absolute;top:2rem;right:2rem;width:50px;height:50px;border:1px solid rgba(255,255,255,0.3);border-radius:50%;background:transparent;color:#fff;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease}
+.lightbox-close:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.6)}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;border:1px solid rgba(255,255,255,0.3);border-radius:50%;background:transparent;color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease}
+.lightbox-nav:hover{background:rgba(255,255,255,0.1)}
+.lightbox-prev{left:2rem}.lightbox-next{right:2rem}
+
+.comparison-container{max-width:1000px;margin:0 auto}
+.comparison-pair{margin-bottom:4rem}
+.comparison-label{font-family:var(--font-accent);font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);text-align:center;margin-bottom:1.5rem}
+.comparison-slider{position:relative;width:100%;aspect-ratio:4/3;border:1px solid var(--border);border-radius:4px;overflow:hidden;cursor:col-resize;box-shadow:0 8px 40px var(--shadow)}
+.comparison-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+.comparison-img-after{clip-path:inset(0 50% 0 0)}
+.comparison-slider-line{position:absolute;top:0;left:50%;width:3px;height:100%;background:var(--comparison-border);transform:translateX(-50%);z-index:10;pointer-events:none}
+.comparison-slider-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--comparison-border);color:var(--bg-primary);display:flex;align-items:center;justify-content:center;z-index:11;box-shadow:0 2px 15px var(--shadow-strong);font-size:0.8rem;pointer-events:none}
+.comparison-tags{display:flex;justify-content:space-between;margin-top:0.8rem;padding:0 0.5rem}
+.comparison-tag{font-family:var(--font-accent);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)}
+.interior-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto}
+.interior-card{position:relative;border-radius:4px;overflow:hidden;border:1px solid var(--border);box-shadow:0 8px 40px var(--shadow);transition:all 0.5s ease}
+.interior-card:hover{transform:translateY(-5px);box-shadow:0 20px 60px var(--shadow-strong)}
+.interior-image{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;transition:transform 0.8s ease}
+.interior-card:hover .interior-image{transform:scale(1.05)}
+.interior-overlay{position:absolute;bottom:0;left:0;right:0;padding:2rem;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent)}
+.interior-overlay h3{font-family:var(--font-display);font-size:1.3rem;color:#fff;margin-bottom:0.3rem}
+.interior-overlay p{font-size:0.9rem;color:rgba(255,255,255,0.7);font-style:italic}
+.quote-section{padding:10rem 3rem;text-align:center;position:relative;overflow:hidden}
+.quote-section::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:var(--gradient-hero);opacity:0.95}
+.quote-content{position:relative;z-index:1;max-width:800px;margin:0 auto}
+.quote-mark{font-family:var(--font-display);font-size:8rem;line-height:0.5;color:var(--gold);opacity:0.4;margin-bottom:1rem}
+.quote-text{font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:300;font-style:italic;color:var(--text-light);line-height:1.6;margin-bottom:2rem}
+.quote-author{font-family:var(--font-accent);font-size:0.85rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-light)}
+
+.footer{padding:5rem 3rem 3rem;background:var(--bg-secondary);border-top:1px solid var(--border);transition:all var(--transition-speed) ease}
+.footer-content{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;margin-bottom:4rem}
+.footer-brand h3{font-family:var(--font-display);font-size:1.8rem;font-weight:600;color:var(--text-primary);margin-bottom:1rem}
+.footer-brand h3 span{font-style:italic;font-weight:300;color:var(--accent)}
+.footer-brand p{font-size:0.95rem;color:var(--text-secondary);line-height:1.8;max-width:350px}
+.footer-col h4{font-family:var(--font-accent);font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.5rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:0.8rem}
+.footer-col ul li a{font-family:var(--font-body);font-size:0.95rem;color:var(--text-secondary);text-decoration:none;transition:color 0.3s ease}
+.footer-col ul li a:hover{color:var(--accent)}
+.footer-bottom{text-align:center;padding-top:3rem;border-top:1px solid var(--border)}
+.footer-bottom p{font-family:var(--font-accent);font-size:0.75rem;letter-spacing:0.15em;color:var(--text-muted)}
+.reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.25,0.46,0.45,0.94)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+.page-loader{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--bg-primary);z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2rem;transition:opacity 0.6s ease,visibility 0.6s ease}
+.page-loader.hidden{opacity:0;visibility:hidden}
+.loader-brush{width:60px;height:60px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+.loader-text{font-family:var(--font-accent);font-size:0.8rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.back-to-top{position:fixed;bottom:2rem;left:2rem;width:48px;height:48px;border-radius:50%;border:1px solid var(--border);background:var(--bg-card);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 20px var(--shadow);opacity:0;visibility:hidden;transition:all 0.3s ease;z-index:998}
+.back-to-top.visible{opacity:1;visibility:visible}
+.back-to-top:hover{background:var(--accent);color:var(--btn-text);border-color:var(--accent);transform:translateY(-3px)}
+
+@media(max-width:1024px){.section{padding:6rem 2rem}.about-grid{gap:3rem}.gallery-grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2rem}.footer-content{grid-template-columns:1fr 1fr;gap:3rem}}
+@media(max-width:768px){.navbar{padding:1rem 1.5rem}.navbar.scrolled{padding:0.8rem 1.5rem}.nav-links{position:fixed;top:0;left:0;width:100%;height:100vh;background:var(--bg-primary);flex-direction:column;justify-content:center;align-items:center;gap:2rem;opacity:0;visibility:hidden;transition:all 0.4s ease;z-index:999}.nav-links.open{opacity:1;visibility:visible}.nav-links a{font-size:1.2rem;letter-spacing:0.2em}.nav-toggle{display:flex}.section{padding:5rem 1.5rem}.about-grid{grid-template-columns:1fr;gap:3rem}.about-content .section-label,.about-content .section-title{text-align:center}.about-text:first-of-type::first-letter{font-size:2.8rem}.about-stats{grid-template-columns:repeat(3,1fr);gap:1rem}.stat-number{font-size:2rem}.gallery-grid{grid-template-columns:1fr;gap:2rem}.interior-grid{grid-template-columns:1fr;gap:2rem}.theme-switcher{right:10px}.theme-panel{right:56px;min-width:200px}.footer-content{grid-template-columns:1fr;gap:2.5rem;text-align:center}.footer-brand p{max-width:100%}.hero-ornament-line{width:40px}.quote-section{padding:6rem 1.5rem}.lightbox-nav{width:40px;height:40px}.lightbox-prev{left:1rem}.lightbox-next{right:1rem}}
+@media(max-width:480px){html{font-size:15px}.section{padding:4rem 1rem}.hero-title{font-size:2.8rem}.about-stats{grid-template-columns:1fr;gap:1.5rem}.stat-item{text-align:center}.theme-panel{right:48px;min-width:180px;padding:1rem}.theme-option{padding:8px 10px}.theme-dot{width:14px;height:14px}.comparison-slider{aspect-ratio:3/2}}
+@media(min-width:1600px){html{font-size:18px}.section{padding:10rem 5rem}.gallery-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<div class="page-loader" id="pageLoader"><div class="loader-brush"></div><div class="loader-text">Bet&#246;lts&#233;g...</div></div>
+<nav class="navbar" id="navbar">
+<a href="#hero" class="nav-logo">K&#225;rai <span>Mih&#225;ly</span></a>
+<ul class="nav-links" id="navLinks">
+<li><a href="#about" onclick="closeNav()">R&#243;lam</a></li>
+<li><a href="#gallery" onclick="closeNav()">Gal&#233;ria</a></li>
+<li><a href="#comparison" onclick="closeNav()">Keret</a></li>
+<li><a href="#interior" onclick="closeNav()">Interi&#246;r</a></li>
+<li><a href="#contact" onclick="closeNav()">Kapcsolat</a></li>
+</ul>
+<button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Men&#250;"><span></span><span></span><span></span></button>
+</nav>
+<div class="theme-switcher">
+<button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleThemePanel()" aria-label="T&#233;mav&#225;laszt&#243;">&#127912;</button>
+<div class="theme-panel" id="themePanel">
+<div class="theme-panel-title">T&#233;mav&#225;laszt&#243;</div>
+<div class="theme-option active" data-theme="warm-gallery" onclick="setTheme(&#39;warm-gallery&#39;)"><div class="theme-colors"><div class="theme-dot" style="background:#F5F0E8"></div><div class="theme-dot" style="background:#B85C38"></div><div class="theme-dot" style="background:#2C1810"></div><div class="theme-dot" style="background:#C9A84C"></div></div><span class="theme-name">Meleg Gal&#233;ria</span></div>
+<div class="theme-option" data-theme="deep-ocean" onclick="setTheme(&#39;deep-ocean&#39;)"><div class="theme-colors"><div class="theme-dot" style="background:#0A1628"></div><div class="theme-dot" style="background:#4A9BD9"></div><div class="theme-dot" style="background:#D4AF37"></div><div class="theme-dot" style="background:#E8E0D4"></div></div><span class="theme-name">M&#233;ly &#211;ce&#225;n</span></div>
+<div class="theme-option" data-theme="dusty-rose" onclick="setTheme(&#39;dusty-rose&#39;)"><div class="theme-colors"><div class="theme-dot" style="background:#F8F0F0"></div><div class="theme-dot" style="background:#C4788A"></div><div class="theme-dot" style="background:#3D2028"></div><div class="theme-dot" style="background:#D9A0AD"></div></div><span class="theme-name">P&#250;der R&#243;zsa</span></div>
+<div class="theme-option" data-theme="forest-whisper" onclick="setTheme(&#39;forest-whisper&#39;)"><div class="theme-colors"><div class="theme-dot" style="background:#F2F0E8"></div><div class="theme-dot" style="background:#5A8A5A"></div><div class="theme-dot" style="background:#1A2E1A"></div><div class="theme-dot" style="background:#A08840"></div></div><span class="theme-name">Erdei Suttog&#225;s</span></div>
+<div class="theme-option" data-theme="midnight-gold" onclick="setTheme(&#39;midnight-gold&#39;)"><div class="theme-colors"><div class="theme-dot" style="background:#1C1410"></div><div class="theme-dot" style="background:#D4AF37"></div><div class="theme-dot" style="background:#3C2E1E"></div><div class="theme-dot" style="background:#F0E6D0"></div></div><span class="theme-name">&#208;jf&#233;l Arany</span></div>
+<div class="theme-option" data-theme="alabaster" onclick="setTheme(&#39;alabaster&#39;)"><div class="theme-colors"><div class="theme-dot" style="background:#FAFAFA"></div><div class="theme-dot" style="background:#666666"></div><div class="theme-dot" style="background:#1A1A1A"></div><div class="theme-dot" style="background:#A08840"></div></div><span class="theme-name">Alab&#225;strom</span></div>
+<div class="theme-option" data-theme="terracotta" onclick="setTheme(&#39;terracotta&#39;)"><div class="theme-colors"><div class="theme-dot" style="background:#F7EDE0"></div><div class="theme-dot" style="background:#D4713A"></div><div class="theme-dot" style="background:#3D1E0A"></div><div class="theme-dot" style="background:#E89860"></div></div><span class="theme-name">Terrakotta</span></div>
+</div>
+</div>
+<section class="hero" id="hero">
+<div class="hero-bg"><div class="hero-brush"></div><div class="hero-brush"></div><div class="hero-brush"></div><div class="hero-brush"></div></div>
+<canvas id="heroParticles"></canvas>
+<div class="hero-content">
+<div class="hero-ornament"><div class="hero-ornament-line"></div><div class="hero-ornament-diamond"></div><div class="hero-ornament-line"></div></div>
+<p class="hero-subtitle">Kort&#225;bs fest&#245;muv&#233;sz</p>
+<h1 class="hero-title">K&#225;rai<span class="last-name">Mih&#225;ly</span></h1>
+<p class="hero-years">1961 &#8212;</p>
+<p class="hero-description">A sz&#237;nek zen&#233;je, az ecsetvon&#225;sok ritmusa, a v&#225;szon v&#233;gtelen lehet&#245;s&#233;gei &#8212; egy &#233;letm&#769;v, amely az &#233;rzelmeket var&#225;zsolja l&#225;that&#243;v&#225;.</p>
+<a href="#gallery" class="hero-cta">Alkot&#225;sok megtekint&#233;se<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></a>
+</div>
+<div class="scroll-indicator"><span>G&#246;rgessen</span><div class="scroll-line"></div></div>
+</section>
+<section class="section" id="about">
+<div class="about-grid">
+<div class="about-image-wrapper reveal"><div class="about-image-frame"><img src="../../assets/interior_1.jpg" alt="K&#225;rai Mih&#225;ly alkot&#243;ter&#233;ben" class="about-image" loading="lazy"></div><div class="about-accent"></div></div>
+<div class="about-content">
+<span class="section-label reveal">A m&#769;v&#233;sz</span>
+<h2 class="section-title reveal reveal-delay-1">K&#225;rai Mih&#225;ly</h2>
+<p class="about-text reveal reveal-delay-2">Született 1961-ben, K&#225;rai Mih&#225;ly a kort&#225;rs magyar fest&#245;m&#769;v&#233;szet kiemelked&#245; alakja. M&#769;v&#233;szet&#233;t a l&#237;rai absztrakci&#243; &#233;s az expresszionizmus hat&#225;rmezsgj&#233;en mozgó, szem&#233;lyes st&#237;lus jellemzi, amelyben a sz&#237;n &#233;s az forma szabad p&#225;rbesz&#233;d&#233;t k&#246;veti.</p>
+<p class="about-text reveal reveal-delay-3">Akril- &#233;s olajfest&#233;kkel dolgozik v&#225;sznon, alkalmazva a vastag impasto technik&#225;t, palettak&#233;ses kapar&#225;sokat &#233;s expressz&#237;v ecsetvon&#225;sokat. M&#769;veiben a meleg t&#779;zsz&#237;nek &#8212; a kadmiumnarancs, a napraforg&#243;s&#225;rga, a t&#779;zpiros &#8212; tal&#225;lkoznak a hideg spektrum intenz&#237;v sz&#237;neivel: a ci&#225;nk&#233;k, a t&#779;rk&#237;z &#233;s az smaragdz&#246;ld. Kompoz&#237;ci&#243;i t&#233;rbeli m&#233;lts&#233;get, atmoszferikus horizontokat &#233;s organikus form&#225;kat &#246;tv&#246;znek geometriai renddel.</p>
+<div class="about-stats reveal reveal-delay-4">
+<div class="stat-item"><div class="stat-number">1961</div><div class="stat-label">Sz&#252;let&#233;si &#233;v</div></div>
+<div class="stat-item"><div class="stat-number">13+</div><div class="stat-label">Festm&#233;ny</div></div>
+<div class="stat-item"><div class="stat-number">&#8734;</div><div class="stat-label">Inspir&#225;ci&#243;</div></div>
+</div>
+</div>
+</div>
+</section>
+<section class="quote-section">
+<div class="quote-content reveal">
+<div class="quote-mark">"</div>
+<p class="quote-text">A fest&#233;szet nem azt mutatja meg, amit l&#225;tni lehet,<br>hanem azt, amit l&#225;thatatlannak hisz&#252;k &#8212; &#233;s ami m&#233;gis ott van.</p>
+<p class="quote-author">&#8212; K&#225;rai Mih&#225;ly</p>
+</div>
+</section>
+<section class="section section-alt" id="gallery">
+<div class="section-header">
+<span class="section-label reveal">Alkot&#225;sok</span>
+<h2 class="section-title reveal reveal-delay-1">A Gal&#233;ria</h2>
+<div class="section-divider reveal reveal-delay-2"></div>
+<p class="section-text reveal reveal-delay-3">Minden festm&#233;ny egy &#250;j vil&#225;g kapuja &#8212; sz&#237;nek, text&#250;r&#225;k &#233;s &#233;rzelmek &#246;sszefon&#243;d&#225;sa, amelyek az absztrakt expresszionizmus nyelv&#233;n besz&#233;lnek a megfigyel&#245; l&#233;lekhez.</p>
+</div>
+<div class="gallery-grid" id="galleryGrid"></div>
+</section>
+<section class="section" id="comparison">
+<div class="section-header">
+<span class="section-label reveal">Keretelt vs. Keret n&#252;lk&#252;l</span>
+<h2 class="section-title reveal reveal-delay-1">Keret &#233;s K&#233;p</h2>
+<div class="section-divider reveal reveal-delay-2"></div>
+<p class="section-text reveal reveal-delay-3">H&#250;zza az oszt&#243;vonalat a k&#233;t k&#233;p k&#246;z&#246;tt, &#233;s fedezze fel, hogyan v&#225;ltozik a festm&#233;ny &#233;lm&#233;nye a keret jelenl&#233;t&#233;ben vagy hi&#225;ny&#225;ban.</p>
+</div>
+<div class="comparison-container">
+<div class="comparison-pair reveal">
+<p class="comparison-label">1. Festm&#233;ny &#8212; Keretelt vs. Keret n&#252;lk&#252;l</p>
+<div class="comparison-slider" data-comparison>
+<img src="../../assets/keretezve_1.jpg" alt="Keretelt" class="comparison-img comparison-img-before" draggable="false">
+<img src="../../assets/keretnelkul_1.jpg" alt="Keret n&#252;lk&#252;l" class="comparison-img comparison-img-after" draggable="false">
+<div class="comparison-slider-line"></div>
+<div class="comparison-slider-handle">&#8698;</div>
+</div>
+<div class="comparison-tags"><span class="comparison-tag">Keretelt</span><span class="comparison-tag">Keret n&#252;lk&#252;l</span></div>
+</div>
+<div class="comparison-pair reveal reveal-delay-2">
+<p class="comparison-label">2. Festm&#233;ny &#8212; Keretelt vs. Keret n&#252;lk&#252;l</p>
+<div class="comparison-slider" data-comparison>
+<img src="../../assets/keretezve_2.jpg" alt="Keretelt" class="comparison-img comparison-img-before" draggable="false">
+<img src="../../assets/keretnelkul_2.jpg" alt="Keret n&#252;lk&#252;l" class="comparison-img comparison-img-after" draggable="false">
+<div class="comparison-slider-line"></div>
+<div class="comparison-slider-handle">&#8698;</div>
+</div>
+<div class="comparison-tags"><span class="comparison-tag">Keretelt</span><span class="comparison-tag">Keret n&#252;lk&#252;l</span></div>
+</div>
+</div>
+</section>
+<section class="section section-alt" id="interior">
+<div class="section-header">
+<span class="section-label reveal">T&#233;rb&#233;n</span>
+<h2 class="section-title reveal reveal-delay-1">Interi&#246;r N&#233;zetek</h2>
+<div class="section-divider reveal reveal-delay-2"></div>
+<p class="section-text reveal reveal-delay-3">L&#225;togasson el a m&#769;v&#233;sz&#237; t&#233;rbe, ahol a festm&#233;nyek az otthon meleg&#233;vel tal&#225;lkoznak &#8212; l&#233;v&#245; m&#769;v&#233;szet a mindennapok sz&#237;nter&#233;n.</p>
+</div>
+<div class="interior-grid">
+<div class="interior-card reveal"><img src="../../assets/interior_1.jpg" alt="Festm&#233;ny interi&#252;rben - 1" class="interior-image" loading="lazy"><div class="interior-overlay"><h3>&Eacute;let a t&#233;rb&#233;n</h3><p>A m&#769;v&#233;szet otthonunk szerves r&#233;sze</p></div></div>
+<div class="interior-card reveal reveal-delay-2"><img src="../../assets/interior_2.jpg" alt="Festm&#233;ny interi&#252;rben - 2" class="interior-image" loading="lazy"><div class="interior-overlay"><h3>Sz&#237;n &#233;s Forma</h3><p>Ahol a festm&#233;ny &#233;letre kel a t&#233;rb&#233;n</p></div></div>
+</div>
+</section>
+<footer class="footer" id="contact">
+<div class="footer-content">
+<div class="footer-brand"><h3>K&#225;rai <span>Mih&#225;ly</span></h3><p>Kort&#225;rs absztrakt fest&#245;m&#769;v&#233;sz. M&#769;v&#233;szet&#233;m az &#233;rzelmeket sz&#237;nekben, form&#225;kban &#233;s text&#250;r&#225;kban &#246;nti testbe &#8212; egy &#246;r&#246;k p&#225;rbesz&#233;d a v&#225;szon &#233;s a l&#233;lek k&#246;z&#246;tt.</p></div>
+<div class="footer-col"><h4>Navig&#225;ci&#243;</h4><ul><li><a href="#about">R&#243;lam</a></li><li><a href="#gallery">Gal&#233;ria</a></li><li><a href="#comparison">Keret</a></li><li><a href="#interior">Interi&#246;r</a></li></ul></div>
+<div class="footer-col"><h4>St&#237;lusjegyek</h4><ul><li><a href="#">Absztrakt expresszionizmus</a></li><li><a href="#">L&#237;rai absztrakci&#243;</a></li><li><a href="#">Impasto technika</a></li><li><a href="#">Palettak&#233;ses fest&#233;szet</a></li></ul></div>
+</div>
+<div class="footer-bottom"><p>&#169; 2026 K&#225;rai Mih&#225;ly &#8212; Minden jog fenntartva. M&#769;v&#233;sz&#237; alkot&#225;sok gal&#233;ri&#225;ja.</p></div>
+</footer>
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:\&#39;smooth\&#39;})" aria-label="Vissza a tetej&#233;re">&#8593;</button>
+<div class="lightbox" id="lightbox">
+<button class="lightbox-close" onclick="closeLightbox()">&#10005;</button>
+<button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">&#8249;</button>
+<button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">&#8250;</button>
+<div class="lightbox-content">
+<img src="" alt="" class="lightbox-image" id="lightboxImage">
+<div class="lightbox-info"><h3 class="lightbox-title" id="lightboxTitle"></h3><p class="lightbox-desc" id="lightboxDesc"></p></div>
+</div>
+</div><script>
+const paintings=[
+{id:1,title:"Absztrakt Festmény",size:"80 x 60 cm",tech:"Akril / Olaj",desc:"Meleg tónusú, textúrált kompozíció rácsszerű szerkezetre épül.",image:"../apa_festmenyek/014fb97bae01374ff673a7f51de018af-karai-mihaly-absztrakt-festmeny-kepmeret-80x60-cm.jpg",aspect:"normal"},
+{id:2,title:"Geometriai DUALITÁS",size:"80 x 60 cm",tech:"Akril / Olaj",desc:"Nagy kontrasztú, color-blocking elveken alapuló festmény.",image:"../apa_festmenyek/579ee3610e2f00108ae1ad3b4efe881f-karai-mihaly-a-kep-merete-80x60-cm.jpg",aspect:"normal"},
+{id:3,title:"Tűz és Jég",size:"90 x 90 cm",tech:"Akril / Olaj",desc:"Szürreális, organikus formákból álló, tájképszerű absztrakció.",image:"../apa_festmenyek/732e9d819fbbee1e6b2126f580f51743-karai-mihaly-szines-modern-absztrakt-festmeny-90-x-90-cm.jpg",aspect:"normal"},
+{id:4,title:"Éjszakai Város",size:"140 x 40 cm",tech:"Panoráma",desc:"Extrém panorámaszerű függőleges elrendezés.",image:"../apa_festmenyek/76a52a2610ed517750b4d73efabbe595-karai-mihaly-absztrakt-festmeny-140x40x4-cm.jpg",aspect:"panoramic"},
+{id:5,title:"Izzó Torony",size:"140 x 40 cm",tech:"Panoráma",desc:"Vérvörös háttérből kiugró fehér-sárga toronyforma.",image:"../apa_festmenyek/8548dfcda68a1463e1ed276bce0b0b0c-karai-mihaly-absztrakt-festmeny-kepmeret-140x40-cm.jpg",aspect:"panoramic"},
+{id:6,title:"Sivatagi Oázis",size:"40 x 70 cm",tech:"Akril / Olaj",desc:"Horizontális tájkép-absztrakció. Türkiz/ciánkék csík.",image:"../apa_festmenyek/9714f6cd20df8b60a6cfa68e340bdcb2-karai-mihaly-absztrakt-festmeny-40x70-cm.jpg",aspect:"tall"},
+{id:7,title:"Fényoszlop",size:"70 x 30 cm",tech:"Akril / Olaj",desc:"Vékony, függőleges formátum. Vakóan fehér fényoszlop.",image:"../apa_festmenyek/c74fb23ff889ff7fc5bc22904e957ac7-karai-mihaly-kortars-absztrakt-festmeny-kepmeret-70x30-cm.jpg",aspect:"tall"},
+{id:8,title:"Nyári Hőség",size:"100 x 70 cm",tech:"Figurális absztrakt",desc:"Figurális-absztrakt fúzió. Női alak torzója fehér fürdőruhában.",image:"../apa_festmenyek/cf6c30f8ab61eea749199ee138ae02df-karai-mihaly-nyari-hoseg-kepmeret-100x70-cm.jpg",aspect:"normal"},
+{id:9,title:"Szív a Betonban",size:"70 x 70 cm",tech:"Impasto",desc:"A legnyersebb indusztriális kompozíció. Élénk kadmium piros szív.",image:"../apa_festmenyek/d0e8f21d863d3647ce7ce2705fbb0aeb-karai-mihaly-absztrakt-festmeny-kepmeret-70x70-cm.jpg",aspect:"normal"},
+{id:10,title:"Pasztell Örvény",size:"90 x 100 cm",tech:"Légies rétegek",desc:"Finom, elegáns pasztell atmoszféra. Lazacszín, mályva.",image:"../apa_festmenyek/d45190df18d013a48540242d4e02b588-karai-mihaly-szines-modern-absztrakt-festmeny-90x100-cm.jpg",aspect:"tall"},
+{id:11,title:"Kozmikus Piac",size:"60 x 60 cm",tech:"Mozaik",desc:"Három sávra bontható négyzetes kompozíció. Lüktető városi mozaik.",image:"../apa_festmenyek/e862397c8ee36bfab0bbe2de56b503e2-karai-mihaly-absztrakt-festmeny-kepmeret-60x60-cm.jpg",aspect:"normal"},
+{id:12,title:"Nyers Energia",size:"~70 x 100 cm",tech:"Kaparó technika",desc:"Legagresszívebb tónusú. Feketébe hajló burgundi vörös.",image:"../apa_festmenyek/keretnelkul_1.jpg",aspect:"tall"},
+{id:13,title:"Hangulat",size:"80 x 60 cm",tech:"Pulzáló ecsetvonás",desc:"Áramló, lüktető tiszta energia. Ködszerű vörös-magenta felhő.",image:"../apa_festmenyek/keretnelkul_2.jpg",aspect:"normal"}
+];
+
+const galleryGrid=document.getElementById('galleryGrid');
+paintings.forEach((p,i)=>{
+const item=document.createElement('div');
+item.className='gallery-item reveal reveal-delay-'+((i%4)+1);
+item.onclick=()=>openLightbox(i);
+const aspectClass=p.aspect==='panoramic'?'panoramic':p.aspect==='tall'?'tall':'';
+item.innerHTML='<div class="gallery-image-wrapper '+aspectClass+'"><img src="'+p.image+'" alt="'+p.title+'" class="gallery-image" loading="lazy"><div class="gallery-overlay"><span class="gallery-overlay-title">'+p.title+'</span></div></div><div class="gallery-info"><h3 class="gallery-title">'+p.title+'</h3><div class="gallery-meta"><span class="gallery-size">'+p.size+'</span><span class="gallery-tech">'+p.tech+'</span></div><p class="gallery-desc">'+p.desc+'</p></div>';
+galleryGrid.appendChild(item);
+});
+let currentLightboxIndex=0;
+function openLightbox(i){currentLightboxIndex=i;updateLightbox();document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden'}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow=''}
+function navigateLightbox(dir){currentLightboxIndex=(currentLightboxIndex+dir+paintings.length)%paintings.length;updateLightbox()}
+function updateLightbox(){const p=paintings[currentLightboxIndex];document.getElementById('lightboxImage').src=p.image;document.getElementById('lightboxImage').alt=p.title;document.getElementById('lightboxTitle').textContent=p.title+' - '+p.size;document.getElementById('lightboxDesc').textContent=p.desc}
+document.addEventListener('keydown',(e)=>{if(!document.getElementById('lightbox').classList.contains('active'))return;if(e.key==='Escape')closeLightbox();if(e.key==='ArrowLeft')navigateLightbox(-1);if(e.key==='ArrowRight')navigateLightbox(1)});
+document.getElementById('lightbox').addEventListener('click',(e)=>{if(e.target===document.getElementById('lightbox'))closeLightbox()});
+document.querySelectorAll('[data-comparison]').forEach(slider=>{
+let isDragging=false;
+function updateSlider(x){const rect=slider.getBoundingClientRect();let pos=((x-rect.left)/rect.width)*100;pos=Math.max(5,Math.min(95,pos));const afterImg=slider.querySelector('.comparison-img-after');const line=slider.querySelector('.comparison-slider-line');const handle=slider.querySelector('.comparison-slider-handle');afterImg.style.clipPath='inset(0 '+(100-pos)+'% 0 0)';line.style.left=pos+'%';handle.style.left=pos+'%'}
+slider.addEventListener('mousedown',(e)=>{isDragging=true;updateSlider(e.clientX)});
+slider.addEventListener('touchstart',(e)=>{isDragging=true;updateSlider(e.touches[0].clientX)},{passive:true});
+document.addEventListener('mousemove',(e)=>{if(isDragging)updateSlider(e.clientX)});
+document.addEventListener('touchmove',(e)=>{if(isDragging)updateSlider(e.touches[0].clientX)},{passive:true});
+document.addEventListener('mouseup',()=>{isDragging=false});
+document.addEventListener('touchend',()=>{isDragging=false})});
+function toggleThemePanel(){document.getElementById('themePanel').classList.toggle('open')}
+function setTheme(themeName){document.documentElement.setAttribute('data-theme',themeName);localStorage.setItem('karai-theme',themeName);document.querySelectorAll('.theme-option').forEach(opt=>{opt.classList.toggle('active',opt.dataset.theme===themeName)});document.getElementById('themePanel').classList.remove('open')}
+const savedTheme=localStorage.getItem('karai-theme');if(savedTheme)setTheme(savedTheme);
+document.addEventListener('click',(e)=>{const panel=document.getElementById('themePanel');const btn=document.getElementById('themeToggleBtn');if(!panel.contains(e.target)&&!btn.contains(e.target)){panel.classList.remove('open')}});
+function toggleNav(){document.getElementById('navLinks').classList.toggle('open');document.getElementById('navToggle').classList.toggle('active')}
+function closeNav(){document.getElementById('navLinks').classList.remove('open');document.getElementById('navToggle').classList.remove('active')}
+const navbar=document.getElementById('navbar');const backToTop=document.getElementById('backToTop');
+window.addEventListener('scroll',()=>{if(window.scrollY>80){navbar.classList.add('scrolled')}else{navbar.classList.remove('scrolled')}if(window.scrollY>600){backToTop.classList.add('visible')}else{backToTop.classList.remove('visible')}});
+const revealObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible')}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>{revealObserver.observe(el)});
+
+const canvas=document.getElementById('heroParticles');const ctx=canvas.getContext('2d');let particles=[];
+function resizeCanvas(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight}
+function createParticles(){particles=[];const count=Math.min(60,Math.floor(canvas.offsetWidth*canvas.offsetHeight/20000));for(let i=0;i<count;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,size:Math.random()*2+0.5,speedX:(Math.random()-0.5)*0.3,speedY:(Math.random()-0.5)*0.3,opacity:Math.random()*0.3+0.05,pulse:Math.random()*Math.PI*2})}}
+function animateParticles(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{p.x+=p.speedX;p.y+=p.speedY;p.pulse+=0.01;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;const currentOpacity=p.opacity*(0.5+0.5*Math.sin(p.pulse));ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle='rgba(212,175,55,'+currentOpacity+')';ctx.fill()});requestAnimationFrame(animateParticles)}
+resizeCanvas();createParticles();animateParticles();
+window.addEventListener('resize',()=>{resizeCanvas();createParticles()});
+window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('pageLoader').classList.add('hidden')},800)});
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click',function(e){e.preventDefault();const target=document.querySelector(this.getAttribute('href'));if(target){target.scrollIntoView({behavior:'smooth',block:'start'})}})});
+</script>
+</body>
+</html>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="hu" data-theme="vaszon">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kárai Mihály — Festőművész</title>
+<meta name="description" content="Kárai Mihály (1961) festőművész portfóliója: kortárs absztrakt expresszionizmus, akril és olaj vásznon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --bg:#f3ede2; --surface:#e9e0d0; --text:#2e2820; --muted:#7c715f;
+  --accent:#a8552e; --accent2:#3f6f63; --gold:#c79a4e; --particle:#a8552e; --glass:rgba(247,242,233,.55);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --maxw:1240px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);font-weight:200;color:var(--text);background:var(--bg);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.7;
+  transition:background .9s var(--ease),color .9s var(--ease);
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent);color:#fff}
+#bgcanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay}
+.weave{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;
+  background-image:repeating-linear-gradient(0deg,rgba(0,0,0,.6) 0 1px,transparent 1px 3px),
+    repeating-linear-gradient(90deg,rgba(0,0,0,.6) 0 1px,transparent 1px 3px)}
+.wrap{position:relative;z-index:2}
+.cursor{position:fixed;top:0;left:0;width:26px;height:26px;border:1px solid var(--accent);
+  border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;
+  mix-blend-mode:difference;transition:width .25s,height .25s,border-color .25s;will-change:transform}
+.cursor.big{width:64px;height:64px;border-color:var(--gold)}
+@media(hover:none){.cursor{display:none}}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;
+  justify-content:space-between;padding:18px clamp(18px,4vw,46px);
+  transition:transform .5s var(--ease),background .5s,backdrop-filter .5s}
+nav.hidden{transform:translateY(-110%)}
+nav.solid{background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(128,128,128,.15)}
+.brand{font-family:var(--serif);font-weight:400;font-size:clamp(18px,2vw,22px);letter-spacing:.04em}
+.brand b{color:var(--accent);font-weight:500}
+.navlinks{display:flex;gap:clamp(14px,2.4vw,38px);font-size:13px;letter-spacing:.16em;
+  text-transform:uppercase;font-weight:300}
+.navlinks a{position:relative;opacity:.8;transition:opacity .3s}
+.navlinks a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;
+  background:var(--accent);transition:width .35s var(--ease)}
+.navlinks a:hover{opacity:1}.navlinks a:hover::after{width:100%}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.burger span{width:26px;height:1.5px;background:var(--text);transition:.35s}
+.burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;
+  padding:0 clamp(20px,7vw,120px);overflow:hidden}
+.hero-inner{max-width:920px;position:relative;z-index:3}
+.hero .eyebrow{font-size:13px;letter-spacing:.42em;text-transform:uppercase;color:var(--accent);
+  font-weight:300;margin-bottom:22px;opacity:0;animation:rise 1s .2s var(--ease) forwards}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(52px,11vw,150px);
+  line-height:.92;letter-spacing:-.01em;margin-bottom:8px}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln span{display:block;transform:translateY(110%);animation:rise 1.1s var(--ease) forwards}
+.hero h1 .ln:nth-child(1) span{animation-delay:.35s}
+.hero h1 .ln:nth-child(2) span{animation-delay:.5s;font-style:italic;color:var(--accent)}
+.hero .sub{margin-top:26px;font-size:clamp(15px,1.7vw,20px);font-weight:200;color:var(--muted);
+  max-width:540px;opacity:0;animation:rise 1s .8s var(--ease) forwards}
+.hero .meta{margin-top:34px;display:flex;gap:28px;flex-wrap:wrap;font-size:12px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
+  opacity:0;animation:rise 1s 1s var(--ease) forwards}
+.hero .meta b{color:var(--text);font-weight:400}
+.scrollcue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:3;
+  font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
+  display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;animation:rise 1s 1.3s forwards}
+.scrollcue .bar{width:1px;height:46px;background:linear-gradient(var(--accent),transparent);
+  animation:cue 2s ease-in-out infinite}
+@keyframes rise{to{opacity:1;transform:translateY(0)}}
+@keyframes cue{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+section.band{position:relative;padding:clamp(80px,12vh,150px) clamp(20px,7vw,120px);max-width:var(--maxw);
+  margin:0 auto}
+.sec-label{display:flex;align-items:center;gap:18px;margin-bottom:14px}
+.sec-label .num{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--accent)}
+.sec-label .ln{height:1px;flex:1;background:linear-gradient(90deg,var(--accent),transparent)}
+.sec-title{font-family:var(--serif);font-weight:300;font-size:clamp(34px,6vw,68px);line-height:1.02;
+  letter-spacing:-.01em;margin-bottom:24px}
+.sec-title em{font-style:italic;color:var(--accent)}
+.sec-lead{color:var(--muted);font-weight:200;max-width:620px;font-size:clamp(15px,1.6vw,18px)}
+.reveal{opacity:0;transform:translateY(46px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}
+.reveal.d3{transition-delay:.36s}.reveal.d4{transition-delay:.48s}
+.about{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(30px,5vw,80px);align-items:center}
+.about .portrait{position:relative}
+.about .portrait .frame{position:relative;aspect-ratio:4/5;border:1px solid var(--accent);
+  overflow:hidden;transform:rotate(-2deg);transition:transform .6s var(--ease);
+  background:var(--surface);box-shadow:0 30px 80px -30px rgba(0,0,0,.5)}
+.about .portrait .frame:hover{transform:rotate(0)}
+.about .portrait .frame img{width:100%;height:100%;object-fit:cover;filter:saturate(1.02)}
+.about .portrait .tag{position:absolute;left:-14px;bottom:-14px;background:var(--accent);color:#fff;
+  padding:10px 18px;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.about .bio p{margin-bottom:18px;color:var(--muted);font-weight:200}
+.about .bio p b{color:var(--text);font-weight:400}
+.about .stats{display:flex;gap:34px;margin-top:30px;flex-wrap:wrap}
+.about .stats .v{font-family:var(--serif);font-size:clamp(30px,4vw,46px);color:var(--accent);line-height:1}
+.about .stats .k{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.sig{font-family:var(--serif);font-style:italic;font-size:clamp(30px,5vw,52px);color:var(--gold);
+  margin-top:10px;transform:rotate(-4deg);display:inline-block}
+.interiors{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,54px)}
+.interior{position:relative;overflow:hidden;aspect-ratio:4/3;background:var(--surface);filter:saturate(.96)}
+.interior img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.interior:hover img{transform:scale(1.05)}
+.interior .cap{position:absolute;left:0;right:0;bottom:0;padding:22px;
+  background:linear-gradient(transparent,rgba(0,0,0,.62));color:#fff;
+  transform:translateY(8px);opacity:.92;transition:.5s var(--ease)}
+.interior:hover .cap{transform:none;opacity:1}
+.interior .cap b{font-family:var(--serif);font-size:20px;font-weight:400;display:block}
+.interior .cap span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.frwrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,54px);margin-top:10px}
+.compare{position:relative;aspect-ratio:4/5;overflow:hidden;user-select:none;background:var(--surface);
+  cursor:ew-resize;touch-action:none}
+.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.compare .top{clip-path:inset(0 50% 0 0)}
+.compare .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;
+  transform:translateX(-1px);box-shadow:0 0 20px rgba(0,0,0,.5);z-index:4}
+.compare .handle::before{content:"";position:absolute;top:50%;left:50%;width:44px;height:44px;
+  transform:translate(-50%,-50%);border-radius:50%;background:rgba(255,255,255,.9);
+  box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.compare .handle::after{content:"\00AB  \00BB";position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);font-size:15px;letter-spacing:-2px;color:#222;font-weight:400}
+.compare .lab{position:absolute;top:14px;z-index:5;font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;padding:6px 12px;background:rgba(0,0,0,.5);color:#fff}
+.compare .lab.l{left:14px}.compare .lab.r{right:14px}
+.frinfo .meta{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.frinfo h3{font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.4vw,40px);margin-bottom:12px}
+.frinfo p{color:var(--muted);font-weight:200;margin-bottom:22px}
+.frinfo .specs{display:flex;gap:24px;flex-wrap:wrap}
+.frinfo .specs .k{color:var(--muted);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+.gallery{column-count:3;column-gap:clamp(14px,2vw,26px);margin-top:30px}
+.gtile{position:relative;break-inside:avoid;margin-bottom:clamp(14px,2vw,26px);overflow:hidden;
+  background:var(--surface);cursor:pointer}
+.gtile img{width:100%;display:block;filter:saturate(.95) contrast(1.02);
+  transition:transform 1.1s var(--ease),filter .6s}
+.gtile:hover img{transform:scale(1.06);filter:saturate(1.15)}
+.gtile .ov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:20px;background:linear-gradient(transparent 40%,rgba(0,0,0,.7));
+  opacity:0;transform:translateY(10px);transition:.5s var(--ease)}
+.gtile:hover .ov{opacity:1;transform:none}
+.gtile .ov b{font-family:var(--serif);font-size:22px;font-weight:400;color:#fff}
+.gtile .ov span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.quote{position:relative;text-align:center;padding:clamp(110px,18vh,200px) 8vw;overflow:hidden}
+.quote .mk{position:absolute;top:2%;left:50%;transform:translateX(-50%);font-family:var(--serif);
+  font-size:clamp(180px,30vw,360px);line-height:1;opacity:.08;color:var(--accent);pointer-events:none}
+.quote blockquote{position:relative;font-family:var(--serif);font-weight:300;font-style:italic;
+  font-size:clamp(26px,4.6vw,58px);line-height:1.18;max-width:1000px;margin:0 auto;letter-spacing:-.01em}
+.quote .by{margin-top:34px;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.contact{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(30px,5vw,70px)}
+.contact .info .line{display:flex;flex-direction:column;gap:4px;padding:18px 0;
+  border-bottom:1px solid rgba(128,128,128,.18)}
+.contact .info .k{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.contact .info .v{font-family:var(--serif);font-size:clamp(20px,2.4vw,28px);font-weight:400}
+.contact form{display:flex;flex-direction:column;gap:20px}
+.field{position:relative}
+.field input,.field textarea{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(128,128,128,.4);
+  padding:14px 4px;font-family:var(--sans);font-weight:200;font-size:16px;color:var(--text);outline:none;
+  transition:border-color .4s}
+.field label{position:absolute;left:4px;top:14px;color:var(--muted);pointer-events:none;
+  transition:.35s var(--ease);font-weight:300}
+.field input:focus~label,.field input:valid~label,.field textarea:focus~label,.field textarea:valid~label,
+.field.filled label{top:-12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.field input:focus,.field textarea:focus{border-color:var(--accent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;align-self:flex-start;
+  padding:16px 38px;border:1px solid var(--accent);background:var(--accent);color:#fff;
+  font-size:12px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;border-radius:40px;
+  transition:.4s var(--ease)}
+.btn:hover{background:transparent;color:var(--accent);transform:translateY(-3px)}
+.contact .note{font-size:12px;color:var(--muted);margin-top:6px}
+footer{padding:60px clamp(20px,7vw,120px);max-width:var(--maxw);margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;
+  border-top:1px solid rgba(128,128,128,.18);font-size:12px;letter-spacing:.1em;color:var(--muted)}
+footer .brand{font-size:18px}
+.tbtn{position:fixed;right:22px;bottom:22px;z-index:80;width:56px;height:56px;border-radius:50%;
+  border:1px solid var(--glass);background:var(--glass);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;cursor:pointer;
+  box-shadow:0 10px 40px -10px rgba(0,0,0,.4);transition:.4s var(--ease)}
+.tbtn:hover{transform:scale(1.08) rotate(20deg)}
+.tbtn svg{width:24px;height:24px;stroke:var(--text)}
+.tpanel{position:fixed;right:22px;bottom:92px;z-index:80;width:268px;padding:22px;
+  background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(128,128,128,.2);border-radius:18px;box-shadow:0 24px 70px -20px rgba(0,0,0,.55);
+  transform:translateY(20px) scale(.96);opacity:0;pointer-events:none;transition:.45s var(--ease)}
+.tpanel.open{transform:none;opacity:1;pointer-events:auto}
+.tpanel h4{font-family:var(--serif);font-weight:400;font-size:18px;margin-bottom:4px}
+.tpanel .hint{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.swatches{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.swatch{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:11px;cursor:pointer;
+  border:1px solid transparent;transition:.3s var(--ease);background:rgba(128,128,128,.08)}
+.swatch:hover{border-color:var(--accent)}
+.swatch.active{border-color:var(--accent);background:rgba(128,128,128,.18)}
+.swatch .dot{width:22px;height:22px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.swatch .nm{font-size:12px;font-weight:300;letter-spacing:.02em}
+.swatch .nm small{display:block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.lb{position:fixed;inset:0;z-index:200;background:rgba(8,8,10,.94);display:none;
+  align-items:center;justify-content:center;flex-direction:column;padding:5vw;backdrop-filter:blur(6px)}
+.lb.show{display:flex;animation:rise .4s var(--ease)}
+.lb img{max-width:90vw;max-height:78vh;object-fit:contain;box-shadow:0 30px 90px rgba(0,0,0,.6)}
+.lb .cap{margin-top:20px;text-align:center;color:#fff}
+.lb .cap b{font-family:var(--serif);font-size:24px;font-weight:400;display:block}
+.lb .cap span{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.7}
+.lb .x{position:absolute;top:26px;right:30px;font-size:30px;color:#fff;cursor:pointer;line-height:1;
+  background:none;border:0;font-family:var(--serif)}
+@media(max-width:1024px){
+  .gallery{column-count:2}
+  .about{grid-template-columns:1fr;gap:40px}
+  .about .portrait{max-width:420px}
+  .contact{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  .navlinks{position:fixed;top:0;right:0;height:100vh;width:74%;max-width:320px;flex-direction:column;
+    justify-content:center;gap:30px;padding:40px;background:var(--glass);backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);transform:translateX(100%);transition:transform .5s var(--ease);
+    font-size:16px}
+  .navlinks.open{transform:none}
+  .burger{display:flex;z-index:60}
+  .interiors{grid-template-columns:1fr}
+  .frwrap{grid-template-columns:1fr}
+  .gallery{column-count:1}
+  .hero{min-height:92svh}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.2s!important}}
+
+
+  [data-theme="vaszon"]{
+    --bg:#f3ede2; --surface:#e9e0d0; --text:#2e2820; --muted:#7c715f;
+    --accent:#a8552e; --accent2:#3f6f63; --gold:#c79a4e; --particle:#a8552e; --glass:rgba(247,242,233,.55);
+  }
+
+  [data-theme="feher"]{
+    --bg:#fbfbfa; --surface:#f0efec; --text:#1c1c1c; --muted:#737067;
+    --accent:#1c1c1c; --accent2:#b08d57; --gold:#b08d57; --particle:#b08d57; --glass:rgba(255,255,255,.6);
+  }
+
+  [data-theme="est"]{
+    --bg:#0e0f12; --surface:#191b21; --text:#ece7df; --muted:#8a857c;
+    --accent:#d98a4a; --accent2:#5b7d7a; --gold:#d4a843; --particle:#d4a843; --glass:rgba(24,26,32,.5);
+  }
+
+  [data-theme="gal"]{
+    --bg:#140f1e; --surface:#211733; --text:#ece6f4; --muted:#8b80a0;
+    --accent:#b07bd6; --accent2:#e0a8c8; --gold:#d8b46a; --particle:#b07bd6; --glass:rgba(33,23,51,.5);
+  }
+
+  [data-theme="bohem"]{
+    --bg:#1d1410; --surface:#2c1f16; --text:#f0e3d4; --muted:#a98c72;
+    --accent:#c4622f; --accent2:#8a9b54; --gold:#d8a44c; --particle:#c4622f; --glass:rgba(44,31,22,.5);
+  }
+
+  [data-theme="meleg"]{
+    --bg:#fdf4e9; --surface:#f6e6d0; --text:#3a2a1c; --muted:#94785c;
+    --accent:#d4722a; --accent2:#3f6f63; --gold:#c8952e; --particle:#d4722a; --glass:rgba(253,244,233,.58);
+  }
+
+  [data-theme="erd"]{
+    --bg:#0f1813; --surface:#1a2820; --text:#e6efe7; --muted:#8aa093;
+    --accent:#7fae6a; --accent2:#c9a84c; --gold:#c9a84c; --particle:#7fae6a; --glass:rgba(26,40,32,.5);
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bgcanvas"></canvas>
+<div class="grain"></div>
+<div class="weave"></div>
+<div class="cursor" id="cursor"></div>
+
+<nav id="nav">
+  <div class="brand">Kárai <b>Mihály</b></div>
+  <div class="navlinks" id="navlinks">
+    <a href="#about">Rólam</a>
+    <a href="#interior">Terek</a>
+    <a href="#frames">Keretek</a>
+    <a href="#gallery">Galéria</a>
+    <a href="#quote">Idézet</a>
+    <a href="#contact">Kapcsolat</a>
+  </div>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="wrap">
+
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Kortárs absztrakt expresszionizmus</p>
+      <h1><span class="ln"><span>Kárai Mihály</span></span><span class="ln"><span>festőművész</span></span></h1>
+      <p class="sub">Szín, anyag és lendület találkozása a vásznon. Hatvanöt éve született művész, aki a festéket nem felületként, hanem érzésként kezeli.</p>
+      <div class="meta">
+        <div>Született <b>1961</b></div>
+        <div>Akril · Olaj <b>vásznon</b></div>
+        <div>Műterem <b>Budapest</b></div>
+      </div>
+    </div>
+    <div class="scrollcue">Görgessen<span class="bar"></span></div>
+  </section>
+
+  <section class="band" id="about">
+    <div class="sec-label reveal"><span class="num">01</span><span class="ln"></span></div>
+    <h2 class="sec-title reveal">A művész <em>és a módszer</em></h2>
+    <div class="about">
+      <div class="portrait reveal d1">
+        <div class="frame"><img src="../../assets/d45190df18d013a48540242d4e02b588-karai-mihaly-szines-modern-absztrakt-festmeny-90x100-cm.jpg" alt="Karai Mihaly muve"></div>
+        <span class="tag">Művészet · 1961</span>
+      </div>
+      <div class="bio reveal d2">
+        <p>Kárai Mihály <b>1961-ben született</b> festőművész, akinek munkássága a kortárs absztrakt expresszionizmus és a lírai absztrakció határvidékén mozog. Évtizedek óta kutatja a szín és az anyag kapcsolatát.</p>
+        <p>Munkáiban az <b>impasto</b>, a vastagon felhordott festék és a palettakéssel húzott karcolások adják a felszín plasztikusságát. A meleg spektrum – tűzpiros, narancs, arany – és a hideg ellenpontok, a ciánkék és a türkiz folyamatos párbeszéde határozza meg a képeket.</p>
+        <p>Mindennemű ábrázolás helyett a <b>lüktetést, a mozgást és a csendet</b> festi meg: városi tükröződéseket, elementáris erőket, és a pillanat megfoghatatlan energiáját.</p>
+        <div class="stats">
+          <div><div class="v">1961</div><div class="k">Születés éve</div></div>
+          <div><div class="v">30+</div><div class="k">Év a művészetben</div></div>
+          <div><div class="v">100+</div><div class="k">Készített mű</div></div>
+        </div>
+        <div class="sig">Kárai Mihály</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="interior">
+    <div class="sec-label reveal"><span class="num">02</span><span class="ln"></span></div>
+    <h2 class="sec-title reveal">A mű <em>otthona</em></h2>
+    <p class="sec-lead reveal d1">Hogyan él egy festmény a térben – a fal, a fény és a mindennapok között.</p>
+    <div class="interiors" style="margin-top:40px">
+      <div class="interior reveal d1"><img src="../../assets/interior_1.jpg" alt="Otthona a munek"><div class="cap"><b>Otthona a munek</b><span>Szines modern absztrakt - 90 x 100 cm</span></div></div><div class="interior reveal d2"><img src="../../assets/interior_2.jpg" alt="A ter resze"><div class="cap"><b>A ter resze</b><span>Szines modern absztrakt - 90 x 90 cm</span></div></div>
+    </div>
+  </section>
+
+  <section class="band" id="frames">
+    <div class="sec-label reveal"><span class="num">03</span><span class="ln"></span></div>
+    <h2 class="sec-title reveal">Keretezve <em>és anélkül</em></h2>
+    <p class="sec-lead reveal d1">Húzza el a csúszkát: baloldalt a keretezett, jobboldalt a keret nélküli változat. Érezze a különbséget.</p>
+    <div class="frwrap">
+      
+    <div class="compare reveal d1" data-compare>
+      <img src="../../assets/keretezve_1.jpg" alt="keretezve">
+      <img class="top" src="../../assets/keretnelkul_1.jpg" alt="keret nelkul">
+      <span class="lab l">Keretezve</span><span class="lab r">Keretnélkül</span>
+      <div class="handle"></div>
+    </div>
+    <div class="frinfo reveal d2">
+      <div class="meta">kb. 70 x 100 cm</div>
+      <h3>Nyers energia</h3>
+      <p>A gyujtemeny legsotetebb darabja: burgundi es melybarna alapot tornek at hofeher es sarga kaparasok. Kaotikus, zsigeri, dramatikus chiaroscuro - nyers pusztito ero.</p>
+      <div class="specs">
+        <div><div class="k">Technika</div>Akril / olaj vásznon</div>
+        <div><div class="k">Méret</div>kb. 70 x 100 cm</div>
+      </div>
+    </div>
+    <div class="compare reveal d1" data-compare>
+      <img src="../../assets/keretezve_2.jpg" alt="keretezve">
+      <img class="top" src="../../assets/keretnelkul_2.jpg" alt="keret nelkul">
+      <span class="lab l">Keretezve</span><span class="lab r">Keretnélkül</span>
+      <div class="handle"></div>
+    </div>
+    <div class="frinfo reveal d2">
+      <div class="meta">80 x 60 cm</div>
+      <h3>Hangulat</h3>
+      <p>Homogen vorous-magenta felho luktulese, szelen napsarga es fuzold ecsethuzasokkal. A kep aljan egy melyvorous forgó goc korul orvenylik az egesz. Forro, misztikus, melyen erzelmes.</p>
+      <div class="specs">
+        <div><div class="k">Technika</div>Akril / olaj vásznon</div>
+        <div><div class="k">Méret</div>80 x 60 cm</div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="band" id="gallery">
+    <div class="sec-label reveal"><span class="num">04</span><span class="ln"></span></div>
+    <h2 class="sec-title reveal">Galéria <em>— válogatás</em></h2>
+    <p class="sec-lead reveal d1">Kattintson egy műre a nagyításhoz. A teljes válogatás a meleg és hideg színek folyamatos párbeszéde.</p>
+    <div class="gallery">
+      <figure class="gtile reveal d1" data-src="../../assets/d45190df18d013a48540242d4e02b588-karai-mihaly-szines-modern-absztrakt-festmeny-90x100-cm.jpg" data-title="Szines modern absztrakt" data-size="90 x 100 cm"><img src="../../assets/d45190df18d013a48540242d4e02b588-karai-mihaly-szines-modern-absztrakt-festmeny-90x100-cm.jpg" alt="Szines modern absztrakt" loading="lazy"><div class="ov"><b>Szines modern absztrakt</b><span>90 x 100 cm</span></div></figure><figure class="gtile reveal d2" data-src="../../assets/732e9d819fbbee1e6b2126f580f51743-karai-mihaly-szines-modern-absztrakt-festmeny-90-x-90-cm.jpg" data-title="Tuz es jeg" data-size="90 x 90 cm"><img src="../../assets/732e9d819fbbee1e6b2126f580f51743-karai-mihaly-szines-modern-absztrakt-festmeny-90-x-90-cm.jpg" alt="Tuz es jeg" loading="lazy"><div class="ov"><b>Tuz es jeg</b><span>90 x 90 cm</span></div></figure><figure class="gtile reveal d3" data-src="../../assets/014fb97bae01374ff673a7f51de018af-karai-mihaly-absztrakt-festmeny-kepmeret-80x60-cm.jpg" data-title="Racs es szel" data-size="80 x 60 cm"><img src="../../assets/014fb97bae01374ff673a7f51de018af-karai-mihaly-absztrakt-festmeny-kepmeret-80x60-cm.jpg" alt="Racs es szel" loading="lazy"><div class="ov"><b>Racs es szel</b><span>80 x 60 cm</span></div></figure><figure class="gtile reveal d1" data-src="../../assets/579ee3610e2f00108ae1ad3b4efe881f-karai-mihaly-a-kep-merete-80x60-cm.jpg" data-title="Kettosseg" data-size="80 x 60 cm"><img src="../../assets/579ee3610e2f00108ae1ad3b4efe881f-karai-mihaly-a-kep-merete-80x60-cm.jpg" alt="Kettosseg" loading="lazy"><div class="ov"><b>Kettosseg</b><span>80 x 60 cm</span></div></figure><figure class="gtile reveal d2" data-src="../../assets/76a52a2610ed517750b4d73efabbe595-karai-mihaly-absztrakt-festmeny-140x40x4-cm.jpg" data-title="Ejszakai varos tukre" data-size="140 x 40 cm"><img src="../../assets/76a52a2610ed517750b4d73efabbe595-karai-mihaly-absztrakt-festmeny-140x40x4-cm.jpg" alt="Ejszakai varos tukre" loading="lazy"><div class="ov"><b>Ejszakai varos tukre</b><span>140 x 40 cm</span></div></figure><figure class="gtile reveal d3" data-src="../../assets/8548dfcda68a1463e1ed276bce0b0b0c-karai-mihaly-absztrakt-festmeny-kepmeret-140x40-cm.jpg" data-title="Izzo torony" data-size="140 x 40 cm"><img src="../../assets/8548dfcda68a1463e1ed276bce0b0b0c-karai-mihaly-absztrakt-festmeny-kepmeret-140x40-cm.jpg" alt="Izzo torony" loading="lazy"><div class="ov"><b>Izzo torony</b><span>140 x 40 cm</span></div></figure><figure class="gtile reveal d1" data-src="../../assets/9714f6cd20df8b60a6cfa68e340bdcb2-karai-mihaly-absztrakt-festmeny-40x70-cm.jpg" data-title="Oazis a sivatagban" data-size="40 x 70 cm"><img src="../../assets/9714f6cd20df8b60a6cfa68e340bdcb2-karai-mihaly-absztrakt-festmeny-40x70-cm.jpg" alt="Oazis a sivatagban" loading="lazy"><div class="ov"><b>Oazis a sivatagban</b><span>40 x 70 cm</span></div></figure><figure class="gtile reveal d2" data-src="../../assets/c74fb23ff889ff7fc5bc22904e957ac7-karai-mihaly-kortars-absztrakt-festmeny-kepmeret-70x30-cm.jpg" data-title="Fenysugar" data-size="70 x 30 cm"><img src="../../assets/c74fb23ff889ff7fc5bc22904e957ac7-karai-mihaly-kortars-absztrakt-festmeny-kepmeret-70x30-cm.jpg" alt="Fenysugar" loading="lazy"><div class="ov"><b>Fenysugar</b><span>70 x 30 cm</span></div></figure><figure class="gtile reveal d3" data-src="../../assets/cf6c30f8ab61eea749199ee138ae02df-karai-mihaly-nyari-hoseg-kepmeret-100x70-cm.jpg" data-title="Nyari hoseg" data-size="100 x 70 cm"><img src="../../assets/cf6c30f8ab61eea749199ee138ae02df-karai-mihaly-nyari-hoseg-kepmeret-100x70-cm.jpg" alt="Nyari hoseg" loading="lazy"><div class="ov"><b>Nyari hoseg</b><span>100 x 70 cm</span></div></figure><figure class="gtile reveal d1" data-src="../../assets/d0e8f21d863d3647ce7ce2705fbb0aeb-karai-mihaly-absztrakt-festmeny-kepmeret-70x70-cm.jpg" data-title="Sziv" data-size="70 x 70 cm"><img src="../../assets/d0e8f21d863d3647ce7ce2705fbb0aeb-karai-mihaly-absztrakt-festmeny-kepmeret-70x70-cm.jpg" alt="Sziv" loading="lazy"><div class="ov"><b>Sziv</b><span>70 x 70 cm</span></div></figure><figure class="gtile reveal d2" data-src="../../assets/e862397c8ee36bfab0bbe2de56b503e2-karai-mihaly-absztrakt-festmeny-kepmeret-60x60-cm.jpg" data-title="Varosi mozaik" data-size="60 x 60 cm"><img src="../../assets/e862397c8ee36bfab0bbe2de56b503e2-karai-mihaly-absztrakt-festmeny-kepmeret-60x60-cm.jpg" alt="Varosi mozaik" loading="lazy"><div class="ov"><b>Varosi mozaik</b><span>60 x 60 cm</span></div></figure><figure class="gtile reveal d3" data-src="../../assets/keretnelkul_1.jpg" data-title="Nyers energia" data-size="kb. 70 x 100 cm"><img src="../../assets/keretnelkul_1.jpg" alt="Nyers energia" loading="lazy"><div class="ov"><b>Nyers energia</b><span>kb. 70 x 100 cm</span></div></figure><figure class="gtile reveal d1" data-src="../../assets/keretnelkul_2.jpg" data-title="Hangulat" data-size="80 x 60 cm"><img src="../../assets/keretnelkul_2.jpg" alt="Hangulat" loading="lazy"><div class="ov"><b>Hangulat</b><span>80 x 60 cm</span></div></figure>
+    </div>
+  </section>
+
+  <section class="quote" id="quote">
+    <span class="mk">&rdquo;</span>
+    <blockquote class="reveal">A festmény nem a falat díszíti, hanem a csendet tölti meg. A szín belénk költözik, és ott lüktet tovább.</blockquote>
+    <div class="by reveal d1">Kárai Mihály</div>
+  </section>
+
+  <section class="band" id="contact">
+    <div class="sec-label reveal"><span class="num">05</span><span class="ln"></span></div>
+    <h2 class="sec-title reveal">Kapcsolat <em>& megrendelés</em></h2>
+    <div class="contact">
+      <div class="info reveal d1">
+        <div class="line"><span class="k">E-mail</span><span class="v">hello@karaimihaly.hu</span></div>
+        <div class="line"><span class="k">Telefon</span><span class="v">+36 30 000 0000</span></div>
+        <div class="line"><span class="k">Műterem</span><span class="v">Budapest</span></div>
+        <p class="note" style="margin-top:24px">Az elérhetőségeket a valós adatokkal töltheti ki.</p>
+      </div>
+      <form class="reveal d2" id="contactForm">
+        <div class="field"><input id="cf-name" type="text" required><label for="cf-name">Neve</label></div>
+        <div class="field"><input id="cf-email" type="email" required><label for="cf-email">E-mail</label></div>
+        <div class="field"><textarea id="cf-msg" rows="4" required></textarea><label for="cf-msg">Üzenet</label></div>
+        <button class="btn" type="submit">Üzenet küldése</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="brand">Kárai <b>Mihály</b></div>
+    <div>© 2026 · Festőművész · Minden jog fenntartva</div>
+    <div>Kortárs absztrakt expresszionizmus</div>
+  </footer>
+
+</div>
+
+<button class="tbtn" id="themeBtn" aria-label="Tema valtasa">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z"/><path d="M3 12h18"/></svg>
+</button>
+<div class="tpanel" id="themePanel">
+  <h4>Téma</h4>
+  <p class="hint">Válasszon színvilágot</p>
+  <div class="swatches"><button class="swatch" data-theme="vaszon"><span class="dot" style="background:#a8552e"></span><span class="nm">Vaszon<small>Világos</small></span></button><button class="swatch" data-theme="feher"><span class="dot" style="background:#1c1c1c"></span><span class="nm">Feher galeria<small>Világos</small></span></button><button class="swatch" data-theme="est"><span class="dot" style="background:#d98a4a"></span><span class="nm">Est<small>Sötét</small></span></button><button class="swatch" data-theme="gal"><span class="dot" style="background:#b07bd6"></span><span class="nm">Galeria<small>Sötét</small></span></button><button class="swatch" data-theme="bohem"><span class="dot" style="background:#c4622f"></span><span class="nm">Bohem<small>Sötét</small></span></button><button class="swatch" data-theme="meleg"><span class="dot" style="background:#d4722a"></span><span class="nm">Meleg<small>Világos</small></span></button><button class="swatch" data-theme="erd"><span class="dot" style="background:#7fae6a"></span><span class="nm">Erdő<small>Sötét</small></span></button></div>
+</div>
+
+<div class="lb" id="lb">
+  <button class="x" aria-label="Bezaras">&times;</button>
+  <img src="" alt="">
+  <div class="cap"><b></b><span></span></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- 3D background (graceful degradation) ---------- */
+  if(typeof THREE!=='undefined'){
+    try{
+      var canvas=document.getElementById('bgcanvas');
+      var renderer=new THREE.WebGLRenderer({canvas:canvas,alpha:true,antialias:true});
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+      var scene=new THREE.Scene();
+      var bg0=getComputedStyle(document.documentElement).getPropertyValue('--bg').trim()||'#101014';
+      scene.fog=new THREE.FogExp2(bg0,0.045);
+      var camera=new THREE.PerspectiveCamera(60,1,0.1,100);
+      camera.position.set(0,0,9);
+      scene.add(new THREE.AmbientLight(0xffffff,0.45));
+      var p1=new THREE.PointLight(0xffaa55,1.2,40); p1.position.set(5,4,6);
+      var p2=new THREE.PointLight(0x4488ff,0.9,40); p2.position.set(-6,-3,4);
+      var p3=new THREE.PointLight(0x66cc99,0.8,40); p3.position.set(0,5,-4);
+      scene.add(p1,p2,p3);
+      var geo=new THREE.IcosahedronGeometry(2.3,18);
+      var base=geo.attributes.position.array.slice();
+      var mat=new THREE.MeshStandardMaterial({color:0xcc7744,roughness:0.45,metalness:0.25,flatShading:true});
+      var core=new THREE.Mesh(geo,mat); scene.add(core);
+      var shell=new THREE.Mesh(new THREE.IcosahedronGeometry(2.55,3),
+        new THREE.MeshBasicMaterial({color:0xffffff,wireframe:true,transparent:true,opacity:0.08}));
+      core.add(shell);
+      function spherePts(n,rmin,rmax,yf){var a=new Float32Array(n*3);
+        for(var i=0;i<n;i++){var r=rmin+Math.random()*(rmax-rmin);
+          var th=Math.random()*Math.PI*2;var ph=Math.acos(2*Math.random()-1);
+          a[i*3]=r*Math.sin(ph)*Math.cos(th);a[i*3+1]=r*Math.sin(ph)*Math.sin(th)*yf;a[i*3+2]=r*Math.cos(ph);}
+        return a;}
+      var pg=new THREE.BufferGeometry(); pg.setAttribute('position',new THREE.BufferAttribute(spherePts(1400,6,30,0.6),3));
+      var pm=new THREE.PointsMaterial({size:0.05,color:0xffcc88,transparent:true,opacity:0.55,blending:THREE.AdditiveBlending,depthWrite:false});
+      var points=new THREE.Points(pg,pm); scene.add(points);
+      var rg=new THREE.BufferGeometry(); rg.setAttribute('position',new THREE.BufferAttribute(spherePts(320,4,18,0.7),3));
+      var rm=new THREE.PointsMaterial({size:0.12,color:0xdd5544,transparent:true,opacity:0.6,blending:THREE.AdditiveBlending,depthWrite:false});
+      var reds=new THREE.Points(rg,rm); scene.add(reds);
+      function syncColors(){
+        var cs=getComputedStyle(document.documentElement);
+        var accent=cs.getPropertyValue('--accent').trim()||'#cc7744';
+        var gold=cs.getPropertyValue('--gold').trim()||'#d4a843';
+        var part=cs.getPropertyValue('--particle').trim()||'#cc7744';
+        var bgc=cs.getPropertyValue('--bg').trim()||'#101014';
+        mat.color.set(accent); shell.material.color.set(gold);
+        pm.color.set(part); rm.color.set(accent); scene.fog.color.set(bgc);
+      }
+      syncColors();
+      var mx=0,my=0;
+      window.addEventListener('mousemove',function(e){mx=(e.clientX/window.innerWidth-0.5);my=(e.clientY/window.innerHeight-0.5);});
+      var t=0;
+      function resize(){var w=window.innerWidth,h=window.innerHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
+      function loop(){
+        t+=0.008;
+        var pos=geo.attributes.position.array;
+        for(var i=0;i<pos.length;i+=3){var x=base[i],y=base[i+1],z=base[i+2];
+          var d=1+Math.sin(x*1.5+t)*Math.cos(y*1.5+t*0.9)*Math.sin(z*1.5+t*1.1)*0.14;
+          pos[i]=x*d;pos[i+1]=y*d;pos[i+2]=z*d;}
+        geo.attributes.position.needsUpdate=true;geo.computeVertexNormals();
+        core.rotation.y=t*0.12;core.rotation.x=t*0.05;shell.rotation.y=-t*0.1;
+        points.rotation.y=-t*0.03;reds.rotation.y=t*0.04;
+        p1.position.set(Math.cos(t*0.5)*6,Math.sin(t*0.4)*5,6);
+        p2.position.set(Math.cos(t*0.5+2)*6,Math.sin(t*0.4+2)*5,4);
+        var sf=window.scrollY/window.innerHeight;
+        camera.position.z=9-sf*0.6;
+        camera.position.x+=(mx*2.2-camera.position.x)*0.04;
+        camera.position.y+=(-my*1.8-camera.position.y)*0.04;
+        camera.lookAt(0,0,0);
+        renderer.render(scene,camera);
+        requestAnimationFrame(loop);
+      }
+      window.addEventListener('resize',resize);resize();
+      var mo=new MutationObserver(syncColors);mo.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+      requestAnimationFrame(loop);
+    }catch(err){/* WebGL unavailable - content still shows */}
+  }
+
+  /* ---------- custom cursor ---------- */
+  var cur=document.getElementById('cursor');
+  if(cur && window.matchMedia('(hover:hover)').matches){
+    window.addEventListener('mousemove',function(e){
+      cur.style.transform='translate('+e.clientX+'px,'+e.clientY+'px) translate(-50%,-50%)';
+    });
+    document.querySelectorAll('a,button,.gtile,.compare,.swatch,.interior,.tbtn').forEach(function(el){
+      el.addEventListener('mouseenter',function(){cur.classList.add('big');});
+      el.addEventListener('mouseleave',function(){cur.classList.remove('big');});
+    });
+  }
+
+  /* ---------- nav hide / solid ---------- */
+  var nav=document.getElementById('nav');var lastY=0;
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY;
+    if(y>60)nav.classList.add('solid');else nav.classList.remove('solid');
+    if(y>lastY && y>220)nav.classList.add('hidden');else nav.classList.remove('hidden');
+    lastY=y;
+  });
+  var burger=document.getElementById('burger');var links=document.getElementById('navlinks');
+  burger.addEventListener('click',function(){burger.classList.toggle('open');links.classList.toggle('open');});
+  links.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){burger.classList.remove('open');links.classList.remove('open');});});
+
+  /* ---------- theme panel ---------- */
+  var root=document.documentElement;
+  var saved=localStorage.getItem('km-theme');
+  if(saved)root.setAttribute('data-theme',saved);
+  var panel=document.getElementById('themePanel');
+  document.getElementById('themeBtn').addEventListener('click',function(){panel.classList.toggle('open');});
+  document.querySelectorAll('.swatch').forEach(function(s){
+    s.addEventListener('click',function(){
+      root.setAttribute('data-theme',s.dataset.theme);
+      localStorage.setItem('km-theme',s.dataset.theme);
+      document.querySelectorAll('.swatch').forEach(function(x){x.classList.remove('active');});
+      s.classList.add('active');
+    });
+  });
+  (function(){var cur2=root.getAttribute('data-theme');
+    var sw=document.querySelector('.swatch[data-theme="'+cur2+'"]');if(sw)sw.classList.add('active');})();
+
+  /* ---------- reveal on scroll ---------- */
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');io.unobserve(en.target);}});
+  },{threshold:0.1,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+  /* ---------- frame compare sliders ---------- */
+  document.querySelectorAll('.compare').forEach(function(el){
+    var top=el.querySelector('.top'),handle=el.querySelector('.handle'),active=false;
+    function set(cx){var r=el.getBoundingClientRect();
+      var p=Math.max(0,Math.min(1,(cx-r.left)/r.width));
+      top.style.clipPath='inset(0 '+(100-p*100)+'% 0 0)';handle.style.left=(p*100)+'%';}
+    function pos(e){return e.touches?e.touches[0].clientX:e.clientX;}
+    el.addEventListener('mousedown',function(e){active=true;set(pos(e));e.preventDefault();});
+    el.addEventListener('touchstart',function(e){active=true;set(pos(e));},{passive:true});
+    window.addEventListener('mousemove',function(e){if(active)set(pos(e));});
+    window.addEventListener('touchmove',function(e){if(active)set(pos(e));},{passive:true});
+    window.addEventListener('mouseup',function(){active=false;});
+    window.addEventListener('touchend',function(){active=false;});
+    set(el.getBoundingClientRect().left+el.getBoundingClientRect().width/2);
+  });
+
+  /* ---------- lightbox ---------- */
+  var lb=document.getElementById('lb');
+  function openLb(src,title,size){
+    lb.querySelector('img').src=src;
+    lb.querySelector('.cap b').textContent=title;
+    lb.querySelector('.cap span').textContent=size;
+    lb.classList.add('show');
+  }
+  document.querySelectorAll('.gtile').forEach(function(t){
+    t.addEventListener('click',function(){openLb(t.dataset.src,t.dataset.title,t.dataset.size);});
+  });
+  lb.querySelector('.x').addEventListener('click',function(){lb.classList.remove('show');});
+  lb.addEventListener('click',function(e){if(e.target===lb)lb.classList.remove('show');});
+  window.addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('show');});
+
+  /* ---------- form ---------- */
+  var form=document.getElementById('contactForm');
+  if(form){form.addEventListener('submit',function(e){
+    e.preventDefault();
+    form.innerHTML='<p class="sec-lead" style="color:var(--accent)">Köszönöm. Üzenetét hamarosan megkapom.</p>';
+  });}
+  document.querySelectorAll('.field input,.field textarea').forEach(function(inp){
+    inp.addEventListener('input',function(){inp.parentNode.classList.toggle('filled',!!inp.value);});
+  });
+})();
+</script>
+
+</body>
+</html>

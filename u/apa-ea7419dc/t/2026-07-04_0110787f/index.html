@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html lang="hu" data-theme="dark-studio">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály — Festőművész</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           CSS CUSTOM PROPERTIES — THEME SYSTEM
+           ============================================ */
+        :root {
+            --transition-speed: 0.6s;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Cormorant Garamond', Georgia, serif;
+            --font-accent: 'Lora', Georgia, serif;
+            --font-ui: 'Inter', -apple-system, sans-serif;
+        }
+
+        /* Theme 1: Dark Studio — Sötét műtermi */
+        [data-theme="dark-studio"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-tertiary: #1e1e1e;
+            --bg-card: #1a1a1a;
+            --bg-glass: rgba(20, 20, 20, 0.85);
+            --text-primary: #e8e0d4;
+            --text-secondary: #b8a898;
+            --text-muted: #7a6e62;
+            --accent-primary: #c9a84c;
+            --accent-secondary: #a07830;
+            --accent-glow: rgba(201, 168, 76, 0.15);
+            --border-color: rgba(201, 168, 76, 0.2);
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --shadow-color: rgba(0, 0, 0, 0.6);
+            --gradient-hero: linear-gradient(135deg, #0a0a0a 0%, #1a1510 50%, #0f0d0a 100%);
+            --texture-overlay: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            --scrollbar-track: #141414;
+            --scrollbar-thumb: #c9a84c;
+        }
+
+        /* Theme 2: Red Earth — Vörös föld */
+        [data-theme="red-earth"] {
+            --bg-primary: #2c1810;
+            --bg-secondary: #3a2018;
+            --bg-tertiary: #4a2a1e;
+            --bg-card: #352015;
+            --bg-glass: rgba(44, 24, 16, 0.88);
+            --text-primary: #f5e6d8;
+            --text-secondary: #d4a88a;
+            --text-muted: #9a7058;
+            --accent-primary: #c45a3c;
+            --accent-secondary: #8b3a28;
+            --accent-glow: rgba(196, 90, 60, 0.15);
+            --border-color: rgba(196, 90, 60, 0.25);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --shadow-color: rgba(30, 10, 5, 0.6);
+            --gradient-hero: linear-gradient(135deg, #2c1810 0%, #3d2015 50%, #1f100a 100%);
+            --texture-overlay: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c45a3c' fill-opacity='0.04' fill-rule='evenodd'%3E%3Ccircle cx='20' cy='20' r='1'/%3E%3C/g%3E%3C/svg%3E");
+            --scrollbar-track: #2c1810;
+            --scrollbar-thumb: #c45a3c;
+        }
+
+        /* Theme 3: Blue Sea — Kék tenger */
+        [data-theme="blue-sea"] {
+            --bg-primary: #0c1929;
+            --bg-secondary: #132238;
+            --bg-tertiary: #1a2d45;
+            --bg-card: #152540;
+            --bg-glass: rgba(12, 25, 41, 0.88);
+            --text-primary: #e8f0f8;
+            --text-secondary: #a8c4d8;
+            --text-muted: #6a8fa8;
+            --accent-primary: #4a90b8;
+            --accent-secondary: #2a6a90;
+            --accent-glow: rgba(74, 144, 184, 0.15);
+            --border-color: rgba(74, 144, 184, 0.22);
+            --border-subtle: rgba(255, 255, 255, 0.07);
+            --shadow-color: rgba(5, 15, 30, 0.6);
+            --gradient-hero: linear-gradient(135deg, #0c1929 0%, #152a45 50%, #0a1520 100%);
+            --texture-overlay: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%234a90b8' fill-opacity='0.03'%3E%3Cpath d='M40 0C26.7 0 16 10.7 16 24c0 13.3 24 56 24 56s24-42.7 24-56C64 10.7 53.3 0 40 0z'/%3E%3C/g%3E%3C/svg%3E");
+            --scrollbar-track: #0c1929;
+            --scrollbar-thumb: #4a90b8;
+        }
+
+        /* Theme 4: Golden Hour — Arany óra */
+        [data-theme="golden-hour"] {
+            --bg-primary: #fdf6e8;
+            --bg-secondary: #f8edd4;
+            --bg-tertiary: #f0e0c0;
+            --bg-card: #faf3e6;
+            --bg-glass: rgba(253, 246, 232, 0.9);
+            --text-primary: #2c1810;
+            --text-secondary: #6b4a30;
+            --text-muted: #9a7a60;
+            --accent-primary: #8b5e3c;
+            --accent-secondary: #a07040;
+            --accent-glow: rgba(139, 94, 60, 0.1);
+            --border-color: rgba(139, 94, 60, 0.2);
+            --border-subtle: rgba(0, 0, 0, 0.06);
+            --shadow-color: rgba(44, 24, 16, 0.15);
+            --gradient-hero: linear-gradient(135deg, #fdf6e8 0%, #f0dcb8 50%, #e8d0a8 100%);
+            --texture-overlay: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%238b5e3c' fill-opacity='0.03'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z'/%3E%3C/g%3E%3C/svg%3E");
+            --scrollbar-track: #f0e0c0;
+            --scrollbar-thumb: #8b5e3c;
+        }
+
+        /* Theme 5: White Studio — Fehér műterem */
+        [data-theme="white-studio"] {
+            --bg-primary: #f5f2ed;
+            --bg-secondary: #ebe6df;
+            --bg-tertiary: #e0d9d0;
+            --bg-card: #faf8f5;
+            --bg-glass: rgba(245, 242, 237, 0.9);
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #8a8a8a;
+            --accent-primary: #2c2c2c;
+            --accent-secondary: #555555;
+            --accent-glow: rgba(0, 0, 0, 0.05);
+            --border-color: rgba(0, 0, 0, 0.1);
+            --border-subtle: rgba(0, 0, 0, 0.05);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --gradient-hero: linear-gradient(135deg, #f5f2ed 0%, #e8e3db 50%, #f0ece5 100%);
+            --texture-overlay: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%231a1a1a' fill-opacity='0.02'%3E%3Cpath d='M0 0h20L0 20z'/%3E%3C/g%3E%3C/svg%3E");
+            --scrollbar-track: #e0d9d0;
+            --scrollbar-thumb: #8a8a8a;
+        }
+
+        /* Theme 6: Forest — Zöld erdő */
+        [data-theme="forest"] {
+            --bg-primary: #1a2e1a;
+            --bg-secondary: #223822;
+            --bg-tertiary: #2a402a;
+            --bg-card: #1e3220;
+            --bg-glass: rgba(26, 46, 26, 0.88);
+            --text-primary: #e8f0e8;
+            --text-secondary: #a8c8a0;
+            --text-muted: #6a8a60;
+            --accent-primary: #7ab868;
+            --accent-secondary: #5a9a48;
+            --accent-glow: rgba(122, 184, 104, 0.12);
+            --border-color: rgba(122, 184, 104, 0.2);
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --shadow-color: rgba(10, 20, 10, 0.6);
+            --gradient-hero: linear-gradient(135deg, #1a2e1a 0%, #253a25 50%, #152515 100%);
+            --texture-overlay: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%237ab868' fill-opacity='0.03'%3E%3Cpath d='M30 0l30 30-30 30L0 30z'/%3E%3C/g%3E%3C/svg%3E");
+            --scrollbar-track: #1a2e1a;
+            --scrollbar-thumb: #7ab868;
+        }
+
+        /* Theme 7: Winter Dream — Téli álom */
+        [data-theme="winter-dream"] {
+            --bg-primary: #e8ecf0;
+            --bg-secondary: #d8dde4;
+            --bg-tertiary: #c8ced8;
+            --bg-card: #f0f4f8;
+            --bg-glass: rgba(232, 236, 240, 0.9);
+            --text-primary: #1a2030;
+            --text-secondary: #4a5a70;
+            --text-muted: #8a9ab0;
+            --accent-primary: #5a7a9a;
+            --accent-secondary: #3a5a7a;
+            --accent-glow: rgba(90, 122, 154, 0.1);
+            --border-color: rgba(90, 122, 154, 0.2);
+            --border-subtle: rgba(0, 0, 0, 0.05);
+            --shadow-color: rgba(20, 30, 50, 0.1);
+            --gradient-hero: linear-gradient(135deg, #e8ecf0 0%, #d0d8e4 50%, #e0e8f0 100%);
+            --texture-overlay: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%235a7a9a' fill-opacity='0.04'%3E%3Cpath d='M20 0l5 10h10l-8 6 3 10-10-7-10 7 3-10-8-6h10z'/%3E%3C/g%3E%3C/svg%3E");
+            --scrollbar-track: #d8dde4;
+            --scrollbar-thumb: #5a7a9a;
+        }
+
+        /* ============================================
+           GLOBAL RESET & BASE
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
+
+        ::selection {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+
+        /* ============================================
+           TEXTURE OVERLAY
+           ============================================ */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--texture-overlay);
+            pointer-events: none;
+            z-index: 0;
+            transition: background var(--transition-speed) ease;
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1.2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(0px);
+        }
+
+        .nav.scrolled {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            padding: 0.8rem 3rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .nav-logo span {
+            color: var(--accent-primary);
+            transition: color var(--transition-speed) ease;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            position: relative;
+            padding: 0.3rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 1px;
+            background: var(--accent-primary);
+            transition: width 0.4s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Theme Switcher Button */
+        .theme-btn {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            background: var(--bg-tertiary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-btn:hover {
+            border-color: var(--accent-primary);
+            transform: rotate(15deg);
+        }
+
+        .theme-btn svg {
+            width: 18px; height: 18px;
+            fill: var(--accent-primary);
+            transition: fill var(--transition-speed) ease;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 28px; height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ============================================
+           THEME PANEL
+           ============================================ */
+        .theme-panel {
+            position: fixed;
+            top: 50%;
+            right: -320px;
+            transform: translateY(-50%);
+            z-index: 2000;
+            width: 300px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(30px) saturate(180%);
+            border: 1px solid var(--border-color);
+            border-right: none;
+            border-radius: 20px 0 0 20px;
+            padding: 2rem 1.5rem;
+            transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: -10px 0 40px var(--shadow-color);
+        }
+
+        .theme-panel.open {
+            right: 0;
+        }
+
+        .theme-panel-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .theme-panel-subtitle {
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 0.5rem;
+            border: 1px solid transparent;
+        }
+
+        .theme-option:hover {
+            background: var(--accent-glow);
+            border-color: var(--border-color);
+        }
+
+        .theme-option.active {
+            background: var(--accent-glow);
+            border-color: var(--accent-primary);
+        }
+
+        .theme-colors {
+            display: flex;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
+        .theme-colors span {
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--border-subtle);
+        }
+
+        .theme-option-name {
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .theme-option-desc {
+            font-family: var(--font-body);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--gradient-hero);
+            transition: background var(--transition-speed) ease;
+        }
+
+        .hero-bg-art {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0.08;
+            background: 
+                radial-gradient(ellipse at 20% 50%, var(--accent-primary) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, var(--accent-secondary) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 80%, var(--accent-primary) 0%, transparent 40%);
+            animation: heroFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes heroFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -20px) scale(1.05); }
+            66% { transform: translate(-20px, 15px) scale(0.98); }
+        }
+
+        .hero-particles {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px; height: 3px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% { opacity: 0; transform: translateY(100vh) scale(0); }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            color: var(--accent-primary);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 700;
+            line-height: 1.05;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--accent-primary);
+            font-weight: 400;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-body);
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-weight: 300;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2.5rem;
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--bg-primary);
+            background: var(--accent-primary);
+            border: none;
+            border-radius: 0;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.2s forwards;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .hero-scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.5s forwards;
+        }
+
+        .hero-scroll-indicator span {
+            font-family: var(--font-ui);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+        }
+
+        .scroll-line {
+            width: 1px; height: 50px;
+            background: var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: -100%; left: 0;
+            width: 100%; height: 100%;
+            background: var(--accent-primary);
+            animation: scrollDown 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollDown {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============================================
+           SECTION STYLES
+           ============================================ */
+        .section {
+            padding: 8rem 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-eyebrow {
+            font-family: var(--font-ui);
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            color: var(--accent-primary);
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-divider {
+            width: 60px; height: 1px;
+            background: var(--accent-primary);
+            margin: 0 auto 1.5rem;
+        }
+
+        .section-desc {
+            font-family: var(--font-body);
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ============================================
+           ABOUT SECTION
+           ============================================ */
+        .about {
+            background: var(--bg-secondary);
+            transition: background var(--transition-speed) ease;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+        }
+
+        .about-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: filter 0.5s ease;
+        }
+
+        .about-image:hover {
+            filter: grayscale(0%);
+        }
+
+        .about-image-frame {
+            position: absolute;
+            top: -15px; left: -15px;
+            right: 15px; bottom: 15px;
+            border: 1px solid var(--accent-primary);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .about-text h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2.5rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-family: var(--font-ui);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* ============================================
+           GALLERY SECTION
+           ============================================ */
+        .gallery-section {
+            background: var(--bg-primary);
+        }
+
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            font-family: var(--font-ui);
+            font-size: 0.78rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            background: none;
+            border: 1px solid var(--border-subtle);
+            padding: 0.6rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            background: var(--accent-glow);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-subtle);
+            transition: all 0.5s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px var(--shadow-color);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease, filter 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 2.5rem 1.5rem 1.5rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-item-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.3rem;
+        }
+
+        .gallery-item-year {
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 0.1em;
+        }
+
+        .gallery-item-tag {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            font-family: var(--font-ui);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--bg-primary);
+            background: var(--accent-primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 2px;
+        }
+
+        /* ============================================
+           LIGHTBOX
+           ============================================ */
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 5000;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            max-width: 85vw;
+            max-height: 85vh;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-info {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .lightbox-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .lightbox-desc {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: rgba(255,255,255,0.6);
+            margin-top: 0.5rem;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 2rem; right: 2rem;
+            width: 50px; height: 50px;
+            background: none;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .lightbox-close:hover {
+            border-color: #fff;
+            transform: rotate(90deg);
+        }
+
+        .lightbox-close svg {
+            width: 20px; height: 20px;
+            stroke: #fff;
+            stroke-width: 2;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px; height: 50px;
+            background: none;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            border-color: #fff;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .lightbox-nav svg {
+            width: 20px; height: 20px;
+            stroke: #fff;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .lightbox-prev { left: 2rem; }
+        .lightbox-next { right: 2rem; }
+
+        /* ============================================
+           TIMELINE / BIOGRAPHY
+           ============================================ */
+        .timeline-section {
+            background: var(--bg-secondary);
+            transition: background var(--transition-speed) ease;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 1px; height: 100%;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 5px 20px var(--accent-glow);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 1.5rem;
+            transform: translateX(-50%);
+            width: 12px; height: 12px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            border: 3px solid var(--bg-secondary);
+            z-index: 2;
+        }
+
+        .timeline-year {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+
+        .timeline-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0.3rem 0;
+        }
+
+        .timeline-desc {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           QUOTE SECTION
+           ============================================ */
+        .quote-section {
+            padding: 10rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-primary);
+            transition: background var(--transition-speed) ease;
+        }
+
+        .quote-section::before {
+            content: '"';
+            position: absolute;
+            top: 2rem; left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-display);
+            font-size: 15rem;
+            color: var(--accent-primary);
+            opacity: 0.08;
+            line-height: 1;
+        }
+
+        .quote-text {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--text-primary);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-author {
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--accent-primary);
+        }
+
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        .contact-section {
+            background: var(--bg-secondary);
+            transition: background var(--transition-speed) ease;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .contact-detail-icon {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: var(--accent-glow);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-detail-icon svg {
+            width: 16px; height: 16px;
+            stroke: var(--accent-primary);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .contact-detail-text {
+            font-family: var(--font-ui);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--text-primary);
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            outline: none;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            -webkit-appearance: none;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .submit-btn {
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--bg-primary);
+            background: var(--accent-primary);
+            border: none;
+            padding: 1rem 2.5rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            align-self: flex-start;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            padding: 3rem;
+            text-align: center;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-subtle);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            color: var(--accent-primary);
+        }
+
+        .footer-text {
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+        }
+
+        .footer-divider {
+            width: 40px; height: 1px;
+            background: var(--accent-primary);
+            margin: 1.5rem auto;
+            opacity: 0.5;
+        }
+
+        /* ============================================
+           SCROLL ANIMATIONS
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .section { padding: 6rem 2rem; }
+            .about-grid { gap: 3rem; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+        }
+
+        @media (max-width: 768px) {
+            .nav { padding: 1rem 1.5rem; }
+            .nav.scrolled { padding: 0.8rem 1.5rem; }
+
+            .nav-links {
+                position: fixed;
+                top: 0; left: 0;
+                width: 100%; height: 100vh;
+                background: var(--bg-glass);
+                backdrop-filter: blur(30px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 2rem;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.4s ease;
+            }
+
+            .nav-links.open {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                letter-spacing: 0.2em;
+            }
+
+            .menu-toggle { display: flex; }
+
+            .theme-btn { display: none; }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .timeline::before { left: 20px; }
+            .timeline-item,
+            .timeline-item:nth-child(odd) {
+                flex-direction: row;
+                text-align: left;
+                padding-left: 50px;
+            }
+            .timeline-content { width: 100%; }
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section { padding: 5rem 1.5rem; }
+
+            .section-header { margin-bottom: 3rem; }
+
+            .theme-panel {
+                width: 280px;
+                right: -300px;
+            }
+
+            .lightbox-nav { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title { font-size: 2.5rem; }
+            .about-stats { grid-template-columns: 1fr; text-align: center; }
+            .gallery-filters { gap: 0.5rem; }
+            .filter-btn { padding: 0.5rem 1rem; font-size: 0.7rem; }
+        }
+
+        /* ============================================
+           CANVAS TEXTURE (painterly effect)
+           ============================================ */
+        .painterly-canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+         NAVIGATION
+         ========================================== -->
+    <nav class="nav" id="nav">
+        <a href="#hero" class="nav-logo">Kárai <span>Mihály</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#hero" onclick="closeMenu()">Főoldal</a></li>
+            <li><a href="#about" onclick="closeMenu()">Rólam</a></li>
+            <li><a href="#gallery" onclick="closeMenu()">Galéria</a></li>
+            <li><a href="#timeline" onclick="closeMenu()">Útmutató</a></li>
+            <li><a href="#contact" onclick="closeMenu()">Kapcsolat</a></li>
+            <li>
+                <button class="theme-btn" id="themeToggle" onclick="toggleThemePanel()" aria-label="Témaváltás">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                </button>
+            </li>
+        </ul>
+        <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+         THEME PANEL
+         ========================================== -->
+    <div class="theme-panel" id="themePanel">
+        <div class="theme-panel-title">Témaválasztó</div>
+        <div class="theme-panel-subtitle">Válassz stílust</div>
+
+        <div class="theme-option active" onclick="setTheme('dark-studio')">
+            <div class="theme-colors">
+                <span style="background:#0a0a0a"></span>
+                <span style="background:#c9a84c"></span>
+                <span style="background:#1e1e1e"></span>
+            </div>
+            <div>
+                <div class="theme-option-name">Sötét Műtermi</div>
+                <div class="theme-option-desc">Arany akcentusok sötét háttéren</div>
+            </div>
+        </div>
+
+        <div class="theme-option" onclick="setTheme('red-earth')">
+            <div class="theme-colors">
+                <span style="background:#2c1810"></span>
+                <span style="background:#c45a3c"></span>
+                <span style="background:#3a2018"></span>
+            </div>
+            <div>
+                <div class="theme-option-name">Vörös Föld</div>
+                <div class="theme-option-desc">Meleg vörösesbarna, földes hangulat</div>
+            </div>
+        </div>
+
+        <div class="theme-option" onclick="setTheme('blue-sea')">
+            <div class="theme-colors">
+                <span style="background:#0c1929"></span>
+                <span style="background:#4a90b8"></span>
+                <span style="background:#1a2d45"></span>
+            </div>
+            <div>
+                <div class="theme-option-name">Kék Tenger</div>
+                <div class="theme-option-desc">Nyugtató kék árnyalatok</div>
+            </div>
+        </div>
+
+        <div class="theme-option" onclick="setTheme('golden-hour')">
+            <div class="theme-colors">
+                <span style="background:#fdf6e8"></span>
+                <span style="background:#8b5e3c"></span>
+                <span style="background:#f0e0c0"></span>
+            </div>
+            <div>
+                <div class="theme-option-name">Arany Óra</div>
+                <div class="theme-option-desc">Meleg, aranyos világos téma</div>
+            </div>
+        </div>
+
+        <div class="theme-option" onclick="setTheme('white-studio')">
+            <div class="theme-colors">
+                <span style="background:#f5f2ed"></span>
+                <span style="background:#2c2c2c"></span>
+                <span style="background:#e0d9d0"></span>
+            </div>
+            <div>
+                <div class="theme-option-name">Fehér Műterem</div>
+                <div class="theme-option-desc">Letisztult, modern minimalizmus</div>
+            </div>
+        </div>
+
+        <div class="theme-option" onclick="setTheme('forest')">
+            <div class="theme-colors">
+                <span style="background:#1a2e1a"></span>
+                <span style="background:#7ab868"></span>
+                <span style="background:#2a402a"></span>
+            </div>
+            <div>
+                <div class="theme-option-name">Zöld Erdő</div>
+                <div class="theme-option-desc">Természetes, zöldes hangulat</div>
+            </div>
+        </div>
+
+        <div class="theme-option" onclick="setTheme('winter-dream')">
+            <div class="theme-colors">
+                <span style="background:#e8ecf0"></span>
+                <span style="background:#5a7a9a"></span>
+                <span style="background:#d8dde4"></span>
+            </div>
+            <div>
+                <div class="theme-option-name">Téli Álom</div>
+                <div class="theme-option-desc">Hideg, ezüstös világos téma</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         HERO SECTION
+         ========================================== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-art"></div>
+        <div class="hero-particles" id="heroParticles"></div>
+
+        <div class="hero-content">
+            <div class="hero-eyebrow">Festőművész · 1961 —</div>
+            <h1 class="hero-title">Kárai<br><em>Mihály</em></h1>
+            <p class="hero-subtitle">
+                A színek zenéje, a vászon tükre — ahol a lélek szava 
+                festékben ölt testet, és a csendből képek születhetnek.
+            </p>
+            <a href="#gallery" class="hero-cta">
+                Művek felfedezése
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+
+        <div class="hero-scroll-indicator">
+            <span>Görgess</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         ABOUT SECTION
+         ========================================== -->
+    <section class="section about" id="about">
+        <div class="about-grid">
+            <div class="about-image-wrapper reveal">
+                <img src="apa_festmenyek/interior_1.jpg" alt="Kárai Mihály — Festőművész" class="about-image">
+                <div class="about-image-frame"></div>
+            </div>
+            <div class="about-text">
+                <span class="section-eyebrow reveal">A Művész</span>
+                <h3 class="reveal reveal-delay-1">A szín és az érzelem <br>egysége</h3>
+                <p class="reveal reveal-delay-2">
+                    Kárai Mihály 1961-ben született, és élete óta a festészet az, ami a lelkét táplálja. 
+                    Művészete a valóság és az álom határán táncol, ahol a színek nem csupán vizuális 
+                    élményt nyújtanak, hanem mély érzelmi rezonanciát keltenek.
+                </p>
+                <p class="reveal reveal-delay-3">
+                    Festményei a természet erejét, az emberi lélek mélységét és a mindennapi élet 
+                    szépségét örökítik meg. Művészete nem csupán a látványt örökíti meg — hanem 
+                    az érzést, a pillanatot, ami a művész és a néző között szövődik.
+                </p>
+                <div class="about-stats reveal reveal-delay-4">
+                    <div>
+                        <div class="stat-number">63+</div>
+                        <div class="stat-label">Év élete</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">40+</div>
+                        <div class="stat-label">Év alkotás</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Inspiráció</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         GALLERY SECTION
+         ========================================== -->
+    <section class="section gallery-section" id="gallery">
+        <div class="section-header">
+            <span class="section-eyebrow reveal">Galéria</span>
+            <h2 class="section-title reveal reveal-delay-1">A Művek Világa</h2>
+            <div class="section-divider reveal reveal-delay-2"></div>
+            <p class="section-desc reveal reveal-delay-3">
+                Minden festmény egy világ — ahol a színek beszélnek, és a vászon határtalan.
+            </p>
+        </div>
+
+        <div class="gallery-filters reveal">
+            <button class="filter-btn active" onclick="filterGallery('all')">Összes</button>
+            <button class="filter-btn" onclick="filterGallery('interior')">Interiőr</button>
+            <button class="filter-btn" onclick="filterGallery('keretelt')">Keretezett</button>
+            <button class="filter-btn" onclick="filterGallery('keretnelkuli')">Keret nélkül</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Interior 1 -->
+            <div class="gallery-item reveal" data-category="interior" onclick="openLightbox(0)">
+                <img src="apa_festmenyek/interior_1.jpg" alt="Interiőr kép" loading="lazy">
+                <span class="gallery-item-tag">Interiőr</span>
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-title">Interiőr I.</div>
+                    <div class="gallery-item-year">Kárai Mihály műve</div>
+                </div>
+            </div>
+
+            <!-- Interior 2 -->
+            <div class="gallery-item reveal reveal-delay-1" data-category="interior" onclick="openLightbox(1)">
+                <img src="apa_festmenyek/interior_2.jpg" alt="Interiőr kép 2" loading="lazy">
+                <span class="gallery-item-tag">Interiőr</span>
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-title">Interiőr II.</div>
+                    <div class="gallery-item-year">Kárai Mihály műve</div>
+                </div>
+            </div>
+
+            <!-- Keretezve 1 -->
+            <div class="gallery-item reveal reveal-delay-2" data-category="keretelt" onclick="openLightbox(2)">
+                <img src="apa_festmenyek/keretezve_1.jpg" alt="Keretezett kép 1" loading="lazy">
+                <span class="gallery-item-tag">Keretezett</span>
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-title">Keretezett Mű I.</div>
+                    <div class="gallery-item-year">Kárai Mihály műve</div>
+                </div>
+            </div>
+
+            <!-- Keretezve 2 -->
+            <div class="gallery-item reveal reveal-delay-3" data-category="keretelt" onclick="openLightbox(3)">
+                <img src="apa_festmenyek/keretezve_2.jpg" alt="Keretezett kép 2" loading="lazy">
+                <span class="gallery-item-tag">Keretezett</span>
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-title">Keretezett Mű II.</div>
+                    <div class="gallery-item-year">Kárai Mihály műve</div>
+                </div>
+            </div>
+
+            <!-- Keretnélkül 1 -->
+            <div class="gallery-item reveal reveal-delay-4" data-category="keretnelkuli" onclick="openLightbox(4)">
+                <img src="apa_festmenyek/keretnelkul_1.jpg" alt="Keret nélküli kép 1" loading="lazy">
+                <span class="gallery-item-tag">Keret nélkül</span>
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-title">Keret Nélküli I.</div>
+                    <div class="gallery-item-year">Kárai Mihály műve</div>
+                </div>
+            </div>
+
+            <!-- Keretnélkül 2 -->
+            <div class="gallery-item reveal reveal-delay-5" data-category="keretnelkuli" onclick="openLightbox(5)">
+                <img src="apa_festmenyek/keretnelkul_2.jpg" alt="Keret nélküli kép 2" loading="lazy">
+                <span class="gallery-item-tag">Keret nélkül</span>
+                <div class="gallery-item-overlay">
+                    <div class="gallery-item-title">Keret Nélküli II.</div>
+                    <div class="gallery-item-year">Kárai Mihály műve</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         QUOTE SECTION
+         ========================================== -->
+    <section class="quote-section">
+        <div class="reveal">
+            <p class="quote-text">
+                „A festészet nem azt mutatja meg, amit látni lehet, 
+                hanem azt, amit nem lehet látni — a lélek mélyén."
+            </p>
+            <div class="quote-author">— Kárai Mihály —</div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         TIMELINE SECTION
+         ========================================== -->
+    <section class="section timeline-section" id="timeline">
+        <div class="section-header">
+            <span class="section-eyebrow reveal">Útmutató</span>
+            <h2 class="section-title reveal reveal-delay-1">Az Élet Útja</h2>
+            <div class="section-divider reveal reveal-delay-2"></div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <div class="timeline-year">1961</div>
+                    <div class="timeline-title">Születés</div>
+                    <div class="timeline-desc">Kárai Mihály születése — egy új csillag fénye megjelent a művészet éjszakájában.</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <div class="timeline-year">1980-as</div>
+                    <div class="timeline-title">Alkotó Út Kezdete</div>
+                    <div class="timeline-desc">Az első ecsetvonások, az első színek — amikor a belső hang külső formát nyert.</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <div class="timeline-year">1990-es</div>
+                    <div class="timeline-title">Stílus Kialakulása</div>
+                    <div class="timeline-desc">A saját hang megtalálása — ahol a technika és az érzelem eggyé válik.</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <div class="timeline-year">2000-es</div>
+                    <div class="timeline-title">Elismerések</div>
+                    <div class="timeline-desc">A művek elismerése — a színek nyelve egyre több emberhez szól.</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <div class="timeline-year">2026</div>
+                    <div class="timeline-title">Folyamatban</div>
+                    <div class="timeline-desc">Az alkotás sosem ér véget — minden nap új szín, új világ születik.</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         CONTACT SECTION
+         ========================================== -->
+    <section class="section contact-section" id="contact">
+        <div class="section-header">
+            <span class="section-eyebrow reveal">Kapcsolat</span>
+            <h2 class="section-title reveal reveal-delay-1">Lépj Kapcsolatba</h2>
+            <div class="section-divider reveal reveal-delay-2"></div>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-info reveal">
+                <h3>Együttműködés</h3>
+                <p>
+                    Ha szeretnél megismerkedni a művekkel, kiállításokról értesülni, 
+                    vagy együttműködni, keress meg bizalommal.
+                </p>
+                <div class="contact-detail">
+                    <div class="contact-detail-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div class="contact-detail-text">Magyarország</div>
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-detail-icon">
+                        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <div class="contact-detail-text">kapcsolat@kara mihaly.hu</div>
+                </div>
+            </div>
+
+            <form class="contact-form reveal reveal-delay-2" onsubmit="event.preventDefault(); alert('Köszönjük az üzenetet!');">
+                <div class="form-group">
+                    <input type="text" placeholder="Neved" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="E-mail cím" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Üzeneted..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Üzenet küldése</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer class="footer">
+        <div class="footer-logo">Kárai <span>Mihály</span></div>
+        <div class="footer-divider"></div>
+        <p class="footer-text">© 2026 Kárai Mihály — Minden jog fenntartva. A művek szerzői jog védelem alatt állnak.</p>
+    </footer>
+
+    <!-- ==========================================
+         LIGHTBOX
+         ========================================== -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <button class="lightbox-nav lightbox-prev" onclick="prevLightbox()">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="lightbox-nav lightbox-next" onclick="nextLightbox()">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="">
+            <div class="lightbox-info">
+                <div class="lightbox-title" id="lightboxTitle"></div>
+                <div class="lightbox-desc" id="lightboxDesc"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
+    <script>
+        // ========================================
+        // GALLERY DATA
+        // ========================================
+        const galleryData = [
+            { src: 'apa_festmenyek/interior_1.jpg', title: 'Interiőr I.', desc: 'Belső terek csendje és fényjátéka' },
+            { src: 'apa_festmenyek/interior_2.jpg', title: 'Interiőr II.', desc: 'Az otthon hangulata festékben' },
+            { src: 'apa_festmenyek/keretezve_1.jpg', title: 'Keretezett Mű I.', desc: 'Művészet keretben — klasszikus elegancia' },
+            { src: 'apa_festmenyek/keretezve_2.jpg', title: 'Keretezett Mű II.', desc: 'Színek keretezett szépsége' },
+            { src: 'apa_festmenyek/keretnelkul_1.jpg', title: 'Keret Nélküli I.', desc: 'Szabadon — a kép határtalan' },
+            { src: 'apa_festmenyek/keretnelkul_2.jpg', title: 'Keret Nélküli II.', desc: 'Tiszta művészet — keret nélkül' }
+        ];
+
+        let currentLightbox = 0;
+
+        // ========================================
+        // PARTICLES
+        // ========================================
+        function createParticles() {
+            const container = document.getElementById('heroParticles');
+            const count = window.innerWidth < 768 ? 15 : 35;
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDuration = (8 + Math.random() * 12) + 's';
+                p.style.animationDelay = Math.random() * 10 + 's';
+                p.style.width = (2 + Math.random() * 3) + 'px';
+                p.style.height = p.style.width;
+                container.appendChild(p);
+            }
+        }
+        createParticles();
+
+        // ========================================
+        // NAVIGATION
+        // ========================================
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 80);
+        });
+
+        function toggleMenu() {
+            const toggle = document.getElementById('menuToggle');
+            const links = document.getElementById('navLinks');
+            toggle.classList.toggle('active');
+            links.classList.toggle('open');
+        }
+
+        function closeMenu() {
+            document.getElementById('menuToggle').classList.remove('active');
+            document.getElementById('navLinks').classList.remove('open');
+        }
+
+        // ========================================
+        // THEME SYSTEM
+        // ========================================
+        const themes = ['dark-studio', 'red-earth', 'blue-sea', 'golden-hour', 'white-studio', 'forest', 'winter-dream'];
+        const themeNames = {
+            'dark-studio': 'Sötét Műtermi',
+            'red-earth': 'Vörös Föld',
+            'blue-sea': 'Kék Tenger',
+            'golden-hour': 'Arany Óra',
+            'white-studio': 'Fehér Műterem',
+            'forest': 'Zöld Erdő',
+            'winter-dream': 'Téli Álom'
+        };
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('karaitheme', theme);
+
+            // Update active state
+            document.querySelectorAll('.theme-option').forEach(opt => {
+                opt.classList.toggle('active', opt.getAttribute('onclick').includes(theme));
+            });
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('karaitheme');
+        if (savedTheme && themes.includes(savedTheme)) {
+            setTheme(savedTheme);
+        }
+
+        function toggleThemePanel() {
+            document.getElementById('themePanel').classList.toggle('open');
+        }
+
+        // Close theme panel when clicking outside
+        document.addEventListener('click', (e) => {
+            const panel = document.getElementById('themePanel');
+            const btn = document.getElementById('themeToggle');
+            if (!panel.contains(e.target) && !btn.contains(e.target)) {
+                panel.classList.remove('open');
+            }
+        });
+
+        // ========================================
+        // GALLERY FILTER
+        // ========================================
+        function filterGallery(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent.toLowerCase().includes(
+                    category === 'all' ? 'összes' :
+                    category === 'interior' ? 'interiőr' :
+                    category === 'keretelt' ? 'keretezett' : 'keret nélkül'
+                ));
+            });
+
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'translateY(0)'; }, 50);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => { item.style.display = 'none'; }, 400);
+                }
+            });
+        }
+
+        // ========================================
+        // LIGHTBOX
+        // ========================================
+        function openLightbox(index) {
+            currentLightbox = index;
+            updateLightbox();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function nextLightbox() {
+            currentLightbox = (currentLightbox + 1) % galleryData.length;
+            updateLightbox();
+        }
+
+        function prevLightbox() {
+            currentLightbox = (currentLightbox - 1 + galleryData.length) % galleryData.length;
+            updateLightbox();
+        }
+
+        function updateLightbox() {
+            const data = galleryData[currentLightbox];
+            document.getElementById('lightboxImg').src = data.src;
+            document.getElementById('lightboxImg').alt = data.title;
+            document.getElementById('lightboxTitle').textContent = data.title;
+            document.getElementById('lightboxDesc').textContent = data.desc;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextLightbox();
+            if (e.key === 'ArrowLeft') prevLightbox();
+        });
+
+        // Close lightbox on background click
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('lightbox')) closeLightbox();
+        });
+
+        // ========================================
+        // SCROLL REVEAL
+        // ========================================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // ========================================
+        // SMOOTH SCROLL for anchor links
+        // ========================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ========================================
+        // PARALLAX EFFECT on hero
+        // ========================================
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const hero = document.querySelector('.hero-content');
+            if (scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+                hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.8;
+            }
+        });
+
+        // ========================================
+        // COUNTER ANIMATION
+        // ========================================
+        function animateCounters() {
+            document.querySelectorAll('.stat-number').forEach(counter => {
+                const text = counter.textContent;
+                if (text === '∞') return;
+                const target = parseInt(text);
+                if (isNaN(target)) return;
+                const suffix = text.replace(/[0-9]/g, '');
+                let current = 0;
+                const increment = Math.ceil(target / 60);
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    counter.textContent = current + suffix;
+                }, 30);
+            });
+        }
+
+        // Trigger counter animation when about section is visible
+        const aboutObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    aboutObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) aboutObserver.observe(aboutSection);
+
+        // ========================================
+        // INITIALIZE
+        // ========================================
+        console.log('%c🎨 Kárai Mihály — Festőművész', 'font-size: 20px; font-weight: bold; color: #c9a84c; background: #0a0a0a; padding: 10px 20px; border-radius: 5px;');
+        console.log('%cElegáns, művészi weboldal készítése.', 'font-size: 12px; color: #888;');
+    </script>
+</body>
+</html>

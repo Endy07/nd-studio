@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="hu" data-theme="tuzjeg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Kárai Mihály (sz. 1961) festőművész — kortárs lírai absztrakció. Tűz és jég, izzó városok, örvénylő szirmok. Válogatott életmű.">
+<meta name="author" content="Kárai Mihály">
+<meta property="og:title" content="Kárai Mihály — Festőművész">
+<meta property="og:description" content="A szín és a textúra festője. Kortárs absztrakt expresszionizmus, 1961–.">
+<meta property="og:type" content="website">
+<title>Kárai Mihály — Festőművész</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ 7 HARMONIKUS TÉMA — 4 sötét + 3 világos ============ */
+:root{
+  --font-head:'Cormorant Garamond',Georgia,serif;
+  --font-body:'Inter',system-ui,sans-serif;
+  --maxw:1280px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --radius:2px;
+}
+/* 1 — Tűz és Jég (alap, sötét) */
+html[data-theme="tuzjeg"]{
+  --bg:#100b0c; --bg2:#191214; --bg3:#221619;
+  --ink:#f3eae2; --muted:#a89a90; --faint:#6d625c;
+  --line:rgba(243,234,226,.12); --line2:rgba(243,234,226,.06);
+  --accent:#e2622f; --accent2:#3aa2a6; --gold:#e8a63b;
+  --c1:#e2622f; --c2:#3aa2a6; --c3:#f0b429; --canvas-op:.85; --grain-op:.05; --mode:dark;
+}
+/* 2 — Éjféli Galéria (sötét) */
+html[data-theme="ejfel"]{
+  --bg:#0b0d13; --bg2:#12151f; --bg3:#181c28;
+  --ink:#ece7dd; --muted:#98938a; --faint:#615d57;
+  --line:rgba(236,231,221,.12); --line2:rgba(236,231,221,.06);
+  --accent:#c9a24c; --accent2:#5b86b0; --gold:#c9a24c;
+  --c1:#c9a24c; --c2:#4f7fa8; --c3:#8a6db0; --canvas-op:.8; --grain-op:.05; --mode:dark;
+}
+/* 3 — Rózsa Noir (sötét) */
+html[data-theme="rozsanoir"]{
+  --bg:#0e0d12; --bg2:#17151d; --bg3:#201d27;
+  --ink:#f4efe8; --muted:#a49ea6; --faint:#6b6670;
+  --line:rgba(244,239,232,.12); --line2:rgba(244,239,232,.06);
+  --accent:#cf6472; --accent2:#d9b48a; --gold:#d9b48a;
+  --c1:#c45c6a; --c2:#d9b48a; --c3:#7d5a8c; --canvas-op:.8; --grain-op:.05; --mode:dark;
+}
+/* 4 — Erdő Üveg (sötét) */
+html[data-theme="erdo"]{
+  --bg:#0a1310; --bg2:#11201a; --bg3:#172a22;
+  --ink:#eae7dd; --muted:#8fa398; --faint:#5c6d64;
+  --line:rgba(234,231,221,.12); --line2:rgba(234,231,221,.06);
+  --accent:#e0b95f; --accent2:#41a583; --gold:#d8b25e;
+  --c1:#d8b25e; --c2:#3f9e7c; --c3:#b6543f; --canvas-op:.8; --grain-op:.05; --mode:dark;
+}
+/* 5 — Meleg Homok (világos) */
+html[data-theme="homok"]{
+  --bg:#f2ebdf; --bg2:#fbf6ed; --bg3:#efe6d6;
+  --ink:#2c2620; --muted:#6f6558; --faint:#9c9184;
+  --line:rgba(44,38,32,.14); --line2:rgba(44,38,32,.06);
+  --accent:#c1622f; --accent2:#2f7d7a; --gold:#b07a2a;
+  --c1:#c56b3c; --c2:#3f7d7a; --c3:#d99a4e; --canvas-op:.5; --grain-op:.04; --mode:light;
+}
+/* 6 — Vászon (világos) */
+html[data-theme="vaszon"]{
+  --bg:#f6f2ea; --bg2:#fffdf8; --bg3:#efe9dd;
+  --ink:#26221c; --muted:#6b6355; --faint:#9a9182;
+  --line:rgba(38,34,28,.12); --line2:rgba(38,34,28,.05);
+  --accent:#b4472e; --accent2:#4a6d8c; --gold:#9c6b28;
+  --c1:#b4472e; --c2:#4a6d8c; --c3:#c98a3e; --canvas-op:.45; --grain-op:.045; --mode:light;
+}
+/* 7 — Nyári Dél (világos) */
+html[data-theme="del"]{
+  --bg:#f7efe2; --bg2:#fffaf0; --bg3:#f2e7d4;
+  --ink:#2a2118; --muted:#7a6a56; --faint:#a8977f;
+  --line:rgba(42,33,24,.14); --line2:rgba(42,33,24,.06);
+  --accent:#d47b26; --accent2:#2f9aa0; --gold:#c07d1f;
+  --c1:#e08a2f; --c2:#2f9aa0; --c3:#e0563a; --canvas-op:.5; --grain-op:.04; --mode:light;
+}
+/* ============ BASE ============ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:var(--font-body);font-weight:300;
+  line-height:1.7;overflow-x:hidden;
+  transition:background 1.1s var(--ease),color 1.1s var(--ease);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+::selection{background:var(--accent);color:#fff}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--font-head);font-weight:400;line-height:1.05;letter-spacing:-.01em}
+
+/* ============ LAYERS ============ */
+#bgcanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:var(--canvas-op);transition:opacity 1.1s var(--ease)}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:var(--grain-op);mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse 130% 100% at 50% 0%,transparent 55%,color-mix(in srgb,var(--bg) 82%,transparent) 100%)}
+.wrap{position:relative;z-index:2}
+
+/* ============ SHELL / SECTION ============ */
+section{position:relative}
+.inner{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.4rem,5vw,4rem)}
+.eyebrow{font-family:var(--font-body);font-weight:400;font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:.9rem}
+.eyebrow::before{content:"";width:clamp(24px,4vw,52px);height:1px;background:var(--accent);display:inline-block}
+.kicker{color:var(--muted);font-size:1.05rem;max-width:56ch}
+
+/* ============ NAV ============ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:1.5rem clamp(1.4rem,5vw,4rem);transition:all .5s var(--ease)}
+.nav.scrolled{padding:.85rem clamp(1.4rem,5vw,4rem);
+  background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);
+  border-bottom:1px solid var(--line2)}
+.brand{font-family:var(--font-head);font-size:1.35rem;letter-spacing:.02em;display:flex;flex-direction:column;line-height:1}
+.brand b{font-weight:500}
+.brand span{font-family:var(--font-body);font-size:.6rem;font-weight:400;letter-spacing:.4em;text-transform:uppercase;color:var(--muted);margin-top:.35rem}
+.navlinks{display:flex;gap:2.4rem;align-items:center}
+.navlinks a{font-size:.82rem;letter-spacing:.04em;color:var(--muted);position:relative;padding:.3rem 0;transition:color .35s}
+.navlinks a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--accent);transition:width .4s var(--ease)}
+.navlinks a:hover{color:var(--ink)}.navlinks a:hover::after{width:100%}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px;z-index:60}
+.burger span{width:24px;height:1.5px;background:var(--ink);transition:.4s var(--ease);display:block}
+.burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ============ HERO ============ */
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:8rem 0 5rem;overflow:hidden}
+.hero .inner{width:100%}
+.hero-tag{margin-bottom:2.2rem;opacity:0;animation:fadeUp 1s var(--ease) .3s forwards}
+.hero h1{font-size:clamp(3.4rem,13vw,11.5rem);font-weight:300;letter-spacing:-.03em;line-height:.92}
+.hero h1 .l{display:block;overflow:hidden}
+.hero h1 .l span{display:block;transform:translateY(105%);animation:lineUp 1.15s var(--ease) forwards}
+.hero h1 .l:nth-child(1) span{animation-delay:.45s}
+.hero h1 .l:nth-child(2) span{animation-delay:.62s}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{display:flex;flex-wrap:wrap;gap:2rem 3.5rem;align-items:flex-end;justify-content:space-between;margin-top:3.2rem;
+  opacity:0;animation:fadeUp 1s var(--ease) 1.05s forwards}
+.hero-sub p{max-width:44ch;color:var(--muted);font-size:1.08rem}
+.hero-meta{display:flex;gap:2.6rem;flex-wrap:wrap}
+.hero-meta .m b{font-family:var(--font-head);font-size:2.6rem;font-weight:400;color:var(--ink);display:block;line-height:1}
+.hero-meta .m small{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+.scrollcue{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.8rem;color:var(--faint);font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;opacity:0;animation:fadeUp 1s var(--ease) 1.5s forwards}
+.scrollcue i{width:1px;height:46px;background:linear-gradient(var(--accent),transparent);animation:cue 2.2s var(--ease) infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+@keyframes lineUp{to{transform:translateY(0)}}
+/* ============ SECTION HEADING ============ */
+.sec{padding:clamp(5rem,11vw,9rem) 0}
+.sec-head{display:flex;flex-direction:column;gap:1.4rem;margin-bottom:clamp(2.5rem,6vw,5rem);max-width:var(--maxw)}
+.sec-head h2{font-size:clamp(2.4rem,6.5vw,5rem);font-weight:300}
+.sec-head h2 em{font-style:italic;color:var(--accent)}
+.sec-head .lead{color:var(--muted);font-size:clamp(1.02rem,1.6vw,1.22rem);max-width:60ch;font-weight:300}
+
+/* ============ INTRO / BIO ============ */
+.intro{display:grid;grid-template-columns:1fr;gap:clamp(2.5rem,6vw,6rem);align-items:center}
+@media(min-width:900px){.intro{grid-template-columns:1.05fr .95fr}}
+.intro-portrait{position:relative;aspect-ratio:4/5;border:1px solid var(--line);overflow:hidden;background:var(--bg2)}
+.intro-portrait img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.02);transition:transform 1.4s var(--ease)}
+.intro-portrait:hover img{transform:scale(1.05)}
+.intro-portrait figcaption{position:absolute;left:0;bottom:0;right:0;padding:1.6rem;background:linear-gradient(transparent,rgba(0,0,0,.65));color:#f3eae2;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase}
+.intro-body p{color:var(--muted);font-size:1.08rem;margin-bottom:1.3rem;font-weight:300}
+.intro-body p .drop{float:left;font-family:var(--font-head);font-size:4.4rem;line-height:.8;padding:.35rem .55rem 0 0;color:var(--accent);font-weight:500}
+.intro-signature{font-family:var(--font-head);font-style:italic;font-size:2rem;color:var(--ink);margin-top:1.5rem;opacity:.85}
+.factstrip{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:2.5rem;background:var(--line2);border:1px solid var(--line2)}
+@media(min-width:560px){.factstrip{grid-template-columns:repeat(4,1fr)}}
+.factstrip .f{background:var(--bg);padding:1.4rem 1.2rem}
+.factstrip .f b{font-family:var(--font-head);font-size:1.9rem;font-weight:400;display:block;line-height:1;color:var(--accent)}
+.factstrip .f small{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-top:.5rem;display:block}
+
+/* ============ MANIFESTO QUOTE ============ */
+.manifesto{padding:clamp(5rem,12vw,10rem) 0;text-align:center;position:relative}
+.manifesto .mark{font-family:var(--font-head);font-size:clamp(7rem,20vw,16rem);line-height:.6;color:var(--accent);opacity:.22;height:.4em;display:block}
+.manifesto blockquote{font-family:var(--font-head);font-weight:300;font-size:clamp(1.9rem,5vw,4rem);line-height:1.18;max-width:20ch;margin:0 auto;letter-spacing:-.01em}
+.manifesto blockquote em{font-style:italic;color:var(--accent)}
+.manifesto cite{display:block;margin-top:2.5rem;font-family:var(--font-body);font-style:normal;font-size:.76rem;letter-spacing:.3em;text-transform:uppercase;color:var(--faint)}
+
+/* ============ GALLERY (masonry) ============ */
+.filterbar{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:3rem}
+.filterbar button{font-family:var(--font-body);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  background:transparent;border:1px solid var(--line);padding:.6rem 1.2rem;border-radius:100px;cursor:pointer;transition:.4s var(--ease)}
+.filterbar button:hover{color:var(--ink);border-color:var(--muted)}
+.filterbar button.active{color:var(--bg);background:var(--accent);border-color:var(--accent)}
+html[data-theme="homok"] .filterbar button.active,html[data-theme="vaszon"] .filterbar button.active,html[data-theme="del"] .filterbar button.active{color:#fff}
+.masonry{columns:1;column-gap:clamp(.9rem,2vw,1.6rem)}
+@media(min-width:640px){.masonry{columns:2}}
+@media(min-width:1040px){.masonry{columns:3}}
+.art{break-inside:avoid;margin-bottom:clamp(.9rem,2vw,1.6rem);position:relative;overflow:hidden;cursor:pointer;
+  border:1px solid var(--line2);background:var(--bg2);transition:transform .7s var(--ease),box-shadow .7s var(--ease)}
+.art img{width:100%;height:auto;transition:transform 1.3s var(--ease),filter .7s;filter:saturate(1.02)}
+.art:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(0,0,0,.55),0 0 0 1px var(--line)}
+.art:hover img{transform:scale(1.06)}
+.art .cap{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;
+  background:linear-gradient(transparent 40%,rgba(0,0,0,.78));opacity:0;transform:translateY(12px);transition:.6s var(--ease)}
+.art:hover .cap{opacity:1;transform:translateY(0)}
+.art .cap h4{color:#f6efe6;font-size:1.5rem;font-weight:400}
+.art .cap .meta{color:#c9bdb2;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;margin-top:.4rem}
+.art .cap .plus{position:absolute;top:1.2rem;right:1.3rem;width:34px;height:34px;border:1px solid rgba(255,255,255,.4);border-radius:50%;display:grid;place-items:center;color:#fff;font-size:1.1rem}
+.art .tag{position:absolute;top:1rem;left:1rem;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#f3eae2;background:color-mix(in srgb,var(--accent) 85%,#000);padding:.32rem .7rem;border-radius:100px;opacity:0;transform:translateY(-6px);transition:.5s var(--ease) .05s}
+.art:hover .tag{opacity:1;transform:translateY(0)}
+.art.hide{display:none}
+
+/* ============ INTERIOR SPLIT ============ */
+.interior{position:relative;padding:clamp(4rem,10vw,8rem) 0}
+.interior-grid{display:grid;grid-template-columns:1fr;gap:clamp(1rem,2vw,1.6rem)}
+@media(min-width:860px){.interior-grid{grid-template-columns:1fr 1fr}}
+.interior-fig{position:relative;overflow:hidden;border:1px solid var(--line2)}
+.interior-fig img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/11;transition:transform 1.5s var(--ease)}
+.interior-fig:hover img{transform:scale(1.05)}
+.interior-fig figcaption{position:absolute;left:1.4rem;bottom:1.4rem;color:#f5eee5;font-family:var(--font-head);font-size:1.4rem;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+.interior-note{max-width:52ch;margin:clamp(2.5rem,5vw,4rem) auto 0;text-align:center;color:var(--muted);font-size:1.06rem}
+
+/* ============ FRAME FEATURE (before/after slider) ============ */
+.frame-feature{display:grid;gap:clamp(2rem,5vw,4.5rem);grid-template-columns:1fr}
+@media(min-width:920px){.frame-feature{grid-template-columns:1fr 1fr}}
+.compare{position:relative;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/5;user-select:none;background:var(--bg2)}
+.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.compare .after{clip-path:inset(0 0 0 50%)}
+.compare .divider{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--gold);transform:translateX(-50%);z-index:3;box-shadow:0 0 20px color-mix(in srgb,var(--gold) 60%,transparent)}
+.compare .handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:4;width:52px;height:52px;border-radius:50%;background:var(--gold);display:grid;place-items:center;color:#1a1410;cursor:ew-resize;box-shadow:0 8px 24px rgba(0,0,0,.4);font-size:1rem}
+.compare .lbl{position:absolute;bottom:1rem;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:#f3eae2;background:rgba(0,0,0,.5);padding:.35rem .8rem;border-radius:100px;z-index:3}
+.compare .lbl.l{left:1rem}.compare .lbl.r{right:1rem}
+.frame-copy h3{font-size:clamp(2rem,4vw,3rem);font-weight:300;margin-bottom:1.4rem}
+.frame-copy h3 em{font-style:italic;color:var(--accent)}
+.frame-copy p{color:var(--muted);margin-bottom:1.1rem;font-size:1.05rem}
+
+/* ============ TECHNIQUE / TEXTURE STRIP ============ */
+.technique{position:relative;padding:clamp(5rem,12vw,9rem) 0;overflow:hidden}
+.tex-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2)}
+@media(min-width:820px){.tex-cards{grid-template-columns:repeat(4,1fr)}}
+.tex-card{position:relative;background:var(--bg);overflow:hidden;aspect-ratio:1;display:flex;align-items:flex-end}
+.tex-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;transition:.8s var(--ease);filter:grayscale(.1)}
+.tex-card:hover img{opacity:.85;transform:scale(1.08)}
+.tex-card .t{position:relative;z-index:2;padding:1.4rem;width:100%;background:linear-gradient(transparent,color-mix(in srgb,var(--bg) 88%,transparent))}
+.tex-card .t b{font-family:var(--font-head);font-size:1.5rem;font-weight:400;display:block}
+.tex-card .t small{color:var(--muted);font-size:.8rem}
+.tech-lead{max-width:58ch;margin-bottom:3rem;color:var(--muted);font-size:1.1rem}
+
+/* ============ CONTACT / CTA ============ */
+.contact{padding:clamp(5rem,13vw,11rem) 0;text-align:center;position:relative}
+.contact h2{font-size:clamp(2.6rem,8vw,6.5rem);font-weight:300;line-height:1;margin-bottom:1.6rem}
+.contact h2 em{font-style:italic;color:var(--accent)}
+.contact p{color:var(--muted);max-width:48ch;margin:0 auto 3rem;font-size:1.1rem}
+.cta-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.7rem;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:1.05rem 2.2rem;border-radius:100px;cursor:pointer;transition:.45s var(--ease);border:1px solid var(--accent)}
+.btn.solid{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.solid:hover{transform:translateY(-3px);box-shadow:0 16px 34px -14px var(--accent)}
+.btn.ghost{color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ============ FOOTER ============ */
+.foot{border-top:1px solid var(--line2);padding:3.5rem 0 2.5rem}
+.foot-grid{display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;align-items:flex-start}
+.foot .brand span{color:var(--faint)}
+.foot-nav{display:flex;gap:1.8rem;flex-wrap:wrap}
+.foot-nav a{font-size:.8rem;color:var(--muted);transition:color .3s}.foot-nav a:hover{color:var(--accent)}
+.foot-copy{margin-top:2.5rem;font-size:.72rem;color:var(--faint);letter-spacing:.06em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+
+/* ============ THEME PANEL ============ */
+.themebtn{position:fixed;bottom:1.5rem;right:1.5rem;z-index:80;width:56px;height:56px;border-radius:50%;
+  background:var(--bg2);border:1px solid var(--line);color:var(--ink);cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 10px 30px -10px rgba(0,0,0,.5);transition:.45s var(--ease)}
+.themebtn:hover{transform:rotate(90deg) scale(1.06);border-color:var(--accent)}
+.themebtn svg{width:24px;height:24px}
+.themepanel{position:fixed;bottom:6.5rem;right:1.5rem;z-index:80;width:min(320px,calc(100vw - 3rem));
+  background:color-mix(in srgb,var(--bg2) 92%,transparent);backdrop-filter:blur(24px) saturate(1.3);-webkit-backdrop-filter:blur(24px) saturate(1.3);
+  border:1px solid var(--line);border-radius:16px;padding:1.4rem;box-shadow:0 30px 70px -25px rgba(0,0,0,.6);
+  opacity:0;transform:translateY(20px) scale(.96);pointer-events:none;transition:.5s var(--ease)}
+.themepanel.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.themepanel h5{font-family:var(--font-body);font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:1.1rem;font-weight:500}
+.swatches{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.swatch{display:flex;align-items:center;gap:.7rem;padding:.6rem .7rem;border-radius:10px;cursor:pointer;border:1px solid var(--line2);background:transparent;transition:.35s var(--ease);text-align:left;color:var(--ink)}
+.swatch:hover{border-color:var(--muted)}
+.swatch.active{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.swatch .dots{display:flex;flex-shrink:0}
+.swatch .dots i{width:14px;height:14px;border-radius:50%;margin-left:-5px;border:1.5px solid var(--bg2);display:block}
+.swatch .dots i:first-child{margin-left:0}
+.swatch b{font-family:var(--font-body);font-weight:400;font-size:.76rem;line-height:1.1}
+.swatch small{display:block;color:var(--faint);font-size:.6rem;letter-spacing:.04em}
+.themehint{margin-top:1rem;font-size:.64rem;color:var(--faint);letter-spacing:.02em;line-height:1.5;text-align:center}
+
+/* ============ LIGHTBOX ============ */
+.lb{position:fixed;inset:0;z-index:100;background:color-mix(in srgb,var(--bg) 92%,#000 40%);backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:center;padding:clamp(1rem,4vw,3rem);opacity:0;pointer-events:none;transition:.5s var(--ease)}
+.lb.open{opacity:1;pointer-events:auto}
+.lb-inner{max-width:1100px;width:100%;display:grid;grid-template-columns:1fr;gap:2rem;align-items:center}
+@media(min-width:820px){.lb-inner{grid-template-columns:1.4fr 1fr}}
+.lb-img{position:relative;max-height:82vh;display:flex;justify-content:center}
+.lb-img img{max-height:82vh;width:auto;object-fit:contain;border:1px solid var(--line);box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
+.lb-meta h3{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;margin-bottom:.6rem}
+.lb-meta h3 em{font-style:italic;color:var(--accent)}
+.lb-meta .dim{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.4rem}
+.lb-meta p{color:var(--muted);font-size:1rem;line-height:1.75;max-height:40vh;overflow:auto;padding-right:.5rem}
+.lb-close{position:absolute;top:clamp(1rem,3vw,2rem);right:clamp(1rem,3vw,2rem);width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--bg2);color:var(--ink);cursor:pointer;font-size:1.3rem;display:grid;place-items:center;transition:.4s}
+.lb-close:hover{border-color:var(--accent);transform:rotate(90deg)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--bg2);color:var(--ink);cursor:pointer;font-size:1.2rem;display:grid;place-items:center;z-index:5;transition:.4s}
+.lb-nav:hover{border-color:var(--accent)}
+.lb-nav.prev{left:.5rem}.lb-nav.next{right:.5rem}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}
+
+/* ============ SCROLLBAR ============ */
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:10px;border:2px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:860px){
+  .navlinks{position:fixed;inset:0;flex-direction:column;justify-content:center;gap:2.2rem;
+    background:color-mix(in srgb,var(--bg) 96%,transparent);backdrop-filter:blur(20px);
+    transform:translateX(100%);transition:transform .55s var(--ease);z-index:55}
+  .navlinks.open{transform:translateX(0)}
+  .navlinks a{font-size:1.6rem;color:var(--ink)}
+  .burger{display:flex}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.15s!important;scroll-behavior:auto!important}
+  .hero h1 .l span{transform:none}.hero-tag,.hero-sub,.scrollcue{opacity:1;animation:none}
+}
+/* ===ANCHOR:CSS2=== */
+/* ===ANCHOR:CSS=== */
+</style>
+</head>
+<body>
+<canvas id="bgcanvas" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<div class="wrap">
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <a href="#top" class="brand"><b>Kárai Mihály</b><span>Festőművész · 1961</span></a>
+  <div class="navlinks" id="navlinks">
+    <a href="#eletmu">Életmű</a>
+    <a href="#galeria">Galéria</a>
+    <a href="#enterior">Enteriőr</a>
+    <a href="#technika">Technika</a>
+    <a href="#kapcsolat">Kapcsolat</a>
+  </div>
+  <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="inner">
+    <div class="hero-tag"><span class="eyebrow">Kortárs lírai absztrakció</span></div>
+    <h1>
+      <span class="l"><span>A szín, ami</span></span>
+      <span class="l"><span><em>lélegzik.</em></span></span>
+    </h1>
+    <div class="hero-sub">
+      <p>Kárai Mihály festményei a tűz és a jég találkozásáról szólnak — izzó városok tükröződéséről, örvénylő szirmokról, a nyári hőség fizikai súlyáról. Hat évtized, egyetlen megszállottság: a fény anyaggá tétele.</p>
+      <div class="hero-meta">
+        <div class="m"><b>1961</b><small>Születési év</small></div>
+        <div class="m"><b>13</b><small>Válogatott mű</small></div>
+        <div class="m"><b>∞</b><small>Réteg és textúra</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="scrollcue"><span>Görgess</span><i></i></div>
+</header>
+
+<!-- ============ ÉLETMŰ / BIO ============ -->
+<section class="sec" id="eletmu">
+  <div class="inner intro">
+    <figure class="intro-portrait reveal">
+      <img src="../../assets/keretnelkul_2.jpg" alt="Kárai Mihály — Hangulat, 80×60 cm" loading="lazy">
+      <figcaption>„Hangulat" · olaj vásznon · 80 × 60 cm</figcaption>
+    </figure>
+    <div class="intro-body reveal d1">
+      <span class="eyebrow" style="margin-bottom:1.6rem;display:inline-flex">Az alkotóról</span>
+      <h2 style="font-size:clamp(2rem,4.5vw,3.4rem);font-weight:300;margin:.4rem 0 1.8rem;line-height:1.05">Aki a<br><em style="font-style:italic;color:var(--accent)">palettakéssel</em> ír verset.</h2>
+      <p><span class="drop">K</span>árai Mihály 1961-ben született, és több mint négy évtizede áll a vászon előtt. Festészete a kortárs absztrakt expresszionizmus és a lírai absztrakció metszéspontján él: vastag impasto rétegek, palettakéses kaparások, dinamikus, zsigeri ecsetvonások.</p>
+      <p>Munkáit az extrém meleg spektrum uralja — tűzpiros, kadmium narancs, napraforgósárga, arany —, amelyet éles, hideg kékek és smaragdzöldek metszenek át. Ebből a feszültségből születik az a mélység, amelytől a képek szinte lélegeznek: naplementék, éjszakai városok tükörképe, elementáris erők összecsapása.</p>
+      <p>Nem a formát festi, hanem az érzést, amely a formát életre hívja. Ahogy a „Nyári hőség" nem egy alakot ábrázol, hanem magát a perzselő súlyt.</p>
+      <div class="intro-signature">— Kárai Mihály</div>
+      <div class="factstrip">
+        <div class="f"><b>Impasto</b><small>Vastag felhordás</small></div>
+        <div class="f"><b>Akril / Olaj</b><small>Vászon</small></div>
+        <div class="f"><b>Spatula</b><small>Palettakés</small></div>
+        <div class="f"><b>60·30·10</b><small>Színegyensúly</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MANIFESTO ============ -->
+<section class="manifesto">
+  <div class="inner">
+    <span class="mark reveal">„</span>
+    <blockquote class="reveal d1">A vászon nem tükör. A vászon <em>tűz</em>, amelybe a néző beleláthatja a saját csendjét.</blockquote>
+    <cite class="reveal d2">Kárai Mihály · műterem-jegyzet</cite>
+  </div>
+</section>
+
+<!-- ============ GALÉRIA ============ -->
+<section class="sec" id="galeria">
+  <div class="inner">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Válogatott életmű</span>
+      <h2>A <em>gyűjtemény</em></h2>
+      <p class="lead">Tizenhárom mű, három évtized keresztmetszete. Kattints bármelyikre a részletes elemzésért — kompozíció, színvilág, textúra és a mögötte lévő atmoszféra.</p>
+    </div>
+    <div class="filterbar reveal d1" id="filterbar">
+      <button class="active" data-f="all">Minden</button>
+      <button data-f="varos">Városok · Tükröződés</button>
+      <button data-f="elem">Tűz · Jég</button>
+      <button data-f="figura">Figurális</button>
+      <button data-f="pasztell">Pasztell</button>
+    </div>
+    <div class="masonry" id="masonry"><!-- JS tölti fel --></div>
+  </div>
+</section>
+
+<!-- ============ ENTERIŐR ============ -->
+<section class="interior" id="enterior">
+  <div class="inner">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Térben élő festmény</span>
+      <h2>Ahogy <em>otthonra</em> talál</h2>
+      <p class="lead">Egy Kárai-festmény nem dísz a falon — hangot ad a térnek. Íme két mű a maga természetes közegében.</p>
+    </div>
+    <div class="interior-grid">
+      <figure class="interior-fig reveal"><img src="../../assets/interior_1.jpg" alt="Színes modern absztrakt festmény enteriőrben, 90×100 cm" loading="lazy"><figcaption>Pasztell örvény · 90 × 100 cm</figcaption></figure>
+      <figure class="interior-fig reveal d1"><img src="../../assets/interior_2.jpg" alt="Színes modern absztrakt festmény enteriőrben, 90×90 cm" loading="lazy"><figcaption>Tűz és jég · 90 × 90 cm</figcaption></figure>
+    </div>
+    <p class="interior-note reveal d1">A meleg tónusok életre keltik a semleges falakat; a hideg akcentusok pedig lélegzetnyi teret nyitnak. A festmény és az enteriőr párbeszéde teszi teljessé a művet.</p>
+  </div>
+</section>
+
+<!-- ============ KERET FEATURE ============ -->
+<section class="sec">
+  <div class="inner frame-feature">
+    <div class="compare reveal" id="compare">
+      <img class="before" src="../../assets/keretnelkul_1.jpg" alt="Absztrakt festmény keret nélkül">
+      <img class="after" src="../../assets/keretezve_1.jpg" alt="Ugyanaz a festmény keretezve">
+      <div class="divider" id="cdiv"></div>
+      <button class="handle" id="chandle" aria-label="Összehasonlító csúszka">⟷</button>
+      <span class="lbl l">Keret nélkül</span>
+      <span class="lbl r">Keretezve</span>
+    </div>
+    <div class="frame-copy reveal d1">
+      <span class="eyebrow" style="margin-bottom:1.4rem;display:inline-flex">A keret nyelve</span>
+      <h3>A <em>keret</em> mint<br>a csend kerete</h3>
+      <p>A gyűjtemény legsötétebb, legdrámaibb darabja — szinte feketébe hajló burgundi, karmazsin és mélybarna, amelyet erőszakos fehér kaparások törnek át. A chiaroscuro-hatás zsigeri.</p>
+      <p>Húzd el a csúszkát, és nézd meg, hogyan emeli meg a gondosan választott keret a mű drámáját: a keret nem határ, hanem a nézőnek szánt lélegzetvételnyi szünet a kép körül.</p>
+      <p style="color:var(--faint);font-size:.9rem;letter-spacing:.02em">Képméret 80 × 60 cm · keretezett méret 98 × 78 cm</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECHNIKA ============ -->
+<section class="technique" id="technika">
+  <div class="inner">
+    <div class="sec-head reveal">
+      <span class="eyebrow">A műterem közelről</span>
+      <h2>A <em>kéz</em> és az anyag</h2>
+    </div>
+    <p class="tech-lead reveal d1">Minden festmény fizikai esemény: a paletta keverése, az ecset húzása, a palettakés kaparása, a szárított rétegek egymásra épülése. Ez a nyers, kézzelfogható anyagszerűség adja a művek testét.</p>
+    <div class="tex-cards">
+      <div class="tex-card reveal"><img src="../../assets/broll_palette.png" alt="Paletta" loading="lazy"><div class="t"><b>A paletta</b><small>Meleg és hideg találkozása</small></div></div>
+      <div class="tex-card reveal d1"><img src="../../assets/broll_paint.png" alt="Festék" loading="lazy"><div class="t"><b>A festék</b><small>Impasto, réteg, plaszticitás</small></div></div>
+      <div class="tex-card reveal d2"><img src="../../assets/broll_brushes.png" alt="Ecsetek" loading="lazy"><div class="t"><b>Az ecsetek</b><small>A gesztus eszközei</small></div></div>
+      <div class="tex-card reveal d3"><img src="../../assets/broll_texture.png" alt="Textúra" loading="lazy"><div class="t"><b>A textúra</b><small>Kaparás, karc, felület</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KAPCSOLAT ============ -->
+<section class="contact" id="kapcsolat">
+  <div class="inner">
+    <span class="eyebrow reveal" style="justify-content:center;margin-bottom:1.6rem">Kapcsolat</span>
+    <h2 class="reveal d1">Vigy haza egy<br><em>lélegzetet.</em></h2>
+    <p class="reveal d2">Érdekel egy mű, vagy egyedi alkotást szeretnél a terembe? Írj — a festmények új otthonra várnak.</p>
+    <div class="cta-row reveal d3">
+      <a href="#galeria" class="btn solid">Megnézem a gyűjteményt</a>
+      <a href="#top" class="btn ghost">Kapcsolatfelvétel</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="inner">
+    <div class="foot-grid">
+      <a href="#top" class="brand"><b>Kárai Mihály</b><span>Festőművész · 1961</span></a>
+      <div class="foot-nav">
+        <a href="#eletmu">Életmű</a><a href="#galeria">Galéria</a><a href="#enterior">Enteriőr</a><a href="#technika">Technika</a><a href="#kapcsolat">Kapcsolat</a>
+      </div>
+    </div>
+    <div class="foot-copy">
+      <span>© 2026 Kárai Mihály · Minden jog fenntartva</span>
+      <span>Kortárs absztrakt expresszionizmus · Lírai absztrakció</span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /wrap -->
+
+<!-- ============ THEME PANEL ============ -->
+<button class="themebtn" id="themebtn" aria-label="Téma váltása">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18" opacity=".5"/><circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/></svg>
+</button>
+<div class="themepanel" id="themepanel">
+  <h5>Válassz hangulatot</h5>
+  <div class="swatches" id="swatches"></div>
+  <p class="themehint">A festmények 7 különböző fényben — négy éjszakai, három nappali tónus.</p>
+</div>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lb" id="lb">
+  <button class="lb-close" id="lbclose" aria-label="Bezárás">✕</button>
+  <button class="lb-nav prev" id="lbprev" aria-label="Előző">‹</button>
+  <button class="lb-nav next" id="lbnext" aria-label="Következő">›</button>
+  <div class="lb-inner">
+    <div class="lb-img"><img id="lbimg" src="" alt=""></div>
+    <div class="lb-meta">
+      <div class="dim" id="lbdim"></div>
+      <h3 id="lbtitle"></h3>
+      <p id="lbdesc"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ===ANCHOR:BODY=== -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+'use strict';
+var P='../apa_festmenyek/';
+// ---- Galéria adatok (13 egyedi mű) ----
+var ART=[
+ {f:'cf6c30f8ab61eea749199ee138ae02df-karai-mihaly-nyari-hoseg-kepmeret-100x70-cm.jpg',t:'Nyári hőség',d:'100 × 70 cm',c:['figura','elem'],desc:'Figurális-absztrakt fúzió: egy női torzó, amelynek kontúrjai beleolvadnak a vad, izzó narancs, vörös és magenta háttérbe. A festmény nem a formát, hanem a letaglózó nyári hőséget, a nap fizikai erejét vizualizálja.'},
+ {f:'76a52a2610ed517750b4d73efabbe595-karai-mihaly-absztrakt-festmeny-140x40x4-cm.jpg',t:'Éjszakai kikötő',d:'140 × 40 cm',c:['varos','elem'],desc:'Panorámaszerű függőleges kompozíció — naplemente és egy éjszakai vízparti város absztrakciója. Fönt izzó narancs napmag, lent sötétkék víztükör négyzetes impasto blokkokból: neonfényű felhőkarcolók pulzáló tükröződése.'},
+ {f:'8548dfcda68a1463e1ed276bce0b0b0c-karai-mihaly-absztrakt-festmeny-kepmeret-140x40-cm.jpg',t:'Izzó torony',d:'140 × 40 cm',c:['varos','elem'],desc:'Vérvörös háttérből élesen kiugró fehér-sárga, felhőkarcoló-szerű torony. A kép közepén az izzó sárga mag uralkodik, lent vibráló rózsaszín és magenta formák egy sötétkék horizont felett — a tüzes ég és a hideg víz kontrasztja.'},
+ {f:'732e9d819fbbee1e6b2126f580f51743-karai-mihaly-szines-modern-absztrakt-festmeny-90-x-90-cm.jpg',t:'Tűz és jég',d:'90 × 90 cm',c:['elem'],desc:'Szürreális, majdnem tájképszerű absztrakció élénk fehér és pasztell rózsaszín negatív térrel. Balról mélykék jéghegy-forma, jobbról fenyegető, lángnyelvszerű piros alakzat — elementáris erők, tűz és jég összecsapása.'},
+ {f:'9714f6cd20df8b60a6cfa68e340bdcb2-karai-mihaly-absztrakt-festmeny-40x70-cm.jpg',t:'Oázis',d:'40 × 70 cm',c:['elem'],desc:'Horizontális tájkép-absztrakció arany, sárga és tompa piros meleg tónusaiban — sivatagi naplemente. A kompozíció súlypontja egy éles türkiz csík: mintha a perzselő sivatag közepén egy hűvös oázis vize csillanna meg. Meditatív, fókuszált.'},
+ {f:'c74fb23ff889ff7fc5bc22904e957ac7-karai-mihaly-kortars-absztrakt-festmeny-kepmeret-70x30-cm.jpg',t:'Napkorongok',d:'70 × 30 cm',c:['elem'],desc:'Vékony függőleges formátum, két régióra bontva. Fönt meleg narancs-arany háttéren fehér organikus körök — sejtek, napkorongok, lencse-becsillanás. Lent intenzív málna-rózsaszín, jégkék szilánkokkal: a fodrozódó víztükör élménye.'},
+ {f:'e862397c8ee36bfab0bbe2de56b503e2-karai-mihaly-absztrakt-festmeny-kepmeret-60x60-cm.jpg',t:'Városi mozaik',d:'60 × 60 cm',c:['varos'],desc:'Három sávra bontható kép: fönt arany-narancs alapon fehér-vörös koncentrikus örvények, középen stabil málnapiros sáv, lent lüktető városi mozaik — apró négyzetek sárga, narancs, piros, zöld és ciánkék színben, madártávlatból.'},
+ {f:'014fb97bae01374ff673a7f51de018af-karai-mihaly-absztrakt-festmeny-kepmeret-80x60-cm.jpg',t:'Nádas',d:'80 × 60 cm',c:['elem'],desc:'Meleg tónusú, rácsszerű szerkezetre épülő textúrált kompozíció. Homályos okker és lazac blokkokat sötétvörös és narancs sávok kereszteznek; a bal alsó sarokból éles fehér és sárga hasítások törnek fel — mint szélben hajladozó nád.'},
+ {f:'579ee3610e2f00108ae1ad3b4efe881f-karai-mihaly-a-kep-merete-80x60-cm.jpg',t:'Dualitás',d:'80 × 60 cm',c:['varos'],desc:'Geometrikus, color-blocking festmény nagy kontraszttal. Hűvös ciánkék mező, tömör tűzpiros oszlop, mozaikszerű textúra és egy sötétkék mezőn dinamikus X-forma. A nyugodt, üres terek és a sűrű, zajos textúrák találkozása.'},
+ {f:'d0e8f21d863d3647ce7ce2705fbb0aeb-karai-mihaly-absztrakt-festmeny-kepmeret-70x70-cm.jpg',t:'Szív',d:'70 × 70 cm',c:['elem'],desc:'A leginkább nyers, indusztriális textúrájú mű: rozsdabarna, hamuszürke, kopott fehér — mint málló vakolat vagy viharvert fém. Ebből tör elő egy hatalmas kadmium piros szív, hálószerű fehér karcolásokkal. Melankólia és felszakadó szenvedély.'},
+ {f:'d45190df18d013a48540242d4e02b588-karai-mihaly-szines-modern-absztrakt-festmeny-90x100-cm.jpg',t:'Szirmok',d:'90 × 100 cm',c:['pasztell'],desc:'Finom, elegáns, pasztell atmoszféra: lazac, mályva, púderrózsaszín, off-white. Az ecsetvonások örvénylenek a középpont körül — mint egy szétnyíló virág szirmai vagy gyűrött selyem. Vékony, légies, néhol áttetsző rétegek. Dekoratív, harmonikus.'},
+ {f:'keretnelkul_1.jpg',t:'Küzdelem',d:'kb. 70 × 100 cm',c:['elem'],desc:'A gyűjtemény legsötétebb, legagresszívebb darabja: feketébe hajló burgundi, mélybarna és karmazsin. Erőszakos fehér és sárgás festékfoltok törik át a fojtogató alapot; a hússzerű, elszáradt-szirom formák destrukciót, nyers, zsigeri energiát közvetítenek. Drámai chiaroscuro.'},
+ {f:'keretnelkul_2.jpg',t:'Hangulat',d:'80 × 60 cm',c:['elem','pasztell'],desc:'Áramló, lüktető tiszta energia: a vásznat egy hatalmas, ködszerű vörös-magenta felhő tölti ki. Nincsenek éles határok — az ecsetvonások elmosódottak, pulzálóak. A szélek felé napsárga és fűzöld húzások bukkannak fel, alul sötét, forgó góc örvénylik. Forró, misztikus, mélyen érzelmes.'}
+];
+
+// ---- Galéria renderelés ----
+var mas=document.getElementById('masonry'),html='';
+for(var i=0;i<ART.length;i++){var a=ART[i];
+  html+='<figure class="art reveal" data-i="'+i+'" data-c="'+a.c.join(' ')+'">'
+    +'<span class="tag">'+a.d+'</span>'
+    +'<img src="'+P+a.f+'" alt="Kárai Mihály — '+a.t+', '+a.d+'" loading="lazy">'
+    +'<div class="cap"><span class="plus">+</span><h4>'+a.t+'</h4><div class="meta">'+a.d+'</div></div>'
+    +'</figure>';
+}
+mas.innerHTML=html;
+
+// ---- Lightbox ----
+var lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbt=document.getElementById('lbtitle'),
+    lbd=document.getElementById('lbdesc'),lbdim=document.getElementById('lbdim'),cur=0;
+function openLB(i){cur=i;var a=ART[i];lbimg.src=P+a.f;lbimg.alt=a.t;lbt.innerHTML='<em>'+a.t+'</em>';lbdim.textContent=a.d;lbd.textContent=a.desc;lb.classList.add('open');document.body.style.overflow='hidden';}
+function closeLB(){lb.classList.remove('open');document.body.style.overflow='';}
+function nav(dir){var v=document.querySelectorAll('.art:not(.hide)'),ids=[];v.forEach(function(e){ids.push(+e.dataset.i);});var p=ids.indexOf(cur);p=(p+dir+ids.length)%ids.length;openLB(ids[p]);}
+mas.addEventListener('click',function(e){var f=e.target.closest('.art');if(f)openLB(+f.dataset.i);});
+document.getElementById('lbclose').onclick=closeLB;
+document.getElementById('lbprev').onclick=function(){nav(-1);};
+document.getElementById('lbnext').onclick=function(){nav(1);};
+lb.addEventListener('click',function(e){if(e.target===lb)closeLB();});
+document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLB();if(e.key==='ArrowLeft')nav(-1);if(e.key==='ArrowRight')nav(1);});
+
+// ---- Szűrő ----
+var fbar=document.getElementById('filterbar');
+fbar.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+  fbar.querySelectorAll('button').forEach(function(x){x.classList.remove('active');});b.classList.add('active');
+  var f=b.dataset.f;document.querySelectorAll('.art').forEach(function(el){
+    var show=f==='all'||el.dataset.c.indexOf(f)>-1;el.classList.toggle('hide',!show);
+    if(show){el.classList.remove('visible');requestAnimationFrame(function(){el.classList.add('visible');});}
+  });
+});
+
+// ---- Nav scroll + burger ----
+var navEl=document.getElementById('nav'),burger=document.getElementById('burger'),nl=document.getElementById('navlinks');
+window.addEventListener('scroll',function(){navEl.classList.toggle('scrolled',window.scrollY>40);},{passive:true});
+burger.onclick=function(){burger.classList.toggle('open');nl.classList.toggle('open');};
+nl.querySelectorAll('a').forEach(function(a){a.onclick=function(){burger.classList.remove('open');nl.classList.remove('open');};});
+
+// ---- Keret összehasonlító csúszka ----
+(function(){var c=document.getElementById('compare');if(!c)return;var after=c.querySelector('.after'),dv=document.getElementById('cdiv'),h=document.getElementById('chandle'),drag=false;
+ function set(x){var r=c.getBoundingClientRect();var p=Math.max(0,Math.min(1,(x-r.left)/r.width));after.style.clipPath='inset(0 0 0 '+(p*100)+'%)';dv.style.left=(p*100)+'%';h.style.left=(p*100)+'%';}
+ function down(){drag=true;}function up(){drag=false;}
+ function move(e){if(!drag)return;var x=e.touches?e.touches[0].clientX:e.clientX;set(x);}
+ h.addEventListener('mousedown',down);window.addEventListener('mouseup',up);window.addEventListener('mousemove',move);
+ h.addEventListener('touchstart',down,{passive:true});window.addEventListener('touchend',up);window.addEventListener('touchmove',move,{passive:true});
+ c.addEventListener('click',function(e){if(e.target===h)return;set(e.clientX);});
+})();
+
+// ---- Scroll reveal ----
+(function(){var els=document.querySelectorAll('.reveal');if(!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('visible');});return;}
+ var ob=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');ob.unobserve(x.target);}});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+ els.forEach(function(e){if(!e.classList.contains('visible'))ob.observe(e);});
+})();
+
+// ---- Téma váltó ----
+var THEMES=[
+ {id:'tuzjeg',n:'Tűz és Jég',s:'Éjszakai',c:['#e2622f','#3aa2a6','#f0b429']},
+ {id:'ejfel',n:'Éjféli Galéria',s:'Éjszakai',c:['#c9a24c','#4f7fa8','#8a6db0']},
+ {id:'rozsanoir',n:'Rózsa Noir',s:'Éjszakai',c:['#c45c6a','#d9b48a','#7d5a8c']},
+ {id:'erdo',n:'Erdő Üveg',s:'Éjszakai',c:['#d8b25e','#3f9e7c','#b6543f']},
+ {id:'homok',n:'Meleg Homok',s:'Nappali',c:['#c56b3c','#3f7d7a','#d99a4e']},
+ {id:'vaszon',n:'Vászon',s:'Nappali',c:['#b4472e','#4a6d8c','#c98a3e']},
+ {id:'del',n:'Nyári Dél',s:'Nappali',c:['#e08a2f','#2f9aa0','#e0563a']}
+];
+var sw=document.getElementById('swatches'),shtml='';
+THEMES.forEach(function(t){shtml+='<button class="swatch" data-t="'+t.id+'">'
+  +'<span class="dots"><i style="background:'+t.c[0]+'"></i><i style="background:'+t.c[1]+'"></i><i style="background:'+t.c[2]+'"></i></span>'
+  +'<span><b>'+t.n+'</b><small>'+t.s+'</small></span></button>';});
+sw.innerHTML=shtml;
+function applyTheme(id){document.documentElement.setAttribute('data-theme',id);
+  sw.querySelectorAll('.swatch').forEach(function(b){b.classList.toggle('active',b.dataset.t===id);});
+  try{localStorage.setItem('karai-theme',id);}catch(e){}
+  if(window.__karaiBG)window.__karaiBG(id);}
+sw.addEventListener('click',function(e){var b=e.target.closest('.swatch');if(b)applyTheme(b.dataset.t);});
+var saved='tuzjeg';try{var s=localStorage.getItem('karai-theme');if(s)saved=s;}catch(e){}
+applyTheme(saved);
+var tb=document.getElementById('themebtn'),tp=document.getElementById('themepanel');
+tb.onclick=function(e){e.stopPropagation();tp.classList.toggle('open');};
+document.addEventListener('click',function(e){if(!tp.contains(e.target)&&e.target!==tb)tp.classList.remove('open');});
+
+// ---- Festői 3D háttér (Three.js, téma-tudatos) ----
+(function(){
+  if(typeof THREE==='undefined')return;
+  var cv=document.getElementById('bgcanvas');
+  var renderer,scene,camera,core,shell,dust,embers,lights=[],baseP,raf;
+  var mx=0,my=0,tmx=0,tmy=0,sf=0;
+  function cssv(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim();}
+  function col(n){try{return new THREE.Color(cssv(n)||'#e2622f');}catch(e){return new THREE.Color('#e2622f');}}
+  function init(){
+    renderer=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});
+    renderer.setPixelRatio=renderer.setPixelRatio||function(){};
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+    renderer.setSize(window.innerWidth,window.innerHeight);
+    scene=new THREE.Scene();
+    camera=new THREE.PerspectiveCamera(58,window.innerWidth/window.innerHeight,.1,120);
+    camera.position.z=9;
+    // organikus mag
+    var geo=new THREE.IcosahedronGeometry(2.35,20);
+    baseP=geo.attributes.position.array.slice();
+    var mat=new THREE.MeshStandardMaterial({color:col('--c1'),roughness:.62,metalness:.15,flatShading:false,transparent:true,opacity:.93});
+    core=new THREE.Mesh(geo,mat);scene.add(core);
+    // wireframe héj
+    var sg=new THREE.IcosahedronGeometry(2.62,4);
+    shell=new THREE.Mesh(sg,new THREE.MeshBasicMaterial({color:col('--c2'),wireframe:true,transparent:true,opacity:.13}));
+    core.add(shell);
+    // festék-por részecskék
+    dust=makePoints(1200,6,30,col('--c3'),.055,.5);scene.add(dust);
+    embers=makePoints(320,3,12,col('--c1'),.12,.62);scene.add(embers);
+    // fények
+    scene.add(new THREE.AmbientLight(0xffffff,.28));
+    var L=[['--c1',6,4,6],['--c2',-7,-3,4],['--c3',2,-6,7]];
+    L.forEach(function(d){var p=new THREE.PointLight(col(d[0]),1.1,60);p.position.set(d[1],d[2],d[3]);scene.add(p);lights.push({l:p,v:d[0]});});
+    bind();animate();
+  }
+  function makePoints(n,r0,r1,c,size,op){
+    var g=new THREE.BufferGeometry(),pos=new Float32Array(n*3);
+    for(var i=0;i<n;i++){var r=r0+Math.random()*(r1-r0),th=Math.random()*Math.PI*2,ph=Math.acos(2*Math.random()-1);
+      pos[i*3]=r*Math.sin(ph)*Math.cos(th);pos[i*3+1]=r*Math.sin(ph)*Math.sin(th)*.6;pos[i*3+2]=r*Math.cos(ph);}
+    g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+    return new THREE.Points(g,new THREE.PointsMaterial({color:c,size:size,transparent:true,opacity:op,blending:THREE.AdditiveBlending,depthWrite:false}));
+  }
+  function recolor(){
+    core.material.color=col('--c1');shell.material.color=col('--c2');
+    dust.material.color=col('--c3');embers.material.color=col('--c1');
+    lights.forEach(function(o){o.l.color=col(o.v);});
+    var dark=cssv('--mode')==='dark';
+    dust.material.opacity=dark?.5:.32;embers.material.opacity=dark?.62:.4;
+    core.material.opacity=dark?.93:.82;
+  }
+  window.__karaiBG=function(){setTimeout(recolor,60);};
+  function bind(){
+    window.addEventListener('mousemove',function(e){tmx=(e.clientX/window.innerWidth-.5);tmy=(e.clientY/window.innerHeight-.5);},{passive:true});
+    window.addEventListener('scroll',function(){sf=window.scrollY/window.innerHeight;},{passive:true});
+    window.addEventListener('resize',function(){camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();renderer.setSize(window.innerWidth,window.innerHeight);},{passive:true});
+  }
+  function animate(){
+    raf=requestAnimationFrame(animate);
+    var t=performance.now()*0.00042;
+    var pos=core.geometry.attributes.position.array;
+    for(var i=0;i<pos.length;i+=3){
+      var x=baseP[i],y=baseP[i+1],z=baseP[i+2];
+      var d=1+Math.sin(x*1.5+t*2.1)*Math.cos(y*1.6+t*1.7)*Math.sin(z*1.4+t*2.4)*0.15;
+      pos[i]=x*d;pos[i+1]=y*d;pos[i+2]=z*d;
+    }
+    core.geometry.attributes.position.needsUpdate=true;core.geometry.computeVertexNormals();
+    core.rotation.y=t*1.4;core.rotation.x=t*0.6;
+    shell.rotation.y=-t*1.9;shell.rotation.z=t*0.7;
+    dust.rotation.y=t*0.35;embers.rotation.y=-t*0.5;
+    mx+=(tmx-mx)*0.05;my+=(tmy-my)*0.05;
+    camera.position.x=mx*2.4;camera.position.y=-my*1.9;
+    camera.position.z=9-Math.min(sf,3)*0.55;
+    core.position.x=3.0-Math.min(sf,3)*5.0;
+    core.position.y=0.3+Math.min(sf,3)*1.1;
+    camera.lookAt(0,0,0);
+    renderer.render(scene,camera);
+  }
+  if(!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)){init();}
+})();
+})();
+</script>
+</body>
+</html>

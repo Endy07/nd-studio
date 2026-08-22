@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kárai Mihály - Festőművész</title>
+<style>
+:root{--bg-primary:#f4f1ea;--bg-secondary:#e8e4d9;--text-primary:#2c241b;--accent:#c5a059}
+.theme-midnight{--bg-primary:#1a1f2e;--bg-secondary:#252b3d;--text-primary:#f0ece2;--accent:#c87941}
+.theme-olive{--bg-primary:#e6e2d3;--bg-secondary:#d4cfc0;--text-primary:#3b3c36;--accent:#c15b3d}
+.theme-mono{--bg-primary:#f0f0f0;--bg-secondary:#e0e0e0;--text-primary:#1a1a1a;--accent:#000000}
+.theme-sunset{--bg-primary:#f9e4d4;--bg-secondary:#f0d0b8;--text-primary:#4a2c3a;--accent:#d4af37}
+.theme-charcoal{--bg-primary:#2b2b2b;--bg-secondary:#3a3a3a;--text-primary:#f5f0e8;--accent:#cd7f32}
+.theme-pastel{--bg-primary:#e8f4f8;--bg-secondary:#d0e8f0;--text-primary:#334e68;--accent:#ff7f7f}
+body{background-color:var(--bg-primary);color:var(--text-primary);font-family:'Georgia','Times New Roman',serif;margin:0;padding:0;transition:background-color 0.5s ease,color 0.5s ease;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E")}
+.container{max-width:1200px;margin:0 auto;padding:40px 20px}
+header{text-align:center;padding:60px 20px}
+h1{font-size:3rem;font-weight:300;letter-spacing:2px;margin-bottom:10px}
+h2{font-size:1.2rem;font-style:italic;color:var(--accent);margin-bottom:30px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}
+.artwork{background:var(--bg-secondary);padding:15px;box-shadow:0 10px 30px rgba(0,0,0,0.1);transition:transform 0.3s ease}
+.artwork:hover{transform:translateY(-5px)}
+.artwork img{width:100%;height:auto;display:block;filter:sepia(10%) contrast(1.05)}
+.artwork-caption{margin-top:15px;font-size:0.9rem;text-align:center;font-style:italic}
+.theme-switcher{position:fixed;top:20px;right:20px;background:var(--bg-secondary);padding:15px;border-radius:8px;box-shadow:0 4px 15px rgba(0,0,0,0.1);z-index:1000;display:flex;flex-direction:column;gap:8px}
+.theme-btn{padding:8px 12px;border:1px solid var(--accent);background:transparent;color:var(--text-primary);cursor:pointer;font-family:inherit;transition:all 0.3s;border-radius:4px}
+.theme-btn:hover{background:var(--accent);color:var(--bg-primary)}
+@media(max-width:768px){.theme-switcher{position:relative;top:0;right:0;flex-direction:row;flex-wrap:wrap;justify-content:center;margin-bottom:40px}h1{font-size:2rem}}
+</style>
+</head>
+<body>
+<div class="theme-switcher">
+<button onclick="setTheme('')" class="theme-btn">Classic Canvas</button>
+<button onclick="setTheme('theme-midnight')" class="theme-btn">Midnight Oil</button>
+<button onclick="setTheme('theme-olive')" class="theme-btn">Olive & Clay</button>
+<button onclick="setTheme('theme-mono')" class="theme-btn">Monochrome</button>
+<button onclick="setTheme('theme-sunset')" class="theme-btn">Sunset</button>
+<button onclick="setTheme('theme-charcoal')" class="theme-btn">Charcoal</button>
+<button onclick="setTheme('theme-pastel')" class="theme-btn">Pastel Studio</button>
+</div>
+<div class="container">
+<header>
+<h1>Kárai Mihály</h1>
+<h2>Festőművész / 1961-</h2>
+</header>
+<div class="gallery">
+<div class="artwork"><img src="/2026/Hermes/apa_festmenyek/interior_1.jpg" alt="Interior 1"><div class="artwork-caption">Interior I.</div></div>
+<div class="artwork"><img src="/2026/Hermes/apa_festmenyek/interior_2.jpg" alt="Interior 2"><div class="artwork-caption">Interior II.</div></div>
+<div class="artwork"><img src="/2026/Hermes/apa_festmenyek/keretezve_1.jpg" alt="Keretezve 1"><div class="artwork-caption">Keretezve I.</div></div>
+<div class="artwork"><img src="/2026/Hermes/apa_festmenyek/keretezve_2.jpg" alt="Keretezve 2"><div class="artwork-caption">Keretezve II.</div></div>
+<div class="artwork"><img src="/2026/Hermes/apa_festmenyek/keretnelkul_1.jpg" alt="Keretnélkül 1"><div class="artwork-caption">Keretnélkül I.</div></div>
+<div class="artwork"><img src="/2026/Hermes/apa_festmenyek/keretnelkul_2.jpg" alt="Keretnélkül 2"><div class="artwork-caption">Keretnélkül II.</div></div>
+</div>
+</div>
+<script>
+function setTheme(themeName){document.body.className='';if(themeName){document.body.classList.add(themeName)}localStorage.setItem('theme',themeName)}
+window.onload=function(){const savedTheme=localStorage.getItem('theme')||'';setTheme(savedTheme)};
+</script>
+</body>
+</html>

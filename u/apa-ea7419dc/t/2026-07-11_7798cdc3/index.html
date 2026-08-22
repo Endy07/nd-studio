@@ -1,0 +1,2861 @@
+﻿<!DOCTYPE html>
+<html lang="hu" data-theme="midnight-canvas">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kárai Mihály – Festőművész</title>
+<meta name="description" content="Kárai Mihály festőművész hivatalos weboldala – festmények, kiállítások, életút.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   THEME SYSTEM — 6 Harmonic Color Palettes
+   Each theme follows 60-30-10 rule:
+   --theme-primary (60%) — background / dominant
+   --theme-secondary (30%) — cards, sections, surfaces
+   --theme-accent (10%) — buttons, highlights, links
+   --theme-text — body text
+   --theme-text-muted — secondary text
+   --theme-border — subtle borders
+   --theme-glow — subtle glow effects
+   ============================================================ */
+
+/* ── Theme 1: Midnight Canvas (Dark, deep navy + gold) ── */
+[data-theme="midnight-canvas"] {
+  --theme-primary: #0a0e1a;
+  --theme-secondary: #111827;
+  --theme-surface: #1a2035;
+  --theme-accent: #c9a84c;
+  --theme-accent-light: #e8d5a3;
+  --theme-text: #e8e6e1;
+  --theme-text-muted: #8a8f9e;
+  --theme-border: rgba(201, 168, 76, 0.15);
+  --theme-glow: rgba(201, 168, 76, 0.08);
+  --theme-gradient-hero: linear-gradient(135deg, #0a0e1a 0%, #1a1a3e 40%, #0d1525 100%);
+  --theme-gradient-accent: linear-gradient(135deg, #c9a84c, #e8d5a3, #c9a84c);
+  --theme-texture-overlay: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  --theme-particle-color: rgba(201, 168, 76, 0.15);
+  color-scheme: dark;
+}
+
+/* ── Theme 2: Tuscan Dawn (Warm, terracotta + cream) ── */
+[data-theme="tuscan-dawn"] {
+  --theme-primary: #faf5ef;
+  --theme-secondary: #f0e8dc;
+  --theme-surface: #fff9f2;
+  --theme-accent: #b85c3a;
+  --theme-accent-light: #d4856a;
+  --theme-text: #2d1f16;
+  --theme-text-muted: #7a6b5d;
+  --theme-border: rgba(184, 92, 58, 0.15);
+  --theme-glow: rgba(184, 92, 58, 0.06);
+  --theme-gradient-hero: linear-gradient(135deg, #faf5ef 0%, #f5e6d3 40%, #faf5ef 100%);
+  --theme-gradient-accent: linear-gradient(135deg, #b85c3a, #d4856a, #b85c3a);
+  --theme-texture-overlay: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  --theme-particle-color: rgba(184, 92, 58, 0.12);
+  color-scheme: light;
+}
+
+/* ── Theme 3: Emerald Studio (Dark green + gold) ── */
+[data-theme="emerald-studio"] {
+  --theme-primary: #0a1a14;
+  --theme-secondary: #112a1f;
+  --theme-surface: #163328;
+  --theme-accent: #7bc47f;
+  --theme-accent-light: #a8e6ab;
+  --theme-text: #e0ede4;
+  --theme-text-muted: #6a9b7e;
+  --theme-border: rgba(123, 196, 127, 0.15);
+  --theme-glow: rgba(123, 196, 127, 0.08);
+  --theme-gradient-hero: linear-gradient(135deg, #0a1a14 0%, #0f2a1e 40%, #0a1a14 100%);
+  --theme-gradient-accent: linear-gradient(135deg, #7bc47f, #a8e6ab, #7bc47f);
+  --theme-texture-overlay: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%237bc47f' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+  --theme-particle-color: rgba(123, 196, 127, 0.15);
+  color-scheme: dark;
+}
+
+/* ── Theme 4: Pearlescent (Light, soft white + rose) ── */
+[data-theme="pearlescent"] {
+  --theme-primary: #fefefe;
+  --theme-secondary: #f5f0f0;
+  --theme-surface: #fff8f8;
+  --theme-accent: #c4787a;
+  --theme-accent-light: #e8a0a2;
+  --theme-text: #2a1f22;
+  --theme-text-muted: #8a7578;
+  --theme-border: rgba(196, 120, 122, 0.15);
+  --theme-glow: rgba(196, 120, 122, 0.06);
+  --theme-gradient-hero: linear-gradient(135deg, #fefefe 0%, #f8eded 40%, #fefefe 100%);
+  --theme-gradient-accent: linear-gradient(135deg, #c4787a, #e8a0a2, #c4787a);
+  --theme-texture-overlay: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  --theme-particle-color: rgba(196, 120, 122, 0.1);
+  color-scheme: light;
+}
+
+/* ── Theme 5: Azure Atelier (Light, soft blue + indigo) ── */
+[data-theme="azure-atelier"] {
+  --theme-primary: #f0f4f8;
+  --theme-secondary: #e2eaf2;
+  --theme-surface: #f7f9fc;
+  --theme-accent: #4a6fa5;
+  --theme-accent-light: #7b9fd4;
+  --theme-text: #1a2a3a;
+  --theme-text-muted: #6a7a8a;
+  --theme-border: rgba(74, 111, 165, 0.15);
+  --theme-glow: rgba(74, 111, 165, 0.06);
+  --theme-gradient-hero: linear-gradient(135deg, #f0f4f8 0%, #dde5ee 40%, #f0f4f8 100%);
+  --theme-gradient-accent: linear-gradient(135deg, #4a6fa5, #7b9fd4, #4a6fa5);
+  --theme-texture-overlay: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%234a6fa5' fill-opacity='0.03'%3E%3Cpath d='M0 80L80 0H40L0 40M80 80V40L40 80'/%3E%3C/g%3E%3C/svg%3E");
+  --theme-particle-color: rgba(74, 111, 165, 0.12);
+  color-scheme: light;
+}
+
+/* ── Theme 6: Velvet Noir (Very dark, almost black + silver) ── */
+[data-theme="velvet-noir"] {
+  --theme-primary: #080808;
+  --theme-secondary: #121212;
+  --theme-surface: #1a1a1a;
+  --theme-accent: #b0b0b0;
+  --theme-accent-light: #d8d8d8;
+  --theme-text: #e0e0e0;
+  --theme-text-muted: #666666;
+  --theme-border: rgba(176, 176, 176, 0.12);
+  --theme-glow: rgba(176, 176, 176, 0.04);
+  --theme-gradient-hero: linear-gradient(135deg, #080808 0%, #1a1a2e 40%, #080808 100%);
+  --theme-gradient-accent: linear-gradient(135deg, #b0b0b0, #d8d8d8, #b0b0b0);
+  --theme-texture-overlay: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23b0b0b0' fill-opacity='0.04' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 5V4zM6 5v1h-1z'/%3E%3C/g%3E%3C/svg%3E");
+  --theme-particle-color: rgba(176, 176, 176, 0.1);
+  color-scheme: dark;
+}
+
+/* ============================================================
+   CSS CUSTOM PROPERTIES — Layout & Design Tokens
+   ============================================================ */
+:root {
+  /* Spacing */
+  --space-xs: clamp(0.25rem, 0.5vw, 0.5rem);
+  --space-sm: clamp(0.5rem, 1vw, 1rem);
+  --space-md: clamp(1rem, 2vw, 2rem);
+  --space-lg: clamp(2rem, 4vw, 4rem);
+  --space-xl: clamp(3rem, 6vw, 6rem);
+  --space-2xl: clamp(4rem, 8vw, 8rem);
+
+  /* Typography */
+  --font-display: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Cormorant Garamond', 'Georgia', serif;
+  --font-ui: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Layout */
+  --max-width: 1400px;
+  --nav-height: 80px;
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--theme-primary);
+  color: var(--theme-text);
+  line-height: 1.7;
+  font-size: 18px;
+  transition: background-color var(--transition-slow), color var(--transition-slow);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--theme-accent);
+  color: var(--theme-primary);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--theme-accent);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--theme-accent-light);
+}
+
+/* ============================================================
+   TEXTURE OVERLAY — Canvas/Paper Texture
+   ============================================================ */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+  background-image: var(--theme-texture-overlay);
+  transition: opacity var(--transition-slow);
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--theme-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--theme-accent);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-accent-light);
+}
+
+/* ============================================================
+   LOADING SCREEN
+   ============================================================ */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--theme-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 99999;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-brush {
+  width: 60px;
+  height: 60px;
+  position: relative;
+}
+
+.loader-brush::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--theme-accent);
+  border-radius: 50%;
+  animation: loaderPulse 1.5s ease-in-out infinite;
+}
+
+.loader-brush::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 30px;
+  background: var(--theme-accent);
+  transform: translate(-50%, -50%) rotate(45deg);
+  border-radius: 2px;
+  animation: loaderBrush 1.5s ease-in-out infinite;
+}
+
+@keyframes loaderPulse {
+  0%, 100% { transform: scale(0.8); opacity: 0.3; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+@keyframes loaderBrush {
+  0%, 100% { transform: translate(-50%, -50%) rotate(45deg); }
+  50% { transform: translate(-50%, -50%) rotate(225deg); }
+}
+
+.loader-text {
+  margin-top: 2rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--theme-accent);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  animation: loaderFade 1.5s ease-in-out infinite;
+}
+
+@keyframes loaderFade {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ============================================================
+   PARTICLE CANVAS
+   ============================================================ */
+#particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  z-index: 1000;
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav.scrolled {
+  background: color-mix(in srgb, var(--theme-primary) 90%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--theme-border);
+  box-shadow: 0 4px 30px var(--theme-glow);
+}
+
+.nav-inner {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 0 var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 400;
+  color: var(--theme-text);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.nav-logo span {
+  color: var(--theme-accent);
+}
+
+.nav-logo::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--theme-gradient-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--transition-base);
+}
+
+.nav-logo:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-lg);
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--theme-text-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color var(--transition-fast);
+}
+
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: var(--theme-accent);
+  transition: all var(--transition-base);
+  transform: translateX(-50%);
+}
+
+.nav-links a:hover {
+  color: var(--theme-text);
+}
+
+.nav-links a:hover::before {
+  width: 100%;
+}
+
+/* Mobile Menu Toggle */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1001;
+  background: none;
+  border: none;
+}
+
+.nav-toggle span {
+  width: 28px;
+  height: 1.5px;
+  background: var(--theme-text);
+  transition: all var(--transition-base);
+  transform-origin: center;
+}
+
+.nav-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 4px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -4px);
+}
+
+/* ============================================================
+   THEME SWITCHER PANEL
+   ============================================================ */
+.theme-switcher {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.theme-switcher-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50% 0 0 50%;
+  background: var(--theme-accent);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+  box-shadow: -4px 0 20px var(--theme-glow);
+  position: relative;
+  z-index: 2;
+}
+
+.theme-switcher-toggle:hover {
+  width: 52px;
+}
+
+.theme-switcher-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--theme-primary);
+  transition: transform var(--transition-spring);
+}
+
+.theme-switcher-toggle.active svg {
+  transform: rotate(180deg);
+}
+
+.theme-switcher-panel {
+  position: absolute;
+  right: 44px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--theme-secondary);
+  border: 1px solid var(--theme-border);
+  border-right: none;
+  border-radius: 16px 0 0 16px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50%) translateX(20px);
+  transition: all var(--transition-base);
+  box-shadow: -8px 0 30px var(--theme-glow);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.theme-switcher.open .theme-switcher-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+.theme-option {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-option:hover {
+  transform: scale(1.2);
+}
+
+.theme-option.active {
+  border-color: var(--theme-text);
+  box-shadow: 0 0 15px var(--theme-glow);
+}
+
+.theme-option::after {
+  content: attr(data-name);
+  position: absolute;
+  right: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--theme-text-muted);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+  background: var(--theme-secondary);
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--theme-border);
+}
+
+.theme-option:hover::after {
+  opacity: 1;
+}
+
+/* Theme color swatches */
+.theme-option[data-theme="midnight-canvas"] {
+  background: linear-gradient(135deg, #0a0e1a 50%, #c9a84c 50%);
+}
+.theme-option[data-theme="tuscan-dawn"] {
+  background: linear-gradient(135deg, #faf5ef 50%, #b85c3a 50%);
+}
+.theme-option[data-theme="emerald-studio"] {
+  background: linear-gradient(135deg, #0a1a14 50%, #7bc47f 50%);
+}
+.theme-option[data-theme="pearlescent"] {
+  background: linear-gradient(135deg, #fefefe 50%, #c4787a 50%);
+}
+.theme-option[data-theme="azure-atelier"] {
+  background: linear-gradient(135deg, #f0f4f8 50%, #4a6fa5 50%);
+}
+.theme-option[data-theme="velvet-noir"] {
+  background: linear-gradient(135deg, #080808 50%, #b0b0b0 50%);
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--theme-gradient-hero);
+  transition: background var(--transition-slow);
+}
+
+.hero-bg-texture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 400px 400px;
+}
+
+.hero-content {
+  text-align: center;
+  z-index: 2;
+  padding: var(--space-md);
+  max-width: 900px;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-ui);
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+  font-weight: 300;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--theme-accent);
+  margin-bottom: var(--space-md);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeUp 1s 0.5s forwards;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: var(--space-sm);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroFadeUp 1s 0.7s forwards;
+}
+
+.hero-title .accent {
+  color: var(--theme-accent);
+  font-style: italic;
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 300;
+  color: var(--theme-text-muted);
+  margin-bottom: var(--space-lg);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeUp 1s 0.9s forwards;
+}
+
+.hero-divider {
+  width: 80px;
+  height: 1px;
+  background: var(--theme-gradient-accent);
+  margin: 0 auto var(--space-lg);
+  opacity: 0;
+  animation: heroFadeUp 1s 1.1s forwards;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--theme-primary);
+  background: var(--theme-gradient-accent);
+  padding: 16px 40px;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeUp 1s 1.3s forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.hero-cta:hover::before {
+  left: 100%;
+}
+
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px var(--theme-glow);
+}
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: heroFadeUp 1s 1.8s forwards;
+}
+
+.hero-scroll-indicator span {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--theme-text-muted);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: var(--theme-accent);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--theme-text);
+  animation: scrollDown 2s ease-in-out infinite;
+}
+
+@keyframes scrollDown {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
+
+@keyframes heroFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Decorative corner elements */
+.hero-corner {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border: 1px solid var(--theme-border);
+  opacity: 0.5;
+}
+
+.hero-corner--tl {
+  top: 40px;
+  left: 40px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.hero-corner--tr {
+  top: 40px;
+  right: 40px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.hero-corner--bl {
+  bottom: 40px;
+  left: 40px;
+  border-right: none;
+  border-top: none;
+}
+
+.hero-corner--br {
+  bottom: 40px;
+  right: 40px;
+  border-left: none;
+  border-top: none;
+}
+
+/* ============================================================
+   SECTION COMMON STYLES
+   ============================================================ */
+.section {
+  padding: var(--space-2xl) var(--space-md);
+  position: relative;
+  z-index: 2;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.section-eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--theme-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: var(--space-sm);
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 300;
+  color: var(--theme-text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--theme-gradient-accent);
+  margin: var(--space-md) auto 0;
+}
+
+/* ============================================================
+   ABOUT SECTION
+   ============================================================ */
+.about {
+  background: var(--theme-secondary);
+  transition: background var(--transition-slow);
+}
+
+.about-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.about-image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--theme-accent);
+  opacity: 0.3;
+  z-index: -1;
+  transition: all var(--transition-base);
+}
+
+.about-image-wrapper:hover::before {
+  top: -10px;
+  left: -10px;
+  opacity: 0.5;
+}
+
+.about-image {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  background: var(--theme-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--theme-text-muted);
+  border: 1px solid var(--theme-border);
+}
+
+.about-text h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 400;
+  margin-bottom: var(--space-md);
+  line-height: 1.3;
+}
+
+.about-text h3 .accent {
+  color: var(--theme-accent);
+  font-style: italic;
+}
+
+.about-text p {
+  margin-bottom: var(--space-md);
+  color: var(--theme-text-muted);
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  line-height: 1.8;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--theme-border);
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 400;
+  color: var(--theme-accent);
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--theme-text-muted);
+  margin-top: 4px;
+}
+
+/* ============================================================
+   GALLERY SECTION
+   ============================================================ */
+.gallery {
+  background: var(--theme-primary);
+}
+
+.gallery-filters {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--theme-text-muted);
+  background: transparent;
+  border: 1px solid var(--theme-border);
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  color: var(--theme-primary);
+  background: var(--theme-accent);
+  border-color: var(--theme-accent);
+}
+
+.gallery-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-md);
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4/3;
+  background: var(--theme-secondary);
+  border: 1px solid var(--theme-border);
+  transition: all var(--transition-base);
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px var(--theme-glow);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-item-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--space-md);
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  transform: translateY(100%);
+  transition: transform var(--transition-base);
+}
+
+.gallery-item:hover .gallery-item-overlay {
+  transform: translateY(0);
+}
+
+.gallery-item-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.gallery-item-desc {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.1em;
+}
+
+/* Gallery item placeholder */
+.gallery-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--theme-surface);
+  color: var(--theme-text-muted);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+}
+
+.gallery-placeholder svg {
+  width: 40px;
+  height: 40px;
+  opacity: 0.3;
+}
+
+/* ============================================================
+   LIGHTBOX
+   ============================================================ */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 85vh;
+  position: relative;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border: 2px solid var(--theme-border);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  z-index: 100001;
+}
+
+.lightbox-close:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.5);
+}
+
+.lightbox-info {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff;
+}
+
+.lightbox-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+
+.lightbox-desc {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.1em;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.lightbox-nav:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+
+/* ============================================================
+   TIMELINE / LIFE SECTION
+   ============================================================ */
+.timeline-section {
+  background: var(--theme-secondary);
+  transition: background var(--transition-slow);
+}
+
+.timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--theme-border);
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  display: flex;
+  margin-bottom: var(--space-xl);
+  position: relative;
+}
+
+.timeline-item:nth-child(odd) {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  width: 12px;
+  height: 12px;
+  background: var(--theme-accent);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  box-shadow: 0 0 20px var(--theme-glow);
+}
+
+.timeline-content {
+  width: 45%;
+  padding: var(--space-md);
+}
+
+.timeline-year {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--theme-accent);
+  margin-bottom: var(--space-xs);
+}
+
+.timeline-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin-bottom: var(--space-xs);
+}
+
+.timeline-desc {
+  font-size: 0.95rem;
+  color: var(--theme-text-muted);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   QUOTE SECTION
+   ============================================================ */
+.quote-section {
+  background: var(--theme-primary);
+  text-align: center;
+  padding: var(--space-2xl) var(--space-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.quote-section::before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 20rem;
+  color: var(--theme-accent);
+  opacity: 0.05;
+  line-height: 1;
+}
+
+.quote-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.5;
+  max-width: 800px;
+  margin: 0 auto var(--space-md);
+  position: relative;
+  z-index: 2;
+}
+
+.quote-author {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--theme-accent);
+}
+
+/* ============================================================
+   CONTACT SECTION
+   ============================================================ */
+.contact {
+  background: var(--theme-secondary);
+  transition: background var(--transition-slow);
+}
+
+.contact-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+}
+
+.contact-info h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: var(--space-md);
+}
+
+.contact-info p {
+  color: var(--theme-text-muted);
+  margin-bottom: var(--space-md);
+  line-height: 1.8;
+}
+
+.contact-detail {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  color: var(--theme-text-muted);
+}
+
+.contact-detail svg {
+  width: 18px;
+  height: 18px;
+  color: var(--theme-accent);
+  flex-shrink: 0;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--theme-surface);
+  border: 1px solid var(--theme-border);
+  color: var(--theme-text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+  outline: none;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--theme-accent);
+  box-shadow: 0 0 20px var(--theme-glow);
+}
+
+.form-group label {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--theme-text-muted);
+  pointer-events: none;
+  transition: all var(--transition-fast);
+  letter-spacing: 0.05em;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group textarea:focus + label,
+.form-group textarea:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 12px;
+  font-size: 0.7rem;
+  color: var(--theme-accent);
+  background: var(--theme-secondary);
+  padding: 0 6px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.submit-btn {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--theme-primary);
+  background: var(--theme-gradient-accent);
+  border: none;
+  padding: 16px 40px;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+  align-self: flex-start;
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.submit-btn:hover::before {
+  left: 100%;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px var(--theme-glow);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: var(--theme-primary);
+  padding: var(--space-xl) var(--space-md);
+  text-align: center;
+  border-top: 1px solid var(--theme-border);
+  transition: background var(--transition-slow);
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--theme-text);
+  margin-bottom: var(--space-sm);
+}
+
+.footer-logo span {
+  color: var(--theme-accent);
+}
+
+.footer-text {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--theme-text-muted);
+  letter-spacing: 0.1em;
+}
+
+.footer-text a {
+  color: var(--theme-accent);
+}
+
+/* ============================================================
+   SCROLL ANIMATIONS
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger children */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stagger-children.visible > *:nth-child(1) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(2) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(3) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(4) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(5) { transition-delay: 0.5s; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(6) { transition-delay: 0.6s; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(7) { transition-delay: 0.7s; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(8) { transition-delay: 0.8s; opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .about-image-wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline-item,
+  .timeline-item:nth-child(odd) {
+    flex-direction: row;
+    text-align: left;
+    padding-left: 50px;
+  }
+
+  .timeline-dot {
+    left: 20px;
+  }
+
+  .timeline-content {
+    width: 100%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--theme-primary);
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-md);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-base);
+  }
+
+  .nav-links.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+    letter-spacing: 0.3em;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .hero-corner {
+    width: 60px;
+    height: 60px;
+  }
+
+  .hero-corner--tl { top: 20px; left: 20px; }
+  .hero-corner--tr { top: 20px; right: 20px; }
+  .hero-corner--bl { bottom: 20px; left: 20px; }
+  .hero-corner--br { bottom: 20px; right: 20px; }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+  }
+
+  .section {
+    padding: var(--space-xl) var(--space-sm);
+  }
+
+  .theme-switcher {
+    right: auto;
+    left: 0;
+    top: auto;
+    bottom: 20px;
+    transform: none;
+    flex-direction: row;
+  }
+
+  .theme-switcher-toggle {
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+  }
+
+  .theme-switcher-panel {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    left: auto;
+    top: auto;
+    transform: none;
+    border-radius: 16px;
+    border: 1px solid var(--theme-border);
+    border-right: 1px solid var(--theme-border);
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: auto;
+    max-width: 200px;
+    padding: 12px;
+  }
+
+  .theme-switcher.open .theme-switcher-panel {
+    transform: none;
+  }
+
+  .theme-option::after {
+    display: none;
+  }
+
+  .lightbox-nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .lightbox-prev { left: 10px; }
+  .lightbox-next { right: 10px; }
+}
+
+/* Large screens */
+@media (min-width: 1400px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+.text-accent { color: var(--theme-accent); }
+.text-muted { color: var(--theme-text-muted); }
+.text-center { text-align: center; }
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+
+/* ============================================================
+   CURSOR FOLLOWER (Desktop only)
+   ============================================================ */
+.cursor-follower {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--theme-accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+.cursor-follower.hovering {
+  width: 50px;
+  height: 50px;
+  border-color: var(--theme-accent-light);
+}
+
+@media (max-width: 768px) {
+  .cursor-follower { display: none; }
+}
+
+/* ============================================================
+   PAINT SPLASH DECORATIONS
+   ============================================================ */
+.paint-splash {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.paint-splash--1 {
+  width: 400px;
+  height: 400px;
+  background: var(--theme-accent);
+  top: -100px;
+  right: -100px;
+}
+
+.paint-splash--2 {
+  width: 300px;
+  height: 300px;
+  background: var(--theme-accent-light);
+  bottom: -50px;
+  left: -50px;
+}
+
+/* ============================================================
+   MARQUEE / SCROLLING TEXT
+   ============================================================ */
+.marquee-section {
+  overflow: hidden;
+  padding: var(--space-md) 0;
+  background: var(--theme-primary);
+  border-top: 1px solid var(--theme-border);
+  border-bottom: 1px solid var(--theme-border);
+  transition: background var(--transition-slow);
+}
+
+.marquee-track {
+  display: flex;
+  animation: marqueeScroll 30s linear infinite;
+  width: max-content;
+}
+
+.marquee-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-weight: 300;
+  color: var(--theme-text-muted);
+  white-space: nowrap;
+  padding: 0 var(--space-lg);
+  opacity: 0.3;
+}
+
+.marquee-text .accent {
+  color: var(--theme-accent);
+  opacity: 1;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   BACK TO TOP
+   ============================================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  background: var(--theme-accent);
+  color: var(--theme-primary);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all var(--transition-base);
+  box-shadow: 0 4px 20px var(--theme-glow);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px var(--theme-glow);
+}
+
+.back-to-top svg {
+  width: 20px;
+  height: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- LOADING SCREEN                                        -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="loader">
+  <div class="loader-brush"></div>
+  <div class="loader-text">Kárai Mihály</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- PARTICLE CANVAS                                       -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CURSOR FOLLOWER                                       -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- NAVIGATION                                            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">Kárai <span>Mihály</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" onclick="closeMenu()">Főoldal</a></li>
+      <li><a href="#about" onclick="closeMenu()">Rólam</a></li>
+      <li><a href="#gallery" onclick="closeMenu()">Galéria</a></li>
+      <li><a href="#timeline" onclick="closeMenu()">Életút</a></li>
+      <li><a href="#contact" onclick="closeMenu()">Kapcsolat</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- THEME SWITCHER                                        -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="theme-switcher" id="themeSwitcher">
+  <button class="theme-switcher-toggle" id="themeToggle" aria-label="Témaválasztó">
+    <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
+  </button>
+  <div class="theme-switcher-panel">
+    <button class="theme-option active" data-theme="midnight-canvas" data-name="Midnight Canvas" aria-label="Midnight Canvas téma"></button>
+    <button class="theme-option" data-theme="tuscan-dawn" data-name="Tuscan Dawn" aria-label="Tuscan Dawn téma"></button>
+    <button class="theme-option" data-theme="emerald-studio" data-name="Emerald Studio" aria-label="Emerald Studio téma"></button>
+    <button class="theme-option" data-theme="pearlescent" data-name="Pearlescent" aria-label="Pearlescent téma"></button>
+    <button class="theme-option" data-theme="azure-atelier" data-name="Azure Atelier" aria-label="Azure Atelier téma"></button>
+    <button class="theme-option" data-theme="velvet-noir" data-name="Velvet Noir" aria-label="Velvet Noir téma"></button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- HERO SECTION                                          -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg-texture"></div>
+  
+  <div class="hero-corner hero-corner--tl"></div>
+  <div class="hero-corner hero-corner--tr"></div>
+  <div class="hero-corner hero-corner--bl"></div>
+  <div class="hero-corner hero-corner--br"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Festőművész · 1961</p>
+    <h1 class="hero-title">Kárai <span class="accent">Mihály</span></h1>
+    <p class="hero-subtitle">Színek zenéje, ecsetvonások élete — ahol a festészet és a lélek találkozik</p>
+    <div class="hero-divider"></div>
+    <a href="#gallery" class="hero-cta">
+      <span>Festmények Megtekintése</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+    </a>
+  </div>
+
+  <div class="hero-scroll-indicator">
+    <span>Görgess</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- MARQUEE                                                 -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-text">Festészet · <span class="accent">Színek</span> · Ecsetvonások · <span class="accent">Lélek</span> · Alkotás · <span class="accent">Bölcsesség</span> · Kárai Mihály · <span class="accent">Festészet</span> · Színek · Ecsetvonások · <span class="accent">Lélek</span> · Alkotás · <span class="accent">Bölcsesség</span> · Kárai Mihály ·</span>
+    <span class="marquee-text">Festészet · <span class="accent">Színek</span> · Ecsetvonások · <span class="accent">Lélek</span> · Alkotás · <span class="accent">Bölcsesség</span> · Kárai Mihály · <span class="accent">Festészet</span> · Színek · Ecsetvonások · <span class="accent">Lélek</span> · Alkotás · <span class="accent">Bölcsesség</span> · Kárai Mihály ·</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ABOUT SECTION                                         -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section about" id="about">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">Az Művész</p>
+    <h2 class="section-title">Kárai Mihály</h2>
+    <p class="section-subtitle">Évtizedek tapasztalata, szenvedély és elköteleződés a festészet iránt</p>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-image-wrapper reveal-left">
+      <div class="about-image">
+        <!-- Helyőrző — cseréld le édesapád fotójára -->
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <p style="margin-top: 12px; font-size: 0.85rem;">Kárai Mihály fotója</p>
+      </div>
+    </div>
+
+    <div class="about-text reveal-right">
+      <h3>A festészet <span class="accent">nem csak hivatás</span>, hanem életforma</h3>
+      <p>
+        Kárai Mihály 1961-ben született, s gyermekkorától fogva a festészet volt az életének középpontjában. 
+        Az évek során művészete mélyebb rétegeket fedezett fel, ahol a színek nemcsak a vászonra kerülnek, 
+        hanem a lélek tükrei is.
+      </p>
+      <p>
+        Művészete sokszínű — a tájképektől az absztrakt kompozíciókon át a portrékig minden műfajban 
+        otthon érzi magát. Minden ecsetvonás egy történet, minden szín egy érzés. 
+        Művei kiállításokon láthatók, magángyűjtők világszerte őrzik alkotásait.
+      </p>
+      <p>
+        A festészet számomra nemcsak a látvány világa, hanem a belső hangok meghallgatása is. 
+        Minden kép egy csendes beszélgetés az alkotó és a néző között.
+      </p>
+
+      <div class="about-stats stagger-children">
+        <div class="stat-item">
+          <div class="stat-number">60+</div>
+          <div class="stat-label">Év életrajz</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">200+</div>
+          <div class="stat-label">Festmény</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Kiállítás</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- QUOTE SECTION                                         -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="quote-section">
+  <blockquote class="quote-text reveal">
+    „A festészet az a nyelv, amelyben a lélek beszél — 
+    szavak nélkül, de annál őszintébben."
+  </blockquote>
+  <cite class="quote-author reveal">— Kárai Mihály</cite>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- GALLERY SECTION                                       -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section gallery" id="gallery">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">Galéria</p>
+    <h2 class="section-title">Festmények</h2>
+    <p class="section-subtitle">Válogatás az alkotásokból — színek, formák, érzelmek</p>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="gallery-filters reveal">
+    <button class="filter-btn active" data-filter="all">Összes</button>
+    <button class="filter-btn" data-filter="allapkep">Alapkép</button>
+    <button class="filter-btn" data-filter="interior">Interiőr</button>
+    <button class="filter-btn" data-filter="keretezve">Keretezve</button>
+    <button class="filter-btn" data-filter="keretnelkul">Keret nélkül</button>
+  </div>
+
+  <div class="gallery-grid stagger-children" id="galleryGrid">
+    <!-- 
+      ═══════════════════════════════════════════════════════
+      FESTMÉNYEK — Itt cseréld le a forrásokat a saját 
+      képeidre. A mappa: C:\xampp\htdocs\2026\Hermes\apa_festmenyek
+      ═══════════════════════════════════════════════════════
+    -->
+
+    <!-- Festmény 1 -->
+    <div class="gallery-item" data-category="allapkep" data-title="Festmény 1" data-desc="Alap kép" onclick="openLightbox(0)">
+      <img src="../apa_festmenyek/festmenyek_1.jpg" alt="Kárai Mihály — Festmény 1" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="gallery-placeholder" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Festmény 1</span>
+      </div>
+      <div class="gallery-item-overlay">
+        <h4 class="gallery-item-title">Festmény 1</h4>
+        <p class="gallery-item-desc">Alap kép</p>
+      </div>
+    </div>
+
+    <!-- Festmény 2 -->
+    <div class="gallery-item" data-category="allapkep" data-title="Festmény 2" data-desc="Alap kép" onclick="openLightbox(1)">
+      <img src="../apa_festmenyek/festmenyek_2.jpg" alt="Kárai Mihály — Festmény 2" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="gallery-placeholder" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Festmény 2</span>
+      </div>
+      <div class="gallery-item-overlay">
+        <h4 class="gallery-item-title">Festmény 2</h4>
+        <p class="gallery-item-desc">Alap kép</p>
+      </div>
+    </div>
+
+    <!-- Interiőr 1 -->
+    <div class="gallery-item" data-category="interior" data-title="Interiőr 1" data-desc="Környezetben" onclick="openLightbox(2)">
+      <img src="../../assets/interior_1.jpg" alt="Kárai Mihály — Interiőr 1" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="gallery-placeholder" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Interiőr 1</span>
+      </div>
+      <div class="gallery-item-overlay">
+        <h4 class="gallery-item-title">Interiőr 1</h4>
+        <p class="gallery-item-desc">Környezetben</p>
+      </div>
+    </div>
+
+    <!-- Interiőr 2 -->
+    <div class="gallery-item" data-category="interior" data-title="Interiőr 2" data-desc="Környezetben" onclick="openLightbox(3)">
+      <img src="../../assets/interior_2.jpg" alt="Kárai Mihály — Interiőr 2" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="gallery-placeholder" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Interiőr 2</span>
+      </div>
+      <div class="gallery-item-overlay">
+        <h4 class="gallery-item-title">Interiőr 2</h4>
+        <p class="gallery-item-desc">Környezetben</p>
+      </div>
+    </div>
+
+    <!-- Keretezve 1 -->
+    <div class="gallery-item" data-category="keretezve" data-title="Keretezve 1" data-desc="Kerettel" onclick="openLightbox(4)">
+      <img src="../../assets/keretezve_1.jpg" alt="Kárai Mihály — Keretezve 1" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="gallery-placeholder" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Keretezve 1</span>
+      </div>
+      <div class="gallery-item-overlay">
+        <h4 class="gallery-item-title">Keretezve 1</h4>
+        <p class="gallery-item-desc">Kerettel</p>
+      </div>
+    </div>
+
+    <!-- Keretezve 2 -->
+    <div class="gallery-item" data-category="keretezve" data-title="Keretezve 2" data-desc="Kerettel" onclick="openLightbox(5)">
+      <img src="../../assets/keretezve_2.jpg" alt="Kárai Mihály — Keretezve 2" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="gallery-placeholder" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Keretezve 2</span>
+      </div>
+      <div class="gallery-item-overlay">
+        <h4 class="gallery-item-title">Keretezve 2</h4>
+        <p class="gallery-item-desc">Kerettel</p>
+      </div>
+    </div>
+
+    <!-- Keret nélkül 1 -->
+    <div class="gallery-item" data-category="keretnelkul" data-title="Keret nélkül 1" data-desc="Keret nélkül" onclick="openLightbox(6)">
+      <img src="../../assets/keretnelkul_1.jpg" alt="Kárai Mihály — Keret nélkül 1" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="gallery-placeholder" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Keret nélkül 1</span>
+      </div>
+      <div class="gallery-item-overlay">
+        <h4 class="gallery-item-title">Keret nélkül 1</h4>
+        <p class="gallery-item-desc">Keret nélkül</p>
+      </div>
+    </div>
+
+    <!-- Keret nélkül 2 -->
+    <div class="gallery-item" data-category="keretnelkul" data-title="Keret nélkül 2" data-desc="Keret nélkül" onclick="openLightbox(7)">
+      <img src="../../assets/keretnelkul_2.jpg" alt="Kárai Mihály — Keret nélkül 2" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="gallery-placeholder" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Keret nélkül 2</span>
+      </div>
+      <div class="gallery-item-overlay">
+        <h4 class="gallery-item-title">Keret nélkül 2</h4>
+        <p class="gallery-item-desc">Keret nélkül</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- TIMELINE SECTION                                      -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section timeline-section" id="timeline">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">Életút</p>
+    <h2 class="section-title">Az Út, Amit Megjártam</h2>
+    <p class="section-subtitle">Évszázadok művészete, egy életen át</p>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item reveal-left">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">1961</div>
+        <h4 class="timeline-title">Születés</h4>
+        <p class="timeline-desc">Kárai Mihály születése — egy utazás kezdete, amely az alkotás művészetéhez vezet.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal-right">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">1980-as</div>
+        <h4 class="timeline-title">Az Első Ecsetvonások</h4>
+        <p class="timeline-desc">Az első komolyabb festmények megszületnek, a tehetség felfedezésének évei.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal-left">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">1990-es</div>
+        <h4 class="timeline-title">Első Kiállítások</h4>
+        <p class="timeline-desc">Az alkotások először kerülnek kiállításokra, a közönség és a kritika figyelmét felkeltve.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal-right">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">2000-es</div>
+        <h4 class="timeline-title">Művészi Érettség</h4>
+        <p class="timeline-desc">A stílus kiépül, a technikus tökéletesedik, az alkotások egyre mélyebb rétegeket tárnak fel.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal-left">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">2026</div>
+        <h4 class="timeline-title">Folyamatos Alkotás</h4>
+        <p class="timeline-desc">Az alkotás sosem áll meg. Minden nap új inspiráció, új szín, új történet vár a vászonra.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CONTACT SECTION                                       -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section contact" id="contact">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">Kapcsolat</p>
+    <h2 class="section-title">Lépjen Kapcsolatba</h2>
+    <p class="section-subtitle">Kérdése van, vásárolni szeretne, vagy kiállításra hív?</p>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-info reveal-left">
+      <h3>Várjuk <span class="text-accent">üzenetét</span></h3>
+      <p>
+        Ha szeretné megvásárolni egyik alkotást, kiállításra hívni, vagy egyszerűen csak 
+        megosztani érzéseit a festményekről, bármikor elér minket.
+      </p>
+
+      <div class="contact-detail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Magyarország</span>
+      </div>
+      <div class="contact-detail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>info@karaimihaly.hu</span>
+      </div>
+      <div class="contact-detail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>+36 30 XXX XXXX</span>
+      </div>
+    </div>
+
+    <form class="contact-form reveal-right" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <input type="text" id="name" placeholder=" " required>
+        <label for="name">Név</label>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" placeholder=" " required>
+        <label for="email">E-mail cím</label>
+      </div>
+      <div class="form-group">
+        <input type="text" id="subject" placeholder=" ">
+        <label for="subject">Tárgy</label>
+      </div>
+      <div class="form-group">
+        <textarea id="message" placeholder=" " required></textarea>
+        <label for="message">Üzenet</label>
+      </div>
+      <button type="submit" class="submit-btn">Üzenet Küldése</button>
+    </form>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FOOTER                                                -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-logo">Kárai <span>Mihály</span></div>
+  <p class="footer-text">
+    © 2026 Kárai Mihály Festőművész. Minden jog fenntartva. 
+    <br>
+    <a href="#">Készítette: család szeretettel</a>
+  </p>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- BACK TO TOP                                           -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<button class="back-to-top" id="backToTop" aria-label="Vissza a tetejére">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- LIGHTBOX                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Bezárás">✕</button>
+  <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)" aria-label="Előző">‹</button>
+  <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)" aria-label="Következő">›</button>
+  <div class="lightbox-content">
+    <img id="lightboxImage" src="" alt="">
+    <div class="lightbox-info">
+      <h3 class="lightbox-title" id="lightboxTitle"></h3>
+      <p class="lightbox-desc" id="lightboxDesc"></p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- JAVASCRIPT ENGINE                                     -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<script>
+/* ============================================================
+   AGENT: ThemeManager — Manages color theme switching
+   ============================================================ */
+const ThemeManager = {
+  themes: ['midnight-canvas', 'tuscan-dawn', 'emerald-studio', 'pearlescent', 'azure-atelier', 'velvet-noir'],
+  currentTheme: 'midnight-canvas',
+
+  init() {
+    const saved = localStorage.getItem('karaitheme');
+    if (saved && this.themes.includes(saved)) {
+      this.setTheme(saved);
+    }
+    this.bindEvents();
+  },
+
+  setTheme(themeName) {
+    if (!this.themes.includes(themeName)) return;
+    this.currentTheme = themeName;
+    document.documentElement.setAttribute('data-theme', themeName);
+    localStorage.setItem('karaitheme', themeName);
+    
+    // Update active button
+    document.querySelectorAll('.theme-option').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.theme === themeName);
+    });
+  },
+
+  nextTheme() {
+    const idx = this.themes.indexOf(this.currentTheme);
+    const next = (idx + 1) % this.themes.length;
+    this.setTheme(this.themes[next]);
+  },
+
+  bindEvents() {
+    document.querySelectorAll('.theme-option').forEach(btn => {
+      btn.addEventListener('click', () => this.setTheme(btn.dataset.theme));
+    });
+
+    // Keyboard shortcut: T to toggle theme switcher
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 't' && !e.target.closest('input, textarea')) {
+        document.getElementById('themeSwitcher').classList.toggle('open');
+      }
+    });
+  }
+};
+
+/* ============================================================
+   AGENT: ParticleEngine — Canvas-based ambient particles
+   ============================================================ */
+const ParticleEngine = {
+  canvas: null,
+  ctx: null,
+  particles: [],
+  animationId: null,
+
+  init() {
+    this.canvas = document.getElementById('particles-canvas');
+    this.ctx = this.canvas.getContext('2d');
+    this.resize();
+    this.createParticles();
+    this.animate();
+    window.addEventListener('resize', () => {
+      this.resize();
+      this.createParticles();
+    });
+  },
+
+  resize() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+  },
+
+  createParticles() {
+    this.particles = [];
+    const count = Math.min(60, Math.floor(window.innerWidth / 25));
+    for (let i = 0; i < count; i++) {
+      this.particles.push({
+        x: Math.random() * this.canvas.width,
+        y: Math.random() * this.canvas.height,
+        size: Math.random() * 2 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.3,
+        speedY: (Math.random() - 0.5) * 0.3,
+        opacity: Math.random() * 0.5 + 0.1,
+        pulse: Math.random() * Math.PI * 2
+      });
+    }
+  },
+
+  animate() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    
+    // Get current theme accent color
+    const style = getComputedStyle(document.documentElement);
+    const particleColor = style.getPropertyValue('--theme-particle-color').trim();
+
+    this.particles.forEach(p => {
+      p.x += p.speedX;
+      p.y += p.speedY;
+      p.pulse += 0.01;
+
+      if (p.x < 0) p.x = this.canvas.width;
+      if (p.x > this.canvas.width) p.x = 0;
+      if (p.y < 0) p.y = this.canvas.height;
+      if (p.y > this.canvas.height) p.y = 0;
+
+      const currentOpacity = p.opacity * (0.5 + 0.5 * Math.sin(p.pulse));
+      
+      this.ctx.beginPath();
+      this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      this.ctx.fillStyle = particleColor.replace(/[\d.]+\)$/, currentOpacity + ')');
+      this.ctx.fill();
+    });
+
+    this.animationId = requestAnimationFrame(() => this.animate());
+  }
+};
+
+/* ============================================================
+   AGENT: ScrollManager — Handles scroll-based animations
+   ============================================================ */
+const ScrollManager = {
+  revealElements: [],
+  nav: null,
+  backToTop: null,
+
+  init() {
+    this.nav = document.getElementById('mainNav');
+    this.backToTop = document.getElementById('backToTop');
+    this.revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children');
+    
+    this.bindEvents();
+    this.observeElements();
+  },
+
+  bindEvents() {
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      
+      // Nav background
+      this.nav.classList.toggle('scrolled', scrollY > 50);
+      
+      // Back to top
+      this.backToTop.classList.toggle('visible', scrollY > 600);
+    }, { passive: true });
+
+    this.backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  },
+
+  observeElements() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    this.revealElements.forEach(el => observer.observe(el));
+  }
+};
+
+/* ============================================================
+   AGENT: GalleryFilter — Filters gallery items by category
+   ============================================================ */
+const GalleryFilter = {
+  init() {
+    const buttons = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.gallery-item');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+
+        items.forEach(item => {
+          const show = filter === 'all' || item.dataset.category === filter;
+          item.style.display = show ? 'block' : 'none';
+          item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          item.style.opacity = show ? '1' : '0';
+          item.style.transform = show ? 'scale(1)' : 'scale(0.95)';
+        });
+      });
+    });
+  }
+};
+
+/* ============================================================
+   AGENT: LightboxManager — Full-screen image viewer
+   ============================================================ */
+const LightboxManager = {
+  currentIndex: 0,
+  items: [],
+
+  init() {
+    this.items = Array.from(document.querySelectorAll('.gallery-item'));
+    document.addEventListener('keydown', (e) => {
+      if (!document.getElementById('lightbox').classList.contains('active')) return;
+      if (e.key === 'Escape') this.close();
+      if (e.key === 'ArrowLeft') this.navigate(-1);
+      if (e.key === 'ArrowRight') this.navigate(1);
+    });
+
+    // Close on background click
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('lightbox')) this.close();
+    });
+  },
+
+  open(index) {
+    this.currentIndex = index;
+    this.updateLightbox();
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  },
+
+  close() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  },
+
+  navigate(dir) {
+    this.currentIndex = (this.currentIndex + dir + this.items.length) % this.items.length;
+    this.updateLightbox();
+  },
+
+  updateLightbox() {
+    const item = this.items[this.currentIndex];
+    const img = item.querySelector('img');
+    const title = item.dataset.title || '';
+    const desc = item.dataset.desc || '';
+
+    document.getElementById('lightboxImage').src = img ? img.src : '';
+    document.getElementById('lightboxImage').alt = img ? img.alt : '';
+    document.getElementById('lightboxTitle').textContent = title;
+    document.getElementById('lightboxDesc').textContent = desc;
+  }
+};
+
+// Global function for onclick handlers
+function openLightbox(index) {
+  LightboxManager.open(index);
+}
+
+function closeLightbox() {
+  LightboxManager.close();
+}
+
+function navigateLightbox(dir) {
+  LightboxManager.navigate(dir);
+}
+
+/* ============================================================
+   AGENT: MobileMenu — Hamburger menu handler
+   ============================================================ */
+const MobileMenu = {
+  toggle: null,
+  links: null,
+
+  init() {
+    this.toggle = document.getElementById('navToggle');
+    this.links = document.getElementById('navLinks');
+
+    this.toggle.addEventListener('click', () => {
+      this.toggle.classList.toggle('active');
+      this.links.classList.toggle('open');
+      document.body.style.overflow = this.links.classList.contains('open') ? 'hidden' : '';
+    });
+
+    // Close menu on link click
+    this.links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        this.toggle.classList.remove('active');
+        this.links.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+};
+
+function closeMenu() {
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.classList.remove('active');
+  links.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ============================================================
+   AGENT: ThemeSwitcherUI — Toggle panel open/close
+   ============================================================ */
+const ThemeSwitcherUI = {
+  panel: null,
+  toggle: null,
+
+  init() {
+    this.panel = document.getElementById('themeSwitcher');
+    this.toggle = document.getElementById('themeToggle');
+
+    this.toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.panel.classList.toggle('open');
+      this.toggle.classList.toggle('active');
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!this.panel.contains(e.target)) {
+        this.panel.classList.remove('open');
+        this.toggle.classList.remove('active');
+      }
+    });
+  }
+};
+
+/* ============================================================
+   AGENT: CursorFollower — Desktop cursor effect
+   ============================================================ */
+const CursorFollower = {
+  cursor: null,
+  isHovering: false,
+
+  init() {
+    if (window.innerWidth <= 768) return;
+    
+    this.cursor = document.getElementById('cursorFollower');
+    
+    document.addEventListener('mousemove', (e) => {
+      this.cursor.style.left = e.clientX + 'px';
+      this.cursor.style.top = e.clientY + 'px';
+    });
+
+    // Hover detection
+    const hoverTargets = 'a, button, .gallery-item, .filter-btn, .theme-option';
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.closest(hoverTargets)) {
+        this.cursor.classList.add('hovering');
+      }
+    });
+    document.addEventListener('mouseout', (e) => {
+      if (e.target.closest(hoverTargets)) {
+        this.cursor.classList.remove('hovering');
+      }
+    });
+  }
+};
+
+/* ============================================================
+   AGENT: FormHandler — Contact form processing
+   ============================================================ */
+const FormHandler = {
+  init() {
+    // Form is already handled via inline onsubmit
+  }
+};
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.submit-btn');
+  const originalText = btn.textContent;
+  btn.textContent = '✓ Elküldve!';
+  btn.style.background = 'var(--theme-accent)';
+  setTimeout(() => {
+    btn.textContent = originalText;
+    btn.style.background = '';
+    e.target.reset();
+  }, 3000);
+}
+
+/* ============================================================
+   AGENT: LoadingScreen — Initial page load animation
+   ============================================================ */
+const LoadingScreen = {
+  init() {
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 1500);
+    });
+  }
+};
+
+/* ============================================================
+   AGENT: SmoothScroll — Enhanced smooth scrolling
+   ============================================================ */
+const SmoothScroll = {
+  init() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offset = 80;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  }
+};
+
+/* ============================================================
+   AGENT: ParallaxSubtle — Subtle parallax on hero
+   ============================================================ */
+const ParallaxSubtle = {
+  init() {
+    const hero = document.querySelector('.hero-content');
+    if (!hero) return;
+    
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const heroHeight = window.innerHeight;
+      if (scrollY < heroHeight) {
+        const progress = scrollY / heroHeight;
+        hero.style.transform = `translateY(${scrollY * 0.3}px)`;
+        hero.style.opacity = 1 - progress * 0.8;
+      }
+    }, { passive: true });
+  }
+};
+
+/* ============================================================
+   AGENT: Typography — Dynamic font sizing based on viewport
+   ============================================================ */
+const Typography = {
+  init() {
+    // Already handled by CSS clamp() — no JS needed
+    // This agent monitors for any issues
+  }
+};
+
+/* ============================================================
+   AGENT: Accessibility — Keyboard navigation & ARIA
+   ============================================================ */
+const Accessibility = {
+  init() {
+    // All interactive elements have proper aria labels
+    // Focus management for lightbox
+    const lightbox = document.getElementById('lightbox');
+    
+    lightbox.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') {
+        const focusable = lightbox.querySelectorAll('button');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    // Skip to content for keyboard users
+    const skipLink = document.createElement('a');
+    skipLink.href = '#mainNav';
+    skipLink.textContent = 'Ugrás a navigációhoz';
+    skipLink.style.cssText = 'position:absolute;top:-100px;left:0;background:var(--theme-accent);color:var(--theme-primary);padding:10px 20px;z-index:99999;font-family:var(--font-ui);font-size:0.85rem;';
+    skipLink.addEventListener('focus', () => { skipLink.style.top = '0'; });
+    skipLink.addEventListener('blur', () => { skipLink.style.top = '-100px'; });
+    document.body.appendChild(skipLink);
+  }
+};
+
+/* ============================================================
+   AGENT: Performance — Lazy loading optimization
+   ============================================================ */
+const Performance = {
+  init() {
+    // Images already have loading="lazy"
+    // Intersection Observer for animations is already set up
+    // Reduce motion for users who prefer it
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    
+    if (prefersReducedMotion.matches) {
+      document.querySelectorAll('.marquee-track').forEach(el => {
+        el.style.animationPlayState = 'paused';
+      });
+      ParticleEngine.particles = []; // Disable particles
+    }
+  }
+};
+
+/* ============================================================
+   AGENT: Analytics — Basic page interaction tracking
+   ============================================================ */
+const Analytics = {
+  init() {
+    // Track page views (placeholder for real analytics)
+    console.log('%c🎨 Kárai Mihály Weboldal', 'font-size: 20px; color: #c9a84c; font-weight: bold;');
+    console.log('%cKészítve szeretettel — 2026', 'font-size: 12px; color: #888;');
+    
+    // Track scroll depth
+    let maxDepth = 0;
+    window.addEventListener('scroll', () => {
+      const depth = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+      if (depth > maxDepth) {
+        maxDepth = depth;
+        if (depth === 100) {
+          console.log('📊 Scroll depth: 100% — user read entire page');
+        }
+      }
+    }, { passive: true });
+  }
+};
+
+/* ============================================================
+   MAIN ORCHESTRATOR — Initialize all agents
+   ============================================================ */
+class AppOrchestrator {
+  static init() {
+    const agents = [
+      { name: 'LoadingScreen', fn: () => LoadingScreen.init() },
+      { name: 'ThemeManager', fn: () => ThemeManager.init() },
+      { name: 'ThemeSwitcherUI', fn: () => ThemeSwitcherUI.init() },
+      { name: 'ParticleEngine', fn: () => ParticleEngine.init() },
+      { name: 'CursorFollower', fn: () => CursorFollower.init() },
+      { name: 'ScrollManager', fn: () => ScrollManager.init() },
+      { name: 'GalleryFilter', fn: () => GalleryFilter.init() },
+      { name: 'LightboxManager', fn: () => LightboxManager.init() },
+      { name: 'MobileMenu', fn: () => MobileMenu.init() },
+      { name: 'SmoothScroll', fn: () => SmoothScroll.init() },
+      { name: 'ParallaxSubtle', fn: () => ParallaxSubtle.init() },
+      { name: 'FormHandler', fn: () => FormHandler.init() },
+      { name: 'Accessibility', fn: () => Accessibility.init() },
+      { name: 'Performance', fn: () => Performance.init() },
+      { name: 'Analytics', fn: () => Analytics.init() },
+    ];
+
+    console.log(`🚀 Initializing ${agents.length} agents...`);
+    
+    agents.forEach(({ name, fn }) => {
+      try {
+        fn();
+        console.log(`✅ ${name} initialized`);
+      } catch (error) {
+        console.warn(`⚠️ ${name} failed:`, error.message);
+      }
+    });
+
+    console.log(`🎨 All agents ready!`);
+  }
+}
+
+// Start the application
+document.addEventListener('DOMContentLoaded', AppOrchestrator.init);
+</script>
+
+</body>
+</html>

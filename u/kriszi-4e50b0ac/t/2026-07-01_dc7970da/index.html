@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merényi Krisztián | Hirudoterápia & Holisztikus Gyógyítás 2026</title>
+    <style>
+        /* --- ALAP BEÁLLÍTÁSOK & VÁLTOZÓK --- */
+        :root {
+            --primary-color: #0f172a; /* Sötétkék háttér */
+            --accent-color: #38bdf8; /* Világoskék kiemelés */
+            --secondary-accent: #10b981; /* Zöld az egészségnek */
+            --text-light: #f1f5f9;
+            --text-dim: #94a3b8;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --danger-color: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- HÁTTÉR ANIMÁCIÓ --- */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 40%);
+        }
+
+        /* --- NAVIGÁCIÓ --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- HERO SZEKCIÓ --- */
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);
+        }
+
+        /* --- SZEKCIÓK ÁLTALÁNOS --- */
+        section {
+            padding: 6rem 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 1rem auto 0;
+        }
+
+        /* --- MI AZ A PIÓCA (GRID) --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        .card h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* --- JAVALLATOK LISTA --- */
+        .treatments-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .treatment-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border-left: 3px solid var(--secondary-accent);
+            border-radius: 0 10px 10px 0;
+        }
+
+        .treatment-item h4 {
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        /* --- ÁRAK --- */
+        .pricing-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .price-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            width: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card.featured {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.1);
+        }
+
+        .price-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--text-dim);
+        }
+
+        /* --- TANFOLYAM --- */
+        .course-section {
+            background: linear-gradient(45deg, rgba(16, 185, 129, 0.1), transparent);
+            border-radius: 20px;
+            padding: 4rem;
+            margin-top: 2rem;
+        }
+
+        .course-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .course-text {
+            flex: 1;
+        }
+
+        .course-price {
+            font-size: 3rem;
+            color: var(--secondary-accent);
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        /* --- BETEGTÁJÉKOZTATÓ (ACCORDION) --- */
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .accordion-header:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s;
+            color: var(--text-dim);
+        }
+
+        .accordion-item.active .accordion-content {
+            padding: 1.5rem;
+            max-height: 500px; /* Approximate max height */
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--danger-color);
+            color: #fca5a5;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #020617;
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
+        }
+
+        .footer-content p {
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .nav-links {
+                display: none; /* Egyszerűség kedvéért mobilon rejtve, ideális esetben hamburger menü */
+            }
+            section {
+                padding: 4rem 5%;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-gradient"></div>
+
+    <!-- NAVIGÁCIÓ -->
+    <nav>
+        <div class="logo">Merényi <span>Krisztián</span></div>
+        <div class="nav-links">
+            <a href="#about">A Terápia</a>
+            <a href="#treatments">Kezelések</a>
+            <a href="#pricing">Árak</a>
+            <a href="#course">Tanfolyam</a>
+            <a href="#info">Betegtájékoztató</a>
+            <a href="#contact" class="btn" style="padding: 0.5rem 1.5rem; margin-left: 2rem;">Időpontkérés</a>
+        </div>
+    </nav>
+
+    <!-- HERO SZEKCIÓ -->
+    <header>
+        <div class="hero-content">
+            <h1>A Természet Ősi Bölcsessége</h1>
+            <p>Hirudoterápia a 21. században. Holisztikus gyógyulás, vérkeringés-javítás és energetikai egyensúly helyreállítása Merényi Krisztián szakértelmével.</p>
+            <a href="#contact" class="btn">Foglalás most</a>
+        </div>
+    </header>
+
+    <!-- MI AZ A PIÓCA -->
+    <section id="about">
+        <h2 class="section-title">Mi az a Hirudoterápia?</h2>
+        <div class="info-grid">
+            <div class="card">
+                <h3>Biokémiai Csoda</h3>
+                <p>A pióca nyála nem csupán egy egyszerű váladék. Több mint 100 bioaktív anyagot tartalmaz, beleértve a hirudint is, amely erős gyulladáscsökkentő és véralvadásgátló hatású.</p>
+            </div>
+            <div class="card">
+                <h3>Mikrokeringés</h3>
+                <p>A kezelés kulcsa a sejtszintű oxigénellátás javítása. A pióca nemcsak szívja a pangó vért, hanem biostimuláló hatással van a szövetekre, felgyorsítva a regenerációt.</p>
+            </div>
+            <div class="card">
+                <h3>Energetikai Hatás</h3>
+                <p>Az ősi gyógyítás szerint a pióca mélyreható energetikai egyensúlyt teremt, lazító és nyugtató hatással van az idegrendszerre, csökkentve a stresszt.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- JAVALLATOK -->
+    <section id="treatments">
+        <h2 class="section-title">Miben segíthetek?</h2>
+        <div class="treatments-list">
+            <div class="treatment-item">
+                <h4>Ízületi Problémák</h4>
+                <p>Ízületi fájdalmak, gyulladások és reumatikus panaszok enyhítése.</p>
+            </div>
+            <div class="treatment-item">
+                <h4>Szív- és Érendszer</h4>
+                <p>Mikrokeringés javítása, magas vérnyomás kiegészítő kezelése, fejzúgás ellen.</p>
+            </div>
+            <div class="treatment-item">
+                <h4>Bőrbetegségek</h4>
+                <p>A bőr regenerációjának elősegítése, lábszárfekély és ödéma kezelése.</p>
+            </div>
+            <div class="treatment-item">
+                <h4>Ciszták & Csomók</h4>
+                <p>Baker ciszta, Ganglion ciszta (kéz/térd) feloldásának támogatása.</p>
+            </div>
+            <div class="treatment-item">
+                <h4>Egyéb Panaszok</h4>
+                <p>Pajzsmirigy problémák, fogínygyulladás, lábszár ödéma.</p>
+            </div>
+        </div>
+        <div style="margin-top: 2rem; text-align: center; color: var(--text-dim); font-size: 0.9rem;">
+            *A kezelés kiegészítő terápiaként szolgál. Daganatos betegek esetén csak orvosi engedéllyel és nagy körültekintéssel végezzük.
+        </div>
+    </section>
+
+    <!-- ÁRAK -->
+    <section id="pricing">
+        <h2 class="section-title">Árak & Szolgáltatások</h2>
+        <div class="pricing-container">
+            <div class="price-card">
+                <h3>Konzultáció</h3>
+                <div class="price">11.000 Ft<span>/alkalom</span></div>
+                <p>Részletes állapotfelmérés és kezelési terv összeállítása.</p>
+            </div>
+            <div class="price-card featured">
+                <h3>Kezelés Munkadíja</h3>
+                <div class="price">10.000 Ft<span>/alkalom</span></div>
+                <p>A terapeuta szakértelme és a kezelés vezetése.</p>
+            </div>
+            <div class="price-card">
+                <h3>Pióca Díja</h3>
+                <div class="price">3.000 Ft<span>/db</span></div>
+                <p>Szakszerű, higiénikus elhelyezés és utógondozás.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TANFOLYAM -->
+    <section id="course">
+        <div class="course-section">
+            <h2 class="section-title" style="margin-bottom: 2rem;">Népi Piócaterápia Tanfolyam</h2>
+            <div class="course-content">
+                <div class="course-text">
+                    <p style="font-size: 1.1rem; margin-bottom: 1rem;">Szeretné elsajátítani a módszert saját vagy családtagjai kezelésére? Vállalja magára a felelősséget és tanulja meg a biztonságos alkalmazást.</p>
+                    <ul style="list-style: none; margin-bottom: 2rem;">
+                        <li>✅ 2 napos intenzív képzés</li>
+                        <li>✅ Elméleti és gyakorlati tudás</li>
+                        <li>✅ Higiéniai szabályok és etika</li>
+                    </ul>
+                    <div class="course-price">85.000 Ft / fő</div>
+                    <a href="#contact" class="btn">Jelentkezem a tanfolyamra</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BETEGTÁJÉKOZTATÓ -->
+    <section id="info">
+        <h2 class="section-title">Fontos Tudnivalók</h2>
+        <div class="accordion">
+            <!-- Ellenjavallat -->
+            <div class="accordion-item active">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    ⚠️ Szigorú Ellenjavallat
+                    <span>▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="warning-box">
+                        <strong>FIGYELEM:</strong> A kezelés szigorúan ellenjavallt abban az esetben, ha a páciens véralvadásgátlót (vérhígítót) szed!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Előkészület -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    📋 Kezelés előtt
+                    <span>▼</span>
+                </div>
+                <div class="accordion-content">
+                    <ul style="padding-left: 1.5rem;">
+                        <li>Kényelmes, sötét színű, laza ruházat (a vérzés miatt).</li>
+                        <li>Mellőzze az illatosított tusfürdőket és krémeket.</li>
+                        <li><strong>Ne dohányozzon!</strong> A füst zavarja a piócákat.</li>
+                        <li>Tájékoztassa terapeutáját szedett gyógyszerekről (vérnyomáscsökkentő, bétablokkoló).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- A kezelés menete -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    ⏱️ Maga a kezelés
+                    <span>▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Egy alkalom körülbelül <strong>2 órát</strong> vesz igénybe. A harapás enyhe csípés érzetű. Általában 10 kezelésből álló kúrát javasolunk heti rendszerességgel.</p>
+                </div>
+            </div>
+
+            <!-- Utógondozás -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    🩹 Kezelés után
+                    <span>▼</span>
+                </div>
+                <div class="accordion-content">
+                    <ul style="padding-left: 1.5rem;">
+                        <li>A kötszert <strong>24 óra</strong> után cserélje.</li>
+                        <li>A seb akár <strong>36 órán</strong> keresztül is szivároghat (ez normális).</li>
+                        <li>Igyon sok folyadékot a méreganyagok kiürüléséhez!</li>
+                        <li>Viszketés esetén: Jegelés, Fenistil gél vagy kalcium pezsgőtabletta.</li>
+                        <li>A kezelés napján kerülje az autóvezetést és a megerőltető sportot.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KAPCSOLAT / FOOTER -->
+    <footer id="contact">
+        <div class="footer-content">
+            <h2 style="color: var(--text-light); margin-bottom: 1rem;">Keresse Merényi Krisztiánt</h2>
+            <p>Helyreállító Pióca Terápia & Oktatás</p>
+            <br>
+            <a href="mailto:info@merenyikrisztian.hu" class="btn">Időpontfoglalás E-mailben</a>
+            <br><br>
+            <p style="font-size: 0.8rem; margin-top: 2rem;">&copy; 2026 Merényi Krisztián. Minden jog fenntartva.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Akkordion funkció a betegtájékoztatóhoz
+        function toggleAccordion(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Összes elem bezárása
+            document.querySelectorAll('.accordion-item').forEach(acc => {
+                acc.classList.remove('active');
+                acc.querySelector('span').innerText = '▼';
+            });
+
+            // Ha nem volt aktív, megnyitjuk
+            if (!isActive) {
+                item.classList.add('active');
+                element.querySelector('span').innerText = '▲';
+            }
+        }
+
+        // Egyszerű scroll animáció megjelenéshez
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.card, .treatment-item').forEach((el) => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,551 @@
+﻿<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály - Művészeti Galéria</title>
+    <style>
+        /* 
+         * KÁRAI MIHÁLY GALLÉRIA ENGINE
+         * Design Principle: 60-30-10 Rule via CSS Variables
+         * Fluid Responsive Architecture
+         */
+
+        :root {
+            /* Default Theme: Classic Gallery (Neutral) */
+            --theme-primary: #f4f4f4;   /* 60% Background */
+            --theme-secondary: #2c3e50; /* 30% Text/Structure */
+            --theme-accent: #c0392b;    /* 10% Highlights/Interactions */
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+            
+            --transition-speed: 0.6s;
+            --card-radius: 4px;
+            --glass-opacity: 0.85;
+        }
+
+        /* THEME 2: Golden Age (Barokk) */
+        [data-theme="golden"] {
+            --theme-primary: #fdfbf7;
+            --theme-secondary: #1a1a1a;
+            --theme-accent: #d4af37;
+        }
+
+        /* THEME 3: Modern Minimalist */
+        [data-theme="modern"] {
+            --theme-primary: #ffffff;
+            --theme-secondary: #000000;
+            --theme-accent: #007bff;
+        }
+
+        /* THEME 4: Nature (Erdélyi Tájak) */
+        [data-theme="nature"] {
+            --theme-primary: #e8f5e9;
+            --theme-secondary: #2e7d32;
+            --theme-accent: #8d6e63;
+        }
+
+        /* THEME 5: Midnight (Esti Hangulat) */
+        [data-theme="midnight"] {
+            --theme-primary: #121212;
+            --theme-secondary: #e0e0e0;
+            --theme-accent: #00bcd4;
+        }
+
+        /* THEME 6: Vintage (Régi Idők) */
+        [data-theme="vintage"] {
+            --theme-primary: #d7ccc8;
+            --theme-secondary: #3e2723;
+            --theme-accent: #a1887f;
+        }
+
+        /* THEME 7: Royal (Királyi) */
+        [data-theme="royal"] {
+            --theme-primary: #1a237e;
+            --theme-secondary: #ffffff;
+            --theme-accent: #ffd700;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--theme-primary);
+            color: var(--theme-secondary);
+            font-family: var(--font-body);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden;
+        }
+
+        /* HEADER & NAV */
+        header {
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            color: var(--theme-secondary);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        /* THEME SWITCHER */
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 10px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .theme-btn {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: 2px solid rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .theme-btn:hover { transform: scale(1.2); }
+        .theme-btn.active { border-color: var(--theme-accent); transform: scale(1.2); }
+
+        /* GALLERY GRID */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* ART CARD */
+        .art-card {
+            background: var(--theme-primary);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+            height: 500px; /* Fixed height for uniformity */
+        }
+
+        .art-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        /* IMAGE CONTAINER & SEAMLESS TRANSITIONS */
+        .image-stage {
+            width: 100%;
+            height: 70%; /* Top 70% for image */
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .art-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 1;
+        }
+
+        .art-img.secondary {
+            opacity: 0;
+            transform: scale(1.1);
+        }
+
+        /* INTERIOR REVEAL LOGIC */
+        .art-card.interior-mode:hover .art-img.primary {
+            transform: scale(1.3);
+            opacity: 0;
+        }
+        .art-card.interior-mode:hover .art-img.secondary {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* FRAME REVEAL LOGIC (Sliding Divider) */
+        .art-card.frame-mode .image-stage::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: var(--theme-accent);
+            z-index: 5;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .art-card.frame-mode .image-stage::before {
+            content: 'KERET / KERET NÉLKÜL';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--theme-accent);
+            color: #fff;
+            padding: 2px 8px;
+            font-size: 0.7rem;
+            border-radius: 10px;
+            opacity: 0;
+            z-index: 6;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .art-card.frame-mode:hover .image-stage::after,
+        .art-card.frame-mode:hover .image-stage::before {
+            opacity: 1;
+        }
+
+        /* COMPARISON SLIDER (CSS only simulation via hover for simplicity, usually needs JS drag) */
+        /* We will use a simpler morph effect for the frame toggle to keep it "seamless" without complex drag events */
+        .art-card.frame-mode:hover .art-img.primary {
+            opacity: 0;
+            clip-path: inset(0 100% 0 0); /* Slide out left */
+        }
+        .art-card.frame-mode:hover .art-img.secondary {
+            opacity: 1;
+            clip-path: inset(0 0 0 100%); /* Slide in right */
+        }
+
+        /* META DATA */
+        .art-info {
+            padding: 1.5rem;
+            height: 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: var(--theme-primary);
+            transition: background-color var(--transition-speed);
+        }
+
+        .art-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--theme-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .art-desc {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            opacity: 0.8;
+        }
+
+        .tags {
+            margin-top: 10px;
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border: 1px solid var(--theme-secondary);
+            border-radius: 12px;
+            opacity: 0.6;
+        }
+
+        /* LOADING STATE */
+        #loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--theme-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s;
+        }
+        .spinner {
+            width: 50px; height: 50px;
+            border: 5px solid var(--theme-secondary);
+            border-top-color: var(--theme-accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .gallery-container { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .theme-switcher { top: auto; bottom: 20px; right: 50%; transform: translateX(50%); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loader -->
+    <div id="loader"><div class="spinner"></div></div>
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher">
+        <div class="theme-btn active" onclick="setTheme('default')" style="background:#f4f4f4;" title="Classic"></div>
+        <div class="theme-btn" onclick="setTheme('golden')" style="background:#d4af37;" title="Golden Age"></div>
+        <div class="theme-btn" onclick="setTheme('modern')" style="background:#007bff;" title="Modern"></div>
+        <div class="theme-btn" onclick="setTheme('nature')" style="background:#2e7d32;" title="Nature"></div>
+        <div class="theme-btn" onclick="setTheme('midnight')" style="background:#121212;" title="Midnight"></div>
+        <div class="theme-btn" onclick="setTheme('vintage')" style="background:#8d6e63;" title="Vintage"></div>
+        <div class="theme-btn" onclick="setTheme('royal')" style="background:#1a237e;" title="Royal"></div>
+    </div>
+
+    <header>
+        <h1>Kárai Mihály</h1>
+        <div class="subtitle">Vizuális Utazás a Festmények Háta Mögé</div>
+    </header>
+
+    <main class="gallery-container" id="gallery">
+        <!-- Dynamic Content Here -->
+    </main>
+
+    <script>
+        /**
+         * KÁRAI MIHÁLY GALLÉRIA ENGINE
+         * Logic: 
+         * 1. Fetches 'festmenyek_leiras.txt'
+         * 2. Parses metadata
+         * 3. Constructs image pairs based on naming conventions
+         * 4. Renders seamless UI
+         */
+
+        const CONFIG = {
+            basePath: '../apa_festmenyek/', // Relative to this HTML file
+            metadataFile: 'festmenyek_leiras.txt',
+            // Fallback demo data if fetch fails (CORS or local file restrictions)
+            demoData: [
+                { file: 'portre_1.jpg', title: 'Önarckép', desc: 'Olajfestés vászonra, 2023. Az arc expressziójának vizsgálata.', type: 'standard' },
+                { file: 'táj_1_interior_1.jpg', title: 'Esti Nappali', desc: 'Belső terek megvilágítása.', type: 'interior', pair: 'táj_1_exterior_1.jpg' },
+                { file: 'táj_1_exterior_1.jpg', title: 'Esti Nappali (Kontextus)', desc: 'A szoba elhelyezkedése a házban.', type: 'interior' },
+                { file: 'csendes_1_keretezve_1.jpg', title: 'Csendélet Keretben', desc: 'Virágkompozíció, arany keretben.', type: 'frame', pair: 'csendes_1_keretnelkul_1.jpg' },
+                { file: 'csendes_1_keretnelkul_1.jpg', title: 'Csendélet Keret Nélkül', desc: 'A festészet tiszta látványa.', type: 'frame' }
+            ]
+        };
+
+        // --- THEME ENGINE ---
+        function setTheme(themeName) {
+            document.body.setAttribute('data-theme', themeName === 'default' ? '' : themeName);
+            
+            // Update buttons
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.getAttribute('onclick').includes(`'${themeName}'`)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // --- DATA PARSING ---
+        async function loadGalleryData() {
+            try {
+                // Try to fetch the text file
+                const response = await fetch(CONFIG.metadataFile);
+                if (!response.ok) throw new Error("Metadata file not found");
+                
+                const text = await response.text();
+                return parseMetadata(text);
+            } catch (error) {
+                console.warn("Could not fetch metadata file. Using Demo Mode.", error);
+                // Return demo data formatted to match expected structure
+                return CONFIG.demoData.map(item => ({
+                    file: item.file,
+                    title: item.title,
+                    desc: item.desc,
+                    type: item.type,
+                    pairFile: item.pair || null
+                }));
+            }
+        }
+
+        function parseMetadata(text) {
+            // Expected Format: filename.jpg | Title | Description
+            // Or: filename.jpg,Title,Description
+            const lines = text.split('\n');
+            const galleryData = [];
+
+            lines.forEach(line => {
+                if (!line.trim()) return;
+                // Split by pipe or comma
+                const parts = line.includes('|') ? line.split('|') : line.split(',');
+                if (parts.length >= 2) {
+                    galleryData.push({
+                        file: parts[0].trim(),
+                        title: parts[1].trim(),
+                        desc: parts[2] ? parts[2].trim() : 'Nincs leírás.',
+                        type: 'standard' // Default
+                    });
+                }
+            });
+            return galleryData;
+        }
+
+        // --- IMAGE PAIRING LOGIC ---
+        function analyzeAndGroupImages(data) {
+            const grouped = [];
+            const processed = new Set();
+
+            data.forEach(item => {
+                if (processed.has(item.file)) return;
+
+                const filename = item.file;
+                let pair = null;
+                let mode = 'standard';
+
+                // Regex patterns for detection
+                // Matches: interior_1, interior_2
+                const interiorMatch = filename.match(/(.+?)_interior_(\d+)/i);
+                // Matches: keretezve_1, keretnelkul_1
+                const frameMatch = filename.match(/(.+?)_(keretezve|keretnelkul)_(\d+)/i);
+                // Matches: detail_1, wide_1
+                const detailMatch = filename.match(/(.+?)_(detail|wide)_(\d+)/i);
+
+                if (interiorMatch) {
+                    const baseName = interiorMatch[1];
+                    const num = interiorMatch[2];
+                    // Look for the other version (e.g., if this is interior, look for exterior, or just group all interior_X)
+                    // For this engine, we assume if we see 'interior', we look for a 'context' or 'exterior' or just treat them as a set.
+                    // Simpler logic: If filename contains 'interior', look for a pair with 'exterior' or 'context'.
+                    // If not found, we still render it, but UI hints at interaction.
+                    
+                    // Check if this specific item is the "main" or the "pair"
+                    // Let's assume 'interior' implies the 'result' or 'context'.
+                    
+                    // Find pair
+                    const pairItem = data.find(p => 
+                        !processed.has(p.file) && 
+                        p.file.replace(filename, '').includes(baseName) && 
+                        !p.file.includes('interior') // Simplified: assume the other one is the base
+                    );
+                    
+                    if (pairItem) {
+                        pair = pairItem;
+                        mode = 'interior';
+                    }
+                } else if (frameMatch) {
+                    const baseName = frameMatch[1];
+                    const variant = frameMatch[2]; // keretezve or keretnelkul
+                    
+                    // Look for the opposite variant
+                    const opposite = variant === 'keretezve' ? 'keretnelkul' : 'keretezve';
+                    const pairItem = data.find(p => 
+                        !processed.has(p.file) && 
+                        p.file.includes(baseName) && 
+                        p.file.includes(opposite)
+                    );
+
+                    if (pairItem) {
+                        pair = pairItem;
+                        mode = 'frame';
+                    }
+                }
+
+                // Create Group Object
+                if (pair) {
+                    grouped.push({
+                        primary: item,
+                        secondary: pair,
+                        mode: mode
+                    });
+                    processed.add(item.file);
+                    processed.add(pair.file);
+                } else {
+                    // No pair found, render as single
+                    grouped.push({
+                        primary: item,
+                        secondary: null,
+                        mode: 'standard'
+                    });
+                    processed.add(item.file);
+                }
+            });
+
+            return grouped;
+        }
+
+        // --- RENDER ENGINE ---
+        async function initGallery() {
+            const rawData = await loadGalleryData();
+            const galleryData = analyzeAndGroupImages(rawData);
+            const container = document.getElementById('gallery');
+
+            galleryData.forEach(group => {
+                const card = document.createElement('div');
+                card.className = `art-card ${group.mode === 'interior' ? 'interior-mode' : ''} ${group.mode === 'frame' ? 'frame-mode' : ''}`;
+
+                // Primary Image (The first one found)
+                const imgPrimary = document.createElement('img');
+                imgPrimary.src = `${CONFIG.basePath}${group.primary.file}`;
+                imgPrimary.className = 'art-img primary';
+                imgPrimary.alt = group.primary.title;
+                imgPrimary.loading = "lazy";
+
+                // Secondary Image (The pair)
+                let imgSecondary = null;
+                if (group.secondary) {
+                    imgSecondary = document.createElement('img');
+                    imgSecondary.src = `${CONFIG.basePath}${group.secondary.file}`;
+                    imgSecondary.className = 'art-img secondary';
+                    imgSecondary.alt = group.secondary.title;
+                    imgSecondary.loading = "lazy";
+                }
+
+                // Info Section
+                const info = document.createElement('div');
+                info.className = 'art-info';
+                info.innerHTML = `
+                    <div>
+                        <h3 class="art-title">${group.primary.title}</h3>
+                        <p class="art-desc">${group.primary.desc}</p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">#KáraiMihály</span>
+                        <span class="tag">#${group.mode === 'standard' ? 'művészet' : 'kontextus'}</span>
+                    </div>
+                `;
+
+                card.appendChild(imgPrimary);
+                if (imgSecondary) card.appendChild(imgSecondary);
+                card.appendChild(info);
+                container.appendChild(card);
+            });
+
+            // Hide Loader
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => document.getElementById('loader').remove(), 500);
+            }, 800);
+        }
+
+        // Start
+        document.addEventListener('DOMContentLoaded', initGallery);
+
+    </script>
+</body>
+</html>

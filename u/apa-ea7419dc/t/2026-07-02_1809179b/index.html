@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály | Festőművész</title>
+    
+    <!-- Google Fonts: Elegáns Serif és Modern Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- ALAP BEÁLLÍTÁSOK ÉS VÁLTOZÓK --- */
+        :root {
+            /* Alap téma: Galeria Fehér (Világos, tiszta) */
+            --bg-color: #F9F9F7; /* Meleg fehér */
+            --text-color: #2C2C2C; /* Szénszürke */
+            --accent-color: #8C7B70; /* Halvány réz */
+            --secondary-bg: #EBEBE6;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --transition-speed: 0.6s;
+            --paper-texture: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIi8+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiIG9wYWNpdHk9IjAuMSIvPgo8L3N2Zz4=');
+        }
+
+        /* Téma Változók (JS által vezérelt) */
+        body {
+            background-color: var(--bg-color);
+            background-image: var(--paper-texture);
+            color: var(--text-color);
+            font-family: var(--font-sans);
+            margin: 0;
+            padding: 0;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- TIPOGRÁFIA --- */
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .serif-italic {
+            font-style: italic;
+            font-family: var(--font-serif);
+        }
+
+        /* --- NAVIGÁCIÓ --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            mix-blend-mode: difference; /* Ez adja a művészi hatást sötét/világos háttéren */
+            color: #fff; /* A difference miatt ez invertálódik */
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .nav-links a {
+            color: inherit;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- HERO SZEKCIÓ --- */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 8rem);
+            line-height: 1;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1.5s ease forwards 0.5s;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1.5s ease forwards 1s;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            opacity: 0.6;
+            animation: bounce 2s infinite;
+        }
+
+        /* --- GALÉRIA (MASONRY STÍLUS) --- */
+        .gallery-section {
+            padding: 4rem 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 4rem;
+            justify-items: center;
+        }
+
+        .artwork-card {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+
+        .artwork-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .artwork-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: filter 0.4s ease;
+        }
+
+        /* Keret nélküli képeknek más árnyék */
+        .artwork-card.no-frame img {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .artwork-info {
+            margin-top: 1.5rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .artwork-card:hover .artwork-info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .artwork-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .artwork-desc {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            max-width: 80%;
+            margin: 0 auto;
+        }
+
+        /* --- INTERIÓK --- */
+        .interior-section {
+            padding: 6rem 0;
+            background-color: var(--secondary-bg);
+            transition: background-color var(--transition-speed);
+        }
+
+        .interior-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 80vh;
+        }
+
+        .interior-item {
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .interior-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.5s ease;
+        }
+
+        .interior-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .interior-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .interior-item:hover .interior-overlay {
+            opacity: 1;
+        }
+
+        .interior-text {
+            color: #fff;
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.7);
+            padding: 1rem 2rem;
+        }
+
+        /* --- ÉLETPÁLYA / NÉV --- */
+        .bio-section {
+            padding: 8rem 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .bio-year {
+            font-size: 8rem;
+            font-family: var(--font-serif);
+            color: var(--accent-color);
+            opacity: 0.2;
+            line-height: 0.8;
+            margin-bottom: -2rem;
+            display: block;
+        }
+
+        .bio-text {
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- TÉMA VÁLTÓ PANEL --- */
+        .theme-switcher-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--text-color);
+            color: var(--bg-color);
+            border: none;
+            cursor: pointer;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .theme-switcher-toggle:hover {
+            transform: rotate(90deg);
+        }
+
+        .theme-panel {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1999;
+            transform: translateY(20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            width: 200px;
+        }
+
+        .theme-panel.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .theme-panel h4 {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #333;
+        }
+
+        .theme-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .theme-btn {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: transform 0.2s;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- ANIMÁCIÓK --- */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+            40% {transform: translateX(-50%) translateY(-10px);}
+            60% {transform: translateX(-50%) translateY(-5px);}
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            nav { padding: 1.5rem; }
+            .hero-title { font-size: 3.5rem; }
+            .interior-grid { grid-template-columns: 1fr; height: auto; }
+            .interior-item { height: 50vh; }
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigáció -->
+    <nav>
+        <div class="logo">Kárai Mihály</div>
+        <div class="nav-links">
+            <a href="#gallery">Művek</a>
+            <a href="#interiors">Interiőrök</a>
+            <a href="#bio">Életpálya</a>
+        </div>
+    </nav>
+
+    <!-- Hero / Bevezető -->
+    <header>
+        <h1 class="hero-title">Kárai Mihály</h1>
+        <p class="hero-subtitle">Festőművész • 1961</p>
+        <div class="scroll-indicator">Görgess lejjebb</div>
+    </header>
+
+    <!-- Életpálya / Bio -->
+    <section id="bio" class="bio-section">
+        <span class="bio-year">1961</span>
+        <div class="bio-text">
+            <h2>A művészet nyelve</h2>
+            <br>
+            <p class="serif-italic">
+                "A festészet nem a látható megjelenítése, hanem a láthatatlan láthatóvá tétele."
+            </p>
+            <br>
+            <p>
+                Kárai Mihály munkássága a színek és formák mélyreható vizsgálatán alapul. 
+                Több évtizedes tapasztalatait önti vászonra, létrehozva olyan alkotásokat, 
+                amelyek a megfigyelőt a csend és a gondolat világába kalauzolja.
+            </p>
+        </div>
+    </section>
+
+    <!-- Galéria -->
+    <section id="gallery" class="gallery-section">
+        <div class="section-header">
+            <h2>Válogatott Művek</h2>
+            <p class="serif-italic">Keretben és keret nélkül</p>
+        </div>
+
+        <div class="gallery-grid">
+            <!-- 1. Mű: Keretezve -->
+            <div class="artwork-card">
+                <img src="apa_festmenyek/keretezve_1.jpg" alt="Kárai Mihály festménye keretben">
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Cím 1 (Keretben)</h3>
+                    <p class="artwork-desc">Leírás a festmenyek_leiras.txt-ből</p>
+                </div>
+            </div>
+
+            <!-- 2. Mű: Keret nélkül -->
+            <div class="artwork-card no-frame">
+                <img src="apa_festmenyek/keretnelkul_1.jpg" alt="Kárai Mihály festménye">
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Cím 1 (Részlet)</h3>
+                    <p class="artwork-desc">A művészeti látásmód tisztasága.</p>
+                </div>
+            </div>
+
+            <!-- 3. Mű: Keretezve -->
+            <div class="artwork-card">
+                <img src="apa_festmenyek/keretezve_2.jpg" alt="Kárai Mihály festménye keretben">
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Cím 2 (Keretben)</h3>
+                    <p class="artwork-desc">Leírás a festmenyek_leiras.txt-ből</p>
+                </div>
+            </div>
+
+            <!-- 4. Mű: Keret nélkül -->
+            <div class="artwork-card no-frame">
+                <img src="apa_festmenyek/keretnelkul_2.jpg" alt="Kárai Mihály festménye">
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Cím 2 (Részlet)</h3>
+                    <p class="artwork-desc">Színek harmóniája.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interiőrök -->
+    <section id="interiors" class="interior-section">
+        <div class="interior-grid">
+            <div class="interior-item">
+                <img src="apa_festmenyek/interior_1.jpg" alt="Interiőr 1">
+                <div class="interior-overlay">
+                    <div class="interior-text">Életérzék</div>
+                </div>
+            </div>
+            <div class="interior-item">
+                <img src="apa_festmenyek/interior_2.jpg" alt="Interiőr 2">
+                <div class="interior-overlay">
+                    <div class="interior-text">Tér és Idő</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lábléc -->
+    <footer style="padding: 4rem 2rem; text-align: center; font-size: 0.8rem; opacity: 0.6;">
+        <p>&copy; 2026 Kárai Mihály. Minden jog fenntartva.</p>
+        <p class="serif-italic">Készítette: Szeretettel, a fiától.</p>
+    </footer>
+
+    <!-- Téma Váltó -->
+    <button class="theme-switcher-toggle" onclick="toggleThemePanel()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path></svg>
+    </button>
+
+    <div class="theme-panel" id="themePanel">
+        <h4>Téma Választó</h4>
+        <div class="theme-options">
+            <!-- 1. Galeria Fehér (Alap) -->
+            <button class="theme-btn" style="background: #F9F9F7;" onclick="setTheme('#F9F9F7', '#2C2C2C', '#8C7B70', '#EBEBE6')"></button>
+            
+            <!-- 2. Éjfekete (Sötét, drámai) -->
+            <button class="theme-btn" style="background: #121212;" onclick="setTheme('#121212', '#E0E0E0', '#D4AF37', '#1E1E1E')"></button>
+            
+            <!-- 3. Olajzöld (Mély, természetközeli) -->
+            <button class="theme-btn" style="background: #2F3E35;" onclick="setTheme('#2F3E35', '#F0F0F0', '#A8C3A6', '#232E26')"></button>
+            
+            <!-- 4. Réz és Krém (Meleg, klasszikus) -->
+            <button class="theme-btn" style="background: #FDF6E3;" onclick="setTheme('#FDF6E3', '#5D4037', '#BCAAA4', '#EFEBE9')"></button>
+            
+            <!-- 5. Éjkék (Komoly, modern) -->
+            <button class="theme-btn" style="background: #0F172A;" onclick="setTheme('#0F172A', '#CBD5E1', '#38BDF8', '#1E293B')"></button>
+            
+            <!-- 6. Pasztell Szürke (Minimalista) -->
+            <button class="theme-btn" style="background: #E5E5E5;" onclick="setTheme('#E5E5E5', '#171717', '#737373', '#D4D4D4')"></button>
+        </div>
+    </div>
+
+    <script>
+        // Téma panel nyitása/zárása
+        function toggleThemePanel() {
+            const panel = document.getElementById('themePanel');
+            panel.classList.toggle('active');
+        }
+
+        // Téma beállítása
+        function setTheme(bg, text, accent, secondary) {
+            const root = document.documentElement;
+            root.style.setProperty('--bg-color', bg);
+            root.style.setProperty('--text-color', text);
+            root.style.setProperty('--accent-color', accent);
+            root.style.setProperty('--secondary-bg', secondary);
+            
+            // Panel bezárása választás után (opcionális)
+            // document.getElementById('themePanel').classList.remove('active');
+        }
+
+        // Scroll animáció (Intersection Observer)
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        // Elemek figyelése
+        document.querySelectorAll('.artwork-card, .bio-text, .section-header').forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(30px)";
+            el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2445 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merényi Krisztián — Piócaterápia | Hirudoterápia</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-deep: #0a0f0d;
+    --bg-dark: #0d1411;
+    --bg-card: rgba(255,255,255,0.04);
+    --green-primary: #2d6a4f;
+    --green-light: #52b788;
+    --green-glow: #40916c;
+    --gold: #c9a84c;
+    --gold-light: #e8d48b;
+    --text-primary: #f0efe8;
+    --text-secondary: #a8a49a;
+    --text-muted: #6b6860;
+    --border-subtle: rgba(255,255,255,0.06);
+    --glass: rgba(255,255,255,0.03);
+    --glass-border: rgba(255,255,255,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  ::selection {
+    background: var(--green-primary);
+    color: #fff;
+  }
+
+  /* ===== CURSOR GLOW ===== */
+  .cursor-glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(circle, rgba(45,106,79,0.07) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s;
+  }
+
+  /* ===== NAVIGATION ===== */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1.2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  nav.scrolled {
+    background: rgba(10,15,13,0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 0.8rem 3rem;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-logo span { color: var(--green-light); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--green-light);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--text-primary); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--green-primary) !important;
+    color: #fff !important;
+    padding: 0.6rem 1.5rem;
+    border-radius: 100px;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.1em !important;
+    transition: all 0.3s !important;
+    border: 1px solid transparent;
+  }
+
+  .nav-cta:hover {
+    background: transparent !important;
+    border-color: var(--green-light) !important;
+    color: var(--green-light) !important;
+  }
+
+  .nav-cta::after { display: none !important; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .hamburger span {
+    width: 28px;
+    height: 2px;
+    background: var(--text-primary);
+    transition: all 0.3s;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(45,106,79,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 20%, rgba(201,168,76,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(45,106,79,0.08) 0%, transparent 50%);
+  }
+
+  .hero-particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--green-light);
+    border-radius: 50%;
+    opacity: 0;
+    animation: floatParticle 8s infinite;
+  }
+
+  @keyframes floatParticle {
+    0% { opacity: 0; transform: translateY(100vh) scale(0); }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+  }
+
+  .hero-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    padding: 0 2rem;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 100px;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green-light);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.5); }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+  }
+
+  .hero h1 .line { display: block; }
+
+  .hero h1 .accent {
+    background: linear-gradient(135deg, var(--green-light), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero h1 .italic {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text-secondary);
+    -webkit-text-fill-color: var(--text-secondary);
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeUp 1s 0.7s forwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2.2rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: none;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--green-primary), var(--green-glow));
+    color: #fff;
+    box-shadow: 0 4px 30px rgba(45,106,79,0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 40px rgba(45,106,79,0.5);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--green-light);
+    color: var(--green-light);
+    transform: translateY(-2px);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 1s 1.2s forwards;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--green-light), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; height: 40px; }
+    50% { opacity: 1; height: 60px; }
+  }
+
+  /* ===== SECTIONS COMMON ===== */
+  section {
+    padding: 8rem 2rem;
+    position: relative;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--green-light);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title .accent {
+    background: linear-gradient(135deg, var(--green-light), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-desc {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    max-width: 650px;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ===== REVEAL ANIMATION ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ===== ABOUT / INTRO ===== */
+  .about {
+    background:
+      radial-gradient(ellipse 50% 80% at 0% 50%, rgba(45,106,79,0.06) 0%, transparent 60%);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+
+  .about-image {
+    position: relative;
+    aspect-ratio: 4/5;
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--bg-dark), rgba(45,106,79,0.15));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .about-image-placeholder svg {
+    width: 80px;
+    height: 80px;
+    opacity: 0.3;
+  }
+
+  .about-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    pointer-events: none;
+  }
+
+  .about-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+
+  .about-text p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    line-height: 1.9;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--green-light);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ===== WHAT IS ===== */
+  .what-is {
+    background: var(--bg-dark);
+    position: relative;
+  }
+
+  .what-is::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-subtle), transparent);
+  }
+
+  .what-is-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 4rem;
+    align-items: start;
+  }
+
+  .what-is-text p {
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+  }
+
+  .what-is-text .highlight {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .bio-actives {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .bio-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    transition: all 0.4s;
+  }
+
+  .bio-card:hover {
+    border-color: var(--green-primary);
+    background: rgba(45,106,79,0.08);
+    transform: translateX(5px);
+  }
+
+  .bio-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .bio-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--green-primary), var(--green-glow));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .bio-card h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .bio-card p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ===== INDICATIONS ===== */
+  .indications {
+    background: var(--bg-deep);
+  }
+
+  .indications-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .indications-header .section-desc {
+    margin: 0 auto;
+  }
+
+  .indications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .indication-card {
+    padding: 2rem;
+    border-radius: 20px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .indication-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--green-primary), var(--green-light));
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .indication-card:hover {
+    border-color: rgba(82,183,136,0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+
+  .indication-card:hover::before { opacity: 1; }
+
+  .indication-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(45,106,79,0.2), rgba(45,106,79,0.05));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .indication-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  .indication-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ===== PROCESS ===== */
+  .process {
+    background: var(--bg-dark);
+    position: relative;
+  }
+
+  .process::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-subtle), transparent);
+  }
+
+  .process-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .process-header .section-desc { margin: 0 auto; }
+
+  .process-timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .process-timeline::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--green-light), var(--border-subtle));
+  }
+
+  .process-step {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .step-number {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--bg-deep);
+    border: 2px solid var(--green-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--green-light);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .step-content {
+    padding-top: 0.5rem;
+  }
+
+  .step-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .step-content p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ===== PRICING ===== */
+  .pricing {
+    background: var(--bg-deep);
+    position: relative;
+  }
+
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .pricing-header .section-desc { margin: 0 auto; }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    padding: 2.5rem;
+    border-radius: 24px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    text-align: center;
+    transition: all 0.5s;
+    position: relative;
+  }
+
+  .pricing-card.featured {
+    border-color: var(--green-primary);
+    background: linear-gradient(135deg, rgba(45,106,79,0.1), rgba(45,106,79,0.02));
+    transform: scale(1.02);
+  }
+
+  .pricing-card.featured::before {
+    content: 'Legnépszerűbb';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.3rem 1rem;
+    border-radius: 100px;
+    background: linear-gradient(135deg, var(--green-primary), var(--green-glow));
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+
+  .pricing-card.featured:hover {
+    transform: scale(1.02) translateY(-5px);
+  }
+
+  .pricing-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .pricing-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .pricing-card .price {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--green-light);
+    margin: 1rem 0;
+    line-height: 1;
+  }
+
+  .pricing-card .price span {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .pricing-card .price-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .pricing-features {
+    list-style: none;
+    text-align: left;
+    margin-top: 1.5rem;
+  }
+
+  .pricing-features li {
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .pricing-features li:last-child { border: none; }
+
+  .pricing-features li::before {
+    content: '✓';
+    color: var(--green-light);
+    font-weight: 700;
+    font-size: 0.8rem;
+  }
+
+  /* ===== COURSE ===== */
+  .course {
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .course::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-subtle), transparent);
+  }
+
+  .course-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .course-content .section-desc {
+    margin-bottom: 2rem;
+  }
+
+  .course-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .course-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s;
+  }
+
+  .course-feature:hover {
+    border-color: var(--green-primary);
+  }
+
+  .course-feature-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(45,106,79,0.2), rgba(45,106,79,0.05));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+  }
+
+  .course-feature h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  .course-feature p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+  }
+
+  .course-card {
+    padding: 3rem;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(45,106,79,0.15), rgba(45,106,79,0.03));
+    border: 1px solid rgba(45,106,79,0.3);
+    text-align: center;
+    position: relative;
+  }
+
+  .course-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 24px;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--green-primary), transparent, var(--gold));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.5;
+  }
+
+  .course-card .label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .course-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .course-card .duration {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+
+  .course-card .price {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--green-light);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .course-card .price span {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+  }
+
+  .course-card .price-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+
+  /* ===== WARNINGS ===== */
+  .warnings {
+    background: var(--bg-deep);
+  }
+
+  .warning-box {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(200,50,50,0.08), rgba(200,50,50,0.02));
+    border: 1px solid rgba(200,50,50,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .warning-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, #c83232, #ff6b6b, #c83232);
+  }
+
+  .warning-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .warning-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: rgba(200,50,50,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .warning-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #ff6b6b;
+  }
+
+  .warning-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .warning-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .warning-list li::before {
+    content: '⚠';
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .warning-list li strong {
+    color: #ff6b6b;
+    font-weight: 600;
+  }
+
+  /* ===== BEFORE / AFTER ===== */
+  .care-section {
+    background: var(--bg-dark);
+    position: relative;
+  }
+
+  .care-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-subtle), transparent);
+  }
+
+  .care-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 4rem;
+  }
+
+  .care-panel {
+    padding: 2.5rem;
+    border-radius: 24px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+  }
+
+  .care-panel h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .care-panel h3 .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .care-panel.before h3 .dot { background: var(--gold); }
+  .care-panel.after h3 .dot { background: var(--green-light); }
+
+  .care-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .care-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .care-list li .bullet {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green-light);
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  .care-panel.before .care-list li .bullet { background: var(--gold); }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials {
+    background: var(--bg-deep);
+    position: relative;
+  }
+
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .testimonials-header .section-desc { margin: 0 auto; }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .testimonial-card {
+    padding: 2rem;
+    border-radius: 20px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    transition: all 0.4s;
+  }
+
+  .testimonial-card:hover {
+    border-color: rgba(82,183,136,0.2);
+    transform: translateY(-3px);
+  }
+
+  .testimonial-stars {
+    color: var(--gold);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+  }
+
+  .testimonial-card blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .testimonial-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--green-primary), var(--green-glow));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .testimonial-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .testimonial-role {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  /* ===== FAQ ===== */
+  .faq {
+    background: var(--bg-dark);
+    position: relative;
+  }
+
+  .faq::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-subtle), transparent);
+  }
+
+  .faq-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .faq-header .section-desc { margin: 0 auto; }
+
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    border-radius: 16px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .faq-item:hover { border-color: rgba(82,183,136,0.15); }
+
+  .faq-question {
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s;
+    user-select: none;
+  }
+
+  .faq-question:hover { color: var(--green-light); }
+
+  .faq-toggle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    transition: all 0.3s;
+    color: var(--text-muted);
+  }
+
+  .faq-item.active .faq-toggle {
+    background: var(--green-primary);
+    border-color: var(--green-primary);
+    color: #fff;
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .faq-answer-inner {
+    padding: 0 2rem 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ===== CONTACT ===== */
+  .contact {
+    background: var(--bg-deep);
+    position: relative;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    margin-top: 4rem;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .contact-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(45,106,79,0.2), rgba(45,106,79,0.05));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .contact-item h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  .contact-item p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+  }
+
+  .contact-item a {
+    color: var(--green-light);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .contact-item a:hover { color: var(--gold-light); }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .form-group {
+    position: relative;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border-radius: 14px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    outline: none;
+    font-weight: 300;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--text-muted);
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--green-primary);
+    box-shadow: 0 0 0 3px rgba(45,106,79,0.1);
+  }
+
+  .form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .form-group select {
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+
+  .btn-submit {
+    width: 100%;
+    justify-content: center;
+    padding: 1.1rem;
+    font-size: 0.9rem;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 4rem 2rem 2rem;
+    border-top: 1px solid var(--border-subtle);
+    background: var(--bg-deep);
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .footer-brand p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.8;
+    font-weight: 300;
+    margin-top: 1rem;
+    max-width: 350px;
+  }
+
+  .footer-col h4 {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer-col a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 300;
+    transition: color 0.3s;
+  }
+
+  .footer-col a:hover { color: var(--green-light); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-bottom p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .footer-disclaimer {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    font-style: italic;
+    max-width: 600px;
+    text-align: right;
+  }
+
+  /* ===== MOBILE MENU ===== */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,15,13,0.98);
+    backdrop-filter: blur(20px);
+    z-index: 999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+
+  .mobile-menu.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .mobile-menu a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    transition: color 0.3s;
+  }
+
+  .mobile-menu a:hover { color: var(--green-light); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .about-grid,
+    .what-is-grid,
+    .course-inner,
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .footer-top {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav.scrolled { padding: 0.8rem 1.5rem; }
+
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .mobile-menu { display: flex; }
+
+    section { padding: 5rem 1.5rem; }
+
+    .about-stats {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .care-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-top {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .footer-disclaimer {
+      text-align: center;
+    }
+
+    .pricing-card.featured {
+      transform: none;
+    }
+
+    .pricing-card.featured:hover {
+      transform: translateY(-5px);
+    }
+
+    .hero h1 { font-size: clamp(2.5rem, 8vw, 4rem); }
+  }
+
+  @media (max-width: 480px) {
+    .about-stats {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .indications-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ===== SMOOTH SCROLLBAR ===== */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg-deep);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--green-primary);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--green-light);
+  }
+
+  /* ===== MARQUEE ===== */
+  .marquee-section {
+    padding: 2rem 0;
+    overflow: hidden;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-dark);
+  }
+
+  .marquee-track {
+    display: flex;
+    animation: marquee 30s linear infinite;
+    width: max-content;
+  }
+
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 2rem;
+    white-space: nowrap;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .marquee-item .sep {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green-primary);
+    flex-shrink: 0;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Cursor Glow -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Merényi <span>Krisztián</span></a>
+  <ul class="nav-links">
+    <li><a href="#rolam">Rólam</a></li>
+    <li><a href="#hirudo">Hirudoterápia</a></li>
+    <li><a href="#javallatok">Javallatok</a></li>
+    <li><a href="#arak">Árak</a></li>
+    <li><a href="#tanfolyam">Tanfolyam</a></li>
+    <li><a href="#kapcsolat" class="nav-cta">Foglalás</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#rolam" onclick="toggleMenu()">Rólam</a>
+  <a href="#hirudo" onclick="toggleMenu()">Hirudoterápia</a>
+  <a href="#javallatok" onclick="toggleMenu()">Javallatok</a>
+  <a href="#arak" onclick="toggleMenu()">Árak</a>
+  <a href="#tanfolyam" onclick="toggleMenu()">Tanfolyam</a>
+  <a href="#kapcsolat" onclick="toggleMenu()">Foglalás</a>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Hirudoterápia · Természetes gyógyítás</div>
+    <h1>
+      <span class="line">A természet</span>
+      <span class="line"><span class="accent">csodálatos</span></span>
+      <span class="line"><span class="italic">gyógyere</span></span>
+    </h1>
+    <p class="hero-sub">
+      Piócaterápia — az évezredek óta ismert, tudományosan alátámasztott gyógyászati eljárás, amely a pióca nyálában rejlő bioaktív anyagok segítségével segíti szervezetének öngyógyító folyamatait.
+    </p>
+    <div class="hero-actions">
+      <a href="#kapcsolat" class="btn btn-primary">Időpontfoglalás →</a>
+      <a href="#hirudo" class="btn btn-secondary">Tudjon meg többet</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Görgessen</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-item">Gyulladáscsökkentés <span class="sep"></span></div>
+    <div class="marquee-item">Mikrokeringés javítása <span class="sep"></span></div>
+    <div class="marquee-item">Vérhígító hatás <span class="sep"></span></div>
+    <div class="marquee-item">Energetikai egyensúly <span class="sep"></span></div>
+    <div class="marquee-item">Bőrregeneráció <span class="sep"></span></div>
+    <div class="marquee-item">Fájdalomcsillapítás <span class="sep"></span></div>
+    <div class="marquee-item">Öngyógyítás <span class="sep"></span></div>
+    <div class="marquee-item">Nyugtató hatás <span class="sep"></span></div>
+    <div class="marquee-item">Gyulladáscsökkentés <span class="sep"></span></div>
+    <div class="marquee-item">Mikrokeringés javítása <span class="sep"></span></div>
+    <div class="marquee-item">Vérhígító hatás <span class="sep"></span></div>
+    <div class="marquee-item">Energetikai egyensúly <span class="sep"></span></div>
+    <div class="marquee-item">Bőrregeneráció <span class="sep"></span></div>
+    <div class="marquee-item">Fájdalomcsillapítás <span class="sep"></span></div>
+    <div class="marquee-item">Öngyógyítás <span class="sep"></span></div>
+    <div class="marquee-item">Nyugtató hatás <span class="sep"></span></div>
+  </div>
+</div>
+
+<!-- About -->
+<section class="about" id="rolam">
+  <div class="container">
+    <div class="section-label reveal">Rólam</div>
+    <div class="about-grid">
+      <div class="about-image reveal">
+        <div class="about-image-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span>Fotó helye</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <h3 class="reveal">Merényi Krisztián</h3>
+        <p class="reveal reveal-delay-1">
+          Piócaterapeuta és a népi gyógyászat elkötelezett híve. Évek óta foglalkozom a hirudoterápiával, és hiszem abban, hogy a természet adta eszközökkel a szervezet képes a mélyebb szintű gyógyulásra.
+        </p>
+        <p class="reveal reveal-delay-2">
+          Célom, hogy minden páciensem számára személyre szabott, átfogó kezelési tervet készítsek, amely figyelembe veszi egyéni állapotát, panaszait és céljait. A piócaterápia nem csodaorvosság, de ha helyesen alkalmazzuk, rendkívül hatékony kiegészítő terápia lehet.
+        </p>
+        <div class="about-stats reveal reveal-delay-3">
+          <div class="stat-item">
+            <div class="stat-number" data-count="500">0</div>
+            <div class="stat-label">Kezelt páciens</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-count="10">0</div>
+            <div class="stat-label">Év tapasztalat</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-count="200">0</div>
+            <div class="stat-label">Tanuló</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What is Hirudotherapy -->
+<section class="what-is" id="hirudo">
+  <div class="container">
+    <div class="section-label reveal">Mi az a hirudoterápia?</div>
+    <div class="what-is-grid">
+      <div class="what-is-text">
+        <p class="reveal">
+          A <span class="highlight">piócaterápia</span> (hirudoterápia) egy évezredes hagyománnyal rendelkező, holisztikus gyógyászati eljárás. A kezelés során a gyógypiócát (<em>Helobdella medicinalis</em>) helyezik a bőr felületére, amelyek váladékát a szervezet felszívja.
+        </p>
+        <p class="reveal reveal-delay-1">
+          A pióca nyála <span class="highlight">több mint 100 bioaktív anyagot</span> tartalmaz, amelyek együttesen fejtenek ki jótékony hatást: gyulladáscsökkentő, véralvadásgátló, fájdalomcsillapító, mikrokeringést javító és idegrendszeri hatással bírnak.
+        </p>
+        <p class="reveal reveal-delay-2">
+          A terápia nem csupán fizikai szinten hat — a piócának <span class="highlight">energetikai hatása</span> is van, amely segít az energiaáramlás helyreállításában, lazító és nyugtató hatással van az egész szervezetre.
+        </p>
+      </div>
+      <div class="bio-actives">
+        <div class="bio-card reveal">
+          <div class="bio-card-header">
+            <div class="bio-icon">🧬</div>
+            <h4>Hirudin</h4>
+          </div>
+          <p>Véralvadásgátló fehérje, amely javítja a mikrokeringést és megelőzi a vérrögök képződését.</p>
+        </div>
+        <div class="bio-card reveal reveal-delay-1">
+          <div class="bio-card-header">
+            <div class="bio-icon">🛡️</div>
+            <h4>Bogly-menzin</h4>
+          </div>
+          <p>Gyulladáscsökkentő hatású enzim, amely segít a szöveti regenerációban.</p>
+        </div>
+        <div class="bio-card reveal reveal-delay-2">
+          <div class="bio-card-header">
+            <div class="bio-icon">💧</div>
+            <h4>Bdelin & Eglin</h4>
+          </div>
+          <p>Fehérje-inhibitorok, amelyek gátolják a gyulladásos folyamatokat és a proteáz enzimeket.</p>
+        </div>
+        <div class="bio-card reveal reveal-delay-3">
+          <div class="bio-card-header">
+            <div class="bio-icon">✨</div>
+            <h4>Fibroblast aktivátor</h4>
+          </div>
+          <p>Stimulálja a kollagénszintézist és a bőr regenerációját, fiatalító hatással van.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Indications -->
+<section class="indications" id="javallatok">
+  <div class="container">
+    <div class="indications-header">
+      <div class="section-label reveal" style="justify-content:center;">Javallatok</div>
+      <h2 class="section-title reveal reveal-delay-1">Milyen <span class="accent">problémákra</span> nyújthat segítséget?</h2>
+      <p class="section-desc reveal reveal-delay-2">A piócaterápia széles körben alkalmazható kiegészítő terápia számos panasz és állapot esetén.</p>
+    </div>
+    <div class="indications-grid">
+      <div class="indication-card reveal">
+        <div class="indication-icon">🦴</div>
+        <h3>Ízületi problémák</h3>
+        <p>Ízületi fájdalmak, gyulladások, rheumatoid arthritis és osteoarthritis kiegészítő kezelése. Csökkenti a duzzanatot és javítja az ízületek mozgékonyságát.</p>
+      </div>
+      <div class="indication-card reveal reveal-delay-1">
+        <div class="indication-icon">❤️</div>
+        <h3>Szív- és érrendszer</h3>
+        <p>Keringési betegségek, magas vérnyomás, varikózis, mikrokeringési zavarok. Fejzúgás, ingerlékenység és stressz enyhítése.</p>
+      </div>
+      <div class="indication-card reveal reveal-delay-2">
+        <div class="indication-icon">🧴</div>
+        <h3>Bőrbetegségek</h3>
+        <p>Akne, ekcéma, psoriasis, hegesedés. A pióca nyálában lévő anyagok jelentősen segítik a bőr regenerációját és megújulását.</p>
+      </div>
+      <div class="indication-card reveal reveal-delay-3">
+        <div class="indication-icon">🔬</div>
+        <h3>Ciszták és csomók</h3>
+        <p>Baker ciszta, Ganglion ciszta (pl. tenyéren), lipómák. Óvatos alkalmazás, személyre szabott kezelési terv szükséges.</p>
+      </div>
+      <div class="indication-card reveal">
+        <div class="indication-icon">👂</div>
+        <h3>Szájüreg & Fül</h3>
+        <p>Fogínygyulladás, fogínyben lévő ciszták, fülbetegségek. Kizárólag nagyon tapasztalt terapeuta végezze!</p>
+      </div>
+      <div class="indication-card reveal reveal-delay-1">
+        <div class="indication-icon">🌿</div>
+        <h3>Egyéb panaszok</h3>
+        <p>Pajzsmirigy problémák, lábszárfekély, lábszárödéma, migrén, álmatlanság, krónikus fáradtság szindróma.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="process" id="folyamat">
+  <div class="container">
+    <div class="process-header">
+      <div class="section-label reveal" style="justify-content:center;">A kezelés menete</div>
+      <h2 class="section-title reveal reveal-delay-1">Hogyan <span class="accent">zajlik</span> egy kezelés?</h2>
+      <p class="section-desc reveal reveal-delay-2">Egy piócaterápiás alkalom átfogó, személyre szabott folyamat, amely a konzultációtól a kezelés utáni gondoskodásig tart.</p>
+    </div>
+    <div class="process-timeline">
+      <div class="process-step reveal">
+        <div class="step-number">01</div>
+        <div class="step-content">
+          <h3>Konzultáció és állapotfelmérés</h3>
+          <p>Részletes anamnézis felvétele, panaszok meghallgatása, az esetleges ellenjavallatok kizárása. Együtt állítjuk fel a kezelési tervet.</p>
+        </div>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="step-number">02</div>
+        <div class="step-content">
+          <h3>Előkészületek</h3>
+          <p>Kényelmes, sötét színű, laza ruházatban érkezzen. Kerülje az illatosított termékeket és a dohányzást a kezelés előtt.</p>
+        </div>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="step-number">03</div>
+        <div class="step-content">
+          <h3>A pióca felhelyezése</h3>
+          <p>A piócákat a kezelési terv szerint helyezzük fel. A harapás enyhe csípés érzetű — az első alkalommal kevesebb piócát használunk, majd az egyéni reakció alapján növeljük a számukat.</p>
+        </div>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="step-number">04</div>
+        <div class="step-content">
+          <h3>Kezelés és pihenés</h3>
+          <p>Egy alkalom körülbelül 2 órát vesz igénybe. A piócák maguktól leolvadnak, amikor jóllakottak. Nyugodt pihenés alatt a kezelés.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-number">05</div>
+        <div class="step-content">
+          <h3>Utógondozás és kötés</h3>
+          <p>A sebeket vastag, nedvszívó réteggel kötjük be. 24 óra után távolítható el. Igyon sok folyadékot, kerülje a megterhelő tevékenységeket.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Before / After Care -->
+<section class="care-section">
+  <div class="container">
+    <div class="section-label reveal">Fontos tudnivalók</div>
+    <h2 class="section-title reveal reveal-delay-1">Kezelés <span class="accent">előtt</span> és <span class="accent">után</span></h2>
+    <div class="care-grid">
+      <div class="care-panel before reveal">
+        <h3><span class="dot"></span> Kezelés előtt</h3>
+        <ul class="care-list">
+          <li><span class="bullet"></span> Kényelmes, sötét színű, laza ruházatban érkezzen</li>
+          <li><span class="bullet"></span> Mellőzze az illatosított tusfürdőket és testápolókat</li>
+          <li><span class="bullet"></span> Ne dohányozzon — a piócák nem bírják a füstöt</li>
+          <li><span class="bullet"></span> Tájékoztassa terapeutáját vérnyomáscsökkentő, bétablokkoló vagy véralvadásgátló szedéséről</li>
+          <li><span class="bullet"></span> Szervezze be kb. 2 órát az alkalomra</li>
+        </ul>
+      </div>
+      <div class="care-panel after reveal reveal-delay-1">
+        <h3><span class="dot"></span> Kezelés után</h3>
+        <ul class="care-list">
+          <li><span class="bullet"></span> A kötszert 24 óra után távolítsa el</li>
+          <li><span class="bullet"></span> A seb akár 36 órán keresztül is szivároghat — ez természetes</li>
+          <li><span class="bullet"></span> Igyon sok folyadékot a méreganyagok kiürüléséhez</li>
+          <li><span class="bullet"></span> Kerülje az intenzív mozgást és autóvezetést a kezelés napján</li>
+          <li><span class="bullet"></span> Viszketés, bőrpír esetén jegelés vagy Fenistil gél segíthet</li>
+          <li><span class="bullet"></span> Erős tünetek esetén kalcium pezsgőtabletta javasolt</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <div class="section-label reveal" style="justify-content:center;">Tapasztalatok</div>
+      <h2 class="section-title reveal reveal-delay-1">Pácienseim <span class="accent">szavai</span></h2>
+      <p class="section-desc reveal reveal-delay-2">Több száz elégedett páciens tapasztalatai, amelyek motiválnak a folyamatos fejlődésben.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <blockquote>„Évek óta küzdöttem a térdízületem gyulladásával. A piócaterápia után az első héten éreztem a változást. Most már újra tudok túrázni!"</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">K</div>
+          <div>
+            <div class="testimonial-name">Kovács Éva</div>
+            <div class="testimonial-role">Ízületi gyulladás</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">★★★★★</div>
+        <blockquote>„A krónikus fejfájásom megszűnt 5 kezelés után. Krisztián nagyon alapos, türelmes és profi. Csak ajánlani tudom mindenkinek."</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">T</div>
+          <div>
+            <div class="testimonial-name">Tóth László</div>
+            <div class="testimonial-role">Migrén</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">★★★★★</div>
+        <blockquote>„A bőrproblémáim, amikkel évekig küzdöttem, jelentősen javultak. A piócaterápia valóban csodát tesz, ha helyesen alkalmazzák."</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">N</div>
+          <div>
+            <div class="testimonial-name">Nagy Anna</div>
+            <div class="testimonial-role">Bőrbetegség</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing" id="arak">
+  <div class="container">
+    <div class="pricing-header">
+      <div class="section-label reveal" style="justify-content:center;">Árak</div>
+      <h2 class="section-title reveal reveal-delay-1">Átlátható <span class="accent">díjszabás</span></h2>
+      <p class="section-desc reveal reveal-delay-2">Az árak tájékoztató jellegűek, a pontos díjazás az egyéni kezelési tervtől függ.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal">
+        <div class="pricing-icon">📋</div>
+        <h3>Konzultáció</h3>
+        <div class="price">11.000 <span>Ft</span></div>
+        <div class="price-desc">állapotfelmérés / alkalom</div>
+        <ul class="pricing-features">
+          <li>Részletes anamnézis</li>
+          <li>Egyéni kezelési terv</li>
+          <li>Ellenjavallatok felmérése</li>
+          <li>Kérdések megválaszolása</li>
+        </ul>
+      </div>
+      <div class="pricing-card featured reveal reveal-delay-1">
+        <div class="pricing-icon">🪱</div>
+        <h3>Pióca kezelés</h3>
+        <div class="price">13.000+ <span>Ft</span></div>
+        <div class="price-desc">munkadíj + pióca ára</div>
+        <ul class="pricing-features">
+          <li>Munkadíj: 10.000 Ft / alkalom</li>
+          <li>Pióca: 3.000 Ft / db</li>
+          <li>Egyéni szám, személyre szabva</li>
+          <li>Kötszer és utógondozás</li>
+          <li>Kb. 2 óra időtartam</li>
+        </ul>
+      </div>
+      <div class="pricing-card reveal reveal-delay-2">
+        <div class="pricing-icon">📚</div>
+        <h3>Tanfolyam</h3>
+        <div class="price">85.000 <span>Ft</span></div>
+        <div class="price-desc">2 napos képzés / fő</div>
+        <ul class="pricing-features">
+          <li>Elméleti és gyakorlati oktatás</li>
+          <li>Népi piócaterápia</li>
+          <li>Saját kezelésre való felkészítés</li>
+          <li>Tanúsítvány</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Course -->
+<section class="course" id="tanfolyam">
+  <div class="container">
+    <div class="course-inner">
+      <div class="course-content">
+        <div class="section-label reveal">Oktatás</div>
+        <h2 class="section-title reveal reveal-delay-1">Népi Piócaterápia <span class="accent">Tanfolyam</span></h2>
+        <p class="section-desc reveal reveal-delay-2">
+          Akik otthoni használatra szeretnék elsajátítani a módszert — saját vagy családtagjaik kezelésére — részt vehetnek 2 napos intenzív tanfolyamunkon.
+        </p>
+        <div class="course-features">
+          <div class="course-feature reveal reveal-delay-2">
+            <div class="course-feature-icon">📖</div>
+            <div>
+              <h4>Elméleti oktatás</h4>
+              <p>A pióca élettana, a nyál bioaktív anyagai, javallatok és ellenjavallatok részletes elsajátítása.</p>
+            </div>
+          </div>
+          <div class="course-feature reveal reveal-delay-3">
+            <div class="course-feature-icon">🤲</div>
+            <div>
+              <h4>Gyakorlati képzés</h4>
+              <p>Élesben történő gyakorlat, helyes felhelyezési technikák, kötés, utógondozás.</p>
+            </div>
+          </div>
+          <div class="course-feature reveal reveal-delay-4">
+            <div class="course-feature-icon">⚠️</div>
+            <div>
+              <h4>Biztonság és felelősség</h4>
+              <p>Az otthoni alkalmazás nagy felelősséggel jár — alapos felkészülés és szabályok szigorú betartása szükséges.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="course-card reveal">
+        <div class="label">2 napos intenzív képzés</div>
+        <h3>Népi Piócaterápia Tanfolyam</h3>
+        <div class="duration">2 nap · Elmélet + Gyakorlat</div>
+        <div class="price">85.000 <span>Ft / fő</span></div>
+        <div class="price-note">Az ár tartalmazza az oktatási anyagot és a tanúsítványt</div>
+        <a href="#kapcsolat" class="btn btn-primary" style="width:100%;justify-content:center;">Jelentkezem →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Warnings -->
+<section class="warnings">
+  <div class="container">
+    <div class="warning-box reveal">
+      <div class="warning-header">
+        <div class="warning-icon">🚫</div>
+        <h3>Szigorú ellenjavallatok</h3>
+      </div>
+      <ul class="warning-list">
+        <li><strong>Véralvadásgátló (vérhígító) szedése</strong> — szigorúan ellenjavallt a kezelés!</li>
+        <li>Vérzékeny vérbetegség (hemofília) vagy egyéb vérzési hajlam</li>
+        <li>Súlyos vérszegénység (anémia)</li>
+        <li>Akut fertőző betegségek</li>
+        <li>Az alkalmazott anyaggal szembeni allergia</li>
+        <li>Daganatos betegek esetén kifejezett orvosi egyeztetés és nagy körültekintés szükséges</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="gyakori">
+  <div class="container">
+    <div class="faq-header">
+      <div class="section-label reveal" style="justify-content:center;">Gyakori kérdések</div>
+      <h2 class="section-title reveal reveal-delay-1">Mire <span class="accent">gondoltál</span>?</h2>
+      <p class="section-desc reveal reveal-delay-2">Az alábbiakban összefoglaltuk a leggyakrabban felmerülő kérdéseket és válaszokat.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Fájdalmas a pióca harapása?</span>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            A pióca harapása enyhe, csípés-szerű érzet, amely hasonlíthat egy szúnyogcsípéshez. A pióca nyála tartalmaz egy helyi érzéstelenítő anyagot is, így a legtöbb páciens csak minimális kellemetlenséget érez. A kezelés során teljes nyugalomban lehet.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Hány kezelés szükséges a hatás eléréséhez?</span>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Általában 10 kezelés javasolt heti rendszerességgel, de ez egyénenként változhat. Enyhébb panaszok esetén kevesebb alkalom is elegendő lehet, míg krónikus esetekben több kezelés szükséges. A konzultáció során személyre szabott tervet készítünk.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item reveal reveal-delay-2">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Mennyi ideig vérzik a seb a kezelés után?</span>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            A pióca harapás helye a kezelés után akár 36 órán keresztül is szivároghat — ez teljesen természetes és normális jelenség. A vastag kötés 24 óra után távolítható el. Ha a vérzés 24 órán túl sem csillapodik, Hyperol tabletta alkalmazása javasolt.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item reveal reveal-delay-3">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Lehet-e otthon kezelni magam?</span>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Igen, a piócaterápia otthon is végezhető, de nagy felelősséggel jár. Az otthoni alkalmazáshoz alapos felkészülés, a szabályok szigorú betartása és a megfelelő higiéniai körülmények szükségesek. Tanfolyamunkon megtanítjuk az összes szükséges technikát.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Milyen mellékhatások léphetnek fel?</span>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Ritkán előfordulhat láz vagy hidegrázás, ami általában arra utal, hogy valamilyen betegség már lappangott a szervezetben. A kezelés utáni utóhatások a keringés és anyagcsere állapotától függően a kezelés napján, másnapján, de akár egy héttel később is jelentkezhetnek. Ezek általában enyhék és maguktól múlnak.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="kapcsolat">
+  <div class="container">
+    <div class="section-label reveal">Kapcsolat</div>
+    <h2 class="section-title reveal reveal-delay-1">Foglaljon <span class="accent">időpontot</span></h2>
+    <p class="section-desc reveal reveal-delay-2">Kész a változásra? Vegye fel velünk a kapcsolatot, és kezdje el gyógyulási útját még ma.</p>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h4>Telefon</h4>
+            <p><a href="tel:+36301234567">+36 30 123 4567</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <h4>E-mail</h4>
+            <p><a href="mailto:info@piocaterapia.hu">info@piocaterapia.hu</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Cím</h4>
+            <p>Budapest, Magyarország</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <h4>Nyitvatartás</h4>
+            <p>Hétfő – Péntek: 9:00 – 18:00<br>Szombat: 9:00 – 14:00</p>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form reveal reveal-delay-1" onsubmit="event.preventDefault(); alert('Köszönjük a jelentkezést! Hamarosan felvesszük Önnel a kapcsolatot.');">
+        <div class="form-row">
+          <div class="form-group">
+            <input type="text" placeholder="Név *" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" placeholder="Telefonszám">
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="E-mail cím *" required>
+        </div>
+        <div class="form-group">
+          <select>
+            <option value="" disabled selected>Kezelés típusa</option>
+            <option value="konzultacio">Konzultáció / állapotfelmérés</option>
+            <option value="pioca">Pióca kezelés</option>
+            <option value="tanfolyam">Népi Piócaterápia Tanfolyam</option>
+            <option value="egyeb">Egyéb / Nem tudom még</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea placeholder="Írja le panaszát vagy kérdését..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-submit">Küldés →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">Merényi <span>Krisztián</span></a>
+        <p>Piócaterapeuta és a népi gyógyászat elkötelezett híve. Segítek szervezetének megtalálni az öngyógyító erejét a természet csodálatos adottságaival.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigáció</h4>
+        <ul>
+          <li><a href="#rolam">Rólam</a></li>
+          <li><a href="#hirudo">Hirudoterápia</a></li>
+          <li><a href="#javallatok">Javallatok</a></li>
+          <li><a href="#arak">Árak</a></li>
+          <li><a href="#tanfolyam">Tanfolyam</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Információk</h4>
+        <ul>
+          <li><a href="#gyakori">Gyakori kérdések</a></li>
+          <li><a href="#">Adatvédelem</a></li>
+          <li><a href="#">ÁSZF</a></li>
+          <li><a href="#kapcsolat">Kapcsolat</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Merényi Krisztián. Minden jog fenntartva.</p>
+      <p class="footer-disclaimer">A piócaterápia kiegészítő terápiás módszer. Súlyos vagy krónikus betegségek esetén mindig konzultáljon kezelőorvosával!</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Cursor glow
+  const glow = document.getElementById('cursorGlow');
+  document.addEventListener('mousemove', (e) => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  });
+
+  // Particles
+  const particlesContainer = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDelay = Math.random() * 8 + 's';
+    p.style.animationDuration = (6 + Math.random() * 6) + 's';
+    p.style.width = (1 + Math.random() * 2) + 'px';
+    p.style.height = p.style.width;
+    particlesContainer.appendChild(p);
+  }
+
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const hamburger = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    hamburger.classList.toggle('active');
+  }
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  reveals.forEach(el => revealObserver.observe(el));
+
+  // Counter animation
+  const counters = document.querySelectorAll('.stat-number');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = parseInt(entry.target.getAttribute('data-count'));
+        let current = 0;
+        const increment = target / 60;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            entry.target.textContent = target + '+';
+            clearInterval(timer);
+          } else {
+            entry.target.textContent = Math.floor(current);
+          }
+        }, 25);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(c => counterObserver.observe(c));
+
+  // FAQ toggle
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    const isActive = item.classList.contains('active');
+
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('active');
+      i.querySelector('.faq-answer').style.maxHeight = '0';
+    });
+
+    if (!isActive) {
+      item.classList.add('active');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>

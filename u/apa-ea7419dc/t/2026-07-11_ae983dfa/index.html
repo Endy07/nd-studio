@@ -1,0 +1,1754 @@
+﻿<!DOCTYPE html>
+<html lang="hu" data-theme="warm-elegance">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály — Festmény Galéria</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════════════════════
+           CSS CUSTOM PROPERTIES — 60-30-10 DESIGNER ELV
+           60% = domináns háttér, 30% = másodlagos, 10% = hangsúly
+           ═══════════════════════════════════════════════════════════ */
+        :root {
+            --transition-speed: 0.6s;
+            --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --font-accent: 'Cormorant Garamond', Georgia, serif;
+            --border-radius: 4px;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.16);
+            --shadow-xl: 0 16px 64px rgba(0,0,0,0.20);
+        }
+
+        /* ─── Theme 1: Warm Elegance (60%: #1a1410 30%: #3d2e22 10%: #c8956c) ─── */
+        [data-theme="warm-elegance"] {
+            --bg-primary: #1a1410;
+            --bg-secondary: #2a2018;
+            --bg-tertiary: #3d2e22;
+            --bg-card: #2e2319;
+            --bg-card-hover: #3a2c1f;
+            --text-primary: #f5efe8;
+            --text-secondary: #c4b5a0;
+            --text-muted: #8a7b6a;
+            --accent: #c8956c;
+            --accent-hover: #d4a87d;
+            --accent-glow: rgba(200, 149, 108, 0.3);
+            --border-color: rgba(200, 149, 108, 0.2);
+            --border-light: rgba(200, 149, 108, 0.08);
+            --overlay: rgba(26, 20, 16, 0.85);
+            --slider-track: rgba(200, 149, 108, 0.15);
+            --slider-handle: #c8956c;
+            --scrollbar-thumb: #c8956c;
+            --scrollbar-track: #2a2018;
+            --gradient-hero: linear-gradient(180deg, rgba(26,20,16,0) 0%, rgba(26,20,16,0.8) 100%);
+            --gradient-card: linear-gradient(145deg, #2e2319 0%, #1e1710 100%);
+            --pattern-opacity: 0.03;
+        }
+
+        /* ─── Theme 2: Cool Minimalism (60%: #f8f9fa 30%: #e2e6ea 10%: #4a6fa5) ─── */
+        [data-theme="cool-minimalism"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #eef1f4;
+            --bg-tertiary: #e2e6ea;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f5f7fa;
+            --text-primary: #1a2332;
+            --text-secondary: #4a5568;
+            --text-muted: #8896a8;
+            --accent: #4a6fa5;
+            --accent-hover: #5b7fb5;
+            --accent-glow: rgba(74, 111, 165, 0.25);
+            --border-color: rgba(74, 111, 165, 0.2);
+            --border-light: rgba(74, 111, 165, 0.08);
+            --overlay: rgba(248, 249, 250, 0.92);
+            --slider-track: rgba(74, 111, 165, 0.12);
+            --slider-handle: #4a6fa5;
+            --scrollbar-thumb: #4a6fa5;
+            --scrollbar-track: #eef1f4;
+            --gradient-hero: linear-gradient(180deg, rgba(248,249,250,0) 0%, rgba(248,249,250,0.9) 100%);
+            --gradient-card: linear-gradient(145deg, #ffffff 0%, #f5f7fa 100%);
+            --pattern-opacity: 0.02;
+        }
+
+        /* ─── Theme 3: Classic Dark (60%: #0d0d0d 30%: #1a1a1a 10%: #d4af37) ─── */
+        [data-theme="classic-dark"] {
+            --bg-primary: #0d0d0d;
+            --bg-secondary: #141414;
+            --bg-tertiary: #1a1a1a;
+            --bg-card: #181818;
+            --bg-card-hover: #222222;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --accent: #d4af37;
+            --accent-hover: #e0c050;
+            --accent-glow: rgba(212, 175, 55, 0.3);
+            --border-color: rgba(212, 175, 55, 0.25);
+            --border-light: rgba(212, 175, 55, 0.08);
+            --overlay: rgba(13, 13, 13, 0.9);
+            --slider-track: rgba(212, 175, 55, 0.12);
+            --slider-handle: #d4af37;
+            --scrollbar-thumb: #d4af37;
+            --scrollbar-track: #141414;
+            --gradient-hero: linear-gradient(180deg, rgba(13,13,13,0) 0%, rgba(13,13,13,0.9) 100%);
+            --gradient-card: linear-gradient(145deg, #181818 0%, #0f0f0f 100%);
+            --pattern-opacity: 0.02;
+        }
+
+        /* ─── Theme 4: Soft Pastel (60%: #faf6f2 30%: #ede5db 10%: #b8a99a) ─── */
+        [data-theme="soft-pastel"] {
+            --bg-primary: #faf6f2;
+            --bg-secondary: #f2ece5;
+            --bg-tertiary: #ede5db;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8f4f0;
+            --text-primary: #3d3530;
+            --text-secondary: #6b5e52;
+            --text-muted: #9e9084;
+            --accent: #b8a99a;
+            --accent-hover: #c4b6a8;
+            --accent-glow: rgba(184, 169, 154, 0.3);
+            --border-color: rgba(184, 169, 154, 0.3);
+            --border-light: rgba(184, 169, 154, 0.1);
+            --overlay: rgba(250, 246, 242, 0.9);
+            --slider-track: rgba(184, 169, 154, 0.12);
+            --slider-handle: #b8a99a;
+            --scrollbar-thumb: #b8a99a;
+            --scrollbar-track: #f2ece5;
+            --gradient-hero: linear-gradient(180deg, rgba(250,246,242,0) 0%, rgba(250,246,242,0.9) 100%);
+            --gradient-card: linear-gradient(145deg, #ffffff 0%, #f8f4f0 100%);
+            --pattern-opacity: 0.02;
+        }
+
+        /* ─── Theme 5: Royal Gold (60%: #1a1520 30%: #2d2535 10%: #c9a84c) ─── */
+        [data-theme="royal-gold"] {
+            --bg-primary: #1a1520;
+            --bg-secondary: #251e2c;
+            --bg-tertiary: #2d2535;
+            --bg-card: #282030;
+            --bg-card-hover: #352c3d;
+            --text-primary: #f0e8d8;
+            --text-secondary: #c4b098;
+            --text-muted: #8a7a68;
+            --accent: #c9a84c;
+            --accent-hover: #d4b860;
+            --accent-glow: rgba(201, 168, 76, 0.35);
+            --border-color: rgba(201, 168, 76, 0.25);
+            --border-light: rgba(201, 168, 76, 0.08);
+            --overlay: rgba(26, 21, 32, 0.88);
+            --slider-track: rgba(201, 168, 76, 0.12);
+            --slider-handle: #c9a84c;
+            --scrollbar-thumb: #c9a84c;
+            --scrollbar-track: #251e2c;
+            --gradient-hero: linear-gradient(180deg, rgba(26,21,32,0) 0%, rgba(26,21,32,0.85) 100%);
+            --gradient-card: linear-gradient(145deg, #282030 0%, #1e1825 100%);
+            --pattern-opacity: 0.025;
+        }
+
+        /* ─── Theme 6: Nature Green (60%: #142018 30%: #1e3022 10%: #6b9e5e) ─── */
+        [data-theme="nature-green"] {
+            --bg-primary: #142018;
+            --bg-secondary: #1a2a20;
+            --bg-tertiary: #1e3022;
+            --bg-card: #1c2c20;
+            --bg-card-hover: #263828;
+            --text-primary: #e8f0e4;
+            --text-secondary: #a8c0a0;
+            --text-muted: #6e8868;
+            --accent: #6b9e5e;
+            --accent-hover: #7dae6e;
+            --accent-glow: rgba(107, 158, 94, 0.3);
+            --border-color: rgba(107, 158, 94, 0.25);
+            --border-light: rgba(107, 158, 94, 0.08);
+            --overlay: rgba(20, 32, 24, 0.88);
+            --slider-track: rgba(107, 158, 94, 0.12);
+            --slider-handle: #6b9e5e;
+            --scrollbar-thumb: #6b9e5e;
+            --scrollbar-track: #1a2a20;
+            --gradient-hero: linear-gradient(180deg, rgba(20,32,24,0) 0%, rgba(20,32,24,0.85) 100%);
+            --gradient-card: linear-gradient(145deg, #1c2c20 0%, #142018 100%);
+            --pattern-opacity: 0.025;
+        }
+
+        /* ─── Theme 7: Midnight Blue (60%: #0a0f1a 30%: #121a2a 10%: #5a8fd9) ─── */
+        [data-theme="midnight-blue"] {
+            --bg-primary: #0a0f1a;
+            --bg-secondary: #0e1422;
+            --bg-tertiary: #121a2a;
+            --bg-card: #101828;
+            --bg-card-hover: #182238;
+            --text-primary: #e0e8f4;
+            --text-secondary: #98a8c4;
+            --text-muted: #5a6a84;
+            --accent: #5a8fd9;
+            --accent-hover: #6e9fe5;
+            --accent-glow: rgba(90, 143, 217, 0.3);
+            --border-color: rgba(90, 143, 217, 0.2);
+            --border-light: rgba(90, 143, 217, 0.06);
+            --overlay: rgba(10, 15, 26, 0.9);
+            --slider-track: rgba(90, 143, 217, 0.12);
+            --slider-handle: #5a8fd9;
+            --scrollbar-thumb: #5a8fd9;
+            --scrollbar-track: #0e1422;
+            --gradient-hero: linear-gradient(180deg, rgba(10,15,26,0) 0%, rgba(10,15,26,0.9) 100%);
+            --gradient-card: linear-gradient(145deg, #101828 0%, #0a0f1a 100%);
+            --pattern-opacity: 0.02;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           GLOBAL RESET & BASE
+           ═══════════════════════════════════════════════════════════ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: clamp(14px, 1.2vw, 18px);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: background-color var(--transition-speed) var(--transition-ease),
+                        color var(--transition-speed) var(--transition-ease);
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: 
+                radial-gradient(ellipse at 20% 50%, var(--accent-glow) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, var(--accent-glow) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 80%, var(--accent-glow) 0%, transparent 45%);
+            opacity: var(--pattern-opacity);
+            pointer-events: none;
+            z-index: 0;
+            transition: opacity var(--transition-speed) var(--transition-ease);
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+
+        /* ═══════════════════════════════════════════════════════════
+           HEADER & NAVIGATION
+           ═══════════════════════════════════════════════════════════ */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: var(--overlay);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border-light);
+            transition: all var(--transition-speed) var(--transition-ease);
+        }
+
+        .header-inner {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .site-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .site-brand h1 {
+            font-family: var(--font-display);
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.02em;
+            transition: color var(--transition-speed) var(--transition-ease);
+        }
+
+        .site-brand .subtitle {
+            font-family: var(--font-accent);
+            font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+            color: var(--accent);
+            font-style: italic;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: color var(--transition-speed) var(--transition-ease);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           THEME SWITCHER — 60-30-10 PRO
+           ═══════════════════════════════════════════════════════════ */
+        .theme-switcher {
+            position: relative;
+        }
+
+        .theme-switcher-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            color: var(--text-secondary);
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .theme-switcher-toggle:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .theme-switcher-toggle svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-switcher-toggle.active svg {
+            transform: rotate(180deg);
+        }
+
+        .theme-switcher-panel {
+            position: absolute;
+            top: calc(100% + 0.75rem);
+            right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.25rem;
+            min-width: 280px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.96);
+            transition: all 0.35s var(--transition-ease);
+            box-shadow: var(--shadow-xl);
+            z-index: 100;
+        }
+
+        .theme-switcher-panel.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .theme-panel-title {
+            font-family: var(--font-accent);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem 0.75rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            margin-bottom: 0.25rem;
+        }
+
+        .theme-option:hover {
+            background: var(--bg-secondary);
+        }
+
+        .theme-option.active {
+            background: var(--bg-secondary);
+            box-shadow: inset 0 0 0 1px var(--accent);
+        }
+
+        .theme-colors {
+            display: flex;
+            gap: 3px;
+            width: 36px;
+            height: 24px;
+            border-radius: 6px;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1px solid var(--border-light);
+        }
+
+        .theme-colors span {
+            flex: 1;
+        }
+
+        .theme-option-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+
+        .theme-option-name {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: color var(--transition-speed) var(--transition-ease);
+        }
+
+        .theme-option-desc {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            transition: color var(--transition-speed) var(--transition-ease);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           HERO SECTION
+           ═══════════════════════════════════════════════════════════ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-hero);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-ornament {
+            width: 60px;
+            height: 1px;
+            background: var(--accent);
+            margin: 0 auto 2rem;
+            opacity: 0.6;
+        }
+
+        .hero h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            transition: color var(--transition-speed) var(--transition-ease);
+        }
+
+        .hero h2 em {
+            font-style: italic;
+            color: var(--accent);
+            transition: color var(--transition-speed) var(--transition-ease);
+        }
+
+        .hero p {
+            font-family: var(--font-accent);
+            font-size: clamp(1rem, 2vw, 1.35rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            font-style: italic;
+            transition: color var(--transition-speed) var(--transition-ease);
+        }
+
+        .hero-scroll {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .hero-scroll:hover {
+            gap: 0.8rem;
+        }
+
+        .hero-scroll svg {
+            width: 20px;
+            height: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           FILTER BAR
+           ═══════════════════════════════════════════════════════════ */
+        .filter-section {
+            position: sticky;
+            top: 64px;
+            z-index: 90;
+            background: var(--overlay);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1rem 2rem;
+            transition: all var(--transition-speed) var(--transition-ease);
+        }
+
+        .filter-inner {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-categories {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.45rem 1.1rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            color: var(--text-secondary);
+            font-family: var(--font-body);
+            font-size: 0.78rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.03em;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .filter-count {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            transition: color var(--transition-speed) var(--transition-ease);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           GALLERY GRID — FLUID RESPONSIVE
+           ═══════════════════════════════════════════════════════════ */
+        .gallery-section {
+            position: relative;
+            z-index: 2;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 3rem 2rem 6rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(380px, 100%), 1fr));
+            gap: 2rem;
+            list-style: none;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           GALLERY CARD
+           ═══════════════════════════════════════════════════════════ */
+        .gallery-card {
+            position: relative;
+            background: var(--gradient-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s var(--transition-ease);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .gallery-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--border-color);
+        }
+
+        .card-image-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s var(--transition-ease);
+        }
+
+        .gallery-card:hover .card-image {
+            transform: scale(1.04);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.3rem 0.8rem;
+            background: var(--overlay);
+            backdrop-filter: blur(10px);
+            border-radius: 100px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            border: 1px solid var(--border-color);
+            z-index: 3;
+        }
+
+        .card-context-indicator {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.3rem;
+            z-index: 3;
+        }
+
+        .context-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.4;
+            transition: opacity 0.3s ease;
+        }
+
+        .context-dot.active {
+            opacity: 1;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            transition: color var(--transition-speed) var(--transition-ease);
+        }
+
+        .card-description {
+            font-family: var(--font-accent);
+            font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-style: italic;
+            transition: color var(--transition-speed) var(--transition-ease);
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .card-meta-item {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: color var(--transition-speed) var(--transition-ease);
+        }
+
+        .card-meta-item svg {
+            width: 14px;
+            height: 14px;
+            opacity: 0.6;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           CONTEXT COMPARISON SLIDER (SEAMLESS)
+           ═══════════════════════════════════════════════════════════ */
+        .context-slider-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--overlay);
+            backdrop-filter: blur(30px) saturate(150%);
+            -webkit-backdrop-filter: blur(30px) saturate(150%);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s var(--transition-ease);
+        }
+
+        .context-slider-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .context-slider-container {
+            position: relative;
+            width: min(90vw, 1100px);
+            aspect-ratio: 16/10;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-color);
+            cursor: col-resize;
+            transform: scale(0.92);
+            transition: transform 0.4s var(--transition-ease);
+        }
+
+        .context-slider-overlay.open .context-slider-container {
+            transform: scale(1);
+        }
+
+        .context-slider-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 2010;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--overlay);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .context-slider-close:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .context-slider-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .context-slider-img.img-a {
+            z-index: 1;
+        }
+
+        .context-slider-img.img-b {
+            z-index: 2;
+            clip-path: inset(0 50% 0 0);
+        }
+
+        .context-slider-handle {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: var(--slider-handle);
+            z-index: 10;
+            transform: translateX(-50%);
+            transition: background 0.3s ease;
+        }
+
+        .context-slider-handle::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--slider-handle);
+            box-shadow: 0 0 20px var(--accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .context-slider-handle::after {
+            content: '⟨  ⟩';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 11;
+            color: var(--bg-primary);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .context-slider-label {
+            position: absolute;
+            bottom: 1.25rem;
+            padding: 0.4rem 1rem;
+            background: var(--overlay);
+            backdrop-filter: blur(10px);
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            z-index: 5;
+        }
+
+        .context-slider-label.label-a {
+            left: 1.25rem;
+        }
+
+        .context-slider-label.label-b {
+            right: 1.25rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           LIGHTBOX
+           ═══════════════════════════════════════════════════════════ */
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--overlay);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s var(--transition-ease);
+        }
+
+        .lightbox-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform: scale(0.9);
+            transition: transform 0.4s var(--transition-ease);
+        }
+
+        .lightbox-overlay.open .lightbox-content {
+            transform: scale(1);
+        }
+
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .lightbox-info {
+            margin-top: 1.5rem;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .lightbox-info h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .lightbox-info p {
+            font-family: var(--font-accent);
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1510;
+            font-size: 1.2rem;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .lightbox-prev { left: -70px; }
+        .lightbox-next { right: -70px; }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .lightbox-close:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════════════════════ */
+        .site-footer {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-light);
+            background: var(--bg-secondary);
+            transition: all var(--transition-speed) var(--transition-ease);
+        }
+
+        .footer-brand {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            transition: color var(--transition-speed) var(--transition-ease);
+        }
+
+        .footer-text {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            transition: color var(--transition-speed) var(--transition-ease);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           LOADING STATE
+           ═══════════════════════════════════════════════════════════ */
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-primary);
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 2px solid var(--border-color);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-text {
+            margin-top: 1.5rem;
+            font-family: var(--font-accent);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           RESPONSIVE BREAKPOINTS — FLUID DESIGN
+           ═══════════════════════════════════════════════════════════ */
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+                gap: 1.5rem;
+            }
+            .lightbox-prev { left: 10px; }
+            .lightbox-next { right: 10px; }
+        }
+
+        @media (max-width: 768px) {
+            .site-header { padding: 0.75rem 1rem; }
+            .header-inner { gap: 0.75rem; }
+            .site-brand .subtitle { display: none; }
+            .filter-section { top: 52px; padding: 0.75rem 1rem; }
+            .filter-inner { gap: 0.5rem; }
+            .filter-categories { gap: 0.35rem; }
+            .filter-btn { padding: 0.35rem 0.8rem; font-size: 0.7rem; }
+            .gallery-section { padding: 2rem 1rem 4rem; }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+                gap: 1rem;
+            }
+            .card-content { padding: 1.1rem; }
+            .hero { padding: 5rem 1.5rem 3rem; }
+            .context-slider-container {
+                width: 95vw;
+                aspect-ratio: 4/3;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .theme-switcher-toggle span { display: none; }
+            .filter-count { display: none; }
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           ANIMATIONS
+           ═══════════════════════════════════════════════════════════ */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s var(--transition-ease) forwards;
+        }
+
+        /* Stagger children */
+        .gallery-card:nth-child(1) { animation-delay: 0.05s; }
+        .gallery-card:nth-child(2) { animation-delay: 0.1s; }
+        .gallery-card:nth-child(3) { animation-delay: 0.15s; }
+        .gallery-card:nth-child(4) { animation-delay: 0.2s; }
+        .gallery-card:nth-child(5) { animation-delay: 0.25s; }
+        .gallery-card:nth-child(6) { animation-delay: 0.3s; }
+        .gallery-card:nth-child(7) { animation-delay: 0.35s; }
+        .gallery-card:nth-child(8) { animation-delay: 0.4s; }
+        .gallery-card:nth-child(9) { animation-delay: 0.45s; }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════ LOADING SCREEN ═══════════ -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Galéria betöltése…</p>
+    </div>
+
+    <!-- ═══════════ HEADER ═══════════ -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="site-brand">
+                <h1>Kárai Mihály</h1>
+                <span class="subtitle">Festmények Galériája</span>
+            </div>
+            <div class="header-controls">
+                <div class="theme-switcher">
+                    <button class="theme-switcher-toggle" id="themeToggle" aria-label="Témaválasztó">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                        <span>Téma</span>
+                    </button>
+                    <div class="theme-switcher-panel" id="themePanel">
+                        <p class="theme-panel-title">Színvilág kiválasztása</p>
+                        <div id="themeOptions"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-ornament"></div>
+            <h2>Az alkotás <em>szabadulása</em></h2>
+            <p>Kárai Mihály festményei — ahol a szín, a forma és a lélek találkozik a vásznon</p>
+            <a href="#gallery" class="hero-scroll">
+                Galéria megtekintése
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- ═══════════ FILTER BAR ═══════════ -->
+    <section class="filter-section" id="gallery">
+        <div class="filter-inner">
+            <div class="filter-categories" id="filterCategories"></div>
+            <span class="filter-count" id="filterCount"></span>
+        </div>
+    </section>
+
+    <!-- ═══════════ GALLERY ═══════════ -->
+    <section class="gallery-section">
+        <ul class="gallery-grid" id="galleryGrid"></ul>
+    </section>
+
+    <!-- ═══════════ CONTEXT COMPARISON SLIDER ═══════════ -->
+    <div class="context-slider-overlay" id="contextSlider">
+        <button class="context-slider-close" id="contextSliderClose">✕</button>
+        <div class="context-slider-container" id="contextSliderContainer">
+            <img class="context-slider-img img-a" id="ctxImgA" src="" alt="">
+            <img class="context-slider-img img-b" id="ctxImgB" src="" alt="">
+            <div class="context-slider-handle" id="ctxSliderHandle"></div>
+            <span class="context-slider-label label-a" id="ctxLabelA"></span>
+            <span class="context-slider-label label-b" id="ctxLabelB"></span>
+        </div>
+    </div>
+
+    <!-- ═══════════ LIGHTBOX ═══════════ -->
+    <div class="lightbox-overlay" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">✕</button>
+            <button class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</button>
+            <button class="lightbox-nav lightbox-next" id="lightboxNext">›</button>
+            <img class="lightbox-img" id="lightboxImg" src="" alt="">
+            <div class="lightbox-info">
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxDesc"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="site-footer">
+        <p class="footer-brand">Kárai Mihály — Festmény Galéria</p>
+        <p class="footer-text">© 2025 Minden jog fenntartva. Az alkotások a szerzői jog védelme alatt állnak.</p>
+    </footer>
+
+    <script>
+    /* ═══════════════════════════════════════════════════════════
+       KONFIGURÁCIÓ — KÉP MAPPÁK ÉS ADATOK
+       ═══════════════════════════════════════════════════════════ */
+    const CONFIG = {
+        imageBasePath: '../apa_festmenyek/',
+        // A festmenyek_leiras.txt tartalma — ezt a felhasználó frissítheti
+        // Formátum: "kepnev.ext|leiras|cimke|meret|technika"
+        descriptions: [
+            // ═══ PAJTÁS CÍMKE ═══
+            'pajtas_01.jpg|A pásztori élet csendes pillanata, ahol a természet és az ember összhangban lélegzik.|Pajtás|50×70 cm|olaj, vászon',
+            'pajtas_02.jpg|Reggeli fények a tanya udvarán — a harmat csendesen csillog a fűszálakon.|Pajtás|60×80 cm|olaj, vászon',
+            'pajtas_03.jpg|Az esti alkonyat melegsége borul a tájra, a nyáj csendesen hazaindul.|Pajtás|45×60 cm|olaj, vászon',
+            'pajtas_04.jpg|A tavaszi megújulás jelei: az első hajtások és a friss zöld színek.|Pajtás|70×50 cm|olaj, vászon',
+            'pajtas_05.jpg|Őszi arany: a falevelek táncolnak a szélben, a rét aranybarna.|Pajtás|80×60 cm|olaj, vászon',
+
+            // ═══ INTERIORS (kontextus-párok: interior_1 ↔ interior_2) ═══
+            'interior_1.jpg|A nappali meleg fénye — a festmény otthonos légkört áraszt.|Interiors|60×80 cm|olaj, vászon',
+            'interior_1_interior_2.jpg|Az ugyanazon festmény más nézőpontból — a mélység érzéke erősödik.|Interiors|60×80 cm|olaj, vászon',
+            'interior_2.jpg|Déli fények a műteremben — a színek intenzitása megduplázódik.|Interiors|70×90 cm|olaj, vászon',
+            'interior_2_interior_1.jpg|A nappali másik oldala — a kandalló melegsége érződik.|Interiors|70×90 cm|olaj, vászon',
+
+            // ═══ KERETES VÁLTOZATOK (keretezve_X ↔ keretnelkul_X) ═══
+            'keretezve_1.jpg|A klasszikus keret kiemeli a festmény kompozíciójának szépségét.|Keretek|80×60 cm|olaj, vászon',
+            'keretnelkul_1.jpg|Keret nélkül a festmény határtalanul terjed a falon.|Keretek|80×60 cm|olaj, vászon',
+            'keretezve_2.jpg|A díszes keret a történelmi hagyományokat idézi.|Keretek|90×70 cm|olaj, vászon',
+            'keretnelkul_2.jpg|Minimalista megjelenés — a kép önmagában beszél.|Keretek|90×70 cm|olaj, vászon',
+            'keretezve_3.jpg|Az aranyozott keret a remekmű méltó kerete.|Keretek|100×80 cm|olaj, vászon',
+            'keretnelkul_3.jpg|A modern szemlélet: a festmény a fal része, nem csak a keret.|Keretek|100×80 cm|olaj, vászon',
+
+            // ═══ LANDSCAPE ═══
+            'landscape_01.jpg|A Kárpátok felhők fölé emelkedő csúcsai — a természet hatalma.|Landscape|90×60 cm|olaj, vászon',
+            'landscape_02.jpg|A Tiszta-tó tükörsimú víze — a menny és a föld találkozik.|Landscape|70×50 cm|olaj, vászon',
+            'landscape_03.jpg|Havas táj téli reggelen — a csend és a fehér varázsa.|Landscape|80×55 cm|olaj, vászon',
+
+            // ═══ PORTRE ═══
+            'portre_01.jpg|A művész portréja — mély tekintet, gondolkodó arc.|Portré|40×50 cm|olaj, vászon',
+            'portre_02.jpg|A modell arca — a fény és árnyék játéka az orcákon.|Portré|50×60 cm|olaj, vászon',
+
+            // ═══ ABSTRAKT ═══
+            'absztrakt_01.jpg|A színek szabad táncza — az érzelmek közvetlen kivetülése.|Absztrakt|100×80 cm|olaj, vászon',
+            'absztrakt_02.jpg|Formák és textúrák összefonódása — a láthatatlan láthatóvá válik.|Absztrakt|80×100 cm|olaj, vászon',
+            'absztrakt_03.jpg|Vörös és arany — a szenvedély és az aranyosság párbeszéde.|Absztrakt|70×70 cm|olaj, vászon',
+        ],
+
+        // Kontextus-párok felismerése
+        contextPatterns: {
+            'interior': { pattern: /interior_(\d+)/, labelA: 'Nézőpont A', labelB: 'Nézőpont B' },
+            'keret': { pattern: /keret(ne)?(kul)?_(\d+)/, labelA: 'Keretezve', labelB: 'Keret nélkül' }
+        }
+    };
+
+    /* ═══════════════════════════════════════════════════════════
+       TÉMÁK — 60-30-10 DESIGNER ELV
+       ═══════════════════════════════════════════════════════════ */
+    const THEMES = [
+        {
+            id: 'warm-elegance',
+            name: 'Warm Elegance',
+            desc: 'Meleg aranyakcentusok',
+            colors: ['#1a1410', '#3d2e22', '#c8956c']
+        },
+        {
+            id: 'cool-minimalism',
+            name: 'Cool Minimalism',
+            desc: 'Hűvös szürke/kék',
+            colors: ['#f8f9fa', '#e2e6ea', '#4a6fa5']
+        },
+        {
+            id: 'classic-dark',
+            name: 'Classic Dark',
+            desc: 'Klasszikus sötét arannyal',
+            colors: ['#0d0d0d', '#1a1a1a', '#d4af37']
+        },
+        {
+            id: 'soft-pastel',
+            name: 'Soft Pastel',
+            desc: 'Puha pasztell tónusok',
+            colors: ['#faf6f2', '#ede5db', '#b8a99a']
+        },
+        {
+            id: 'royal-gold',
+            name: 'Royal Gold',
+            desc: 'Királyi arany lila árnyalattal',
+            colors: ['#1a1520', '#2d2535', '#c9a84c']
+        },
+        {
+            id: 'nature-green',
+            name: 'Nature Green',
+            desc: 'Természetzöld elegancia',
+            colors: ['#142018', '#1e3022', '#6b9e5e']
+        },
+        {
+            id: 'midnight-blue',
+            name: 'Midnight Blue',
+            desc: 'Éjkék mélység',
+            colors: ['#0a0f1a', '#121a2a', '#5a8fd9']
+        }
+    ];
+
+    /* ═══════════════════════════════════════════════════════════
+       ALKALMAZÁS ÁLLAPOT
+       ═══════════════════════════════════════════════════════════ */
+    let paintings = [];
+    let filteredPaintings = [];
+    let currentFilter = 'Összes';
+    let currentLightboxIndex = -1;
+    let contextPairMap = {};
+    let activeContextPair = null;
+
+    /* ═══════════════════════════════════════════════════════════
+       INITIALIZATION
+       ═══════════════════════════════════════════════════════════ */
+    document.addEventListener('DOMContentLoaded', () => {
+        initThemeSwitcher();
+        parseDescriptions();
+        buildContextPairs();
+        renderFilterButtons();
+        renderGallery();
+        setupEventListeners();
+        
+        // Loading screen
+        setTimeout(() => {
+            document.getElementById('loadingOverlay').classList.add('hidden');
+            // Stagger animation
+            document.querySelectorAll('.gallery-card').forEach((card, i) => {
+                setTimeout(() => card.classList.add('visible'), i * 80);
+            });
+        }, 800);
+    });
+
+    /* ═══════════════════════════════════════════════════════════
+       DESCRIPTION PARSER
+       ═══════════════════════════════════════════════════════════ */
+    function parseDescriptions() {
+        paintings = CONFIG.descriptions.map((line, index) => {
+            const parts = line.split('|');
+            const filename = parts[0] || '';
+            const description = parts[1] || '';
+            const category = parts[2] || 'Egyéb';
+            const size = parts[3] || '';
+            const technique = parts[4] || '';
+            
+            return {
+                id: index,
+                filename: filename,
+                description: description,
+                category: category,
+                size: size,
+                technique: technique,
+                imageUrl: CONFIG.imageBasePath + filename,
+                hasContext: false,
+                contextGroupId: null,
+                contextType: null
+            };
+        });
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       CONTEXT PAIR BUILDER
+       ═══════════════════════════════════════════════════════════ */
+    function buildContextPairs() {
+        const interiorMap = {};
+        const keretMap = {};
+
+        paintings.forEach(painting => {
+            const name = painting.filename.replace(/\.[^.]+$/, '');
+            
+            // Interior pairs: interior_X ↔ interior_X_interior_Y
+            const interiorMatch = name.match(/^interior_(\d+)$/);
+            if (interiorMatch) {
+                const num = interiorMatch[1];
+                const partnerName = `interior_${num}_interior_${num === '1' ? '2' : '1'}`;
+                const partner = paintings.find(p => p.filename === partnerName + '.jpg');
+                if (partner) {
+                    painting.hasContext = true;
+                    painting.contextType = 'interior';
+                    painting.contextGroupId = `interior_${num}`;
+                    partner.hasContext = true;
+                    partner.contextType = 'interior';
+                    partner.contextGroupId = `interior_${num}`;
+                    interiorMap[partnerName] = painting;
+                    contextPairMap[partnerName] = painting;
+                }
+            }
+
+            // Keret pairs: keretezve_X ↔ keretnelkul_X
+            const keretMatch = name.match(/^keret(ne)?(kul)?_(\d+)$/);
+            if (keretMatch) {
+                const num = keretMatch[3];
+                const isKeretezve = name.startsWith('keretezve');
+                const partnerName = isKeretezve ? `keretnelkul_${num}` : `keretezve_${num}`;
+                const partner = paintings.find(p => p.filename === partnerName + '.jpg');
+                if (partner) {
+                    painting.hasContext = true;
+                    painting.contextType = 'keret';
+                    painting.contextGroupId = `keret_${num}`;
+                    partner.hasContext = true;
+                    partner.contextType = 'keret';
+                    partner.contextGroupId = `keret_${num}`;
+                    keretMap[partnerName] = painting;
+                    contextPairMap[partnerName] = painting;
+                }
+            }
+        });
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       THEME SWITCHER
+       ═══════════════════════════════════════════════════════════ */
+    function initThemeSwitcher() {
+        const savedTheme = localStorage.getItem('hermes-theme') || 'warm-elegance';
+        setTheme(savedTheme);
+
+        const optionsContainer = document.getElementById('themeOptions');
+        THEMES.forEach(theme => {
+            const option = document.createElement('div');
+            option.className = `theme-option${theme.id === savedTheme ? ' active' : ''}`;
+            option.dataset.theme = theme.id;
+            option.innerHTML = `
+                <div class="theme-colors">
+                    <span style="background:${theme.colors[0]}"></span>
+                    <span style="background:${theme.colors[1]}"></span>
+                    <span style="background:${theme.colors[2]}"></span>
+                </div>
+                <div class="theme-option-info">
+                    <span class="theme-option-name">${theme.name}</span>
+                    <span class="theme-option-desc">${theme.desc}</span>
+                </div>
+            `;
+            option.addEventListener('click', () => {
+                setTheme(theme.id);
+                document.querySelectorAll('.theme-option').forEach(o => o.classList.remove('active'));
+                option.classList.add('active');
+                toggleThemePanel(false);
+            });
+            optionsContainer.appendChild(option);
+        });
+
+        document.getElementById('themeToggle').addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleThemePanel();
+        });
+    }
+
+    function setTheme(themeId) {
+        document.documentElement.setAttribute('data-theme', themeId);
+        localStorage.setItem('hermes-theme', themeId);
+    }
+
+    function toggleThemePanel(forceState) {
+        const panel = document.getElementById('themePanel');
+        const toggle = document.getElementById('themeToggle');
+        const isOpen = forceState !== undefined ? forceState : !panel.classList.contains('open');
+        panel.classList.toggle('open', isOpen);
+        toggle.classList.toggle('active', isOpen);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FILTER BUTTONS
+       ═══════════════════════════════════════════════════════════ */
+    function renderFilterButtons() {
+        const categories = ['Összes', ...new Set(paintings.map(p => p.category))];
+        const container = document.getElementById('filterCategories');
+        
+        categories.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.className = `filter-btn${cat === currentFilter ? ' active' : ''}`;
+            btn.textContent = cat;
+            btn.addEventListener('click', () => {
+                currentFilter = cat;
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterGallery();
+            });
+            container.appendChild(btn);
+        });
+
+        updateFilterCount();
+    }
+
+    function filterGallery() {
+        if (currentFilter === 'Összes') {
+            filteredPaintings = [...paintings];
+        } else {
+            filteredPaintings = paintings.filter(p => p.category === currentFilter);
+        }
+        renderGallery();
+        updateFilterCount();
+    }
+
+    function updateFilterCount() {
+        const count = filteredPaintings.length;
+        document.getElementById('filterCount').textContent = `${count} alkotás`;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       GALLERY RENDERER
+       ═══════════════════════════════════════════════════════════ */
+    function renderGallery() {
+        const grid = document.getElementById('galleryGrid');
+        grid.innerHTML = '';
+
+        filteredPaintings.forEach((painting, index) => {
+            const li = document.createElement('li');
+            li.className = 'gallery-card';
+            li.style.animationDelay = `${index * 0.06}s`;
+            
+            const categoryLabel = painting.hasContext 
+                ? `${painting.category} ✓` 
+                : painting.category;
+
+            li.innerHTML = `
+                <div class="card-image-wrapper">
+                    <img class="card-image" 
+                         src="${painting.imageUrl}" 
+                         alt="${painting.filename}"
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.parentElement.style.background='var(--bg-secondary)';">
+                    <span class="card-badge">${categoryLabel}</span>
+                    ${painting.hasContext ? `
+                        <div class="card-context-indicator">
+                            <span class="context-dot active"></span>
+                            <span class="context-dot"></span>
+                        </div>
+                    ` : ''}
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">${painting.filename.replace(/\.[^.]+$/, '')}</h3>
+                    <p class="card-description">${painting.description}</p>
+                    <div class="card-meta">
+                        ${painting.size ? `
+                            <span class="card-meta-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                                ${painting.size}
+                            </span>
+                        ` : ''}
+                        ${painting.technique ? `
+                            <span class="card-meta-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg>
+                                ${painting.technique}
+                            </span>
+                        ` : ''}
+                        ${painting.hasContext ? `
+                            <span class="card-meta-item" style="cursor:pointer; color:var(--accent);" onclick="openContextSlider('${painting.filename}')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                Összehasonlítás
+                            </span>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+
+            // Image click → lightbox
+            const img = li.querySelector('.card-image');
+            img.addEventListener('click', () => openLightbox(index));
+
+            grid.appendChild(li);
+        });
+
+        // Animate in
+        setTimeout(() => {
+            document.querySelectorAll('.gallery-card').forEach((card, i) => {
+                setTimeout(() => card.classList.add('visible'), i * 60);
+            });
+        }, 100);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       CONTEXT COMPARISON SLIDER
+       ═══════════════════════════════════════════════════════════ */
+    function openContextSlider(filename) {
+        const painting = paintings.find(p => p.filename === filename);
+        if (!painting || !painting.hasContext) return;
+
+        const contextGroupId = painting.contextGroupId;
+        const groupPaintings = paintings.filter(p => p.contextGroupId === contextGroupId);
+        
+        if (groupPaintings.length < 2) return;
+
+        const imgA = groupPaintings[0];
+        const imgB = groupPaintings[1];
+
+        const pattern = painting.contextType === 'interior' 
+            ? CONFIG.contextPatterns.interior 
+            : CONFIG.contextPatterns.keret;
+
+        document.getElementById('ctxImgA').src = imgA.imageUrl;
+        document.getElementById('ctxImgB').src = imgB.imageUrl;
+        document.getElementById('ctxLabelA').textContent = pattern.labelA;
+        document.getElementById('ctxLabelB').textContent = pattern.labelB;
+
+        // Reset slider position
+        const container = document.getElementById('contextSliderContainer');
+        container.querySelector('.context-slider-handle').style.left = '50%';
+        imgB.style.clipPath = 'inset(0 50% 0 0)';
+
+        const overlay = document.getElementById('contextSlider');
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+
+        activeContextPair = { imgA, imgB };
+    }
+
+    function closeContextSlider() {
+        document.getElementById('contextSlider').classList.remove('open');
+        document.body.style.overflow = '';
+        activeContextPair = null;
+    }
+
+    // Context slider drag logic
+    function setupContextSliderDrag() {
+        const container = document.getElementById('contextSliderContainer');
+        const handle = document.getElementById('ctxSliderHandle');
+        const imgB = document.getElementById('ctxImgB');
+        let isDragging = false;
+
+        function updateSlider(x) {
+            const rect = container.getBoundingClientRect();
+            let percent = ((x - rect.left) / rect.width) * 100;
+            percent = Math.max(0, Math.min(100, percent));
+            handle.style.left = percent + '%';
+            imgB.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+        }
+
+        container.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            updateSlider(e.clientX);
+        });
+
+        container.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            updateSlider(e.touches[0].clientX);
+        }, { passive: true });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) updateSlider(e.clientX);
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (isDragging) updateSlider(e.touches[0].clientX);
+        }, { passive: true });
+
+        document.addEventListener('mouseup', () => isDragging = false);
+        document.addEventListener('touchend', () => isDragging = false);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       LIGHTBOX
+       ═══════════════════════════════════════════════════════════ */
+    function openLightbox(index) {
+        currentLightboxIndex = index;
+        const painting = filteredPaintings[index];
+        if (!painting) return;
+
+        document.getElementById('lightboxImg').src = painting.imageUrl;
+        document.getElementById('lightboxTitle').textContent = painting.filename.replace(/\.[^.]+$/, '');
+        document.getElementById('lightboxDesc').textContent = painting.description;
+
+        document.getElementById('lightbox').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+        currentLightboxIndex = -1;
+    }
+
+    function navigateLightbox(direction) {
+        let newIndex = currentLightboxIndex + direction;
+        if (newIndex < 0) newIndex = filteredPaintings.length - 1;
+        if (newIndex >= filteredPaintings.length) newIndex = 0;
+        openLightbox(newIndex);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       EVENT LISTENERS
+       ═══════════════════════════════════════════════════════════ */
+    function setupEventListeners() {
+        // Theme panel close on outside click
+        document.addEventListener('click', (e) => {
+            const switcher = document.querySelector('.theme-switcher');
+            if (!switcher.contains(e.target)) {
+                toggleThemePanel(false);
+            }
+        });
+
+        // Context slider close
+        document.getElementById('contextSliderClose').addEventListener('click', closeContextSlider);
+        document.getElementById('contextSlider').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeContextSlider();
+        });
+
+        // Lightbox
+        document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeLightbox();
+        });
+        document.getElementById('lightboxPrev').addEventListener('click', () => navigateLightbox(-1));
+        document.getElementById('lightboxNext').addEventListener('click', () => navigateLightbox(1));
+
+        // Context slider drag
+        setupContextSliderDrag();
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (document.getElementById('contextSlider').classList.contains('open')) {
+                    closeContextSlider();
+                } else if (document.getElementById('lightbox').classList.contains('open')) {
+                    closeLightbox();
+                }
+            }
+            if (document.getElementById('lightbox').classList.contains('open')) {
+                if (e.key === 'ArrowLeft') navigateLightbox(-1);
+                if (e.key === 'ArrowRight') navigateLightbox(1);
+            }
+        });
+
+        // Smooth scroll for hero link
+        document.querySelector('.hero-scroll')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+    </script>
+</body>
+</html>
+

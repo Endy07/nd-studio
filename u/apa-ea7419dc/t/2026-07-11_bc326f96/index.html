@@ -1,0 +1,461 @@
+﻿<!DOCTYPE html>
+<html lang="hu" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály - Prémium Portfólió 2026</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts (2026 Modern Typography) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Manrope:wght@200;300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Manrope"', 'sans-serif'],
+                    },
+                    colors: {
+                        // 60% Dominant, 30% Secondary, 10% Accent
+                        'theme-bg': 'var(--color-bg)',
+                        'theme-surface': 'var(--color-surface)',
+                        'theme-text': 'var(--color-text)',
+                        'theme-accent': 'var(--color-accent)',
+                    },
+                    backgroundImage: {
+                        'grain': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- Design Agent Output: Theme System & Painterly UI --- */
+        :root {
+            /* Default: Theme 1 - Classic Canvas */
+            --color-bg: #F9F7F2;
+            --color-surface: #FFFFFF;
+            --color-text: #1A1A1A;
+            --color-accent: #8C7B70; /* Muted Earth */
+            
+            --transition-speed: 0.6s;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+            overflow-x: hidden;
+        }
+
+        /* Grain Texture Overlay */
+        .texture-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+        }
+
+        /* Organic Image Container */
+        .painting-card {
+            position: relative;
+            overflow: hidden;
+            cursor: none; /* Custom cursor handling */
+        }
+
+        /* The Layers */
+        .layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+
+        /* Organic Switch Logic: Default state */
+        .layer-main {
+            z-index: 2;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Hover State: Reveal Interior/Framed */
+        .painting-card:hover .layer-main {
+            opacity: 0;
+            transform: scale(1.05); /* Subtle zoom out effect */
+        }
+
+        .painting-card:hover .layer-detail {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 3;
+        }
+
+        /* Specific Detail Layers */
+        .layer-interior {
+            opacity: 0;
+            z-index: 3;
+        }
+        
+        .painting-card:hover .layer-interior {
+            opacity: 1;
+        }
+
+        /* Theme Switcher Styles */
+        .theme-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .theme-btn:hover { transform: scale(1.2); }
+        .theme-btn.active { border-color: var(--color-accent); transform: scale(1.2); }
+
+        /* Custom Cursor */
+        #cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--color-text);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            mix-blend-mode: difference;
+        }
+        
+        /* Loading State */
+        .loader {
+            position: fixed;
+            inset: 0;
+            background: var(--color-bg);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+        .loader.hidden { opacity: 0; pointer-events: none; }
+
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-theme-accent selection:text-white">
+
+    <!-- Texture Overlay -->
+    <div class="texture-overlay"></div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor"></div>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <h1 class="font-serif text-3xl italic tracking-widest animate-pulse">Kárai Mihály</h1>
+    </div>
+
+    <!-- Navigation / Header -->
+    <nav class="fixed w-full z-40 top-0 left-0 px-6 py-6 flex justify-between items-center mix-blend-difference text-[var(--color-text)]">
+        <div class="text-2xl font-serif font-bold tracking-widest uppercase">KM</div>
+        
+        <!-- Asset Manager / Design Agent: Theme Switcher -->
+        <div class="flex gap-4 items-center bg-[var(--color-surface)]/80 backdrop-blur-md px-4 py-2 rounded-full border border-[var(--color-text)]/10">
+            <span class="text-xs uppercase tracking-widest mr-2 opacity-60">Téma</span>
+            <button onclick="setTheme('classic')" class="theme-btn active" style="background: #F9F7F2;" title="Classic Canvas"></button>
+            <button onclick="setTheme('midnight')" class="theme-btn" style="background: #1a1a1a;" title="Midnight Oil"></button>
+            <button onclick="setTheme('sepia')" class="theme-btn" style="background: #D2B48C;" title="Sepia Soul"></button>
+            <button onclick="setTheme('nordic')" class="theme-btn" style="background: #8FA3B3;" title="Nordic Silence"></button>
+            <button onclick="setTheme('terracotta')" class="theme-btn" style="background: #C27C5E;" title="Terracotta"></button>
+            <button onclick="setTheme('monochrome')" class="theme-btn" style="background: #333333;" title="Monochrome"></button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
+        <div class="max-w-4xl mx-auto z-10">
+            <p class="text-sm md:text-base uppercase tracking-[0.3em] mb-4 opacity-70">Született: 1961</p>
+            <h1 class="font-serif text-6xl md:text-9xl font-light leading-tight mb-8">
+                Kárai <br> <span class="italic text-theme-accent">Mihály</span>
+            </h1>
+            <p class="font-sans text-lg md:text-xl max-w-2xl mx-auto leading-relaxed opacity-80 font-light">
+                Festmények, amelyek mesélnek. A valóság és a képzelet találkozása textúrákban és fényekben.
+            </p>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <path d="M7 13L12 18L17 13M7 6L12 11L17 6" />
+            </svg>
+        </div>
+    </header>
+
+    <!-- Gallery Section -->
+    <main class="px-4 md:px-12 lg:px-24 pb-32">
+        
+        <!-- Filter / Context -->
+        <div class="flex justify-between items-end mb-16 border-b border-[var(--color-text)]/20 pb-4">
+            <h2 class="font-serif text-4xl">Válogatás</h2>
+            <span class="text-xs uppercase tracking-widest opacity-60 hidden md:block">Interaktív Nézegetéshez Vigye az Egeret a Képekre</span>
+        </div>
+
+        <!-- Dynamic Grid -->
+        <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+            <!-- Content injected by JS -->
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[var(--color-surface)] py-12 px-6 border-t border-[var(--color-text)]/10 text-center">
+        <p class="font-serif text-2xl italic mb-4">Kárai Mihály</p>
+        <p class="text-xs uppercase tracking-widest opacity-50">© 2026 Prémium Portfólió</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        /**
+         * ASSET MANAGER AGENT SIMULATION
+         * Simulates reading C:\xampp\htdocs\2026\Hermes\apa_festmenyek
+         * Parsing festmenyek_leiras.txt logic
+         */
+        const assetData = [
+            {
+                id: "film_01",
+                filename: "film_01.jpg",
+                title: "Csendes reggel",
+                desc: "Olaj, vászon. A hajnali fények játéka a konyhapulton.",
+                views: {
+                    main: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\film_01.jpg", // Simulated path
+                    interior1: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\film_01_interior_1.jpg",
+                    interior2: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\film_01_interior_2.jpg",
+                    framed1: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\film_01_keretezve_1.jpg",
+                    framed2: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\film_01_keretezve_2.jpg"
+                }
+            },
+            {
+                id: "taj_02",
+                filename: "taj_02.jpg",
+                title: "Hill of Silence",
+                desc: "Festmény a Balaton-parti tájról, ködös reggelen.",
+                views: {
+                    main: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\taj_02.jpg",
+                    interior1: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\taj_02_interior_1.jpg",
+                    framed1: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\taj_02_keretezve_1.jpg"
+                }
+            },
+            {
+                id: "portre_03",
+                filename: "portre_03.jpg",
+                title: "Az Önarckép",
+                desc: "Kiváló éleslátású portré, expresszív ecsetkezeléssel.",
+                views: {
+                    main: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\portre_03.jpg",
+                    interior1: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\portre_03_interior_1.jpg",
+                    framed1: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\portre_03_keretezve_1.jpg"
+                }
+            },
+            {
+                id: "termeszet_04",
+                filename: "termeszet_04.jpg",
+                title: "Őszi misztikum",
+                desc: "A természet őszi színei absztrakt formákban.",
+                views: {
+                    main: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\termeszet_04.jpg",
+                    interior1: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\termeszet_04_interior_1.jpg",
+                    framed1: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\termeszet_04_keretezve_1.jpg"
+                }
+            },
+            {
+                id: "abstrakt_05",
+                filename: "abstrakt_05.jpg",
+                title: "Városi zaj",
+                desc: "A metropolisz energiája, technikai festékkel.",
+                views: {
+                    main: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\abstrakt_05.jpg",
+                    interior1: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\abstrakt_05_interior_1.jpg",
+                    framed1: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\abstrakt_05_keretezve_1.jpg"
+                }
+            },
+            {
+                id: "csend_06",
+                filename: "csend_06.jpg",
+                title: "Tengeri csend",
+                desc: "Minimalista kompozíció, kék és fehér dominanciával.",
+                views: {
+                    main: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\csend_06.jpg",
+                    interior1: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\csend_06_interior_1.jpg",
+                    framed1: "C:\\xampp\\htdocs\\2026\\Hermes\\apa_festmenyek\\csend_06_keretezve_1.jpg"
+                }
+            }
+        ];
+
+        /**
+         * FRONTEND DEVELOPER AGENT: Logic
+         */
+        const galleryGrid = document.getElementById('gallery-grid');
+        const cursor = document.getElementById('cursor');
+
+        // --- 1. Render Gallery ---
+        function renderGallery() {
+            galleryGrid.innerHTML = '';
+            
+            assetData.forEach((item, index) => {
+                // Determine which views exist for this painting
+                const hasInterior = item.views.interior1 || item.views.interior2;
+                const hasFramed = item.views.framed1 || item.views.framed2;
+                
+                // Logic: If we have interior, show it on hover. If framed, show it.
+                // We'll prioritize Interior 1 if available, else Framed 1.
+                let detailSrc = null;
+                if (hasInterior) detailSrc = item.views.interior1;
+                else if (hasFramed) detailSrc = item.views.framed1;
+
+                // If no detail view, we just show the main image with a slight zoom
+                const isInteractive = !!detailSrc;
+
+                const card = document.createElement('div');
+                card.className = `painting-card group relative aspect-[3/4] bg-theme-surface shadow-xl overflow-hidden`;
+                
+                // Main Image
+                const mainImg = document.createElement('img');
+                mainImg.src = item.views.main;
+                mainImg.className = `layer layer-main w-full h-full object-cover opacity-90 group-hover:opacity-100`;
+                mainImg.alt = item.title;
+                // Fallback for simulation if local path doesn't exist
+                mainImg.onerror = function() { this.src = 'https://placehold.co/600x800/e2e8f0/1a1a1a?text=' + item.id; };
+
+                // Detail Image (The Organic Reveal)
+                let detailImg = null;
+                if (isInteractive) {
+                    detailImg = document.createElement('img');
+                    detailImg.src = detailSrc;
+                    detailImg.className = `layer layer-interior w-full h-full object-cover`;
+                    detailImg.alt = item.title + " (Részlet)";
+                    detailImg.onerror = function() { this.src = 'https://placehold.co/600x800/d4d4d8/1a1a1a?text=Részlet'; };
+                }
+
+                // Overlay Text (Title)
+                const overlay = document.createElement('div');
+                overlay.className = `absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/60 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-10`;
+                overlay.innerHTML = `
+                    <h3 class="font-serif text-2xl text-white mb-1">${item.title}</h3>
+                    <p class="text-xs font-sans text-gray-200 uppercase tracking-widest">${item.desc}</p>
+                `;
+
+                card.appendChild(mainImg);
+                if (detailImg) card.appendChild(detailImg);
+                card.appendChild(overlay);
+                galleryGrid.appendChild(card);
+            });
+        }
+
+        // --- 2. Theme Engine (Design Agent) ---
+        const themes = {
+            classic: {
+                '--color-bg': '#F9F7F2',
+                '--color-surface': '#FFFFFF',
+                '--color-text': '#1A1A1A',
+                '--color-accent': '#8C7B70'
+            },
+            midnight: {
+                '--color-bg': '#0F172A',
+                '--color-surface': '#1E293B',
+                '--color-text': '#E2E8F0',
+                '--color-accent': '#F59E0B' // Amber
+            },
+            sepia: {
+                '--color-bg': '#F5E6D3',
+                '--color-surface': '#E6D5C3',
+                '--color-text': '#4A3B32',
+                '--color-accent': '#8B4513'
+            },
+            nordic: {
+                '--color-bg': '#F0F4F8',
+                '--color-surface': '#FFFFFF',
+                '--color-text': '#334155',
+                '--color-accent': '#64748B'
+            },
+            terracotta: {
+                '--color-bg': '#FDF6F0',
+                '--color-surface': '#FFFFFF',
+                '--color-text': '#2D1B14',
+                '--color-accent': '#C27C5E'
+            },
+            monochrome: {
+                '--color-bg': '#111111',
+                '--color-surface': '#1A1A1A',
+                '--color-text': '#EEEEEE',
+                '--color-accent': '#666666'
+            }
+        };
+
+        function setTheme(themeName) {
+            const root = document.documentElement;
+            const selected = themes[themeName];
+            
+            if (selected) {
+                Object.keys(selected).forEach(key => {
+                    root.style.setProperty(key, selected[key]);
+                });
+                
+                // Update active button state
+                document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+                // Find the button that was clicked (simplified logic for demo)
+                event.target.classList.add('active');
+            }
+        }
+
+        // --- 3. Custom Cursor Logic ---
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Hover effect for cursor
+        const interactiveElements = document.querySelectorAll('a, button, .painting-card');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.width = '60px';
+                cursor.style.height = '60px';
+                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                cursor.style.mixBlendMode = 'difference';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.width = '40px';
+                cursor.style.height = '40px';
+                cursor.style.backgroundColor = 'transparent';
+            });
+        });
+
+        // --- 4. Initialization ---
+        window.addEventListener('load', () => {
+            renderGallery();
+            // Hide loader
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+        });
+
+    </script>
+</body>
+</html>

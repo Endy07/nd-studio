@@ -1,0 +1,348 @@
+{
+  "slug": "kriszi",
+  "megjelenes": "Kriszi",
+  "tervek": [
+    {
+      "id": "kriszi/2026-07-01_05c67536",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_64kctx_geminiadta_Feladat_Hermes_Kriszi_1_8",
+      "utvonal": "t/2026-07-01_05c67536/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_08503a31",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_64kctx_geminiadta_Feladat_Hermes_Kriszi_1_2",
+      "utvonal": "t/2026-07-01_08503a31/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_1898b000",
+      "cim": "merenyi-krisztian-hirudoterapia_ClaudeWeb(Sonnet 5 medium)",
+      "utvonal": "t/2026-07-01_1898b000/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_41d269f0",
+      "cim": "Start-Hermes_ollamamodels_Qwen3.6-27B-Q4_K_M_nommproj_n_layers_nelkul_64kctx_roocode_qwenjinja_depreservethinkingnelkul_Feladat_Hermes_Kriszi_ver2_geminis_1_2",
+      "utvonal": "t/2026-07-01_41d269f0/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_4325ce05",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_64kctx_geminiadta_Feladat_Hermes_Kriszi_1_3",
+      "utvonal": "t/2026-07-01_4325ce05/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_4ed537d0",
+      "cim": "Start-Hermes_qwen3.6-27b-IQ4_XS-pure_gemini_tokeletes_ngl99_nokvoffload_Feladat_Hermes_Kriszi_1_1",
+      "utvonal": "t/2026-07-01_4ed537d0/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_670ba575",
+      "cim": "Start-Hermes_Qwen3.6-27B-MTP-4.5bpw-pure_nommproj_n_layers_nelkul_128kctx_Feladat_Hermes_Kriszi_1_1",
+      "utvonal": "t/2026-07-01_670ba575/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_67b3774f",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_64kctx_geminiadta_Feladat_Hermes_Kriszi_1_10",
+      "utvonal": "t/2026-07-01_67b3774f/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_692f3012",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_64kctx_geminiadta_Feladat_Hermes_Kriszi_1_12",
+      "utvonal": "t/2026-07-01_692f3012/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_83a5ca1b",
+      "cim": "Start-Hermes_ollamamodels_Qwen3.6-27B-Q4_K_M_nommproj_n_layers_nelkul_48kctx_roocode_qwenjinja_depreservethinkingnelkul_Feladat_Hermes_Kriszi_1_1",
+      "utvonal": "t/2026-07-01_83a5ca1b/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_83afc54e",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_64kctx_geminiadta_Feladat_Hermes_Kriszi_1_13",
+      "utvonal": "t/2026-07-01_83afc54e/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_86c286bd",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_64kctx_geminiadta_Feladat_Hermes_Kriszi_1_5",
+      "utvonal": "t/2026-07-01_86c286bd/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_956fddd6",
+      "cim": "Start-Hermes_ollamamodels_Qwen3.6-27B-Q4_K_M_nommproj_n_layers_nelkul_128kctx_roocode_qwenjinja_depreservethinkingnelkul_Feladat_Hermes_Kriszi_1_1",
+      "utvonal": "t/2026-07-01_956fddd6/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_98e7748b",
+      "cim": "GeminiWeb_Kriszi_Pioca",
+      "utvonal": "t/2026-07-01_98e7748b/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_a4567fa9",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_64kctx_geminiadta_Feladat_Hermes_Kriszi_1_1",
+      "utvonal": "t/2026-07-01_a4567fa9/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_a8fe851a",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_64kctx_geminiadta_Feladat_Hermes_Kriszi_1_7",
+      "utvonal": "t/2026-07-01_a8fe851a/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_d5ee4185",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_64kctx_geminiadta_Feladat_Hermes_Kriszi_1_9",
+      "utvonal": "t/2026-07-01_d5ee4185/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_d7deb1a8",
+      "cim": "Start-Hermes_Qwen3.6-27B-4bpw-16GB-VRAM_128kctx_n_layers_nelkul_roocode_qwenjinja_Feladat_Hermes_Kriszi_1_1",
+      "utvonal": "t/2026-07-01_d7deb1a8/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_dc7970da",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_64kctx_geminiadta_Feladat_Hermes_Kriszi_1_11",
+      "utvonal": "t/2026-07-01_dc7970da/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_e2bd8003",
+      "cim": "Start-Hermes_ollamamodels_Qwen3.6-27B-Q4_K_M_nommproj_n_layers_nelkul_64kctx_roocode_qwenjinja_depreservethinkingnelkul_Feladat_Hermes_Kriszi_ver2_geminis_1_1",
+      "utvonal": "t/2026-07-01_e2bd8003/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-01_ef671b35",
+      "cim": "Start-Hermes_Qwen3.6-27B-4bpw-16GB-VRAM_128kctx_n_layers_nelkul_Feladat_Hermes_Kriszi_1_1",
+      "utvonal": "t/2026-07-01_ef671b35/index.html",
+      "keszult": "2026-07-01"
+    },
+    {
+      "id": "kriszi/2026-07-02_0430d11c",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_12",
+      "utvonal": "t/2026-07-02_0430d11c/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_0d27fd2d",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_13",
+      "utvonal": "t/2026-07-02_0d27fd2d/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_1800de98",
+      "cim": "Qwen3.6-28B-REAP20-A3B-Q4_K_M_Kriszi_Hermes_2",
+      "utvonal": "t/2026-07-02_1800de98/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_1a65a4bb",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_3",
+      "utvonal": "t/2026-07-02_1a65a4bb/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_2740d3e3",
+      "cim": "Kriszi_Start-Hermes-MAX Qwen3.6-35B-A3B-UD-Q4_K_M_64kctx_geminiadta_mintareap_nglnelkul_1",
+      "utvonal": "t/2026-07-02_2740d3e3/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_2f463188",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_11",
+      "utvonal": "t/2026-07-02_2f463188/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_3359396f",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_1",
+      "utvonal": "t/2026-07-02_3359396f/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_3946c282",
+      "cim": "Start-Hermes_Qwen3.6-27B-4bpw-16GB-VRAM_64kctx_n_layers_nelkul_mod_Feladat_Hermes_Kriszi_1_1",
+      "utvonal": "t/2026-07-02_3946c282/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_3a10c238",
+      "cim": "Qwen3.6-28B-REAP20-A3B-Q4_K_M_Kriszi_Hermes_1",
+      "utvonal": "t/2026-07-02_3a10c238/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_4cebb84b",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_8",
+      "utvonal": "t/2026-07-02_4cebb84b/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_4e815f0e",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_14",
+      "utvonal": "t/2026-07-02_4e815f0e/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_531759cf",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_4",
+      "utvonal": "t/2026-07-02_531759cf/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_85f38987",
+      "cim": "Start-Hermes_ollamamodels_Qwen3.6-27B-Q4_K_M_nommproj_n_layers_nelkul_64kctx_roocode_qwenjinja_depreservethinkingnelkul_Feladat_Hermes_Kriszi_ver2_geminis_1_3",
+      "utvonal": "t/2026-07-02_85f38987/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_9136fc95",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_10",
+      "utvonal": "t/2026-07-02_9136fc95/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_968c81f9",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_6",
+      "utvonal": "t/2026-07-02_968c81f9/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_9b078fde",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_7",
+      "utvonal": "t/2026-07-02_9b078fde/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_c1eade77",
+      "cim": "Qwen3.6-28B-REAP20-A3B-Q4_K_M_Kriszi_Hermes_3",
+      "utvonal": "t/2026-07-02_c1eade77/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_c9ab2e75",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_9",
+      "utvonal": "t/2026-07-02_c9ab2e75/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_daf68441",
+      "cim": "Start-Hermes_Qwen3.6-27B-4bpw-16GB-VRAM_64kctx_n_layers_nelkul_mod_Feladat_Hermes_Kriszi_1_2",
+      "utvonal": "t/2026-07-02_daf68441/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-02_e893781a",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_5",
+      "utvonal": "t/2026-07-02_e893781a/index.html",
+      "keszult": "2026-07-02"
+    },
+    {
+      "id": "kriszi/2026-07-03_009523b4",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_15",
+      "utvonal": "t/2026-07-03_009523b4/index.html",
+      "keszult": "2026-07-03"
+    },
+    {
+      "id": "kriszi/2026-07-03_02c72507",
+      "cim": "Start-Hermes-MAX_Qwen-AgentWorld-35B-A3B-GGUF_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_3",
+      "utvonal": "t/2026-07-03_02c72507/index.html",
+      "keszult": "2026-07-03"
+    },
+    {
+      "id": "kriszi/2026-07-03_2bf7a949",
+      "cim": "Start-Hermes-MAX Qwen-AgentWorld-35B-A3B-GGUF_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1",
+      "utvonal": "t/2026-07-03_2bf7a949/index.html",
+      "keszult": "2026-07-03"
+    },
+    {
+      "id": "kriszi/2026-07-03_378b450f",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-MTP-GGUF_128kctx_geminiadta_mintareap_moe20_codingra_Feladat_Hermes_Kriszi_1_1",
+      "utvonal": "t/2026-07-03_378b450f/index.html",
+      "keszult": "2026-07-03"
+    },
+    {
+      "id": "kriszi/2026-07-03_40f1a33d",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-MTP-GGUF_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_1",
+      "utvonal": "t/2026-07-03_40f1a33d/index.html",
+      "keszult": "2026-07-03"
+    },
+    {
+      "id": "kriszi/2026-07-03_a43f320e",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-MTP-GGUF_128kctx_geminiadta_mintareap_moe20_codingra_Feladat_Hermes_Kriszi_1_2",
+      "utvonal": "t/2026-07-03_a43f320e/index.html",
+      "keszult": "2026-07-03"
+    },
+    {
+      "id": "kriszi/2026-07-03_aa5bc8bd",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_telegramonkeresztul_v3",
+      "utvonal": "t/2026-07-03_aa5bc8bd/index.html",
+      "keszult": "2026-07-03"
+    },
+    {
+      "id": "kriszi/2026-07-03_b5333639",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_telegramonkeresztul",
+      "utvonal": "t/2026-07-03_b5333639/index.html",
+      "keszult": "2026-07-03"
+    },
+    {
+      "id": "kriszi/2026-07-03_d2c64a0d",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-MTP-GGUF_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_2",
+      "utvonal": "t/2026-07-03_d2c64a0d/index.html",
+      "keszult": "2026-07-03"
+    },
+    {
+      "id": "kriszi/2026-07-03_df2c892c",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_telegramonkeresztul_v5",
+      "utvonal": "t/2026-07-03_df2c892c/index.html",
+      "keszult": "2026-07-03"
+    },
+    {
+      "id": "kriszi/2026-07-03_e32ebd9c",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_telegramonkeresztul_v4",
+      "utvonal": "t/2026-07-03_e32ebd9c/index.html",
+      "keszult": "2026-07-03"
+    },
+    {
+      "id": "kriszi/2026-07-03_e5904b21",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_telegramonkeresztul_v6",
+      "utvonal": "t/2026-07-03_e5904b21/index.html",
+      "keszult": "2026-07-03"
+    },
+    {
+      "id": "kriszi/2026-07-03_fd114b76",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_telegramonkeresztul_v1",
+      "utvonal": "t/2026-07-03_fd114b76/index.html",
+      "keszult": "2026-07-03"
+    },
+    {
+      "id": "kriszi/2026-07-03_fe304d52",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_telegramonkeresztul_v2",
+      "utvonal": "t/2026-07-03_fe304d52/index.html",
+      "keszult": "2026-07-03"
+    },
+    {
+      "id": "kriszi/2026-07-13_21ca08d5",
+      "cim": "Hy3_free_Hermesben_Kriszi_Feladat_3d_animation_1",
+      "utvonal": "t/2026-07-13_21ca08d5/index.html",
+      "keszult": "2026-07-13"
+    },
+    {
+      "id": "kriszi/2026-07-13_a0a73f9b",
+      "cim": "Hy3_free_Hermesben_Kriszi_Feladat_1",
+      "utvonal": "t/2026-07-13_a0a73f9b/index.html",
+      "keszult": "2026-07-13"
+    }
+  ]
+}

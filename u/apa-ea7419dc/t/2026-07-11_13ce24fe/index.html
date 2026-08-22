@@ -1,0 +1,2026 @@
+﻿<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Kárai Mihály — Digitális Kiállítás</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Outfit:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   KÁRAI MIHÁLY — DIGITÁLIS KIÁLLÍTÓTEREM
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* Alap atmoszféra — "Éjfekete Galéria" */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-tertiary: #1e1e1e;
+  --text-primary: #f0ece4;
+  --text-secondary: #a8a090;
+  --text-accent: #d4a853;
+  --accent: #c9956b;
+  --accent-glow: rgba(201, 149, 107, 0.3);
+  --shadow: rgba(0,0,0,0.6);
+  --frame-color: #2a2218;
+  --gallery-wall: #12101a;
+  --spotlight: rgba(255,245,230,0.08);
+  --transition-speed: 0.8s;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ATMOSZFÉRÁK (PALETTA)
+   ═══════════════════════════════════════════════════════════ */
+
+[data-atmosphere="midnight-gallery"] {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-tertiary: #1e1e1e;
+  --text-primary: #f0ece4;
+  --text-secondary: #a8a090;
+  --text-accent: #d4a853;
+  --accent: #c9956b;
+  --accent-glow: rgba(201, 149, 107, 0.3);
+  --shadow: rgba(0,0,0,0.6);
+  --frame-color: #2a2218;
+  --gallery-wall: #12101a;
+  --spotlight: rgba(255,245,230,0.08);
+}
+
+[data-atmosphere="warm-ember"] {
+  --bg-primary: #1a1208;
+  --bg-secondary: #241a0e;
+  --bg-tertiary: #2e2214;
+  --text-primary: #f5e6d0;
+  --text-secondary: #b89a70;
+  --text-accent: #e8a840;
+  --accent: #d4883a;
+  --accent-glow: rgba(212, 136, 58, 0.3);
+  --shadow: rgba(20,10,0,0.6);
+  --frame-color: #3a2a18;
+  --gallery-wall: #1e160c;
+  --spotlight: rgba(255,220,160,0.1);
+}
+
+[data-atmosphere="frost-dawn"] {
+  --bg-primary: #0e1218;
+  --bg-secondary: #181e28;
+  --bg-tertiary: #222a38;
+  --text-primary: #e8eef5;
+  --text-secondary: #8a9ab0;
+  --text-accent: #7ab8d4;
+  --accent: #5aa0c0;
+  --accent-glow: rgba(90, 160, 192, 0.25);
+  --shadow: rgba(0,10,30,0.6);
+  --frame-color: #1a2430;
+  --gallery-wall: #141a24;
+  --spotlight: rgba(200,230,255,0.08);
+}
+
+[data-atmosphere="verdant-garden"] {
+  --bg-primary: #0e1610;
+  --bg-secondary: #162018;
+  --bg-tertiary: #1e2c20;
+  --text-primary: #e8f0e4;
+  --text-secondary: #8aaa80;
+  --text-accent: #70b860;
+  --accent: #58a048;
+  --accent-glow: rgba(88, 160, 72, 0.25);
+  --shadow: rgba(0,20,0,0.6);
+  --frame-color: #2a3a22;
+  --gallery-wall: #141e14;
+  --spotlight: rgba(180,255,160,0.08);
+}
+
+[data-atmosphere="rose-dusk"] {
+  --bg-primary: #180e14;
+  --bg-secondary: #241420;
+  --bg-tertiary: #301a2a;
+  --text-primary: #f0e4ec;
+  --text-secondary: #b08a9a;
+  --text-accent: #d47090;
+  --accent: #c06080;
+  --accent-glow: rgba(192, 96, 128, 0.25);
+  --shadow: rgba(30,0,15,0.6);
+  --frame-color: #3a2230;
+  --gallery-wall: #1e141c;
+  --spotlight: rgba(255,200,220,0.08);
+}
+
+[data-atmosphere="golden-hour"] {
+  --bg-primary: #1a1408;
+  --bg-secondary: #261e0e;
+  --bg-tertiary: #322814;
+  --text-primary: #f8f0d8;
+  --text-secondary: #c8b080;
+  --text-accent: #e8c840;
+  --accent: #d4b030;
+  --accent-glow: rgba(212, 176, 48, 0.3);
+  --shadow: rgba(30,20,0,0.5);
+  --frame-color: #3a3018;
+  --gallery-wall: #221c0e;
+  --spotlight: rgba(255,240,180,0.1);
+}
+
+[data-atmosphere="snow-gallery"] {
+  --bg-primary: #e8e4e0;
+  --bg-secondary: #d8d4d0;
+  --bg-tertiary: #c8c4c0;
+  --text-primary: #1a1814;
+  --text-secondary: #5a5650;
+  --text-accent: #8a7040;
+  --accent: #6a5830;
+  --accent-glow: rgba(106, 88, 48, 0.15);
+  --shadow: rgba(0,0,0,0.15);
+  --frame-color: #3a3428;
+  --gallery-wall: #dcd8d4;
+  --spotlight: rgba(255,255,255,0.4);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ALAP RESET & PAGE
+   ═══════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--bg-secondary);
+}
+
+html::-webkit-scrollbar { width: 6px; }
+html::-webkit-scrollbar-track { background: var(--bg-secondary); }
+html::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+body {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+  min-height: 100vh;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PRELOADER
+   ═══════════════════════════════════════════════════════════ */
+
+#preloader {
+  position: fixed; inset: 0; z-index: 10000;
+  background: #000;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  transition: opacity 1.2s ease, visibility 1.2s ease;
+}
+
+#preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+#preloader .loader-art {
+  width: 120px; height: 120px;
+  position: relative;
+}
+
+#preloader .loader-art .brush-stroke {
+  position: absolute;
+  border-radius: 50%;
+  animation: brushPaint 2s ease-in-out infinite;
+}
+
+#preloader .loader-art .brush-stroke:nth-child(1) {
+  width: 80px; height: 80px;
+  background: radial-gradient(circle, #c9956b 0%, transparent 70%);
+  top: 10px; left: 20px;
+  animation-delay: 0s;
+}
+
+#preloader .loader-art .brush-stroke:nth-child(2) {
+  width: 60px; height: 60px;
+  background: radial-gradient(circle, #d4a853 0%, transparent 70%);
+  top: 40px; left: 50px;
+  animation-delay: 0.3s;
+}
+
+#preloader .loader-art .brush-stroke:nth-child(3) {
+  width: 50px; height: 50px;
+  background: radial-gradient(circle, #8a6040 0%, transparent 70%);
+  top: 20px; left: 60px;
+  animation-delay: 0.6s;
+}
+
+@keyframes brushPaint {
+  0%, 100% { transform: scale(0.8); opacity: 0.4; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+#preloader .loader-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  color: #c9956b;
+  margin-top: 40px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   VÖLGYI TEXTÚRÁK (TEXTURE OVERLAYS)
+   ═══════════════════════════════════════════════════════════ */
+
+.texture-overlay {
+  position: fixed; inset: 0; z-index: 1;
+  pointer-events: none;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HEADER / CÍMLAP
+   ═══════════════════════════════════════════════════════════ */
+
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.hero-bg-canvas {
+  position: absolute; inset: 0;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-eyebrow {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 200;
+  font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: slideUp 1s ease 0.5s forwards;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(3rem, 10vw, 8rem);
+  line-height: 0.95;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: slideUp 1.2s ease 0.8s forwards;
+  text-shadow: 0 0 80px var(--accent-glow);
+}
+
+.hero-title .accent {
+  color: var(--text-accent);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.hero-subtitle {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(1rem, 2.5vw, 1.6rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-top: 1.5rem;
+  opacity: 0;
+  animation: slideUp 1s ease 1.2s forwards;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.hero-divider {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  margin: 2.5rem auto;
+  opacity: 0;
+  animation: slideUp 1s ease 1.5s forwards;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-accent);
+  text-decoration: none;
+  padding: 16px 40px;
+  border: 1px solid rgba(201, 149, 107, 0.3);
+  border-radius: 0;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.5s ease;
+  opacity: 0;
+  animation: slideUp 1s ease 1.8s forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+  z-index: -1;
+}
+
+.hero-cta:hover::before { transform: scaleX(1); }
+.hero-cta:hover { color: #000; border-color: var(--accent); }
+
+.hero-cta svg {
+  width: 20px; height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.hero-cta:hover svg { transform: translateY(4px); }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: slideUp 1s ease 2.2s forwards;
+  z-index: 3;
+}
+
+.scroll-indicator span {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   NAVIGÁCIÓ
+   ═══════════════════════════════════════════════════════════ */
+
+.glass-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(10,10,10,0.0);
+  backdrop-filter: blur(0px);
+  transition: all 0.6s ease;
+}
+
+.glass-nav.scrolled {
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(201,149,107,0.1);
+}
+
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: 3px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover { color: var(--text-accent); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 5px;
+}
+
+.nav-menu-btn span {
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PALETTA PANEL
+   ═══════════════════════════════════════════════════════════ */
+
+.palette-trigger {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1100;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-tertiary);
+  border: 1px solid rgba(201,149,107,0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+.palette-trigger:hover {
+  transform: translateY(-50%) scale(1.1);
+  border-color: var(--accent);
+  box-shadow: 0 4px 30px var(--accent-glow);
+}
+
+.palette-trigger svg {
+  width: 20px; height: 20px;
+  fill: var(--text-accent);
+}
+
+.palette-panel {
+  position: fixed;
+  right: -320px;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  z-index: 1050;
+  background: var(--bg-secondary);
+  border-left: 1px solid rgba(201,149,107,0.1);
+  backdrop-filter: blur(30px);
+  transition: right 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.palette-panel.open { right: 0; }
+
+.palette-header {
+  padding: 2rem 1.5rem 1rem;
+  border-bottom: 1px solid rgba(201,149,107,0.1);
+}
+
+.palette-header h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+}
+
+.palette-header p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+}
+
+.palette-colors {
+  display: flex;
+  gap: 6px;
+  margin-top: 1rem;
+  height: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.palette-colors .swatch {
+  flex: 1;
+  transition: transform 0.3s ease;
+}
+
+.palette-colors .swatch:hover { transform: scaleY(1.3); }
+
+.palette-options {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.palette-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.palette-option:hover {
+  background: rgba(201,149,107,0.05);
+}
+
+.palette-option.active {
+  background: rgba(201,149,107,0.08);
+  border-color: rgba(201,149,107,0.2);
+}
+
+.palette-option .color-preview {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 2px solid rgba(255,255,255,0.1);
+}
+
+.palette-option .option-info h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+.palette-option .option-info p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  letter-spacing: 1px;
+}
+
+.palette-option .check-icon {
+  margin-left: auto;
+  width: 18px; height: 18px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.palette-option.active .check-icon { opacity: 1; }
+
+/* ═══════════════════════════════════════════════════════════
+   KIÁLLÍTÓTEREM — GALÉRIA
+   ═══════════════════════════════════════════════════════════ */
+
+.exhibition-section {
+  position: relative;
+  z-index: 2;
+  padding: 4rem 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: 4px;
+}
+
+.section-header .section-line {
+  width: 60px;
+  height: 1px;
+  background: var(--accent);
+  margin: 1.5rem auto;
+}
+
+.section-header p {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FESTMÉNY KART
+   ═══════════════════════════════════════════════════════════ */
+
+.painting-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+  gap: 3rem;
+  padding: 1rem;
+}
+
+.painting-card {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+.painting-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.painting-card:hover {
+  transform: translateY(-8px);
+}
+
+.painting-frame {
+  position: relative;
+  background: var(--frame-color);
+  padding: 12px;
+  border-radius: 2px;
+  box-shadow:
+    0 10px 40px var(--shadow),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+  transition: box-shadow 0.5s ease;
+}
+
+.painting-card:hover .painting-frame {
+  box-shadow:
+    0 20px 60px var(--shadow),
+    0 0 40px var(--accent-glow),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+.painting-canvas-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: #1a1a1a;
+  border-radius: 1px;
+}
+
+.painting-canvas-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease, filter 0.8s ease;
+}
+
+.painting-card:hover .painting-canvas-wrap img {
+  transform: scale(1.03);
+}
+
+/* Keret nélküli mód */
+.painting-card.no-frame .painting-frame {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.painting-card.no-frame .painting-canvas-wrap {
+  border-radius: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Mágikus Nagyító / Spot-light effekt
+   ═══════════════════════════════════════════════════════════ */
+
+.magic-magnifier {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.3);
+  box-shadow:
+    0 0 30px rgba(0,0,0,0.5),
+    0 0 60px var(--accent-glow),
+    inset 0 0 20px rgba(0,0,0,0.3);
+  transform: translate(-50%, -50%);
+}
+
+.magic-magnifier.active { opacity: 1; }
+
+.magic-magnifier .mag-image {
+  width: 360px;
+  height: 360px;
+  object-fit: cover;
+  position: absolute;
+  transform-origin: 0 0;
+}
+
+.painting-card:hover .magic-magnifier { opacity: 1; }
+
+/* Hover overlay — belső tér effekt */
+.painting-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    transparent 0%,
+    transparent 30%,
+    rgba(0,0,0,0.4) 100%
+  );
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.painting-card:hover .painting-hover-overlay { opacity: 1; }
+
+/* ═══════════════════════════════════════════════════════════
+   FESTMÉNY INFÓ
+   ═══════════════════════════════════════════════════════════ */
+
+.painting-info {
+  padding: 1.2rem 0.5rem;
+}
+
+.painting-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 0.3rem;
+}
+
+.painting-meta {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.painting-desc {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   NÉZETVÁLTÓ GOMBOK (keret / keret nélkül / interior)
+   ═══════════════════════════════════════════════════════════ */
+
+.view-toggle {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.view-toggle button {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border: 1px solid rgba(201,149,107,0.2);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.view-toggle button:hover,
+.view-toggle button.active {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FÓKUSZ MODAL (Nagy kép)
+   ═══════════════════════════════════════════════════════════ */
+
+.focus-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(30px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.6s ease;
+}
+
+.focus-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.focus-modal-close {
+  position: absolute;
+  top: 30px; right: 30px;
+  width: 50px; height: 50px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.focus-modal-close:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.focus-modal-content {
+  display: flex;
+  gap: 3rem;
+  max-width: 1200px;
+  width: 90%;
+  align-items: center;
+}
+
+.focus-modal-image-wrap {
+  flex: 1;
+  max-width: 600px;
+  aspect-ratio: 4/5;
+  background: var(--frame-color);
+  padding: 16px;
+  border-radius: 3px;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+}
+
+.focus-modal-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1px;
+}
+
+.focus-modal-info {
+  flex: 1;
+}
+
+.focus-modal-info h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.focus-modal-info .fm-meta {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.focus-modal-info .fm-desc {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.focus-modal-info .fm-details {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 2;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MŰVÉSZ BIÓ SEKTOR
+   ═══════════════════════════════════════════════════════════ */
+
+.bio-section {
+  position: relative;
+  z-index: 2;
+  padding: 8rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.bio-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: 4px;
+  margin-bottom: 3rem;
+}
+
+.bio-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.15rem;
+  line-height: 2;
+  color: var(--text-secondary);
+  text-align: justify;
+}
+
+.bio-text .highlight {
+  color: var(--text-accent);
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LÁBLÉC
+   ═══════════════════════════════════════════════════════════ */
+
+.site-footer {
+  position: relative;
+  z-index: 2;
+  padding: 4rem 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(201,149,107,0.1);
+}
+
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: 4px;
+  margin-bottom: 1rem;
+}
+
+.footer-note {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PARTICLE BACKGROUND
+   ═══════════════════════════════════════════════════════════ */
+
+#particles-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .painting-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-menu-btn { display: flex; }
+
+  .palette-trigger {
+    right: 12px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .palette-panel { width: 280px; right: -300px; }
+
+  .painting-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 0.5rem;
+  }
+
+  .focus-modal-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .focus-modal-image-wrap {
+    max-width: 100%;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+
+  .magic-magnifier { width: 120px; height: 120px; }
+  .magic-magnifier .mag-image { width: 240px; height: 240px; }
+
+  .bio-section { padding: 4rem 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .gallery-nav { padding: 0.8rem 1rem; }
+  .exhibition-section { padding: 2rem 1rem; }
+  .painting-frame { padding: 8px; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ANIMÁCIÓK
+   ═══════════════════════════════════════════════════════════ */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Parallax canvas */
+.parallax-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GLOW CURSOR EFFECT
+   ═══════════════════════════════════════════════════════════ */
+
+.cursor-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+body:hover .cursor-glow { opacity: 0.5; }
+
+/* ═══════════════════════════════════════════════════════════
+   INTERIŐR VIEW TOGGLE
+   ═══════════════════════════════════════════════════════════ */
+
+.interior-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 8;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.55rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  background: rgba(0,0,0,0.6);
+  color: var(--text-accent);
+  border-radius: 2px;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.painting-card:hover .interior-badge { opacity: 1; }
+
+/* ═══════════════════════════════════════════════════════════
+   SMOOTH IMAGE LOADING
+   ═══════════════════════════════════════════════════════════ */
+
+.painting-canvas-wrap img {
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+}
+
+.painting-canvas-wrap img.loaded {
+  opacity: 1;
+}
+
+.painting-canvas-wrap img.loading-placeholder {
+  background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   AMBIENT LIGHT EFFECT
+   ═══════════════════════════════════════════════════════════ */
+
+.ambient-light {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.3;
+  top: -200px;
+  left: -200px;
+  transition: all 2s ease;
+}
+
+</style>
+</head>
+
+<body data-atmosphere="midnight-gallery">
+
+<!-- ═══════════════ PRELOADER ═══════════════ -->
+<div id="preloader">
+  <div class="loader-art">
+    <div class="brush-stroke"></div>
+    <div class="brush-stroke"></div>
+    <div class="brush-stroke"></div>
+  </div>
+  <div class="loader-text">Kiállítás betöltése</div>
+</div>
+
+<!-- ═══════════════ CURSOR GLOW ═══════════════ -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- ═══════════════ AMBIENT LIGHT ═══════════════ -->
+<div class="ambient-light" id="ambientLight"></div>
+
+<!-- ═══════════════ TEXTURE OVERLAY ═══════════════ -->
+<div class="texture-overlay"></div>
+
+<!-- ═══════════════ PARTICLES ═══════════════ -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- ═══════════════ NAVIGATION ═══════════════ -->
+<nav class="glass-nav" id="mainNav">
+  <a href="#" class="nav-brand">KÁRAI MIHÁLY</a>
+  <ul class="nav-links">
+    <li><a href="#exhibition">Kiállítás</a></li>
+    <li><a href="#bio">A művész</a></li>
+    <li><a href="#contact">Kapcsolat</a></li>
+  </ul>
+  <button class="nav-menu-btn" id="menuBtn" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══════════════ PALETTE TRIGGER ═══════════════ -->
+<button class="palette-trigger" id="paletteTrigger" aria-label="Színvilág váltás">
+  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="9" r="2" fill="currentColor"/><circle cx="15" cy="8" r="2" fill="currentColor"/><circle cx="12" cy="14" r="2" fill="currentColor"/><circle cx="6" cy="15" r="1.5" fill="currentColor" opacity="0.5"/></svg>
+</button>
+
+<!-- ═══════════════ PALETTE PANEL ═══════════════ -->
+<div class="palette-panel" id="palettePanel">
+  <div class="palette-header">
+    <h3>Színvilág</h3>
+    <p>Válassz atmoszférát</p>
+    <div class="palette-colors" id="paletteColors"></div>
+  </div>
+  <div class="palette-options" id="paletteOptions"></div>
+</div>
+
+<!-- ═══════════════ HERO SECTION ═══════════════ -->
+<section class="hero-section" id="hero">
+  <canvas class="hero-bg-canvas" id="heroBgCanvas"></canvas>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Digitális Kiállítás</p>
+    <h1 class="hero-title">Kárai<br><span class="accent">Mihály</span></h1>
+    <p class="hero-subtitle">Színek csendje · Pászták mélysége — Egy élet festményei</p>
+    <div class="hero-divider"></div>
+    <a href="#exhibition" class="hero-cta">
+      Belépés a kiállításra
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </a>
+  </div>
+  <div class="scroll-indicator">
+    <span>Görgess</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════ EXHIBITION ═══════════════ -->
+<section class="exhibition-section" id="exhibition">
+  <div class="section-header fade-in">
+    <h2>A Kiállítás</h2>
+    <div class="section-line"></div>
+    <p>Minden festmény egy ablak a művész lelkivilágába — egyesek keretben, mások szabadságban.</p>
+  </div>
+
+  <div class="painting-grid" id="paintingGrid">
+    <!-- A festmények dinamikusan generálódnak -->
+  </div>
+</section>
+
+<!-- ═══════════════ BIO ═══════════════ -->
+<section class="bio-section" id="bio">
+  <h2 class="fade-in">A Művész</h2>
+  <div class="bio-text fade-in">
+    <p>
+      <span class="highlight">Kárai Mihály</span> (1961) festőművész élete a színek és a formák nyelvén íródott.
+      Pályafutása során a <span class="highlight">pásztai táj</span> hangulatait ragadta meg ecsetjével,
+      ahol minden ecsetvonás egy-egy érzelem, minden színpár egy-egy emlék.
+    </p>
+    <br>
+    <p>
+      Művészete a <span class="highlight">realizmus és impresszionizmus</span> határán táncol,
+      ahol a természet nem csupán ábrázolás, hanem <span class="highlight">tapintható jelenlét</span>.
+      Festményei a csendet és a gondolkodást hívják meg a megfigyelőben.
+    </p>
+    <br>
+    <p>
+      Ezen a digitális kiállításon a látogató nem csupán szemlélődő, hanem a festmények
+      <span class="highlight">interiőr világának felfedezője</span> — a mágikus nagyítóval
+      bejárhatja a képek mögötti teret.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="site-footer" id="contact">
+  <div class="footer-brand">KÁRAI MIHÁLY</div>
+  <p class="footer-note">Digitális Kiállítás · 2026</p>
+</footer>
+
+<!-- ═══════════════ FOCUS MODAL ═══════════════ -->
+<div class="focus-modal" id="focusModal">
+  <button class="focus-modal-close" id="focusModalClose">✕</button>
+  <div class="focus-modal-content">
+    <div class="focus-modal-image-wrap" id="focusImageWrap">
+      <img src="" alt="" id="focusImage">
+    </div>
+    <div class="focus-modal-info">
+      <h2 id="focusTitle"></h2>
+      <div class="fm-meta" id="focusMeta"></div>
+      <p class="fm-desc" id="focusDesc"></p>
+      <div class="fm-details" id="focusDetails"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   KÁRAI MIHÁLY — DIGITÁLIS KIÁLLÍTÓTEREM
+   Fő JavaScript logika
+   ═══════════════════════════════════════════════════════════ */
+
+(function() {
+  'use strict';
+
+  // ═══════════════════════════════════════════════════════════
+  // ADATOK — Festmények metaadatai
+  // ═══════════════════════════════════════════════════════════
+
+  const PAINTINGS_PATH = '../apa_festmenyek/';
+
+  const paintings = [
+    {
+      id: 'painting-1',
+      title: 'Pásztai reggel',
+      year: '2023',
+      medium: 'olaj, vászon',
+      dimensions: '80 × 100 cm',
+      description: 'A hajnal első sugarai átszűrődnek a ködön, megvilágítva a pászta táj csendes szépségét.',
+      image: PAINTINGS_PATH + 'paszta_reggel.jpg',
+      interior: PAINTINGS_PATH + 'paszta_reggel_interior.jpg',
+      framed: true,
+      category: 'tájkép'
+    },
+    {
+      id: 'painting-2',
+      title: 'Őszi patak',
+      year: '2022',
+      medium: 'olaj, vászon',
+      dimensions: '60 × 80 cm',
+      description: 'Az őszi levelek aranyában csobog a patak, mintha maga az idő folyna itt a vízben.',
+      image: PAINTINGS_PATH + 'oszi_patak.jpg',
+      interior: PAINTINGS_PATH + 'oszi_patak_interior.jpg',
+      framed: true,
+      category: 'tájkép'
+    },
+    {
+      id: 'painting-3',
+      title: 'Esti alkonyat',
+      year: '2024',
+      medium: 'olaj, vászon',
+      dimensions: '100 × 120 cm',
+      description: 'A naplemente utolsó pillanatai, amikor az ég és a föld egyetlen vöröses-arany szövetévé olvad.',
+      image: PAINTINGS_PATH + 'esti_alkonyat.jpg',
+      interior: PAINTINGS_PATH + 'esti_alkonyat_interior.jpg',
+      framed: false,
+      category: 'tájkép'
+    },
+    {
+      id: 'painting-4',
+      title: 'Csendes kert',
+      year: '2021',
+      medium: 'olaj, vászon',
+      dimensions: '70 × 90 cm',
+      description: 'Egy eldugott kert sarka, ahol az idő megállt, és a virágok csendben beszélgetnek.',
+      image: PAINTINGS_PATH + 'csendes_kert.jpg',
+      interior: PAINTINGS_PATH + 'csendes_kert_interior.jpg',
+      framed: true,
+      category: 'kert'
+    },
+    {
+      id: 'painting-5',
+      title: 'Téli csend',
+      year: '2023',
+      medium: 'olaj, vászon',
+      dimensions: '90 × 110 cm',
+      description: 'A hó lepi be a tájat, minden színt fehér csendbe burkolva. A művészet a legritkább pillanatban.',
+      image: PAINTINGS_PATH + 'teli_csend.jpg',
+      interior: PAINTINGS_PATH + 'teli_csend_interior.jpg',
+      framed: false,
+      category: 'tájkép'
+    },
+    {
+      id: 'painting-6',
+      title: 'Naplemente a mezőn',
+      year: '2024',
+      medium: 'olaj, vászon',
+      dimensions: '120 × 90 cm',
+      description: 'A végtelen mező horizontja, ahol az ég és a föld találkozik az arany óra fényében.',
+      image: PAINTINGS_PATH + 'naplemente_mezo.jpg',
+      interior: PAINTINGS_PATH + 'naplemente_mezo_interior.jpg',
+      framed: true,
+      category: 'tájkép'
+    },
+    {
+      id: 'painting-7',
+      title: 'Tavaszi virágzás',
+      year: '2022',
+      medium: 'olaj, vászon',
+      dimensions: '65 × 85 cm',
+      description: 'Az élet újjászületése a tavasz első virágaiban — minden színpár egy új remény.',
+      image: PAINTINGS_PATH + 'tavaszi_viragzas.jpg',
+      interior: PAINTINGS_PATH + 'tavaszi_viragzas_interior.jpg',
+      framed: true,
+      category: 'csendélet'
+    },
+    {
+      id: 'painting-8',
+      title: 'Az öreg tölgy',
+      year: '2021',
+      medium: 'olaj, vászon',
+      dimensions: '80 × 100 cm',
+      description: 'Egy ősi tölgy fa, amely évszázadok tanúja. Tekintete mély, mint maga az idő.',
+      image: PAINTINGS_PATH + 'oreg_tolgy.jpg',
+      interior: PAINTINGS_PATH + 'oreg_tolgy_interior.jpg',
+      framed: false,
+      category: 'tájkép'
+    }
+  ];
+
+  // ═══════════════════════════════════════════════════════════
+  // ATMOSZFÉRÁK
+  // ═══════════════════════════════════════════════════════════
+
+  const atmospheres = [
+    {
+      id: 'midnight-gallery',
+      name: 'Éjfekete Galéria',
+      desc: 'Klasszikus sötét kiállítótér',
+      colors: ['#0a0a0a', '#141414', '#c9956b', '#f0ece4', '#a8a090'],
+      preview: ['#0a0a0a', '#141414', '#c9956b', '#f0ece4', '#a8a090']
+    },
+    {
+      id: 'warm-ember',
+      name: 'Meleg Parázs',
+      desc: 'Meleg, kandallós hangulat',
+      colors: ['#1a1208', '#241a0e', '#d4883a', '#f5e6d0', '#b89a70'],
+      preview: ['#1a1208', '#241a0e', '#d4883a', '#f5e6d0', '#b89a70']
+    },
+    {
+      id: 'frost-dawn',
+      name: 'Zsongó Hajnal',
+      desc: 'Hideg, derengő kék tónusok',
+      colors: ['#0e1218', '#181e28', '#5aa0c0', '#e8eef5', '#8a9ab0'],
+      preview: ['#0e1218', '#181e28', '#5aa0c0', '#e8eef5', '#8a9ab0']
+    },
+    {
+      id: 'verdant-garden',
+      name: 'Zöld Kert',
+      desc: 'Természetes, zöldeskék árnyalatok',
+      colors: ['#0e1610', '#162018', '#58a048', '#e8f0e4', '#8aaa80'],
+      preview: ['#0e1610', '#162018', '#58a048', '#e8f0e4', '#8aaa80']
+    },
+    {
+      id: 'rose-dusk',
+      name: 'Rózsaszín Alkonyat',
+      desc: 'Romantikus, rózsaszín hangulat',
+      colors: ['#180e14', '#241420', '#c06080', '#f0e4ec', '#b08a9a'],
+      preview: ['#180e14', '#241420', '#c06080', '#f0e4ec', '#b08a9a']
+    },
+    {
+      id: 'golden-hour',
+      name: 'Arany Óra',
+      desc: 'Meleg, aranyos napfény',
+      colors: ['#1a1408', '#261e0e', '#d4b030', '#f8f0d8', '#c8b080'],
+      preview: ['#1a1408', '#261e0e', '#d4b030', '#f8f0d8', '#c8b080']
+    },
+    {
+      id: 'snow-gallery',
+      name: 'Hófehér Galéria',
+      desc: 'Világos, fehér kiállítótér',
+      colors: ['#e8e4e0', '#d8d4d0', '#6a5830', '#1a1814', '#5a5650'],
+      preview: ['#e8e4e0', '#d8d4d0', '#6a5830', '#1a1814', '#5a5650']
+    }
+  ];
+
+  // ═══════════════════════════════════════════════════════════
+  // DOM REFERENCIÁK
+  // ═══════════════════════════════════════════════════════════
+
+  const body = document.body;
+  const preloader = document.getElementById('preloader');
+  const mainNav = document.getElementById('mainNav');
+  const paletteTrigger = document.getElementById('paletteTrigger');
+  const palettePanel = document.getElementById('palettePanel');
+  const paletteColors = document.getElementById('paletteColors');
+  const paletteOptions = document.getElementById('paletteOptions');
+  const paintingGrid = document.getElementById('paintingGrid');
+  const cursorGlow = document.getElementById('cursorGlow');
+  const ambientLight = document.getElementById('ambientLight');
+  const focusModal = document.getElementById('focusModal');
+  const focusModalClose = document.getElementById('focusModalClose');
+  const particlesCanvas = document.getElementById('particles-canvas');
+  const heroBgCanvas = document.getElementById('heroBgCanvas');
+
+  // ═══════════════════════════════════════════════════════════
+  // PRELOADER
+  // ═══════════════════════════════════════════════════════════
+
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      preloader.classList.add('hidden');
+      setTimeout(() => preloader.remove(), 1200);
+    }, 2000);
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // PARTICLES SYSTEM
+  // ═══════════════════════════════════════════════════════════
+
+  const pCtx = particlesCanvas.getContext('2d');
+  let particles = [];
+  const PARTICLE_COUNT = window.innerWidth < 768 ? 30 : 60;
+
+  function resizeParticles() {
+    particlesCanvas.width = window.innerWidth;
+    particlesCanvas.height = window.innerHeight;
+  }
+
+  class Particle {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+      this.x = Math.random() * particlesCanvas.width;
+      this.y = Math.random() * particlesCanvas.height;
+      this.size = Math.random() * 2 + 0.5;
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      this.speedY = (Math.random() - 0.5) * 0.3;
+      this.opacity = Math.random() * 0.5 + 0.1;
+      this.pulse = Math.random() * Math.PI * 2;
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      this.pulse += 0.01;
+      if (this.x < 0 || this.x > particlesCanvas.width ||
+          this.y < 0 || this.y > particlesCanvas.height) {
+        this.reset();
+      }
+    }
+    draw() {
+      const o = this.opacity * (0.5 + 0.5 * Math.sin(this.pulse));
+      pCtx.beginPath();
+      pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      pCtx.fillStyle = `rgba(201, 149, 107, ${o})`;
+      pCtx.fill();
+    }
+  }
+
+  function initParticles() {
+    resizeParticles();
+    particles = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function animateParticles() {
+    pCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    requestAnimationFrame(animateParticles);
+  }
+
+  initParticles();
+  animateParticles();
+  window.addEventListener('resize', resizeParticles);
+
+  // ═══════════════════════════════════════════════════════════
+  // HERO BACKGROUND CANVAS — Festői háttér
+  // ═══════════════════════════════════════════════════════════
+
+  const hCtx = heroBgCanvas.getContext('2d');
+
+  function resizeHeroBg() {
+    heroBgCanvas.width = window.innerWidth;
+    heroBgCanvas.height = window.innerHeight;
+  }
+
+  function drawHeroBg() {
+    resizeHeroBg();
+    const w = heroBgCanvas.width;
+    const h = heroBgCanvas.height;
+
+    // Sötét gradient háttér
+    const grad = hCtx.createRadialGradient(w/2, h/2, 0, w/2, h/2, Math.max(w, h) * 0.7);
+    grad.addColorStop(0, '#1a1510');
+    grad.addColorStop(0.5, '#0e0c08');
+    grad.addColorStop(1, '#050505');
+    hCtx.fillStyle = grad;
+    hCtx.fillRect(0, 0, w, h);
+
+    // Abstract festői ecsetvonások
+    for (let i = 0; i < 15; i++) {
+      hCtx.beginPath();
+      const x = Math.random() * w;
+      const y = Math.random() * h;
+      const radius = Math.random() * 200 + 50;
+      const g = hCtx.createRadialGradient(x, y, 0, x, y, radius);
+      const alpha = Math.random() * 0.04 + 0.01;
+      g.addColorStop(0, `rgba(201, 149, 107, ${alpha})`);
+      g.addColorStop(0.5, `rgba(180, 120, 80, ${alpha * 0.5})`);
+      g.addColorStop(1, 'transparent');
+      hCtx.fillStyle = g;
+      hCtx.arc(x, y, radius, 0, Math.PI * 2);
+      hCtx.fill();
+    }
+
+    // Finom textúra
+    for (let i = 0; i < 5000; i++) {
+      const x = Math.random() * w;
+      const y = Math.random() * h;
+      const s = Math.random() * 1;
+      hCtx.fillStyle = `rgba(255,255,255,${Math.random() * 0.02})`;
+      hCtx.fillRect(x, y, s, s);
+    }
+  }
+
+  drawHeroBg();
+  window.addEventListener('resize', drawHeroBg);
+
+  // ═══════════════════════════════════════════════════════════
+  // CURSOR GLOW
+  // ═══════════════════════════════════════════════════════════
+
+  let mouseX = -300, mouseY = -300;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursorGlow.style.left = mouseX + 'px';
+    cursorGlow.style.top = mouseY + 'px';
+    ambientLight.style.left = (mouseX - 300) + 'px';
+    ambientLight.style.top = (mouseY - 300) + 'px';
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // NAV SCROLL
+  // ═══════════════════════════════════════════════════════════
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+      mainNav.classList.add('scrolled');
+    } else {
+      mainNav.classList.remove('scrolled');
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // PALETTE PANEL
+  // ═══════════════════════════════════════════════════════════
+
+  paletteTrigger.addEventListener('click', () => {
+    palettePanel.classList.toggle('open');
+  });
+
+  function buildPalette() {
+    // Szín sávok
+    paletteColors.innerHTML = '';
+    atmospheres.forEach(a => {
+      a.preview.forEach(c => {
+        const swatch = document.createElement('div');
+        swatch.className = 'swatch';
+        swatch.style.background = c;
+        paletteColors.appendChild(swatch);
+      });
+    });
+
+    // Választási lehetőségek
+    paletteOptions.innerHTML = '';
+    atmospheres.forEach(a => {
+      const opt = document.createElement('div');
+      opt.className = 'palette-option' + (a.id === 'midnight-gallery' ? ' active' : '');
+      opt.dataset.atmosphere = a.id;
+
+      opt.innerHTML = `
+        <div class="color-preview" style="background: linear-gradient(135deg, ${a.preview[0]}, ${a.preview[2]}, ${a.preview[4]});"></div>
+        <div class="option-info">
+          <h4>${a.name}</h4>
+          <p>${a.desc}</p>
+        </div>
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="var(--text-accent)" stroke-width="2">
+          <path d="M5 13l4 4L19 7"/>
+        </svg>
+      `;
+
+      opt.addEventListener('click', () => {
+        document.querySelectorAll('.palette-option').forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+        body.setAttribute('data-atmosphere', a.id);
+      });
+
+      paletteOptions.appendChild(opt);
+    });
+  }
+
+  buildPalette();
+
+  // ═══════════════════════════════════════════════════════════
+  // FESTMÉNYEK GENERÁLÁSA
+  // ═══════════════════════════════════════════════════════════
+
+  function renderPaintings() {
+    paintingGrid.innerHTML = '';
+
+    paintings.forEach((p, index) => {
+      const card = document.createElement('div');
+      card.className = 'painting-card' + (p.framed ? '' : ' no-frame');
+      card.dataset.id = p.id;
+      card.dataset.index = index;
+
+      card.innerHTML = `
+        <div class="painting-frame">
+          <div class="painting-canvas-wrap" data-image="${p.image}" data-interior="${p.interior}">
+            <img src="${p.image}" alt="${p.title}" loading="lazy" class="loading-placeholder">
+            <div class="magic-magnifier">
+              <img class="mag-image" src="${p.interior}" alt="">
+            </div>
+          </div>
+          <div class="painting-hover-overlay"></div>
+          <span class="interior-badge">🔍 interiőr nézet</span>
+        </div>
+        <div class="painting-info">
+          <h3 class="painting-title">${p.title}</h3>
+          <div class="painting-meta">${p.year} · ${p.medium} · ${p.dimensions}</div>
+          <p class="painting-desc">${p.description}</p>
+          <div class="view-toggle">
+            <button class="active" data-view="default">Alapnézet</button>
+            <button data-view="interior">Interiőr</button>
+            <button data-view="noframe">Keret nélkül</button>
+          </div>
+        </div>
+      `;
+
+      paintingGrid.appendChild(card);
+
+      // Kép betöltés tracking
+      const img = card.querySelector('img');
+      img.addEventListener('load', () => {
+        img.classList.remove('loading-placeholder');
+        img.classList.add('loaded');
+      });
+      if (img.complete) {
+        img.classList.remove('loading-placeholder');
+        img.classList.add('loaded');
+      }
+
+      // Hover magnifier
+      const wrap = card.querySelector('.painting-canvas-wrap');
+      const magnifier = card.querySelector('.magic-magnifier');
+      const magImage = magnifier.querySelector('.mag-image');
+      const overlay = card.querySelector('.painting-hover-overlay');
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Magnifier position
+        magnifier.style.left = x + 'px';
+        magnifier.style.top = y + 'px';
+
+        // Magnifier image offset (zoom effect)
+        const magX = -(x - 90) * 2;
+        const magY = -(y - 90) * 2;
+        magImage.style.left = magX + 'px';
+        magImage.style.top = magY + 'px';
+
+        // Overlay gradient
+        const px = (x / rect.width) * 100;
+        const py = (y / rect.height) * 100;
+        overlay.style.setProperty('--mouse-x', px + '%');
+        overlay.style.setProperty('--mouse-y', py + '%');
+      });
+
+      // View toggle
+      const buttons = card.querySelectorAll('.view-toggle button');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          buttons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const view = btn.dataset.view;
+          const frame = card.querySelector('.painting-frame');
+          const imgWrap = card.querySelector('.painting-canvas-wrap img');
+          const magImg = magnifier.querySelector('.mag-image');
+
+          if (view === 'default') {
+            card.classList.remove('no-frame');
+            frame.style.padding = '12px';
+            frame.style.background = 'var(--frame-color)';
+            frame.style.boxShadow = '0 10px 40px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.05)';
+            imgWrap.style.borderRadius = '1px';
+            imgWrap.querySelector('img').src = p.image;
+            magImage.src = p.interior;
+          } else if (view === 'interior') {
+            card.classList.remove('no-frame');
+            frame.style.padding = '12px';
+            frame.style.background = 'var(--frame-color)';
+            frame.style.boxShadow = '0 10px 40px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.05)';
+            imgWrap.style.borderRadius = '1px';
+            imgWrap.querySelector('img').src = p.interior;
+            magImage.src = p.image;
+          } else if (view === 'noframe') {
+            card.classList.add('no-frame');
+            imgWrap.querySelector('img').src = p.image;
+            magImage.src = p.interior;
+          }
+        });
+      });
+
+      // Focus modal
+      card.addEventListener('click', () => {
+        openFocusModal(p);
+      });
+    });
+
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.painting-card, .fade-in').forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  renderPaintings();
+
+  // ═══════════════════════════════════════════════════════════
+  // FOCUS MODAL
+  // ═══════════════════════════════════════════════════════════
+
+  function openFocusModal(p) {
+    document.getElementById('focusImage').src = p.image;
+    document.getElementById('focusImage').alt = p.title;
+    document.getElementById('focusTitle').textContent = p.title;
+    document.getElementById('focusMeta').textContent = `${p.year} · ${p.medium} · ${p.dimensions}`;
+    document.getElementById('focusDesc').textContent = p.description;
+    document.getElementById('focusDetails').innerHTML = `
+      <p>Kategória: ${p.category}</p>
+      <p>Keret: ${p.framed ? 'Igen' : 'Nem'} · Interiőr nézet: Elérhető</p>
+    `;
+    focusModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeFocusModal() {
+    focusModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  focusModalClose.addEventListener('click', closeFocusModal);
+  focusModal.addEventListener('click', (e) => {
+    if (e.target === focusModal) closeFocusModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeFocusModal();
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // SMOOTH SCROLL
+  // ═══════════════════════════════════════════════════════════
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // PARALLAX SCROLL EFFECT
+  // ═══════════════════════════════════════════════════════════
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const hero = document.querySelector('.hero-content');
+        if (hero && scrollY < window.innerHeight) {
+          hero.style.transform = `translateY(${scrollY * 0.3}px)`;
+          hero.style.opacity = 1 - (scrollY / (window.innerHeight * 0.8));
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // MOBILE MENU (placeholder)
+  // ═══════════════════════════════════════════════════════════
+
+  const menuBtn = document.getElementById('menuBtn');
+  if (menuBtn) {
+    menuBtn.addEventListener('click', () => {
+      // Egyszerűsített mobil menü logika
+      const links = document.querySelector('.nav-links');
+      if (links.style.display === 'flex') {
+        links.style.display = 'none';
+      } else {
+        links.style.display = 'flex';
+        links.style.flexDirection = 'column';
+        links.style.position = 'absolute';
+        links.style.top = '100%';
+        links.style.left = '0';
+        links.style.right = '0';
+        links.style.background = 'rgba(10,10,10,0.95)';
+        links.style.padding = '2rem';
+        links.style.backdropFilter = 'blur(20px)';
+        links.style.borderBottom = '1px solid rgba(201,149,107,0.1)';
+      }
+    });
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  // KÉP HIBA KEZELÉS — Placeholder generálás
+  // ═══════════════════════════════════════════════════════════
+
+  document.querySelectorAll('.painting-canvas-wrap img').forEach(img => {
+    img.addEventListener('error', function() {
+      // Ha a kép nem töltődik be, generálunk egy színes placeholder-t
+      const canvas = document.createElement('canvas');
+      canvas.width = 400;
+      canvas.height = 500;
+      const ctx = canvas.getContext('2d');
+
+      // Abstract festői placeholder
+      const colors = ['#2a2218', '#3a3020', '#4a3a28', '#5a4a30', '#6a5a38'];
+      for (let i = 0; i < 20; i++) {
+        ctx.beginPath();
+        ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+        ctx.globalAlpha = Math.random() * 0.5 + 0.2;
+        const x = Math.random() * 400;
+        const y = Math.random() * 500;
+        const w = Math.random() * 200 + 50;
+        const h = Math.random() * 200 + 50;
+        ctx.ellipse(x, y, w, h, Math.random() * Math.PI, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Szöveg
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = '#c9956b';
+      ctx.font = 'italic 18px Cormorant Garamond, serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('Kárai Mihály', 200, 240);
+      ctx.font = '14px Outfit, sans-serif';
+      ctx.fillStyle = '#a8a090';
+      ctx.fillText('Festmény', 200, 270);
+
+      this.src = canvas.toDataURL();
+      this.classList.add('loaded');
+    });
+  });
+
+  // ═══════════════════════════════════════════════════════════
+  // RESIZE HANDLER
+  // ═══════════════════════════════════════════════════════════
+
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      resizeHeroBg();
+      drawHeroBg();
+    }, 250);
+  });
+
+})();
+
+</script>
+</body>
+</html>
+

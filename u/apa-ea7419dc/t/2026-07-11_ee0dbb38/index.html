@@ -1,0 +1,1096 @@
+﻿<!DOCTYPE html>
+<html lang="hu" data-theme="vörös-medseg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály | Portfolió Témaváltó Rendszer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+/* ============================================================
+   KÁRAI MIHÁLY - THEMÉK VÁLTOZÓ RENDSZER v2026
+   ============================================================ */
+
+/* === ALAP VÁLTOZÓK (default = Vörös Mélység) === */
+:root {
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-italic: 'Cormorant Garamond', serif;
+    --transition-speed: 0.6s;
+    --blob-size: 600px;
+}
+
+/* === TÉMA 1: VÖRÖS MÉLYSÉG (alap sötét) === */
+[data-theme="vörös-medseg"] {
+    --bg-primary: #0a0604;
+    --bg-secondary: #1a0e0a;
+    --bg-tertiary: #2a1810;
+    --bg-glass: rgba(26, 14, 10, 0.75);
+    --bg-glass-border: rgba(209, 65, 36, 0.15);
+    --text-primary: #f5efe8;
+    --text-secondary: #b8a89a;
+    --text-muted: #7a6b5d;
+    --accent-primary: #d14124;
+    --accent-secondary: #c8956c;
+    --accent-gold: #c9a84c;
+    --accent-gold-dim: rgba(201, 168, 76, 0.3);
+    --shadow-color: rgba(209, 65, 36, 0.2);
+    --canvas-bg: #0a0604;
+    --canvas-blob: #d14124;
+    --canvas-particle: #c9a84c;
+    --border-subtle: rgba(209, 65, 36, 0.1);
+    --overlay-gradient: linear-gradient(135deg, rgba(10,6,4,0.95) 0%, rgba(42,24,16,0.8) 50%, rgba(10,6,4,0.95) 100%);
+    --hero-gradient: radial-gradient(ellipse at 30% 50%, rgba(209,65,36,0.08) 0%, transparent 60%);
+    --section-divider: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+}
+
+/* === TÉMA 2: ÉJSZAKAI VÁROS (sötét) === */
+[data-theme="éjszakai-város"] {
+    --bg-primary: #050a14;
+    --bg-secondary: #0c1525;
+    --bg-tertiary: #132040;
+    --bg-glass: rgba(12, 21, 37, 0.75);
+    --bg-glass-border: rgba(240, 192, 64, 0.12);
+    --text-primary: #e8ecf5;
+    --text-secondary: #8a9bbf;
+    --text-muted: #556688;
+    --accent-primary: #f0c040;
+    --accent-secondary: #40d0d0;
+    --accent-gold: #f0c040;
+    --accent-gold-dim: rgba(240, 192, 64, 0.25);
+    --shadow-color: rgba(240, 192, 64, 0.15);
+    --canvas-bg: #050a14;
+    --canvas-blob: #40d0d0;
+    --canvas-particle: #f0c040;
+    --border-subtle: rgba(240, 192, 64, 0.08);
+    --overlay-gradient: linear-gradient(135deg, rgba(5,10,20,0.95) 0%, rgba(19,32,64,0.8) 50%, rgba(5,10,20,0.95) 100%);
+    --hero-gradient: radial-gradient(ellipse at 70% 40%, rgba(64,208,208,0.06) 0%, transparent 60%);
+    --section-divider: linear-gradient(90deg, transparent, rgba(240,192,64,0.25), transparent);
+}
+
+/* === TÉMA 3: PASTELL ÁLOM (világos) === */
+[data-theme="pasztell-álom"] {
+    --bg-primary: #faf6f1;
+    --bg-secondary: #f5ede4;
+    --bg-tertiary: #ede0d4;
+    --bg-glass: rgba(250, 246, 241, 0.8);
+    --bg-glass-border: rgba(220, 140, 120, 0.15);
+    --text-primary: #3a2a22;
+    --text-secondary: #7a6055;
+    --text-muted: #a89080;
+    --accent-primary: #dc8c78;
+    --accent-secondary: #e8b4b8;
+    --accent-gold: #d4a574;
+    --accent-gold-dim: rgba(212, 165, 116, 0.25);
+    --shadow-color: rgba(220, 140, 120, 0.12);
+    --canvas-bg: #faf6f1;
+    --canvas-blob: #dc8c78;
+    --canvas-particle: #e8b4b8;
+    --border-subtle: rgba(220, 140, 120, 0.1);
+    --overlay-gradient: linear-gradient(135deg, rgba(250,246,241,0.95) 0%, rgba(237,224,212,0.85) 50%, rgba(250,246,241,0.95) 100%);
+    --hero-gradient: radial-gradient(ellipse at 40% 60%, rgba(232,180,184,0.1) 0%, transparent 60%);
+    --section-divider: linear-gradient(90deg, transparent, rgba(212,165,116,0.3), transparent);
+}
+
+/* === TÉMA 4: ÓÁZIS (világos) === */
+[data-theme="óázis"] {
+    --bg-primary: #f7f0e4;
+    --bg-secondary: #efe5d3;
+    --bg-tertiary: #e5d8c0;
+    --bg-glass: rgba(247, 240, 228, 0.75);
+    --bg-glass-border: rgba(64, 200, 208, 0.15);
+    --text-primary: #2a2420;
+    --text-secondary: #6a5f55;
+    --text-muted: #9a8e80;
+    --accent-primary: #40c8d0;
+    --accent-secondary: #d4a574;
+    --accent-gold: #d4a574;
+    --accent-gold-dim: rgba(212, 165, 116, 0.25);
+    --shadow-color: rgba(64, 200, 208, 0.12);
+    --canvas-bg: #f7f0e4;
+    --canvas-blob: #40c8d0;
+    --canvas-particle: #d4a574;
+    --border-subtle: rgba(64, 200, 208, 0.08);
+    --overlay-gradient: linear-gradient(135deg, rgba(247,240,228,0.95) 0%, rgba(229,216,192,0.85) 50%, rgba(247,240,228,0.95) 100%);
+    --hero-gradient: radial-gradient(ellipse at 60% 30%, rgba(64,200,208,0.08) 0%, transparent 60%);
+    --section-divider: linear-gradient(90deg, transparent, rgba(212,165,116,0.3), transparent);
+}
+
+/* === TÉMA 5: INDUSZTRIA (sötét) === */
+[data-theme="indusztria"] {
+    --bg-primary: #1a1a1c;
+    --bg-secondary: #252528;
+    --bg-tertiary: #333338;
+    --bg-glass: rgba(37, 37, 40, 0.75);
+    --bg-glass-border: rgba(200, 50, 40, 0.12);
+    --text-primary: #e8e8ea;
+    --text-secondary: #9a9aa0;
+    --text-muted: #6a6a72;
+    --accent-primary: #c83228;
+    --accent-secondary: #ffffff;
+    --accent-gold: #c83228;
+    --accent-gold-dim: rgba(200, 50, 40, 0.2);
+    --shadow-color: rgba(200, 50, 40, 0.15);
+    --canvas-bg: #1a1a1c;
+    --canvas-blob: #c83228;
+    --canvas-particle: #ffffff;
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --overlay-gradient: linear-gradient(135deg, rgba(26,26,28,0.95) 0%, rgba(51,51,56,0.8) 50%, rgba(26,26,28,0.95) 100%);
+    --hero-gradient: radial-gradient(ellipse at 50% 50%, rgba(200,50,40,0.06) 0%, transparent 60%);
+    --section-divider: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+}
+
+/* === TÉMA 6: TŰZ & JÉG (sötét) === */
+[data-theme="tűz-jég"] {
+    --bg-primary: #121216;
+    --bg-secondary: #1c1c24;
+    --bg-tertiary: #282838;
+    --bg-glass: rgba(28, 28, 36, 0.75);
+    --bg-glass-border: rgba(209, 65, 36, 0.15);
+    --text-primary: #e8e8f0;
+    --text-secondary: #8a8aa0;
+    --text-muted: #5a5a70;
+    --accent-fire: #d14124;
+    --accent-ice: #40a0d0;
+    --accent-primary: #d14124;
+    --accent-secondary: #40a0d0;
+    --accent-gold: #d14124;
+    --accent-gold-dim: rgba(209, 65, 36, 0.2);
+    --shadow-color: rgba(209, 65, 36, 0.15);
+    --canvas-bg: #121216;
+    --canvas-blob-fire: #d14124;
+    --canvas-blob-ice: #40a0d0;
+    --canvas-particle: #40a0d0;
+    --border-subtle: rgba(209, 65, 36, 0.08);
+    --overlay-gradient: linear-gradient(135deg, rgba(18,18,22,0.95) 0%, rgba(40,40,56,0.8) 50%, rgba(18,18,22,0.95) 100%);
+    --hero-gradient: radial-gradient(ellipse at 30% 50%, rgba(209,65,36,0.06) 0%, transparent 40%), radial-gradient(ellipse at 70% 50%, rgba(64,160,208,0.06) 0%, transparent 40%);
+    --section-divider: linear-gradient(90deg, transparent, rgba(209,65,36,0.2), rgba(64,160,208,0.2), transparent);
+}
+
+/* === TÉMA 7: REGGELI KÖD (világos) === */
+[data-theme="reggeli-köd"] {
+    --bg-primary: #f0f0f2;
+    --bg-secondary: #e8e8ec;
+    --bg-tertiary: #dddde2;
+    --bg-glass: rgba(240, 240, 242, 0.8);
+    --bg-glass-border: rgba(180, 40, 30, 0.1);
+    --text-primary: #2a2a30;
+    --text-secondary: #6a6a78;
+    --text-muted: #9a9aa6;
+    --accent-primary: #b4281e;
+    --accent-secondary: #c9a84c;
+    --accent-gold: #c9a84c;
+    --accent-gold-dim: rgba(201, 168, 76, 0.2);
+    --shadow-color: rgba(180, 40, 30, 0.08);
+    --canvas-bg: #f0f0f2;
+    --canvas-blob: #b4281e;
+    --canvas-particle: #c9a84c;
+    --border-subtle: rgba(180, 40, 30, 0.06);
+    --overlay-gradient: linear-gradient(135deg, rgba(240,240,242,0.95) 0%, rgba(221,221,226,0.85) 50%, rgba(240,240,242,0.95) 100%);
+    --hero-gradient: radial-gradient(ellipse at 50% 40%, rgba(180,40,30,0.04) 0%, transparent 60%);
+    --section-divider: linear-gradient(90deg, transparent, rgba(201,168,76,0.25), transparent);
+}
+
+/* ============================================================
+   ALAP RESET & BODY
+   ============================================================ */
+*, *::before, *::after {
+    margin: 0; padding: 0; box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================
+   CANVAS HERO (morphing blob + particles)
+   ============================================================ */
+#hero-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    transition: opacity var(--transition-speed) ease;
+}
+
+/* ============================================================
+   THEME SWITCHER - ORGANIC FLOATING BUTTONS
+   ============================================================ */
+.theme-switcher {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.theme-toggle-btn {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    outline: none;
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--bg-glass-border);
+    box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+.theme-toggle-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.theme-toggle-btn:hover::before {
+    opacity: 0.15;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.25);
+    box-shadow: 0 8px 32px var(--shadow-color);
+}
+
+.theme-toggle-btn.active {
+    transform: scale(1.15);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px var(--accent-gold-dim), 0 4px 20px var(--shadow-color);
+}
+
+.theme-toggle-btn.active::before {
+    opacity: 0.2;
+}
+
+.theme-toggle-btn .btn-icon {
+    position: relative;
+    z-index: 1;
+    font-size: 1.1rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.theme-toggle-btn .btn-tooltip {
+    position: absolute;
+    right: 58px;
+    top: 50%;
+    transform: translateY(-50%) translateX(8px);
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: var(--text-primary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 1px solid var(--bg-glass-border);
+    box-shadow: 0 4px 16px var(--shadow-color);
+}
+
+.theme-toggle-btn:hover .btn-tooltip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* Color indicator ring for each theme */
+.theme-toggle-btn[data-theme-btn="vörös-medseg"] .btn-icon { background: radial-gradient(circle, #d14124 40%, #0a0604 60%); }
+.theme-toggle-btn[data-theme-btn="éjszakai-város"] .btn-icon { background: radial-gradient(circle, #40d0d0 40%, #050a14 60%); }
+.theme-toggle-btn[data-theme-btn="pasztell-álom"] .btn-icon { background: radial-gradient(circle, #dc8c78 40%, #faf6f1 60%); }
+.theme-toggle-btn[data-theme-btn="óázis"] .btn-icon { background: radial-gradient(circle, #40c8d0 40%, #f7f0e4 60%); }
+.theme-toggle-btn[data-theme-btn="indusztria"] .btn-icon { background: radial-gradient(circle, #c83228 40%, #1a1a1c 60%); }
+.theme-toggle-btn[data-theme-btn="tűz-jég"] .btn-icon { background: conic-gradient(from 0deg, #d14124, #40a0d0, #d14124); }
+.theme-toggle-btn[data-theme-btn="reggeli-köd"] .btn-icon { background: radial-gradient(circle, #b4281e 40%, #f0f0f2 60%); }
+
+/* ============================================================
+   MAIN CONTENT WRAPPER
+   ============================================================ */
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-organic-shape {
+    position: absolute;
+    width: var(--blob-size);
+    height: var(--blob-size);
+    border-radius: 63% 37% 54% 46% / 55% 48% 48% 55%;
+    background: var(--accent-primary);
+    opacity: 0.04;
+    filter: blur(80px);
+    animation: morphBlob 15s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.hero-organic-shape:nth-child(2) {
+    width: 400px; height: 400px;
+    border-radius: 54% 46% 37% 63% / 48% 55% 45% 55%;
+    background: var(--accent-secondary);
+    opacity: 0.03;
+    animation-delay: -5s;
+    animation-duration: 18s;
+}
+
+@keyframes morphBlob {
+    0%, 100% { border-radius: 63% 37% 54% 46% / 55% 48% 48% 55%; transform: rotate(0deg) scale(1); }
+    25% { border-radius: 40% 60% 45% 55% / 50% 40% 60% 50%; transform: rotate(90deg) scale(1.05); }
+    50% { border-radius: 55% 45% 60% 40% / 45% 55% 45% 55%; transform: rotate(180deg) scale(0.95); }
+    75% { border-radius: 48% 52% 38% 62% / 58% 42% 58% 42%; transform: rotate(270deg) scale(1.02); }
+}
+
+.hero-content {
+    position: relative;
+    text-align: center;
+    padding: 4rem 2rem;
+    max-width: 900px;
+}
+
+.hero-eyebrow {
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 0.75rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+    margin-bottom: 1.5rem;
+    transition: color var(--transition-speed) ease;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: clamp(3rem, 8vw, 7rem);
+    line-height: 1.05;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    transition: color var(--transition-speed) ease;
+}
+
+.hero-title em {
+    font-family: var(--font-italic);
+    font-style: italic;
+    color: var(--accent-primary);
+    font-weight: 300;
+    transition: color var(--transition-speed) ease;
+}
+
+.hero-subtitle {
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    transition: color var(--transition-speed) ease;
+}
+
+.hero-cta {
+    display: inline-block;
+    padding: 14px 40px;
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--bg-primary);
+    background: var(--accent-primary);
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.hero-cta:hover::after {
+    transform: scaleX(1);
+}
+
+.hero-cta span {
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================================
+   SECTION DIVIDER
+   ============================================================ */
+.section-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--section-divider);
+    margin: 0;
+    transition: background var(--transition-speed) ease;
+}
+
+/* ============================================================
+   GALLERY SECTION (Bento Box Asymmetric)
+   ============================================================ */
+.gallery-section {
+    padding: 8rem 4rem;
+    position: relative;
+}
+
+.section-label {
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 0.7rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
+    transition: color var(--transition-speed) ease;
+}
+
+.section-heading {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--text-primary);
+    margin-bottom: 4rem;
+    transition: color var(--transition-speed) ease;
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    gap: 20px;
+}
+
+.bento-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    transition: all var(--transition-speed) ease;
+    cursor: pointer;
+}
+
+.bento-item:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 8px 40px var(--shadow-color);
+}
+
+.bento-item-1 { grid-column: 1 / 8; grid-row: 1 / 3; }
+.bento-item-2 { grid-column: 8 / 13; grid-row: 1 / 2; }
+.bento-item-3 { grid-column: 8 / 13; grid-row: 2 / 3; }
+.bento-item-4 { grid-column: 1 / 5; grid-row: 3 / 5; }
+.bento-item-5 { grid-column: 5 / 9; grid-row: 3 / 4; }
+.bento-item-6 { grid-column: 9 / 13; grid-row: 3 / 5; }
+
+.bento-item-inner {
+    position: absolute;
+    inset: 0;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: var(--overlay-gradient);
+    transition: background var(--transition-speed) ease;
+}
+
+.bento-item-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.bento-item:hover .bento-item-img {
+    transform: scale(1.05);
+}
+
+.bento-item-title {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+    transition: color var(--transition-speed) ease;
+}
+
+.bento-item-meta {
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    transition: color var(--transition-speed) ease;
+}
+
+/* ============================================================
+   GLASSMORPHISM CARD
+   ============================================================ */
+.glass-card {
+    background: var(--bg-glass);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--bg-glass-border);
+    border-radius: 4px;
+    padding: 3rem;
+    transition: all var(--transition-speed) ease;
+}
+
+.glass-card:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 12px 48px var(--shadow-color);
+}
+
+/* ============================================================
+   ABOUT SECTION
+   ============================================================ */
+.about-section {
+    padding: 8rem 4rem;
+    position: relative;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+}
+
+.about-text p {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    transition: color var(--transition-speed) ease;
+}
+
+.about-stat {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.stat-item {
+    text-align: left;
+}
+
+.stat-number {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: 2.5rem;
+    color: var(--accent-primary);
+    line-height: 1;
+    transition: color var(--transition-speed) ease;
+}
+
+.stat-label {
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    transition: color var(--transition-speed) ease;
+}
+
+.about-visual {
+    position: relative;
+}
+
+.about-visual-shape {
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: 4px;
+    background: var(--bg-secondary);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+}
+
+.about-visual-shape::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--hero-gradient);
+    transition: background var(--transition-speed) ease;
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ============================================================
+   THEME PREVIEW PANEL
+   ============================================================ */
+.theme-preview-panel {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    gap: 8px;
+    padding: 12px 20px;
+    background: var(--bg-glass);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--bg-glass-border);
+    border-radius: 30px;
+    box-shadow: 0 8px 32px var(--shadow-color);
+    transition: all var(--transition-speed) ease;
+}
+
+.preview-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.preview-dot:hover {
+    transform: scale(1.3);
+}
+
+.preview-dot.active {
+    border-color: var(--text-primary);
+    transform: scale(1.2);
+}
+
+.preview-dot[data-preview="vörös-medseg"] { background: linear-gradient(135deg, #d14124, #0a0604); }
+.preview-dot[data-preview="éjszakai-város"] { background: linear-gradient(135deg, #40d0d0, #050a14); }
+.preview-dot[data-preview="pasztell-álom"] { background: linear-gradient(135deg, #dc8c78, #faf6f1); }
+.preview-dot[data-preview="óázis"] { background: linear-gradient(135deg, #40c8d0, #f7f0e4); }
+.preview-dot[data-preview="indusztria"] { background: linear-gradient(135deg, #c83228, #1a1a1c); }
+.preview-dot[data-preview="tűz-jég"] { background: conic-gradient(from 0deg, #d14124, #40a0d0); }
+.preview-dot[data-preview="reggeli-köd"] { background: linear-gradient(135deg, #b4281e, #f0f0f2); }
+
+/* ============================================================
+   THEME TRANSITION OVERLAY
+   ============================================================ */
+.theme-transition-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.theme-transition-overlay.active {
+    opacity: 1;
+    animation: themeFlash 0.8s ease forwards;
+}
+
+@keyframes themeFlash {
+    0% { opacity: 0; }
+    30% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* ============================================================
+   COLOR PALETTE SWATCHES
+   ============================================================ */
+.palette-section {
+    padding: 6rem 4rem;
+}
+
+.palette-swatches {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.swatch {
+    width: 80px;
+    height: 100px;
+    border-radius: 4px;
+    position: relative;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    border: 1px solid var(--border-subtle);
+}
+
+.swatch:hover {
+    transform: translateY(-8px);
+}
+
+.swatch-label {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 0.55rem;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    text-align: center;
+    width: 100%;
+}
+
+.swatch[data-color="bg-primary"] { background: var(--bg-primary); }
+.swatch[data-color="bg-secondary"] { background: var(--bg-secondary); }
+.swatch[data-color="accent-primary"] { background: var(--accent-primary); }
+.swatch[data-color="accent-secondary"] { background: var(--accent-secondary); }
+.swatch[data-color="accent-gold"] { background: var(--accent-gold); }
+.swatch[data-color="text-primary"] { background: var(--text-primary); }
+.swatch[data-color="text-secondary"] { background: var(--text-secondary); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+    .bento-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    .bento-item-1 { grid-column: 1 / 7; grid-row: auto; }
+    .bento-item-2 { grid-column: 1 / 4; grid-row: auto; }
+    .bento-item-3 { grid-column: 4 / 7; grid-row: auto; }
+    .bento-item-4 { grid-column: 1 / 4; grid-row: auto; }
+    .bento-item-5 { grid-column: 4 / 7; grid-row: auto; }
+    .bento-item-6 { grid-column: 1 / 7; grid-row: auto; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .theme-switcher { right: 12px; gap: 8px; }
+    .theme-toggle-btn { width: 40px; height: 40px; }
+}
+
+@media (max-width: 768px) {
+    .gallery-section, .about-section, .palette-section {
+        padding: 4rem 1.5rem;
+    }
+    .theme-switcher {
+        right: 8px;
+        gap: 6px;
+    }
+    .theme-toggle-btn { width: 36px; height: 36px; }
+    .theme-toggle-btn .btn-icon { font-size: 0.9rem; }
+    .theme-toggle-btn .btn-tooltip { display: none; }
+    .theme-preview-panel {
+        padding: 8px 14px;
+        gap: 6px;
+    }
+    .preview-dot { width: 22px; height: 22px; }
+    .bento-grid { gap: 12px; }
+    .about-stat { gap: 2rem; }
+}
+
+/* ============================================================
+   THEME SWITCHER PANEL TOGGLE
+   ============================================================ */
+.theme-panel-toggle {
+    position: fixed;
+    right: 24px;
+    bottom: 80px;
+    z-index: 1001;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--bg-glass-border);
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+.theme-panel-toggle:hover {
+    transform: scale(1.1);
+    border-color: var(--accent-primary);
+}
+
+.theme-panel-toggle.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+}
+
+/* Full theme switcher panel */
+.theme-panel {
+    position: fixed;
+    right: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+    transition: all 0.4s ease;
+}
+
+.theme-panel.collapsed {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-50%) translateX(20px);
+}
+
+/* ============================================================
+   DEMO SECTION - THEME COMPARISON
+   ============================================================ */
+.demo-section {
+    padding: 8rem 4rem;
+    position: relative;
+}
+
+.demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 3rem;
+}
+
+.demo-card {
+    position: relative;
+    height: 320px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    border: 1px solid var(--border-subtle);
+}
+
+.demo-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px var(--shadow-color);
+}
+
+.demo-card-bg {
+    position: absolute;
+    inset: 0;
+    transition: all 0.5s ease;
+}
+
+.demo-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+
+.demo-card-title {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 0.3rem;
+}
+
+.demo-card-desc {
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 1px;
+}
+
+/* Demo card backgrounds per theme */
+.demo-card[data-demo="vörös-medseg"] .demo-card-bg {
+    background: linear-gradient(135deg, #0a0604 0%, #1a0e0a 50%, #2a1810 100%);
+}
+.demo-card[data-demo="éjszakai-város"] .demo-card-bg {
+    background: linear-gradient(135deg, #050a14 0%, #0c1525 50%, #132040 100%);
+}
+.demo-card[data-demo="pasztell-álom"] .demo-card-bg {
+    background: linear-gradient(135deg, #faf6f1 0%, #f5ede4 50%, #ede0d4 100%);
+}
+.demo-card[data-demo="óázis"] .demo-card-bg {
+    background: linear-gradient(135deg, #f7f0e4 0%, #efe5d3 50%, #e5d8c0 100%);
+}
+.demo-card[data-demo="indusztria"] .demo-card-bg {
+    background: linear-gradient(135deg, #1a1a1c 0%, #252528 50%, #333338 100%);
+}
+.demo-card[data-demo="tűz-jég"] .demo-card-bg {
+    background: linear-gradient(135deg, #121216 0%, #1c1c24 50%, #282838 100%);
+}
+.demo-card[data-demo="reggeli-köd"] .demo-card-bg {
+    background: linear-gradient(135deg, #f0f0f2 0%, #e8e8ec 50%, #dddde2 100%);
+}
+
+.demo-card[data-demo="pasztell-álom"] .demo-card-content,
+.demo-card[data-demo="óázis"] .demo-card-content,
+.demo-card[data-demo="reggeli-köd"] .demo-card-content {
+    background: linear-gradient(to top, rgba(255,255,255,0.8), transparent);
+}
+
+.demo-card-accent {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid;
+}
+
+.demo-card[data-demo="vörös-medseg"] .demo-card-accent { border-color: #d14124; }
+.demo-card[data-demo="éjszakai-város"] .demo-card-accent { border-color: #f0c040; }
+.demo-card[data-demo="pasztell-álom"] .demo-card-accent { border-color: #dc8c78; }
+.demo-card[data-demo="óázis"] .demo-card-accent { border-color: #40c8d0; }
+.demo-card[data-demo="indusztria"] .demo-card-accent { border-color: #c83228; }
+.demo-card[data-demo="tűz-jég"] .demo-card-accent { border-color: #d14124; background: conic-gradient(#d14124, #40a0d0); }
+.demo-card[data-demo="reggeli-köd"] .demo-card-accent { border-color: #b4281e; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+    padding: 4rem;
+    text-align: center;
+    border-top: 1px solid var(--border-subtle);
+    transition: border-color var(--transition-speed) ease;
+}
+
+.footer-text {
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    transition: color var(--transition-speed) ease;
+}
+
+</style>
+</head>
+<body>
+    <!-- Canvas Hero Background -->
+    <canvas id="hero-canvas"></canvas>
+
+    <!-- Theme Transition Overlay -->
+    <div class="theme-transition-overlay" id="themeOverlay"></div>
+
+    <!-- Theme Switcher Panel -->
+    <div class="theme-panel" id="themePanel">
+        <button class="theme-toggle-btn active" data-theme-btn="vörös-medseg" aria-label="Vörös Mélység téma">
+            <span class="btn-icon">🔥</span>
+            <span class="btn-tooltip">Vörös Mélység</span>
+        </button>
+        <button class="theme-toggle-btn" data-theme-btn="éjszakai-város" aria-label="Éjszakai Város téma">
+            <span class="btn-icon">🌃</span>
+            <span class="btn-tooltip">Éjszakai Város</span>
+        </button>
+        <button class="theme-toggle-btn" data-theme-btn="pasztell-álom" aria-label="Pasztell Álom téma">
+            <span class="btn-icon">🌸</span>
+            <span class="btn-tooltip">Pasztell Álom</span>
+        </button>
+        <button class="theme-toggle-btn" data-theme-btn="óázis" aria-label="Óázis téma">
+            <span class="btn-icon">🏜️</span>
+            <span class="btn-tooltip">Óázis</span>
+        </button>
+        <button class="theme-toggle-btn" data-theme-btn="indusztria" aria-label="Indusztria téma">
+            <span class="btn-icon">🏭</span>
+            <span class="btn-tooltip">Indusztria</span>
+        </button>
+        <button class="theme-toggle-btn" data-theme-btn="tűz-jég" aria-label="Tűz &amp; Jég téma">
+            <span class="btn-icon">⚡</span>
+            <span class="btn-tooltip">Tűz &amp; Jég</span>
+        </button>
+        <button class="theme-toggle-btn" data-theme-btn="reggeli-köd" aria-label="Reggeli Köd téma">
+            <span class="btn-icon">🌫️</span>
+            <span class="btn-tooltip">Reggeli Köd</span>
+        </button>
+    </div>
+
+    <!-- Panel Toggle (visible when panel collapsed) -->
+    <button class="theme-panel-toggle hidden" id="themePanelToggle" aria-label="Témaváltó panel">🎨</button>
+
+    <!-- Bottom Preview Dots -->
+    <div class="theme-preview-panel" id="previewPanel">
+        <div class="preview-dot active" data-preview="vörös-medseg" title="Vörös Mélység"></div>
+        <div class="preview-dot" data-preview="éjszakai-város" title="Éjszakai Város"></div>
+        <div class="preview-dot" data-preview="pasztell-álom" title="Pasztell Álom"></div>
+        <div class="preview-dot" data-preview="óázis" title="Óázis"></div>
+        <div class="preview-dot" data-preview="indusztria" title="Indusztria"></div>
+        <div class="preview-dot" data-preview="tűz-jég" title="Tűz &amp; Jég"></div>
+        <div class="preview-dot" data-preview="reggeli-köd" title="Reggeli Köd"></div>
+    </div>
+

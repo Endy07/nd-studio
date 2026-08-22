@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="hu" data-theme="vaszon">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály | Festőművész</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        [data-theme="vaszon"] {
+            --bg-primary: #f2efe9;
+            --bg-secondary: #e8e3d9;
+            --text-primary: #2b2620;
+            --text-secondary: #6b6358;
+            --accent-primary: #a86b4a;
+            --accent-secondary: #7a4f35;
+            --shadow-color: rgba(43, 38, 32, 0.15);
+            --drip-color: #a86b4a;
+        }
+
+        [data-theme="feher"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9f9f9;
+            --text-primary: #111111;
+            --text-secondary: #555555;
+            --accent-primary: #222222;
+            --accent-secondary: #444444;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --drip-color: #222222;
+        }
+
+        [data-theme="est"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --text-primary: #e8e4dc;
+            --text-secondary: #8a8578;
+            --accent-primary: #c9a96e;
+            --accent-secondary: #a07d4a;
+            --shadow-color: rgba(201, 169, 110, 0.1);
+            --drip-color: #c9a96e;
+        }
+
+        [data-theme="gal"] {
+            --bg-primary: #1a1520;
+            --bg-secondary: #231c2b;
+            --text-primary: #f0eaf6;
+            --text-secondary: #b8a9c9;
+            --accent-primary: #b896d4;
+            --accent-secondary: #8a6ab5;
+            --shadow-color: rgba(184, 150, 212, 0.15);
+            --drip-color: #b896d4;
+        }
+
+        [data-theme="bohem"] {
+            --bg-primary: #e8d5c4;
+            --bg-secondary: #d4c0b0;
+            --text-primary: #3d2b1f;
+            --text-secondary: #6b4f3e;
+            --accent-primary: #c15b3a;
+            --accent-secondary: #8b3a22;
+            --shadow-color: rgba(61, 43, 31, 0.2);
+            --drip-color: #c15b3a;
+        }
+
+        [data-theme="meleg"] {
+            --bg-primary: #faf3e8;
+            --bg-secondary: #f0e3d0;
+            --text-primary: #2d2016;
+            --text-secondary: #6b5344;
+            --accent-primary: #d4722a;
+            --accent-secondary: #a85517;
+            --shadow-color: rgba(45, 32, 22, 0.15);
+            --drip-color: #d4722a;
+        }
+
+        [data-theme="erd"] {
+            --bg-primary: #131814;
+            --bg-secondary: #1a221c;
+            --text-primary: #e5ebe4;
+            --text-secondary: #8a9a8c;
+            --accent-primary: #5a7c59;
+            --accent-secondary: #3d5c3c;
+            --shadow-color: rgba(90, 124, 89, 0.2);
+            --drip-color: #5a7c59;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-weight: 200;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.8s ease, color 0.8s ease;
+            cursor: none;
+        }
+
+        /* Custom blend-mode cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            mix-blend-mode: difference;
+            pointer-events: none;
+            z-index: 100000;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
+        }
+
+        .custom-cursor.hover {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.8);
+        }
+
+        /* Canvas weave texture */
+        .canvas-texture {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.03;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(128,128,128,0.1) 2px, rgba(128,128,128,0.1) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(128,128,128,0.1) 2px, rgba(128,128,128,0.1) 4px);
+        }
+
+        /* Asymmetrical side navigation */
+        .side-nav {
+            position: fixed;
+            left: 32px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+            transform-origin: left center;
+            z-index: 1000;
+            display: flex;
+            gap: 32px;
+        }
+
+        .side-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: color 0.4s ease;
+            white-space: nowrap;
+        }
+
+        .side-nav a:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Theme toggle cluster */
+        .theme-cluster {
+            position: fixed;
+            right: 32px;
+            top: 32px;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        .theme-toggle-label {
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .theme-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .theme-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 1px solid rgba(128,128,128,0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .theme-dot:hover {
+            transform: scale(1.3);
+        }
+
+        .theme-dot.active {
+            border-color: var(--text-primary);
+            transform: scale(1.2);
+        }
+
+        /* Hero section - asymmetrical with fluid canvas */
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        #fluid-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 0 8vw;
+        }
+
+        .hero-title-block {
+            position: relative;
+        }
+
+        .hero-title-line {
+            font-family: var(--font-heading);
+            font-size: clamp(56px, 12vw, 160px);
+            font-weight: 300;
+            line-height: 0.9;
+            color: var(--text-primary);
+            mix-blend-mode: multiply;
+        }
+
+        [data-theme="est"], [data-theme="gal"], [data-theme="erd"] .hero-title-line {
+            mix-blend-mode: screen;
+        }
+
+        .hero-title-line:nth-child(1) {
+            position: relative;
+            left: 0;
+        }
+
+        .hero-title-line:nth-child(2) {
+            position: relative;
+            left: 15vw;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--accent-primary);
+        }
+
+        .hero-subtitle {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .hero-year {
+            position: absolute;
+            right: 8vw;
+            bottom: 40px;
+            font-family: var(--font-heading);
+            font-size: clamp(24px, 4vw, 48px);
+            font-weight: 300;
+            color: var(--accent-secondary);
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+
+        /* Paint drip separator */
+        .drip-separator {
+            position: relative;
+            height: 60px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .drip-separator svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* About section - overlapping organic shapes */
+        .about-section {
+            position: relative;
+            padding: 160px 8vw;
+            background: var(--bg-secondary);
+            transition: background-color 0.8s ease;
+        }
+
+        .about-organic-shape {
+            position: absolute;
+            width: 600px;
+            height: 700px;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%) rotate(3deg);
+            background: var(--bg-primary);
+            clip-path: polygon(20% 0%, 80% 10%, 100% 50%, 80% 90%, 20% 100%, 0% 50%);
+            box-shadow: 30px 30px 80px var(--shadow-color);
+            transition: all 0.8s ease;
+        }
+
+        .about-organic-shape::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            background: url('broll_palette.png') center/cover;
+            filter: saturate(1.2) contrast(1.1);
+        }
+
+        .about-text-block {
+            position: relative;
+            z-index: 2;
+            max-width: 500px;
+            margin-left: 0;
+        }
+
+        .about-label {
+            font-size: 11px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent-primary);
+            margin-bottom: 32px;
+            display: block;
+        }
+
+        .about-title {
+            font-family: var(--font-heading);
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 48px;
+            color: var(--text-primary);
+        }
+
+        .about-paragraph {
+            font-size: 15px;
+            font-weight: 200;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .about-quote {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--accent-primary);
+            margin-top: 64px;
+            padding-left: 32px;
+            border-left: 1px solid var(--accent-primary);
+        }
+
+        /* Horizontal scroll gallery - gallery wall feel */
+        .gallery-scroll-section {
+            position: relative;
+            padding: 120px 0;
+            background: var(--bg-primary);
+            overflow: hidden;
+            transition: background-color 0.8s ease;
+        }
+
+        .gallery-scroll-header {
+            padding: 0 8vw;
+            margin-bottom: 80px;
+        }
+
+        .gallery-scroll-title {
+            font-family: var(--font-heading);
+            font-size: clamp(32px, 4vw, 56px);
+            font-weight: 300;
+            color: var(--text-primary);
+        }
+
+        .horizontal-gallery {
+            display: flex;
+            gap: 64px;
+            padding: 0 8vw 64px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            cursor: grab;
+        }
+
+        .horizontal-gallery::-webkit-scrollbar {
+            display: none;
+        }
+
+        .horizontal-gallery:active {
+            cursor: grabbing;
+        }
+
+        .gallery-wall-item {
+            flex: 0 0 auto;
+            width: 380px;
+            scroll-snap-align: start;
+            position: relative;
+            transition: transform 0.6s ease, box-shadow 0.6s ease;
+        }
+
+        .gallery-wall-item:nth-child(odd) {
+            transform: rotate(-1.5deg);
+            margin-top: 64px;
+        }
+
+        .gallery-wall-item:nth-child(even) {
+            transform: rotate(1deg);
+            margin-top: -32px;
+        }
+
+        .gallery-wall-item:nth-child(3n) {
+            transform: rotate(2deg);
+            margin-top: 32px;
+        }
+
+        .gallery-wall-item:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 30px 30px 80px var(--shadow-color);
+            z-index: 10;
+        }
+
+        .gallery-wall-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 15px 15px 40px var(--shadow-color);
+            transition: box-shadow 0.6s ease;
+        }
+
+        .gallery-wall-item-caption {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            font-size: 12px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        .gallery-wall-item-caption .title {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* Interior & Frame section - asymmetrical split */
+        .frame-section {
+            position: relative;
+            padding: 160px 8vw;
+            background: var(--bg-secondary);
+            transition: background-color 0.8s ease;
+        }
+
+        .frame-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .frame-compare-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 20px 20px 60px var(--shadow-color);
+        }
+
+        .frame-img-before, .frame-img-after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .frame-img-after {
+            clip-path: inset(0 50% 0 0);
+        }
+
+        .frame-slider-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: var(--accent-primary);
+            transform: translateX(-50%);
+            z-index: 10;
+            cursor: col-resize;
+        }
+
+        .frame-slider-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: var(--bg-primary);
+            border: 2px solid var(--accent-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            color: var(--accent-primary);
+        }
+
+        .frame-info {
+            padding: 32px 0;
+        }
+
+        .frame-info h3 {
+            font-family: var(--font-heading);
+            font-size: 36px;
+            font-weight: 300;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .frame-info p {
+            font-size: 15px;
+            font-weight: 200;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        /* Full bleed quote */
+        .quote-full-bleed {
+            position: relative;
+            padding: 200px 8vw;
+            background: var(--bg-primary);
+            text-align: center;
+            overflow: hidden;
+            transition: background-color 0.8s ease;
+        }
+
+        .quote-full-bleed::before {
+            content: '"';
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-heading);
+            font-size: 240px;
+            color: var(--accent-primary);
+            opacity: 0.1;
+            line-height: 1;
+        }
+
+        .quote-text {
+            font-family: var(--font-heading);
+            font-size: clamp(28px, 4vw, 52px);
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.3;
+            max-width: 1000px;
+            margin: 0 auto;
+            color: var(--text-primary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .quote-attribution {
+            margin-top: 48px;
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        /* Contact - asymmetrical form */
+        .contact-section {
+            position: relative;
+            padding: 160px 8vw;
+            background: var(--bg-secondary);
+            transition: background-color 0.8s ease;
+        }
+
+        .contact-asym-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 120px;
+        }
+
+        .contact-details h3 {
+            font-family: var(--font-heading);
+            font-size: 42px;
+            font-weight: 300;
+            margin-bottom: 48px;
+            color: var(--text-primary);
+        }
+
+        .contact-item {
+            margin-bottom: 32px;
+        }
+
+        .contact-item-label {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .contact-item-value {
+            font-size: 16px;
+            font-weight: 200;
+            color: var(--text-primary);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .form-field {
+            position: relative;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 0;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(128,128,128,0.3);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 200;
+            transition: border-color 0.4s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        .form-label {
+            position: absolute;
+            top: 16px;
+            left: 0;
+            font-size: 15px;
+            font-weight: 200;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .form-input:focus + .form-label,
+        .form-input:not(:placeholder-shown) + .form-label {
+            top: -8px;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-primary);
+        }
+
+        .form-submit {
+            align-self: flex-start;
+            padding: 20px 64px;
+            background: transparent;
+            border: 1px solid var(--accent-primary);
+            color: var(--accent-primary);
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            cursor: none;
+            transition: all 0.4s ease;
+            margin-top: 32px;
+        }
+
+        .form-submit:hover {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-primary);
+            padding: 80px 8vw;
+            text-align: center;
+            transition: background-color 0.8s ease;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            font-weight: 200;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .side-nav {
+                left: 16px;
+                gap: 24px;
+            }
+
+            .about-organic-shape {
+                width: 400px;
+                height: 500px;
+                right: 5%;
+            }
+
+            .frame-grid,
+            .contact-asym-grid {
+                grid-template-columns: 1fr;
+                gap: 64px;
+            }
+
+            .gallery-wall-item {
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                cursor: auto;
+            }
+
+            .custom-cursor {
+                display: none;
+            }
+
+            .side-nav {
+                display: none;
+            }
+
+            .theme-cluster {
+                right: 16px;
+                top: 16px;
+            }
+
+            .hero-title-line {
+                font-size: clamp(40px, 10vw, 80px);
+            }
+
+            .hero-title-line:nth-child(2) {
+                left: 5vw;
+            }
+
+            .hero-year {
+                right: 16px;
+                bottom: 16px;
+                writing-mode: horizontal-tb;
+            }
+
+            .about-section,
+            .frame-section,
+            .contact-section {
+                padding: 100px 5vw;
+            }
+
+            .about-organic-shape {
+                position: relative;
+                width: 100%;
+                height: 300px;
+                right: auto;
+                top: auto;
+                transform: none;
+                margin-bottom: 48px;
+            }
+
+            .about-text-block {
+                margin-left: 0;
+            }
+
+            .horizontal-gallery {
+                gap: 32px;
+                padding: 0 5vw 48px;
+            }
+
+            .gallery-wall-item {
+                width: 260px;
+            }
+
+            .gallery-wall-item:nth-child(odd),
+            .gallery-wall-item:nth-child(even),
+            .gallery-wall-item:nth-child(3n) {
+                transform: none;
+                margin-top: 0;
+            }
+
+            .quote-full-bleed {
+                padding: 120px 5vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="canvas-texture"></div>
+
+    <!-- Asymmetrical side navigation -->
+    <nav class="side-nav">
+        <a href="#hero">Kezdőlap</a>
+        <a href="#about">Művész</a>
+        <a href="#gallery">Művek</a>
+        <a href="#frames">Keretek</a>
+        <a href="#contact">Kapcsolat</a>
+    </nav>
+
+    <!-- Theme toggle cluster -->
+    <div class="theme-cluster">
+        <div class="theme-toggle-label">Téma</div>
+        <div class="theme-dots">
+            <div class="theme-dot active" style="background: #f2efe9;" data-theme="vaszon" title="Vászon"></div>
+            <div class="theme-dot" style="background: #ffffff;" data-theme="feher" title="Fehér"></div>
+            <div class="theme-dot" style="background: #0a0a0a;" data-theme="est" title="Éj"></div>
+            <div class="theme-dot" style="background: #1a1520;" data-theme="gal" title="Galéria"></div>
+            <div class="theme-dot" style="background: #e8d5c4;" data-theme="bohem" title="Bohém"></div>
+            <div class="theme-dot" style="background: #faf3e8;" data-theme="meleg" title="Meleg"></div>
+            <div class="theme-dot" style="background: #131814;" data-theme="erd" title="Erdő"></div>
+        </div>
+    </div>
+
+    <!-- Hero section -->
+    <section class="hero" id="hero">
+        <canvas id="fluid-canvas"></canvas>
+        <div class="hero-content">
+            <div class="hero-title-block">
+                <div class="hero-title-line">Kárai</div>
+                <div class="hero-title-line">Mihály</div>
+                <div class="hero-subtitle">Festőművész • Absztrakt expresszionizmus</div>
+            </div>
+        </div>
+        <div class="hero-year">1961 —</div>
+    </section>
+
+    <!-- Paint drip separator -->
+    <div class="drip-separator">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+            <path d="M0,0 C240,60 360,60 600,30 C840,0 960,60 1200,30 C1320,15 1380,45 1440,30 L1440,60 L0,60 Z" fill="var(--bg-secondary)"/>
+        </svg>
+    </div>
+
+    <!-- About section -->
+    <section class="about-section" id="about">
+        <div class="about-organic-shape"></div>
+        <div class="about-text-block">
+            <span class="about-label">A művész</span>
+            <h2 class="about-title">Színek és<br>formák nyelve</h2>
+            <p class="about-paragraph">
+                Kárai Mihály, 1961-ben született festőművész, aki művészetében a kortárs absztrakt expresszionizmus és a lírai absztrakció határterületén mozog. Művei az extrém meleg spektrumot – tűzpiros, kadmium narancs, napraforgósárga, arany, lazacrózsaszín – erős, kontrasztképző hideg színekkel – ciánkék, sötétkék, türkiz, smaragdzöld – metszi át.
+            </p>
+            <p class="about-paragraph">
+                Technikai megközelítése a vastag impasto technika, rétegzett felhordás, palettakés (spatulás) kaparások, expresszív és dinamikus ecsetvonások jellemzik. Kompozícióiban térbeli mélység illúzióját rétegződéssel, elmosódó atmoszferikus horizontokkal, ritmikus geometriai blokkokkal és szétáradó organikus formákkal teremti meg.
+            </p>
+            <div class="about-quote">
+                "A festészet nem a látható ábrázolása, hanem az érzések megjelenítése színek és formák nyelvén."
+            </div>
+        </div>
+    </section>
+
+    <!-- Paint drip separator -->
+    <div class="drip-separator">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+            <path d="M0,30 C240,0 360,60 600,30 C840,0 960,60 1200,30 C1320,15 1380,45 1440,30 L1440,60 L0,60 Z" fill="var(--bg-primary)"/>
+        </svg>
+    </div>
+
+    <!-- Horizontal scroll gallery -->
+    <section class="gallery-scroll-section" id="gallery">
+        <div class="gallery-scroll-header">
+            <h2 class="gallery-scroll-title">Válogatott művek</h2>
+        </div>
+        <div class="horizontal-gallery" id="horizontal-gallery">
+            <div class="gallery-wall-item">
+                <img src="../../assets/014fb97bae01374ff673a7f51de018af-karai-mihaly-absztrakt-festmeny-kepmeret-80x60-cm.jpg" alt="Absztrakt festmény">
+                <div class="gallery-wall-item-caption">
+                    <span class="title">Absztrakt festmény</span>
+                    80x60 cm
+                </div>
+            </div>
+            <div class="gallery-wall-item">
+                <img src="../../assets/579ee3610e2f00108ae1ad3b4efe881f-karai-mihaly-a-kep-merete-80x60-cm.jpg" alt="Absztrakt festmény">
+                <div class="gallery-wall-item-caption">
+                    <span class="title">A kép mérete</span>
+                    80x60 cm
+                </div>
+            </div>
+            <div class="gallery-wall-item">
+                <img src="../../assets/732e9d819fbbee1e6b2126f580f51743-karai-mihaly-szines-modern-absztrakt-festmeny-90-x-90-cm.jpg" alt="Színes modern absztrakt">
+                <div class="gallery-wall-item-caption">
+                    <span class="title">Színes modern absztrakt</span>
+                    90x90 cm
+                </div>
+            </div>
+            <div class="gallery-wall-item">
+                <img src="../../assets/76a52a2610ed517750b4d73efabbe595-karai-mihaly-absztrakt-festmeny-140x40x4-cm.jpg" alt="Absztrakt festmény">
+                <div class="gallery-wall-item-caption">
+                    <span class="title">Absztrakt festmény</span>
+                    140x40x4 cm
+                </div>
+            </div>
+            <div class="gallery-wall-item">
+                <img src="../../assets/8548dfcda68a1463e1ed276bce0b0b0c-karai-mihaly-absztrakt-festmeny-kepmeret-140x40-cm.jpg" alt="Absztrakt festmény">
+                <div class="gallery-wall-item-caption">
+                    <span class="title">Absztrakt festmény</span>
+                    140x40 cm
+                </div>
+            </div>
+            <div class="gallery-wall-item">
+                <img src="../../assets/9714f6cd20df8b60a6cfa68e340bdcb2-karai-mihaly-absztrakt-festmeny-40x70-cm.jpg" alt="Absztrakt festmény">
+                <div class="gallery-wall-item-caption">
+                    <span class="title">Absztrakt festmény</span>
+                    40x70 cm
+                </div>
+            </div>
+            <div class="gallery-wall-item">
+                <img src="../../assets/c74fb23ff889ff7fc5bc22904e957ac7-karai-mihaly-kortars-absztrakt-festmeny-kepmeret-70x30-cm.jpg" alt="Kortárs absztrakt">
+                <div class="gallery-wall-item-caption">
+                    <span class="title">Kortárs absztrakt</span>
+                    70x30 cm
+                </div>
+            </div>
+            <div class="gallery-wall-item">
+                <img src="../../assets/cf6c30f8ab61eea749199ee138ae02df-karai-mihaly-nyari-hoseg-kepmeret-100x70-cm.jpg" alt="Nyári hőség">
+                <div class="gallery-wall-item-caption">
+                    <span class="title">Nyári hőség</span>
+                    100x70 cm
+                </div>
+            </div>
+            <div class="gallery-wall-item">
+                <img src="../../assets/d0e8f21d863d3647ce7ce2705fbb0aeb-karai-mihaly-absztrakt-festmeny-kepmeret-70x70-cm.jpg" alt="Szív motívummal">
+                <div class="gallery-wall-item-caption">
+                    <span class="title">Szív motívummal</span>
+                    70x70 cm
+                </div>
+            </div>
+            <div class="gallery-wall-item">
+                <img src="../../assets/d45190df18d013a48540242d4e02b588-karai-mihaly-szines-modern-absztrakt-festmeny-90x100-cm.jpg" alt="Színes modern absztrakt">
+                <div class="gallery-wall-item-caption">
+                    <span class="title">Színes modern absztrakt</span>
+                    90x100 cm
+                </div>
+            </div>
+            <div class="gallery-wall-item">
+                <img src="../../assets/e862397c8ee36bfab0bbe2de56b503e2-karai-mihaly-absztrakt-festmeny-kepmeret-60x60-cm.jpg" alt="Absztrakt festmény">
+                <div class="gallery-wall-item-caption">
+                    <span class="title">Absztrakt festmény</span>
+                    60x60 cm
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Frame & Interior section -->
+    <section class="frame-section" id="frames">
+        <div class="frame-grid">
+            <div class="frame-compare-container" id="frame-compare">
+                <img src="../../assets/keretnelkul_1.jpg" alt="Keret nélküli" class="frame-img-before">
+                <img src="../../assets/keretezve_1.jpg" alt="Keretes" class="frame-img-after">
+                <div class="frame-slider-line">
+                    <div class="frame-slider-handle">↔</div>
+                </div>
+            </div>
+            <div class="frame-info">
+                <h3>Keretben vagy<br>keret nélkül?</h3>
+                <p>A művek megjelenése változatos lehet. A keret nélküli változatok modern, letisztult hatást keltenek, míg a keretes verziók klasszikus galéria élményt nyújtanak.</p>
+                <p>Belső terekben bemutatva: az interior_1 és interior_2 képeink mutatják, hogyan illeszkednek a művek modern lakberendezési koncepciókhoz.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full bleed quote -->
+    <section class="quote-full-bleed">
+        <blockquote class="quote-text">
+            "A festészet nem a látható ábrázolása, hanem az érzések megjelenítése színek és formák nyelvén."
+        </blockquote>
+        <div class="quote-attribution">— Kárai Mihály</div>
+    </section>
+
+    <!-- Contact section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-asym-grid">
+            <div class="contact-details">
+                <h3>Kapcsolat</h3>
+                <div class="contact-item">
+                    <span class="contact-item-label">Műterem</span>
+                    <div class="contact-item-value">Magyarország</div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-item-label">E-mail</span>
+                    <div class="contact-item-value">info@karaimihaly.hu</div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-item-label">Kiállítások</span>
+                    <div class="contact-item-value">Rendszeres részvétel kortárs művészeti kiállításokon</div>
+                </div>
+            </div>
+            <form class="contact-form" onsubmit="event.preventDefault();">
+                <div class="form-field">
+                    <input type="text" class="form-input" placeholder=" " required>
+                    <label class="form-label">Név</label>
+                </div>
+                <div class="form-field">
+                    <input type="email" class="form-input" placeholder=" " required>
+                    <label class="form-label">E-mail cím</label>
+                </div>
+                <div class="form-field">
+                    <textarea class="form-input" rows="4" placeholder=" " required style="resize: vertical; font-family: var(--font-body);"></textarea>
+                    <label class="form-label">Üzenet</label>
+                </div>
+                <button type="submit" class="form-submit">Üzenet küldése</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-text">2026 Kárai Mihály Festőművész. Minden jog fenntartva.</div>
+    </footer>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // Custom cursor
+            var cursor = document.getElementById('cursor');
+            var mouseX = 0, mouseY = 0;
+            var cursorX = 0, cursorY = 0;
+
+            document.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            function animateCursor() {
+                cursorX += (mouseX - cursorX) * 0.15;
+                cursorY += (mouseY - cursorY) * 0.15;
+                cursor.style.left = cursorX + 'px';
+                cursor.style.top = cursorY + 'px';
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+
+            // Cursor hover effects
+            var hoverElements = document.querySelectorAll('a, button, .gallery-wall-item, .theme-dot, .frame-slider-line');
+            hoverElements.forEach(function(el) {
+                el.addEventListener('mouseenter', function() {
+                    cursor.classList.add('hover');
+                });
+                el.addEventListener('mouseleave', function() {
+                    cursor.classList.remove('hover');
+                });
+            });
+
+            // Theme management
+            var themeDots = document.querySelectorAll('.theme-dot');
+            themeDots.forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                    var theme = this.getAttribute('data-theme');
+                    document.documentElement.setAttribute('data-theme', theme);
+                    
+                    themeDots.forEach(function(d) {
+                        d.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    initFluidCanvas();
+                });
+            });
+
+            // Fluid canvas hero
+            var canvas = document.getElementById('fluid-canvas');
+            var ctx = canvas.getContext('2d');
+            var blobs = [];
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            function Blob(x, y, r, color) {
+                this.x = x;
+                this.y = y;
+                this.r = r;
+                this.color = color;
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = (Math.random() - 0.5) * 0.8;
+                this.phase = Math.random() * Math.PI * 2;
+            }
+
+            Blob.prototype.update = function(time) {
+                this.x += this.vx + Math.sin(time * 0.0008 + this.phase) * 0.5;
+                this.y += this.vy + Math.cos(time * 0.0008 + this.phase) * 0.5;
+                if (this.x < -this.r) this.x = canvas.width + this.r;
+                if (this.x > canvas.width + this.r) this.x = -this.r;
+                if (this.y < -this.r) this.y = canvas.height + this.r;
+                if (this.y > canvas.height + this.r) this.y = -this.r;
+            };
+
+            Blob.prototype.draw = function() {
+                var grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
+                grad.addColorStop(0, this.color + '30');
+                grad.addColorStop(0.5, this.color + '15');
+                grad.addColorStop(1, this.color + '00');
+                ctx.fillStyle = grad;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.fill();
+            };
+
+            function initFluidCanvas() {
+                blobs = [];
+                var theme = document.documentElement.getAttribute('data-theme');
+                var colors = {
+                    'vaszon': ['#a86b4a', '#7a4f35', '#c9a96e'],
+                    'feher': ['#222222', '#444444', '#666666'],
+                    'est': ['#c9a96e', '#a07d4a', '#8a6b35'],
+                    'gal': ['#b896d4', '#8a6ab5', '#6a4a95'],
+                    'bohem': ['#c15b3a', '#8b3a22', '#d4722a'],
+                    'meleg': ['#d4722a', '#a85517', '#f59e0b'],
+                    'erd': ['#5a7c59', '#3d5c3c', '#2d5a3d']
+                };
+                var c = colors[theme] || colors['vaszon'];
+                blobs.push(new Blob(canvas.width * 0.3, canvas.height * 0.5, 300, c[0]));
+                blobs.push(new Blob(canvas.width * 0.7, canvas.height * 0.4, 350, c[1]));
+                blobs.push(new Blob(canvas.width * 0.5, canvas.height * 0.7, 250, c[2]));
+            }
+
+            initFluidCanvas();
+
+            var animTime = 0;
+            function animateFluid() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                blobs.forEach(function(b) {
+                    b.update(animTime);
+                    b.draw();
+                });
+                animTime += 16;
+                requestAnimationFrame(animateFluid);
+            }
+            animateFluid();
+
+            // Horizontal gallery drag scroll
+            var gallery = document.getElementById('horizontal-gallery');
+            var isDown = false;
+            var startX;
+            var scrollLeft;
+
+            gallery.addEventListener('mousedown', function(e) {
+                isDown = true;
+                gallery.style.cursor = 'grabbing';
+                startX = e.pageX - gallery.offsetLeft;
+                scrollLeft = gallery.scrollLeft;
+            });
+
+            gallery.addEventListener('mouseleave', function() {
+                isDown = false;
+                gallery.style.cursor = 'grab';
+            });
+
+            gallery.addEventListener('mouseup', function() {
+                isDown = false;
+                gallery.style.cursor = 'grab';
+            });
+
+            gallery.addEventListener('mousemove', function(e) {
+                if (!isDown) return;
+                e.preventDefault();
+                var x = e.pageX - gallery.offsetLeft;
+                var walk = (x - startX) * 2;
+                gallery.scrollLeft = scrollLeft - walk;
+            });
+
+            // Frame comparison slider
+            var frameCompare = document.getElementById('frame-compare');
+            var frameAfter = frameCompare.querySelector('.frame-img-after');
+            var frameLine = frameCompare.querySelector('.frame-slider-line');
+            var frameHandle = frameCompare.querySelector('.frame-slider-handle');
+            var frameIsDragging = false;
+
+            function updateFrame(x) {
+                var rect = frameCompare.getBoundingClientRect();
+                var percent = ((x - rect.left) / rect.width) * 100;
+                percent = Math.max(0, Math.min(100, percent));
+                frameAfter.style.clipPath = 'inset(0 ' + (100 - percent) + '% 0 0)';
+                frameLine.style.left = percent + '%';
+                frameHandle.style.left = percent + '%';
+            }
+
+            frameLine.addEventListener('mousedown', function(e) {
+                frameIsDragging = true;
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', function(e) {
+                if (!frameIsDragging) return;
+                updateFrame(e.clientX);
+            });
+
+            document.addEventListener('mouseup', function() {
+                frameIsDragging = false;
+            });
+
+            frameLine.addEventListener('touchstart', function(e) {
+                frameIsDragging = true;
+                e.preventDefault();
+            });
+
+            document.addEventListener('touchmove', function(e) {
+                if (!frameIsDragging) return;
+                var touch = e.touches[0];
+                updateFrame(touch.clientX);
+            });
+
+            document.addEventListener('touchend', function() {
+                frameIsDragging = false;
+            });
+
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kárai Mihály - Festőművész</title>
+<style>
+:root {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2a2a2a;
+    --accent: #d4af37;
+    --text: #f5f5f0;
+    --text-secondary: #cccccc;
+    --texture: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg'%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)" opacity="0.05"/%3E%3C/svg%3E');
+}
+[data-theme="light"] {
+    --bg-primary: #f9f7f2;
+    --bg-secondary: #e8e4d9;
+    --accent: #8b5a2b;
+    --text: #2c2c2c;
+    --text-secondary: #5a5a5a;
+}
+[data-theme="ocean"] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --accent: #38bdf8;
+    --text: #f1f5f9;
+    --text-secondary: #94a3b8;
+}
+[data-theme="sunset"] {
+    --bg-primary: #2a1a1a;
+    --bg-secondary: #3d2626;
+    --accent: #f4a261;
+    --text: #fff5eb;
+    --text-secondary: #d4b8a8;
+}
+[data-theme="forest"] {
+    --bg-primary: #1a231a;
+    --bg-secondary: #2a3a2a;
+    --accent: #a3c9a3;
+    --text: #f0f7f0;
+    --text-secondary: #b8d4b8;
+}
+[data-theme="monochrome"] {
+    --bg-primary: #000000;
+    --bg-secondary: #1a1a1a;
+    --accent: #ffffff;
+    --text: #e0e0e0;
+    --text-secondary: #888888;
+}
+[data-theme="pastel"] {
+    --bg-primary: #fdf6f0;
+    --bg-secondary: #f0e6e0;
+    --accent: #b5a6d2;
+    --text: #3d324a;
+    --text-secondary: #6b5b7b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Georgia', serif;
+    background-color: var(--bg-primary);
+    color: var(--text);
+    transition: background-color 0.5s ease, color 0.5s ease;
+    background-image: var(--texture);
+    background-blend-mode: overlay;
+    line-height: 1.6;
+}
+header {
+    padding: 2rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--accent);
+}
+h1 { font-weight: 300; letter-spacing: 2px; font-size: 1.8rem; }
+.theme-switcher {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.theme-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--text);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.theme-btn:hover { transform: scale(1.2); }
+.theme-btn[data-theme="dark"] { background: #1a1a1a; }
+.theme-btn[data-theme="light"] { background: #f9f7f2; }
+.theme-btn[data-theme="ocean"] { background: #0f172a; }
+.theme-btn[data-theme="sunset"] { background: #2a1a1a; }
+.theme-btn[data-theme="forest"] { background: #1a231a; }
+.theme-btn[data-theme="monochrome"] { background: #000; }
+.theme-btn[data-theme="pastel"] { background: #fdf6f0; }
+.hero {
+    padding: 6rem 5%;
+    text-align: center;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+}
+.hero h2 {
+    font-size: 3rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    color: var(--accent);
+}
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+.gallery {
+    padding: 4rem 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    background: var(--bg-secondary);
+}
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+.gallery-item:hover { transform: translateY(-5px); }
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: sepia(10%) contrast(1.05);
+    transition: filter 0.3s;
+}
+.gallery-item:hover img { filter: sepia(0%) contrast(1.1); }
+.about {
+    padding: 4rem 5%;
+    background: var(--bg-primary);
+    text-align: center;
+}
+.about h3 {
+    color: var(--accent);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+.about p {
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+footer {
+    padding: 2rem 5%;
+    text-align: center;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--accent);
+}
+@media (max-width: 768px) {
+    .hero h2 { font-size: 2rem; }
+    header { flex-direction: column; gap: 1rem; }
+}
+</style>
+</head>
+<body data-theme="dark">
+<header>
+    <h1>Kárai Mihály</h1>
+    <div class="theme-switcher">
+        <div class="theme-btn" data-theme="dark" title="Sötét"></div>
+        <div class="theme-btn" data-theme="light" title="Világos"></div>
+        <div class="theme-btn" data-theme="ocean" title="Óceán"></div>
+        <div class="theme-btn" data-theme="sunset" title="Naplemente"></div>
+        <div class="theme-btn" data-theme="forest" title="Erdő"></div>
+        <div class="theme-btn" data-theme="monochrome" title="Monokróm"></div>
+        <div class="theme-btn" data-theme="pastel" title="Pasztell"></div>
+    </div>
+</header>
+<section class="hero">
+    <h2>Festői Látomás</h2>
+    <p>Kárai Mihály – Festőművész, 1961. Életművészet, színek és formák harmonikus összhangja.</p>
+</section>
+<section class="gallery">
+    <div class="gallery-item"><img src="apa_festmenyek/interior_1.jpg" alt="Interior 1"></div>
+    <div class="gallery-item"><img src="apa_festmenyek/interior_2.jpg" alt="Interior 2"></div>
+    <div class="gallery-item"><img src="apa_festmenyek/keretezve_1.jpg" alt="Keretezve 1"></div>
+    <div class="gallery-item"><img src="apa_festmenyek/keretezve_2.jpg" alt="Keretezve 2"></div>
+    <div class="gallery-item"><img src="apa_festmenyek/keretnelkul_1.jpg" alt="Keret nélkül 1"></div>
+    <div class="gallery-item"><img src="apa_festmenyek/keretnelkul_2.jpg" alt="Keret nélkül 2"></div>
+</section>
+<section class="about">
+    <h3>A Művész</h3>
+    <p>Kárai Mihály 1961-ben született, életműve a festészet mélyebb rétegeit tárja fel. Művei a természet, az ember és a belső világ összefonódását tükrözik, textúrák és színek harmonikus játékával.</p>
+</section>
+<footer>
+    <p>&copy; 2026 Kárai Mihály Festőművész. Minden jog fenntartva.</p>
+</footer>
+<script>
+document.querySelectorAll('.theme-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.body.setAttribute('data-theme', btn.getAttribute('data-theme'));
+    });
+});
+</script>
+</body>
+</html>

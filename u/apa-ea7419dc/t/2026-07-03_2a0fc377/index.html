@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály | Festőművész</title>
+    <meta name="description" content="Kárai Mihály festőművész hivatalos oldala. Művészet, érzelmek, színek világa.">
+    
+    <!-- Google Fonts: Playfair Display (Elegant Serif) & Manrope (Modern Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* 
+         * ==========================================
+         * AGENT: DESIGN_CORE
+         * STATUS: ACTIVE
+         * TASK: CSS VARIABLES & THEME ENGINE
+         * ==========================================
+         */
+        :root {
+            /* Base Variables (Default: Light/Clean) */
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Manrope', sans-serif;
+            
+            /* 60-30-10 Rule Application */
+            --bg-primary: #f4f1ea; /* 60% - Canvas texture base */
+            --bg-secondary: #e8e3d9; /* 30% - Cards/Sections */
+            --accent-color: #8c7b6c; /* 10% - Buttons/Highlights */
+            
+            /* Typography */
+            --text-main: #2c2c2c;
+            --text-muted: #5a5a5a;
+            --text-light: #ffffff;
+
+            /* UI Elements */
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.08);
+            --transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* THEME: Canvas Noir (Dark, Moody) */
+        [data-theme="noir"] {
+            --bg-primary: #0f1115;
+            --bg-secondary: #1a1d23;
+            --accent-color: #d4af37; /* Gold */
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --glass-bg: rgba(0, 0, 0, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        /* THEME: Morning Mist (Light, Ethereal) */
+        [data-theme="mist"] {
+            --bg-primary: #eef2f3;
+            --bg-secondary: #ffffff;
+            --accent-color: #5d768d; /* Muted Blue */
+            --text-main: #2c3e50;
+            --text-muted: #607d8b;
+        }
+
+        /* THEME: Rustic Earth (Warm, Organic) */
+        [data-theme="rustic"] {
+            --bg-primary: #f3e5d8;
+            --bg-secondary: #e6d2c1;
+            --accent-color: #a0522d; /* Sienna */
+            --text-main: #3e2723;
+            --text-muted: #5d4037;
+        }
+
+        /* THEME: Royal Velvet (Dark, Luxurious) */
+        [data-theme="velvet"] {
+            --bg-primary: #1a0b1c;
+            --bg-secondary: #2d1430;
+            --accent-color: #b19cd9; /* Lavender Gold */
+            --text-main: #f3e5f5;
+            --text-muted: #ce93d8;
+        }
+
+        /* THEME: Sage Garden (Natural, Calm) */
+        [data-theme="sage"] {
+            --bg-primary: #e8f3e8;
+            --bg-secondary: #dcedc8;
+            --accent-color: #558b2f; /* Olive Green */
+            --text-main: #1b5e20;
+            --text-muted: #33691e;
+        }
+
+        /* THEME: Monochrome Studio (High Contrast) */
+        [data-theme="mono"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f5;
+            --accent-color: #000000;
+            --text-main: #000000;
+            --text-muted: #555555;
+            --glass-bg: rgba(0,0,0,0.05);
+        }
+
+        /* THEME: Sunset Horizon (Vibrant, Warm) */
+        [data-theme="sunset"] {
+            --bg-primary: #fff3e0;
+            --bg-secondary: #ffe0b2;
+            --accent-color: #e64a19; /* Burnt Orange */
+            --text-main: #3e2723;
+            --text-muted: #5d4037;
+        }
+
+        /* ==========================================
+         * AGENT: LAYOUT_ENGINE
+         * STATUS: ACTIVE
+         * TASK: GRID, TYPOGRAPHY & TEXTURES
+         * ==========================================
+         */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.8;
+            transition: var(--transition);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* The Painterly Noise Texture Overlay */
+        .texture-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: clamp(3rem, 8vw, 6rem); line-height: 1.1; letter-spacing: -0.02em; }
+        h2 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 2rem; }
+        p { font-size: 1.1rem; color: var(--text-muted); max-width: 65ch; }
+
+        /* ==========================================
+         * AGENT: UI_COMPONENTS
+         * STATUS: ACTIVE
+         * TASK: NAVIGATION, BUTTONS, PANELS
+         * ==========================================
+         */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.01);
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            z-index: 102;
+        }
+
+        .theme-switcher {
+            position: relative;
+            z-index: 102;
+        }
+
+        .theme-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-primary);
+            border-color: var(--accent-color);
+        }
+
+        .theme-panel {
+            position: absolute;
+            top: 150%;
+            right: 0;
+            width: 280px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-soft);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .theme-panel.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        .theme-option:hover {
+            background: rgba(0,0,0,0.05);
+        }
+
+        .color-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        /* ==========================================
+         * AGENT: SECTIONS
+         * STATUS: ACTIVE
+         * TASK: HERO, GALLERY, ABOUT
+         * ==========================================
+         */
+        section {
+            padding: 8rem 3rem;
+            position: relative;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Placeholder for a main painting */
+            background-image: url('apa_festmenyek/interior_1.jpg'); 
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.7) contrast(1.1);
+            z-index: -1;
+            transition: transform 10s ease;
+        }
+        
+        /* Subtle zoom effect on load */
+        .hero:hover .hero-bg {
+            transform: scale(1.05);
+        }
+
+        .hero-content {
+            text-align: center;
+            color: #fff; /* Always white on hero bg */
+            z-index: 1;
+            mix-blend-mode: overlay; /* Artistic blend */
+        }
+        
+        .hero-content h1 {
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 600;
+            letter-spacing: -0.05em;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.9);
+            margin-top: 1rem;
+            font-family: var(--font-serif);
+            font-style: italic;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            padding: 2rem;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 200px 200px 0 0; /* Arch shape */
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+
+        /* GALLERY SECTION */
+        .gallery {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .art-card {
+            position: relative;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            cursor: pointer;
+            group: hover;
+        }
+
+        .art-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.15);
+        }
+
+        .art-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+        }
+
+        .art-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .art-card:hover .art-image {
+            transform: scale(1.05);
+        }
+
+        /* The "Frame" Effect for Keretezve images */
+        .art-card.framed::before {
+            content: '';
+            position: absolute;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid rgba(255,255,255,0.3);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .art-info {
+            padding: 1.5rem;
+        }
+
+        .art-title {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .art-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            opacity: 0;
+            max-height: 0;
+            transition: all 0.4s ease;
+        }
+
+        .art-card:hover .art-desc {
+            opacity: 1;
+            max-height: 100px;
+            margin-top: 10px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--bg-secondary);
+            padding: 4rem 3rem;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 1px solid var(--glass-border);
+        }
+        
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .about { grid-template-columns: 1fr; }
+            .about-img { height: 400px; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            section { padding: 4rem 1.5rem; }
+            h1 { font-size: 3.5rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .theme-btn span { display: none; } /* Hide text on mobile */
+        }
+
+        /* Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body data-theme="noir">
+
+    <div class="texture-overlay"></div>
+
+    <nav>
+        <a href="#" class="logo">KÁRAI MIHÁLY</a>
+        <div class="theme-switcher">
+            <button class="theme-btn" id="themeToggle">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                <span>Téma váltás</span>
+            </button>
+            <div class="theme-panel" id="themePanel">
+                <div class="theme-option" data-theme="noir">
+                    <div class="color-dot" style="background: #0f1115; border-color: #d4af37;"></div> Canvas Noir
+                </div>
+                <div class="theme-option" data-theme="mist">
+                    <div class="color-dot" style="background: #eef2f3; border-color: #5d768d;"></div> Morning Mist
+                </div>
+                <div class="theme-option" data-theme="rustic">
+                    <div class="color-dot" style="background: #f3e5d8; border-color: #a0522d;"></div> Rustic Earth
+                </div>
+                <div class="theme-option" data-theme="velvet">
+                    <div class="color-dot" style="background: #1a0b1c; border-color: #b19cd9;"></div> Royal Velvet
+                </div>
+                <div class="theme-option" data-theme="sage">
+                    <div class="color-dot" style="background: #e8f3e8; border-color: #558b2f;"></div> Sage Garden
+                </div>
+                <div class="theme-option" data-theme="mono">
+                    <div class="color-dot" style="background: #ffffff; border-color: #000000;"></div> Monochrome
+                </div>
+                <div class="theme-option" data-theme="sunset">
+                    <div class="color-dot" style="background: #fff3e0; border-color: #e64a19;"></div> Sunset Gold
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content reveal">
+            <h1>KÁRAI MIHÁLY</h1>
+            <p>Festőművész • 1961</p>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about">
+        <div class="about-text reveal">
+            <h2>A Művész</h2>
+            <p>
+                Kárai Mihály 1961-ben született, művészi érzéke pedig már gyermekkorában megmutatkozott. 
+                Évtizedek óta a vászonra vetíti lelkének mélyebb rétegeit, színei a valóság és az álom határán táncolnak.
+                <br><br>
+                Művészetében a klasszikus technikák ötvöződnek a modern, 2026-os esztétikával, 
+                ahol a textúra és az érzelmi töltet az elsődleges.
+            </p>
+        </div>
+        <img src="apa_festmenyek/interior_2.jpg" alt="Kárai Mihály stúdiója" class="about-img reveal">
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery">
+        <div class="gallery-header reveal">
+            <h2>Képgaléria</h2>
+            <p> válogatás a legújabb alkotásokból</p>
+        </div>
+
+        <div class="gallery-grid">
+            
+            <!-- Item 1: Keretezve -->
+            <div class="art-card framed reveal">
+                <div class="art-image-wrapper">
+                    <img src="apa_festmenyek/keretezve_1.jpg" alt="Kép keretben" class="art-image">
+                </div>
+                <div class="art-info">
+                    <h3 class="art-title">Alkotás I.</h3>
+                    <p class="art-desc">Keretezett változat. Az alkotás mélyebb kontúrokat és elegáns keretet kapott.</p>
+                </div>
+            </div>
+
+            <!-- Item 2: Keret nélkül -->
+            <div class="art-card reveal">
+                <div class="art-image-wrapper">
+                    <img src="apa_festmenyek/keretnelkul_1.jpg" alt="Kép keret nélkül" class="art-image">
+                </div>
+                <div class="art-info">
+                    <h3 class="art-title">Alkotás I. (Nyitott)</h3>
+                    <p class="art-desc">A kép tiszta, keret nélküli változata, amely a vászon textúráját hangsúlyozza.</p>
+                </div>
+            </div>
+
+            <!-- Item 3: Interior -->
+            <div class="art-card reveal">
+                <div class="art-image-wrapper">
+                    <img src="apa_festmenyek/interior_1.jpg" alt="Belső tér" class="art-image">
+                </div>
+                <div class="art-info">
+                    <h3 class="art-title">Belső Terek</h3>
+                    <p class="art-desc">A belső terek és a festmények harmonikus kapcsolata.</p>
+                </div>
+            </div>
+
+             <!-- Item 4: Keretezve -->
+             <div class="art-card framed reveal">
+                <div class="art-image-wrapper">
+                    <img src="apa_festmenyek/keretezve_2.jpg" alt="Kép keretben" class="art-image">
+                </div>
+                <div class="art-info">
+                    <h3 class="art-title">Alkotás II.</h3>
+                    <p class="art-desc">Keretezett változat. A klasszikus elegancia megtestesítője.</p>
+                </div>
+            </div>
+
+            <!-- Item 5: Keret nélkül -->
+            <div class="art-card reveal">
+                <div class="art-image-wrapper">
+                    <img src="apa_festmenyek/keretnelkul_2.jpg" alt="Kép keret nélkül" class="art-image">
+                </div>
+                <div class="art-info">
+                    <h3 class="art-title">Alkotás II. (Nyitott)</h3>
+                    <p class="art-desc">Merev keret nélküli látvány, ahol a festmény maga a keret.</p>
+                </div>
+            </div>
+
+            <!-- Item 6: Interior -->
+            <div class="art-card reveal">
+                <div class="art-image-wrapper">
+                    <img src="apa_festmenyek/interior_2.jpg" alt="Belső tér" class="art-image">
+                </div>
+                <div class="art-info">
+                    <h3 class="art-title">Atmoszféra</h3>
+                    <p class="art-desc">A festmények harmóniája a lakókörnyezettel.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">KÁRAI MIHÁLY</div>
+        <p>Festőművész © 2026. Minden jog fenntartva.</p>
+        <br>
+        <p style="font-size: 0.8rem; opacity: 0.6;">Design by AI Agent Hermes</p>
+    </footer>
+
+    <script>
+        /* 
+         * ==========================================
+         * AGENT: INTERACTION_CORE
+         * STATUS: ACTIVE
+         * TASK: THEME SWITCHER & SCROLL ANIMATIONS
+         * ==========================================
+         */
+
+        // 1. Theme Switcher Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const themePanel = document.getElementById('themePanel');
+        const themeOptions = document.querySelectorAll('.theme-option');
+
+        themeToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            themePanel.classList.toggle('active');
+        });
+
+        // Close panel when clicking outside
+        document.addEventListener('click', () => {
+            themePanel.classList.remove('active');
+        });
+
+        // Apply Theme
+        themeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const selectedTheme = option.getAttribute('data-theme');
+                document.body.setAttribute('data-theme', selectedTheme);
+                themePanel.classList.remove('active');
+            });
+        });
+
+        // 2. Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+
+            revealElements.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        // Trigger once on load
+        revealOnScroll();
+
+        // 3. Smooth Parallax for Hero
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.pageYOffset;
+            const heroBg = document.querySelector('.hero-bg');
+            if (heroBg) {
+                heroBg.style.transform = `translateY(${scrollPosition * 0.5}px) scale(1.1)`;
+            }
+        });
+
+    </script>
+</body>
+</html>

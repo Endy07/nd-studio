@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="hu" data-theme="deep-canvas">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kárai Mihály — Festőművész</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--transition-speed:0.6s}
+[data-theme="deep-canvas"]{--bg1:#1a1410;--bg2:#2a2018;--bg3:#3d2e1e;--text1:#f0e6d3;--text2:#c4a882;--text3:#8a7560;--accent:#c8956c;--accent2:#e8c49a;--accent3:#6b4c30;--surface:rgba(26,20,16,0.85);--surface2:rgba(42,32,24,0.6);--border:rgba(200,149,108,0.2);--shadow:rgba(0,0,0,0.5);--glow:rgba(200,149,108,0.15)}
+[data-theme="moonlit-gallery"]{--bg1:#0d1117;--bg2:#161b22;--bg3:#21262d;--text1:#e6edf3;--text2:#8b949e;--text3:#6e7681;--accent:#79c0ff;--accent2:#a5d6ff;--accent3:#1f6feb;--surface:rgba(13,17,23,0.9);--surface2:rgba(22,27,34,0.7);--border:rgba(121,192,255,0.15);--shadow:rgba(0,0,0,0.6);--glow:rgba(121,192,255,0.1)}
+[data-theme="dawn-studio"]{--bg1:#faf6f0;--bg2:#f0e8da;--bg3:#e8dcc8;--text1:#2c2418;--text2:#5a4a38;--text3:#8a7a68;--accent:#c4724e;--accent2:#d4956a;--accent3:#8b5e3c;--surface:rgba(250,246,240,0.9);--surface2:rgba(240,232,218,0.7);--border:rgba(196,114,78,0.2);--shadow:rgba(44,36,24,0.1);--glow:rgba(196,114,78,0.1)}
+[data-theme="white-wall"]{--bg1:#ffffff;--bg2:#f8f7f5;--bg3:#f0eeeb;--text1:#1a1a1a;--text2:#4a4a4a;--text3:#888888;--accent:#1a1a1a;--accent2:#333333;--accent3:#d4af37;--surface:rgba(255,255,255,0.95);--surface2:rgba(248,247,245,0.8);--border:rgba(0,0,0,0.1);--shadow:rgba(0,0,0,0.08);--glow:rgba(212,175,55,0.15)}
+[data-theme="sunset-atelier"]{--bg1:#1c1028;--bg2:#2d1b3d;--bg3:#3d2550;--text1:#f0e0f8;--text2:#c8a8d8;--text3:#9878a8;--accent:#e8a060;--accent2:#f0c080;--accent3:#6b3080;--surface:rgba(28,16,40,0.88);--surface2:rgba(45,27,61,0.7);--border:rgba(232,160,96,0.18);--shadow:rgba(0,0,0,0.5);--glow:rgba(232,160,96,0.12)}
+[data-theme="morning-light"]{--bg1:#f5f3f0;--bg2:#ebe8e3;--bg3:#e0ddd6;--text1:#2a2e28;--text2:#5a6058;--text3:#8a9088;--accent:#7a9a6a;--accent2:#9ab888;--accent3:#4a6a3a;--surface:rgba(245,243,240,0.9);--surface2:rgba(235,232,227,0.7);--border:rgba(122,154,106,0.2);--shadow:rgba(42,46,40,0.08);--glow:rgba(122,154,106,0.12)}
+[data-theme="midnight-oil"]{--bg1:#0f1114;--bg2:#1a1c22;--bg3:#252830;--text1:#e8e4de;--text2:#a09888;--text3:#6a6258;--accent:#c8783a;--accent2:#e8a060;--accent3:#4a3020;--surface:rgba(15,17,20,0.9);--surface2:rgba(26,28,34,0.7);--border:rgba(200,120,58,0.15);--shadow:rgba(0,0,0,0.6);--glow:rgba(200,120,58,0.1)}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'Outfit',sans-serif;background:var(--bg1);color:var(--text1);transition:background var(--transition-speed),color var(--transition-speed);min-height:100vh;line-height:1.7;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.5}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 50%,var(--glow) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,var(--glow) 0%,transparent 40%),radial-gradient(ellipse at 50% 80%,var(--glow) 0%,transparent 45%);pointer-events:none;z-index:0;transition:background var(--transition-speed)}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:300;letter-spacing:0.02em}
+h1{font-size:clamp(2.5rem,7vw,6rem);line-height:1.05}
+h2{font-size:clamp(1.8rem,4vw,3.5rem);line-height:1.15}
+h3{font-size:clamp(1.2rem,2.5vw,1.8rem)}
+a{text-decoration:none;color:inherit}
+.section-pad{padding:clamp(4rem,10vh,10rem) clamp(1.5rem,5vw,6rem)}
+.container{max-width:1400px;margin:0 auto;width:100%}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);background:var(--surface);border-bottom:1px solid var(--border);transition:all var(--transition-speed)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text2);transition:color 0.3s;font-weight:300;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width 0.4s cubic-bezier(0.25,0.46,0.45,0.94)}
+.nav-links a:hover{color:var(--accent)}
+.nav-links a:hover::after{width:100%}
+.menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1001;background:none;border:none;padding:5px}
+.menu-toggle span{width:24px;height:1.5px;background:var(--text1);transition:all 0.3s}
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--bg2) 0%,var(--bg1) 50%,var(--bg3) 100%);transition:background var(--transition-speed)}
+.hero-bg::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-content{position:relative;z-index:2;text-align:center;padding:2rem}
+.hero-overline{font-size:0.75rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;font-weight:300;opacity:0;animation:fadeUp 1s 0.3s forwards}
+.hero h1{margin-bottom:1.5rem;opacity:0;animation:fadeUp 1s 0.5s forwards}
+.hero h1 em{font-style:italic;color:var(--accent);font-weight:300}
+.hero-sub{font-size:clamp(1rem,2vw,1.3rem);color:var(--text2);max-width:600px;margin:0 auto 3rem;font-weight:200;opacity:0;animation:fadeUp 1s 0.7s forwards}
+.hero-line{width:60px;height:1px;background:var(--accent);margin:0 auto 2rem;opacity:0;animation:fadeUp 1s 0.9s forwards}
+.hero-scroll{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;opacity:0;animation:fadeUp 1s 1.2s forwards}
+.hero-scroll span{font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--text3)}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollPulse 2s infinite}
+/* THEME SWITCHER */
+.theme-panel{position:fixed;right:-320px;top:50%;transform:translateY(-50%);z-index:2000;width:300px;background:var(--surface);backdrop-filter:blur(30px);border:1px solid var(--border);border-right:none;border-radius:16px 0 0 16px;padding:2rem;transition:right 0.5s cubic-bezier(0.25,0.46,0.45,0.94);box-shadow:-5px 0 30px var(--shadow)}
+.theme-panel.open{right:0}
+.theme-toggle{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:2001;width:40px;height:80px;background:var(--surface);backdrop-filter:blur(20px);border:1px solid var(--border);border-right:none;border-radius:12px 0 0 12px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.2rem;transition:all 0.3s}
+.theme-toggle:hover{background:var(--accent);color:var(--bg1)}
+.theme-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--accent);margin-bottom:1.5rem;letter-spacing:0.1em;text-transform:uppercase}
+.theme-grid{display:flex;flex-direction:column;gap:0.6rem}
+.theme-btn{display:flex;align-items:center;gap:1rem;padding:0.8rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--surface2);cursor:pointer;transition:all 0.3s;color:var(--text2);font-size:0.8rem;letter-spacing:0.05em;font-family:'Outfit',sans-serif}
+.theme-btn:hover,.theme-btn.active{border-color:var(--accent);color:var(--accent);background:var(--glow)}
+.theme-btn.active{border-width:1.5px}
+.theme-swatch{width:28px;height:28px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;position:relative;overflow:hidden}
+.theme-swatch::before{content:'';position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,var(--sw1),var(--sw2))}
+/* ABOUT */
+.about{position:relative}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,6vw,8rem);align-items:center}
+.about-portrait{position:relative}
+.portrait-frame{position:relative;padding:1.5rem}
+.portrait-frame::before{content:'';position:absolute;inset:0;border:1px solid var(--border);border-radius:2px}
+.portrait-frame::after{content:'';position:absolute;inset:12px;border:1px solid var(--border);border-radius:2px;opacity:0.5}
+.portrait-img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:2px;display:block;filter:grayscale(20%);transition:filter 0.5s}
+.portrait-img:hover{filter:grayscale(0%)}
+.portrait-caption{margin-top:1.5rem;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--text3);font-size:0.95rem}
+.about-text h2{margin-bottom:2rem;color:var(--accent)}
+.about-text h2 span{display:block;font-size:0.7rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--text3);margin-bottom:0.8rem;font-family:'Outfit',sans-serif;font-weight:300}
+.about-text p{color:var(--text2);margin-bottom:1.5rem;font-weight:200;font-size:clamp(0.95rem,1.2vw,1.1rem);line-height:1.9}
+.about-stats{display:flex;gap:3rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
+.stat{text-align:center}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--accent);font-weight:300;line-height:1}
+.stat-label{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text3);margin-top:0.5rem}
+/* GALLERY */
+.gallery{position:relative;background:var(--bg2);transition:background var(--transition-speed)}
+.gallery-header{text-align:center;margin-bottom:clamp(3rem,6vh,6rem)}
+.gallery-header h2{margin-bottom:1rem}
+.gallery-header h2 span{display:block;font-size:0.7rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--text3);margin-bottom:0.8rem;font-family:'Outfit',sans-serif;font-weight:300}
+.gallery-header p{color:var(--text3);max-width:500px;margin:0 auto;font-weight:200}
+.gallery-filters{display:flex;justify-content:center;gap:1rem;margin-bottom:3rem;flex-wrap:wrap}
+.filter-btn{padding:0.6rem 1.5rem;border:1px solid var(--border);border-radius:100px;background:transparent;color:var(--text3);font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-family:'Outfit',sans-serif;font-weight:300}
+.filter-btn:hover,.filter-btn.active{border-color:var(--accent);color:var(--accent);background:var(--glow)}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.gallery-item{position:relative;overflow:hidden;border-radius:4px;cursor:pointer;aspect-ratio:4/3;background:var(--bg3);transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)}
+.gallery-item.tall{aspect-ratio:3/4}
+.gallery-item.wide{aspect-ratio:16/9}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94),filter 0.5s}
+.gallery-item:hover img{transform:scale(1.05)}
+.gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 50%);opacity:0;transition:opacity 0.4s}
+.gallery-item:hover::after{opacity:1}
+.gallery-item-info{position:absolute;bottom:0;left:0;right:0;padding:2rem;z-index:2;transform:translateY(10px);opacity:0;transition:all 0.4s}
+.gallery-item:hover .gallery-item-info{transform:translateY(0);opacity:1}
+.gallery-item-info h4{font-size:1.1rem;color:#fff;margin-bottom:0.3rem}
+.gallery-item-info p{font-size:0.8rem;color:rgba(255,255,255,0.7);font-weight:200}
+.gallery-item .year-tag{position:absolute;top:1rem;right:1rem;z-index:2;background:var(--surface);backdrop-filter:blur(10px);padding:0.3rem 0.8rem;border-radius:100px;font-size:0.7rem;color:var(--accent);letter-spacing:0.1em;border:1px solid var(--border)}
+/* INTERIOR */
+.interior-section{position:relative}
+.interior-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.interior-item{position:relative;overflow:hidden;border-radius:4px;aspect-ratio:16/10}
+.interior-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s}
+.interior-item:hover img{transform:scale(1.03)}
+.interior-item::before{content:'';position:absolute;inset:0;border:1px solid var(--border);border-radius:4px;z-index:2;pointer-events:none}
+/* FRAMED */
+.framed-section{position:relative;background:var(--bg2);transition:background var(--transition-speed)}
+.framed-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
+.framed-item{position:relative}
+.framed-item img{width:100%;border-radius:2px;display:block}
+.framed-item .frame-overlay{position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1),0 10px 40px rgba(0,0,0,0.3)}
+.framed-item .unframed-badge{position:absolute;top:1rem;left:1rem;background:var(--surface);backdrop-filter:blur(10px);padding:0.3rem 0.8rem;border-radius:100px;font-size:0.65rem;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;border:1px solid var(--border)}
+/* TIMELINE */
+.timeline-section{position:relative}
+.timeline{position:relative;max-width:800px;margin:0 auto}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--border);transform:translateX(-50%)}
+.timeline-item{display:flex;justify-content:flex-end;padding-right:calc(50% + 2rem);position:relative;margin-bottom:4rem}
+.timeline-item:nth-child(even){justify-content:flex-start;padding-right:0;padding-left:calc(50% + 2rem)}
+.timeline-item::before{content:'';position:absolute;left:50%;top:1rem;width:10px;height:10px;background:var(--accent);border-radius:50%;transform:translateX(-50%);border:2px solid var(--bg1)}
+.timeline-content{background:var(--surface);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:12px;padding:2rem;max-width:350px;transition:all 0.3s}
+.timeline-content:hover{border-color:var(--accent);box-shadow:0 10px 30px var(--shadow)}
+.timeline-year{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--accent);font-weight:300}
+.timeline-title{font-size:1rem;color:var(--text1);margin:0.5rem 0 0.5rem;font-weight:400}
+.timeline-desc{font-size:0.85rem;color:var(--text3);font-weight:200;line-height:1.7}
+/* CONTACT */
+.contact{position:relative;background:var(--bg2);transition:background var(--transition-speed)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,6vw,6rem);align-items:start}
+.contact-info h2{margin-bottom:1.5rem}
+.contact-info h2 span{display:block;font-size:0.7rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--text3);margin-bottom:0.8rem;font-family:'Outfit',sans-serif;font-weight:300}
+.contact-info p{color:var(--text2);font-weight:200;margin-bottom:2rem;line-height:1.8}
+.contact-detail{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.contact-icon{width:40px;height:40px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:0.9rem;flex-shrink:0}
+.contact-detail-text{font-size:0.9rem;color:var(--text2)}
+.contact-detail-text strong{display:block;color:var(--text1);font-weight:400;margin-bottom:0.2rem}
+.contact-form{display:flex;flex-direction:column;gap:1.5rem}
+.form-group{position:relative}
+.form-group input,.form-group textarea{width:100%;padding:1rem 0;background:transparent;border:none;border-bottom:1px solid var(--border);color:var(--text1);font-family:'Outfit',sans-serif;font-size:0.95rem;font-weight:200;outline:none;transition:border-color 0.3s}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent)}
+.form-group label{position:absolute;left:0;top:1rem;color:var(--text3);font-size:0.9rem;pointer-events:none;transition:all 0.3s;font-weight:200}
+.form-group input:focus~label,.form-group input:not(:placeholder-shown)~label,.form-group textarea:focus~label,.form-group textarea:not(:placeholder-shown)~label{top:-0.8rem;font-size:0.7rem;color:var(--accent);letter-spacing:0.1em}
+.form-group textarea{resize:vertical;min-height:120px}
+.submit-btn{padding:1rem 3rem;background:var(--accent);color:var(--bg1);border:none;border-radius:100px;font-family:'Outfit',sans-serif;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-weight:400;align-self:flex-start}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px var(--shadow)}
+/* FOOTER */
+footer{padding:3rem;background:var(--bg1);border-top:1px solid var(--border);text-align:center;transition:background var(--transition-speed)}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+footer p{font-size:0.75rem;color:var(--text3);font-weight:200}
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;z-index:5000;background:rgba(0,0,0,0.95);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.4s}
+.lightbox.active{opacity:1;pointer-events:all}
+.lightbox img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:4px;transform:scale(0.9);transition:transform 0.4s}
+.lightbox.active img{transform:scale(1)}
+.lightbox-close{position:absolute;top:2rem;right:2rem;width:50px;height:50px;border:1px solid rgba(255,255,255,0.2);border-radius:50%;background:transparent;color:#fff;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s}
+.lightbox-close:hover{border-color:#fff;background:#fff;color:#000}
+.lightbox-info{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);text-align:center;color:#fff}
+.lightbox-info h4{font-size:1.3rem;margin-bottom:0.3rem}
+.lightbox-info p{font-size:0.85rem;color:rgba(255,255,255,0.6);font-weight:200}
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scrollPulse{0%,100%{opacity:0.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.2)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.25,0.46,0.45,0.94)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+/* MARQUEE */
+.marquee-section{overflow:hidden;padding:2rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);transition:border-color var(--transition-speed)}
+.marquee-track{display:flex;gap:4rem;animation:marquee 30s linear infinite;width:max-content}
+.marquee-item{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.5rem);font-weight:300;color:var(--text3);white-space:nowrap;display:flex;align-items:center;gap:4rem}
+.marquee-item .dot{width:6px;height:6px;background:var(--accent);border-radius:50%;flex-shrink:0}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* RESPONSIVE */
+@media(max-width:1024px){
+.about-grid,.contact-grid,.interior-grid{grid-template-columns:1fr}
+.framed-grid{grid-template-columns:repeat(2,1fr)}
+.timeline-item,.timeline-item:nth-child(even){padding-left:3rem;padding-right:0;justify-content:flex-start}
+.timeline::before{left:0}
+.timeline-item::before{left:0}
+}
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+.nav-links{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--surface);backdrop-filter:blur(30px);flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;pointer-events:none;transition:opacity 0.4s}
+.nav-links.open{opacity:1;pointer-events:all}
+.nav-links a{font-size:1.2rem;letter-spacing:0.3em}
+.menu-toggle{display:flex}
+.menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.menu-toggle.active span:nth-child(2){opacity:0}
+.menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+.gallery-grid{grid-template-columns:1fr}
+.framed-grid{grid-template-columns:1fr}
+.about-stats{flex-direction:column;gap:1.5rem}
+.theme-panel{width:280px;right:-300px}
+.hero h1{font-size:clamp(2rem,8vw,3.5rem)}
+}
+@media(max-width:480px){
+.section-pad{padding:3rem 1.2rem}
+.gallery-grid{grid-template-columns:1fr}
+.gallery-grid .gallery-item{aspect-ratio:4/3}
+}
+/* CUSTOM SCROLLBAR */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg1)}
+::-webkit-scrollbar-thumb{background:var(--accent3);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="nav-logo">Kárai M.</div>
+<ul class="nav-links" id="navLinks">
+<li><a href="#hero">Főoldal</a></li>
+<li><a href="#about">Rólam</a></li>
+<li><a href="#gallery">Galéria</a></li>
+<li><a href="#framed">Keretezve</a></li>
+<li><a href="#contact">Kapcsolat</a></li>
+</ul>
+<button class="menu-toggle" id="menuToggle" aria-label="Menü">
+<span></span><span></span><span></span>
+</button>
+</nav>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Témaváltó">✦</button>
+<div class="theme-panel" id="themePanel">
+<div class="theme-title">Témaválasztó</div>
+<div class="theme-grid">
+<button class="theme-btn active" data-theme="deep-canvas" style="--sw1:#1a1410;--sw2:#c8956c">
+<div class="theme-swatch"></div>Deep Canvas
+</button>
+<button class="theme-btn" data-theme="moonlit-gallery" style="--sw1:#0d1117;--sw2:#79c0ff">
+<div class="theme-swatch"></div>Moonlit Gallery
+</button>
+<button class="theme-btn" data-theme="dawn-studio" style="--sw1:#faf6f0;--sw2:#c4724e">
+<div class="theme-swatch"></div>Dawn Studio
+</button>
+<button class="theme-btn" data-theme="white-wall" style="--sw1:#ffffff;--sw2:#d4af37">
+<div class="theme-swatch"></div>White Wall
+</button>
+<button class="theme-btn" data-theme="sunset-atelier" style="--sw1:#1c1028;--sw2:#e8a060">
+<div class="theme-swatch"></div>Sunset Atelier
+</button>
+<button class="theme-btn" data-theme="morning-light" style="--sw1:#f5f3f0;--sw2:#7a9a6a">
+<div class="theme-swatch"></div>Morning Light
+</button>
+<button class="theme-btn" data-theme="midnight-oil" style="--sw1:#0f1114;--sw2:#c8783a">
+<div class="theme-swatch"></div>Midnight Oil
+</button>
+</div>
+</div>
+
+<section class="hero" id="hero">
+<div class="hero-bg"></div>
+<div class="hero-content">
+<p class="hero-overline">Festőművész — 1961</p>
+<h1>Kárai <em>Mihály</em></h1>
+<div class="hero-line"></div>
+<p class="hero-sub">A szín és forma nyelvén beszélő művész, aki az élet mélységét varázsolja vászonra.</p>
+</div>
+<div class="hero-scroll">
+<span>Görgess</span>
+<div class="scroll-line"></div>
+</div>
+</section>
+
+<div class="marquee-section">
+<div class="marquee-track">
+<div class="marquee-item">Olajfestés <span class="dot"></span></div>
+<div class="marquee-item">Akvarell <span class="dot"></span></div>
+<div class="marquee-item">Pasztell <span class="dot"></span></div>
+<div class="marquee-item">Grafit <span class="dot"></span></div>
+<div class="marquee-item">Portré <span class="dot"></span></div>
+<div class="marquee-item">Tájkép <span class="dot"></span></div>
+<div class="marquee-item">Csendélet <span class="dot"></span></div>
+<div class="marquee-item">Absztrakt <span class="dot"></span></div>
+<div class="marquee-item">Olajfestés <span class="dot"></span></div>
+<div class="marquee-item">Akvarell <span class="dot"></span></div>
+<div class="marquee-item">Pasztell <span class="dot"></span></div>
+<div class="marquee-item">Grafit <span class="dot"></span></div>
+<div class="marquee-item">Portré <span class="dot"></span></div>
+<div class="marquee-item">Tájkép <span class="dot"></span></div>
+<div class="marquee-item">Csendélet <span class="dot"></span></div>
+<div class="marquee-item">Absztrakt <span class="dot"></span></div>
+</div>
+</div>
+
+<section class="about section-pad" id="about">
+<div class="container">
+<div class="about-grid">
+<div class="about-portrait reveal">
+<div class="portrait-frame">
+<img src="apa_festmenyek/interior_1.jpg" alt="Kárai Mihály műtermében" class="portrait-img">
+</div>
+<p class="portrait-caption">A művész a műtermében</p>
+</div>
+<div class="about-text">
+<h2 class="reveal"><span>Festőművész</span>Kárai Mihály</h2>
+<p class="reveal reveal-delay-1">1961-ben született, művészi pályafutását évtizedek óta szenteli a festészetnek. Művészete a természet és az emberi lélek összefonódását tükrözi, ahol a szín és a forma új értelmet nyer.</p>
+<p class="reveal reveal-delay-2">Művei számos kiállításon szerepeltek, magángyűjtők és közintézmények egyaránt őrzik alkotásait. Festészete a hagyományos technikák és a modern szemlélet harmonikus ötvözete.</p>
+<p class="reveal reveal-delay-3">Minden ecsetvonás mögött érzés, minden kompozíció mögött gondolat áll. Kárai Mihály művészete az idő múlásával is megőrzött igazságot keres és közvetít.</p>
+<div class="about-stats reveal reveal-delay-4">
+<div class="stat">
+<div class="stat-num">60+</div>
+<div class="stat-label">Év életkor</div>
+</div>
+<div class="stat">
+<div class="stat-num">30+</div>
+<div class="stat-label">Év alkotás</div>
+</div>
+<div class="stat">
+<div class="stat-num">100+</div>
+<div class="stat-label">Festmény</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="gallery section-pad" id="gallery">
+<div class="container">
+<div class="gallery-header">
+<h2 class="reveal"><span>Galéria</span>A művek világa</h2>
+<p class="reveal reveal-delay-1">Válogatás a festőművész alkotásaiból — minden darab egy-egy pillanat, érzés és gondolat megtestesülése.</p>
+</div>
+<div class="gallery-filters reveal reveal-delay-2">
+<button class="filter-btn active" data-filter="all">Összes</button>
+<button class="filter-btn" data-filter="landscape">Tájképek</button>
+<button class="filter-btn" data-filter="portrait">Portrék</button>
+<button class="filter-btn" data-filter="abstract">Absztrakt</button>
+<button class="filter-btn" data-filter="interior">Beltéri</button>
+</div>
+<div class="gallery-grid" id="galleryGrid">
+<div class="gallery-item reveal" data-category="landscape" data-title="Tájkép I." data-desc="Olajfestés vászonra">
+<img src="apa_festmenyek/1.jpg" alt="Tájkép I.">
+<span class="year-tag">2024</span>
+<div class="gallery-item-info"><h4>Tájkép I.</h4><p>Olajfestés vászonra</p></div>
+</div>
+<div class="gallery-item reveal reveal-delay-1" data-category="portrait" data-title="Portré" data-desc="Pasztell papíron">
+<img src="apa_festmenyek/2.jpg" alt="Portré">
+<span class="year-tag">2023</span>
+<div class="gallery-item-info"><h4>Portré</h4><p>Pasztell papíron</p></div>
+</div>
+<div class="gallery-item tall reveal reveal-delay-2" data-category="abstract" data-title="Kompozíció" data-desc="Olajfestés vászonra">
+<img src="apa_festmenyek/3.jpg" alt="Kompozíció">
+<span class="year-tag">2024</span>
+<div class="gallery-item-info"><h4>Kompozíció</h4><p>Olajfestés vászonra</p></div>
+</div>
+<div class="gallery-item wide reveal" data-category="interior" data-title="Beltéri kép" data-desc="Akvarell papíron">
+<img src="apa_festmenyek/interior_2.jpg" alt="Beltéri kép">
+<span class="year-tag">2023</span>
+<div class="gallery-item-info"><h4>Beltéri kép</h4><p>Akvarell papíron</p></div>
+</div>
+<div class="gallery-item reveal reveal-delay-1" data-category="landscape" data-title="Tájkép II." data-desc="Olajfestés vászonra">
+<img src="apa_festmenyek/4.jpg" alt="Tájkép II.">
+<span class="year-tag">2022</span>
+<div class="gallery-item-info"><h4>Tájkép II.</h4><p>Olajfestés vászonra</p></div>
+</div>
+<div class="gallery-item reveal reveal-delay-2" data-category="abstract" data-title="Színjáték" data-desc="Pasztell vászonra">
+<img src="apa_festmenyek/5.jpg" alt="Színjáték">
+<span class="year-tag">2024</span>
+<div class="gallery-item-info"><h4>Színjáték</h4><p>Pasztell vászonra</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="framed-section section-pad" id="framed">
+<div class="container">
+<div class="gallery-header">
+<h2 class="reveal"><span>Keretezve</span>A művek teljessége</h2>
+<p class="reveal reveal-delay-1">A keret nem csupán határ — hanem része az alkotásnak. Nézze meg, hogyan teljesedik ki a művek szépsége keretben.</p>
+</div>
+<div class="framed-grid">
+<div class="framed-item reveal">
+<img src="apa_festmenyek/keretezve_1.jpg" alt="Festmény keretben">
+<div class="frame-overlay"></div>
+</div>
+<div class="framed-item reveal reveal-delay-1">
+<img src="apa_festmenyek/keretezve_2.jpg" alt="Festmény keretben">
+<div class="frame-overlay"></div>
+</div>
+<div class="framed-item reveal">
+<img src="apa_festmenyek/keretnelkul_1.jpg" alt="Festmény keret nélkül">
+<div class="frame-overlay"></div>
+<span class="unframed-badge">Keret nélkül</span>
+</div>
+<div class="framed-item reveal reveal-delay-1">
+<img src="apa_festmenyek/keretnelkul_2.jpg" alt="Festmény keret nélkül">
+<div class="frame-overlay"></div>
+<span class="unframed-badge">Keret nélkül</span>
+</div>
+</div>
+</div>
+</section>
+
+<section class="timeline-section section-pad" id="timeline">
+<div class="container">
+<div class="gallery-header">
+<h2 class="reveal"><span>Pályafutás</span>Emlékezetes állomások</h2>
+</div>
+<div class="timeline">
+<div class="timeline-item reveal">
+<div class="timeline-content">
+<div class="timeline-year">1961</div>
+<div class="timeline-title">Születés</div>
+<div class="timeline-desc">Kárai Mihály megszületett, ahol a művészet és az élet találkozik.</div>
+</div>
+</div>
+<div class="timeline-item reveal">
+<div class="timeline-content">
+<div class="timeline-year">1980-as</div>
+<div class="timeline-title">Művészeti tanulmányok</div>
+<div class="timeline-desc">A festészet iránti szenvedély formálódása, az első ecsetvonások és kompozíciók.</div>
+</div>
+</div>
+<div class="timeline-item reveal">
+<div class="timeline-content">
+<div class="timeline-year">1990-es</div>
+<div class="timeline-title">Első kiállítások</div>
+<div class="timeline-desc">Az alkotások először kerültek kiállításra, a nyilvánosság megismerkedett a művész világával.</div>
+</div>
+</div>
+<div class="timeline-item reveal">
+<div class="timeline-content">
+<div class="timeline-year">2000-es</div>
+<div class="timeline-title">Elismerések</div>
+<div class="timeline-desc">Művei egyre nagyobb elismerést élveznek, magángyűjtők és intézmények egyaránt értékelik alkotásait.</div>
+</div>
+</div>
+<div class="timeline-item reveal">
+<div class="timeline-content">
+<div class="timeline-year">2024</div>
+<div class="timeline-title">Folyamatos alkotás</div>
+<div class="timeline-desc">Évtizedek után is ugyanazzal a szenvedéllyel és tűzzel alkot, mint az első napokban.</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="contact section-pad" id="contact">
+<div class="container">
+<div class="contact-grid">
+<div class="contact-info">
+<h2 class="reveal"><span>Kapcsolat</span>Lépjen velünk kapcsolatba</h2>
+<p class="reveal reveal-delay-1">Ha érdekel Kárai Mihály művészete, kiállítások, vagy megvásárolná valamelyik alkotást — lépjen velünk kapcsolatba.</p>
+<div class="contact-detail reveal reveal-delay-2">
+<div class="contact-icon">✉</div>
+<div class="contact-detail-text"><strong>Email</strong>kapcsolat@karaimihaly.hu</div>
+</div>
+<div class="contact-detail reveal reveal-delay-3">
+<div class="contact-icon">☎</div>
+<div class="contact-detail-text"><strong>Telefon</strong>+36 30 123 4567</div>
+</div>
+<div class="contact-detail reveal reveal-delay-4">
+<div class="contact-icon">◎</div>
+<div class="contact-detail-text"><strong>Helyszín</strong>Budapest, Magyarország</div>
+</div>
+</div>
+<form class="contact-form reveal" onsubmit="event.preventDefault();alert('Köszönjük üzenetét!')">
+<div class="form-group">
+<input type="text" placeholder=" " required>
+<label>Név</label>
+</div>
+<div class="form-group">
+<input type="email" placeholder=" " required>
+<label>Email cím</label>
+</div>
+<div class="form-group">
+<textarea placeholder=" " rows="4" required></textarea>
+<label>Üzenet</label>
+</div>
+<button type="submit" class="submit-btn">Üzenet küldése</button>
+</form>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="footer-logo">Kárai Mihály</div>
+<p>© 2026 — Minden jog fenntartva. Kárai Mihály festőművész hivatalos weboldala.</p>
+</footer>
+
+<div class="lightbox" id="lightbox">
+<button class="lightbox-close" id="lightboxClose">✕</button>
+<img src="" alt="" id="lightboxImg">
+<div class="lightbox-info">
+<h4 id="lightboxTitle"></h4>
+<p id="lightboxDesc"></p>
+</div>
+</div>
+
+<script>
+const themeBtns=document.querySelectorAll('.theme-btn');
+const themeToggle=document.getElementById('themeToggle');
+const themePanel=document.getElementById('themePanel');
+const menuToggle=document.getElementById('menuToggle');
+const navLinks=document.getElementById('navLinks');
+const lightbox=document.getElementById('lightbox');
+const lightboxImg=document.getElementById('lightboxImg');
+const lightboxClose=document.getElementById('lightboxClose');
+const lightboxTitle=document.getElementById('lightboxTitle');
+const lightboxDesc=document.getElementById('lightboxDesc');
+
+themeToggle.addEventListener('click',()=>themePanel.classList.toggle('open'));
+document.addEventListener('click',(e)=>{if(!themePanel.contains(e.target)&&e.target!==themeToggle&&!themeToggle.contains(e.target))themePanel.classList.remove('open')});
+
+themeBtns.forEach(btn=>{
+btn.addEventListener('click',()=>{
+document.documentElement.setAttribute('data-theme',btn.dataset.theme);
+themeBtns.forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+themePanel.classList.remove('open');
+});
+});
+
+menuToggle.addEventListener('click',()=>{
+menuToggle.classList.toggle('active');
+navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+menuToggle.classList.remove('active');
+navLinks.classList.remove('open');
+}));
+
+document.querySelectorAll('.gallery-item').forEach(item=>{
+item.addEventListener('click',()=>{
+const img=item.querySelector('img');
+const title=item.dataset.title||'';
+const desc=item.dataset.desc||'';
+lightboxImg.src=img.src;
+lightboxImg.alt=img.alt;
+lightboxTitle.textContent=title;
+lightboxDesc.textContent=desc;
+lightbox.classList.add('active');
+});
+});
+lightboxClose.addEventListener('click',()=>lightbox.classList.remove('active'));
+lightbox.addEventListener('click',(e)=>{if(e.target===lightbox)lightbox.classList.remove('active')});
+document.addEventListener('keydown',(e)=>{if(e.key==='Escape')lightbox.classList.remove('active')});
+
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+btn.addEventListener('click',()=>{
+document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+const filter=btn.dataset.filter;
+document.querySelectorAll('.gallery-item').forEach(item=>{
+if(filter==='all'||item.dataset.category===filter){
+item.style.display='';
+item.style.animation='fadeUp 0.5s forwards';
+}else{
+item.style.display='none';
+}
+});
+});
+});
+
+const observer=new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('visible');
+}
+});
+},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+let lastScroll=0;
+const nav=document.querySelector('nav');
+window.addEventListener('scroll',()=>{
+const current=window.pageYOffset;
+if(current>100){nav.style.padding='0.8rem 3rem';nav.style.boxShadow=`0 4px 30px ${getComputedStyle(document.body).getPropertyValue('--shadow')}`}
+else{nav.style.padding='1.2rem 3rem';nav.style.boxShadow='none'}
+lastScroll=current;
+});
+</script>
+</body>
+</html>

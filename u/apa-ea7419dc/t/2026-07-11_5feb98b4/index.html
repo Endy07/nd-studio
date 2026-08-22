@@ -1,0 +1,1665 @@
+﻿<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Mihály Kárai — Digitális Kiállítás</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap');
+
+  :root {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #141414;
+    --bg-tertiary: #1a1a1a;
+    --text-primary: #e8e0d4;
+    --text-secondary: #a89e90;
+    --text-muted: #6b6560;
+    --accent: #c9a96e;
+    --accent-glow: rgba(201,169,110,0.3);
+    --border: rgba(232,224,212,0.08);
+    --shadow: rgba(0,0,0,0.6);
+    --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --palatte-active: 0;
+  }
+
+  /* === ATMOSPHERE PRESETS === */
+  [data-atmosphere="warm-gallery"] {
+    --bg-primary: #12100e;
+    --bg-secondary: #1c1917;
+    --bg-tertiary: #252320;
+    --text-primary: #f5efe6;
+    --text-secondary: #c4b8a8;
+    --text-muted: #7a7068;
+    --accent: #c9a96e;
+    --accent-glow: rgba(201,169,110,0.25);
+  }
+
+  [data-atmosphere="cool-gallery"] {
+    --bg-primary: #0c0f14;
+    --bg-secondary: #141820;
+    --bg-tertiary: #1c2230;
+    --text-primary: #e4e8f0;
+    --text-secondary: #9aa4b8;
+    --text-muted: #5a6478;
+    --accent: #7a9ec7;
+    --accent-glow: rgba(122,158,199,0.25);
+  }
+
+  [data-atmosphere="golden-hour"] {
+    --bg-primary: #1a140c;
+    --bg-secondary: #261e12;
+    --bg-tertiary: #322a1c;
+    --text-primary: #fff4e0;
+    --text-secondary: #d4b88a;
+    --text-muted: #8a7860;
+    --accent: #e8c47a;
+    --accent-glow: rgba(232,196,122,0.3);
+  }
+
+  [data-atmosphere="midnight"] {
+    --bg-primary: #050510;
+    --bg-secondary: #0a0a1a;
+    --bg-tertiary: #0f0f25;
+    --text-primary: #d8d8f0;
+    --text-secondary: #7878a0;
+    --text-muted: #3a3a60;
+    --accent: #8888cc;
+    --accent-glow: rgba(136,136,204,0.2);
+  }
+
+  [data-atmosphere="sepiamuseum"] {
+    --bg-primary: #161210;
+    --bg-secondary: #201a16;
+    --bg-tertiary: #2a2420;
+    --text-primary: #f0e8dc;
+    --text-secondary: #b8a898;
+    --text-muted: #706860;
+    --accent: #a08060;
+    --accent-glow: rgba(160,128,96,0.25);
+  }
+
+  [data-atmosphere="light-studio"] {
+    --bg-primary: #f5f0ea;
+    --bg-secondary: #ebe5dd;
+    --bg-tertiary: #e0d9d0;
+    --text-primary: #2a2420;
+    --text-secondary: #6b6560;
+    --text-muted: #a09890;
+    --accent: #8b6914;
+    --accent-glow: rgba(139,105,20,0.15);
+  }
+
+  [data-atmosphere="monochrome"] {
+    --bg-primary: #111111;
+    --bg-secondary: #1a1a1a;
+    --bg-tertiary: #222222;
+    --text-primary: #eeeeee;
+    --text-secondary: #888888;
+    --text-muted: #555555;
+    --accent: #cccccc;
+    --accent-glow: rgba(204,204,204,0.15);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 1.2s var(--transition), color 1.2s var(--transition);
+  }
+
+  /* === NOISE OVERLAY === */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* === LOADING SCREEN === */
+  #loader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
+    transition: opacity 1.5s ease, visibility 1.5s ease;
+  }
+
+  #loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  #loader .brush-stroke {
+    width: 120px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    animation: brushLoad 2s ease-in-out infinite;
+    margin-bottom: 30px;
+  }
+
+  @keyframes brushLoad {
+    0%, 100% { transform: scaleX(0.3); opacity: 0.3; }
+    50% { transform: scaleX(1); opacity: 1; }
+  }
+
+  #loader p {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* === AMBIENT PARTICLES === */
+  #particles-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* === HEADER / HERO === */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    z-index: 10;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 50% 50%, var(--accent-glow) 0%, transparent 60%);
+    animation: heroGlow 8s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+
+  @keyframes heroGlow {
+    0% { transform: translate(-5%, -5%) scale(1); opacity: 0.4; }
+    100% { transform: translate(5%, 5%) scale(1.1); opacity: 0.7; }
+  }
+
+  .hero-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(10px, 1.2vw, 14px);
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s var(--transition) forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 8vw, 120px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fadeUp 1.2s 0.8s var(--transition) forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-years {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(14px, 2vw, 20px);
+    color: var(--text-secondary);
+    letter-spacing: 6px;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1s 1.2s var(--transition) forwards;
+  }
+
+  .hero-tagline {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: clamp(16px, 2.5vw, 28px);
+    color: var(--text-secondary);
+    max-width: 600px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeUp 1s 1.5s var(--transition) forwards;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 1s 2s var(--transition) forwards;
+  }
+
+  .scroll-indicator span {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { transform: scaleY(0.5); opacity: 0.3; }
+    50% { transform: scaleY(1); opacity: 1; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* === NAVIGATION === */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: linear-gradient(to bottom, var(--bg-primary), transparent);
+    transition: transform 0.5s var(--transition), background 0.5s var(--transition);
+  }
+
+  .nav.scrolled {
+    background: var(--bg-primary);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--text-primary);
+    letter-spacing: 2px;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.4s var(--transition);
+  }
+
+  .nav-links a:hover { color: var(--text-primary); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* === PALETTE PANEL === */
+  .palette-panel {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 12px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    backdrop-filter: blur(30px);
+    opacity: 0;
+    animation: paletteSlide 1s 2.5s var(--transition) forwards;
+    box-shadow: 0 20px 60px var(--shadow);
+  }
+
+  @keyframes paletteSlide {
+    from { opacity: 0; transform: translateY(-50%) translateX(40px); }
+    to { opacity: 1; transform: translateY(-50%) translateX(0); }
+  }
+
+  .palette-toggle {
+    position: absolute;
+    left: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: transform 0.3s var(--transition);
+    box-shadow: 0 4px 15px var(--shadow);
+  }
+
+  .palette-toggle:hover { transform: translateY(-50%) scale(1.15); }
+
+  .palette-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 4px;
+  }
+
+  .atmosphere-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.4s var(--transition);
+    overflow: hidden;
+  }
+
+  .atmosphere-btn::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: 6px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s var(--transition);
+    border: 1px solid var(--border);
+  }
+
+  .atmosphere-btn:hover::before {
+    opacity: 1;
+    transform: translateY(-50%) translateX(-5px);
+  }
+
+  .atmosphere-btn:hover {
+    transform: scale(1.2);
+    border-color: var(--text-primary);
+  }
+
+  .atmosphere-btn.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 15px var(--accent-glow);
+  }
+
+  .atmosphere-btn.active::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  }
+
+  /* Color swatches */
+  .swatch-warm { background: linear-gradient(135deg, #12100e, #c9a96e); }
+  .swatch-cool { background: linear-gradient(135deg, #0c0f14, #7a9ec7); }
+  .swatch-golden { background: linear-gradient(135deg, #1a140c, #e8c47a); }
+  .swatch-midnight { background: linear-gradient(135deg, #050510, #8888cc); }
+  .swatch-sepia { background: linear-gradient(135deg, #161210, #a08060); }
+  .swatch-light { background: linear-gradient(135deg, #f5f0ea, #8b6914); }
+  .swatch-mono { background: linear-gradient(135deg, #111111, #cccccc); }
+
+  /* === GALLERY SECTION === */
+  .gallery-section {
+    position: relative;
+    padding: 100px 40px;
+    z-index: 10;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+
+  .section-header p {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: clamp(14px, 2vw, 20px);
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--accent);
+    margin: 20px auto;
+  }
+
+  /* === PAINTING GRID === */
+  .painting-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(450px, 100%), 1fr));
+    gap: 60px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  .painting-card {
+    position: relative;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+  }
+
+  .painting-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .painting-frame {
+    position: relative;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.6s var(--transition);
+  }
+
+  .painting-card:hover .painting-frame {
+    box-shadow: 0 30px 80px var(--shadow), 0 0 40px var(--accent-glow);
+    transform: translateY(-8px);
+  }
+
+  /* === MAGNIFIER LENS === */
+  .magnifier-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    cursor: none;
+  }
+
+  .painting-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.6s var(--transition), transform 0.6s var(--transition);
+    display: block;
+  }
+
+  .painting-image-framed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.6s var(--transition);
+  }
+
+  .painting-image-interior {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.6s var(--transition);
+  }
+
+  /* Magnifier lens */
+  .magnifier-lens {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    box-shadow: 0 0 30px var(--accent-glow), inset 0 0 30px rgba(0,0,0,0.3);
+    z-index: 100;
+    overflow: hidden;
+    display: none;
+  }
+
+  .magnifier-lens.active {
+    opacity: 1;
+    display: block;
+  }
+
+  .magnifier-lens .lens-content {
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    top: -100%;
+    left: -100%;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.3s;
+  }
+
+  /* Magic reveal overlay on hover */
+  .magic-reveal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), 
+      transparent 0%, 
+      transparent calc(var(--r, 0%) - 20%),
+      var(--bg-primary) calc(var(--r, 0%) + 10%),
+      var(--bg-primary) 100%
+    );
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .magnifier-container:hover .magic-reveal {
+    opacity: 1;
+  }
+
+  .magnifier-container:hover .painting-image-framed {
+    opacity: 0.7;
+  }
+
+  .magnifier-container:hover .painting-image-interior {
+    opacity: 0.7;
+  }
+
+  /* Frame decoration */
+  .frame-decoration {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.6s var(--transition);
+    pointer-events: none;
+  }
+
+  .painting-card:hover .frame-decoration {
+    opacity: 0.3;
+  }
+
+  /* Painting info */
+  .painting-info {
+    padding: 24px 8px 8px;
+  }
+
+  .painting-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    transition: color 0.3s;
+  }
+
+  .painting-card:hover .painting-title {
+    color: var(--accent);
+  }
+
+  .painting-details {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .painting-details span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .painting-details .dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* View mode indicator */
+  .view-mode-indicator {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    gap: 6px;
+    z-index: 60;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .magnifier-container:hover .view-mode-indicator {
+    opacity: 1;
+  }
+
+  .view-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+  }
+
+  .view-dot:hover, .view-dot.active {
+    background: var(--accent);
+    border-color: var(--text-primary);
+    transform: scale(1.3);
+  }
+
+  /* === LIGHTBOX === */
+  .lightbox {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.6s var(--transition);
+    backdrop-filter: blur(20px);
+  }
+
+  .lightbox.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lightbox-image-wrapper {
+    position: relative;
+    max-width: 80vw;
+    max-height: 75vh;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .lightbox-image-wrapper img {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    transition: opacity 0.6s var(--transition);
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 10;
+  }
+
+  .lightbox-close:hover {
+    background: var(--accent);
+    color: var(--bg-primary);
+    transform: rotate(90deg);
+  }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+
+  .lightbox-nav:hover {
+    background: var(--accent);
+    color: var(--bg-primary);
+  }
+
+  .lightbox-prev { left: 20px; }
+  .lightbox-next { right: 20px; }
+
+  .lightbox-info {
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .lightbox-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 4vw, 40px);
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .lightbox-info p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+  }
+
+  .lightbox-view-toggle {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: center;
+  }
+
+  .view-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-secondary);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s var(--transition);
+  }
+
+  .view-btn:hover, .view-btn.active {
+    background: var(--accent);
+    color: var(--bg-primary);
+    border-color: var(--accent);
+  }
+
+  /* === ABOUT SECTION === */
+  .about-section {
+    position: relative;
+    padding: 120px 40px;
+    z-index: 10;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .about-text {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 24px);
+    line-height: 1.8;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+
+  .about-text em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .about-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(22px, 3.5vw, 36px);
+    color: var(--text-primary);
+    text-align: center;
+    margin: 60px 0;
+    padding: 40px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* === FOOTER === */
+  .footer {
+    position: relative;
+    padding: 60px 40px;
+    text-align: center;
+    z-index: 10;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+  }
+
+  /* === MOBILE PALETTE === */
+  .palette-panel-mobile {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px 20px;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    z-index: 1001;
+    backdrop-filter: blur(20px);
+  }
+
+  .palette-panel-mobile .palette-label {
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .palette-row {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+  }
+
+  .palette-row::-webkit-scrollbar { display: none; }
+
+  .palette-row .atmosphere-btn {
+    flex-shrink: 0;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 1024px) {
+    .painting-grid {
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 40px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    
+    .palette-panel { display: none; }
+    .palette-panel-mobile { display: block; }
+    
+    .gallery-section { padding: 60px 16px; }
+    .painting-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    
+    .hero { min-height: 80vh; }
+    .about-section { padding: 80px 20px; }
+    
+    .magnifier-lens { width: 100px; height: 100px; }
+    .magnifier-lens .lens-content {
+      width: 400%;
+      height: 400%;
+      top: -150%;
+      left: -150%;
+    }
+    
+    .lightbox-nav { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title { letter-spacing: -1px; }
+    .painting-info { padding: 16px 4px 4px; }
+  }
+
+  /* === SCROLL REVEAL ANIMATIONS === */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* === CUSTOM CURSOR === */
+  .custom-cursor {
+    position: fixed;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid var(--accent);
+    pointer-events: none;
+    z-index: 99999;
+    transition: transform 0.15s var(--transition), opacity 0.3s;
+    mix-blend-mode: difference;
+  }
+
+  .custom-cursor.hovering {
+    transform: scale(2.5);
+    background: var(--accent-glow);
+  }
+
+  @media (max-width: 768px) {
+    .custom-cursor { display: none; }
+  }
+
+  /* === BRUSH STROKE DECORATIONS === */
+  .brush-stroke-h {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  /* Smooth atmosphere transition */
+  .atmosphere-transitioning body,
+  .atmosphere-transitioning * {
+    transition: background 1.2s var(--transition), color 1.2s var(--transition), border-color 1.2s var(--transition), box-shadow 1.2s var(--transition) !important;
+  }
+</style>
+</head>
+<body data-atmosphere="warm-gallery">
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="brush-stroke"></div>
+  <p>Mihály Kárai</p>
+</div>
+
+<!-- CUSTOM CURSOR -->
+<div class="custom-cursor" id="cursor"></div>
+
+<!-- AMBIENT PARTICLES -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">KÁRAI</a>
+  <ul class="nav-links">
+    <li><a href="#gallery">Kiállítás</a></li>
+    <li><a href="#about">Rólunk</a></li>
+    <li><a href="#contact">Kapcsolat</a></li>
+  </ul>
+</nav>
+
+<!-- PALETTE PANEL (Desktop) -->
+<div class="palette-panel" id="palettePanel">
+  <div class="palette-label">Atmoszféra</div>
+  <button class="atmosphere-btn swatch-warm active" data-atmosphere="warm-gallery" data-tooltip="Meleg Galéria" onclick="setAtmosphere(this)"></button>
+  <button class="atmosphere-btn swatch-cool" data-atmosphere="cool-gallery" data-tooltip="Hűvös Tér" onclick="setAtmosphere(this)"></button>
+  <button class="atmosphere-btn swatch-golden" data-atmosphere="golden-hour" data-tooltip="Aranyóra" onclick="setAtmosphere(this)"></button>
+  <button class="atmosphere-btn swatch-midnight" data-atmosphere="midnight" data-tooltip="Éjfél" onclick="setAtmosphere(this)"></button>
+  <button class="atmosphere-btn swatch-sepia" data-atmosphere="sepiamuseum" data-tooltip="Szepia Múzeum" onclick="setAtmosphere(this)"></button>
+  <button class="atmosphere-btn swatch-light" data-atmosphere="light-studio" data-tooltip="Fényes Stúdió" onclick="setAtmosphere(this)"></button>
+  <button class="atmosphere-btn swatch-mono" data-atmosphere="monochrome" data-tooltip="Monokróm" onclick="setAtmosphere(this)"></button>
+</div>
+
+<!-- PALETTE PANEL (Mobile) -->
+<div class="palette-panel-mobile" id="paletteMobile">
+  <div class="palette-label">Atmoszféra</div>
+  <div class="palette-row">
+    <button class="atmosphere-btn swatch-warm active" data-atmosphere="warm-gallery" onclick="setAtmosphere(this)"></button>
+    <button class="atmosphere-btn swatch-cool" data-atmosphere="cool-gallery" onclick="setAtmosphere(this)"></button>
+    <button class="atmosphere-btn swatch-golden" data-atmosphere="golden-hour" onclick="setAtmosphere(this)"></button>
+    <button class="atmosphere-btn swatch-midnight" data-atmosphere="midmouth" onclick="setAtmosphere(this)"></button>
+    <button class="atmosphere-btn swatch-sepia" data-atmosphere="sepiamuseum" onclick="setAtmosphere(this)"></button>
+    <button class="atmosphere-btn swatch-light" data-atmosphere="light-studio" onclick="setAtmosphere(this)"></button>
+    <button class="atmosphere-btn swatch-mono" data-atmosphere="monochrome" onclick="setAtmosphere(this)"></button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-subtitle">Digitális Kiállítás</div>
+  <h1 class="hero-title">Mihály <em>Kárai</em></h1>
+  <div class="hero-years">sz. 1961</div>
+  <p class="hero-tagline">„A festészet nem azt mutatja meg, amit látunk,<br>hanem amit láthatatlannak tartunk."</p>
+  <div class="scroll-indicator">
+    <span>Fedezd fel</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="section-header reveal">
+    <h2>A Művek</h2>
+    <div class="divider"></div>
+    <p>Használd a nagyítót a festmények részleteinek felfedezéséhez</p>
+  </div>
+
+  <div class="painting-grid" id="paintingGrid">
+    <!-- Paintings will be injected by JS -->
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="section-header reveal">
+    <h2>A Művész</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="about-quote reveal">
+    „Minden ecsetvonás egy csendes beszélgetés az idővel."
+  </div>
+  <p class="about-text reveal">
+    Kárai Mihály (1961) festőművész munkássága a <em>színek és a fény poetikája</em> köré épül. 
+    Művei a valóság és a belső világ határmezsgyéjét járják be, ahol az organikus formák 
+    és a festői expresszió találkoznak. Munkássága során a hagyományos technikákat 
+    ötvözi a kortárs művészeti nyelvvel, létrehozva egy egyedi, felismerhető vizuális 
+    világot, amely <em>az érzelmek mélységét</em> és a természet <em>zenéjét</em> 
+    egyaránt tükrözi.
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+  <p>KÁRAI MIHÁLY — DIGITÁLIS KIÁLLÍTÓTEREM — MMXXVI</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">‹</button>
+  <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">›</button>
+  <div class="lightbox-content">
+    <div class="lightbox-image-wrapper">
+      <img id="lightboxImg" src="" alt="">
+    </div>
+    <div class="lightbox-info">
+      <h3 id="lightboxTitle"></h3>
+      <p id="lightboxMeta"></p>
+      <div class="lightbox-view-toggle">
+        <button class="view-btn active" onclick="setLightboxView('original')">Eredeti</button>
+        <button class="view-btn" onclick="setLightboxView('framed')">Keretezve</button>
+        <button class="view-btn" onclick="setLightboxView('interior')">Enteriőr</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// === PAINTING DATA ===
+const paintings = [
+  {
+    id: 1,
+    title: "Harmat a reggelen",
+    year: "2023",
+    medium: "olaj, vászon",
+    size: "120 × 90 cm",
+    original: "../apa_festmenyek/01_harmat.jpg",
+    framed: "../apa_festmenyek/framed/01_harmat.jpg",
+    interior: "../apa_festmenyek/interior/01_harmat.jpg"
+  },
+  {
+    id: 2,
+    title: "Az erdő csendje",
+    year: "2023",
+    medium: "olaj, vászon",
+    size: "100 × 80 cm",
+    original: "../apa_festmenyek/02_erdő.jpg",
+    framed: "../apa_festmenyek/framed/02_erdő.jpg",
+    interior: "../apa_festmenyek/interior/02_erdő.jpg"
+  },
+  {
+    id: 3,
+    title: "Tengeri horizont",
+    year: "2022",
+    medium: "akril, vászon",
+    size: "150 × 100 cm",
+    original: "../apa_festmenyek/03_tenger.jpg",
+    framed: "../apa_festmenyek/framed/03_tenger.jpg",
+    interior: "../apa_festmenyek/interior/03_tenger.jpg"
+  },
+  {
+    id: 4,
+    title: "Aranyalma",
+    year: "2024",
+    medium: "olaj, vászon",
+    size: "80 × 60 cm",
+    original: "../apa_festmenyek/04_aranyalma.jpg",
+    framed: "../apa_festmenyek/framed/04_aranyalma.jpg",
+    interior: "../apa_festmenyek/interior/04_aranyalma.jpg"
+  },
+  {
+    id: 5,
+    title: "Tavaszi szél",
+    year: "2022",
+    medium: "olaj, vászon",
+    size: "110 × 85 cm",
+    original: "../apa_festmenyek/05_tavasz.jpg",
+    framed: "../apa_festmenyek/framed/05_tavasz.jpg",
+    interior: "../apa_festmenyek/interior/05_tavasz.jpg"
+  },
+  {
+    id: 6,
+    title: "Esti fények",
+    year: "2023",
+    medium: "olaj, vászon",
+    size: "130 × 95 cm",
+    original: "../apa_festmenyek/06_esti.jpg",
+    framed: "../apa_festmenyek/framed/06_esti.jpg",
+    interior: "../apa_festmenyek/interior/06_esti.jpg"
+  },
+  {
+    id: 7,
+    title: "Piros rózsa",
+    year: "2024",
+    medium: "akril, vászon",
+    size: "70 × 50 cm",
+    original: "../apa_festmenyek/07_rozsa.jpg",
+    framed: "../apa_festmenyek/framed/07_rozsa.jpg",
+    interior: "../apa_festmenyek/interior/07_rozsa.jpg"
+  },
+  {
+    id: 8,
+    title: "Vidra-tó",
+    year: "2021",
+    medium: "olaj, vászon",
+    size: "140 × 100 cm",
+    original: "../apa_festmenyek/08_vidra.jpg",
+    framed: "../apa_festmenyek/framed/08_vidra.jpg",
+    interior: "../apa_festmenyek/interior/08_vidra.jpg"
+  }
+];
+
+// === GENERATE PAINTING CARDS ===
+const grid = document.getElementById('paintingGrid');
+
+paintings.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = 'painting-card';
+  card.style.transitionDelay = `${i * 0.1}s`;
+  card.innerHTML = `
+    <div class="painting-frame">
+      <div class="frame-decoration"></div>
+      <div class="magnifier-container" 
+           data-index="${i}" 
+           onmouseenter="handleMagnifierEnter(event, ${i})" 
+           onmousemove="handleMagnifierMove(event, ${i})" 
+           onmouseleave="handleMagnifierLeave(${i})"
+           onclick="openLightbox(${i})">
+        <img class="painting-image" src="${p.original}" alt="${p.title}" loading="lazy">
+        <img class="painting-image-framed" src="${p.framed}" alt="${p.title} keretezve" loading="lazy">
+        <img class="painting-image-interior" src="${p.interior}" alt="${p.title} enteriőr" loading="lazy">
+        <div class="magic-reveal" id="reveal-${i}"></div>
+        <div class="view-mode-indicator">
+          <div class="view-dot active" onclick="event.stopPropagation(); setViewMode(${i}, 'original')" title="Eredeti"></div>
+          <div class="view-dot" onclick="event.stopPropagation(); setViewMode(${i}, 'framed')" title="Keretezve"></div>
+          <div class="view-dot" onclick="event.stopPropagation(); setViewMode(${i}, 'interior')" title="Enteriőr"></div>
+        </div>
+        <div class="magnifier-lens" id="lens-${i}">
+          <div class="lens-content" id="lensContent-${i}"></div>
+        </div>
+      </div>
+      <div class="painting-info">
+        <div class="painting-title">${p.title}</div>
+        <div class="painting-details">
+          <span>${p.year}</span>
+          <span class="dot"></span>
+          <span>${p.medium}</span>
+          <span class="dot"></span>
+          <span>${p.size}</span>
+        </div>
+      </div>
+    </div>
+  `;
+  grid.appendChild(card);
+});
+
+// === MAGNIFIER EFFECT ===
+const magnifierData = {};
+
+function handleMagnifierEnter(e, index) {
+  const container = e.currentTarget;
+  const lens = document.getElementById(`lens-${index}`);
+  const lensContent = document.getElementById(`lensContent-${index}`);
+  const reveal = document.getElementById(`reveal-${index}`);
+  const img = container.querySelector('.painting-image');
+  
+  const imgRect = img.getBoundingClientRect();
+  
+  magnifierData[index] = {
+    lens,
+    lensContent,
+    reveal,
+    container,
+    img,
+    currentView: 'original'
+  };
+  
+  // Set lens background image
+  lensContent.style.backgroundImage = `url('${paintings[index].original}')`;
+  lens.style.backgroundImage = `url('${paintings[index].original}')`;
+  
+  lens.classList.add('active');
+}
+
+function handleMagnifierMove(e, index) {
+  const data = magnifierData[index];
+  if (!data) return;
+  
+  const container = data.container;
+  const rect = container.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  
+  // Position lens
+  const lensSize = 140;
+  const lensX = x - lensSize / 2;
+  const lensY = y - lensSize / 2;
+  
+  data.lens.style.left = `${lensX}px`;
+  data.lens.style.top = `${lensY}px`;
+  
+  // Update lens content position
+  const img = data.img;
+  const imgRect = img.getBoundingClientRect();
+  const bgX = -((x - imgRect.left) / imgRect.width * imgRect.width * 2 - lensSize);
+  const bgY = -((y - imgRect.top) / imgRect.height * imgRect.height * 2 - lensSize);
+  
+  data.lensContent.style.backgroundPosition = `${bgX}px ${bgY}px`;
+  
+  // Update magic reveal
+  const reveal = data.reveal;
+  const revealX = (x / rect.width) * 100;
+  const revealY = (y / rect.height) * 100;
+  reveal.style.setProperty('--mx', `${revealX}%`);
+  reveal.style.setProperty('--my', `${revealY}%`);
+  reveal.style.setProperty('--r', '25%');
+}
+
+function handleMagnifierLeave(index) {
+  const data = magnifierData[index];
+  if (!data) return;
+  data.lens.classList.remove('active');
+}
+
+// === VIEW MODE SWITCHING ===
+function setViewMode(index, mode) {
+  const data = magnifierData[index];
+  if (!data) return;
+  
+  data.currentView = mode;
+  const painting = paintings[index];
+  let src;
+  
+  switch(mode) {
+    case 'framed': src = painting.framed; break;
+    case 'interior': src = painting.interior; break;
+    default: src = painting.original;
+  }
+  
+  data.img.style.opacity = '0';
+  setTimeout(() => {
+    data.img.src = src;
+    data.img.style.opacity = '1';
+  }, 300);
+  
+  // Update lens
+  if (data.lensContent) {
+    data.lensContent.style.backgroundImage = `url('${src}')`;
+  }
+  
+  // Update dots
+  const dots = data.container.querySelectorAll('.view-dot');
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', 
+      (i === 0 && mode === 'original') || 
+      (i === 1 && mode === 'framed') || 
+      (i === 2 && mode === 'interior')
+    );
+  });
+}
+
+// === LIGHTBOX ===
+let currentLightboxIndex = 0;
+let currentLightboxView = 'original';
+
+function openLightbox(index) {
+  currentLightboxIndex = index;
+  currentLightboxView = 'original';
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function navigateLightbox(dir) {
+  currentLightboxIndex = (currentLightboxIndex + dir + paintings.length) % paintings.length;
+  currentLightboxView = 'original';
+  updateLightbox();
+}
+
+function setLightboxView(mode) {
+  currentLightboxView = mode;
+  updateLightbox();
+  
+  document.querySelectorAll('.view-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase().includes(
+      mode === 'original' ? 'eredeti' : mode === 'framed' ? 'keretezve' : 'enteriőr'
+    ));
+  });
+}
+
+function updateLightbox() {
+  const painting = paintings[currentLightboxIndex];
+  const img = document.getElementById('lightboxImg');
+  let src;
+  
+  switch(currentLightboxView) {
+    case 'framed': src = painting.framed; break;
+    case 'interior': src = painting.interior; break;
+    default: src = painting.original;
+  }
+  
+  img.style.opacity = '0';
+  setTimeout(() => {
+    img.src = src;
+    img.style.opacity = '1';
+  }, 200);
+  
+  document.getElementById('lightboxTitle').textContent = painting.title;
+  document.getElementById('lightboxMeta').textContent = `${painting.year} · ${painting.medium} · ${painting.size}`;
+}
+
+// Close lightbox on background click
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lightbox').classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') navigateLightbox(-1);
+  if (e.key === 'ArrowRight') navigateLightbox(1);
+});
+
+// === ATMOSPHERE SWITCHING ===
+function setAtmosphere(btn) {
+  const atmosphere = btn.getAttribute('data-atmosphere');
+  if (!atmosphere) return;
+  
+  // Update all buttons
+  document.querySelectorAll('.atmosphere-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll(`[data-atmosphere="${atmosphere}"]`).forEach(b => b.classList.add('active'));
+  
+  // Apply to body
+  document.body.setAttribute('data-atmosphere', atmosphere);
+  
+  // Flash effect
+  document.body.classList.add('atmosphere-transitioning');
+  setTimeout(() => document.body.classList.remove('atmosphere-transitioning'), 1500);
+}
+
+// === SCROLL EFFECTS ===
+const nav = document.getElementById('nav');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  
+  // Nav background
+  nav.classList.toggle('scrolled', scrollY > 100);
+  
+  // Hero parallax
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    hero.style.transform = `translateY(${scrollY * 0.3}px)`;
+    hero.style.opacity = 1 - (scrollY / (window.innerHeight * 0.8));
+  }
+  
+  lastScroll = scrollY;
+});
+
+// === SCROLL REVEAL ===
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal, .painting-card').forEach(el => observer.observe(el));
+
+// === CUSTOM CURSOR ===
+const cursor = document.getElementById('cursor');
+let cursorX = 0, cursorY = 0;
+let currentX = 0, currentY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  cursorX = e.clientX;
+  cursorY = e.clientY;
+});
+
+function animateCursor() {
+  currentX += (cursorX - currentX) * 0.15;
+  currentY += (cursorY - currentY) * 0.15;
+  cursor.style.left = `${currentX - 12}px`;
+  cursor.style.top = `${currentY - 12}px`;
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// Cursor hover effects
+document.querySelectorAll('a, button, .painting-card, .view-dot, .view-btn').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+});
+
+// === AMBIENT PARTICLES ===
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+class Particle {
+  constructor() {
+    this.reset();
+  }
+  
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2 + 0.5;
+    this.speedX = (Math.random() - 0.5) * 0.3;
+    this.speedY = (Math.random() - 0.5) * 0.3;
+    this.opacity = Math.random() * 0.3 + 0.05;
+    this.life = Math.random() * 200 + 100;
+    this.maxLife = this.life;
+  }
+  
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    this.life--;
+    
+    if (this.life <= 0 || this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+      this.reset();
+    }
+  }
+  
+  draw() {
+    const lifeRatio = this.life / this.maxLife;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(201, 169, 110, ${this.opacity * lifeRatio})`;
+    ctx.fill();
+  }
+}
+
+for (let i = 0; i < 60; i++) {
+  particles.push(new Particle());
+}
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    p.update();
+    p.draw();
+  });
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// === LOADER ===
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 1500);
+});
+
+// === TOUCH SUPPORT FOR MAGNIFIER ===
+document.querySelectorAll('.magnifier-container').forEach(container => {
+  container.addEventListener('touchstart', (e) => {
+    const index = parseInt(container.dataset.index);
+    const touch = e.touches[0];
+    handleMagnifierEnter({ currentTarget: container, clientX: touch.clientX, clientY: touch.clientY }, index);
+    handleMagnifierMove({ currentTarget: container, clientX: touch.clientX, clientY: touch.clientY }, index);
+  });
+  
+  container.addEventListener('touchmove', (e) => {
+    const index = parseInt(container.dataset.index);
+    const touch = e.touches[0];
+    handleMagnifierMove({ currentTarget: container, clientX: touch.clientX, clientY: touch.clientY }, index);
+  });
+  
+  container.addEventListener('touchend', () => {
+    const index = parseInt(container.dataset.index);
+    handleMagnifierLeave(index);
+  });
+});
+
+// === SMOOTH SCROLL FOR NAV LINKS ===
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
+

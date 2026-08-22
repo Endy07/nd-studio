@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="hu" data-theme="classic-paper">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály - Festmények</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ALAPBEÁLLÍTÁSOK ÉS VÁLTOZÓK (60-30-10 SZABÁLY) --- */
+        :root {
+            /* Alapértelmezett téma: Classic Paper */
+            --bg-color: #f4f1ea;       /* 60% - Háttér (Papír hatás) */
+            --text-color: #2c2c2c;     /* 30% - Szöveg (Sötét szürke) */
+            --accent-color: #8a6d56;   /* 10% - Kiemelés (Barna/Arany) */
+            --card-bg: rgba(255, 255, 255, 0.6);
+            --border-color: #dcd6cc;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+            --texture-overlay: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+            --transition-speed: 0.6s;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        /* --- TÉMÁK --- */
+        /* 1. Classic Paper (Alap) - Fehér/Papír alap */
+        [data-theme="classic-paper"] {
+            --bg-color: #f4f1ea;
+            --text-color: #2c2c2c;
+            --accent-color: #8a6d56;
+            --card-bg: rgba(255, 255, 255, 0.7);
+        }
+
+        /* 2. Midnight Canvas - Sötét, drámai */
+        [data-theme="midnight-canvas"] {
+            --bg-color: #1a1a1d;
+            --text-color: #e0e0e0;
+            --accent-color: #c3a363; /* Arany */
+            --card-bg: rgba(40, 40, 45, 0.6);
+            --border-color: #3a3a40;
+            --texture-overlay: none;
+        }
+
+        /* 3. Sage & Stone - Természetes, nyugodt */
+        [data-theme="sage-stone"] {
+            --bg-color: #e6e8e6;
+            --text-color: #333d33;
+            --accent-color: #788b7b; /* Zöldes */
+            --card-bg: rgba(255, 255, 255, 0.5);
+        }
+
+        /* 4. Terracotta Soul - Meleg, földes */
+        [data-theme="terracotta-soul"] {
+            --bg-color: #f2e3d5;
+            --text-color: #4a3b32;
+            --accent-color: #c05746; /* Terrakotta */
+            --card-bg: rgba(255, 255, 255, 0.4);
+        }
+
+        /* 5. Nordic Frost - Tiszta, hideg, elegáns */
+        [data-theme="nordic-frost"] {
+            --bg-color: #f0f4f8;
+            --text-color: #333c4d;
+            --accent-color: #5a7d9a; /* Kékes */
+            --card-bg: rgba(255, 255, 255, 0.8);
+        }
+
+        /* 6. Royal Velvet - Mély lila, luxus */
+        [data-theme="royal-velvet"] {
+            --bg-color: #2a1b3d;
+            --text-color: #e8d8f0;
+            --accent-color: #d4af37; /* Arany */
+            --card-bg: rgba(60, 40, 80, 0.6);
+            --border-color: #4a3560;
+        }
+
+        /* --- GLOBAL STÍLUSOK --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Textúra réteg */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: var(--texture-overlay);
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.5;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- NAVIGÁCIÓ --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.05); /* Finom üveghatás */
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- Témaváltó Panel --- */
+        .theme-switcher {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1001;
+        }
+
+        .theme-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .theme-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: white; /* Alapértelmezett pont */
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .theme-btn.active::after {
+            opacity: 1;
+        }
+
+        /* Színek a gombokon */
+        .t1 { background-color: #f4f1ea; }
+        .t2 { background-color: #1a1a1d; }
+        .t3 { background-color: #e6e8e6; }
+        .t4 { background-color: #f2e3d5; }
+        .t5 { background-color: #f0f4f8; }
+        .t6 { background-color: #2a1b3d; }
+
+        /* --- HERO SZEKCIÓ --- */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.5s;
+        }
+
+        header p {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            font-weight: 300;
+            max-width: 600px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.8s;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            animation: bounce 2s infinite;
+            opacity: 0.6;
+        }
+
+        /* --- SZÖVEGES SZEKCIÓK --- */
+        section {
+            padding: 6rem 10%;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .intro-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .intro-text h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* --- GALÉRIA (GRID) --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .art-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .art-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+
+        .art-image {
+            width: 100%;
+            height: 350px; /* Álló táj, mint egy festmény */
+            overflow: hidden;
+            margin-bottom: 1rem;
+            position: relative;
+            background-color: #ddd; /* Placeholder szín */
+        }
+
+        .art-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .art-card:hover .art-image img {
+            transform: scale(1.05);
+        }
+
+        .art-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .art-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .art-meta {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            font-style: italic;
+            color: var(--accent-color);
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.5rem;
+        }
+
+        /* --- KÉPEK STÍLUSOS KERETELÉSE (CSS) --- */
+        .painting-border {
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.1), 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* --- ANIMÁCIÓK --- */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header h1 { font-size: 3rem; }
+            .nav-links { display: none; } /* Egyszerűsítés mobilon */
+            .theme-switcher { display: flex; flex-direction: row; top: auto; bottom: 20px; right: 50%; transform: translateX(50%); }
+            section { padding: 4rem 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Témaváltó Panel -->
+    <div class="theme-switcher">
+        <div class="theme-btn t1 active" onclick="setTheme('classic-paper')" title="Classic Paper"></div>
+        <div class="theme-btn t2" onclick="setTheme('midnight-canvas')" title="Midnight Canvas"></div>
+        <div class="theme-btn t3" onclick="setTheme('sage-stone')" title="Sage & Stone"></div>
+        <div class="theme-btn t4" onclick="setTheme('terracotta-soul')" title="Terracotta Soul"></div>
+        <div class="theme-btn t5" onclick="setTheme('nordic-frost')" title="Nordic Frost"></div>
+        <div class="theme-btn t6" onclick="setTheme('royal-velvet')" title="Royal Velvet"></div>
+    </div>
+
+    <nav>
+        <div class="logo">Kárai Mihály</div>
+        <div class="nav-links">
+            <a href="#home">Főoldal</a>
+            <a href="#about">Rólam</a>
+            <a href="#gallery">Galéria</a>
+            <a href="#contact">Kapcsolat</a>
+        </div>
+    </nav>
+
+    <header id="home">
+        <h1>Művészet <br> és Lélek</h1>
+        <p>Kárai Mihály festőművész világa – ahol a színek beszélnek és a vászon életre kel.</p>
+        <div class="scroll-indicator">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+            </svg>
+        </div>
+    </header>
+
+    <section id="about" class="intro-text">
+        <h2>A Művész</h2>
+        <p>
+            <!-- IDE ILLESZD BE AZ ÉLETRAJZI SZÖVEGET -->
+            Kárai Mihály 1961-ben született. Festőművészetem során arra törekszem, hogy a látvány és az érzés határmezsgyéjén mozogjak. 
+            Műveim nem csupán a valóság leképezését szolgálják, hanem a belső világom tükrei. A színek játékán és a textúrák mélységén keresztül 
+            próbálok üzenetet közvetíteni a néző felé.
+        </p>
+        <p>
+            <!-- IDE ILLESZD BE A FESTMÉNYEK LEÍRÁSÁT A TXT FÁJLBÓL -->
+            A bemutatott galériában a természet szépsége, a csendes életek és az emberi érzelmek ábrázolására fókuszáló alkotások láthatók.
+        </p>
+    </section>
+
+    <section id="gallery">
+        <h2 style="text-align: center; font-size: 3rem; margin-bottom: 3rem;">Kiválasztott Művek</h2>
+        
+        <div class="gallery-grid">
+            
+            <!-- 1. Festmény -->
+            <div class="art-card">
+                <div class="art-image painting-border">
+                    <!-- IDE ILLESZD BE A KÉP ELÉRHETŐSÉGÉT (pl. src="apa_festmenyek/kep.jpg") -->
+                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb392796a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Festmény 1">
+                </div>
+                <div class="art-info">
+                    <h3>Alkonyat a Duna partján</h3>
+                    <p>Olaj, vászon</p>
+                    <!-- IDE ILLESZD BE A RÖVID LEÍRÁST -->
+                    <p>A folyó dinamikája és a naplemente színeinek játéka.</p>
+                    <div class="art-meta">120 x 80 cm, 2023</div>
+                </div>
+            </div>
+
+            <!-- 2. Festmény -->
+            <div class="art-card">
+                <div class="art-image painting-border">
+                    <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Festmény 2">
+                </div>
+                <div class="art-info">
+                    <h3>Csendes táj</h3>
+                    <p>Akril, vászon</p>
+                    <p>A természet csendje és harmóniája.</p>
+                    <div class="art-meta">90 x 60 cm, 2022</div>
+                </div>
+            </div>
+
+            <!-- 3. Festmény -->
+            <div class="art-card">
+                <div class="art-image painting-border">
+                    <img src="https://images.unsplash.com/photo-1549887534-1541e9326642?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Festmény 3">
+                </div>
+                <div class="art-info">
+                    <h3>Abstrakt Érzelmek</h3>
+                    <p>Techinika vegyes</p>
+                    <p>Az érzelmek szabad ábrázolása formákban.</p>
+                    <div class="art-meta">100 x 100 cm, 2024</div>
+                </div>
+            </div>
+
+            <!-- 4. Festmény -->
+            <div class="art-card">
+                <div class="art-image painting-border">
+                    <img src="https://images.unsplash.com/photo-1578926288207-a90a5366759d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Festmény 4">
+                </div>
+                <div class="art-info">
+                    <h3>Városi hangulat</h3>
+                    <p>Olaj, vászon</p>
+                    <p>A modern élet rohanása és a magány.</p>
+                    <div class="art-meta">80 x 60 cm, 2021</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="intro-text">
+        <h2>Kapcsolat</h2>
+        <p>Ha érdekelnek az alkotások vagy megvásárolná valamelyiket, forduljon bizalommal.</p>
+        <p style="margin-top: 2rem; font-weight: bold; color: var(--accent-color);">Kárai Mihály</p>
+        <p>email@peldafestmeny.hu</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Kárai Mihály. Minden jog fenntartva. <br> Design by AI Assistant.</p>
+    </footer>
+
+    <script>
+        // --- Témaváltó Logika ---
+        function setTheme(themeName) {
+            document.documentElement.setAttribute('data-theme', themeName);
+            
+            // Aktív gomb jelölése
+            const buttons = document.querySelectorAll('.theme-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Megkeressük a gombot, ami az onclick-ben ezt a témát hívja
+            const activeBtn = document.querySelector(`.theme-btn[onclick="setTheme('${themeName}')"]`);
+            if(activeBtn) activeBtn.classList.add('active');
+
+            // Mentés a LocalStorage-ba, hogy maradjon
+            localStorage.setItem('theme', themeName);
+        }
+
+        // Oldal betöltésekor betesszük az előzőleg mentett témát
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                setTheme(savedTheme);
+            }
+        });
+
+        // --- Scroll Animációk (Egyszerű verzió) ---
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.art-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

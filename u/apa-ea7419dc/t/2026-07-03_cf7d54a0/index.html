@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály | Festőművész 2026</title>
+    <meta name="description" content="Kárai Mihály festőművész exkluzív portfóliója. Művészet, érzelem, textúra.">
+    
+    <!-- Fonts: Elegant Serif for headers, Clean Sans for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* 
+         * =========================================
+         * CORE ARCHITECTURE & DESIGN TOKENS
+         * =========================================
+         */
+        :root {
+            /* 2026 Aesthetic: Glassmorphism, Soft Shadows, Noise Textures */
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+            
+            /* Default Theme: "Midnight Canvas" (Dark, Cinematic) */
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --text-primary: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --accent: #d4af37; /* Gold */
+            --glass-bg: rgba(30, 30, 30, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --texture-opacity: 0.05;
+        }
+
+        /* 
+         * THEMES AGENT: 7 Distinct Harmonious Palettes
+         * Using 60-30-10 Rule application
+         */
+        .theme-morning {
+            --bg-primary: #fdfbf7;
+            --bg-secondary: #f0ece4;
+            --text-primary: #2c2c2c;
+            --text-secondary: #666666;
+            --accent: #8c7b6c; /* Taupe */
+            --glass-bg: rgba(253, 251, 247, 0.7);
+            --glass-border: rgba(0, 0, 0, 0.05);
+        }
+
+        .theme-ocean {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --accent: #38bdf8; /* Sky Blue */
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        .theme-terracotta {
+            --bg-primary: #2a1b1b;
+            --bg-secondary: #3e2727;
+            --text-primary: #f5e6e3;
+            --text-secondary: #bcaaa4;
+            --accent: #d84315; /* Burnt Orange */
+            --glass-bg: rgba(42, 27, 27, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.05);
+        }
+
+        .theme-forest {
+            --bg-primary: #1b2e23;
+            --bg-secondary: #263f2f;
+            --text-primary: #e8f5e9;
+            --text-secondary: #a5d6a7;
+            --accent: #81c784; /* Sage Green */
+            --glass-bg: rgba(27, 46, 35, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.05);
+        }
+
+        .theme-modern {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f4f4f4;
+            --text-primary: #000000;
+            --text-secondary: #555555;
+            --accent: #000000; /* Stark Black */
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-vintage {
+            --bg-primary: #eaddcf;
+            --bg-secondary: #d3c3b1;
+            --text-primary: #3e2723;
+            --text-secondary: #5d4037;
+            --accent: #6d4c41; /* Coffee */
+            --glass-bg: rgba(234, 221, 207, 0.6);
+            --glass-border: rgba(62, 39, 35, 0.1);
+        }
+
+        .theme-nebula {
+            --bg-primary: #1a0b2e;
+            --bg-secondary: #2d1b4e;
+            --text-primary: #f3e5f5;
+            --text-secondary: #ce93d8;
+            --accent: #ab47bc; /* Purple */
+            --glass-bg: rgba(45, 27, 78, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        /* 
+         * =========================================
+         * GLOBAL STYLES & TEXTURES
+         * =========================================
+         */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.6s ease, color 0.4s ease, border-color 0.4s ease;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        /* The "Canvas" Texture - Adds artistic depth */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: var(--texture-opacity);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 
+         * =========================================
+         * THEME SWITCHER (Floating Panel)
+         * =========================================
+         */
+        .theme-switcher {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 15px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .theme-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .theme-btn.active::after {
+            content: '';
+            position: absolute;
+            top: -4px; left: -4px; right: -4px; bottom: -4px;
+            border-radius: 50%;
+            border: 1px solid var(--text-primary);
+        }
+
+        /* Tooltip for themes */
+        .theme-btn::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            right: 35px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .theme-switcher:hover .theme-btn::before {
+            opacity: 1;
+        }
+
+        /* 
+         * =========================================
+         * NAVIGATION
+         * =========================================
+         */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, var(--bg-primary), transparent);
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-style: italic;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* 
+         * =========================================
+         * HERO SECTION
+         * =========================================
+         */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Placeholder for a grand painting background */
+            background: radial-gradient(circle at center, var(--bg-secondary), var(--bg-primary));
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            z-index: 2;
+            padding: 20px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            transition: all 0.4s ease;
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-btn:hover {
+            color: var(--bg-primary);
+        }
+
+        .cta-btn:hover::before {
+            left: 0;
+        }
+
+        /* 
+         * =========================================
+         * ABOUT SECTION
+         * =========================================
+         */
+        .section {
+            padding: 100px 50px;
+            position: relative;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 600px;
+            background-color: var(--bg-secondary);
+            background-image: url('./apa_festmenyek/interior_1.jpg'); /* Assuming this exists */
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        /* Fallback styling if image fails to load */
+        .about-image::after {
+            content: 'Művészeti Világ';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-secondary);
+            font-family: var(--font-display);
+            font-size: 2rem;
+            opacity: 0.3;
+        }
+
+        .about-text h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            text-align: justify;
+        }
+
+        /* 
+         * =========================================
+         * GALLERY SECTION (The Masterpiece)
+         * =========================================
+         */
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .gallery-header h2 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .gallery-header p {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .art-card {
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-secondary);
+            transition: transform 0.4s ease;
+            cursor: pointer;
+        }
+
+        .art-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .art-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .art-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .art-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        .art-card:hover .art-info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .art-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .art-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* 
+         * =========================================
+         * CONTACT / FOOTER
+         * =========================================
+         */
+        footer {
+            background: var(--bg-secondary);
+            padding: 80px 50px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .footer-content p {
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .social-links a {
+            font-size: 1.2rem;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .social-links a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* 
+         * =========================================
+         * ANIMATIONS & UTILITIES
+         * =========================================
+         */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav { padding: 20px; }
+            .nav-links { display: none; } /* Simplified for mobile */
+            .about-grid { grid-template-columns: 1fr; }
+            .about-image { height: 400px; }
+            .theme-switcher {
+                top: auto;
+                bottom: 20px;
+                right: 50%;
+                transform: translateX(50%);
+                flex-direction: row;
+                border-radius: 50px;
+            }
+            .theme-btn::before { display: none; } /* Hide tooltips on mobile */
+            .masonry-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="theme-midnight">
+
+    <!-- Theme Switcher Agent -->
+    <div class="theme-switcher">
+        <div class="theme-btn active" data-theme="theme-midnight" style="background: #121212;" data-tooltip="Midnight Canvas"></div>
+        <div class="theme-btn" data-theme="theme-morning" style="background: #fdfbf7;" data-tooltip="Reggeli Harmónia"></div>
+        <div class="theme-btn" data-theme="theme-ocean" style="background: #0f172a;" data-tooltip="Csendes Óceán"></div>
+        <div class="theme-btn" data-theme="theme-terracotta" style="background: #2a1b1b;" data-tooltip="Földi Melegség"></div>
+        <div class="theme-btn" data-theme="theme-forest" style="background: #1b2e23;" data-tooltip="Erdei Suttogás"></div>
+        <div class="theme-btn" data-theme="theme-modern" style="background: #ffffff;" data-tooltip="Modern Minimalizmus"></div>
+        <div class="theme-btn" data-theme="theme-vintage" style="background: #eaddcf;" data-tooltip="Vintage Galéria"></div>
+        <div class="theme-btn" data-theme="theme-nebula" style="background: #1a0b2e;" data-tooltip="Kozmikus Univerzum"></div>
+    </div>
+
+    <nav>
+        <div class="logo">Kárai Mihály</div>
+        <div class="nav-links">
+            <a href="#hero">Főoldal</a>
+            <a href="#about">Rólam</a>
+            <a href="#gallery">Művészeti Galéria</a>
+            <a href="#contact">Kapcsolat</a>
+        </div>
+    </nav>
+
+    <section id="hero" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>Az Érzelem<br>Színei</h1>
+            <p>1961-től a vászonra vetített érzelmek, a csend hangja, és a színek zenéje.</p>
+            <a href="#gallery" class="cta-btn">Képek Felfedezése</a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="about-grid reveal">
+            <div class="about-image">
+                <!-- Image loaded via CSS background -->
+            </div>
+            <div class="about-text">
+                <h2>A Művész</h2>
+                <p>Üdvözöllek a világomban. Kárai Mihály vagyok, és életművem a valóság és a képzelet határmezsgyéjén bolyong. Születésem óta, 1961-ben, a festészet nem csupán hivatásom, hanem a létezés alapvető nyelve.</p>
+                <p>Műveimben a textúrák mélységét, a fényjáték finom árnyalatait és az emberi lélek titkos zugait keresem. A vászon nem csak felület, hanem tükör, amelybe nézve magunkat is megtalálhatjuk.</p>
+                <p style="font-family: var(--font-display); font-style: italic; font-size: 1.3rem; color: var(--text-primary); margin-top: 30px;">
+                    "A festészet a szem zeneje, a lélek tükre."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section">
+        <div class="gallery-header reveal">
+            <h2>Képzőművészeti Válogatás</h2>
+            <p>Válogatás a legkiemelkedőbb alkotásokból</p>
+        </div>
+
+        <div class="masonry-grid">
+            <!-- Interior 1 -->
+            <div class="art-card reveal">
+                <img src="./apa_festmenyek/interior_1.jpg" alt="Belső tér kompozíció" loading="lazy">
+                <div class="art-info">
+                    <h3>Belső Világok I.</h3>
+                    <p>Olaj, vászon - Belső terek vizsgálata</p>
+                </div>
+            </div>
+
+            <!-- Keretezve 1 -->
+            <div class="art-card reveal">
+                <img src="./apa_festmenyek/keretezve_1.jpg" alt="Keretezett alkotás" loading="lazy">
+                <div class="art-info">
+                    <h3>Forma és Lélek</h3>
+                    <p>A keret mint határ a végtelen felé</p>
+                </div>
+            </div>
+
+            <!-- Keret nélkül 1 -->
+            <div class="art-card reveal">
+                <img src="./apa_festmenyek/keretnelkul_1.jpg" alt="Keret nélküli festmény" loading="lazy">
+                <div class="art-info">
+                    <h3>Szabad Színek</h3>
+                    <p>Keret nélküli expresszió</p>
+                </div>
+            </div>
+
+            <!-- Interior 2 -->
+            <div class="art-card reveal">
+                <img src="./apa_festmenyek/interior_2.jpg" alt="Belső tér kompozíció II." loading="lazy">
+                <div class="art-info">
+                    <h3>Belső Világok II.</h3>
+                    <p>Az otthon metafizikája</p>
+                </div>
+            </div>
+
+            <!-- Keretezve 2 -->
+            <div class="art-card reveal">
+                <img src="./apa_festmenyek/keretezve_2.jpg" alt="Keretezett alkotás II." loading="lazy">
+                <div class="art-info">
+                    <h3>Életkép</h3>
+                    <p>Élet és művészet összefonódása</p>
+                </div>
+            </div>
+
+            <!-- Keret nélkül 2 -->
+            <div class="art-card reveal">
+                <img src="./apa_festmenyek/keretnelkul_2.jpg" alt="Keret nélküli festmény II." loading="lazy">
+                <div class="art-info">
+                    <h3>Érzelem Tiszta Lényege</h3>
+                    <p>Az eredeti impulzus</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <h2>Kapcsolat</h2>
+            <p>Kérjen időpontot a megismerkedésre vagy vásároljon alkotást.</p>
+            <a href="mailto:kapcsolat@kara Mihaly.hu" class="cta-btn">Írjon nekem</a>
+            
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Email</a>
+            </div>
+            <p style="margin-top: 50px; font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Kárai Mihály. Minden jog fenntartva. Design by Hermes AI.</p>
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * =========================================
+         * AGENT: THEME SWITCHER LOGIC
+         * =========================================
+         */
+        const themeBtns = document.querySelectorAll('.theme-btn');
+        const body = document.body;
+
+        // Load saved theme or default
+        const savedTheme = localStorage.getItem('karaitheme') || 'theme-midnight';
+        setTheme(savedTheme);
+
+        themeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const theme = btn.getAttribute('data-theme');
+                setTheme(theme);
+                localStorage.setItem('karaitheme', theme);
+            });
+        });
+
+        function setTheme(themeName) {
+            // Remove all theme classes
+            themeBtns.forEach(b => b.classList.remove('active'));
+            body.className = themeName;
+            
+            // Find the button that corresponds to the theme and make it active
+            const activeBtn = document.querySelector(`.theme-btn[data-theme="${themeName}"]`);
+            if(activeBtn) activeBtn.classList.add('active');
+        }
+
+        /**
+         * =========================================
+         * AGENT: SCROLL OBSERVER (Reveal Animations)
+         * =========================================
+         */
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Stop observing once revealed
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        /**
+         * =========================================
+         * AGENT: SMOOTH SCROLLING
+         * =========================================
+         */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

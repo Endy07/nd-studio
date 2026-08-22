@@ -1,0 +1,1097 @@
+﻿<!DOCTYPE html>
+<html lang="hu" data-theme="classic-canvas">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kárai Mihály - Festőművész művészeti portfóliója. 1961 óta alkotó festőművész egyedi, expresszív művei.">
+    <title>Kárai Mihály | Festőművész Művészeti Portfólió</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================
+           CSS VARIABLES & THEME SYSTEM (60-30-10 Rule)
+           ========================================== */
+        :root {
+            /* Classic Canvas (Light) - Default */
+            --bg-primary: #F5F1E8;       /* 60% - Primary Background */
+            --bg-secondary: #E8DFD0;     /* 30% - Secondary Background/Cards */
+            --accent-color: #8B6F47;     /* 10% - Accent/Highlights */
+            --text-primary: #2C241B;     /* Main Text */
+            --text-secondary: #5C4D3C;   /* Secondary Text */
+            --text-light: #F5F1E8;       /* Light Text on Dark */
+            --glass-bg: rgba(245, 241, 232, 0.85);
+            --glass-border: rgba(139, 111, 71, 0.2);
+            --shadow: 0 8px 32px rgba(44, 36, 27, 0.1);
+            --shadow-hover: 0 12px 40px rgba(44, 36, 27, 0.15);
+        }
+
+        [data-theme="midnight-oil"] {
+            --bg-primary: #1A1F2C;
+            --bg-secondary: #252B3A;
+            --accent-color: #C0C0C0;
+            --text-primary: #E8ECEF;
+            --text-secondary: #A0A8B8;
+            --text-light: #1A1F2C;
+            --glass-bg: rgba(37, 43, 58, 0.85);
+            --glass-border: rgba(192, 192, 192, 0.2);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        [data-theme="sunset-canvas"] {
+            --bg-primary: #F4E4D4;
+            --bg-secondary: #E2C4B0;
+            --accent-color: #8B4513;
+            --text-primary: #3E2723;
+            --text-secondary: #5D4037;
+            --text-light: #F4E4D4;
+            --glass-bg: rgba(244, 228, 212, 0.85);
+            --glass-border: rgba(139, 69, 19, 0.2);
+            --shadow: 0 8px 32px rgba(62, 39, 35, 0.15);
+            --shadow-hover: 0 12px 40px rgba(62, 39, 35, 0.2);
+        }
+
+        [data-theme="monochrome-studio"] {
+            --bg-primary: #F9F9F9;
+            --bg-secondary: #E0E0E0;
+            --accent-color: #333333;
+            --text-primary: #1A1A1A;
+            --text-secondary: #4A4A4A;
+            --text-light: #F9F9F9;
+            --glass-bg: rgba(249, 249, 249, 0.9);
+            --glass-border: rgba(51, 51, 51, 0.15);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        [data-theme="forest-whisper"] {
+            --bg-primary: #2C3E2D;
+            --bg-secondary: #3A4F3B;
+            --accent-color: #D4C4A8;
+            --text-primary: #F1F5F1;
+            --text-secondary: #B8C9B0;
+            --text-light: #2C3E2D;
+            --glass-bg: rgba(58, 79, 59, 0.85);
+            --glass-border: rgba(212, 196, 168, 0.2);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        [data-theme="azure-dream"] {
+            --bg-primary: #E8F1F5;
+            --bg-secondary: #D0E1E9;
+            --accent-color: #4A7C9B;
+            --text-primary: #1A3A4A;
+            --text-secondary: #3A5A6A;
+            --text-light: #E8F1F5;
+            --glass-bg: rgba(232, 241, 245, 0.85);
+            --glass-border: rgba(74, 124, 155, 0.2);
+            --shadow: 0 8px 32px rgba(26, 58, 74, 0.1);
+            --shadow-hover: 0 12px 40px rgba(26, 58, 74, 0.15);
+        }
+
+        [data-theme="renaissance-gold"] {
+            --bg-primary: #2B1B17;
+            --bg-secondary: #3E2723;
+            --accent-color: #D4AF37;
+            --text-primary: #F5E6CC;
+            --text-secondary: #C4A484;
+            --text-light: #2B1B17;
+            --glass-bg: rgba(62, 39, 35, 0.85);
+            --glass-border: rgba(212, 175, 55, 0.3);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        /* ==========================================
+           BASE STYLES & TEXTURE
+           ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.6s ease, color 0.6s ease;
+            overflow-x: hidden;
+        }
+
+        .texture-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* ==========================================
+           THEME SWITCHER PANEL
+           ========================================== */
+        .theme-switcher-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+        }
+
+        .theme-switcher-panel h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .theme-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            max-width: 200px;
+        }
+
+        .theme-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.15);
+            border-color: var(--accent-color);
+        }
+
+        .theme-btn.active {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px var(--bg-primary), 0 0 0 4px var(--accent-color);
+        }
+
+        .theme-btn[data-theme="classic-canvas"] { background: linear-gradient(135deg, #F5F1E8, #8B6F47); }
+        .theme-btn[data-theme="midnight-oil"] { background: linear-gradient(135deg, #1A1F2C, #C0C0C0); }
+        .theme-btn[data-theme="sunset-canvas"] { background: linear-gradient(135deg, #F4E4D4, #8B4513); }
+        .theme-btn[data-theme="monochrome-studio"] { background: linear-gradient(135deg, #F9F9F9, #333333); }
+        .theme-btn[data-theme="forest-whisper"] { background: linear-gradient(135deg, #2C3E2D, #D4C4A8); }
+        .theme-btn[data-theme="azure-dream"] { background: linear-gradient(135deg, #E8F1F5, #4A7C9B); }
+        .theme-btn[data-theme="renaissance-gold"] { background: linear-gradient(135deg, #2B1B17, #D4AF37); }
+
+        .theme-btn-title {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.6rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: var(--text-secondary);
+            background: var(--bg-primary);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .theme-btn:hover .theme-btn-title {
+            opacity: 1;
+            bottom: -24px;
+        }
+
+        /* ==========================================
+           NAVIGATION
+           ========================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 999;
+            background: transparent;
+            transition: all 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-logo span {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            margin: 6px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* ==========================================
+           HERO SECTION
+           ========================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 5% 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-art {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 1000px;
+            height: 600px;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-radius: 200px 200px 100px 100px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent-color);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--accent-color);
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        /* ==========================================
+           SECTIONS GENERAL
+           ========================================== */
+        section {
+            padding: 100px 5%;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-color);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .section-description {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* ==========================================
+           ABOUT SECTION
+           ========================================== */
+        .about {
+            background: var(--bg-secondary);
+            transition: background-color 0.6s ease;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .about-image:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text h3 {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .stat-item h4 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+        }
+
+        /* ==========================================
+           GALLERY SECTION
+           ========================================== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .gallery-item-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover .gallery-item-image {
+            transform: scale(1.08);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .gallery-item-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .gallery-item-category {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        /* ==========================================
+           DESCRIPTIONS SECTION
+           ========================================== */
+        .descriptions {
+            background: var(--bg-secondary);
+            transition: background-color 0.6s ease;
+        }
+
+        .descriptions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .description-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+        }
+
+        .description-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .description-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .description-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .description-card .artistic-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        .footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--glass-border);
+            padding: 60px 5% 30px;
+            text-align: center;
+            transition: background-color 0.6s ease;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 30px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            opacity: 0.7;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* ==========================================
+           ANIMATIONS
+           ========================================== */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================
+           RESPONSIVE DESIGN
+           ========================================== */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-image {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .theme-switcher-panel {
+                top: auto;
+                bottom: 20px;
+                right: 50%;
+                transform: translateX(50%);
+                width: calc(100% - 40px);
+                max-width: 300px;
+            }
+
+            .theme-buttons {
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 100px 5% 60px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .gallery-item-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Canvas Texture Overlay -->
+    <div class="texture-overlay"></div>
+
+    <!-- Theme Switcher Panel -->
+    <div class="theme-switcher-panel">
+        <h3>Téma Választó</h3>
+        <div class="theme-buttons">
+            <button class="theme-btn active" data-theme="classic-canvas" title="Classic Canvas">
+                <span class="theme-btn-title">Kanvasz</span>
+            </button>
+            <button class="theme-btn" data-theme="midnight-oil" title="Midnight Oil">
+                <span class="theme-btn-title">Éjszaka</span>
+            </button>
+            <button class="theme-btn" data-theme="sunset-canvas" title="Sunset Canvas">
+                <span class="theme-btn-title">Naplemente</span>
+            </button>
+            <button class="theme-btn" data-theme="monochrome-studio" title="Monochrome Studio">
+                <span class="theme-btn-title">Monokróm</span>
+            </button>
+            <button class="theme-btn" data-theme="forest-whisper" title="Forest Whisper">
+                <span class="theme-btn-title">Erdő</span>
+            </button>
+            <button class="theme-btn" data-theme="azure-dream" title="Azure Dream">
+                <span class="theme-btn-title">Égkék</span>
+            </button>
+            <button class="theme-btn" data-theme="renaissance-gold" title="Renaissance Gold">
+                <span class="theme-btn-title">Renaissance</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo">Kárai <span>Mihály</span></a>
+        <ul class="nav-links">
+            <li><a href="#hero">Kezdőlap</a></li>
+            <li><a href="#about">Rólam</a></li>
+            <li><a href="#gallery">Galéria</a></li>
+            <li><a href="#descriptions">Művek</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-art"></div>
+        <div class="hero-content fade-in-up">
+            <p class="hero-subtitle">Festőművész · 1961 óta</p>
+            <h1 class="hero-title">Kárai <em>Mihály</em></h1>
+            <p class="hero-description">
+                A festészet nem csupán technika, hanem a lélek tükre. Minden ecsetvonás egy történet, 
+                minden szín egy érzelmi rezonancia. Üdvözöllek művészeti világomban.
+            </p>
+            <a href="#gallery" class="cta-button">Festmények Megtekintése</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-header fade-in-up">
+            <p class="section-subtitle">A Művész</p>
+            <h2 class="section-title">Életpályám és Művészeti Útjaim</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-image fade-in-up">
+                <img src="../../apa_festmenyek/interior_1.jpg" alt="Kárai Mihály műterme - Belső tér">
+            </div>
+            <div class="about-text fade-in-up">
+                <h3>Az Alkotás Szelleme</h3>
+                <p>
+                    1961-ben születtem, és életem során a festészet mindig is a lélek nyelve volt számomra. 
+                    A művészet nem csupán a látvány ábrázolása, hanem az érzések, a gondolatok és a 
+                    spirituális tapasztalatok vizuális megfogalmazása.
+                </p>
+                <p>
+                    Műveimben a természet, az emberi érzelmi világ és a belső béké keresése találkozik. 
+                    Minden alkotásom egy utazás a látható és a láthatatlan között, ahol a színek és az 
+                    formák sajátos nyelven beszélnek a nézővel.
+                </p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <h4>1961</h4>
+                        <p>Születési év</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>60+</h4>
+                        <p>Év alkotói tapasztalat</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>∞</h4>
+                        <p>Inspiráció forrása</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="section-header fade-in-up">
+            <p class="section-subtitle">Művészeti Galéria</p>
+            <h2 class="section-title">Válogatott Festmények</h2>
+            <p class="section-description">
+                A következő képek egy része belső tereket ábrázol, mások keretezett vagy keret nélküli 
+                formában mutatják be műveim szépségét és mélységét.
+            </p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item fade-in-up">
+                <img src="../../apa_festmenyek/interior_1.jpg" alt="Belső tér I" class="gallery-item-image">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Belső Tér I</h3>
+                    <p class="gallery-item-category">Interior Sorozat</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in-up">
+                <img src="../../apa_festmenyek/interior_2.jpg" alt="Belső tér II" class="gallery-item-image">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Belső Tér II</h3>
+                    <p class="gallery-item-category">Interior Sorozat</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in-up">
+                <img src="../../apa_festmenyek/keretezve_1.jpg" alt="Keretezett művészet I" class="gallery-item-image">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Keretezett Művészet I</h3>
+                    <p class="gallery-item-category">Keretezett Sorozat</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in-up">
+                <img src="../../apa_festmenyek/keretezve_2.jpg" alt="Keretezett művészet II" class="gallery-item-image">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Keretezett Művészet II</h3>
+                    <p class="gallery-item-category">Keretezett Sorozat</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in-up">
+                <img src="../../apa_festmenyek/keretnelkul_1.jpg" alt="Keret nélkül I" class="gallery-item-image">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Keret Nélkül I</h3>
+                    <p class="gallery-item-category">Keret Nélkül Sorozat</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in-up">
+                <img src="../../apa_festmenyek/keretnelkul_2.jpg" alt="Keret nélkül II" class="gallery-item-image">
+                <div class="gallery-item-overlay">
+                    <h3 class="gallery-item-title">Keret Nélkül II</h3>
+                    <p class="gallery-item-category">Keret Nélkül Sorozat</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Descriptions Section -->
+    <section class="descriptions" id="descriptions">
+        <div class="section-header fade-in-up">
+            <p class="section-subtitle">Művek Leírása</p>
+            <h2 class="section-title">A Festmények Világa</h2>
+            <p class="section-description">
+                Minden művem mögött egy történet, egy érzés, egy pillanat áll. 
+                Íme néhány gondolat a műveimről és az alkotói folyamatról.
+            </p>
+        </div>
+        <div class="descriptions-grid">
+            <div class="description-card fade-in-up">
+                <h3>Belső Terek (Interior)</h3>
+                <p>
+                    A belső terek sorozat a csend és a fény játékát kutatja. Azok a pillanatok, 
+                    amikor a napfény átszűrődik az ablakon, és árnyékokat vet a falakra, 
+                    varázslatos atmoszférát teremtenek. Ezek a képek az otthon melegének 
+                    megfoghatatlan pillanatait örökítik meg.
+                </p>
+                <div class="artistic-quote">"A belső tér nem csupán fizikai hely, hanem a lélek tükre."</div>
+            </div>
+            <div class="description-card fade-in-up">
+                <h3>Keretezett Művészet</h3>
+                <p>
+                    A keret nem korlát, hanem ablak a világba. A keretezett műveimben a forma 
+                    és a tartalom harmonikus egysége jelenik meg. A keret kiemeli a festmény 
+                    lényegét, és lehetővé teszi, hogy a néző teljesen elmerüljön a műben, 
+                    elszakadva a külvilágtól.
+                </p>
+                <div class="artistic-quote">"A keret nem határol, hanem szabadít fel."</div>
+            </div>
+            <div class="description-card fade-in-up">
+                <h3>Keret Nélkül</h3>
+                <p>
+                    A keret nélküli művek a tisztaság és a szabad expresszió megnyilvánulása. 
+                    Nélkülük a festmény közvetlenül érintkezik a térrel, határok nélküli 
+                    kreativitás jelenik meg. Ez a sorozat a végtelenség és a szabadság 
+                    érzését közvetíti a néző felé.
+                </p>
+                <div class="artistic-quote">"Ahatárok nélküli kreativitás a lélek legmélyebb forrása."</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">Kárai <span>Mihály</span></div>
+        <p class="footer-text">
+            Festőművész, aki 1961 óta alkot. Műveim a természet, az emberi érzelmi világ 
+            és a belső béké keresésének tükrei.
+        </p>
+        <div class="footer-copy">
+            &copy; 2026 Kárai Mihály Festőművész. Minden jog fenntartva. | Művészeti Portfólió
+        </div>
+    </footer>
+
+    <script>
+        // ==========================================
+        // THEME SWITCHER LOGIC
+        // ==========================================
+        const themeButtons = document.querySelectorAll('.theme-btn');
+        const htmlElement = document.documentElement;
+
+        // Load saved theme or default
+        const savedTheme = localStorage.getItem('theme') || 'classic-canvas';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateActiveThemeButton(savedTheme);
+
+        themeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const theme = button.getAttribute('data-theme');
+                htmlElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                updateActiveThemeButton(theme);
+            });
+        });
+
+        function updateActiveThemeButton(activeTheme) {
+            themeButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-theme') === activeTheme) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // ==========================================
+        // NAVBAR SCROLL EFFECT
+        // ==========================================
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ==========================================
+        // INTERSECTION OBSERVER FOR ANIMATIONS
+        // ==========================================
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ==========================================
+        // SMOOTH SCROLL FOR ANCHOR LINKS
+        // ==========================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ==========================================
+        // MOBILE MENU TOGGLE (Basic Implementation)
+        // ==========================================
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.background = 'var(--glass-bg)';
+                navLinks.style.backdropFilter = 'blur(12px)';
+                navLinks.style.padding = '20px';
+                navLinks.style.boxShadow = 'var(--shadow)';
+                navLinks.style.borderTop = '1px solid var(--glass-border)';
+            }
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,547 @@
+﻿<?php
+/**
+ * Kárai Mihály Festmény Galéria Engine
+ * 
+ * Ez a fájl egy dinamikus PHP/HTML/JS megoldás.
+ * Mivel a böngészők biztonsági okokból nem férnek hozzá a helyi fájlrendszerhez,
+ * ezt a fájlt XAMPP-on keresztül kell futtatni (pl. http://localhost/2026/Hermes/.../file.html)
+ * vagy átnevezni .php kiterjesztésre.
+ * 
+ * A fájl beolvassa a képeket és a leírásokat, majd dinamikusan generálja a frontendet.
+ */
+
+// --- KONFIGURÁCIÓ ---
+$galleryDir = __DIR__ . '/apa_festmenyek';
+$metadataFile = __DIR__ . '/festmenyek_leiras.txt';
+
+// --- ADATBÁZIS ÉPÍTÉS (PHP) ---
+$images = [];
+$descriptions = [];
+
+// 1. Leírások betöltése
+if (file_exists($metadataFile)) {
+    $lines = file($metadataFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        // Elvárás formátum: "fajlnev.jpg | Leírás szövege" vagy "fajlnev.jpg: Leírás"
+        if (strpos($line, '|') !== false) {
+            list($file, $desc) = explode('|', $line, 2);
+            $descriptions[trim($file)] = trim($desc);
+        } elseif (strpos($line, ':') !== false) {
+            list($file, $desc) = explode(':', $line, 2);
+            $descriptions[trim($file)] = trim($desc);
+        }
+    }
+}
+
+// 2. Képek beolvasása
+if (is_dir($galleryDir)) {
+    $files = scandir($galleryDir);
+    foreach ($files as $file) {
+        $path = $galleryDir . '/' . $file;
+        if (is_file($path)) {
+            $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+            if (in_array($ext, ['jpg', 'jpeg', 'png', 'webp', 'gif'])) {
+                // Alap adatok
+                $baseName = pathinfo($file, PATHINFO_FILENAME);
+                $description = $descriptions[$file] ?? $descriptions[$baseName] ?? '';
+                
+                // Kontextus felismerés
+                $contextType = 'none';
+                $contextPair = null;
+                
+                if (preg_match('/_(keretezve|keretnelkul|interior)_(\d+)/i', $file, $matches)) {
+                    $contextType = strtolower($matches[1]);
+                    $id = $matches[2];
+                    
+                    // Pár keresése
+                    if ($contextType === 'keretezve') {
+                        $contextPair = str_replace('keretezve', 'keretnelkul', $file);
+                    } elseif ($contextType === 'keretnelkul') {
+                        $contextPair = str_replace('keretnelkul', 'keretezve', $file);
+                    } elseif ($contextType === 'interior') {
+                        // Az interior kép párja az alap kép (ami nincs interior kitépővel)
+                        // Egyszerűsített logika: ha van interior_1, az alap kép neve lehet painting_1.jpg
+                        // Itt feltételezzük, hogy az alap kép neve megegyezik az ID-vel vagy hasonló
+                        // A valós implementációban itt bonyolultabb regex kellene a névazonosításhoz.
+                        $contextPair = null; // Az interior gyakran standalone
+                    }
+                }
+
+                $images[] = [
+                    'file' => $file,
+                    'path' => './apa_festmenyek/' . $file,
+                    'baseName' => $baseName,
+                    'description' => $description,
+                    'contextType' => $contextType,
+                    'contextPair' => $contextPair ? './apa_festmenyek/' . $contextPair : null
+                ];
+            }
+        }
+    }
+}
+
+// JSON adat átadása a frontendnek
+$jsonData = json_encode($images);
+?>
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály - Művészeti Galéria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Alapértelmezett téma (Classic Art) */
+            --theme-60: #f4f1ea; /* Háttér */
+            --theme-30: #e8e4db; /* Kártyák */
+            --theme-10: #8b5a2b; /* Akcentus */
+            --theme-text: #2c2c2c;
+            --theme-accent-text: #ffffff;
+            
+            --transition-speed: 0.5s;
+            --card-radius: 12px;
+        }
+
+        /* Témaváltó CSS Változók (6-7 állapot) */
+        [data-theme="1"] {
+            --theme-60: #1a1a1a; --theme-30: #2d2d2d; --theme-10: #d4af37; --theme-text: #f0f0f0; --theme-accent-text: #000000;
+            /* Modern Dark */
+        }
+        [data-theme="2"] {
+            --theme-60: #fdfbf7; --theme-30: #f0ebe1; --theme-10: #c19a6b; --theme-text: #3e3e3e; --theme-accent-text: #ffffff;
+            /* Warm Minimal */
+        }
+        [data-theme="3"] {
+            --theme-60: #0f172a; --theme-30: #1e293b; --theme-10: #38bdf8; --theme-text: #e2e8f0; --theme-accent-text: #000000;
+            /* Oceanic */
+        }
+        [data-theme="4"] {
+            --theme-60: #2d1b2e; --theme-30: #442646; --theme-10: #ff7eb3; --theme-text: #ffffff; --theme-accent-text: #2d1b2e;
+            /* Moody Purple */
+        }
+        [data-theme="5"] {
+            --theme-60: #f8f9fa; --theme-30: #ffffff; --theme-10: #007bff; --theme-text: #212529; --theme-accent-text: #ffffff;
+            /* Clean Blue */
+        }
+        [data-theme="6"] {
+            --theme-60: #1b2e1b; --theme-30: #264626; --theme-10: #d4af37; --theme-text: #f0f0f0; --theme-accent-text: #000000;
+            /* Royal Nature */
+        }
+        [data-theme="7"] {
+            --theme-60: #000000; --theme-30: #111111; --theme-10: #ff0000; --theme-text: #ffffff; --theme-accent-text: #000000;
+            /* Noir */
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--theme-60);
+            color: var(--theme-text);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem 5%;
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        /* --- Témaváltó (60-30-10) --- */
+        .theme-switcher {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--theme-30);
+            padding: 15px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--theme-10);
+        }
+
+        .theme-switcher label {
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 150px;
+            height: 6px;
+            background: var(--theme-60);
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--theme-10);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        /* --- Galéria Grid --- */
+        .gallery-container {
+            padding: 2rem 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--theme-30);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color var(--transition-speed);
+            cursor: pointer;
+            position: relative;
+            height: 400px; /* Fixed height for uniformity */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-img-wrapper {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            background: var(--theme-30);
+            transition: background-color var(--transition-speed);
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--theme-text);
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        .context-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--theme-10);
+            color: var(--theme-accent-text);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .context-badge {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Kontextus Megjelenítő (Seamless Transition) --- */
+        .context-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .context-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .context-viewer {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            max-width: 1400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .context-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Vagy cover, attól függően */
+            opacity: 0.3; /* Háttérként halványítva */
+            filter: blur(5px);
+            transition: opacity 1s ease;
+        }
+
+        .context-overlay.active .context-bg {
+            opacity: 0.6; /* Aktív módban élénkebb */
+        }
+
+        .context-main-img {
+            position: relative;
+            z-index: 2;
+            max-height: 80vh;
+            max-width: 90vw;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transform: scale(0.8);
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .context-overlay.active .context-main-img {
+            transform: scale(1);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 2001;
+            background: none;
+            border: none;
+            transition: transform 0.3s;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .context-info {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            z-index: 2001;
+            max-width: 600px;
+        }
+
+        .context-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .context-info p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .gallery-container { grid-template-columns: 1fr; }
+            .card { height: 350px; }
+            .context-info h2 { font-size: 1.8rem; }
+            .theme-switcher { bottom: 10px; right: 10px; padding: 10px; }
+            input[type="range"] { width: 100px; }
+        }
+    </style>
+</head>
+<body data-theme="1">
+
+    <header>
+        <h1>Kárai Mihály</h1>
+        <div class="subtitle">Festmények és Kontextusok</div>
+    </header>
+
+    <div class="gallery-container" id="gallery">
+        <!-- A kártyák ide generálódnak -->
+    </div>
+
+    <!-- Kontextus Nézet -->
+    <div class="context-overlay" id="contextOverlay">
+        <button class="close-btn" onclick="closeContext()">×</button>
+        <div class="context-viewer">
+            <img src="" alt="Context Background" class="context-bg" id="contextBg">
+            <img src="" alt="Main Art" class="context-main-img" id="contextMain">
+        </div>
+        <div class="context-info">
+            <h2 id="contextTitle">Cím</h2>
+            <p id="contextDesc">Leírás</p>
+        </div>
+    </div>
+
+    <!-- Témaváltó -->
+    <div class="theme-switcher">
+        <label for="themeRange">Téma: <span id="themeValue">1</span></label>
+        <input type="range" id="themeRange" min="1" max="7" value="1">
+    </div>
+
+    <script>
+        // --- ADATOK (PHP-ből generálva) ---
+        const galleryData = <?php echo $jsonData; ?>;
+
+        // Ha nincs adat (pl. nem fut PHP), használjunk mock adatot a demóhoz
+        if (galleryData.length === 0) {
+            // Mock adatok a teszteléshez
+            galleryData.push(
+                { file: 'painting1_keretezve.jpg', path: 'https://via.placeholder.com/600x800/333/fff?text=Keretezve+1', description: 'Olajfestés vászonra, keretben.', contextType: 'keretezve', contextPair: './apa_festmenyek/painting1_keretnelkul.jpg' },
+                { file: 'painting1_keretnelkul.jpg', path: 'https://via.placeholder.com/600x800/555/fff?text=Keret+Nélkül+1', description: 'Ugyanaz a mű, keret nélkül.', contextType: 'keretnelkul', contextPair: './apa_festmenyek/painting1_keretezve.jpg' },
+                { file: 'interior_1.jpg', path: 'https://via.placeholder.com/1200x800/222/fff?text=Intérműkert', description: 'A művészet helye.', contextType: 'interior', contextPair: null },
+                { file: 'portrait.jpg', path: 'https://via.placeholder.com/600x600/444/fff?text=Portré', description: 'Arckép festmény.', contextType: 'none', contextPair: null }
+            );
+        }
+
+        const galleryContainer = document.getElementById('gallery');
+        const themeRange = document.getElementById('themeRange');
+        const themeValue = document.getElementById('themeValue');
+        const body = document.body;
+
+        // --- GALÉRIA RENDERELÉS ---
+        function renderGallery() {
+            galleryContainer.innerHTML = '';
+            
+            galleryData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.onclick = () => openContext(index);
+
+                let badgeText = '';
+                if (item.contextType === 'keretezve') badgeText = 'Keretben';
+                else if (item.contextType === 'keretnelkul') badgeText = 'Keret nélkül';
+                else if (item.contextType === 'interior') badgeText = 'Kontextus';
+
+                card.innerHTML = `
+                    <div class="card-img-wrapper">
+                        <img src="${item.path}" alt="${item.file}" class="card-img" loading="lazy">
+                        ${badgeText ? `<div class="context-badge">${badgeText}</div>` : ''}
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">${item.file.replace(/\.[^/.]+$/, "")}</div>
+                        <div class="card-desc">${item.description}</div>
+                    </div>
+                `;
+                galleryContainer.appendChild(card);
+            });
+        }
+
+        // --- KONTEXTUS LOGIKA (Seamless Transition) ---
+        const overlay = document.getElementById('contextOverlay');
+        const contextBg = document.getElementById('contextBg');
+        const contextMain = document.getElementById('contextMain');
+        const contextTitle = document.getElementById('contextTitle');
+        const contextDesc = document.getElementById('contextDesc');
+
+        function openContext(index) {
+            const item = galleryData[index];
+            
+            // Logika a megjelenítéshez
+            let bgSrc = '';
+            let mainSrc = item.path;
+
+            // Ha van kontextus pár (pl. keretezve/keretnelkul), a pár lesz a háttér, az aktuális a fő kép
+            // Vagy fordítva, attól függően, mit szeretnénk hangsúlyozni.
+            // Itt: A pár kép lesz a "szoba" háttér (halványítva), az aktuális kép pedig a "fókusz".
+            
+            if (item.contextPair) {
+                // Próbáljuk meg betölteni a párt. Ha nem létezik (pl. mock adatoknál nem jó az út), használjunk fallbacket.
+                // A valós PHP generálásnál az elérési út helyes.
+                bgSrc = item.contextPair;
+            } else if (item.contextType === 'interior') {
+                // Ha ez egy interior kép, a háttér lehet egy semleges szoba vagy maga a kép nagyítva
+                bgSrc = item.path; 
+            }
+
+            contextBg.src = bgSrc;
+            contextMain.src = mainSrc;
+            contextTitle.textContent = item.file.replace(/\.[^/.]+$/, "");
+            contextDesc.textContent = item.description;
+
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Scroll tiltása
+        }
+
+        function closeContext() {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // --- TÉMA VÁLTÓ ---
+        themeRange.addEventListener('input', (e) => {
+            const val = e.target.value;
+            body.setAttribute('data-theme', val);
+            themeValue.textContent = val;
+        });
+
+        // --- INICIALIZÁLÁS ---
+        renderGallery();
+
+        // Billentyűzet kezelés (ESC bezárás)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeContext();
+        });
+
+    </script>
+</body>
+</html>

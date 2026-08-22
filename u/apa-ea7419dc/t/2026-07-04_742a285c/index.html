@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály — Kortárs Absztrakt Festőművész</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════════════════
+           THEME SYSTEM — 7 Harmonic Palettes (60-30-10 Rule)
+           ═══════════════════════════════════════════════════════ */
+        :root {
+            --transition-speed: 0.6s;
+        }
+
+        /* THEME 1: Éjszaka (Night) — Deep dark + gold */
+        [data-theme="ejsszaka"] {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --text-primary: #e8e4df;
+            --text-secondary: #a09888;
+            --text-muted: #666055;
+            --accent: #c9a96e;
+            --accent-soft: rgba(201,169,110,0.15);
+            --accent-glow: rgba(201,169,110,0.3);
+            --border: rgba(201,169,110,0.12);
+            --shadow: rgba(0,0,0,0.5);
+            --grain-opacity: 0.04;
+            --hero-overlay: rgba(10,10,15,0.4);
+            --card-bg: rgba(18,18,26,0.8);
+            --nav-bg: rgba(10,10,15,0.85);
+            --swatch-1: #0a0a0f;
+            --swatch-2: #c9a96e;
+            --swatch-3: #e8e4df;
+        }
+
+        /* THEME 2: Vászon (Canvas) — Warm off-white + burnt sienna */
+        [data-theme="vaszon"] {
+            --bg-primary: #f5f0e8;
+            --bg-secondary: #ebe4d8;
+            --bg-tertiary: #e0d8c8;
+            --text-primary: #2c2420;
+            --text-secondary: #6b5d52;
+            --text-muted: #9a8d80;
+            --accent: #8b4513;
+            --accent-soft: rgba(139,69,19,0.1);
+            --accent-glow: rgba(139,69,19,0.2);
+            --border: rgba(139,69,19,0.15);
+            --shadow: rgba(44,36,32,0.12);
+            --grain-opacity: 0.03;
+            --hero-overlay: rgba(245,240,232,0.3);
+            --card-bg: rgba(245,240,232,0.9);
+            --nav-bg: rgba(245,240,232,0.9);
+            --swatch-1: #f5f0e8;
+            --swatch-2: #8b4513;
+            --swatch-3: #2c2420;
+        }
+
+        /* THEME 3: Alkonyat (Dusk) — Purple + warm orange */
+        [data-theme="alkonyat"] {
+            --bg-primary: #1a1420;
+            --bg-secondary: #231d2b;
+            --bg-tertiary: #2d2535;
+            --text-primary: #f0e6d3;
+            --text-secondary: #b8a898;
+            --text-muted: #7a6e62;
+            --accent: #e07a5f;
+            --accent-soft: rgba(224,122,95,0.12);
+            --accent-glow: rgba(224,122,95,0.25);
+            --border: rgba(224,122,95,0.12);
+            --shadow: rgba(0,0,0,0.4);
+            --grain-opacity: 0.035;
+            --hero-overlay: rgba(26,20,32,0.35);
+            --card-bg: rgba(35,29,43,0.85);
+            --nav-bg: rgba(26,20,32,0.88);
+            --swatch-1: #1a1420;
+            --swatch-2: #e07a5f;
+            --swatch-3: #f0e6d3;
+        }
+
+        /* THEME 4: Galéria (Gallery) — Clean white gallery */
+        [data-theme="galéria"] {
+            --bg-primary: #fafafa;
+            --bg-secondary: #f0f0f0;
+            --bg-tertiary: #e8e8e8;
+            --text-primary: #1a1a1a;
+            --text-secondary: #555555;
+            --text-muted: #999999;
+            --accent: #c9a87c;
+            --accent-soft: rgba(201,168,124,0.1);
+            --accent-glow: rgba(201,168,124,0.2);
+            --border: rgba(0,0,0,0.08);
+            --shadow: rgba(0,0,0,0.08);
+            --grain-opacity: 0.02;
+            --hero-overlay: rgba(250,250,250,0.25);
+            --card-bg: rgba(250,250,250,0.92);
+            --nav-bg: rgba(250,250,250,0.92);
+            --swatch-1: #fafafa;
+            --swatch-2: #c9a87c;
+            --swatch-3: #1a1a1a;
+        }
+
+        /* THEME 5: Bohém (Bohemian) — Terracotta + sage + cream */
+        [data-theme="bohém"] {
+            --bg-primary: #f4ebe3;
+            --bg-secondary: #ebe0d4;
+            --bg-tertiary: #e2d5c7;
+            --text-primary: #3d3229;
+            --text-secondary: #7a6b5d;
+            --text-muted: #a89888;
+            --accent: #c1666b;
+            --accent-soft: rgba(193,102,107,0.1);
+            --accent-glow: rgba(193,102,107,0.2);
+            --border: rgba(193,102,107,0.12);
+            --shadow: rgba(61,50,41,0.1);
+            --grain-opacity: 0.03;
+            --hero-overlay: rgba(244,235,227,0.3);
+            --card-bg: rgba(244,235,227,0.88);
+            --nav-bg: rgba(244,235,227,0.9);
+            --swatch-1: #f4ebe3;
+            --swatch-2: #c1666b;
+            --swatch-3: #3d3229;
+        }
+
+        /* THEME 6: Meleg (Warm) — Cream + burgundy */
+        [data-theme="meleg"] {
+            --bg-primary: #fdf6ee;
+            --bg-secondary: #f5ece0;
+            --bg-tertiary: #ece1d3;
+            --text-primary: #2d1f1a;
+            --text-secondary: #6b5548;
+            --text-muted: #9a8578;
+            --accent: #722f37;
+            --accent-soft: rgba(114,47,55,0.1);
+            --accent-glow: rgba(114,47,55,0.2);
+            --border: rgba(114,47,55,0.12);
+            --shadow: rgba(45,31,26,0.1);
+            --grain-opacity: 0.025;
+            --hero-overlay: rgba(253,246,238,0.3);
+            --card-bg: rgba(253,246,238,0.9);
+            --nav-bg: rgba(253,246,238,0.92);
+            --swatch-1: #fdf6ee;
+            --swatch-2: #722f37;
+            --swatch-3: #2d1f1a;
+        }
+
+        /* THEME 7: Erdő (Forest) — Deep green + amber */
+        [data-theme="erdő"] {
+            --bg-primary: #1a2e1a;
+            --bg-secondary: #223822;
+            --bg-tertiary: #2a422a;
+            --text-primary: #e8e4d4;
+            --text-secondary: #a8a088;
+            --text-muted: #6a6450;
+            --accent: #d4a574;
+            --accent-soft: rgba(212,165,116,0.12);
+            --accent-glow: rgba(212,165,116,0.25);
+            --border: rgba(212,165,116,0.1);
+            --shadow: rgba(0,0,0,0.4);
+            --grain-opacity: 0.04;
+            --hero-overlay: rgba(26,46,26,0.4);
+            --card-bg: rgba(34,56,34,0.85);
+            --nav-bg: rgba(26,46,26,0.88);
+            --swatch-1: #1a2e1a;
+            --swatch-2: #d4a574;
+            --swatch-3: #e8e4d4;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           BASE RESET & GLOBAL
+           ═══════════════════════════════════════════════════════ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-weight: 300;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color var(--transition-speed) ease,
+                        color var(--transition-speed) ease;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           TEXTURE OVERLAY — Film Grain (FIXED)
+           ═══════════════════════════════════════════════════════ */
+        .grain-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: var(--grain-opacity);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+            background-color: transparent;
+            mix-blend-mode: multiply;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           SCROLLBAR
+           ═══════════════════════════════════════════════════════ */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           NAVIGATION — Floating Pill
+           ═══════════════════════════════════════════════════════ */
+        .nav {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 14px 32px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            transition: all var(--transition-speed) ease;
+            box-shadow: 0 4px 30px var(--shadow);
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            text-decoration: none;
+            white-space: nowrap;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            background: none;
+            border: none;
+        }
+
+        .nav-burger span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .nav-burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 4px);
+        }
+        .nav-burger.active span:nth-child(2) { opacity: 0; }
+        .nav-burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -4px);
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           HERO SECTION — Canvas Paint Animation
+           ═══════════════════════════════════════════════════════ */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            z-index: 10; 
+        }
+
+        .hero-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--hero-overlay);
+            z-index: 2;
+            transition: background var(--transition-speed) ease;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.5s forwards;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 300;
+            line-height: 1.05;
+            color: var(--text-primary);
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 1.2s ease 0.8s forwards;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeUp 1s ease 1.2s forwards;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeUp 1s ease 1.6s forwards;
+        }
+
+        .hero-scroll span {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            animation: scrollPulse 2s ease infinite;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           SECTION COMMON
+           ═══════════════════════════════════════════════════════ */
+        section {
+            position: relative;
+            padding: clamp(80px, 12vw, 160px) clamp(24px, 5vw, 80px);
+            z-index: 20;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 300;
+            line-height: 1.15;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+        }
+
+        .section-title em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--accent);
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           REVEAL ANIMATIONS (FIXED)
+           ═══════════════════════════════════════════════════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            will-change: opacity, transform;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ═══════════════════════════════════════════════════════
+           ABOUT SECTION — Diagonal Split
+           ═══════════════════════════════════════════════════════ */
+        .about {
+            background: var(--bg-secondary);
+            transition: background var(--transition-speed) ease;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(40px, 6vw, 100px);
+            align-items: center;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+        }
+
+        .about-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--accent);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .about-image {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            background: var(--bg-tertiary);
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-style: italic;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text .highlight {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--text-primary);
+            border-left: 2px solid var(--accent);
+            padding-left: 1.5rem;
+            margin: 2.5rem 0;
+            line-height: 1.6;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .about-stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .about-stat-label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           GALLERY — Masonry Layout
+           ═══════════════════════════════════════════════════════ */
+        .gallery {
+            background: var(--bg-primary);
+        }
+
+        .gallery-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .gallery-filter {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            background: none;
+            border: 1px solid var(--border);
+            padding: 8px 20px;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-filter:hover,
+        .gallery-filter.active {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            cursor: pointer;
+            background: var(--bg-secondary);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px var(--shadow);
+        }
+
+        .gallery-item.tall { grid-row: span 2; }
+        .gallery-item.wide { grid-column: span 2; }
+
+        .gallery-item-img {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover .gallery-item-img {
+            transform: scale(1.03);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 0.3rem;
+        }
+
+        .gallery-item-size {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .gallery-item-desc {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+            margin-top: 0.8rem;
+            line-height: 1.6;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-item-desc {
+            max-height: 200px;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           LIGHTBOX
+           ═══════════════════════════════════════════════════════ */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: rgba(0,0,0,0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: none;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.6);
+        }
+
+        .lightbox-info {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #fff;
+        }
+
+        .lightbox-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+        }
+
+        .lightbox-desc {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            margin-top: 0.5rem;
+            max-width: 500px;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           QUOTE / PHILOSOPHY SECTION
+           ═══════════════════════════════════════════════════════ */
+        .quote-section {
+            background: var(--bg-secondary);
+            text-align: center;
+            padding: clamp(100px, 15vw, 200px) clamp(24px, 5vw, 80px);
+            transition: background var(--transition-speed) ease;
+        }
+
+        .quote-mark {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 8rem;
+            line-height: 0.5;
+            color: var(--accent);
+            opacity: 0.3;
+            margin-bottom: 2rem;
+        }
+
+        .quote-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.5rem, 3.5vw, 3rem);
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.5;
+            color: var(--text-primary);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .quote-author {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           CONTACT SECTION
+           ═══════════════════════════════════════════════════════ */
+        .contact {
+            background: var(--bg-primary);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(40px, 6vw, 100px);
+        }
+
+        .contact-info p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-detail-icon {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .contact-detail-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 0;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--text-primary);
+            background: none;
+            border: none;
+            border-bottom: 1px solid var(--border);
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+        }
+
+        .form-group label {
+            position: absolute;
+            top: 16px;
+            left: 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus ~ label,
+        .form-group input:not(:placeholder-shown) ~ label,
+        .form-group textarea:focus ~ label,
+        .form-group textarea:not(:placeholder-shown) ~ label {
+            top: -8px;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .form-submit {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--bg-primary);
+            background: var(--accent);
+            border: none;
+            padding: 16px 48px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .form-submit:hover {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════════════════ */
+        footer {
+            background: var(--bg-secondary);
+            padding: 3rem clamp(24px, 5vw, 80px);
+            text-align: center;
+            border-top: 1px solid var(--border);
+            transition: background var(--transition-speed) ease;
+        }
+
+        footer p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        footer .footer-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           THEME SWITCHER — Floating Palette Panel
+           ═══════════════════════════════════════════════════════ */
+        .theme-switcher {
+            position: fixed;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 12px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            transition: all var(--transition-speed) ease;
+            box-shadow: 0 4px 30px var(--shadow);
+        }
+
+        .theme-switcher-label {
+            font-size: 0.55rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            writing-mode: vertical-rl;
+            margin-bottom: 4px;
+        }
+
+        .theme-swatch {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .theme-swatch:hover {
+            transform: scale(1.2);
+        }
+
+        .theme-swatch.active {
+            border-color: var(--text-primary);
+            transform: scale(1.15);
+        }
+
+        .theme-swatch[data-theme="ejsszaka"] {
+            background: linear-gradient(135deg, #0a0a0f 50%, #c9a96e 50%);
+        }
+        .theme-swatch[data-theme="vaszon"] {
+            background: linear-gradient(135deg, #f5f0e8 50%, #8b4513 50%);
+        }
+        .theme-swatch[data-theme="alkonyat"] {
+            background: linear-gradient(135deg, #1a1420 50%, #e07a5f 50%);
+        }
+        .theme-swatch[data-theme="galéria"] {
+            background: linear-gradient(135deg, #fafafa 50%, #c9a87c 50%);
+        }
+        .theme-swatch[data-theme="bohém"] {
+            background: linear-gradient(135deg, #f4ebe3 50%, #c1666b 50%);
+        }
+        .theme-swatch[data-theme="meleg"] {
+            background: linear-gradient(135deg, #fdf6ee 50%, #722f37 50%);
+        }
+        .theme-swatch[data-theme="erdő"] {
+            background: linear-gradient(135deg, #1a2e1a 50%, #d4a574 50%);
+        }
+
+        .theme-swatch-tooltip {
+            position: absolute;
+            right: 36px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .theme-swatch:hover .theme-swatch-tooltip {
+            opacity: 1;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           ANIMATIONS
+           ═══════════════════════════════════════════════════════ */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; transform: scaleY(1); }
+            50% { opacity: 1; transform: scaleY(1.2); }
+        }
+
+        @keyframes blobMorph {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            50% { border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%; }
+            75% { border-radius: 60% 30% 60% 40% / 70% 40% 50% 60%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+
+        @keyframes paintDrip {
+            0% { height: 0; opacity: 0; }
+            10% { opacity: 1; }
+            100% { height: 120px; opacity: 0; }
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                padding: 12px 20px;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--nav-bg);
+                backdrop-filter: blur(30px);
+                -webkit-backdrop-filter: blur(30px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2.5rem;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.4s ease;
+            }
+
+            .nav-links.open {
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+                letter-spacing: 4px;
+            }
+
+            .nav-burger {
+                display: flex;
+            }
+
+            .nav-logo {
+                font-size: 0.9rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item.tall { grid-row: span 1; }
+            .gallery-item.wide { grid-column: span 1; }
+
+            .about-stats {
+                gap: 2rem;
+            }
+
+            .theme-switcher {
+                right: 12px;
+                padding: 12px 8px;
+                gap: 8px;
+            }
+
+            .theme-swatch {
+                width: 20px;
+                height: 20px;
+            }
+
+            .theme-swatch-tooltip {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html { font-size: 14px; }
+
+            .about-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           DECORATIVE ELEMENTS
+           ═══════════════════════════════════════════════════════ */
+        .deco-line {
+            width: 60px;
+            height: 1px;
+            background: var(--accent);
+            margin: 3rem 0;
+            opacity: 0.5;
+        }
+
+        .deco-dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .deco-dots span {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.4;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           PAINT DRIP DECORATIONS
+           ═══════════════════════════════════════════════════════ */
+        .paint-drip {
+            position: absolute;
+            width: 3px;
+            background: var(--accent);
+            opacity: 0.15;
+            border-radius: 0 0 3px 3px;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           SECTION DIVIDER
+           ═══════════════════════════════════════════════════════ */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            height: 80px;
+            background: var(--bg-primary);
+            transition: background var(--transition-speed) ease;
+        }
+
+        .section-divider svg {
+            width: 40px;
+            height: 40px;
+            opacity: 0.2;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           PROCESS SECTION
+           ═══════════════════════════════════════════════════════ */
+        .process {
+            background: var(--bg-primary);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .process-step:hover {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+            transform: translateY(-4px);
+        }
+
+        .process-step-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--accent);
+            opacity: 0.3;
+            margin-bottom: 1rem;
+        }
+
+        .process-step-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .process-step-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .process-steps {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           MOBILE NAV OVERLAY FIX
+           ═══════════════════════════════════════════════════════ */
+        .nav-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 998;
+            background: rgba(0,0,0,0.3);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+    </style>
+</head>
+<body data-theme="ejsszaka">
+
+    <!-- GRAIN OVERLAY (FIXED) -->
+    <div class="grain-overlay"></div>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="nav">
+        <a href="#hero" class="nav-logo">Kárai M.</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about" onclick="closeNav()">Rólam</a></li>
+            <li><a href="#gallery" onclick="closeNav()">Galéria</a></li>
+            <li><a href="#process" onclick="closeNav()">Folyamat</a></li>
+            <li><a href="#contact" onclick="closeNav()">Kapcsolat</a></li>
+        </ul>
+        <button class="nav-burger" id="navBurger" onclick="toggleNav()">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
+
+    <!-- ═══ THEME SWITCHER ═══ -->
+    <div class="theme-switcher" id="themeSwitcher">
+        <span class="theme-switcher-label">Téma</span>
+        <div class="theme-swatch active" data-theme="ejsszaka" onclick="setTheme('ejsszaka')" title="Éjszaka">
+            <span class="theme-swatch-tooltip">Éjszaka</span>
+        </div>
+        <div class="theme-swatch" data-theme="vaszon" onclick="setTheme('vaszon')" title="Vászon">
+            <span class="theme-swatch-tooltip">Vászon</span>
+        </div>
+        <div class="theme-swatch" data-theme="alkonyat" onclick="setTheme('alkonyat')" title="Alkonyat">
+            <span class="theme-swatch-tooltip">Alkonyat</span>
+        </div>
+        <div class="theme-swatch" data-theme="galéria" onclick="setTheme('galéria')" title="Galéria">
+            <span class="theme-swatch-tooltip">Galéria</span>
+        </div>
+        <div class="theme-swatch" data-theme="bohém" onclick="setTheme('bohém')" title="Bohém">
+            <span class="theme-swatch-tooltip">Bohém</span>
+        </div>
+        <div class="theme-swatch" data-theme="meleg" onclick="setTheme('meleg')" title="Meleg">
+            <span class="theme-swatch-tooltip">Meleg</span>
+        </div>
+        <div class="theme-swatch" data-theme="erdő" onclick="setTheme('erdő')" title="Erdő">
+            <span class="theme-swatch-tooltip">Erdő</span>
+        </div>
+    </div>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero" id="hero">
+        <canvas class="hero-canvas" id="heroCanvas"></canvas>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Kortárs Absztrakt Festőművész</p>
+            <h1 class="hero-title">Kárai<br><em>Mihály</em></h1>
+            <p class="hero-subtitle">A szín és forma nyelve — ahol az érzelem festékkel ölt testet</p>
+        </div>
+        <div class="hero-scroll">
+            <span>Felfedezés</span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ═══ ABOUT ═══ -->
+    <section class="about" id="about">
+        <div class="section-inner">
+            <div class="about-grid">
+                <div class="about-image-wrapper reveal">
+                    <div class="about-image">
+                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" style="opacity:0.3">
+                            <circle cx="60" cy="40" r="20" stroke="currentColor" stroke-width="1"/>
+                            <path d="M20 100 Q60 60 100 100" stroke="currentColor" stroke-width="1" fill="none"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <div class="section-label reveal">Rólam</div>
+                    <h2 class="section-title reveal reveal-delay-1">A festészet az <em>érzelem</em> tükre</h2>
+                    <p class="reveal reveal-delay-2">
+                        Kárai Mihály 1961-ben született, és évtizedek óta alkotja meg a kortárs absztrakt festészet egyedi világát. Művészete a lírai absztrakció és az expresszionizmus határán táncol — ahol az érzelmek nem szavakban, hanem ecsetvonásokban, textúrákban és színekben beszélnek.
+                    </p>
+                    <div class="highlight reveal reveal-delay-3">
+                        „Minden festmény egy belső küzdelem kimenetele: a fény és sötétség, a rend és káosz, a csend és a vihar dialógusa."
+                    </div>
+                    <p class="reveal reveal-delay-3">
+                        Művészete a vastag impasto technika és a palettakéses kaparások erejében rejlik. A tűzpirosak, kadmiumnarancsok és aranyak harsány melegségét éles ciánkék és türkiz kontrasztok törik meg — mintha egy belső táj színei öntenének formát a vásznon.
+                    </p>
+                    <div class="about-stats reveal reveal-delay-4">
+                        <div>
+                            <div class="about-stat-number">60+</div>
+                            <div class="about-stat-label">Életkor</div>
+                        </div>
+                        <div>
+                            <div class="about-stat-number">30+</div>
+                            <div class="about-stat-label">Év alkotás</div>
+                        </div>
+                        <div>
+                            <div class="about-stat-number">100+</div>
+                            <div class="about-stat-label">Festmény</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider">
+        <svg viewBox="0 0 40 40" fill="none">
+            <path d="M20 5 C20 5, 35 20, 20 35 C5 20, 20 5, 20 5Z" stroke="currentColor" stroke-width="0.5" fill="none"/>
+        </svg>
+    </div>
+
+    <!-- ═══ GALLERY ═══ -->
+    <section class="gallery" id="gallery">
+        <div class="section-inner">
+            <div class="section-label reveal">Galéria</div>
+            <h2 class="section-title reveal reveal-delay-1">Válogatott <em>alkotások</em></h2>
+
+            <div class="gallery-filters reveal reveal-delay-2">
+                <button class="gallery-filter active" data-filter="all">Összes</button>
+                <button class="gallery-filter" data-filter="absztrakt">Absztrakt</button>
+                <button class="gallery-filter" data-filter="szines">Színes</button>
+                <button class="gallery-filter" data-filter="figura">Figurális</button>
+                <button class="gallery-filter" data-filter="panorama">Panoráma</button>
+            </div>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ QUOTE ═══ -->
+    <section class="quote-section">
+        <div class="section-inner">
+            <div class="quote-mark reveal">"</div>
+            <p class="quote-text reveal reveal-delay-1">
+                A festészet nem azt mutatja meg, amit látunk, hanem azt, amit látvátlanná teszünk.
+            </p>
+            <p class="quote-author reveal reveal-delay-2">— Kárai Mihály</p>
+        </div>
+    </section>
+
+    <!-- ═══ PROCESS ═══ -->
+    <section class="process" id="process">
+        <div class="section-inner">
+            <div class="section-label reveal">Alkotás</div>
+            <h2 class="section-title reveal reveal-delay-1">A <em>folyamat</em></h2>
+            <p class="reveal reveal-delay-2" style="color:var(--text-secondary);max-width:600px;font-size:1rem;line-height:1.8;">
+                Minden festmény születése egy belső szükségletből indul — egy kép, ami csak a vásznon nyer formát. A folyamat nyers és őszinte, ahol a véletlen is társművész.
+            </p>
+            <div class="process-steps">
+                <div class="process-step reveal reveal-delay-1">
+                    <div class="process-step-number">01</div>
+                    <h3 class="process-step-title">Belső impulzus</h3>
+                    <p class="process-step-desc">
+                        Minden alkotás egy érzelmi pillanatból, belső képből vagy hangulatból indul. A vászon üressége várja az első ecsetvonást.
+                    </p>
+                </div>
+                <div class="process-step reveal reveal-delay-2">
+                    <div class="process-step-number">02</div>
+                    <h3 class="process-step-title">Rétegek játéka</h3>
+                    <p class="process-step-desc">
+                        Vastag impasto rétegek, palettakéses kaparások, rétegzett felhordás — a festék plasztikus testté válik, textúrája élő szervezetté.
+                    </p>
+                </div>
+                <div class="process-step reveal reveal-delay-3">
+                    <div class="process-step-number">03</div>
+                    <h3 class="process-step-title">Végső harmónia</h3>
+                    <p class="process-step-desc">
+                        Amikor a kompozíció eléri egyensúlyát — a kázból rend, a színekből zene, a vonalakból táj születik.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider">
+        <svg viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="20" r="15" stroke="currentColor" stroke-width="0.5" fill="none"/>
+        </svg>
+    </div>
+
+    <!-- ═══ CONTACT ═══ -->
+    <section class="contact" id="contact">
+        <div class="section-inner">
+            <div class="section-label reveal">Kapcsolat</div>
+            <h2 class="section-title reveal reveal-delay-1">Lépjen <em>kapcsolatba</em></h2>
+            <div class="contact-grid">
+                <div class="contact-info reveal reveal-delay-2">
+                    <p>
+                        Ha érdekel egy alkotás, kiállítás, vagy együttműködés lehetősége, forduljon bizalommal. Szívesen beszél a művészetről és az alkotás folyamatáról.
+                    </p>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">✉</div>
+                        <span class="contact-detail-text">kapcsolat@karai-mihaly.hu</span>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">☎</div>
+                        <span class="contact-detail-text">Magyarország</span>
+                    </div>
+                </div>
+                <form class="contact-form reveal reveal-delay-3" onsubmit="event.preventDefault(); alert('Köszönjük az üzenetet!');">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder=" " required>
+                        <label for="name">Név</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder=" " required>
+                        <label for="email">E-mail</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="4" placeholder=" " required></textarea>
+                        <label for="message">Üzenet</label>
+                    </div>
+                    <button type="submit" class="form-submit">Küldés</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer>
+        <p class="footer-name">Kárai Mihály</p>
+        <p>© 2026 — Kortárs Absztrakt Festőművész. Minden jog fenntartva.</p>
+    </footer>
+
+    <!-- ═══ LIGHTBOX ═══ -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        <div class="lightbox-info">
+            <h3 class="lightbox-title" id="lightboxTitle"></h3>
+            <p class="lightbox-desc" id="lightboxDesc"></p>
+        </div>
+    </div>
+
+    <!-- ═══ JAVASCRIPT ═══ -->
+    <script>
+    (function() {
+        'use strict';
+
+        /* ═══════════════════════════════════════════════════════
+           PAINTING DATA
+           ═══════════════════════════════════════════════════════ */
+        const paintings = [
+            {
+                id: 1, file: '014fb97bae01374ff673a7f51de018af-karai-mihaly-absztrakt-festmeny-kepmeret-80x60-cm.jpg', title: 'Absztrakt festmény', size: '80×60 cm', category: 'absztrakt', desc: 'Meleg tónusú, textúrált kompozíció rácsszerű szerkezetre épül. Az éles fehér és sárga hasításszerű vonalak úgy hatnak, mint a szélben hajladozó nád.', class: ''
+            },
+            {
+                id: 2, file: '579ee3610e2f00108ae1ad3b4efe881f-karai-mihaly-a-kep-merete-80x60-cm.jpg', title: 'Color Blocking', size: '80×60 cm', category: 'absztrakt', desc: 'Geometriai, nagy kontrasztú festmény. Ciánkék mező, tűzpiros oszlop, és dinamikus X-forma — erős vizuális dualitás.', class: ''
+            },
+            {
+                id: 3, file: '732e9d819fbbee1e6b2126f580f51743-karai-mihaly-szines-modern-absztrakt-festmeny-90-x-90-cm.jpg', title: 'Tűz és Jég', size: '90×90 cm', category: 'szines', desc: 'Szürreális, organikus formákból álló fluid landscape. Mélykék jéghegy és lángnyelvszerű piros alakzat — elementáris erők összecsapása.', class: 'tall'
+            },
+            {
+                id: 4, file: '76a52a2610ed517750b4d73efabbe595-karai-mihaly-absztrakt-festmeny-140x40x4-cm.jpg', title: 'Városi Tükör', size: '140×40 cm', category: 'panorama', desc: 'Panorámaszerű függőleges elrendezés. Naplemente olvad éjszakai víztükröződéssé — kubista, vertikális ecsetvonások neonfényű felhőkarcolókká válnak.', class: 'wide'
+            },
+            {
+                id: 5, file: '8548dfcda68a1463e1ed276bce0b0b0c-karai-mihaly-absztrakt-festmeny-kepmeret-140x40-cm.jpg', title: 'Izzó Torony', size: '140×40 cm', category: 'panorama', desc: 'Vérvörös háttérből fehér-sárga felhőkarcoló ugrik ki. Izzó sárga mag, vibráló rózsaszín és magenta — tüzes égbolt és hideg víz kontrasztja.', class: ''
+            },
+            {
+                id: 6, file: '9714f6cd20df8b60a6cfa68e340bdcb2-karai-mihaly-absztrakt-festmeny-40x70-cm.jpg', title: 'Oázis', size: '40×70 cm', category: 'absztrakt', desc: 'Horizontális tájkép-absztrakció. Arany és sárga sivatagi naplemente, élénk türkiz csík — mint egy perzselő sivatag hűvös oázisa.', class: 'tall'
+            },
+            {
+                id: 7, file: 'c74fb23ff889ff7fc5bc22904e957ac7-karai-mihaly-kortars-absztrakt-festmeny-kepmeret-70x30-cm.jpg', title: 'Fénysugár', size: '70×30 cm', category: 'absztrakt', desc: 'Organikus körök és napkorongok a felső részen, középen vakító fehér fénysugár. Alsó fele málna-rózsaszín — fodrozódó víztükör élménye.', class: ''
+            },
+            {
+                id: 8, file: 'cf6c30f8ab61eea749199ee138ae02df-karai-mihaly-nyari-hoseg-kepmeret-100x70-cm.jpg', title: 'Nyári Hőség', size: '100×70 cm', category: 'figura', desc: 'Figurális-absztrakt fúzió. Női alak torzója hófehér bikinin, teste beleolvad az izzó narancs, vörös, sárga háttérbe — a nyári nap fizikai ereje.', class: ''
+            },
+            {
+                id: 9, file: 'd0e8f21d863d3647ce7ce2705fbb0aeb-karai-mihaly-absztrakt-festmeny-kepmeret-70x70-cm.jpg', title: 'Szív', size: '70×70 cm', category: 'absztrakt', desc: 'Nyers, indusztriális textúrájú kompozíció. Rozsdabarna és hamuszürke környezetből tör elő élénk kadmiumpiros szív — melankólia és szenvedély.', class: ''
+            },
+            {
+                id: 10, file: 'd45190df18d013a48540242d4e02b588-karai-mihaly-szines-modern-absztrakt-festmeny-90x100-cm.jpg', title: 'Virágszirom', size: '90×100 cm', category: 'szines', desc: 'Finom, elegáns, pasztell atmoszféra. Lazacszín, mályva, púderrózsaszín — makró virágszirom textúra, gyűrött selyem harmóniája.', class: 'tall'
+            },
+            {
+                id: 11, file: 'e862397c8ee36bfab0bbe2de56b503e2-karai-mihaly-absztrakt-festmeny-kepmeret-60x60-cm.jpg', title: 'Városi Mozaik', size: '60×60 cm', category: 'absztrakt', desc: 'Három sávra bontható négyzet. Kozmikus örvények, málnapiros sáv, és lüktető városi mozaik — madártávlati nyüzsgő piac.', class: ''
+            },
+            {
+                id: 12, file: 'keretnelkul_1.jpg', title: 'Nyers Energia', size: '70×100 cm', category: 'absztrakt', desc: 'A gyűjtemény legsötétebb darabja. Burgundi vörös és mélybarna alapból kaparó mozdulatokkal tör elő hófehér és sárgás festék — chiaroscuro dráma.', class: ''
+            },
+            {
+                id: 13, file: 'keretnelkul_2.jpg', title: 'Hangulat', size: '80×60 cm', category: 'szines', desc: 'Áramló, lüktető tiszta energia. Ködszerű vörös-magenta felhő, napsárga és fűzöld visszfények — forró, misztikus, mélyen érzelmes atmoszféra.', class: 'wide'
+            }
+        ];
+
+        /* ═══════════════════════════════════════════════════════
+           GALLERY RENDERING
+           ═══════════════════════════════════════════════════════ */
+        const galleryGrid = document.getElementById('galleryGrid');
+
+        function renderGallery(filter) {
+            galleryGrid.innerHTML = '';
+            const filtered = filter === 'all' ? paintings : paintings.filter(p => p.category === filter);
+
+            filtered.forEach((p, i) => {
+                const item = document.createElement('div');
+                item.className = `gallery-item ${p.class} reveal reveal-delay-${Math.min(i % 4 + 1, 4)}`;
+                item.setAttribute('data-category', p.category);
+                item.innerHTML = `
+                    <img class="gallery-item-img" src="apa_festmenyek/${p.file}" alt="${p.title}" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <h3 class="gallery-item-title">${p.title}</h3>
+                        <span class="gallery-item-size">${p.size}</span>
+                        <p class="gallery-item-desc">${p.desc}</p>
+                    </div>
+                `;
+                item.addEventListener('click', () => openLightbox(p));
+                galleryGrid.appendChild(item);
+            });
+
+            requestAnimationFrame(() => {
+                document.querySelectorAll('.gallery-item.reveal').forEach(el => observerInstance.observe(el));
+            });
+        }
+
+        renderGallery('all');
+
+        /* ═══════════════════════════════════════════════════════
+           GALLERY FILTERS
+           ═══════════════════════════════════════════════════════ */
+        document.querySelectorAll('.gallery-filter').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.gallery-filter').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderGallery(btn.dataset.filter);
+            });
+        });
+
+        /* ═══════════════════════════════════════════════════════
+           LIGHTBOX
+           ═══════════════════════════════════════════════════════ */
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        const lightboxDesc = document.getElementById('lightboxDesc');
+
+        window.openLightbox = function(p) {
+            lightboxImg.src = `apa_festmenyek/${p.file}`;
+            lightboxImg.alt = p.title;
+            lightboxTitle.textContent = p.title + ' — ' + p.size;
+            lightboxDesc.textContent = p.desc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeLightbox = function() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        /* ═══════════════════════════════════════════════════════
+           THEME SWITCHER
+           ═══════════════════════════════════════════════════════ */
+        window.setTheme = function(themeName) {
+            document.body.setAttribute('data-theme', themeName);
+            document.querySelectorAll('.theme-swatch').forEach(s => s.classList.remove('active'));
+            document.querySelector(`.theme-swatch[data-theme="${themeName}"]`).classList.add('active');
+            localStorage.setItem('karai-theme', themeName);
+            drawHeroCanvas();
+        };
+
+        const savedTheme = localStorage.getItem('karai-theme');
+        if (savedTheme) setTheme(savedTheme);
+
+        /* ═══════════════════════════════════════════════════════
+           HERO CANVAS — Abstract Paint Animation
+           ═══════════════════════════════════════════════════════ */
+        const canvas = document.getElementById('heroCanvas');
+        const ctx = canvas.getContext('2d');
+        let animFrame;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        const themePaintColors = {
+            'ejsszaka': ['#c9a96e', '#8b6914', '#d4a853', '#a08040', '#e8c97a', '#6b5530'],
+            'vaszon': ['#8b4513', '#a0522d', '#cd853f', '#d2691e', '#b8860b', '#6b3a1f'],
+            'alkonyat': ['#e07a5f', '#c1666b', '#d4846a', '#b85a45', '#e8a08a', '#8b4557'],
+            'galéria': ['#c9a87c', '#b8956a', '#d4b896', '#a07d55', '#dfc8a8', '#8b7355'],
+            'bohém': ['#c1666b', '#d4848a', '#b85560', '#e0a0a5', '#a05060', '#d4a5a8'],
+            'meleg': ['#722f37', '#8b3a44', '#a04050', '#9a4555', '#b85565', '#5a2530'],
+            'erdő': ['#d4a574', '#c49464', '#e0b888', '#b88454', '#a07444', '#8b6434']
+        };
+
+        let strokes = [];
+
+        class PaintStroke {
+            constructor(w, h, colors) {
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.opacity = Math.random() * 0.3 + 0.05;
+                this.width = Math.random() * 8 + 2;
+                this.x = Math.random() * w;
+                this.y = Math.random() * h;
+                this.targetX = Math.random() * w;
+                this.targetY = Math.random() * h;
+                this.progress = 0;
+                this.speed = Math.random() * 0.008 + 0.003;
+                this.curve = Math.random() * 200 - 100;
+                this.life = Math.random() * 300 + 200;
+                this.age = 0;
+                this.maxAge = this.life;
+                this.cp1x = this.x + this.curve;
+                this.cp1y = this.y + Math.random() * 100 - 50;
+                this.cp2x = this.targetX - this.curve;
+                this.cp2y = this.targetY + Math.random() * 100 - 50;
+            }
+
+            update() {
+                this.age++;
+                this.progress += this.speed;
+                if (this.progress > 1) {
+                    this.progress = 1;
+                    if (this.age > this.maxAge - 100) this.opacity *= 0.98;
+                }
+                return this.age < this.maxAge && this.opacity > 0.01;
+            }
+
+            draw(ctx) {
+                if (this.opacity < 0.01) return;
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = this.width;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+
+                const t = this.progress;
+                const mt = 1 - t;
+                const cx = mt*mt*this.x + 2*mt*t*this.cp1x + t*t*this.targetX;
+                const cy = mt*mt*this.y + 2*mt*t*this.cp1y + t*t*this.targetY;
+
+                const steps = Math.floor(t * 50);
+                const maxSteps = 50;
+                ctx.beginPath();
+                for (let i = 0; i <= steps; i++) {
+                    const st = i / maxSteps;
+                    const mst = 1 - st;
+                    const px = mst*mst*this.x + 2*mst*st*this.cp1x + st*st*this.targetX;
+                    const py = mst*mst*this.y + 2*mst*st*this.cp1y + st*st*this.targetY;
+                    if (i === 0) ctx.moveTo(px, py);
+                    else ctx.lineTo(px, py);
+                }
+                ctx.stroke();
+                ctx.restore();
+            }
+        }
+
+        class Blob {
+            constructor(w, h) {
+                this.x = w * (0.3 + Math.random() * 0.4);
+                this.y = h * (0.3 + Math.random() * 0.4);
+                this.radius = Math.random() * 200 + 100;
+                this.color = themePaintColors[document.body.dataset.theme]?.[Math.floor(Math.random() * 6)] || '#c9a96e';
+                this.phase = Math.random() * Math.PI * 2;
+                this.speed = Math.random() * 0.005 + 0.002;
+                this.morphSpeed = Math.random() * 0.01 + 0.005;
+            }
+
+            draw(ctx, time) {
+                ctx.save();
+                ctx.globalAlpha = 0.06;
+                ctx.fillStyle = this.color;
+
+                const r = this.radius + Math.sin(time * this.morphSpeed + this.phase) * 30;
+                const points = 8;
+                ctx.beginPath();
+                for (let i = 0; i <= points; i++) {
+                    const angle = (i / points) * Math.PI * 2;
+                    const wobble = Math.sin(angle * 3 + time * this.speed) * 20;
+                    const bx = this.x + Math.cos(angle) * (r + wobble);
+                    const by = this.y + Math.sin(angle) * (r + wobble);
+                    if (i === 0) ctx.moveTo(bx, by);
+                    else {
+                        const prevAngle = ((i - 0.5) / points) * Math.PI * 2;
+                        const cpx = this.x + Math.cos(prevAngle) * (r + Math.sin(prevAngle * 3 + time * this.speed) * 20) * 1.2;
+                        const cpy = this.y + Math.sin(prevAngle) * (r + Math.sin(prevAngle * 3 + time * this.speed) * 20) * 1.2;
+                        ctx.quadraticCurveTo(cpx, cpy, bx, by);
+                    }
+                }
+                ctx.closePath();
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        let blobs = [];
+
+        function initCanvas() {
+            resizeCanvas();
+            const colors = themePaintColors[document.body.dataset.theme] || themePaintColors['ejsszaka'];
+            strokes = [];
+            blobs = [];
+            for (let i = 0; i < 15; i++) strokes.push(new PaintStroke(canvas.width, canvas.height, colors));
+            for (let i = 0; i < 5; i++) blobs.push(new Blob(canvas.width, canvas.height));
+        }
+
+        let canvasTime = 0;
+
+        function drawHeroCanvas() {
+            if (animFrame) cancelAnimationFrame(animFrame);
+            initCanvas();
+            canvasTime = 0;
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                blobs.forEach(b => b.draw(ctx, canvasTime));
+                strokes = strokes.filter(s => {
+                    const alive = s.update();
+                    s.draw(ctx);
+                    return alive;
+                });
+                if (strokes.length < 20 && Math.random() < 0.03) {
+                    const colors = themePaintColors[document.body.dataset.theme] || themePaintColors['ejsszaka'];
+                    strokes.push(new PaintStroke(canvas.width, canvas.height, colors));
+                }
+                canvasTime++;
+                animFrame = requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        drawHeroCanvas();
+        window.addEventListener('resize', () => { resizeCanvas(); drawHeroCanvas(); });
+
+        /* ═══════════════════════════════════════════════════════
+           SCROLL REVEAL (FIXED & ROBUST)
+           ═══════════════════════════════════════════════════════ */
+        let observerInstance;
+
+        function initReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            if (!reveals.length) return;
+
+            observerInstance = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observerInstance.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            reveals.forEach(el => {
+                // Azonnali megjelenítés, ha már a képernyőn van
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('visible');
+                } else {
+                    observerInstance.observe(el);
+                }
+            });
+        }
+
+        initReveal();
+
+        const galleryObserver = new MutationObserver(() => {
+            document.querySelectorAll('.gallery-item.reveal:not(.observed)').forEach(el => {
+                el.classList.add('observed');
+                observerInstance.observe(el);
+            });
+        });
+        galleryObserver.observe(galleryGrid, { childList: true });
+
+        /* ═══════════════════════════════════════════════════════
+           MOBILE NAV
+           ═══════════════════════════════════════════════════════ */
+        window.toggleNav = function() {
+            const burger = document.getElementById('navBurger');
+            const links = document.getElementById('navLinks');
+            const overlay = document.getElementById('navOverlay');
+            burger.classList.toggle('active');
+            links.classList.toggle('open');
+            overlay.classList.toggle('active');
+        };
+
+        window.closeNav = function() {
+            const burger = document.getElementById('navBurger');
+            const links = document.getElementById('navLinks');
+            const overlay = document.getElementById('navOverlay');
+            burger.classList.remove('active');
+            links.classList.remove('open');
+            overlay.classList.remove('active');
+        };
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            const scrollY = window.scrollY;
+            nav.style.boxShadow = scrollY > 100 ? '0 8px 40px var(--shadow)' : '0 4px 30px var(--shadow)';
+            lastScroll = scrollY;
+        }, { passive: true });
+
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero-content');
+            const scrollY = window.scrollY;
+            if (scrollY < window.innerHeight) {
+                hero.style.transform = `translateY(${scrollY * 0.3}px)`;
+                hero.style.opacity = 1 - (scrollY / window.innerHeight) * 0.8;
+            }
+        }, { passive: true });
+
+        const themeSwitcher = document.getElementById('themeSwitcher');
+        const swatches = document.querySelectorAll('.theme-swatch');
+        const savedTheme = localStorage.getItem('karai-theme') || 'ejsszaka';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        swatches.forEach(swatch => {
+            swatch.addEventListener('click', () => {
+                const theme = swatch.getAttribute('data-theme');
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('karai-theme', theme);
+                swatches.forEach(s => s.classList.remove('active'));
+                swatch.classList.add('active');
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

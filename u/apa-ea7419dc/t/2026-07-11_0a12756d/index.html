@@ -1,0 +1,2580 @@
+﻿<!DOCTYPE html>
+<html lang="hu" data-theme="golden-dawn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály — Festőművész</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           THEME SYSTEM — 7 harmonikus színkombináció
+           Minden téma követi a 60-30-10 arányt
+           ============================================ */
+
+        /* 1. ARANY HAJNAL — meleg, napsütötte világos téma */
+        [data-theme="golden-dawn"] {
+            --bg-primary: #FDF6E3;
+            --bg-secondary: #F5E6C8;
+            --bg-tertiary: #E8D5A8;
+            --bg-card: rgba(255, 248, 230, 0.85);
+            --bg-glass: rgba(253, 246, 227, 0.7);
+            --text-primary: #3D2B1F;
+            --text-secondary: #5C4033;
+            --text-muted: #8B7355;
+            --accent-primary: #C8956C;
+            --accent-secondary: #D4A574;
+            --accent-highlight: #E8C07D;
+            --accent-glow: rgba(200, 149, 108, 0.3);
+            --border-color: rgba(139, 115, 85, 0.2);
+            --shadow-color: rgba(61, 43, 31, 0.1);
+            --shadow-strong: rgba(61, 43, 31, 0.2);
+            --hero-overlay: linear-gradient(135deg, rgba(253,246,227,0.3) 0%, rgba(200,149,108,0.15) 50%, rgba(232,192,125,0.2) 100%);
+            --gradient-hero: linear-gradient(180deg, rgba(253,246,227,0) 0%, rgba(253,246,227,0.95) 100%);
+            --canvas-tint: rgba(200, 149, 108, 0.08);
+            --scrollbar-track: #F5E6C8;
+            --scrollbar-thumb: #C8956C;
+        }
+
+        /* 2. BORVÖRÖS ALKONY — mély, drámai sötét téma */
+        [data-theme="wine-twilight"] {
+            --bg-primary: #1A1118;
+            --bg-secondary: #2A1F24;
+            --bg-tertiary: #3A2D33;
+            --bg-card: rgba(42, 31, 36, 0.9);
+            --bg-glass: rgba(26, 17, 24, 0.8);
+            --text-primary: #F0E0E8;
+            --text-secondary: #D4B8C4;
+            --text-muted: #A08090;
+            --accent-primary: #8B3A62;
+            --accent-secondary: #A84D7A;
+            --accent-highlight: #C76B94;
+            --accent-glow: rgba(139, 58, 98, 0.3);
+            --border-color: rgba(168, 77, 122, 0.2);
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --shadow-strong: rgba(0, 0, 0, 0.6);
+            --hero-overlay: linear-gradient(135deg, rgba(26,17,24,0.4) 0%, rgba(139,58,98,0.2) 50%, rgba(199,107,148,0.15) 100%);
+            --gradient-hero: linear-gradient(180deg, rgba(26,17,24,0) 0%, rgba(26,17,24,0.95) 100%);
+            --canvas-tint: rgba(139, 58, 98, 0.05);
+            --scrollbar-track: #2A1F24;
+            --scrollbar-thumb: #8B3A62;
+        }
+
+        /* 3. ÓCEÁN MÉLYSÉG — friss, tengeri világos téma */
+        [data-theme="ocean-depth"] {
+            --bg-primary: #F0F7FA;
+            --bg-secondary: #DCEEF5;
+            --bg-tertiary: #C2DDEB;
+            --bg-card: rgba(240, 247, 250, 0.9);
+            --bg-glass: rgba(240, 247, 250, 0.75);
+            --text-primary: #1B3A4B;
+            --text-secondary: #2C5F73;
+            --text-muted: #5A8FA3;
+            --accent-primary: #4A90A4;
+            --accent-secondary: #5BAFBF;
+            --accent-highlight: #7CC5D8;
+            --accent-glow: rgba(74, 144, 164, 0.25);
+            --border-color: rgba(90, 143, 163, 0.2);
+            --shadow-color: rgba(27, 58, 75, 0.1);
+            --shadow-strong: rgba(27, 58, 75, 0.2);
+            --hero-overlay: linear-gradient(135deg, rgba(240,247,250,0.3) 0%, rgba(74,144,164,0.12) 50%, rgba(124,197,216,0.18) 100%);
+            --gradient-hero: linear-gradient(180deg, rgba(240,247,250,0) 0%, rgba(240,247,250,0.95) 100%);
+            --canvas-tint: rgba(74, 144, 164, 0.06);
+            --scrollbar-track: #DCEEF5;
+            --scrollbar-thumb: #4A90A4;
+        }
+
+        /* 4. ERDŐ ZÖLDJE — természetes, földhözragadt sötét téma */
+        [data-theme="forest-green"] {
+            --bg-primary: #141D16;
+            --bg-secondary: #1E2D22;
+            --bg-tertiary: #2A3D30;
+            --bg-card: rgba(30, 45, 34, 0.9);
+            --bg-glass: rgba(20, 29, 22, 0.8);
+            --text-primary: #E8F0EA;
+            --text-secondary: #C5D8CC;
+            --text-muted: #8FA89A;
+            --accent-primary: #5A8C6A;
+            --accent-secondary: #6DA87E;
+            --accent-highlight: #8FC49E;
+            --accent-glow: rgba(90, 140, 106, 0.3);
+            --border-color: rgba(109, 168, 126, 0.2);
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --shadow-strong: rgba(0, 0, 0, 0.6);
+            --hero-overlay: linear-gradient(135deg, rgba(20,29,22,0.4) 0%, rgba(90,140,106,0.15) 50%, rgba(143,196,158,0.12) 100%);
+            --gradient-hero: linear-gradient(180deg, rgba(20,29,22,0) 0%, rgba(20,29,22,0.95) 100%);
+            --canvas-tint: rgba(90, 140, 106, 0.05);
+            --scrollbar-track: #1E2D22;
+            --scrollbar-thumb: #5A8C6A;
+        }
+
+        /* 5. PASZTELL ÁLOM — lágy, álhány világos téma */
+        [data-theme="pastel-dream"] {
+            --bg-primary: #FFF5F0;
+            --bg-secondary: #FFE8DD;
+            --bg-tertiary: #FFD5C5;
+            --bg-card: rgba(255, 245, 240, 0.9);
+            --bg-glass: rgba(255, 245, 240, 0.75);
+            --text-primary: #4A3530;
+            --text-secondary: #6B5048;
+            --text-muted: #9A7A70;
+            --accent-primary: #D4918B;
+            --accent-secondary: #E0A8A0;
+            --accent-highlight: #F0C4BC;
+            --accent-glow: rgba(212, 145, 139, 0.25);
+            --border-color: rgba(224, 168, 160, 0.25);
+            --shadow-color: rgba(74, 53, 48, 0.08);
+            --shadow-strong: rgba(74, 53, 48, 0.15);
+            --hero-overlay: linear-gradient(135deg, rgba(255,245,240,0.3) 0%, rgba(212,145,139,0.12) 50%, rgba(240,196,188,0.18) 100%);
+            --gradient-hero: linear-gradient(180deg, rgba(255,245,240,0) 0%, rgba(255,245,240,0.95) 100%);
+            --canvas-tint: rgba(212, 145, 139, 0.06);
+            --scrollbar-track: #FFE8DD;
+            --scrollbar-thumb: #D4918B;
+        }
+
+        /* 6. ÉJFÉL KÉK — mély, misztikus sötét téma */
+        [data-theme="midnight-blue"] {
+            --bg-primary: #0D1520;
+            --bg-secondary: #152030;
+            --bg-tertiary: #1E2D45;
+            --bg-card: rgba(21, 32, 48, 0.9);
+            --bg-glass: rgba(13, 21, 32, 0.8);
+            --text-primary: #E0EAF0;
+            --text-secondary: #B0C4D8;
+            --text-muted: #7090A8;
+            --accent-primary: #3A6B8C;
+            --accent-secondary: #4A85A8;
+            --accent-highlight: #5EA0C8;
+            --accent-glow: rgba(58, 107, 140, 0.3);
+            --border-color: rgba(74, 133, 168, 0.2);
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --shadow-strong: rgba(0, 0, 0, 0.7);
+            --hero-overlay: linear-gradient(135deg, rgba(13,21,32,0.4) 0%, rgba(58,107,140,0.15) 50%, rgba(94,160,200,0.12) 100%);
+            --gradient-hero: linear-gradient(180deg, rgba(13,21,32,0) 0%, rgba(13,21,32,0.95) 100%);
+            --canvas-tint: rgba(58, 107, 140, 0.05);
+            --scrollbar-track: #152030;
+            --scrollbar-thumb: #3A6B8C;
+        }
+
+        /* 7. TŰZPIROS — szenvedélyes, meleg sötét téma */
+        [data-theme="fire-red"] {
+            --bg-primary: #1A1210;
+            --bg-secondary: #2A1E18;
+            --bg-tertiary: #3A2A20;
+            --bg-card: rgba(42, 30, 24, 0.9);
+            --bg-glass: rgba(26, 18, 16, 0.8);
+            --text-primary: #F5E0D5;
+            --text-secondary: #D8B8A8;
+            --text-muted: #A08070;
+            --accent-primary: #A8432C;
+            --accent-secondary: #C45A3C;
+            --accent-highlight: #E07850;
+            --accent-glow: rgba(168, 67, 44, 0.3);
+            --border-color: rgba(196, 90, 60, 0.2);
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --shadow-strong: rgba(0, 0, 0, 0.6);
+            --hero-overlay: linear-gradient(135deg, rgba(26,18,16,0.4) 0%, rgba(168,67,44,0.15) 50%, rgba(224,120,80,0.12) 100%);
+            --gradient-hero: linear-gradient(180deg, rgba(26,18,16,0) 0%, rgba(26,18,16,0.95) 100%);
+            --canvas-tint: rgba(168, 67, 44, 0.05);
+            --scrollbar-track: #2A1E18;
+            --scrollbar-thumb: #A8432C;
+        }
+
+        /* ============================================
+           BASE RESET & GLOBAL STYLES
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Canvas textúra overlay */
+        #painture-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.4;
+            mix-blend-mode: multiply;
+        }
+
+        [data-theme="wine-twilight"] #painture-canvas,
+        [data-theme="forest-green"] #painture-canvas,
+        [data-theme="midnight-blue"] #painture-canvas,
+        [data-theme="fire-red"] #painture-canvas {
+            mix-blend-mode: screen;
+            opacity: 0.2;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-secondary);
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+
+        /* ============================================
+           THEME SWITCHER PANEL
+           ============================================ */
+        .theme-switcher-toggle {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10000;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px var(--shadow-color);
+        }
+
+        .theme-switcher-toggle:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 30px var(--shadow-strong);
+            border-color: var(--accent-primary);
+        }
+
+        .theme-switcher-toggle svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--text-secondary);
+            transition: fill 0.3s ease;
+        }
+
+        .theme-switcher-toggle:hover svg {
+            fill: var(--accent-primary);
+        }
+
+        .theme-switcher-panel {
+            position: fixed;
+            right: 80px;
+            top: 50%;
+            transform: translateY(-50%) translateX(20px);
+            z-index: 9999;
+            width: 320px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 28px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 60px var(--shadow-strong);
+        }
+
+        .theme-switcher-panel.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        .theme-switcher-panel h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .theme-switcher-panel .theme-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .theme-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .theme-option {
+            position: relative;
+            border: 2px solid transparent;
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            aspect-ratio: 16/10;
+        }
+
+        .theme-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow-color);
+        }
+
+        .theme-option.active {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 2px var(--accent-glow);
+        }
+
+        .theme-option .theme-preview {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 2px;
+            padding: 2px;
+        }
+
+        .theme-option .theme-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 6px 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: #fff;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        /* Theme preview colors */
+        .theme-option[data-theme="golden-dawn"] .theme-preview {
+            background: #FDF6E3;
+        }
+        .theme-option[data-theme="golden-dawn"] .theme-preview > div:nth-child(1) { background: #FDF6E3; }
+        .theme-option[data-theme="golden-dawn"] .theme-preview > div:nth-child(2) { background: #C8956C; }
+        .theme-option[data-theme="golden-dawn"] .theme-preview > div:nth-child(3) { background: #E8C07D; }
+        .theme-option[data-theme="golden-dawn"] .theme-preview > div:nth-child(4) { background: #F5E6C8; }
+        .theme-option[data-theme="golden-dawn"] .theme-preview > div:nth-child(5) { background: #3D2B1F; }
+
+        .theme-option[data-theme="wine-twilight"] .theme-preview { background: #1A1118; }
+        .theme-option[data-theme="wine-twilight"] .theme-preview > div:nth-child(1) { background: #1A1118; }
+        .theme-option[data-theme="wine-twilight"] .theme-preview > div:nth-child(2) { background: #8B3A62; }
+        .theme-option[data-theme="wine-twilight"] .theme-preview > div:nth-child(3) { background: #C76B94; }
+        .theme-option[data-theme="wine-twilight"] .theme-preview > div:nth-child(4) { background: #2A1F24; }
+        .theme-option[data-theme="wine-twilight"] .theme-preview > div:nth-child(5) { background: #F0E0E8; }
+
+        .theme-option[data-theme="ocean-depth"] .theme-preview { background: #F0F7FA; }
+        .theme-option[data-theme="ocean-depth"] .theme-preview > div:nth-child(1) { background: #F0F7FA; }
+        .theme-option[data-theme="ocean-depth"] .theme-preview > div:nth-child(2) { background: #4A90A4; }
+        .theme-option[data-theme="ocean-depth"] .theme-preview > div:nth-child(3) { background: #7CC5D8; }
+        .theme-option[data-theme="ocean-depth"] .theme-preview > div:nth-child(4) { background: #DCEEF5; }
+        .theme-option[data-theme="ocean-depth"] .theme-preview > div:nth-child(5) { background: #1B3A4B; }
+
+        .theme-option[data-theme="forest-green"] .theme-preview { background: #141D16; }
+        .theme-option[data-theme="forest-green"] .theme-preview > div:nth-child(1) { background: #141D16; }
+        .theme-option[data-theme="forest-green"] .theme-preview > div:nth-child(2) { background: #5A8C6A; }
+        .theme-option[data-theme="forest-green"] .theme-preview > div:nth-child(3) { background: #8FC49E; }
+        .theme-option[data-theme="forest-green"] .theme-preview > div:nth-child(4) { background: #1E2D22; }
+        .theme-option[data-theme="forest-green"] .theme-preview > div:nth-child(5) { background: #E8F0EA; }
+
+        .theme-option[data-theme="pastel-dream"] .theme-preview { background: #FFF5F0; }
+        .theme-option[data-theme="pastel-dream"] .theme-preview > div:nth-child(1) { background: #FFF5F0; }
+        .theme-option[data-theme="pastel-dream"] .theme-preview > div:nth-child(2) { background: #D4918B; }
+        .theme-option[data-theme="pastel-dream"] .theme-preview > div:nth-child(3) { background: #F0C4BC; }
+        .theme-option[data-theme="pastel-dream"] .theme-preview > div:nth-child(4) { background: #FFE8DD; }
+        .theme-option[data-theme="pastel-dream"] .theme-preview > div:nth-child(5) { background: #4A3530; }
+
+        .theme-option[data-theme="midnight-blue"] .theme-preview { background: #0D1520; }
+        .theme-option[data-theme="midnight-blue"] .theme-preview > div:nth-child(1) { background: #0D1520; }
+        .theme-option[data-theme="midnight-blue"] .theme-preview > div:nth-child(2) { background: #3A6B8C; }
+        .theme-option[data-theme="midnight-blue"] .theme-preview > div:nth-child(3) { background: #5EA0C8; }
+        .theme-option[data-theme="midnight-blue"] .theme-preview > div:nth-child(4) { background: #152030; }
+        .theme-option[data-theme="midnight-blue"] .theme-preview > div:nth-child(5) { background: #E0EAF0; }
+
+        .theme-option[data-theme="fire-red"] .theme-preview { background: #1A1210; }
+        .theme-option[data-theme="fire-red"] .theme-preview > div:nth-child(1) { background: #1A1210; }
+        .theme-option[data-theme="fire-red"] .theme-preview > div:nth-child(2) { background: #A8432C; }
+        .theme-option[data-theme="fire-red"] .theme-preview > div:nth-child(3) { background: #E07850; }
+        .theme-option[data-theme="fire-red"] .theme-preview > div:nth-child(4) { background: #2A1E18; }
+        .theme-option[data-theme="fire-red"] .theme-preview > div:nth-child(5) { background: #F5E0D5; }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9000;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .main-nav.scrolled {
+            padding: 12px 40px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 30px var(--shadow-color);
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-logo span {
+            color: var(--accent-primary);
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 9500;
+        }
+
+        .nav-hamburger span {
+            width: 28px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2px;
+        }
+
+        .nav-hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .nav-hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-glass);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 9400;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu a {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent-primary);
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7) saturate(1.1);
+            transition: transform 10s ease;
+        }
+
+        .hero:hover .hero-bg img {
+            transform: scale(1.03);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--hero-overlay);
+            z-index: 1;
+        }
+
+        .hero-gradient {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: var(--gradient-hero);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 30px;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--accent-primary);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s 0.3s forwards;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s 0.5s forwards;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--accent-primary);
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s 0.7s forwards;
+        }
+
+        .hero-year {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s 0.9s forwards;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 40px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--bg-primary);
+            background: var(--accent-primary);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s 1.1s forwards;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 35px var(--accent-glow);
+            background: var(--accent-secondary);
+        }
+
+        .hero-cta svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        .hero-scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeIn 1s 1.5s forwards;
+        }
+
+        .hero-scroll-indicator span {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: var(--text-muted);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-primary);
+            animation: scrollLine 2s infinite;
+        }
+
+        @keyframes scrollLine {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* ============================================
+           SECTION COMMON STYLES
+           ============================================ */
+        .section {
+            position: relative;
+            z-index: 2;
+            padding: 120px 40px;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--accent-primary);
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--accent-primary);
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--accent-primary);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        .section-description {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ============================================
+           ABOUT / ÉLETRAJZ SECTION
+           ============================================ */
+        .about-section {
+            background: var(--bg-secondary);
+            transition: background-color 0.8s ease;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+        }
+
+        .about-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px solid var(--accent-primary);
+            border-radius: 12px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px var(--shadow-strong);
+            z-index: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.4));
+            pointer-events: none;
+        }
+
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .about-text h3 em {
+            color: var(--accent-primary);
+            font-style: italic;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 18px;
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 35px;
+            padding-top: 35px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .about-stat {
+            text-align: center;
+        }
+
+        .about-stat .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .about-stat .stat-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* ============================================
+           GALLERY SECTION
+           ============================================ */
+        .gallery-section {
+            background: var(--bg-primary);
+        }
+
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .gallery-filter-btn {
+            padding: 10px 24px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-filter-btn:hover,
+        .gallery-filter-btn.active {
+            color: var(--bg-primary);
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 40px var(--shadow-color);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            aspect-ratio: auto;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px var(--shadow-strong);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.7) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 25px;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 5px;
+            transform: translateY(15px);
+            transition: transform 0.4s ease 0.1s;
+        }
+
+        .gallery-item:hover .gallery-item-title {
+            transform: translateY(0);
+        }
+
+        .gallery-item-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.8);
+            transform: translateY(15px);
+            transition: transform 0.4s ease 0.2s;
+        }
+
+        .gallery-item:hover .gallery-item-desc {
+            transform: translateY(0);
+        }
+
+        .gallery-item-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+            background: var(--accent-primary);
+            border-radius: 20px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-item-tag {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Large gallery item spanning 2 columns */
+        .gallery-item.large {
+            grid-column: span 2;
+        }
+
+        .gallery-item.tall {
+            grid-row: span 2;
+        }
+
+        /* ============================================
+           PHILOSOPHY SECTION
+           ============================================ */
+        .philosophy-section {
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-section::before {
+            content: '"';
+            position: absolute;
+            top: 60px;
+            left: 5%;
+            font-family: 'Playfair Display', serif;
+            font-size: 20rem;
+            color: var(--accent-primary);
+            opacity: 0.05;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .philosophy-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .philosophy-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .philosophy-quote em {
+            color: var(--accent-primary);
+        }
+
+        .philosophy-author {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .philosophy-values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .philosophy-value {
+            text-align: center;
+            padding: 40px 25px;
+            border-radius: 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
+
+        .philosophy-value:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow-color);
+            border-color: var(--accent-primary);
+        }
+
+        .philosophy-value-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--accent-glow);
+        }
+
+        .philosophy-value-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--accent-primary);
+        }
+
+        .philosophy-value h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .philosophy-value p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           TIMELINE SECTION
+           ============================================ */
+        .timeline-section {
+            background: var(--bg-primary);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0 50px 60px;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 50%;
+            text-align: left;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            border: 3px solid var(--bg-primary);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -7px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -7px;
+        }
+
+        .timeline-year {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        .contact-section {
+            background: var(--bg-secondary);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .contact-detail-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-detail-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--accent-primary);
+        }
+
+        .contact-detail-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-detail-text strong {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 50px var(--shadow-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            font-family: 'EB Garamond', serif;
+            font-size: 1rem;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--bg-primary);
+            background: var(--accent-primary);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .form-submit:hover {
+            background: var(--accent-secondary);
+            box-shadow: 0 6px 25px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            position: relative;
+            z-index: 2;
+            background: var(--bg-tertiary);
+            padding: 60px 40px 30px;
+            text-align: center;
+            transition: background-color 0.8s ease;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .footer-logo span {
+            color: var(--accent-primary);
+            font-style: italic;
+        }
+
+        .footer-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .footer-divider {
+            width: 40px;
+            height: 1px;
+            background: var(--accent-primary);
+            margin: 0 auto 25px;
+            opacity: 0.5;
+        }
+
+        .footer-copy {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .footer-copy a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        /* ============================================
+           LIGHTBOX
+           ============================================ */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.92);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .lightbox.active img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .lightbox-info {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #fff;
+        }
+
+        .lightbox-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .lightbox-info p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+            opacity: 0.7;
+        }
+
+        /* ============================================
+           FLOATING PAINT PARTICLES
+           ============================================ */
+        .paint-particle {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.15;
+            filter: blur(40px);
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 1024px) {
+            .section {
+                padding: 80px 30px;
+            }
+
+            .about-grid {
+                gap: 50px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .gallery-item.large {
+                grid-column: span 1;
+            }
+
+            .philosophy-values {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .contact-grid {
+                gap: 40px;
+            }
+
+            .theme-switcher-panel {
+                width: 280px;
+                right: 70px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .main-nav {
+                padding: 15px 20px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .section-header {
+                margin-bottom: 50px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-image img {
+                height: 350px;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+
+            .about-stat .stat-number {
+                font-size: 2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .gallery-item.large {
+                grid-column: span 1;
+            }
+
+            .philosophy-values {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .philosophy-section::before {
+                font-size: 12rem;
+                top: 30px;
+                left: 2%;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding: 0 0 50px 55px;
+                text-align: left !important;
+            }
+
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+            }
+
+            .timeline-dot {
+                left: 13px !important;
+                right: auto !important;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-form {
+                padding: 25px;
+            }
+
+            .theme-switcher-toggle {
+                right: 15px;
+                width: 42px;
+                height: 42px;
+            }
+
+            .theme-switcher-panel {
+                width: calc(100vw - 30px);
+                right: 65px;
+                max-width: 350px;
+            }
+
+            .hero-title {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section {
+                padding: 50px 15px;
+            }
+
+            .section-header {
+                margin-bottom: 40px;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .about-stat .stat-number {
+                font-size: 1.6rem;
+            }
+
+            .about-stat .stat-label {
+                font-size: 0.6rem;
+            }
+
+            .gallery-filters {
+                gap: 8px;
+            }
+
+            .gallery-filter-btn {
+                padding: 8px 16px;
+                font-size: 0.65rem;
+            }
+
+            .theme-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .theme-switcher-panel {
+                padding: 20px;
+            }
+        }
+
+        /* ============================================
+           LOADING SCREEN
+           ============================================ */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 999999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-brush {
+            width: 60px;
+            height: 60px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .loading-brush::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+        }
+
+        /* ============================================
+           BRUSH STROKE DECORATIONS
+           ============================================ */
+        .brush-stroke {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .brush-stroke-1 {
+            top: 10%;
+            right: -5%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        .brush-stroke-2 {
+            bottom: 10%;
+            left: -5%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(50px);
+        }
+
+        /* ============================================
+           ADDITIONAL ANIMATIONS
+           ============================================ */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
+            50% { box-shadow: 0 0 40px var(--accent-glow); }
+        }
+
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Noise texture overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-brush"></div>
+        <div class="loading-text">Kárai Mihály</div>
+    </div>
+
+    <!-- Noise Texture Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Painture Canvas Texture -->
+    <canvas id="painture-canvas"></canvas>
+
+    <!-- Floating Paint Particles -->
+    <div class="paint-particle" style="top: 10%; left: 5%; width: 200px; height: 200px; background: var(--accent-primary);"></div>
+    <div class="paint-particle" style="top: 60%; right: 10%; width: 150px; height: 150px; background: var(--accent-secondary);"></div>
+    <div class="paint-particle" style="bottom: 20%; left: 30%; width: 180px; height: 180px; background: var(--accent-highlight);"></div>
+
+    <!-- Navigation -->
+    <nav class="main-nav" id="mainNav">
+        <a href="#hero" class="nav-logo">Kárai <span>Mihály</span></a>
+        <ul class="nav-links">
+            <li><a href="#about">Életrajz</a></li>
+            <li><a href="#gallery">Galéria</a></li>
+            <li><a href="#philosophy">Filozófia</a></li>
+            <li><a href="#timeline">Út</a></li>
+            <li><a href="#contact">Kapcsolat</a></li>
+        </ul>
+        <div class="nav-hamburger" id="navHamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" onclick="closeMobileMenu()">Életrajz</a>
+        <a href="#gallery" onclick="closeMobileMenu()">Galéria</a>
+        <a href="#philosophy" onclick="closeMobileMenu()">Filozófia</a>
+        <a href="#timeline" onclick="closeMobileMenu()">Út</a>
+        <a href="#contact" onclick="closeMobileMenu()">Kapcsolat</a>
+    </div>
+
+    <!-- Theme Switcher Toggle -->
+    <button class="theme-switcher-toggle" id="themeToggle" aria-label="Téma váltás">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+    </button>
+
+    <!-- Theme Switcher Panel -->
+    <div class="theme-switcher-panel" id="themePanel">
+        <h3>Színvilág</h3>
+        <p class="theme-subtitle">Válassz illathoz illő hangulatot</p>
+        <div class="theme-grid">
+            <div class="theme-option active" data-theme="golden-dawn" onclick="setTheme('golden-dawn')">
+                <div class="theme-preview"><div></div><div></div><div></div><div></div><div></div></div>
+                <span class="theme-name">Arany Hajnal</span>
+            </div>
+            <div class="theme-option" data-theme="wine-twilight" onclick="setTheme('wine-twilight')">
+                <div class="theme-preview"><div></div><div></div><div></div><div></div><div></div></div>
+                <span class="theme-name">Borvörös Alkony</span>
+            </div>
+            <div class="theme-option" data-theme="ocean-depth" onclick="setTheme('ocean-depth')">
+                <div class="theme-preview"><div></div><div></div><div></div><div></div><div></div></div>
+                <span class="theme-name">Óceán Mélység</span>
+            </div>
+            <div class="theme-option" data-theme="forest-green" onclick="setTheme('forest-green')">
+                <div class="theme-preview"><div></div><div></div><div></div><div></div><div></div></div>
+                <span class="theme-name">Erdő Zöldje</span>
+            </div>
+            <div class="theme-option" data-theme="pastel-dream" onclick="setTheme('pastel-dream')">
+                <div class="theme-preview"><div></div><div></div><div></div><div></div><div></div></div>
+                <span class="theme-name">Pasztell Álom</span>
+            </div>
+            <div class="theme-option" data-theme="midnight-blue" onclick="setTheme('midnight-blue')">
+                <div class="theme-preview"><div></div><div></div><div></div><div></div><div></div></div>
+                <span class="theme-name">Éjfél Kék</span>
+            </div>
+            <div class="theme-option" data-theme="fire-red" onclick="setTheme('fire-red')">
+                <div class="theme-preview"><div></div><div></div><div></div><div></div><div></div></div>
+                <span class="theme-name">Tűzpiros</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <img src="" alt="" id="lightboxImg">
+        <div class="lightbox-info">
+            <h4 id="lightboxTitle"></h4>
+            <p id="lightboxDesc"></p>
+        </div>
+    </div>
+
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <img src="../../assets/interior_1.jpg" alt="Kárai Mihály műterme" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221920%22 height=%221080%22%3E%3Crect fill=%22%23F5E6C8%22 width=%221920%22 height=%221080%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-family=%22serif%22 font-size=%2248%22 fill=%22%238B7355%22%3EMűterem%3C/text%3E%3C/svg%3E'">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-gradient"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Festőművész · Művész · Látó</p>
+            <h1 class="hero-title">Kárai <em>Mihály</em></h1>
+            <p class="hero-subtitle">A szín nyelven beszél — a lélek hallgat</p>
+            <p class="hero-year">Született 1961 · Magyarország</p>
+            <a href="#gallery" class="hero-cta">
+                Felfedezés
+                <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+            </a>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span>Görgess</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ABOUT SECTION
+         ============================================ -->
+    <section class="section about-section" id="about">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <p class="section-eyebrow">Ismerkedés</p>
+                <h2 class="section-title">Az alkotóról <em>és</em> művészetéről</h2>
+                <div class="section-divider"></div>
+                <p class="section-description">
+                    Minden vonal egy élmény, minden szín egy emlék — Kárai Mihály festményei a lélek mélyéről beszélnek.
+                </p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-image-wrapper reveal">
+                    <div class="about-image">
+                        <img src="../../assets/interior_2.jpg" alt="Kárai Mihály festőművész" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22500%22%3E%3Crect fill=%22%23E8D5A8%22 width=%22600%22 height=%22500%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-family=%22serif%22 font-size=%2236%22 fill=%22%235C4033%22%3EKárai Mihály%3C/text%3E%3C/svg%3E'">
+                        <div class="about-image-overlay"></div>
+                    </div>
+                </div>
+                <div class="about-text reveal reveal-delay-2">
+                    <h3>A festészet nem csupán <em>művészet</em> — életfilozófia</h3>
+                    <p>
+                        Kárai Mihály 1961-ben született, és élete során a festészet lett legfőbb hivatása. Műveiben a természet szépsége, az emberi érzelmek mélysége és a mindennapi élet poézise fonódik össze egyedi, megismételhetetlen világgá.
+                    </p>
+                    <p>
+                        Festményei nem csupán vizuális élményt kínálnak — hanem érzelmek hordozói, amelyek a megfigyelőben mély rezonanciát keltenek. Minden alkotásában ott jelenik meg a művész éles megfigyelése, a részletek iránti tisztelet és a szépség utáni vágy.
+                    </p>
+                    <p>
+                        Stílusa a klasszikus mesterségből merít, miközben a kortárs érzékesség is jelen van munkásságában. A festék textúrája, a színárnyalatok játéka és a kompozíció harmóniája együttesen alkotnak meg olyan képeket, amelyek időtlen szépségűek.
+                    </p>
+                    <div class="about-stats">
+                        <div class="about-stat">
+                            <div class="stat-number">60+</div>
+                            <div class="stat-label">Év tapasztalat</div>
+                        </div>
+                        <div class="about-stat">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Alkotás</div>
+                        </div>
+                        <div class="about-stat">
+                            <div class="stat-number">1</div>
+                            <div class="stat-label">Hivatás</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         GALLERY SECTION
+         ============================================ -->
+    <section class="section gallery-section" id="gallery">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <p class="section-eyebrow">Művek</p>
+                <h2 class="section-title">A festmények <em>világa</em></h2>
+                <div class="section-divider"></div>
+                <p class="section-description">
+                    Minden festmény egy ablak a művész belső világába — ahol a szín és az érzelmi mélység találkozik.
+                </p>
+            </div>
+
+            <div class="gallery-filters reveal">
+                <button class="gallery-filter-btn active" data-filter="all">Összes</button>
+                <button class="gallery-filter-btn" data-filter="original">Eredeti</button>
+                <button class="gallery-filter-btn" data-filter="framed">Keretezett</button>
+                <button class="gallery-filter-btn" data-filter="interior">Interior</button>
+            </div>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PHILOSOPHY SECTION
+         ============================================ -->
+    <section class="section philosophy-section" id="philosophy">
+        <div class="brush-stroke brush-stroke-1"></div>
+        <div class="brush-stroke brush-stroke-2"></div>
+        <div class="section-container">
+            <div class="section-header reveal">
+                <p class="section-eyebrow">Filozófia</p>
+                <h2 class="section-title">Az alkotás <em>lényege</em></h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="philosophy-content reveal">
+                <blockquote class="philosophy-quote">
+                    „A festészet nem a valóság másolása, hanem annak <em>lényegének</em> feltárása — ott, ahol a szín és az érzelem egybeolvad, és a vászon életre kel."
+                </blockquote>
+                <p class="philosophy-author">— Kárai Mihály</p>
+            </div>
+
+            <div class="philosophy-values">
+                <div class="philosophy-value reveal reveal-delay-1">
+                    <div class="philosophy-value-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.7 1.5-1.5 0-.39-.15-.74-.39-1.04-.23-.3-.38-.65-.38-1.04 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                    </div>
+                    <h4>Színérzék</h4>
+                    <p>A színek nem csupán vizuális elemek — érzelmi hordozók, amelyek a megfigyelő lelkébe hatolnak.</p>
+                </div>
+                <div class="philosophy-value reveal reveal-delay-2">
+                    <div class="philosophy-value-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM5 15h14v3H5z"/></svg>
+                    </div>
+                    <h4>Kompozíció</h4>
+                    <p>Minden elem a helyén van — a harmonikus elrendezés a vizuális beszéd alapja.</p>
+                </div>
+                <div class="philosophy-value reveal reveal-delay-3">
+                    <div class="philosophy-value-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.21 1.79-4 4-4s4 1.79 4 4v6z"/></svg>
+                    </div>
+                    <h4>Érzelem</h4>
+                    <p>A festészet lényege az érzelmek közvetítése — minden vonal és szín egy történetet mesél.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TIMELINE SECTION
+         ============================================ -->
+    <section class="section timeline-section" id="timeline">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <p class="section-eyebrow">Életút</p>
+                <h2 class="section-title">Az alkotó <em>útja</em></h2>
+                <div class="section-divider"></div>
+                <p class="section-description">
+                    Egy életmű kialakulásának állomásai — a kezdéstől a mesterségig.
+                </p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">1961</div>
+                    <div class="timeline-title">Születés</div>
+                    <div class="timeline-desc">Kárai Mihály született, aki később a festészet világában találta meg hivatását.</div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">1970-es évek</div>
+                    <div class="timeline-title">Az első ecsetvonások</div>
+                    <div class="timeline-desc">A rajzolás és festészet iránti szenvedély gyökerező mélységűvé vált.</div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">1980-as évek</div>
+                    <div class="timeline-title">Művészeti fejlődés</div>
+                    <div class="timeline-desc">A stílus kialakulása, a szín és kompozíció mélyebb megértése.</div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">1990-es évek</div>
+                    <div class="timeline-title">Érettség és elismerés</div>
+                    <div class="timeline-desc">Az alkotói érettség elérése, az egyedi stílus teljességgé válása.</div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2000-es évek</div>
+                    <div class="timeline-title">Mesteri szint</div>
+                    <div class="timeline-desc">A festészet mestereként a művek ismertté válnak, a stílus időtlen szépséget nyer.</div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2026</div>
+                    <div class="timeline-title">Folytatás</div>
+                    <div class="timeline-desc">Az alkotás örök — minden új nap új inspirációt hoz, és a festészet tovább él.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CONTACT SECTION
+         ============================================ -->
+    <section class="section contact-section" id="contact">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <p class="section-eyebrow">Kapcsolat</p>
+                <h2 class="section-title">Üzenet <em>az alkotónak</em></h2>
+                <div class="section-divider"></div>
+                <p class="section-description">
+                    Ha a festmények valamelyike megszólított, vagy kérdése van — írjon bátran.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <h3>Kárai Mihály</h3>
+                    <p>
+                        Festőművész, aki a színek nyelvén beszél. Művei a természet szépségét, az emberi érzelmek mélységét és a mindennapi élet poézisét örökítik meg vászonra.
+                    </p>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        </div>
+                        <div class="contact-detail-text">
+                            <strong>Helyszín</strong>
+                            Magyarország
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">
+                            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        </div>
+                        <div class="contact-detail-text">
+                            <strong>Email</strong>
+                            info@karaimihaly.hu
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">
+                            <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+                        </div>
+                        <div class="contact-detail-text">
+                            <strong>Születés</strong>
+                            1961
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form reveal reveal-delay-2" onsubmit="event.preventDefault(); alert('Köszönjük üzenetét!');">
+                    <div class="form-group">
+                        <label for="name">Név</label>
+                        <input type="text" id="name" placeholder="Az Ön neve" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Az Ön email címe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Üzenet</label>
+                        <textarea id="message" placeholder="Írja meg üzenetét..." required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Üzenet küldése</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="footer">
+        <div class="footer-logo">Kárai <span>Mihály</span></div>
+        <p class="footer-tagline">Festőművész · 1961 · Magyarország</p>
+        <div class="footer-divider"></div>
+        <p class="footer-copy">
+            © 2026 Kárai Mihály — Minden jog fenntartva. <br>
+            Készült <a href="#">szeretettel</a> és művészi elhivatottsággal.
+        </p>
+    </footer>
+
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script>
+        // ============================================
+        // GALLERY DATA
+        // ============================================
+        const galleryData = [
+            {
+                src: '../apa_festmenyek/keretnelkul_1.jpg',
+                title: 'Festmény I.',
+                desc: 'Kárai Mihály alkotása',
+                tags: ['original'],
+                large: true
+            },
+            {
+                src: '../apa_festmenyek/keretezve_1.jpg',
+                title: 'Keretezett alkotás I.',
+                desc: 'Keretezett változat',
+                tags: ['framed']
+            },
+            {
+                src: '../apa_festmenyek/keretnelkul_2.jpg',
+                title: 'Festmény II.',
+                desc: 'Kárai Mihály alkotása',
+                tags: ['original']
+            },
+            {
+                src: '../apa_festmenyek/keretezve_2.jpg',
+                title: 'Keretezett alkotás II.',
+                desc: 'Keretezett változat',
+                tags: ['framed']
+            },
+            {
+                src: '../apa_festmenyek/interior_1.jpg',
+                title: 'Interior I.',
+                desc: 'A műterem hangulata',
+                tags: ['interior'],
+                large: true
+            },
+            {
+                src: '../apa_festmenyek/interior_2.jpg',
+                title: 'Interior II.',
+                desc: 'Az alkotás világa',
+                tags: ['interior']
+            }
+        ];
+
+        // ============================================
+        // POPULATE GALLERY
+        // ============================================
+        function populateGallery(filter = 'all') {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+
+            const filtered = filter === 'all'
+                ? galleryData
+                : galleryData.filter(item => item.tags.includes(filter));
+
+            filtered.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = `gallery-item reveal ${item.large ? 'large' : ''}`;
+                div.style.transitionDelay = `${index * 0.1}s`;
+                div.innerHTML = `
+                    <img src="${item.src}" alt="${item.title}" loading="lazy"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect fill=%22var(--bg-tertiary)%22 width=%22600%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 font-family=%22serif%22 font-size=%2224%22 fill=%22var(--text-muted)%22%3E${encodeURIComponent(item.title)}%3C/text%3E%3C/svg%3E'">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title">${item.title}</div>
+                        <div class="gallery-item-desc">${item.desc}</div>
+                    </div>
+                    <span class="gallery-item-tag">${filter === 'all' ? (item.tags[0] === 'original' ? 'Eredeti' : item.tags[0] === 'framed' ? 'Keretezett' : 'Interior') : ''}</span>
+                `;
+                div.addEventListener('click', () => openLightbox(item));
+                grid.appendChild(div);
+            });
+
+            // Re-observe for reveal animations
+            observeElements();
+        }
+
+        // Gallery filter buttons
+        document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.gallery-filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                populateGallery(btn.dataset.filter);
+            });
+        });
+
+        // ============================================
+        // LIGHTBOX
+        // ============================================
+        function openLightbox(item) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightboxImg');
+            const title = document.getElementById('lightboxTitle');
+            const desc = document.getElementById('lightboxDesc');
+
+            img.src = item.src;
+            img.alt = item.title;
+            title.textContent = item.title;
+            desc.textContent = item.desc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // ============================================
+        // THEME SWITCHER
+        // ============================================
+        const themeToggle = document.getElementById('themeToggle');
+        const themePanel = document.getElementById('themePanel');
+
+        themeToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            themePanel.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!themePanel.contains(e.target) && e.target !== themeToggle) {
+                themePanel.classList.remove('active');
+            }
+        });
+
+        function setTheme(themeName) {
+            document.documentElement.setAttribute('data-theme', themeName);
+            localStorage.setItem('theme', themeName);
+
+            document.querySelectorAll('.theme-option').forEach(opt => {
+                opt.classList.toggle('active', opt.dataset.theme === themeName);
+            });
+
+            // Update canvas texture for new theme
+            generateCanvasTexture();
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme);
+        }
+
+        // ============================================
+        // NAVIGATION
+        // ============================================
+        const mainNav = document.getElementById('mainNav');
+        const navHamburger = document.getElementById('navHamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        window.addEventListener('scroll', () => {
+            mainNav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        navHamburger.addEventListener('click', () => {
+            navHamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        function closeMobileMenu() {
+            navHamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ============================================
+        // SCROLL REVEAL
+        // ============================================
+        function observeElements() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // ============================================
+        // CANVAS TEXTURE GENERATOR
+        // ============================================
+        function generateCanvasTexture() {
+            const canvas = document.getElementById('painture-canvas');
+            const ctx = canvas.getContext('2d');
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            // Get current theme colors
+            const style = getComputedStyle(document.documentElement);
+            const accentColor = style.getPropertyValue('--accent-primary').trim();
+
+            // Generate paint-like texture
+            const imageData = ctx.createImageData(canvas.width, canvas.height);
+            const data = imageData.data;
+
+            for (let i = 0; i < data.length; i += 4) {
+                const x = (i / 4) % canvas.width;
+                const y = Math.floor((i / 4) / canvas.width);
+
+                // Perlin-like noise for paint texture
+                const noise = Math.sin(x * 0.01) * Math.cos(y * 0.01) * 0.5 + 0.5;
+                const grain = Math.random() * 15;
+
+                // Parse accent color
+                const r = parseInt(accentColor.slice(1, 3), 16) || 200;
+                const g = parseInt(accentColor.slice(3, 5), 16) || 149;
+                const b = parseInt(accentColor.slice(5, 7), 16) || 108;
+
+                data[i] = r;
+                data[i + 1] = g;
+                data[i + 2] = b;
+                data[i + 3] = Math.floor((noise * 8 + grain) * 0.3);
+            }
+
+            ctx.putImageData(imageData, 0, 0);
+
+            // Add some brush stroke-like elements
+            for (let i = 0; i < 15; i++) {
+                ctx.save();
+                ctx.globalAlpha = 0.02 + Math.random() * 0.03;
+                ctx.fillStyle = accentColor;
+                ctx.beginPath();
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const w = 50 + Math.random() * 200;
+                const h = 5 + Math.random() * 20;
+                ctx.ellipse(x, y, w, h, Math.random() * Math.PI, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        // ============================================
+        // LOADING SCREEN
+        // ============================================
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 1200);
+
+            populateGallery();
+            observeElements();
+            generateCanvasTexture();
+        });
+
+        // Resize handler
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                generateCanvasTexture();
+            }, 300);
+        });
+
+        // ============================================
+        // SMOOTH SCROLL for anchor links
+        // ============================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ============================================
+        // PARALLAX EFFECT on hero
+        // ============================================
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero-bg img');
+            if (hero) {
+                const scrolled = window.scrollY;
+                hero.style.transform = `scale(1.03) translateY(${scrolled * 0.3}px)`;
+            }
+        });
+    </script>
+</body>
+</html>

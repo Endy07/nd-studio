@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width="1024">
+<title>Krisztián Merényi — Hirudotherapy · Leech Therapy 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght=300;400;600&family=Inter:wght=300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; font-size: 1rem; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #060a06;
+  color: #e8e4dc;
+  overflow-x: hidden;
+  line-height: 1.7;
+  font-weight: 300;
+}
+::selection { background: #c9a561; color: #060a06; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #060a06; }
+::-webkit-scrollbar-thumb { background: #2d5a4a; border-radius: 3px; }
+
+/* ═══════════════════════════════════════════
+   ANIMATED BACKGROUND CANVAS
+   ═══════════════════════════════════════════ */
+#bg-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 0;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.4s, backdrop-filter 0.4s;
+  backdrop-filter: blur(0px);
+  background: transparent;
+}
+nav.scrolled {
+  background: rgba(6, 10, 6, 0.75);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(201, 165, 97, 0.15);
+}
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #c9a561;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: #e8e4dc;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  position: relative;
+  padding: 0.25rem 0;
+  transition: color 0.3s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: #c9a561;
+  transition: width 0.4s ease;
+}
+.nav-links a:hover { color: #c9a561; }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  background: linear-gradient(135deg, #c9a561, #a08230);
+  color: #060a06 !important;
+  padding: 0.6rem 1.4rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(201, 165, 97, 0.3);
+}
+.nav-cta::after { display: none !important; }
+
+/* ═══════════════════════════════════════════
+   HERO SECTION
+   ═══════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  padding: 8rem 4rem 4rem;
+  gap: 0;
+  z-index: 1;
+}
+.hero-title-block {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 75%;
+}
+.hero-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #c9a561;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease 0.3s forwards;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: #f0ece0;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease 0.6s forwards;
+}
+.hero-title em {
+  font-style: italic;
+  color: #c9a561;
+  font-weight: 600;
+}
+.hero-subtitle {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #a0a89a;
+  max-width: 550px;
+  line-height: 1.8;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease 0.9s forwards;
+}
+.hero-visual {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: end;
+  align-self: end;
+  width: 380px;
+  height: 480px;
+  position: relative;
+  opacity: 0;
+  animation: fadeSlideUp 1s ease 1.2s forwards;
+}
+.hero-visual-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 200px 200px 40px 40px;
+  background: linear-gradient(170deg, #1a3a2a 0%, #0d2a1a 40%, #0a1a14 100%);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(45, 90, 74, 0.15);
+}
+.hero-visual-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 40% 30%, rgba(201, 165, 97, 0.2) 0%, transparent 60%);
+}
+.hero-visual-inner::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(to top, #060a06, transparent);
+}
+.hero-float-badge {
+  position: absolute;
+  bottom: 40px;
+  left: -40px;
+  background: rgba(10, 20, 10, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 165, 97, 0.2);
+  border-radius: 16px;
+  padding: 1.2rem 1.5rem;
+  animation: floatBadge 4s ease-in-out infinite;
+  z-index: 2;
+}
+.hero-float-badge .badge-icon { font-size: 1.8rem; margin-bottom: 0.3rem; }
+.hero-float-badge .badge-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #c9a561;
+  font-weight: 500;
+}
+.hero-float-badge .badge-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  color: #f0ece0;
+  font-weight: 400;
+}
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s ease 1.8s forwards;
+}
+.hero-scroll-indicator span {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #a0a89a;
+}
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, #c9a561, transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION COMMON
+   ═══════════════════════════════════════════ */
+section {
+  position: relative;
+  z-index: 1;
+  padding: 6rem 4rem;
+}
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #c9a561;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.section-label::before {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: #c9a561;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  color: #f0ece0;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+.section-desc {
+  font-size: 1rem;
+  color: #a0a89a;
+  max-width: 650px;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+}
+
+/* ═══════════════════════════════════════════
+   BENTO GRID — WHAT IS LEech THERAPY
+   ═══════════════════════════════════════════ */
+.definitions {
+  background: linear-gradient(180deg, #060a06 0%, #0a140c 50%, #060a06 100%);
+}
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: 1.2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.bento-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 165, 97, 0.08);
+  border-radius: 20px;
+  padding: 2.2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+}
+.bento-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(201, 165, 97, 0.06) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.bento-card:hover::before { opacity: 1; }
+.bento-card:hover {
+  border-color: rgba(201, 165, 97, 0.25);
+  transform: translateY(-4px);
+}
+.bento-card .card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+.bento-card .card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #f0ece0;
+  margin-bottom: 0.8rem;
+}
+.bento-card .card-text {
+  font-size: 0.9rem;
+  color: #9aaa8a;
+  line-height: 1.7;
+  font-weight: 300;
+}
+.bento-card.wide { grid-column: 1 / 8; }
+.bento-card.tall { grid-column: 8 / 10; grid-row: 1 / 3; }
+.bento-card.medium { grid-column: 10 / 13; }
+.bento-card.accent {
+  background: linear-gradient(135deg, rgba(45, 90, 74, 0.15), rgba(201, 165, 97, 0.08));
+  border-color: rgba(201, 165, 97, 0.15);
+}
+.bento-card.accent .card-title { color: #c9a561; }
+
+/* ═══════════════════════════════════════════
+   INDICATIONS — ASYMMETRICAL LIST
+   ═══════════════════════════════════════════ */
+.indications {
+  background: #060a06;
+  padding: 6rem 4rem;
+}
+.indications-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.indications-sidebar {
+  position: sticky;
+  top: 8rem;
+}
+.indications-sidebar .section-title {
+  margin-bottom: 2rem;
+}
+.indication-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.indication-item {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 1.2rem;
+  padding: 1.8rem 0;
+  border-bottom: 1px solid rgba(201, 165, 97, 0.06);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+.indication-item:hover {
+  padding-left: 1rem;
+}
+.indication-item:hover .ind-icon {
+  background: rgba(201, 165, 97, 0.15);
+  color: #c9a561;
+}
+.ind-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  background: rgba(201, 165, 97, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+.ind-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #f0ece0;
+  margin-bottom: 0.3rem;
+}
+.ind-desc {
+  font-size: 0.88rem;
+  color: #8a9a7a;
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   WARNING / CONTRAINDICATION BLOCK
+   ═══════════════════════════════════════════ */
+.warning-block {
+  max-width: 1200px;
+  margin: 4rem auto 0;
+  background: linear-gradient(135deg, rgba(212, 74, 58, 0.12), rgba(180, 50, 40, 0.06));
+  border: 1px solid rgba(212, 74, 58, 0.3);
+  border-radius: 20px;
+  padding: 2.5rem 3rem;
+  position: relative;
+  overflow: hidden;
+  animation: warningPulse 4s ease-in-out infinite;
+}
+.warning-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #d44a3a, #a0302a);
+}
+.warning-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+.warning-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  color: #e87a6a;
+  margin-bottom: 0.8rem;
+  font-weight: 400;
+}
+.warning-text {
+  font-size: 0.95rem;
+  color: #c8a090;
+  line-height: 1.7;
+  font-weight: 300;
+}
+.warning-text strong {
+  color: #e87a6a;
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════
+   BEFORE / AFTER — ACCORDION FAQ
+   ═══════════════════════════════════════════ */
+.prepost {
+  background: linear-gradient(180deg, #060a06 0%, #0c120e 50%, #060a06 100%);
+}
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.faq-group-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  color: #c9a561;
+  margin: 2rem 0 1rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.faq-group-title .group-icon { font-size: 1.4rem; }
+.faq-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(201, 165, 97, 0.08);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.faq-item:hover { border-color: rgba(201, 165, 97, 0.2); }
+.faq-item.open { border-color: rgba(201, 165, 97, 0.25); }
+.faq-question {
+  padding: 1.4rem 1.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.3s;
+}
+.faq-question:hover { background: rgba(201, 165, 97, 0.04); }
+.faq-question h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: #e0d8c8;
+  flex: 1;
+  margin-right: 1rem;
+}
+.faq-toggle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(201, 165, 97, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #c9a561;
+  transition: transform 0.4s ease, background 0.3s;
+  flex-shrink: 0;
+}
+.faq-item.open .faq-toggle {
+  transform: rotate(45deg);
+  background: rgba(201, 165, 97, 0.15);
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.5s ease;
+}
+.faq-item.open .faq-answer {
+  max-height: 500px;
+  padding: 0 1.8rem 1.4rem;
+}
+.faq-answer p, .faq-answer li {
+  font-size: 0.9rem;
+  color: #9aaa8a;
+  line-height: 1.7;
+  font-weight: 300;
+}
+.faq-answer ul {
+  padding-left: 1.2rem;
+  margin-top: 0.5rem;
+}
+.faq-answer li {
+  margin-bottom: 0.4rem;
+}
+.faq-answer .highlight-box {
+  background: rgba(201, 165, 97, 0.06);
+  border-left: 3px solid #c9a561;
+  border-radius: 0 10px 10px 0;
+  padding: 1rem 1.2rem;
+  margin-top: 0.8rem;
+}
+.faq-answer .highlight-box p {
+  color: #c9a561;
+  font-weight: 400;
+}
+
+/* ═══════════════════════════════════════════
+   PRICING CARDS
+   ═══════════════════════════════════════════ */
+.pricing {
+  background: #060a06;
+  text-align: center;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.pricing-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 165, 97, 0.08);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+}
+.pricing-card::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: conic-gradient(from 0deg, transparent 0%, rgba(201, 165, 97, 0.03) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+.pricing-card:hover::after { opacity: 1; }
+.pricing-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(201, 165, 97, 0.3);
+}
+.pricing-card.featured {
+  background: linear-gradient(135deg, rgba(45, 90, 74, 0.12), rgba(201, 165, 97, 0.08));
+  border-color: rgba(201, 165, 97, 0.2);
+  transform: scale(1.05);
+}
+.pricing-card.featured:hover {
+  transform: scale(1.05) translateY(-6px);
+  border-color: rgba(201, 165, 97, 0.35);
+}
+.pricing-icon {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+.pricing-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: #f0ece0;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+.pricing-amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  color: #c9a561;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.pricing-currency {
+  font-size: 0.85rem;
+  color: #9aaa8a;
+  font-weight: 300;
+}
+.pricing-divider {
+  width: 40px;
+  height: 1px;
+  background: rgba(201, 165, 97, 0.3);
+  margin: 1rem auto;
+}
+.pricing-note {
+  font-size: 0.82rem;
+  color: #7a8a6a;
+  line-height: 1.6;
+}
+.pricing-badge {
+  position: absolute;
+  top: -1px;
+  right: 30px;
+  background: linear-gradient(135deg, #c9a561, #a08230);
+  color: #060a06;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 1rem;
+  border-radius: 0 0 8px 8px;
+}
+
+/* ═══════════════════════════════════════════
+   COURSE CTA — DRAMATIC SECTION
+   ═══════════════════════════════════════════ */
+.course-cta {
+  background: linear-gradient(180deg, #060a06, #0c1a10, #060a06);
+  padding: 8rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.course-cta::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(45, 90, 74, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.course-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.course-text .course-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #c9a561;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  display: block;
+}
+.course-text h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 300;
+  color: #f0ece0;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+.course-text h2 em {
+  font-style: italic;
+  color: #c9a561;
+  font-weight: 600;
+}
+.course-text p {
+  font-size: 1rem;
+  color: #a0a89a;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+.course-details {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 165, 97, 0.1);
+  border-radius: 24px;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.course-details::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #c9a561, #2d5a4a, #c9a561);
+}
+.course-price-tag {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  color: #c9a561;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.course-price-sub {
+  font-size: 0.85rem;
+  color: #9aaa8a;
+  margin-bottom: 2rem;
+}
+.course-features {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+.course-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.7rem 0;
+  font-size: 0.9rem;
+  color: #c0b8a8;
+  font-weight: 300;
+  border-bottom: 1px solid rgba(201, 165, 97, 0.06);
+}
+.course-features li .feat-icon {
+  color: #2d5a4a;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: linear-gradient(135deg, #c9a561, #a08230);
+  color: #060a06;
+  padding: 1rem 2.5rem;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: none;
+  cursor: pointer;
+}
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(201, 165, 97, 0.35);
+}
+.cta-button-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: transparent;
+  color: #c9a561;
+  padding: 1rem 2.5rem;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.3s, border-color 0.3s;
+  border: 1px solid rgba(201, 165, 97, 0.3);
+  cursor: pointer;
+}
+.cta-button-outline:hover {
+  transform: translateY(-3px);
+  border-color: rgba(201, 165, 97, 0.6);
+  background: rgba(201, 165, 97, 0.05);
+}
+.course-cta-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+/* ═══════════════════════════════════════════
+   PROCESS / COURSE STEPS
+   ═══════════════════════════════════════════ */
+.process {
+  background: #060a06;
+}
+.process-timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+.process-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 30px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(201, 165, 97, 0.2), rgba(201, 165, 97, 0.2), transparent);
+}
+.process-step {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem 0 2.5rem;
+  position: relative;
+}
+.step-dot {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(45, 90, 74, 0.1);
+  border: 1px solid rgba(201, 165, 97, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  color: #c9a561;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s;
+}
+.process-step:hover .step-dot {
+  background: rgba(45, 90, 74, 0.2);
+  border-color: rgba(201, 165, 97, 0.3);
+  transform: scale(1.1);
+}
+.step-content h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  color: #f0ece0;
+  font-weight: 400;
+  margin-bottom: 0.4rem;
+}
+.step-content p {
+  font-size: 0.9rem;
+  color: #8a9a7a;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ═══════════════════════════════════════════
+   QUOTE BLOCK
+   ═══════════════════════════════════════════ */
+.quote-block {
+  max-width: 800px;
+  margin: 3rem auto;
+  text-align: center;
+  padding: 3rem 4rem;
+  position: relative;
+}
+.quote-block::before {
+  content: '"';
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 8rem;
+  color: rgba(201, 165, 97, 0.1);
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+}
+.quote-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-style: italic;
+  color: #c9a561;
+  line-height: 1.6;
+  font-weight: 300;
+}
+.quote-author {
+  margin-top: 1.2rem;
+  font-size: 0.85rem;
+  color: #7a8a6a;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════ */
+footer {
+  background: #040804;
+  padding: 4rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: #c9a561;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  list-style: none;
+}
+.footer-links a {
+  color: #7a8a6a;
+  text-decoration: none;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: #c9a561; }
+.footer-bottom {
+  font-size: 0.75rem;
+  color: #4a5a3a;
+  margin-top: 1rem;
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════ */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.3); }
+}
+@keyframes warningPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 74, 58, 0.1); }
+  50% { box-shadow: 0 0 40px 0 rgba(212, 74, 58, 0.05); }
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+   ═══════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; }
+  .hero-title-block { max-width: 100%; }
+  .hero-visual { display: none; }
+  .bento-grid { grid-template-columns: repeat(2, 1fr); }
+  .bento-card.wide { grid-column: 1 / -1; }
+  .bento-card.tall { grid-column: 1; grid-row: auto; }
+  .bento-card.medium { grid-column: 2; }
+  .indications-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .indications-sidebar { position: static; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+  .pricing-card.featured { transform: none; }
+  .course-content { grid-template-columns: 1fr; gap: 2rem; }
+  section { padding: 4rem 2rem; }
+  nav { padding: 0.8rem 1.5rem; }
+}
+@media (max-width: 640px) {
+  .bento-grid { grid-template-columns: 1fr; }
+  .bento-card.medium { grid-column: 1; }
+  .nav-links { display: none; }
+  .hero { padding: 6rem 1.5rem 2rem; }
+  .course-cta { padding: 4rem 1.5rem; }
+  .quote-block { padding: 2rem; }
+  .warning-block { padding: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ ANIMATED BACKGROUND ═══ -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav id="main-nav">
+  <a href="#" class="nav-brand">KM</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#indications">Indications</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#course">Course</a></li>
+  </ul>
+  <a href="#pricing" class="nav-cta">Book Appointment</a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+  <div class="hero-title-block">
+    <span class="hero-eyebrow">Traditional Leech Therapy · 2026</span>
+    <h1 class="hero-title">The Ancient Art of<br><em>Hirudotherapy</em></h1>
+    <p class="hero-subtitle">
+      Rediscover the healing power of nature through the time-hooored practice of leech therapy — 
+      guided by the expertise of <strong style="color:#f0ece0">Krisztián Merényi</strong>.
+    </p>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-visual-inner"></div>
+    <div class="hero-float-badge">
+      <div class="badge-icon">&#9899;</div>
+      <div class="badge-label">Natural Healing</div>
+      <div class="badge-value">Since Antiquity</div>
+    </div>
+  </div>
+  <div class="hero-scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══ DEFINITIONS — BENTO GRID ═══ -->
+<section class="definitions" id="about">
+  <div class="section-label">What Is It?</div>
+  <h2 class="section-title reveal">Leech Therapy,<br>Reimagined</h2>
+  <p class="section-desc reveal">
+    An ancient holistic healing method where the biochemical and bioactive substances in leech saliva — 
+    including hirudin — work together to restore balance and promote natural healing.
+  </p>
+  <div class="bento-grid">
+    <div class="bento-card wide accent reveal">
+      <span class="card-icon">&#9818;</span>
+      <h3 class="card-title">Biochemical Power</h3>
+      <p class="card-text">Leech saliva contains over 80 bioactive compounds including hirudin (a natural anticoagulant), hyaluronidase, collagenase, and histamine-like substances. These work synergistically to provide anti-inflammatory, anticoagulant, and microcirculation-improving effects.</p>
+    </div>
+    <div class="bento-card tall reveal">
+      <span class="card-icon">&#9825;</span>
+      <h3 class="card-title">Energetic Balance</h3>
+      <p class="card-text">Beyond the biochemical effects, leech therapy has a profound energetic influence, helping to restore the body's natural energetic equilibrium.</p>
+      <br>
+      <p class="card-text">It provides a deeply relaxing and soothing effect, reducing stress and promoting overall well-being.</p>
+    </div>
+    <div class="bento-card medium reveal">
+      <span class="card-icon">&#10051;</span>
+      <h3 class="card-title">Anti-Inflammatory</h3>
+      <p class="card-text">Natural compounds reduce inflammation without pharmaceutical side effects.</p>
+    </div>
+    <div class="bento-card medium reveal">
+      <span class="card-icon">&#9870;</span>
+      <h3 class="card-title">Microcirculation</h3>
+      <p class="card-text">Improves blood flow at the capillary level, supporting tissue regeneration and oxygen delivery.</p>
+    </div>
+  </div>
+  <div class="quote-block reveal">
+    <p class="quote-text">The leech is not merely a tool — it is a living bridge between nature's ancient wisdom and modern healing.</p>
+    <p class="quote-author">— Traditional Healing Philosophy</p>
+  </div>
+</section>
+
+<!-- ═══ INDICATIONS ═══ -->
+<section class="indications" id="indications">
+  <div class="section-label">Applications</div>
+  <div class="indications-layout">
+    <div class="indications-sidebar">
+      <h2 class="section-title reveal">What Can It<br>Treat?</h2>
+      <p class="section-desc reveal" style="margin-bottom:0;">
+        Leech therapy has been used for centuries to address a wide range of conditions. 
+        Below are the primary indications.
+      </p>
+    </div>
+    <div class="indication-list">
+      <div class="indication-item reveal">
+        <div class="ind-icon">&#9874;</div>
+        <div>
+          <h4 class="ind-title">Joint Problems</h4>
+          <p class="ind-desc">Treatment of joint pain, arthritis, and inflammation. Reduces swelling and improves mobility.</p>
+        </div>
+      </div>
+      <div class="indication-item reveal">
+        <div class="ind-icon">&#9828;</div>
+        <div>
+          <h4 class="ind-title">Cardiovascular Diseases</h4>
+          <p class="ind-desc">Alleviating symptoms of circulatory disorders, improving microcirculation, and complementary treatment for high blood pressure (relieving tinnitus, irritability, and stress).</p>
+        </div>
+      </div>
+      <div class="indication-item reveal">
+        <div class="ind-icon">&#9786;</div>
+        <div>
+          <h4 class="ind-title">Skin Conditions</h4>
+          <p class="ind-desc">Substances in the leech's saliva support skin regeneration, accelerate wound healing, and improve skin quality.</p>
+        </div>
+      </div>
+      <div class="indication-item reveal">
+        <div class="ind-icon">&#9790;</div>
+        <div>
+          <h4 class="ind-title">Cysts &amp; Lumps</h4>
+          <p class="ind-desc">Baker's cyst (behind the knee), Ganglion cyst (e.g., on the palm). Limited experience with lipomas — requires caution as they are tumors.</p>
+        </div>
+      </div>
+      <div class="indication-item reveal">
+        <div class="ind-icon">&#128467;</div>
+        <div>
+          <h4 class="ind-title">Oral &amp; Ear Diseases</h4>
+          <p class="ind-desc">Gingivitis (if not accompanied by severe acute inflammation), cysts in the gums. Oral treatments should only be performed by a highly experienced therapist. Ear conditions.</p>
+        </div>
+      </div>
+      <div class="indication-item reveal">
+        <div class="ind-icon">&#9875;</div>
+        <div>
+          <h4 class="ind-title">Thyroid &amp; Circulatory Issues</h4>
+          <p class="ind-desc">Thyroid dysfunction support, leg ulcers, lower leg edema, and other circulatory complaints.</p>
+        </div>
+      </div>
+      <div class="indication-item reveal">
+        <div class="ind-icon">&#10133;</div>
+        <div>
+          <h4 class="ind-title">Cancer Patients</h4>
+          <p class="ind-desc">As an alternative complementary option in certain cases. Requires immense responsibility and caution — always in consultation with an oncologist.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WARNING BLOCK -->
+  <div class="warning-block reveal">
+    <span class="warning-icon">&#9888;</span>
+    <h3 class="warning-title">Important Contraindication</h3>
+    <p class="warning-text">
+      Leech therapy is <strong>strictly contraindicated</strong> if the patient is taking 
+      <strong>anticoagulants (blood thinners)</strong>. Do not undergo treatment without full 
+      disclosure of all medications to the therapist. This applies to beta-blockers and any blood pressure medication as well.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ BEFORE & AFTER — FAQ ═══ -->
+<section class="prepost" id="faq">
+  <div class="section-label">Preparation &amp; Aftercare</div>
+  <h2 class="section-title reveal">Before &amp; After Treatment</h2>
+  <p class="section-desc reveal">
+    Everything you need to know before your session and during the recovery period.
+  </p>
+  <div class="faq-container">
+    <!-- BEFORE TREATMENT -->
+    <div class="faq-group-title reveal">
+      <span class="group-icon">&#9999;</span> Before Treatment
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>What should I wear to the appointment?</h4>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>Arrive in <strong>comfortable, dark-colored, loose clothing</strong>. The dressing is thick and may seep — dark colors are essential to avoid embarrassment.</p>
+      </div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>Can I use scented products before treatment?</h4>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p><strong>No.</strong> Avoid scented shower gels, body lotions, and creams before your session. Leeches are sensitive to chemical smells and may refuse to attach.</p>
+      </div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>Can I smoke before treatment?</h4>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p><strong>Do not smoke!</strong> Leeches cannot tolerate tobacco smoke and will not attach if you have smoked. Please refrain from smoking before and during your session.</p>
+      </div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>What medications must I disclose?</h4>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>You <strong>must inform</strong> the therapist if you take blood pressure medication, beta-blockers, or anticoagulants. This is critical for your safety.</p>
+      </div>
+    </div>
+
+    <!-- DURING TREATMENT -->
+    <div class="faq-group-title reveal">
+      <span class="group-icon">&#9744;</span> During Treatment
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>How long does a session take?</h4>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>One session takes approximately <strong>2 hours</strong>. The therapist will carefully place the leeches and monitor the process.</p>
+      </div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>Is it painful?</h4>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>The bite feels like a <strong>mild, stinging pain</strong> — most patients find it very tolerable. The leeches are initially applied sparingly, and their number is later increased tailored to the individual, depending on your reaction.</p>
+      </div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>How many sessions do I need?</h4>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>Generally, <strong>10 treatments on a weekly basis</strong> are recommended. Individual variations may occur depending on your condition and response.</p>
+      </div>
+    </div>
+
+    <!-- AFTER TREATMENT -->
+    <div class="faq-group-title reveal">
+      <span class="group-icon">&#9997;</span> After Treatment
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>When can I remove the dressing?</h4>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>The therapist will dress the wound with a thick, absorbent layer. <strong>This should only be removed after 24 hours</strong> have passed.</p>
+      </div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>How long will the wound bleed?</h4>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>The wound may seep or bleed for <strong>up to 36 hours</strong>. Keep sterile gauze and adhesive bandages at home to change the dressing if it bleeds through. This is a natural and expected part of the process.</p>
+        <div class="highlight-box">
+          <p>In exceptional cases, if bleeding persists beyond 24 hours, Hyperol tablets may be recommended for hemostasis. Consult your therapist.</p>
+        </div>
+      </div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>Can I exercise after treatment?</h4>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p><strong>Any intensive or strenuous activity is prohibited on the day of treatment.</strong> Driving or long walks are not recommended as sluggishness or drowsiness may occur.</p>
+      </div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>What should I drink after treatment?</h4>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p><strong>Drink plenty of fluids!</strong> Hydration helps your body process the leech's bioactive substances and supports recovery.</p>
+      </div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>What about itching and swelling?</h4>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>Scratching or picking at the wound is <strong>strictly forbidden</strong>. For itching, redness, tension, or swelling:</p>
+        <ul>
+          <li>Apply <strong>icing or cold water compresses</strong></li>
+          <li><strong>Fenistil gel</strong> can be used</li>
+          <li>For severe symptoms: <strong>calcium effervescent tablets</strong> or a <strong>Calcimusc</strong> injection ampoule</li>
+        </ul>
+      </div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>Can I get a fever after treatment?</h4>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>Rarely, fever or chills may occur — this usually indicates an underlying illness that was already latent in the body. These aftereffects may appear on the day of treatment or even a week later. Contact your therapist if concerned.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="pricing" id="pricing">
+  <div class="section-label">Investment in Health</div>
+  <h2 class="section-title reveal">Pricing &amp; Services</h2>
+  <p class="section-desc reveal" style="margin-left:auto; margin-right:auto;">
+    Transparent pricing for your leech therapy journey. All prices are per session.
+  </p>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <span class="pricing-icon">&#128200;</span>
+      <h3 class="pricing-name">Consultation</h3>
+      <p class="pricing-amount">11,000</p>
+      <p class="pricing-currency">HUF / session</p>
+      <div class="pricing-divider"></div>
+      <p class="pricing-note">Professional assessment and personalized treatment plan</p>
+    </div>
+    <div class="pricing-card featured reveal">
+      <span class="pricing-badge">Most Popular</span>
+      <span class="pricing-icon">&#9899;</span>
+      <h3 class="pricing-name">Leech Therapy</h3>
+      <p class="pricing-amount">10,000</p>
+      <p class="pricing-currency">HUF / session</p>
+      <div class="pricing-divider"></div>
+      <p class="pricing-note">Full treatment session with leech application and aftercare</p>
+    </div>
+    <div class="pricing-card reveal">
+      <span class="pricing-icon">&#10054;</span>
+      <h3 class="pricing-name">Leech (per piece)</h3>
+      <p class="pricing-amount">3,000</p>
+      <p class="pricing-currency">HUF / piece</p>
+      <div class="pricing-divider"></div>
+      <p class="pricing-note">Cost of therapeutic leeches — used in addition to treatment fee</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COURSE CTA ═══ -->
+<section class="course-cta" id="course">
+  <div class="course-content">
+    <div class="course-text">
+      <span class="course-tag">Education · 2026</span>
+      <h2>Master the Art of<br><em>Traditional Leech Therapy</em></h2>
+      <p>
+        Learn to use this ancient healing method for yourself and your family. 
+        Our intensive 2-day course covers everything from leech handling and placement 
+        to post-treatment care and safety protocols.
+      </p>
+      <p>
+        <strong style="color:#f0ece0;">Important:</strong> While the therapy can be performed at home, 
+        it carries high responsibility. Thorough preparation and strict adherence to rules are essential.
+      </p>
+      <div class="course-cta-buttons">
+        <a href="#pricing" class="cta-button">&#9999; Apply for Course</a>
+        <a href="#about" class="cta-button-outline">Learn More</a>
+      </div>
+    </div>
+    <div class="course-details reveal">
+      <div class="course-price-tag">85,000</div>
+      <p class="course-price-sub">HUF / person · 2-day intensive course</p>
+      <ul class="course-features">
+        <li><span class="feat-icon">&#10003;</span> 2 full days of hands-on training</li>
+        <li><span class="feat-icon">&#10003;</span> Leech handling and placement techniques</li>
+        <li><span class="feat-icon">&#10003;</span> Diagnosis and treatment planning</li>
+        <li><span class="feat-icon">&#10003;</span> Safety protocols and contraindications</li>
+        <li><span class="feat-icon">&#10003;</span> Post-treatment care and wound management</li>
+        <li><span class="feat-icon">&#10003;</span> Certificate of completion</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TREATMENT PROCESS ═══ -->
+<section class="process">
+  <div class="section-label" style="justify-content:center;">Your Journey</div>
+  <h2 class="section-title reveal" style="text-align:center;">The Treatment Process</h2>
+  <p class="section-desc reveal" style="text-align:center; margin-left:auto; margin-right:auto;">
+    From your first consultation to lasting results.
+  </p>
+  <div class="process-timeline">
+    <div class="process-step reveal">
+      <div class="step-dot">1</div>
+      <div class="step-content">
+        <h4>Initial Consultation</h4>
+        <p>Comprehensive assessment of your condition. 11,000 HUF. A personalized treatment plan is created based on your needs.</p>
+      </div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-dot">2</div>
+      <div class="step-content">
+        <h4>Treatment Preparation</h4>
+        <p>Follow pre-treatment guidelines: wear dark loose clothing, avoid scented products, and do not smoke.</p>
+      </div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-dot">3</div>
+      <div class="step-content">
+        <h4>Leech Application</h4>
+        <p>Approximately 2 hours. Leeches are carefully placed and monitored. The number is tailored to your individual needs and reaction.</p>
+      </div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-dot">4</div>
+      <div class="step-content">
+        <h4>Aftercare &amp; Recovery</h4>
+        <p>Wound dressed by the therapist. Natural healing process continues for up to 36 hours. Follow post-treatment guidelines carefully.</p>
+      </div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-dot">5</div>
+      <div class="step-content">
+        <h4>Ongoing Treatment Course</h4>
+        <p>Generally 10 weekly sessions are recommended. The number of leeches is adjusted based on your response and progress.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-brand">Krisztián Merényi</div>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#indications">Indications</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#course">Course</a></li>
+  </ul>
+  <p class="footer-bottom">
+    &copy; 2026 Krisztián Merényi · Traditional Leech Therapy · Hirudotherapy<br>
+    <span style="color:#3a4a2a;">This website is for informational purposes. Always consult a healthcare professional before beginning any treatment.</span>
+  </p>
+</footer>
+
+<!-- ═══ JAVASCRIPT ═══ -->
+<script>
+/* ─── NAV SCROLL EFFECT ─── */
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ─── FAQ ACCORDION ─── */
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const wasOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  // Toggle clicked
+  if (!wasOpen) item.classList.add('open');
+}
+
+/* ─── SCROLL REVEAL ─── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ─── BENTO CARD MOUSE GLOW ─── */
+document.querySelectorAll('.bento-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mouse-x', x + '%');
+    card.style.setProperty('--mouse-y', y + '%');
+  });
+});
+
+/* ─── ANIMATED BACKGROUND CANVAS ─── */
+(function() {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+  let blobs = [];
+  const BLOB_COUNT = 6;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // Create organic blobs
+  for (let i = 0; i < BLOB_COUNT; i++) {
+    blobs.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: 150 + Math.random() * 250,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.0003 + Math.random() * 0.0005,
+      color: i % 3 === 0 ? 'rgba(45,90,74,0.4)' : i % 3 === 1 ? 'rgba(201,165,97,0.3)' : 'rgba(26,60,106,0.35)',
+    });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    blobs.forEach(b => {
+      b.x += b.vx;
+      b.y += b.vy;
+      b.phase += b.speed;
+      const rx = b.r + Math.sin(b.phase) * 40;
+      const ry = b.r + Math.cos(b.phase * 0.7) * 30;
+      if (b.x < -b.r) b.x = w + b.r;
+      if (b.x > w + b.r) b.x = -b.r;
+      if (b.y < -b.r) b.y = h + b.r;
+      if (b.y > h + b.r) b.y = -b.r;
+      const grad = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, rx);
+      grad.addColorStop(0, b.color);
+      grad.addColorStop(1, 'transparent');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.ellipse(b.x, b.y, rx, ry, 0, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+</script>
+</body>
+</html>

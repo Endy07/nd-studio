@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="hu" data-theme="dark-canvas">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kárai Mihály | Festőművész</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES & THEMES --- */
+        :root {
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            
+            /* Default Theme (Dark Canvas) - 60% Dark, 30% Grey, 10% Gold */
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent: #d4af37; /* Gold */
+            --border-color: rgba(255, 255, 255, 0.1);
+            --overlay: rgba(0, 0, 0, 0.6);
+            --texture-opacity: 0.05;
+        }
+
+        [data-theme="light-gallery"] {
+            --bg-primary: #f4f1ea; /* Off-white canvas */
+            --bg-secondary: #e8e4db;
+            --text-main: #2c2c2c;
+            --text-muted: #5a5a5a;
+            --accent: #8b5a2b; /* Bronze/Wood */
+            --border-color: rgba(0, 0, 0, 0.1);
+            --overlay: rgba(255, 255, 255, 0.4);
+        }
+
+        [data-theme="midnight-ocean"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8; /* Light Blue */
+            --border-color: rgba(56, 189, 248, 0.2);
+        }
+
+        [data-theme="sepia-memory"] {
+            --bg-primary: #f0e6d2;
+            --bg-secondary: #e3d5b8;
+            --text-main: #4a3b2a;
+            --text-muted: #7a6b5a;
+            --accent: #8c3b28; /* Rust */
+            --border-color: rgba(74, 59, 42, 0.1);
+        }
+
+        [data-theme="monochrome"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f5;
+            --text-main: #000000;
+            --text-muted: #666666;
+            --accent: #000000;
+            --border-color: rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="forest-muse"] {
+            --bg-primary: #1a2e1a;
+            --bg-secondary: #243b24;
+            --text-main: #e8f5e9;
+            --text-muted: #a5d6a7;
+            --accent: #cddc39; /* Lime/Gold */
+            --border-color: rgba(205, 220, 57, 0.2);
+        }
+
+        /* --- GLOBAL STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            transition: background-color 0.8s ease, color 0.8s ease;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Texture Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+            opacity: var(--texture-opacity);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            mix-blend-mode: difference; /* Ensures visibility on any background */
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 1px;
+            background-color: var(--text-main);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- THEME SWITCHER --- */
+        .theme-switcher {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 10px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-btn {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .theme-btn.active {
+            border-color: var(--text-main);
+        }
+
+        /* --- HERO SECTION --- */
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Placeholder for a hero painting or abstract texture */
+            background: url('apa_festmenyek/interior_1.jpg') no-repeat center center/cover;
+            filter: brightness(0.6) contrast(1.1);
+            transform: scale(1.1);
+            animation: breathe 20s infinite alternate;
+        }
+
+        @keyframes breathe {
+            from { transform: scale(1.1); }
+            to { transform: scale(1.2); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 2rem;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.5s;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.8s;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.7;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--text-main), transparent);
+        }
+
+        /* --- ABOUT SECTION --- */
+        section {
+            padding: 8rem 5%;
+            position: relative;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            text-align: justify;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Placeholder for artist portrait */
+            background-color: var(--bg-secondary); 
+            filter: grayscale(100%);
+            transition: filter 0.5s ease;
+        }
+
+        .about-image-wrapper:hover .about-image {
+            filter: grayscale(0%);
+        }
+
+        /* --- GALLERY SECTION --- */
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .gallery-header h2 {
+            font-size: 3rem;
+            color: var(--text-main);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .art-piece {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            background-color: var(--bg-secondary);
+            transition: transform 0.4s ease;
+        }
+
+        .art-piece:hover {
+            transform: translateY(-10px);
+        }
+
+        .art-img-container {
+            width: 100%;
+            height: 450px; /* Fixed height for uniformity */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .art-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .art-piece:hover .art-img {
+            transform: scale(1.05);
+        }
+
+        /* Frame Effect */
+        .frame-effect {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(255,255,255,0.3);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .art-piece:hover .frame-effect {
+            opacity: 1;
+        }
+
+        .art-info {
+            padding: 1.5rem;
+            background-color: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .art-title {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .art-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact-section {
+            background-color: var(--bg-secondary);
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .contact-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 3rem;
+            border: 1px solid var(--text-main);
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 2rem 5%;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image-wrapper {
+                height: 400px;
+                order: -1; /* Image first on mobile */
+            }
+
+            .nav-links {
+                display: none; /* Simple hide for this demo, ideally a hamburger menu */
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Kárai Mihály</div>
+        <div class="nav-links">
+            <a href="#about">Rólam</a>
+            <a href="#gallery">Galéria</a>
+            <a href="#contact">Kapcsolat</a>
+        </div>
+    </nav>
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher" id="themeSwitcher">
+        <!-- Buttons generated by JS -->
+    </div>
+
+    <!-- Hero Section -->
+    <header>
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Kárai Mihály</h1>
+            <p class="hero-subtitle">Festőművész • 1961 -</p>
+        </div>
+        <div class="scroll-indicator">
+            <span style="font-size: 0.7rem; letter-spacing: 2px;">GALÉRIA</span>
+            <div class="scroll-line"></div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-grid">
+            <div class="about-text reveal">
+                <h2>A Művészet Tükre</h2>
+                <p>Üdvözlöm. Kárai Mihály vagyok, 1961-ben születtem festőművész családban. Életem munkásságom szerves része, a vászonra vitt érzelmek pedig a lélek tükrei.</p>
+                <p>Műveim a valóság és az álom határán táncolnak, gyakran inspirálódnak a természet lágy dallamából vagy az épített környezet szigorú geometriájából. Célom, hogy a festmény nem csupán képet adjon, hanem hangulatot, érzést közvetítsen.</p>
+                <p style="font-family: var(--font-serif); font-style: italic; color: var(--accent);">"A festészet nem azt mutatja meg, amit látunk, hanem amit láthatatlannak hiszünk."</p>
+            </div>
+            <div class="about-image-wrapper reveal">
+                <!-- Placeholder for Artist Portrait -->
+                <img src="apa_festmenyek/interior_2.jpg" alt="Kárai Mihály" class="about-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="gallery-header reveal">
+            <h2>Válogatás a Művekből</h2>
+        </div>
+        
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Gallery items will be injected via JS based on file structure -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-content reveal">
+            <h2>Kapcsolat</h2>
+            <p>Megvásárlás, megrendelés vagy csak egy beszélgetés a művészetről?</p>
+            <a href="mailto:email@pelda.hu" class="contact-btn">Írjon nekem</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Kárai Mihály Művészeti Stúdió. Minden jog fenntartva.</p>
+        <p style="margin-top: 10px; opacity: 0.5;">Design by Hermes AI</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // --- THEME CONFIGURATION ---
+        const themes = [
+            { id: 'dark-canvas', name: 'Sötét Vászon', color: '#121212' },
+            { id: 'light-gallery', name: 'Fehér Galéria', color: '#f4f1ea' },
+            { id: 'midnight-ocean', name: 'Éjszakai Óceán', color: '#0f172a' },
+            { id: 'sepia-memory', name: 'Régi Emlékek', color: '#f0e6d2' },
+            { id: 'monochrome', name: 'Monokróm', color: '#ffffff' },
+            { id: 'forest-muse', name: 'Erdei Múzsák', color: '#1a2e1a' }
+        ];
+
+        const themeSwitcher = document.getElementById('themeSwitcher');
+        
+        // Generate Theme Buttons
+        themes.forEach(theme => {
+            const btn = document.createElement('div');
+            btn.className = 'theme-btn';
+            btn.style.backgroundColor = theme.color;
+            if(theme.id === 'dark-canvas') btn.classList.add('active');
+            
+            btn.title = theme.name;
+            btn.onclick = () => setTheme(theme.id);
+            themeSwitcher.appendChild(btn);
+        });
+
+        function setTheme(themeId) {
+            document.documentElement.setAttribute('data-theme', themeId);
+            
+            // Update active button state
+            const buttons = document.querySelectorAll('.theme-btn');
+            buttons.forEach((btn, index) => {
+                if(themes[index].id === themeId) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+        }
+
+        // --- GALLERY DATA SIMULATION ---
+        // Since I cannot read the local file system directly in a static HTML file without a server,
+        // I will simulate the content based on your description. 
+        // You can manually edit the 'images' array below if filenames differ.
+        
+        const artworks = [
+            { title: "Csendélet", desc: "Olaj, vászon - A csend ereje.", img: "apa_festmenyek/interior_1.jpg" },
+            { title: "Tájkép", desc: "A természet őszi színei.", img: "apa_festmenyek/interior_2.jpg" },
+            { title: "Keretezett I.", desc: "Modern kompozíció.", img: "apa_festmenyek/keretezve_1.jpg" },
+            { title: "Keretezett II.", desc: "Absztrakt vonalak.", img: "apa_festmenyek/keretezve_2.jpg" },
+            { title: "Keret nélkül I.", desc: "Tiszta látásmód.", img: "apa_festmenyek/keretnelkul_1.jpg" },
+            { title: "Keret nélkül II.", desc: "Formák játéka.", img: "apa_festmenyek/keretnelkul_2.jpg" }
+        ];
+
+        const galleryGrid = document.getElementById('galleryGrid');
+
+        artworks.forEach((art, index) => {
+            const item = document.createElement('div');
+            item.className = 'art-piece reveal';
+            // Stagger animation delay
+            item.style.transitionDelay = `${index * 100}ms`;
+            
+            item.innerHTML = `
+                <div class="art-img-container">
+                    <img src="${art.img}" alt="${art.title}" class="art-img" onerror="this.src='https://via.placeholder.com/400x500?text=Kép+betöltése...'">
+                    <div class="frame-effect"></div>
+                </div>
+                <div class="art-info">
+                    <h3 class="art-title">${art.title}</h3>
+                    <p class="art-desc">${art.desc}</p>
+                </div>
+            `;
+            galleryGrid.appendChild(item);
+        });
+
+        // --- SCROLL ANIMATIONS ---
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    </script>
+</body>
+</html>

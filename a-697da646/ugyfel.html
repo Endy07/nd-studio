@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ügyfél — ND Studio</title>
+  <link rel="stylesheet" href="../kozos/studio.css">
+</head>
+<body class="admin szeles">
+  <header>
+    <a href="./index.html">← Vissza az összefoglalóra</a>
+    <h1 id="cim">Betöltés…</h1>
+  </header>
+  <div class="tabla-keret">
+    <table>
+      <thead><tr>
+        <th>Terv</th><th>Honnan</th><th>Pontom</th>
+        <th>Állapot</th><th>Megjegyzésem</th><th>Az ő válasza</th>
+      </tr></thead>
+      <tbody id="sorok"></tbody>
+    </table>
+  </div>
+  <p id="mentes-jelzo" role="status"></p>
+
+  <script type="module">
+    import { BEALLITAS } from "./beallit.js";
+    import { inditAdminUgyfel } from "../kozos/admin-ugyfel.js";
+    inditAdminUgyfel(BEALLITAS);
+  </script>
+</body>
+</html>

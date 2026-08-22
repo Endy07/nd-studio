@@ -1,0 +1,2461 @@
+﻿<!DOCTYPE html>
+<html lang="hu" data-theme="nappali">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Kárai Mihály — Festőművész</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   KÁRAI MIHÁLY — FESTŐMŰVÉSZ WEBOLDAL
+   "Vizuális Sokk" Design System
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── THEME ENGINE: 7 Paletták 60-30-10 szabállyal ─── */
+:root {
+  --transition-speed: 0.8s;
+  --ease-curve: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── PALETTE 1: NAPPALI (Napfényes Galéria) ─── */
+[data-theme="nappali"] {
+  --c-primary: #F5F0E8;    /* 60% - Krémfehér háttér */
+  --c-secondary: #8B7355;   /* 30% - Meleg barna */
+  --c-accent: #C41E3A;      /* 10% - Mélyvörös kiemelő */
+  --c-surface: #FAF7F2;
+  --c-text: #2C1810;
+  --c-text-soft: #6B5B4F;
+  --c-border: rgba(139,115,85,0.2);
+  --c-glow: rgba(196,30,58,0.15);
+  --c-overlay: rgba(245,240,232,0.85);
+  --c-shadow: rgba(44,24,16,0.12);
+  --c-accent-soft: rgba(196,30,58,0.08);
+  --grain-opacity: 0.03;
+}
+
+/* ─── PALETTE 2: ÉJSZAKAI (Holdfényes Stúdió) ─── */
+[data-theme="ejszakai"] {
+  --c-primary: #0D1117;
+  --c-secondary: #1E2A3A;
+  --c-accent: #E8A838;
+  --c-surface: #141B24;
+  --c-text: #E0D6C8;
+  --c-text-soft: #8A9BAE;
+  --c-border: rgba(232,168,56,0.15);
+  --c-glow: rgba(232,168,56,0.12);
+  --c-overlay: rgba(13,17,23,0.9);
+  --c-shadow: rgba(0,0,0,0.4);
+  --c-accent-soft: rgba(232,168,56,0.06);
+  --grain-opacity: 0.05;
+}
+
+/* ─── PALETTE 3: SEPIA (Öreg Fotó / Klasszikus) ─── */
+[data-theme="sepia"] {
+  --c-primary: #F4E4C1;
+  --c-secondary: #A67B5B;
+  --c-accent: #8B4513;
+  --c-surface: #EDE0C8;
+  --c-text: #3E2723;
+  --c-text-soft: #6D4C41;
+  --c-border: rgba(166,123,91,0.25);
+  --c-glow: rgba(139,69,19,0.1);
+  --c-overlay: rgba(244,228,193,0.9);
+  --c-shadow: rgba(62,39,35,0.15);
+  --c-accent-soft: rgba(139,69,19,0.06);
+  --grain-opacity: 0.08;
+}
+
+/* ─── PALETTE 4: GALÉRIA VILÁGÍTÁS (White Cube) ─── */
+[data-theme="galeria"] {
+  --c-primary: #FFFFFF;
+  --c-secondary: #E0E0E0;
+  --c-accent: #000000;
+  --c-surface: #FAFAFA;
+  --c-text: #1A1A1A;
+  --c-text-soft: #666666;
+  --c-border: rgba(0,0,0,0.08);
+  --c-glow: rgba(0,0,0,0.03);
+  --c-overlay: rgba(255,255,255,0.95);
+  --c-shadow: rgba(0,0,0,0.08);
+  --c-accent-soft: rgba(0,0,0,0.03);
+  --grain-opacity: 0;
+}
+
+/* ─── PALETTE 5: TAVASZI (Virágzó Kert) ─── */
+[data-theme="tavaszi"] {
+  --c-primary: #F0F7F0;
+  --c-secondary: #5B8C5A;
+  --c-accent: #D4446D;
+  --c-surface: #E8F5E8;
+  --c-text: #2D4A2D;
+  --c-text-soft: #5A7D5A;
+  --c-border: rgba(91,140,90,0.2);
+  --c-glow: rgba(212,68,109,0.1);
+  --c-overlay: rgba(240,247,240,0.88);
+  --c-shadow: rgba(45,74,45,0.1);
+  --c-accent-soft: rgba(212,68,109,0.06);
+  --grain-opacity: 0.02;
+}
+
+/* ─── PALETTE 6: ŐSZI (Aranyozott Levelek) ─── */
+[data-theme="oszi"] {
+  --c-primary: #FFF8F0;
+  --c-secondary: #C67B30;
+  --c-accent: #B22222;
+  --c-surface: #FFF2E6;
+  --c-text: #3D2B1F;
+  --c-text-soft: #7A5C47;
+  --c-border: rgba(198,123,48,0.2);
+  --c-glow: rgba(178,34,34,0.08);
+  --c-overlay: rgba(255,248,240,0.88);
+  --c-shadow: rgba(61,43,31,0.12);
+  --c-accent-soft: rgba(178,34,34,0.05);
+  --grain-opacity: 0.03;
+}
+
+/* ─── PALETTE 7: TÍZIS (Neon Álom) ─── */
+[data-theme="tizen"] {
+  --c-primary: #1A0A2E;
+  --c-secondary: #3D1D6B;
+  --c-accent: #FF006E;
+  --c-surface: #231040;
+  --c-text: #E8D5F5;
+  --c-text-soft: #A080C0;
+  --c-border: rgba(255,0,110,0.15);
+  --c-glow: rgba(255,0,110,0.2);
+  --c-overlay: rgba(26,10,46,0.9);
+  --c-shadow: rgba(61,29,107,0.3);
+  --c-accent-soft: rgba(255,0,110,0.06);
+  --grain-opacity: 0.04;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+  background: var(--c-primary);
+  color: var(--c-text);
+  transition: background var(--transition-speed) var(--ease-curve),
+              color var(--transition-speed) var(--ease-curve);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ─── TEXTÚRA: Film grain overlay ─── */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 10000;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  mix-blend-mode: multiply;
+}
+
+/* ─── Blend-mode decorative overlay ─── */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background: radial-gradient(ellipse at 30% 20%, var(--c-glow) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, var(--c-glow) 0%, transparent 50%);
+  mix-blend-mode: screen;
+  opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CUSTOM SCROLLBAR
+   ═══════════════════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--c-primary); }
+::-webkit-scrollbar-thumb {
+  background: var(--c-secondary);
+  border-radius: 3px;
+  transition: background var(--transition-speed);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--c-accent); }
+
+/* ═══════════════════════════════════════════════════════════
+   THEME SWITCHER — Floating Palette
+   ═══════════════════════════════════════════════════════════ */
+.theme-switcher {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 12px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 40px;
+  box-shadow: 0 8px 32px var(--c-shadow),
+              inset 0 1px 0 rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all var(--transition-speed) var(--ease-curve);
+}
+
+.theme-switcher:hover {
+  box-shadow: 0 12px 48px var(--c-shadow),
+              0 0 0 1px var(--c-border),
+              inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.theme-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-spring);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.theme-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: 44px;
+  top: 50%;
+  transform: translateY(-50%) translateX(8px);
+  background: var(--c-text);
+  color: var(--c-primary);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s var(--ease-spring);
+  text-transform: uppercase;
+}
+
+.theme-btn:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.theme-btn:hover {
+  transform: scale(1.25);
+  border-color: var(--c-accent);
+}
+
+.theme-btn.active {
+  transform: scale(1.15);
+  border-color: var(--c-accent);
+  box-shadow: 0 0 12px var(--c-glow);
+}
+
+/* Theme button color definitions */
+.theme-btn[data-theme="nappali"] { background: linear-gradient(135deg, #F5F0E8, #C41E3A); }
+.theme-btn[data-theme="ejszakai"] { background: linear-gradient(135deg, #0D1117, #E8A838); }
+.theme-btn[data-theme="sepia"] { background: linear-gradient(135deg, #F4E4C1, #8B4513); }
+.theme-btn[data-theme="galeria"] { background: linear-gradient(135deg, #FFFFFF, #000000); }
+.theme-btn[data-theme="tavaszi"] { background: linear-gradient(135deg, #F0F7F0, #D4446D); }
+.theme-btn[data-theme="oszi"] { background: linear-gradient(135deg, #FFF8F0, #B22222); }
+.theme-btn[data-theme="tizen"] { background: linear-gradient(135deg, #1A0A2E, #FF006E); }
+
+/* ═══════════════════════════════════════════════════════════
+   HERO SECTION — Festői Bevezető
+   ═══════════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Canvas-based animated background */
+.hero-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+}
+
+/* Paint brush stroke decorative elements */
+.hero-brush-stroke {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.15;
+  mix-blend-mode: multiply;
+}
+
+.hero-brush-stroke:nth-child(1) {
+  top: 10%; left: -5%;
+  width: 120%;
+  height: 200px;
+  background: linear-gradient(90deg, transparent, var(--c-accent), transparent);
+  transform: rotate(-3deg);
+  filter: blur(40px);
+  animation: brushFloat 8s ease-in-out infinite;
+}
+
+.hero-brush-stroke:nth-child(2) {
+  bottom: 15%; right: -10%;
+  width: 80%;
+  height: 150px;
+  background: linear-gradient(90deg, transparent, var(--c-secondary), transparent);
+  transform: rotate(2deg);
+  filter: blur(60px);
+  animation: brushFloat 10s ease-in-out infinite reverse;
+}
+
+.hero-brush-stroke:nth-child(3) {
+  top: 50%; left: 30%;
+  width: 60%;
+  height: 100px;
+  background: linear-gradient(45deg, transparent, var(--c-accent), transparent);
+  transform: rotate(-1deg);
+  filter: blur(50px);
+  animation: brushFloat 12s ease-in-out infinite 2s;
+}
+
+@keyframes brushFloat {
+  0%, 100% { transform: rotate(var(--r, -3deg)) translateX(0); }
+  50% { transform: rotate(var(--r, -3deg)) translateX(30px); }
+}
+
+/* Hero content */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 900px;
+}
+
+.hero-eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(12px, 1.5vw, 16px);
+  font-weight: 600;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  margin-bottom: 24px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s var(--ease-out-expo) 0.3s forwards;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 10vw, 140px);
+  font-weight: 900;
+  line-height: 0.9;
+  color: var(--c-text);
+  margin-bottom: 16px;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 1.2s var(--ease-out-expo) 0.5s forwards;
+  text-shadow: 0 2px 40px var(--c-shadow);
+}
+
+.hero-title .accent {
+  color: var(--c-accent);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 3vw, 32px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--c-text-soft);
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s var(--ease-out-expo) 0.8s forwards;
+}
+
+.hero-line {
+  width: 80px;
+  height: 2px;
+  background: var(--c-accent);
+  margin: 0 auto 40px;
+  opacity: 0;
+  transform: scaleX(0);
+  animation: lineExpand 1s var(--ease-out-expo) 1s forwards;
+}
+
+.hero-cta {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  text-decoration: none;
+  padding: 16px 48px;
+  border: 1px solid var(--c-accent);
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s var(--ease-out-expo) 1.2s forwards;
+  transition: all 0.5s var(--ease-curve);
+}
+
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: var(--c-accent);
+  transition: left 0.5s var(--ease-curve);
+  z-index: -1;
+}
+
+.hero-cta:hover {
+  color: var(--c-primary);
+}
+
+.hero-cta:hover::before {
+  left: 0;
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes lineExpand {
+  to { opacity: 1; transform: scaleX(1); }
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeUp 1s var(--ease-out-expo) 1.8s forwards;
+}
+
+.scroll-indicator span {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--c-text-soft);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--c-accent), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50% { opacity: 0.3; transform: scaleY(0.6); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   NAVIGATION — Minimal, Artistic
+   ═══════════════════════════════════════════════════════════ */
+.nav-main {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  z-index: 9997;
+  padding: 24px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.6s var(--ease-curve);
+}
+
+.nav-main.scrolled {
+  padding: 16px 40px;
+  background: var(--c-overlay);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--c-text);
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color var(--transition-speed);
+}
+
+.nav-logo .dot {
+  color: var(--c-accent);
+  transition: color var(--transition-speed);
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--c-text-soft);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.4s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--c-accent);
+  transition: width 0.4s var(--ease-curve);
+}
+
+.nav-links a:hover { color: var(--c-accent); }
+.nav-links a:hover::after { width: 100%; }
+
+/* Mobile nav toggle */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 10001;
+}
+
+.nav-toggle span {
+  width: 28px;
+  height: 2px;
+  background: var(--c-text);
+  transition: all 0.4s var(--ease-curve);
+  transform-origin: center;
+}
+
+.nav-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.nav-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ABOUT SECTION — Textilású, festői
+   ═══════════════════════════════════════════════════════════ */
+.about-section {
+  position: relative;
+  padding: 120px 40px;
+  overflow: hidden;
+}
+
+.about-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background:
+    radial-gradient(ellipse at 20% 50%, var(--c-accent-soft) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 30%, var(--c-glow) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.about-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-portrait {
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: 200px 200px 20px 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px var(--c-shadow);
+}
+
+.about-portrait::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, var(--c-overlay) 100%);
+  z-index: 1;
+}
+
+.about-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-curve);
+}
+
+.about-portrait:hover img {
+  transform: scale(1.05);
+}
+
+.about-portrait-frame {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid var(--c-border);
+  border-radius: 190px 190px 16px 16px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.about-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 32px;
+  color: var(--c-text);
+}
+
+.about-text h2 .accent {
+  color: var(--c-accent);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.about-text p {
+  font-family: 'EB Garamond', serif;
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--c-text-soft);
+  margin-bottom: 20px;
+  max-width: 480px;
+}
+
+.about-text .signature {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-style: italic;
+  color: var(--c-accent);
+  margin-top: 32px;
+  opacity: 0.7;
+}
+
+/* Decorative paint splatter */
+.paint-splatter {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GALLERY — Parallax & Mouse-reactive Képbemutató
+   ═══════════════════════════════════════════════════════════ */
+.gallery-section {
+  position: relative;
+  padding: 100px 0;
+  overflow: hidden;
+}
+
+.gallery-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(180deg, var(--c-primary) 0%, var(--c-surface) 50%, var(--c-primary) 100%);
+  z-index: 0;
+}
+
+.gallery-header {
+  text-align: center;
+  padding: 0 40px;
+  margin-bottom: 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.gallery-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 900;
+  color: var(--c-text);
+  margin-bottom: 16px;
+}
+
+.gallery-header h2 .accent {
+  color: var(--c-accent);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.gallery-header p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: var(--c-text-soft);
+  letter-spacing: 2px;
+}
+
+/* ─── Main Gallery Grid — Asymmetric ─── */
+.gallery-grid {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(200px, auto);
+  gap: 24px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 10px 40px var(--c-shadow);
+  transition: transform 0.6s var(--ease-curve), box-shadow 0.6s var(--ease-curve);
+}
+
+.gallery-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px var(--c-shadow);
+}
+
+/* Asymmetric placement */
+.gallery-item:nth-child(1) { grid-column: 1 / 7; grid-row: 1 / 3; }
+.gallery-item:nth-child(2) { grid-column: 7 / 10; grid-row: 1 / 2; }
+.gallery-item:nth-child(3) { grid-column: 10 / 13; grid-row: 1 / 3; }
+.gallery-item:nth-child(4) { grid-column: 1 / 5; grid-row: 3 / 5; }
+.gallery-item:nth-child(5) { grid-column: 5 / 9; grid-row: 3 / 4; }
+.gallery-item:nth-child(6) { grid-column: 9 / 13; grid-row: 3 / 5; }
+.gallery-item:nth-child(7) { grid-column: 1 / 6; grid-row: 5 / 7; }
+.gallery-item:nth-child(8) { grid-column: 6 / 13; grid-row: 5 / 6; }
+.gallery-item:nth-child(9) { grid-column: 1 / 8; grid-row: 6 / 8; }
+.gallery-item:nth-child(10) { grid-column: 8 / 13; grid-row: 6 / 8; }
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease-curve), filter 0.8s var(--ease-curve);
+  filter: saturate(0.9) brightness(0.95);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+  filter: saturate(1.1) brightness(1);
+}
+
+/* Overlay on hover */
+.gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, var(--c-overlay) 100%);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-curve);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 32px;
+  z-index: 2;
+}
+
+.gallery-item:hover .gallery-item-overlay {
+  opacity: 1;
+}
+
+.gallery-item-overlay h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--c-text);
+  margin-bottom: 8px;
+  transform: translateY(20px);
+  transition: transform 0.6s var(--ease-curve) 0.1s;
+}
+
+.gallery-item:hover .gallery-item-overlay h3 {
+  transform: translateY(0);
+}
+
+.gallery-item-overlay p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  color: var(--c-text-soft);
+  letter-spacing: 1px;
+  transform: translateY(20px);
+  transition: transform 0.6s var(--ease-curve) 0.15s;
+}
+
+.gallery-item:hover .gallery-item-overlay p {
+  transform: translateY(0);
+}
+
+/* ─── Parallax Image Transition (Interior vs Framed) ─── */
+.gallery-item .img-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.8s var(--ease-curve), transform 0.8s var(--ease-curve);
+}
+
+.gallery-item .img-layer.framed {
+  opacity: 0;
+  transform: scale(0.95) rotate(1deg);
+}
+
+.gallery-item:hover .img-layer.framed {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.gallery-item:hover .img-layer.interior {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+/* Frame decoration */
+.gallery-item .frame-decor {
+  position: absolute;
+  inset: 8px;
+  border: 2px solid var(--c-secondary);
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-curve);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.gallery-item:hover .frame-decor {
+  opacity: 0.5;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PARALLAX SCROLL SECTION — Képek előrébe-hátratolódása
+   ═══════════════════════════════════════════════════════════ */
+.parallax-section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.parallax-bg {
+  position: absolute;
+  inset: -20%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  will-change: transform;
+}
+
+.parallax-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--c-overlay);
+  z-index: 1;
+}
+
+.parallax-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 60px;
+  max-width: 700px;
+}
+
+.parallax-content blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 4vw, 42px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--c-text);
+  margin-bottom: 24px;
+}
+
+.parallax-content cite {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-style: normal;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--c-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TIMELINE — Művészi Út
+   ═══════════════════════════════════════════════════════════ */
+.timeline-section {
+  position: relative;
+  padding: 120px 40px;
+  overflow: hidden;
+}
+
+.timeline-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--c-border), var(--c-border), transparent);
+}
+
+.timeline-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.timeline-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.timeline-header h2 .accent {
+  color: var(--c-accent);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 60px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s var(--ease-out-expo);
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item:nth-child(odd) {
+  flex-direction: row;
+  padding-right: calc(50% + 40px);
+  text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+  flex-direction: row-reverse;
+  padding-left: calc(50% + 40px);
+  text-align: left;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  transform: translateX(-50%);
+  z-index: 2;
+  box-shadow: 0 0 0 4px var(--c-primary), 0 0 0 5px var(--c-accent);
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.timeline-item:hover .timeline-dot {
+  transform: translateX(-50%) scale(1.3);
+}
+
+.timeline-year {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--c-accent);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.timeline-content h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--c-text);
+  margin-bottom: 8px;
+}
+
+.timeline-content p {
+  font-family: 'EB Garamond', serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--c-text-soft);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LIGHTBOX — Képnagyító
+   ═══════════════════════════════════════════════════════════ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s var(--ease-curve);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}
+
+.lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+  transform: scale(0.9);
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.lightbox.active .lightbox-img {
+  transform: scale(1);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  background: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.lightbox-close:hover {
+  background: var(--c-accent);
+  border-color: var(--c-accent);
+}
+
+.lightbox-info {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+}
+
+.lightbox-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.lightbox-info p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  opacity: 0.7;
+  letter-spacing: 1px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CONTACT — Elegáns Kapcsolat
+   ═══════════════════════════════════════════════════════════ */
+.contact-section {
+  position: relative;
+  padding: 120px 40px;
+  overflow: hidden;
+}
+
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background:
+    radial-gradient(ellipse at 50% 50%, var(--c-accent-soft) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.contact-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-inner h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  color: var(--c-text);
+  margin-bottom: 16px;
+}
+
+.contact-inner h2 .accent {
+  color: var(--c-accent);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.contact-inner > p {
+  font-family: 'EB Garamond', serif;
+  font-size: 18px;
+  color: var(--c-text-soft);
+  line-height: 1.7;
+  margin-bottom: 48px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 16px 0;
+  font-family: 'EB Garamond', serif;
+  font-size: 16px;
+  color: var(--c-text);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--c-border);
+  outline: none;
+  transition: border-color 0.4s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-bottom-color: var(--c-accent);
+}
+
+.form-group label {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--c-text-soft);
+  pointer-events: none;
+  transition: all 0.3s var(--ease-curve);
+}
+
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label,
+.form-group textarea:focus ~ label,
+.form-group textarea:not(:placeholder-shown) ~ label {
+  top: -8px;
+  font-size: 11px;
+  color: var(--c-accent);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submit-btn {
+  align-self: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--c-primary);
+  background: var(--c-accent);
+  border: none;
+  padding: 18px 56px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s var(--ease-curve);
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 0; height: 0;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.submit-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--c-glow);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════ */
+.footer {
+  padding: 60px 40px;
+  text-align: center;
+  border-top: 1px solid var(--c-border);
+  transition: border-color var(--transition-speed);
+}
+
+.footer p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: var(--c-text-soft);
+  letter-spacing: 1px;
+}
+
+.footer .accent {
+  color: var(--c-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CURSOR — Custom Artistic Cursor
+   ═══════════════════════════════════════════════════════════ */
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--c-accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transition: width 0.3s, height 0.3s, border-color 0.3s, transform 0.1s;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+.custom-cursor.hovering {
+  width: 50px;
+  height: 50px;
+  border-color: var(--c-accent);
+  background: var(--c-glow);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ANIMATIONS — Scroll-triggered
+   ═══════════════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 1s var(--ease-out-expo);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 1s var(--ease-out-expo);
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: all 1s var(--ease-out-expo);
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: all 1s var(--ease-out-expo);
+}
+
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .about-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .about-portrait {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+  }
+
+  .gallery-item:nth-child(1) { grid-column: 1 / 4; grid-row: 1 / 2; }
+  .gallery-item:nth-child(2) { grid-column: 4 / 7; grid-row: 1 / 2; }
+  .gallery-item:nth-child(3) { grid-column: 1 / 4; grid-row: 2 / 3; }
+  .gallery-item:nth-child(4) { grid-column: 4 / 7; grid-row: 2 / 3; }
+  .gallery-item:nth-child(5) { grid-column: 1 / 4; grid-row: 3 / 4; }
+  .gallery-item:nth-child(6) { grid-column: 4 / 7; grid-row: 3 / 4; }
+  .gallery-item:nth-child(7) { grid-column: 1 / 4; grid-row: 4 / 5; }
+  .gallery-item:nth-child(8) { grid-column: 4 / 7; grid-row: 4 / 5; }
+  .gallery-item:nth-child(9) { grid-column: 1 / 4; grid-row: 5 / 6; }
+  .gallery-item:nth-child(10) { grid-column: 4 / 7; grid-row: 5 / 6; }
+}
+
+@media (max-width: 768px) {
+  .theme-switcher {
+    right: 12px;
+    padding: 12px 8px;
+    gap: 8px;
+  }
+
+  .theme-btn {
+    width: 24px;
+    height: 24px;
+  }
+
+  .theme-btn::after { display: none; }
+
+  .nav-links {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    background: var(--c-overlay);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s var(--ease-curve);
+  }
+
+  .nav-links.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-links a {
+    font-size: 20px;
+  }
+
+  .nav-toggle { display: flex; }
+
+  .nav-main { padding: 16px 24px; }
+
+  .hero-content { padding: 20px; }
+
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 0 16px;
+  }
+
+  .gallery-item:nth-child(n) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .gallery-item {
+    border-radius: 8px;
+  }
+
+  .gallery-item-overlay { display: none; }
+
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    flex-direction: column;
+    padding: 0 0 0 40px;
+    text-align: left;
+  }
+
+  .timeline-section::before {
+    left: 12px;
+    transform: none;
+  }
+
+  .timeline-dot {
+    left: 12px;
+  }
+
+  .about-section { padding: 80px 24px; }
+  .gallery-section { padding: 80px 0; }
+  .contact-section { padding: 80px 24px; }
+
+  .custom-cursor { display: none; }
+
+  .parallax-bg { background-attachment: scroll; }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-title {
+    font-size: clamp(40px, 14vw, 72px);
+  }
+
+  .theme-switcher {
+    right: 8px;
+    padding: 10px 6px;
+    gap: 6px;
+  }
+
+  .theme-btn {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PAINT TEXTURE OVERLAY EFFECTS
+   ═══════════════════════════════════════════════════════════ */
+.paint-texture {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.06;
+  background-image:
+    radial-gradient(circle at 20% 30%, var(--c-accent) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, var(--c-secondary) 0%, transparent 35%),
+    radial-gradient(circle at 50% 50%, var(--c-accent) 0%, transparent 50%);
+  filter: blur(30px);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SMOOTH PAGE TRANSITION
+   ═══════════════════════════════════════════════════════════ */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: var(--c-accent);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MARQUEE — Szalag
+   ═══════════════════════════════════════════════════════════ */
+.marquee-section {
+  overflow: hidden;
+  padding: 40px 0;
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+  transition: border-color var(--transition-speed);
+}
+
+.marquee-track {
+  display: flex;
+  animation: marquee 30s linear infinite;
+  width: max-content;
+}
+
+.marquee-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 8vw, 100px);
+  font-weight: 900;
+  color: var(--c-text);
+  opacity: 0.06;
+  white-space: nowrap;
+  padding: 0 40px;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+}
+
+.marquee-text .dot {
+  color: var(--c-accent);
+  opacity: 0.3;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION DIVIDER — Festői elválasztó
+   ═══════════════════════════════════════════════════════════ */
+.section-divider {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 200%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--c-border), transparent);
+  transform: translate(-50%, -50%) rotate(-2deg);
+}
+
+.section-divider .deco-circle {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 120px; height: 120px;
+  border: 1px solid var(--c-border);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: border-color var(--transition-speed);
+}
+
+.section-divider .deco-circle::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 8px; height: 8px;
+  background: var(--c-accent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: background var(--transition-speed);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LOADING SCREEN
+   ═══════════════════════════════════════════════════════════ */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999999;
+  background: var(--c-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  transition: opacity 0.8s var(--ease-curve), visibility 0.8s;
+}
+
+.loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-brush {
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--c-border);
+  border-top-color: var(--c-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loader-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--c-text-soft);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BACK TO TOP
+   ═══════════════════════════════════════════════════════════ */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  color: var(--c-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9990;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.4s var(--ease-curve);
+  box-shadow: 0 4px 20px var(--c-shadow);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--c-accent);
+  color: var(--c-primary);
+  border-color: var(--c-accent);
+  transform: translateY(-4px);
+}
+</style>
+</head>
+<body>
+
+<!-- ─── LOADING SCREEN ─── -->
+<div class="loader" id="loader">
+  <div class="loader-brush"></div>
+  <div class="loader-text">Művészet betöltése...</div>
+</div>
+
+<!-- ─── CUSTOM CURSOR ─── -->
+<div class="custom-cursor" id="customCursor"></div>
+
+<!-- ─── THEME SWITCHER ─── -->
+<div class="theme-switcher" id="themeSwitcher">
+  <button class="theme-btn active" data-theme="nappali" data-tooltip="Nappali"></button>
+  <button class="theme-btn" data-theme="ejszakai" data-tooltip="Éjszakai"></button>
+  <button class="theme-btn" data-theme="sepia" data-tooltip="Sepia"></button>
+  <button class="theme-btn" data-theme="galeria" data-tooltip="Galéria"></button>
+  <button class="theme-btn" data-theme="tavaszi" data-tooltip="Tavaszi"></button>
+  <button class="theme-btn" data-theme="oszi" data-tooltip="Őszi"></button>
+  <button class="theme-btn" data-theme="tizen" data-tooltip="Tízi"></button>
+</div>
+
+<!-- ─── NAVIGATION ─── -->
+<nav class="nav-main" id="navMain">
+  <a href="#" class="nav-logo">Kárai Mihály<span class="dot">.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#hero">Főoldal</a></li>
+    <li><a href="#about">Rólam</a></li>
+    <li><a href="#gallery">Galéria</a></li>
+    <li><a href="#timeline">Útmutató</a></li>
+    <li><a href="#contact">Kapcsolat</a></li>
+  </ul>
+  <div class="nav-toggle" id="navToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO SECTION
+     ═══════════════════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-brush-stroke"></div>
+  <div class="hero-brush-stroke"></div>
+  <div class="hero-brush-stroke"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Festőművész · 1961</p>
+    <h1 class="hero-title">Kárai<br><span class="accent">Mihály</span></h1>
+    <p class="hero-subtitle">Színek zenéje, vászonra festett lélek</p>
+    <div class="hero-line"></div>
+    <a href="#gallery" class="hero-cta">Művek felfedezése</a>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Görgess</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── MARQUEE ─── -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-text">Kárai Mihály <span class="dot">✦</span> Festészet <span class="dot">✦</span> Művészet <span class="dot">✦</span> Színek <span class="dot">✦</span> Lét <span class="dot">✦</span></span>
+    <span class="marquee-text">Kárai Mihály <span class="dot">✦</span> Festészet <span class="dot">✦</span> Művészet <span class="dot">✦</span> Színek <span class="dot">✦</span> Lét <span class="dot">✦</span></span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ABOUT SECTION
+     ═══════════════════════════════════════════════════════════ -->
+<section class="about-section" id="about">
+  <div class="paint-splatter" style="top:10%;right:10%;width:300px;height:300px;background:var(--c-accent);"></div>
+  <div class="paint-splatter" style="bottom:20%;left:5%;width:200px;height:200px;background:var(--c-secondary);"></div>
+
+  <div class="about-inner">
+    <div class="about-portrait reveal-left">
+      <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&h=800&fit=crop&q=80" alt="Kárai Mihály műterme">
+      <div class="about-portrait-frame"></div>
+    </div>
+    <div class="about-text">
+      <h2 class="reveal-right">A festészet <br><span class="accent">nyelvének</span><br> megtanulása</h2>
+      <p class="reveal-right">Kárai Mihály (1961) magyar festőművész, akinek munkássága a színek és formák szabad nyelvén beszél. Művei a természet és az ember közötti kapcsolat mély rétegeit tárják fel.</p>
+      <p class="reveal-right">Műterme a kreativitás szentélye, ahol minden ecsetvonás egy-egy érzelmi hullámot rögzít. Munkássága során több mint harminc kiállításon mutatkozott be hazai és nemzetközi porondon.</p>
+      <p class="signature reveal-right">— Kárai Mihály</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION DIVIDER ─── -->
+<div class="section-divider">
+  <div class="deco-circle"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     GALLERY SECTION
+     ═══════════════════════════════════════════════════════════ -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-header">
+    <h2 class="reveal">Művek <span class="accent">Galériája</span></h2>
+    <p class="reveal">Válassza ki a képet a részletes megtekintéshez</p>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+
+    <!-- Gallery Item 1 -->
+    <div class="gallery-item reveal-scale" data-title="Csendélet olajjal" data-year="2019" data-medium="Olaj, vászon — 120×80 cm">
+      <div class="img-layer interior">
+        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&h=600&fit=crop&q=80" alt="Festmény 1">
+      </div>
+      <div class="img-layer framed">
+        <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&h=600&fit=crop&q=80" alt="Festmény 1 keretezve">
+      </div>
+      <div class="frame-decor"></div>
+      <div class="gallery-item-overlay">
+        <h3>Csendélet olajjal</h3>
+        <p>2019 · Olaj, vászon</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item 2 -->
+    <div class="gallery-item reveal-scale" data-title="Tájalkotás" data-year="2020" data-medium="Akril, vászon — 90×60 cm">
+      <div class="img-layer interior">
+        <img src="https://images.unsplash.com/photo-1549887534-1541e9326642?w=600&h=400&fit=crop&q=80" alt="Festmény 2">
+      </div>
+      <div class="img-layer framed">
+        <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=600&h=400&fit=crop&q=80" alt="Festmény 2 keretezve">
+      </div>
+      <div class="frame-decor"></div>
+      <div class="gallery-item-overlay">
+        <h3>Tájalkotás</h3>
+        <p>2020 · Akril, vászon</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item 3 -->
+    <div class="gallery-item reveal-scale" data-title="Absztrakt kompozíció" data-year="2021" data-medium="Olaj, vászon — 150×100 cm">
+      <div class="img-layer interior">
+        <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=600&h=800&fit=crop&q=80" alt="Festmény 3">
+      </div>
+      <div class="img-layer framed">
+        <img src="https://images.unsplash.com/photo-1579783928621-7a13d66a62d1?w=600&h=800&fit=crop&q=80" alt="Festmény 3 keretezve">
+      </div>
+      <div class="frame-decor"></div>
+      <div class="gallery-item-overlay">
+        <h3>Absztrakt kompozíció</h3>
+        <p>2021 · Olaj, vászon</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item 4 -->
+    <div class="gallery-item reveal-scale" data-title="Éjszakai város" data-year="2018" data-medium="Olaj, farost — 80×60 cm">
+      <div class="img-layer interior">
+        <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=700&h=500&fit=crop&q=80" alt="Festmény 4">
+      </div>
+      <div class="img-layer framed">
+        <img src="https://images.unsplash.com/photo-1578926288207-a90a5366759d?w=700&h=500&fit=crop&q=80" alt="Festmény 4 keretezve">
+      </div>
+      <div class="frame-decor"></div>
+      <div class="gallery-item-overlay">
+        <h3>Éjszakai város</h3>
+        <p>2018 · Olaj, farost</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item 5 -->
+    <div class="gallery-item reveal-scale" data-title="Virágzó kert" data-year="2022" data-medium="Akril, vászon — 100×70 cm">
+      <div class="img-layer interior">
+        <img src="https://images.unsplash.com/photo-1579618195777-785081a3e48f?w=700&h=400&fit=crop&q=80" alt="Festmény 5">
+      </div>
+      <div class="img-layer framed">
+        <img src="https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=700&h=400&fit=crop&q=80" alt="Festmény 5 keretezve">
+      </div>
+      <div class="frame-decor"></div>
+      <div class="gallery-item-overlay">
+        <h3>Virágzó kert</h3>
+        <p>2022 · Akril, vászon</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item 6 -->
+    <div class="gallery-item reveal-scale" data-title="Portré tanulmány" data-year="2020" data-medium="Szén, papír — 50×40 cm">
+      <div class="img-layer interior">
+        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&h=500&fit=crop&q=80" alt="Festmény 6">
+      </div>
+      <div class="img-layer framed">
+        <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=700&h=500&fit=crop&q=80" alt="Festmény 6 keretezve">
+      </div>
+      <div class="frame-decor"></div>
+      <div class="gallery-item-overlay">
+        <h3>Portré tanulmány</h3>
+        <p>2020 · Szén, papír</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item 7 -->
+    <div class="gallery-item reveal-scale" data-title="Tengerpart" data-year="2017" data-medium="Olaj, vászon — 130×90 cm">
+      <div class="img-layer interior">
+        <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=800&h=500&fit=crop&q=80" alt="Festmény 7">
+      </div>
+      <div class="img-layer framed">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=500&fit=crop&q=80" alt="Festmény 7 keretezve">
+      </div>
+      <div class="frame-decor"></div>
+      <div class="gallery-item-overlay">
+        <h3>Tengerpart</h3>
+        <p>2017 · Olaj, vászon</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item 8 -->
+    <div class="gallery-item reveal-scale" data-title="Őszi hangulat" data-year="2023" data-medium="Akril, vászon — 110×80 cm">
+      <div class="img-layer interior">
+        <img src="https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?w=700&h=400&fit=crop&q=80" alt="Festmény 8">
+      </div>
+      <div class="img-layer framed">
+        <img src="https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?w=700&h=400&fit=crop&q=80" alt="Festmény 8 keretezve">
+      </div>
+      <div class="frame-decor"></div>
+      <div class="gallery-item-overlay">
+        <h3>Őszi hangulat</h3>
+        <p>2023 · Akril, vászon</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item 9 -->
+    <div class="gallery-item reveal-scale" data-title="Műteremrészlet" data-year="2021" data-medium="Olaj, vászon — 160×120 cm">
+      <div class="img-layer interior">
+        <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=900&h=600&fit=crop&q=80" alt="Festmény 9">
+      </div>
+      <div class="img-layer framed">
+        <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=900&h=600&fit=crop&q=80" alt="Festmény 9 keretezve">
+      </div>
+      <div class="frame-decor"></div>
+      <div class="gallery-item-overlay">
+        <h3>Műteremrészlet</h3>
+        <p>2021 · Olaj, vászon</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item 10 -->
+    <div class="gallery-item reveal-scale" data-title="Alkotói folyamat" data-year="2024" data-medium="Olaj, vászon — 140×100 cm">
+      <div class="img-layer interior">
+        <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=800&h=500&fit=crop&q=80" alt="Festmény 10">
+      </div>
+      <div class="img-layer framed">
+        <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=800&h=500&fit=crop&q=80" alt="Festmény 10 keretezve">
+      </div>
+      <div class="frame-decor"></div>
+      <div class="gallery-item-overlay">
+        <h3>Alkotói folyamat</h3>
+        <p>2024 · Olaj, vászon</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PARALLAX QUOTE SECTION
+     ═══════════════════════════════════════════════════════════ -->
+<section class="parallax-section">
+  <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=1600&q=80');"></div>
+  <div class="parallax-overlay"></div>
+  <div class="parallax-content reveal-scale">
+    <blockquote>„A festészet nem az, amit látsz, hanem az, amit másokra kényszerítesz, hogy lássanak."</blockquote>
+    <cite>— Edgar Degas</cite>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TIMELINE SECTION
+     ═══════════════════════════════════════════════════════════ -->
+<section class="timeline-section" id="timeline">
+  <div class="timeline-header">
+    <h2 class="reveal">Művészi <span class="accent">Útmutató</span></h2>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">1961</div>
+        <h3>Születés</h3>
+        <p>Kárai Mihály megszületett Magyarországon, ahol a művészet iránti szeretet már gyermekkorában megjelent.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">1980</div>
+        <h3>Művészeti Akadémia</h3>
+        <p>Becsületes eredménnyel végezte el a Képzőművészeti Főiskolát, festőművész szakon.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">1985</div>
+        <h3>Első önálló kiállítás</h3>
+        <p>Budapesten tartotta első önálló kiállítását, amely hatalmas sikert aratott a kritikusok körében.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">1995</div>
+        <h3>Nemzetközi áttörés</h3>
+        <p>Brüsszeli kiállításon aranyérmet nyert, ezáltal nemzetközi elismerést vívott ki magának.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">2010</div>
+        <h3>Visszatérés a gyökerekhez</h3>
+        <p>Művészete új irányt vett: a természeti motívumok és a magyar táj festészete lett fő témája.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">2024</div>
+        <h3>Folyamatos alkotás</h3>
+        <p>Műterme továbbra is nyitva áll a látogatók előtt, új művek születnek nap mint nap.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION DIVIDER ─── -->
+<div class="section-divider">
+  <div class="deco-circle"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CONTACT SECTION
+     ═══════════════════════════════════════════════════════════ -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <h2 class="reveal">Kapcsolat <span class="accent">felvétel</span></h2>
+    <p class="reveal">Kíváncsi egy művészetre vagy megrendelni szeretne egy alkotást? Írjon nekünk!</p>
+
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('Köszönjük üzenetét!');">
+      <div class="form-group reveal">
+        <input type="text" id="name" placeholder=" " required>
+        <label for="name">Név</label>
+      </div>
+      <div class="form-group reveal">
+        <input type="email" id="email" placeholder=" " required>
+        <label for="email">E-mail cím</label>
+      </div>
+      <div class="form-group reveal">
+        <textarea id="message" rows="4" placeholder=" " required></textarea>
+        <label for="message">Üzenet</label>
+      </div>
+      <button type="submit" class="submit-btn reveal">Üzenet küldése</button>
+    </form>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <p>© 2024 <span class="accent">Kárai Mihály</span> — Minden jog fenntartva. Készült művészi szeretettel.</p>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════
+     LIGHTBOX
+     ═══════════════════════════════════════════════════════════ -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  <div class="lightbox-info">
+    <h3 id="lightboxTitle"></h3>
+    <p id="lightboxMeta"></p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     BACK TO TOP
+     ═══════════════════════════════════════════════════════════ -->
+<button class="back-to-top" id="backToTop" aria-label="Vissza a tetejére">↑</button>
+
+<!-- ═══════════════════════════════════════════════════════════
+     JAVASCRIPT — Interaktivitás & Animációk
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  // ─── LOADER ───
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+    }, 800);
+  });
+
+  // ─── CUSTOM CURSOR ───
+  const cursor = document.getElementById('customCursor');
+  let cursorX = 0, cursorY = 0, currentX = 0, currentY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    cursorX = e.clientX;
+    cursorY = e.clientY;
+  });
+
+  function animateCursor() {
+    currentX += (cursorX - currentX) * 0.15;
+    currentY += (cursorY - currentY) * 0.15;
+    cursor.style.left = currentX + 'px';
+    cursor.style.top = currentY + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  // Cursor hover effect
+  document.querySelectorAll('a, button, .gallery-item, .theme-btn').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+  });
+
+  // ─── THEME ENGINE ───
+  const html = document.documentElement;
+  const themeBtns = document.querySelectorAll('.theme-btn');
+  const themes = ['nappali', 'ejszakai', 'sepia', 'galeria', 'tavaszi', 'oszi', 'tizen'];
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('karaitheme');
+  if (savedTheme && themes.includes(savedTheme)) {
+    html.setAttribute('data-theme', savedTheme);
+    themeBtns.forEach(b => b.classList.toggle('active', b.dataset.theme === savedTheme));
+  }
+
+  themeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const theme = btn.dataset.theme;
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('karaitheme', theme);
+      themeBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Update hero canvas colors
+      updateCanvasTheme(theme);
+    });
+  });
+
+  function getThemeColors() {
+    const style = getComputedStyle(document.documentElement);
+    return {
+      accent: style.getPropertyValue('--c-accent').trim(),
+      secondary: style.getPropertyValue('--c-secondary').trim(),
+      primary: style.getPropertyValue('--c-primary').trim(),
+      text: style.getPropertyValue('--c-text').trim(),
+    };
+  }
+
+  function updateCanvasTheme(theme) {
+    // Canvas will auto-update on next draw cycle
+  }
+
+  // ─── HERO CANVAS — Animated Paint Texture ───
+  const canvas = document.getElementById('heroCanvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let animationId;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  class Particle {
+    constructor() {
+      this.reset();
+    }
+
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 3 + 0.5;
+      this.speedX = (Math.random() - 0.5) * 0.5;
+      this.speedY = (Math.random() - 0.5) * 0.5;
+      this.opacity = Math.random() * 0.3 + 0.05;
+      this.hue = Math.random() * 60 - 30;
+      this.life = Math.random() * 200 + 100;
+      this.maxLife = this.life;
+    }
+
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      this.life--;
+      this.opacity = (this.life / this.maxLife) * 0.3;
+
+      if (this.life <= 0 || this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+        this.reset();
+      }
+    }
+
+    draw(colors) {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      const hex = colors.accent;
+      const r = parseInt(hex.slice(1,3), 16);
+      const g = parseInt(hex.slice(3,5), 16);
+      const b = parseInt(hex.slice(5,7), 16);
+      ctx.fillStyle = `rgba(${r},${g},${b},${this.opacity})`;
+      ctx.fill();
+    }
+  }
+
+  // Create particles
+  for (let i = 0; i < 80; i++) {
+    particles.push(new Particle());
+  }
+
+  function drawCanvas() {
+    const colors = getThemeColors();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw soft gradient background
+    const gradient = ctx.createRadialGradient(
+      canvas.width * 0.3, canvas.height * 0.3, 0,
+      canvas.width * 0.5, canvas.height * 0.5, canvas.width * 0.7
+    );
+    const primary = colors.primary;
+    gradient.addColorStop(0, primary);
+    gradient.addColorStop(1, 'transparent');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw particles
+    particles.forEach(p => {
+      p.update();
+      p.draw(colors);
+    });
+
+    // Draw connecting lines
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          const r = parseInt(colors.accent.slice(1,3), 16);
+          const g = parseInt(colors.accent.slice(3,5), 16);
+          const b = parseInt(colors.accent.slice(5,7), 16);
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(${r},${g},${b},${(1 - dist / 120) * 0.08})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    animationId = requestAnimationFrame(drawCanvas);
+  }
+  drawCanvas();
+
+  // ─── SCROLL ANIMATIONS (Intersection Observer) ───
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .timeline-item').forEach(el => {
+    observer.observe(el);
+  });
+
+  // ─── NAVIGATION ───
+  const navMain = document.getElementById('navMain');
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  window.addEventListener('scroll', () => {
+    navMain.classList.toggle('scrolled', window.scrollY > 100);
+  });
+
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navLinks.classList.toggle('open');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.classList.remove('active');
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // ─── LIGHTBOX ───
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxMeta = document.getElementById('lightboxMeta');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('.img-layer.framed img');
+      lightboxImg.src = img.src;
+      lightboxTitle.textContent = item.dataset.title;
+      lightboxMeta.textContent = `${item.dataset.year} · ${item.dataset.medium}`;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  // ─── PARALLAX EFFECT ───
+  const parallaxBg = document.querySelector('.parallax-bg');
+  window.addEventListener('scroll', () => {
+    if (parallaxBg) {
+      const rect = parallaxBg.parentElement.getBoundingClientRect();
+      const scrollPercent = rect.top / window.innerHeight;
+      parallaxBg.style.transform = `translateY(${scrollPercent * 80}px)`;
+    }
+  });
+
+  // ─── MOUSE-REACTIVE GALLERY ITEMS ───
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('mousemove', (e) => {
+      const rect = item.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+      item.style.transform = `
+        translateY(-8px)
+        perspective(800px)
+        rotateY(${x * 8}deg)
+        rotateX(${-y * 8}deg)
+      `;
+    });
+
+    item.addEventListener('mouseleave', () => {
+      item.style.transform = '';
+    });
+  });
+
+  // ─── BACK TO TOP ───
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 600);
+  });
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ─── SMOOTH SCROLL for nav links ───
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        const offset = 80;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ─── SCROLL PROGRESS INDICATOR (optional visual) ───
+  const scrollProgress = document.createElement('div');
+  scrollProgress.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--c-accent);
+    z-index: 99998;
+    transition: width 0.1s linear, background 0.8s;
+    width: 0%;
+  `;
+  document.body.appendChild(scrollProgress);
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    scrollProgress.style.width = progress + '%';
+  });
+
+  // ─── TOUCH SUPPORT for mobile gallery tilt ───
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      const rect = item.getBoundingClientRect();
+      const x = (touch.clientX - rect.left) / rect.width - 0.5;
+      const y = (touch.clientY - rect.top) / rect.height - 0.5;
+      item.style.transform = `perspective(800px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+    });
+
+    item.addEventListener('touchend', () => {
+      item.style.transform = '';
+    });
+  });
+
+  // ─── MAGNIFICENT MARGINS parallax for decorative elements ───
+  const paintSplatters = document.querySelectorAll('.paint-splatter');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    paintSplatters.forEach((splatter, i) => {
+      const speed = 0.02 + (i * 0.01);
+      splatter.style.transform = `translateY(${scrollY * speed}px)`;
+    });
+  });
+
+  // ─── HERO PARALLAX ON SCROLL ───
+  const heroContent = document.querySelector('.hero-content');
+  window.addEventListener('scroll', () => {
+    if (heroContent) {
+      const scrollY = window.scrollY;
+      const heroHeight = document.querySelector('.hero').offsetHeight;
+      if (scrollY < heroHeight) {
+        heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
+        heroContent.style.opacity = 1 - (scrollY / heroHeight) * 1.5;
+      }
+    }
+  });
+
+  // ─── DYNAMIC PAINT TEXTURE on theme change ───
+  const originalSetAttribute = html.setAttribute.bind(html);
+  html.setAttribute = function(attr, value) {
+    originalSetAttribute(attr, value);
+    // Trigger particle color update
+    particles.forEach(p => {
+      p.hue = Math.random() * 60 - 30;
+    });
+  };
+
+})();
+</script>
+
+</body>
+</html>
+
