@@ -28,6 +28,9 @@ export function sorAdat(terv, adminErtekeles, ugyfelErtekeles) {
     utvonal: terv.utvonal,
     modell: terv.modell ?? "–",
     prompt: terv.prompt ?? "–",
+    // Csak a benchmarkbol beemelt terveknel van: a kliens teljes valasza a mereskor.
+    // A tobbi tervnel ures, es ilyenkor a gomb meg sem jelenik.
+    valasz: terv.valasz ?? "",
     publikus: Boolean(terv.publikus),
     enPont: enyem.pont,
     enHibajelzes: enyem.hibajelzes,
@@ -39,6 +42,63 @@ export function sorAdat(terv, adminErtekeles, ugyfelErtekeles) {
     oMegjegyzes: ove.megjegyzes ?? "",
     oValasztott: Boolean(ove.valasztott),
   };
+}
+
+/**
+ * A lenyíló doboz igazítása a látható sávhoz.
+ *
+ * A táblázat vízszintesen görgethető, a gyereksor cellája viszont a TELJES
+ * táblaszélességet kapja — a szöveg így a látótéren túl törne, és jobb oldalt
+ * levágódna. A `position: sticky` a bal szélhez ragasztja; a szélességet innen
+ * mérjük rá, mert a látható sáv szélessége CSS-ből nem ismerhető.
+ */
+function igazitLathatoSavhoz(doboz) {
+  let szulo = doboz.parentElement;
+  while (szulo && szulo !== document.body) {
+    const stilus = getComputedStyle(szulo);
+    const gorget = stilus.overflowX === "auto" || stilus.overflowX === "scroll";
+    if (gorget && szulo.clientWidth) {
+      doboz.style.width = `${Math.max(320, szulo.clientWidth - 24)}px`;
+      return;
+    }
+    szulo = szulo.parentElement;
+  }
+}
+
+/**
+ * A benchmark-kliens válasza, a tervsor alatt kinyitva.
+ *
+ * Csak az admin oldalon van rá szükség; az ügyfél katalógusa fehérlistás
+ * (`UGYFEL_FEHERLISTA`), oda a `valasz` mező eleve nem jut el.
+ */
+function valaszNyito(sorElem, valasz) {
+  const gomb = document.createElement("button");
+  gomb.type = "button";
+  gomb.className = "valasz-gomb";
+  gomb.textContent = "Válasz ▾";
+  gomb.addEventListener("click", () => {
+    const kovetkezo = sorElem.nextElementSibling;
+    if (kovetkezo && kovetkezo.classList.contains("valasz-sor")) {
+      kovetkezo.remove();
+      gomb.textContent = "Válasz ▾";
+      return;
+    }
+    const reszletSor = document.createElement("tr");
+    reszletSor.className = "valasz-sor";
+    const cella = document.createElement("td");
+    // A fejléc oszlopszámát olvassuk, nem beégetett számot.
+    cella.colSpan = sorElem.children.length;
+    const doboz = document.createElement("div");
+    doboz.className = "valasz-reszlet";
+    // textContent, nem innerHTML: a válasz a modelltől jön, nem megbízható tartalom.
+    doboz.textContent = valasz;
+    cella.append(doboz);
+    reszletSor.append(cella);
+    sorElem.after(reszletSor);
+    igazitLathatoSavhoz(doboz);
+    gomb.textContent = "Válasz ▴";
+  });
+  return gomb;
 }
 
 function keszitSor(sor, ugyfelUt, mentes) {
@@ -54,7 +114,9 @@ function keszitSor(sor, ugyfelUt, mentes) {
 
   elem.querySelector("strong").textContent = sor.cim;
   elem.querySelector("a").href = ugyfelUt + sor.utvonal;
-  elem.querySelector(".meta").textContent = `${sor.modell} · ${sor.prompt}`;
+  const meta = elem.querySelector(".meta");
+  meta.textContent = `${sor.modell} · ${sor.prompt}`;
+  if (sor.valasz) meta.append(valaszNyito(elem, sor.valasz));
 
   const pontok = elem.querySelector(".pontok");
   for (let pont = 0; pont <= 10; pont += 1) {

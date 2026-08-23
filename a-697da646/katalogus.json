@@ -2762,7 +2762,18 @@
       "ugyfel_megjelenes": "Mamma Mia Pizza",
       "letrehozva": "2026-08-22",
       "utvonal_nev": "karesz-mamma-mia-pizza-b733b0ea",
-      "tervek": [],
+      "tervek": [
+        {
+          "id": "karesz-mamma-mia-pizza/benchmark-318",
+          "cim": "Benchmark #318",
+          "keszult": "2026-08-23T10:33:46",
+          "publikus": false,
+          "rejtett": false,
+          "benchmark_id": 318,
+          "valasz": "Kész, a fájl megírva: `Start-Claude-Felho_tiszta_lappal_feladat-karesz-claude-1_1.html` (1176 sor, egyfájlos, külső függőség nélkül – csak Google Fonts).\n\n**Mi került bele**\n\n- **Fejléc**: pergamen sáv, „NÁPOLYI STÍLUSÚ” felirat, kör alakú logó, kézírásos szlogen, navigáció. Sticky, és 90 px görgetés után kompakt vízszintes sávvá húzódik össze (`.fejlec.tomor`), alatta trikolór vonal.\n- **Hero**: `assets/hero.jpg`, sötét gradiens overlay, „Vero gusto Italiano” jelvény, `tel:` gomb és Étlap gomb.\n- **Nyitvatartás-sáv**: zöld kontrasztos csík, benne élő állapotjelző. A logika a `nyitvatartas` objektumból dolgozik (hétfő/kedd `null` = zárva), és három állapotot ismer: „Most nyitva vagyunk – 22:00-ig”, „Nyitva 22:00-ig – rendelésfelvétel mára lezárult” (21:30 után), illetve „Jelenleg zárva – nyitás: ma/holnap/szerdán 11:00”. Percenként frissül, `aria-live=\"polite\"`.\n- **A mi pizzánk**: 48 órás kelesztés / prémium alapanyag / forró kemence sztori, a korlátozott kapacitás említésével, három ikonos pillérblokk (inline SVG), mellette a tésztagombócos fotó letépett szélű maszkkal.\n- **Étlap**: 7 kategóriafül (`role=\"tablist\"`, nyíl/Home/End billentyűkezeléssel), sorszámozott pizzalista, félkövér név + felső indexes allergénszámok (`title`-ben a kiírt allergénnevekkel), dőlt összetevősor, pontozott kitöltő + jobbra igazított ár. Alatta extra feltétek doboz a 150/500/1000 Ft-os kategóriákkal, és összecsukható `<details>` a 14 allergénnel.\n- **Galéria**: CSS `columns` masonry, lightbox nyilakkal, Escape-pel, fókuszcsapdával, visszatérő fókusszal a megnyitó gombra.\n- **Kiszállítás/fizetés**, **Kapcsolat** (nagy `tel:` link, cím a „Mo&Co mögött” megjegyzéssel, Google Maps iframe, Facebook-gomb), **Lábléc** a „Grazie e buon appetito!” kézírásos zárással.\n\n**Technikai**: `lang=\"hu\"`, SEO + OG meta tagek (OG kép a logó), teljes `Restaurant` JSON-LD (5 nyitvatartási nap, cím, telefon, `servesCuisine: Italian`, `priceRange: $$`), mobile-first breakpointok (600/860/1100 px), mobilon lebegő „Hívás” gomb, `prefers-reduced-motion` blokk, minden képen `loading=\"lazy\"` + leíró alt, tisztán CSS-es pergamentextúra, inline SVG ecsetvonások, `::before/::after` sarokornamentika.\n\n**Az árak frissítése**: a fájl elején lévő `ADATOK` objektumban, kommentált szerkezettel — az `ar` mező sima szám (`2490`), a formázást (`2 490 Ft`) a JS végzi.\n\nKét megjegyzés: az étvágygerjesztőknél és a köreteknél az adatblokkban nem szerepelt összetevőleírás, ezért ott csak név + darabszám + ár jelenik meg (a `leiras` mező üresen áll, bármikor kitölthető). A Google Maps iframe általános keresőlinkkel készült (`?q=Püspökladány, Rákóczi u. 5`) — ha van pontos Google Business-találatod, érdemes arra cserélni.\n",
+          "utvonal": "t/benchmark-318/index.html"
+        }
+      ],
       "rejtett_szam": 0
     },
     {

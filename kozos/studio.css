@@ -103,3 +103,22 @@ button.pont.aktiv { background: var(--kiemel); border-color: var(--kiemel); colo
 .kartya.elfogadott { border-color: var(--kiemel); box-shadow: 0 0 0 2px var(--kiemel); }
 .en-jegyzet { margin-top: .3rem; opacity: .85; }
 button.megosztas { margin: .5rem 0; padding: .4rem .8rem; cursor: pointer; }
+
+/* A benchmarkból beemelt terv mellett a kliens teljes válasza, a sor alatt kinyitva.
+   Csak az admin oldalon fordul elő: az ügyfél katalógusa fehérlistás, oda a `valasz`
+   mező el sem jut. A modell Markdownt ír, ezért a sortörések számítanak. */
+.valasz-gomb {
+  margin-left: .5rem; background: none; border: 1px solid var(--keret);
+  color: var(--szoveg); padding: .2rem .5rem; border-radius: 5px;
+  cursor: pointer; font-size: .8rem; white-space: nowrap;
+}
+.valasz-sor > td { padding: 0; }
+.valasz-reszlet {
+  position: sticky; left: 0;
+  white-space: pre-wrap; word-break: break-word;
+  max-height: 22rem; overflow-y: auto;
+  padding: .8rem 1rem; margin: .3rem 0;
+  background: var(--hatter); border: 1px solid var(--keret);
+  border-left: 3px solid var(--kiemel); border-radius: .4rem;
+  color: var(--szoveg); font-size: .9rem; line-height: 1.5;
+}
