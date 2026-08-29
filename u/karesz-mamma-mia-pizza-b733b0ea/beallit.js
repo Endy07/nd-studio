@@ -3,9 +3,9 @@ export const BEALLITAS = {
   "repo": "Endy07/nd-studio",
   "utvonalNev": "karesz-mamma-mia-pizza-b733b0ea",
   "darabok": [
-    "github_pat_11AJLO4TQ0I0F",
-    "w2ecxG4IR_Xd64Tllo8Zj45Y",
-    "c3jIsL4emkH6y9vfIPDslfXS",
-    "WVmrCNJOZYGBHmPSCl1WZ"
+    "github_pat_11AJLO4TQ0mPk",
+    "y3ZrP8RRN_LJO99RXoULM7Te",
+    "sL8vFyxMdKVgHuy46PkHepAt",
+    "BT5GbEWEU35VOmERz99Kn"
   ]
 };
