@@ -3,6 +3,97 @@
   "megjelenes": "Merényi Krisztián",
   "tervek": [
     {
+      "id": "kriszi/2026-06-30_0b2907fe",
+      "cim": "piocakezeles másolata (7)",
+      "utvonal": "t/2026-06-30_0b2907fe/index.html",
+      "keszult": "2026-06-30",
+      "tipus": null
+    },
+    {
+      "id": "kriszi/2026-06-30_0cb86c20",
+      "cim": "Start-Hermes Qwen3.6-27B-MTP-4.5bpw-pure_nommproj n_layers_nelkul_128kctx_roocode_qwenjinja_Kriszi_Pioca_roocode_skillel_1",
+      "utvonal": "t/2026-06-30_0cb86c20/index.html",
+      "keszult": "2026-06-30",
+      "tipus": null
+    },
+    {
+      "id": "kriszi/2026-06-30_178bab1b",
+      "cim": "Start-Hermes-MAX Qwen3.6-35B-A3B-UD-Q4_K_M_unslothletoltes_proggal_Kriszi_Pioca_roocode_1",
+      "utvonal": "t/2026-06-30_178bab1b/index.html",
+      "keszult": "2026-06-30",
+      "tipus": null
+    },
+    {
+      "id": "kriszi/2026-06-30_2001bbe0",
+      "cim": "Start-Hermes-MAX Qwen3.6-35B-A3B-UD-Q4_K_M_jo es gyors is_proggal_Kriszi_Pioca_roocode_1",
+      "utvonal": "t/2026-06-30_2001bbe0/index.html",
+      "keszult": "2026-06-30",
+      "tipus": null
+    },
+    {
+      "id": "kriszi/2026-06-30_26f6b3b1",
+      "cim": "Start-Hermes-MAX Qwen3.6-35B-A3B-UD-Q4_K_M_jo es gyors is_proggal_Kriszi_Pioca_1",
+      "utvonal": "t/2026-06-30_26f6b3b1/index.html",
+      "keszult": "2026-06-30",
+      "tipus": null
+    },
+    {
+      "id": "kriszi/2026-06-30_2a6e20b3",
+      "cim": "Start-Hermes qwen3.6-27b-IQ4_XS-pure_gemini_tokeletes_joeredmeny_roocode_qwenjinja_Kriszi_Pioca_roocode_skillel_1",
+      "utvonal": "t/2026-06-30_2a6e20b3/index.html",
+      "keszult": "2026-06-30",
+      "tipus": null
+    },
+    {
+      "id": "kriszi/2026-06-30_2e7faa22",
+      "cim": "piocakezeles",
+      "utvonal": "t/2026-06-30_2e7faa22/index.html",
+      "keszult": "2026-06-30",
+      "tipus": null
+    },
+    {
+      "id": "kriszi/2026-06-30_d05ef617",
+      "cim": "Start-Hermes qwen3.6-27b-IQ4_XS-pure_gemini_tokeletes_ngl99_nokvoffload_roocode_qwenjinja_Kriszi_Pioca_roocode_skillel_1",
+      "utvonal": "t/2026-06-30_d05ef617/index.html",
+      "keszult": "2026-06-30",
+      "tipus": null
+    },
+    {
+      "id": "kriszi/2026-06-30_d5dd1a5d",
+      "cim": "Start-Hermes-MAX Qwen3.6-35B-A3B-UD-Q4_K_M_unslothletoltes_proggal_roocode_qwenjinja_Kriszi_Pioca_roocode_skillekkel_kimasolva_1",
+      "utvonal": "t/2026-06-30_d5dd1a5d/index.html",
+      "keszult": "2026-06-30",
+      "tipus": null
+    },
+    {
+      "id": "kriszi/2026-06-30_eefcda8f",
+      "cim": "PIÓCA-2026-ÚJ-HONLAP",
+      "utvonal": "t/2026-06-30_eefcda8f/index.html",
+      "keszult": "2026-06-30",
+      "tipus": null
+    },
+    {
+      "id": "kriszi/2026-06-30_f50f205b",
+      "cim": "piocakezeles másolata",
+      "utvonal": "t/2026-06-30_f50f205b/index.html",
+      "keszult": "2026-06-30",
+      "tipus": null
+    },
+    {
+      "id": "kriszi/2026-06-30_f99cb712",
+      "cim": "piocakezeles_gemini",
+      "utvonal": "t/2026-06-30_f99cb712/index.html",
+      "keszult": "2026-06-30",
+      "tipus": null
+    },
+    {
+      "id": "kriszi/2026-06-30_fa37f5c5",
+      "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_jo_es_gyors_is_proggal_Feladat_Claude_Kriszi_1_1",
+      "utvonal": "t/2026-06-30_fa37f5c5/index.html",
+      "keszult": "2026-06-30",
+      "tipus": null
+    },
+    {
       "id": "kriszi/2026-07-01_00e73b92",
       "cim": "_lri_v2",
       "utvonal": "t/2026-07-01_00e73b92/index.html",

@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piócaterápia | Merényi Krisztián - Természetes Gyógyulás</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --color-primary: #2D5A3D;
+    --color-primary-light: #3A7D52;
+    --color-primary-dark: #1E3D29;
+    --color-accent: #C4956A;
+    --color-accent-light: #D4AD8A;
+    --color-accent-dark: #A67B52;
+    --color-cream: #FDF8F0;
+    --color-cream-dark: #F5EDE0;
+    --color-text: #2C2C2C;
+    --color-text-light: #5A5A5A;
+    --color-text-muted: #8A8A8A;
+    --color-white: #FFFFFF;
+    --color-warning-bg: #FFF8E1;
+    --color-warning-border: #FFB300;
+    --color-danger: #C62828;
+    --color-danger-bg: #FFEBEE;
+    --color-info-bg: #E8F5E9;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 30px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--color-text); background-color: var(--color-cream);
+    line-height: 1.7; overflow-x: hidden; -webkit-font-smoothing: antialiased;
+}
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-cream-dark); }
+::-webkit-scrollbar-thumb { background: var(--color-primary-light); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+    line-height: 1.3; color: var(--color-primary-dark);
+}
+h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; }
+h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; }
+h3 { font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 600; }
+h4 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 600; }
+p { margin-bottom: 1rem; font-size: 1.05rem; }
+a { color: var(--color-primary-light); text-decoration: none; transition: var(--transition); }
+a:hover { color: var(--color-accent); }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section-padding { padding: 100px 0; }
+.section-header { text-align: center; margin-bottom: 60px; }
+.section-header .subtitle {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+    color: var(--color-accent); font-style: italic; display: block;
+    margin-bottom: 10px; letter-spacing: 1px;
+}
+.section-header h2 { position: relative; display: inline-block; margin-bottom: 15px; }
+.section-header h2::after {
+    content: ''; display: block; width: 60px; height: 3px;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-primary-light));
+    margin: 15px auto 0; border-radius: 2px;
+}
+.section-header p { max-width: 650px; margin: 15px auto 0; color: var(--color-text-light); font-size: 1.1rem; }
+.highlight { color: var(--color-primary); font-weight: 600; }
+.accent-text { color: var(--color-accent-dark); font-weight: 600; }
+
+
+/* NAVBAR */
+.navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 15px 0; transition: var(--transition); background: transparent;
+}
+.navbar.scrolled {
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-md); padding: 10px 0;
+}
+.navbar .container { display: flex; justify-content: space-between; align-items: center; }
+.nav-logo {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Playfair Display', serif; font-size: 1.4rem;
+    font-weight: 700; color: var(--color-white); transition: var(--transition);
+}
+.navbar.scrolled .nav-logo { color: var(--color-primary-dark); }
+.nav-logo .logo-icon {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent));
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; box-shadow: 0 2px 10px rgba(45,90,61,0.3);
+}
+.nav-links { display: flex; list-style: none; gap: 8px; align-items: center; }
+.nav-links a {
+    color: rgba(255,255,255,0.9); font-size: 0.95rem; font-weight: 500;
+    padding: 8px 16px; border-radius: var(--radius-sm); transition: var(--transition);
+}
+.navbar.scrolled .nav-links a { color: var(--color-text); }
+.nav-links a:hover { color: var(--color-white); background: rgba(255,255,255,0.15); }
+.navbar.scrolled .nav-links a:hover { color: var(--color-primary); background: var(--color-cream); }
+.nav-links .nav-cta {
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+    color: var(--color-white) !important; padding: 10px 24px;
+    border-radius: var(--radius-xl); font-weight: 600;
+    box-shadow: 0 4px 15px rgba(196,149,106,0.4);
+}
+.nav-links .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(196,149,106,0.5); }
+.mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; z-index: 1001; }
+.mobile-toggle span { width: 28px; height: 2.5px; background: var(--color-white); border-radius: 2px; transition: var(--transition); }
+.navbar.scrolled .mobile-toggle span { background: var(--color-primary-dark); }
+
+
+/* HERO */
+.hero {
+    min-height: 100vh; display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #1a3a2a 0%, #2D5A3D 30%, #1E3D29 70%, #0f2618 100%);
+}
+.hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(58,125,82,0.3) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(196,149,106,0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 80%, rgba(58,125,82,0.15) 0%, transparent 50%);
+    z-index: 1;
+}
+.hero::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 200px;
+    background: linear-gradient(to top, var(--color-cream), transparent); z-index: 2;
+}
+.hero-particles { position: absolute; inset: 0; z-index: 1; overflow: hidden; }
+.particle {
+    position: absolute; border-radius: 50%; opacity: 0.15;
+    animation: float 20s infinite ease-in-out;
+}
+.particle:nth-child(1) { width: 300px; height: 300px; background: radial-gradient(circle, rgba(196,149,106,0.3), transparent); top: 10%; left: -5%; animation-delay: 0s; }
+.particle:nth-child(2) { width: 200px; height: 200px; background: radial-gradient(circle, rgba(58,125,82,0.3), transparent); top: 60%; right: -3%; animation-delay: -5s; }
+.particle:nth-child(3) { width: 150px; height: 150px; background: radial-gradient(circle, rgba(196,149,106,0.2), transparent); bottom: 20%; left: 30%; animation-delay: -10s; }
+.particle:nth-child(4) { width: 250px; height: 250px; background: radial-gradient(circle, rgba(58,125,82,0.2), transparent); top: 30%; right: 20%; animation-delay: -15s; }
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(30px, -40px) scale(1.05); }
+    50% { transform: translate(-20px, 20px) scale(0.95); }
+    75% { transform: translate(40px, 30px) scale(1.02); }
+}
+.hero .container {
+    position: relative; z-index: 3;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: center; padding-top: 80px;
+}
+.hero-content { color: var(--color-white); }
+.hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+    padding: 8px 20px; border-radius: var(--radius-xl); font-size: 0.9rem;
+    font-weight: 500; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.15);
+    animation: fadeInUp 0.8s ease-out;
+}
+.hero-badge .badge-dot {
+    width: 8px; height: 8px; background: var(--color-accent);
+    border-radius: 50%; animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+}
+.hero h1 { color: var(--color-white); margin-bottom: 20px; animation: fadeInUp 0.8s ease-out 0.2s both; }
+.hero h1 .accent {
+    background: linear-gradient(135deg, var(--color-accent-light), var(--color-accent));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-description {
+    font-size: 1.15rem; line-height: 1.8; opacity: 0.9;
+    margin-bottom: 35px; max-width: 520px; animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeInUp 0.8s ease-out 0.6s both; }
+.btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 32px; border-radius: var(--radius-xl); font-size: 1rem;
+    font-weight: 600; cursor: pointer; transition: var(--transition);
+    border: none; font-family: 'Inter', sans-serif; text-decoration: none;
+}
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+    color: var(--color-white); box-shadow: 0 4px 20px rgba(196,149,106,0.4);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(196,149,106,0.5); color: var(--color-white); }
+.btn-secondary {
+    background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+    color: var(--color-white); border: 1.5px solid rgba(255,255,255,0.25);
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); color: var(--color-white); }
+.hero-visual { display: flex; justify-content: center; align-items: center; animation: fadeInRight 1s ease-out 0.5s both; }
+.hero-card {
+    background: rgba(255,255,255,0.08); backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-lg);
+    padding: 40px; width: 100%; max-width: 420px;
+}
+.hero-card-icon {
+    width: 80px; height: 80px;
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent));
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 2.2rem; margin-bottom: 25px; box-shadow: 0 8px 30px rgba(58,125,82,0.3);
+}
+.hero-card h3 { color: var(--color-white); margin-bottom: 15px; }
+.hero-card p { color: rgba(255,255,255,0.8); font-size: 0.95rem; margin-bottom: 20px; }
+.hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.hero-stat {
+    background: rgba(255,255,255,0.06); border-radius: var(--radius-sm);
+    padding: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.08);
+}
+.hero-stat .stat-number {
+    font-family: 'Playfair Display', serif; font-size: 1.6rem;
+    font-weight: 700; color: var(--color-accent-light); display: block;
+}
+.hero-stat .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 4px; }
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+    <div class="container">
+        <a href="#hero" class="nav-logo">
+            <div class="logo-icon">🪱</div>
+            <span>Hirudo<span style="color: var(--color-accent-light);">Therapia</span></span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">Rólunk</a></li>
+            <li><a href="#indications">Javallatok</a></li>
+            <li><a href="#process">Kezelés</a></li>
+            <li><a href="#pricing">Árak</a></li>
+            <li><a href="#course">Tanfolyam</a></li>
+            <li><a href="#faq">GYIK</a></li>
+            <li><a href="#contact" class="nav-cta">Időpontkérés</a></li>
+        </ul>
+        <div class="mobile-toggle" id="mobileToggle" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+
+
+<section class="hero" id="hero">
+    <div class="hero-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Természetes gyógyulás ösi módszerekkel
+            </div>
+            <h1>Pióca<span class="accent">terápia</span><br>a természet ereje</h1>
+            <p class="hero-description">
+                Fedezze fel a piócaterápia gyógyítő erejét.
+                Merényi Krisztián szakértelme és az ösi gyógyítás bólcsessége
+                egyútt a természetes regeneráció útján.
+            </p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">📞 Időpontfoglalás</a>
+                <a href="#about" class="btn btn-secondary">Tudjon meg többet →</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-card">
+                <div class="hero-card-icon">🌿</div>
+                <h3>Holisztikus gyógyászat</h3>
+                <p>A pióca nyálában lévő biokémiai és bioaktív anyagok több mint 100 hatóanyagot tartalmaznak.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Bioaktív anyag</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-number">3000+</span>
+                        <span class="stat-label">Éves hagyomány</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Természetes</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-number">2h</span>
+                        <span class="stat-label">Kezelés ideje</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="about section-padding" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-image reveal">
+                <div class="about-image-main">
+                    <div class="img-placeholder">🪱</div>
+                </div>
+                <div class="about-floating-card">
+                    <div class="afc-icon">🎓</div>
+                    <div class="afc-text">
+                        <strong>Szakértő terapeuta</strong>
+                        <span>Merényi Krisztián</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-content reveal reveal-delay-2">
+                <div class="section-header">
+                    <span class="subtitle">Ismerje meg a módszert</span>
+                    <h2>Mi az a piócakezelés?</h2>
+                </div>
+                <p class="about-text">
+                    A <strong>piócaterápia</strong> (hirudoterápia) egy alternatív, holisztikus gyógyászati eljárás
+                    és egyben ősi kezelési módszer is, amely több ezer éves múltra tekint vissza.
+                </p>
+                <p class="about-text">
+                    A kezelés során a pióca nyálában lévő <span class="highlight">biokémiai és bioaktív anyagok</span>
+                    (például a <strong>hirudin</strong>) fejtik ki jótékony hatásukat, amelyek többek között
+                    <span class="accent-text">gyulladáscsökkentő</span>, <span class="accent-text">véralvadásgátlók</span>
+                    és <span class="accent-text">mikrokeringést javítók</span>.
+                </p>
+                <p class="about-text">
+                    Ezen felúl a pióca <strong>energetikai hatás</strong>szal is bír, segít az energetikai egyensúly
+                    helyreállításában, valaminek lazító és nyugtáto hatása van.
+                </p>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <div class="af-icon">💊</div>
+                        <span>Gyulladáscsóköntés</span>
+                    </div>
+                    <div class="about-feature">
+                        <div class="af-icon">🦸</div>
+                        <span>Véralvadásgátlás</span>
+                    </div>
+                    <div class="about-feature">
+                        <div class="af-icon">🔄</div>
+                        <span>Mikrokeringés javítás</span>
+                    </div>
+                    <div class="about-feature">
+                        <div class="af-icon">⚡</div>
+                        <span>Energetikai egyensúly</span>
+                    </div>
+                    <div class="about-feature">
+                        <div class="af-icon">🧘</div>
+                        <span>Relaxálo hatás</span>
+                    </div>
+                    <div class="about-feature">
+                        <div class="af-icon">🌱</div>
+                        <span>Természetes gyógyulás</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="indications section-padding" id="indications">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="subtitle">Mikor ajánlott a kezelés?</span>
+            <h2>Javallatok - Milyen problémákra?</h2>
+            <p>A piócakezelés a következő egészségügyi problémák során nyújthat segítséget kiegészítő vagy fenntartó kezelésként.</p>
+        </div>
+        <div class="indications-grid">
+            <div class="indication-card reveal reveal-delay-1">
+                <div class="ic-icon">🦴</div>
+                <h4>Ízületi problémák</h4>
+                <p>Ízületi fájdalmak és gyulladások gyógyítása. A pióca nyála gyulladáscsökkentő hatású, amely enyhíti az ízületterhelés okozta panaszokat.</p>
+            </div>
+            <div class="indication-card reveal reveal-delay-2">
+                <div class="ic-icon">❤️</div>
+                <h4>Szív és érrendszeri betegségek</h4>
+                <p>Keringési betegségek tüneteinek enyhítése, mikrokeringés javítása, magas vérnyomás kiegészítő kezelése. Fejzúgás, ingerlékenység és stressz enyhítése.</p>
+            </div>
+            <div class="indication-card reveal reveal-delay-3">
+                <div class="ic-icon">✨</div>
+                <h4>Bőrbetegségek</h4>
+                <p>A pióca nyálában lévő anyagok segítik a bőr regenerációját, javítják a bőr állapotát és elősegítik a gyógyulást.</p>
+            </div>
+            <div class="indication-card reveal reveal-delay-1">
+                <div class="ic-icon">🔬</div>
+                <h4>Ciszták és csomók</h4>
+                <p>Baker ciszta (térd alatt), Ganglion ciszta (pl. tenyéren). A pióca segíthet a cisztás képződmények felszívódásában.</p>
+                <div class="ic-note">
+                    ⚠️ <strong>Lipóma</strong> (jóindulatú zsírdaganat) esetén kevés a tapasztalat, és mivel daganatféle, óvatosságot igényel.
+                </div>
+            </div>
+            <div class="indication-card reveal reveal-delay-2">
+                <div class="ic-icon">👄</div>
+                <h4>Szajüregi és fülbetegségek</h4>
+                <p>Fogínygyulladás (ha nem kíséri heves gyulladás), fogínyben lévő ciszták, fülbetegségek.<br><em>Szajüregi kezelést csak nagyon tapasztalt terapeuta végezzen!</em></p>
+            </div>
+            <div class="indication-card reveal reveal-delay-3">
+                <div class="ic-icon">🦵</div>
+                <h4>Egyéb panaszok</h4>
+                <p>Pajzsmirigy problémák, lábszárfekély, lábszár ödéma és egyéb különböző egészségügyi panaszok enyhítése.</p>
+            </div>
+            <div class="indication-card reveal reveal-delay-1">
+                <div class="ic-icon">🛡️</div>
+                <h4>Daganatos betegek</h4>
+                <p>Bizonyos esetben alternatív kiegészítésként alkalmazható. <strong>Nagyon nagy felelősséget és körültekintést igényel.</strong></p>
+                <div class="ic-note">
+                    🏥 Kizárlólag orvosi felügymélet méltán és egyeztetés alapján!
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="warning-section" id="warning">
+    <div class="container">
+        <div class="warning-box reveal">
+            <div class="wb-icon">⚠️</div>
+            <div class="wb-content">
+                <h3>Ellenjavallatok - Fontos figyelmeztetés!</h3>
+                <p>
+                    A kezelés <strong>szigorú ellenjavallt</strong> abban az esetben, ha a páciens
+                    <span class="wb-highlight">véralvadásgátlót (vérhígítő)</span> szed!
+                </p>
+                <p style="margin-top: 10px;">
+                    Kezelés előtt a terapeutát <strong>kötelező</strong> tájékoztatni ménd szedett gyógyszerrel kapcsolatban!
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="process section-padding" id="process">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="subtitle">Lépésről lépésre</span>
+            <h2>A kezelés menete</h2>
+            <p>Fontos tudnivalók kezelés előtt, alatt és után a biztonságos és hatékony gyógyulás érdekében.</p>
+        </div>
+        <div class="process-timeline">
+            <div class="process-step reveal">
+                <div class="step-marker">📋</div>
+                <div class="step-content">
+                    <h4>Kezelés előtt</h4>
+                    <ul>
+                        <li>Kényelmes, <strong>sötét színű, laza ruházatban</strong> érkezzen (a vastag kötés és az esetlegesen átszivárgó vérzés miatt)</li>
+                        <li>Mellőzze az illatosított tusfürdőket, testápolókat, krémeket</li>
+                        <li><strong>Ne dohányozzon!</strong> (A dohányfüstöt a piócák nem bírják)</li>
+                        <li>Tájékoztatni kell a terapeutát, ha véroncsökkentő, béta-blokkolót vagy véralvadásgátlót szed</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="process-step reveal">
+                <div class="step-marker">🪱</div>
+                <div class="step-content">
+                    <h4>Maga a kezelés</h4>
+                    <ul>
+                        <li>Egy alkalom közelítőleg <strong>2 órát</strong> vesz igénybe</li>
+                        <li>A piócák harapása enyhe fájdalomszerű, <strong>csípés érzetű</strong></li>
+                        <li>Kezdetben kevés piócát helyeznek fel, majd a páciens reakciójától függően, egyénre szabottan növelik a számukat</li>
+                        <li>Általában <strong>10 kezelés</strong> javasolt heti rendszerességgel (egyéni eltérések lehetnek)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="process-step reveal">
+                <div class="step-marker">🩹</div>
+                <div class="step-content">
+                    <h4>Kezelés utáni teendő</h4>
+                    <ul>
+                        <li>A sebet a terapeuta vastag, nedvszívó réteggel kötözi be. Ezt <strong>24 óra</strong> eltelte után szabad levenni</li>
+                        <li>A seb akár <strong>36 órán keresztül</strong> is szivároghat, vérezehet (tartsa otthon steril mullpólyát, ragtapaszt)</li>
+                        <li><strong>Csak kivételes esetben</strong>, ha a vérezés 24 órán túl sem csillapodik, Hyperol tabletta alkalmazható</li>
+                        <li>Kezelés napján <strong>tilos</strong> mindenféle intenzív, megerőltető tevékenység végzése</li>
+                        <li><strong>Igyon sok folyadékot!</strong></li>
+                        <li><strong>Ne vakarogassa, ne piszkálja a sebet!</strong></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="process-step reveal">
+                <div class="step-marker">💧</div>
+                <div class="step-content">
+                    <h4>Utókezelés és természetes reakciók</h4>
+                    <ul>
+                        <li>Viszketés, bőrpír, fészülés vagy duzzanat esetén: <strong>jegeltés, hideg vízes borogatás</strong></li>
+                        <li>Fenistil géllel kenhető</li>
+                        <li>Erős tünetek esetén <strong>kalcium pezsgőtabletta</strong> vagy Calcimusc injekció (megivása) javasolt</li>
+                        <li>Ritkán előfordulhat láz, hidegrázás (ez általában arra utal, hogy valami betegség már lappangott a szervezetben)</li>
+                        <li>Az utóhatások a kezelés napján, másnapján, de akár egy héttel késebb is jelentkezhetnek</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="pricing section-padding" id="pricing">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="subtitle">Tájékoztatási árak</span>
+            <h2>Árak ész Szolgáltatások</h2>
+            <p>A feltúntatott árak 2022-2024 közötti forrásokra támaszkodnak - a pontos árakért vegye fel velünk a kapcsolatot!</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card reveal reveal-delay-1">
+                <div class="pc-icon">📋</div>
+                <h4>Konzultáció</h4>
+                <div class="pc-price">11 000 Ft</div>
+                <div class="pc-price-note">/ alkalom</div>
+                <ul class="pc-details">
+                    <li><span class="check">✓</span> Állapotfelméres</li>
+                    <li><span class="check">✓</span> Kezelési terv kidolgozása</li>
+                    <li><span class="check">✓</span> Személyes tanácsadás</li>
+                    <li><span class="check">✓</span> Javallatok felméresée</li>
+                </ul>
+            </div>
+            <div class="pricing-card featured reveal reveal-delay-2">
+                <div class="pc-badge">Népszerű</div>
+                <div class="pc-icon">🪱</div>
+                <h4>Pióca kezelés</h4>
+                <div class="pc-price">10 000 Ft</div>
+                <div class="pc-price-note">munkadíj / alkalom</div>
+                <ul class="pc-details">
+                    <li><span class="check">✓</span> Szakértői kezelés</li>
+                    <li><span class="check">✓</span> Egyéni piócaszám</li>
+                    <li><span class="check">✓</span> Kb. 2 öra kezelés</li>
+                    <li><span class="check">✓</span> Utókezelési tanácsadás</li>
+                    <li><span class="check">✓</span> Pióca ára: 3 000 Ft/db</li>
+                </ul>
+            </div>
+            <div class="pricing-card reveal reveal-delay-3">
+                <div class="pc-icon">📚</div>
+                <h4>Tanfolyam</h4>
+                <div class="pc-price">85 000 Ft</div>
+                <div class="pc-price-note">/ fō / 2 napos képzés</div>
+                <ul class="pc-details">
+                    <li><span class="check">✓</span> 2 napos intenzív képzés</li>
+                    <li><span class="check">✓</span> Gyakorlati fogások</li>
+                    <li><span class="check">✓</span> Otthoni alkalmazás</li>
+                    <li><span class="check">✓</span> Személyes tanácsadás</li>
+                    <li><span class="check">✓</span> Tanusítvány</li>
+                </ul>
+            </div>
+        </div>
+        <div class="pricing-disclaimer reveal">
+            <p>⚠️ A feltúntatott árak tájékoztató jellegúak (2022-2024-es forrásokra támaszkodnak). A pontos, aktuális árakért kérjük, vegye fel velünk a kapcsolatot!</p>
+        </div>
+    </div>
+</section>
+
+
+<section class="course section-padding" id="course">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="subtitle">Oktatás és képzés</span>
+            <h2>Népi Piócaterápia Tanfolyam</h2>
+            <p>Saját vagy családtagjaik kezelésére tanulja meg a piócaterápia módszerét szakértőinktől.</p>
+        </div>
+        <div class="course-wrapper">
+            <div class="course-info reveal">
+                <h3>Tanfolyam részletei</h3>
+                <p>
+                    Akik otthoni használatra szeretnék elsajátítani a módszert, rész vehetnek egy
+                    <strong>2 napos Népi Piócaterápia Tanfolyamon</strong>.
+                </p>
+                <p>
+                    A terápia otthon is végezhető, de nagy felelősséggel jár, ezért alapos felkészülés
+                    és a szabályok szigorú betartása szükséges.
+                </p>
+                <div class="course-details">
+                    <div class="course-detail-item">
+                        <div class="cdi-icon">📅</div>
+                        <div class="cdi-text">
+                            <strong>Időtartam</strong>
+                            <span>2 napos intenzív képzés</span>
+                        </div>
+                    </div>
+                    <div class="course-detail-item">
+                        <div class="cdi-icon">👥</div>
+                        <div class="cdi-text">
+                            <strong>Csoportos képzés</strong>
+                        </div>
+                    </div>
+                    <div class="course-detail-item">
+                        <div class="cdi-icon">📖</div>
+                        <div class="cdi-text">
+                            <strong>Tananyag</strong>
+                            <span>Elmélet + gyakorlati fogások</span>
+                        </div>
+                    </div>
+                    <div class="course-detail-item">
+                        <div class="cdi-icon">🎯</div>
+                        <div class="cdi-text">
+                            <strong>Célközönség</strong>
+                            <span>Önsegítés, családsegítés</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-price-box">
+                    <div class="cpb-text">
+                        <small>2026-os tanfolyam díja</small>
+                        <span class="cpb-price">85 000 Ft / fō</span>
+                    </div>
+                    <a href="#contact" class="cpb-btn">Jelentkezem →</a>
+                </div>
+            </div>
+            <div class="course-visual reveal reveal-delay-2">
+                <div class="course-image-main">📚</div>
+                <div class="course-floating-badge">
+                    <span class="cfb-number">2</span>
+                    <span class="cfb-text">napos képzés</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="faq section-padding" id="faq">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="subtitle">Gyakran Ismévelt Kérdések</span>
+            <h2>GYIK - Tudnivalók</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item reveal">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Fáj a pióca harapása?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>A piócák harapása enyhe fájdalomszerű, csípés érzetű. A többíp páciens elviselhetőnek találja, és a kezelés során relaxált állapotban van. A terapeuta a páciens reakciójától függően egyénré szabottan alkalmazzáa a kezelést.</p>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Mennyi ideig tart egy kezelés?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Egy alkalom közelítőleg <strong>2 órát</strong> vesz igénybe. Általában 10 kezelés javasolt heti rendszerességgel, de az egyéni eltérések lehetnek. A kezelések számát a páciens állapota és reakciója alapján határozzuk meg.</p>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Mennyi ideig vérezt a seb kezelés után?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>A seb akár <strong>36 órán keresztül</strong> is szivároghat, vérezehet. A terapeuta vastag, nedvszívó réteggel kötözi be a sebet, amit 24 óra eltelte után szabad levenni. Érdemes otthon steril mullpólyát és ragtapaszt tartani.</p>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Szedhetek gyógyszert a kezelés alatt?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p><strong>Véralvadásgátlót (vérhígítő) szedőknek szigorú ellenjavallt</strong> a kezelés! Emellett a terapeutát feltételen tájékoztatni kell, ha véroncsökkentő, béta-blokkolót vagy bárlyan más gyógyszert szed.</p>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Mit tegyek, ha viszket vagy duzzadt a seb?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Viszketés, bőrpír, fészülés vagy duzzanat esetén alkalmazhat <strong>jegeltést vagy hideg vízes borogatást</strong>. Fenistil géllel kenhető. Erős tünetek esetén kalcium pezsgőtabletta vagy Calcimusc injekció (megivása) javasolt. A sebet tilos vakarogtani!</p>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Mit vigyek magammal a kezelésre?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Kényelmes, <strong>sötét színú, laza ruházatot</strong> viseljen. Kerülje az illatosítt tusfürdőket, testápolókat és krémeket. Ne dóhánozzon a kezelés előtt! Fontos, hogy tájékoztassa a terapeutát ménd szedett gyógyszeréről.</p>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Mit jelent a "lappangó betegség"?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Ritkán előfordulhat láz, hidegrázás kezelés után. Ez általában arra utal, hogy valami betegség már lappangott a szervezetben. Az utóhatások a keringés és anyagcsere állapotától függően a kezelés napján, másnapján, de akár egy héttel késebb is jelentkezhetnek.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="contact section-padding" id="contact">
+    <div class="container">
+        <div class="contact-wrapper">
+            <div class="contact-info reveal">
+                <span class="subtitle" style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--color-accent); font-style: italic; display: block; margin-bottom: 10px;">Lépjen velünk kapcsolatba</span>
+                <h2>Foglaljon időpontot</h2>
+                <p>Készen áll a természetes gyógyulás útjára? Vegye fel velünk a kapcsolatot és egyeztessen időpontról!</p>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="cm-icon">📞</div>
+                        <div class="cm-text">
+                            <strong>Telefon</strong>
+                            <span>Kérjük, vegye fel a kapcsolatot</span>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="cm-icon">📧</div>
+                        <div class="cm-text">
+                            <strong>E-mail</strong>
+                            <span>Írjon nekünk bizalmasan</span>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="cm-icon">📍</div>
+                        <div class="cm-text">
+                            <strong>Helyszín</strong>
+                            <span>Amelyrol időpontkérés után tájékozódik</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-card reveal reveal-delay-2">
+                <div class="cc-icon">🪱</div>
+                <h3>Készzen ál a gyógyulásra?</h3>
+                <p>Lépjen velünk kapcsolatba és kéndje el az utat a természetes gyógyulás felé. Merényi Krisztián szakértelmével segítünk!</p>
+                <a href="tel:+36" class="btn btn-primary">📞 Időpontkérés most</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>🪱 HirudoTherapia</h3>
+                <p>
+                    A piócaterápia (hirudoterápia) ősi gyógyítási módszer, amely a természet erejét
+                    használja fel a gyógyulás támogatására. Merényi Krisztián szakértelmével
+                    segítünk a természetes regeneráció útján.
+                </p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigáció</h4>
+                <ul>
+                    <li><a href="#about">Rólunk</a></li>
+                    <li><a href="#indications">Javallatok</a></li>
+                    <li><a href="#process">Kezelés menete</a></li>
+                    <li><a href="#pricing">Árak</a></li>
+                    <li><a href="#course">Tanfolyam</a></li>
+                    <li><a href="#faq">GYIK</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Szolgáltatások</h4>
+                <ul>
+                    <li><a href="#pricing">Konzultáció</a></li>
+                    <li><a href="#pricing">Pióca kezelés</a></li>
+                    <li><a href="#course">Népi tanfolyam</a></li>
+                    <li><a href="#contact">Időpontfoglalás</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Merényi Krisztián - Piócaterápia (Hirudoterápia). Minden jog fenntartva. |
+                <a href="#hero">Vissza a tetejére ↑</a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+
+<script>
+// NAVBAR SCROLL
+const navbar = document.getElementById('navbar');
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 80);
+    backToTop.classList.toggle('visible', window.scrollY > 500);
+});
+
+// MOBILE MENU
+function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+}
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('active');
+    });
+});
+
+// FAQ
+function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isActive = item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+    if (!isActive) item.classList.add('active');
+}
+
+// SCROLL REVEAL
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+revealElements.forEach(el => revealObserver.observe(el));
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            const offset = 80;
+            const position = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: position, behavior: 'smooth' });
+        }
+    });
+});
+</script>
+</body>
+</html>

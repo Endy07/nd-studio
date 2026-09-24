@@ -1,0 +1,2029 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Merényi Krisztián - Szakmai piócaterápia (hirudoterápia) kezelések. Holisztikus gyógyítás, természetes módszerekkel.">
+    <meta name="keywords"
+        content="piócaterápia, hirudoterápia, holisztikus gyógyítás, alternatív medicina, Merényi Krisztián">
+    <meta name="author" content="Merényi Krisztián">
+    <meta property="og:title" content="Merényi Krisztián - Piócaterápia Szakember">
+    <meta property="og:description" content="Professzionális piócaterápia kezelések holisztikus megközelítéssel">
+    <meta property="og:type" content="website">
+    <title>Merényi Krisztián | Piócaterápia - Természetes Gyógyítás</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ============================================
+           CSS CUSTOM PROPERTIES - DESIGN SYSTEM
+           ============================================ */
+        :root {
+            /* Nature-inspired healing palette */
+            --color-primary: #2D6A4F;
+            --color-primary-light: #40916C;
+            --color-primary-dark: #1B4332;
+            --color-secondary: #D8F3DC;
+            --color-accent: #B7E4C7;
+            --color-gold: #C9A227;
+            --color-gold-light: #E6C54B;
+
+            /* Neutrals */
+            --color-white: #FFFFFF;
+            --color-off-white: #FAFAF5;
+            --color-cream: #FEFAE0;
+            --color-light-gray: #F5F5F0;
+            --color-gray: #6B7280;
+            --color-dark: #1A1A1A;
+
+            /* Glassmorphism */
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+            /* Typography */
+            --font-heading: 'Playfair Display', 'Cormorant Garamond', serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            --spacing-3xl: 6rem;
+
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+            --transition-slow: 400ms ease;
+
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 30px;
+            --radius-full: 9999px;
+
+            /* Z-index scale */
+            --z-dropdown: 10;
+            --z-sticky: 20;
+            --z-fixed: 30;
+            --z-modal-backdrop: 40;
+            --z-modal: 50;
+            --z-popover: 60;
+            --z-tooltip: 70;
+        }
+
+        /* ============================================
+           RESET & BASE STYLES
+           ============================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.7;
+            color: var(--color-dark);
+            background: var(--color-off-white);
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color var(--transition-base);
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        /* Focus states for accessibility */
+        :focus-visible {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 2px;
+            border-radius: var(--radius-sm);
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* ============================================
+           TYPOGRAPHY
+           ============================================ */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--color-primary-dark);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+        }
+
+        h4 {
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+        }
+
+        p {
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            color: var(--color-gray);
+            max-width: 65ch;
+        }
+
+        /* ============================================
+           UTILITY CLASSES
+           ============================================ */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .section {
+            padding: var(--spacing-3xl) 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-gold));
+            margin: var(--spacing-md) auto 0;
+            border-radius: var(--radius-full);
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: var(--z-fixed);
+            padding: var(--spacing-sm) 0;
+            transition: all var(--transition-base);
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: var(--spacing-xs) 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-white);
+            transition: color var(--transition-base);
+        }
+
+        .navbar.scrolled .logo {
+            color: var(--color-primary-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--color-white);
+            font-weight: 500;
+            position: relative;
+            padding: var(--spacing-xs) 0;
+            transition: color var(--transition-base);
+        }
+
+        .navbar.scrolled .nav-links a {
+            color: var(--color-dark);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-gold);
+            transition: width var(--transition-base);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a:focus::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: var(--color-gold);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--spacing-xs);
+            z-index: var(--z-modal);
+        }
+
+        .hamburger {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--color-white);
+            position: relative;
+            transition: background var(--transition-base);
+        }
+
+        .navbar.scrolled .hamburger {
+            background: var(--color-dark);
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            transition: transform var(--transition-base);
+        }
+
+        .hamburger::before {
+            top: -8px;
+        }
+
+        .hamburger::after {
+            bottom: -8px;
+        }
+
+        .mobile-menu-btn.active .hamburger {
+            background: transparent;
+        }
+
+        .mobile-menu-btn.active .hamburger::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .mobile-menu-btn.active .hamburger::after {
+            transform: rotate(-45deg);
+            bottom: 0;
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-primary-light) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,106.7C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--color-white);
+            position: relative;
+            z-index: 1;
+            padding: var(--spacing-xl) var(--spacing-md);
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: var(--spacing-lg);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: fadeIn 1s ease 0.2s both;
+        }
+
+        .hero h1 {
+            color: var(--color-white);
+            margin-bottom: var(--spacing-md);
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--spacing-xl);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: 0.875rem 2rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            border: 2px solid transparent;
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        .btn-primary {
+            background: var(--color-gold);
+            color: var(--color-dark);
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: var(--color-gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-white);
+            border-color: var(--color-white);
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background: var(--color-white);
+            color: var(--color-primary-dark);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: var(--spacing-xl);
+            left: 50%;
+            transform: translateX(-50%);
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--color-white);
+        }
+
+        /* ============================================
+           ABOUT SECTION
+           ============================================ */
+        .about {
+            background: var(--color-white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-2xl);
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .about-image-placeholder {
+            aspect-ratio: 4/5;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .about-content h2 {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .about-content p {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: var(--spacing-md);
+            background: var(--color-light-gray);
+            border-radius: var(--radius-md);
+        }
+
+        .stat-number {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--color-gray);
+        }
+
+        /* ============================================
+           SERVICES SECTION
+           ============================================ */
+        .services {
+            background: linear-gradient(180deg, var(--color-off-white), var(--color-light-gray));
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .service-card {
+            background: var(--color-white);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all var(--transition-base);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-gold));
+            transform: scaleX(0);
+            transition: transform var(--transition-base);
+        }
+
+        .service-card:hover::before,
+        .service-card:focus-within::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover,
+        .service-card:focus-within {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--color-secondary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .service-icon svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--color-primary);
+        }
+
+        .service-card h3 {
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.25rem;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+        }
+
+        /* ============================================
+           INDICATIONS SECTION
+           ============================================ */
+        .indications {
+            background: var(--color-white);
+        }
+
+        .indications-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .indication-item {
+            display: flex;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: var(--color-light-gray);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-base);
+        }
+
+        .indication-item:hover {
+            background: var(--color-secondary);
+            transform: translateX(5px);
+        }
+
+        .indication-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--color-primary);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .indication-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--color-white);
+        }
+
+        .indication-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .indication-text p {
+            font-size: 0.9rem;
+        }
+
+        /* ============================================
+           INFO SECTION (Before/After Care)
+           ============================================ */
+        .info-section {
+            background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+            color: var(--color-white);
+        }
+
+        .info-section .section-title {
+            color: var(--color-white);
+        }
+
+        .info-section .section-title::after {
+            background: var(--color-gold);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .info-card h3 {
+            color: var(--color-white);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .info-card h3 svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--color-gold);
+        }
+
+        .info-card ul {
+            padding-left: var(--spacing-md);
+        }
+
+        .info-card li {
+            position: relative;
+            padding-left: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .info-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6em;
+            width: 8px;
+            height: 8px;
+            background: var(--color-gold);
+            border-radius: var(--radius-full);
+        }
+
+        .warning-box {
+            background: rgba(220, 38, 38, 0.2);
+            border: 2px solid rgba(220, 38, 38, 0.5);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+            text-align: center;
+        }
+
+        .warning-box h4 {
+            color: #FCA5A5;
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-xs);
+        }
+
+        .warning-box p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* ============================================
+           PRICING SECTION
+           ============================================ */
+        .pricing {
+            background: var(--color-off-white);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-xl);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--color-white);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            position: relative;
+            transition: all var(--transition-base);
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            color: var(--color-white);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured * {
+            color: var(--color-white) !important;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-gold);
+            color: var(--color-dark);
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .pricing-card h3 {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .pricing-amount {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 700;
+            margin: var(--spacing-md) 0;
+        }
+
+        .pricing-amount span {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .pricing-features {
+            margin: var(--spacing-lg) 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: var(--spacing-xs) 0;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        .pricing-card.featured .pricing-features li::before {
+            color: var(--color-gold-light);
+        }
+
+        /* ============================================
+           COURSE SECTION
+           ============================================ */
+        .course {
+            background: var(--color-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-secondary), transparent);
+            border-radius: 50%;
+        }
+
+        .course-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-2xl);
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .course-info h2 {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .course-info p {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .course-details {
+            background: var(--color-light-gray);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .course-detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--color-secondary);
+        }
+
+        .course-detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .course-image {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .course-image-placeholder {
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        /* ============================================
+           TESTIMONIALS SECTION
+           ============================================ */
+        .testimonials {
+            background: linear-gradient(180deg, var(--color-light-gray), var(--color-off-white));
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .testimonial-card {
+            background: var(--color-white);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: var(--spacing-md);
+            left: var(--spacing-md);
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            color: var(--color-secondary);
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            margin-bottom: var(--spacing-lg);
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-full);
+            background: var(--color-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--color-dark);
+        }
+
+        .testimonial-role {
+            font-size: 0.875rem;
+            color: var(--color-gray);
+        }
+
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        .contact {
+            background: var(--color-white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-2xl);
+        }
+
+        .contact-info h3 {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .contact-item {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .contact-icon {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            background: var(--color-secondary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--color-primary);
+        }
+
+        .contact-form {
+            background: var(--color-light-gray);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 500;
+            color: var(--color-dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--color-secondary);
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color var(--transition-base);
+            background: var(--color-white);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--color-primary-dark);
+            color: var(--color-white);
+            padding: var(--spacing-2xl) 0 var(--spacing-lg);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .footer h4 {
+            color: var(--color-white);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.25rem;
+        }
+
+        .footer p,
+        .footer li {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-links li {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.875rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-base);
+        }
+
+        .social-link:hover {
+            background: var(--color-gold);
+            transform: translateY(-3px);
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--color-white);
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--color-white);
+                flex-direction: column;
+                padding: var(--spacing-2xl) var(--spacing-lg);
+                transition: right var(--transition-base);
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                color: var(--color-dark);
+                font-size: 1.125rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* ============================================
+           SCROLL TO TOP BUTTON
+           ============================================ */
+        .scroll-to-top {
+            position: fixed;
+            bottom: var(--spacing-lg);
+            right: var(--spacing-lg);
+            width: 50px;
+            height: 50px;
+            background: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-base);
+            z-index: var(--z-sticky);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .scroll-to-top svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--color-white);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Fő navigáció">
+        <div class="container">
+            <a href="#" class="logo" aria-label="Merényi Krisztián - Főoldal">MK</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">Rólam</a></li>
+                <li><a href="#services">Szolgáltatások</a></li>
+                <li><a href="#indications">Javallatok</a></li>
+                <li><a href="#pricing">Árak</a></li>
+                <li><a href="#course">Tanfolyam</a></li>
+                <li><a href="#contact">Kapcsolat</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menü megnyitása" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="hero-badge">🌿 Holisztikus Gyógyítás</span>
+            <h1>Természetes Út az Egészséghez</h1>
+            <p class="hero-subtitle">
+                Merényi Krisztián szakmai piócaterápiás kezelései segítenek megtalálni
+                a belső egyensúlyt és a tartós jólétet az ősi hirudoterápia erejével.
+            </p>
+            <div class="hero-cta">
+                <a href="#contact" class="btn btn-primary">Időpontfoglalás</a>
+                <a href="#about" class="btn btn-secondary">Tudjon meg többet</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image animate-on-scroll">
+                    <div class="about-image-placeholder">👨‍⚕️</div>
+                </div>
+                <div class="about-content animate-on-scroll">
+                    <h2>Merényi Krisztián</h2>
+                    <h3>Szakmai Hirudoterapeuta</h3>
+                    <p>
+                        Több éves tapasztalattal rendelkezem a piócaterápia területén, segítve
+                        pácienseimet a természetes gyógyulás útján. Holisztikus megközelitésem
+                        figyelembe veszi a test, lélek és energia egységét.
+                    </p>
+                    <p>
+                        Célom, hogy minden kezelés egyéni igényekre szabott legyen, maximális
+                        biztonság és hatékonyság mellett. A piócaterápia ősi tudását modern
+                        szakmai ismeretekkel ötvözöm.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Elvégzett kezelés</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">10+</span>
+                            <span class="stat-label">Év tapasztalat</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Elköteleződés</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services section" id="services">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Szolgáltatások</h2>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                    </div>
+                    <h3>Piócaterápia Kezelés</h3>
+                    <p>Személyre szabott piócakezelés egyéni igények szerint, maximális hatékonyság és biztonság
+                        mellett.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                    </div>
+                    <h3>Konzultáció</h3>
+                    <p>Részletes állapotfelmérés és egyéni kezelési terv összeállítása az Ön igényei szerint.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.253v13m0-13C10.832 4.477 9.246 3.75 8 3.75S5.168 4.477 4 6.253v13C5.168 17.477 6.754 18.25 8 18.25s2.832-.727 4-2.503m0 0c1.168 1.776 2.754 2.503 4 2.503s2.832-.727 4-2.503V6.253c-1.168 1.776-2.754 2.503-4 2.503s-2.832-.727-4-2.503z" />
+                        </svg>
+                    </div>
+                    <h3>Tanfolyam</h3>
+                    <p>2 napos népi piócaterápia tanfolyam otthoni használatra szánt ismeretek megszerzéséhez.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.865 10.29 9 11.822 5.135-1.532 9-6.231 9-11.822 0-1.042-.135-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h3>Holisztikus Megközelítés</h3>
+                    <p>A test, lélek és energia egységének figyelembevételével a teljes gyógyulás támogatása.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Indications Section -->
+    <section class="indications section" id="indications">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Mikor javasolt a piócaterápia?</h2>
+            <div class="indications-content">
+                <div class="indication-item animate-on-scroll">
+                    <div class="indication-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <div class="indication-text">
+                        <h4>Ízületi problémák</h4>
+                        <p>Ízületi fájdalmak, gyulladások enyhítése és gyógyítása</p>
+                    </div>
+                </div>
+                <div class="indication-item animate-on-scroll">
+                    <div class="indication-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                    </div>
+                    <div class="indication-text">
+                        <h4>Szív-érrendszeri betegségek</h4>
+                        <p>Keringési problémák, magas vérnyomás kiegészítő kezelése</p>
+                    </div>
+                </div>
+                <div class="indication-item animate-on-scroll">
+                    <div class="indication-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                        </svg>
+                    </div>
+                    <div class="indication-text">
+                        <h4>Bőrbetegségek</h4>
+                        <p>A bőr regenerációjának támogatása természetes úton</p>
+                    </div>
+                </div>
+                <div class="indication-item animate-on-scroll">
+                    <div class="indication-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.865 10.29 9 11.822 5.135-1.532 9-6.231 9-11.822 0-1.042-.135-2.052-.382-3.016z" />
+                    </div>
+                    <div class="indication-text">
+                        <h4>Ciszták, csomók</h4>
+                        <p>Baker ciszta, ganglion ciszta kezelése</p>
+                    </div>
+                </div>
+                <div class="indication-item animate-on-scroll">
+                    <div class="indication-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div class="indication-text">
+                        <h4>Szájüregi problémák</h4>
+                        <p>Fogínygyulladás, ciszták kezelése</p>
+                    </div>
+                </div>
+                <div class="indication-item animate-on-scroll">
+                    <div class="indication-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19.428 15.428a4 4 0 00-5.656 0l-4 4a4 4 0 01-5.656 0l-4-4a4 4 0 005.656-5.656l3.993 2.546m8 1.656l-3.993-2.546a4 4 0 00-5.656 5.656l4 4a4 4 0 005.656 0l4-4a4 4 0 000-5.656z" />
+                        </svg>
+                    </div>
+                    <div class="indication-text">
+                        <h4>Lábszár problémák</h4>
+                        <p>Lábszárfekély, ödéma kezelése</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section (Before/After Care) -->
+    <section class="info-section section" id="info">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Fontos tudnivalók</h2>
+            <div class="info-grid">
+                <div class="info-card animate-on-scroll">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Kezelés előtt
+                    </h3>
+                    <ul>
+                        <li>Kényelmes, sötét színű, laza ruházatban érkezzen</li>
+                        <li>Mellőzze az illatosított tusfürdőket, krémeket</li>
+                        <li>Ne dohányozzon a kezelés előtt</li>
+                        <li>Tájékoztassa a terapeutát szedett gyógyszereiről</li>
+                        <li>Érkezzen 15 perccel korábban a nyugodd felkészüléshez</li>
+                    </ul>
+                </div>
+                <div class="info-card animate-on-scroll">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                        A kezelés során
+                    </h3>
+                    <ul>
+                        <li>Egy kezelés kb. 2 órát vesz igénybe</li>
+                        <li>A piócák harapása enyhe csípés érzetű</li>
+                        <li>Kezdetben kevés piócát alkalmazunk</li>
+                        <li>A kezelés egyéni igényekre szabott</li>
+                        <li>Általában 10 kezelés javasolt heti rendszerességgel</li>
+                    </ul>
+                </div>
+                <div class="info-card animate-on-scroll">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Kezelés után
+                    </h3>
+                    <ul>
+                        <li>A kötés 24 óra után vehető le</li>
+                        <li>A seb 36 órán át szivároghat</li>
+                        <li>Igyon sok folyadékot!</li>
+                        <li> Kerülje a fizikai megterhelést</li>
+                        <li>Ne vakargassa a sebet!</li>
+                        <li>Viszketés esetén jegeljen vagy használjon Fenistil gél</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="warning-box animate-on-scroll">
+                <h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        style="width: 24px; height: 24px; stroke: #FCA5A5;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    Ellenjavallat
+                </h4>
+                <p><strong>Szigorúan ellenjavallt</strong>, ha véralvadásgátlót (vérhígítót) szed!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing section" id="pricing">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Árak</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card animate-on-scroll">
+                    <h3>Konzultáció</h3>
+                    <div class="pricing-amount">11.000 <span>Ft</span></div>
+                    <ul class="pricing-features">
+                        <li>Részletes állapotfelmérés</li>
+                        <li>Egyéni kezelési terv</li>
+                        <li>Egészségügyi anamnézis</li>
+                        <li>Kérdések megválaszolása</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary"
+                        style="width: 100%; justify-content: center;">Időpontfoglalás</a>
+                </div>
+                <div class="pricing-card featured animate-on-scroll">
+                    <span class="pricing-badge">Legnépszerűbb</span>
+                    <h3>Pióca kezelés</h3>
+                    <div class="pricing-amount">13.000 <span>Ft</span></div>
+                    <ul class="pricing-features">
+                        <li>Munkadíj: 10.000 Ft</li>
+                        <li>Pióca: 3.000 Ft/db</li>
+                        <li>Személyre szabott kezelés</li>
+                        <li>Kb. 2 óra időtartam</li>
+                        <li>Következő lépések tervezése</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary"
+                        style="width: 100%; justify-content: center; background: var(--color-gold); color: var(--color-dark);">Időpontfoglalás</a>
+                </div>
+                <div class="pricing-card animate-on-scroll">
+                    <h3>Kezelési kúr</h3>
+                    <div class="pricing-amount">10x</h3>
+                        <ul class="pricing-features">
+                            <li>10 kezelés heti rendszerességgel</li>
+                            <li>Egyéni követés</li>
+                            <li>Részletes jelentés</li>
+                            <li>Folyamatos támogatás</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary"
+                            style="width: 100%; justify-content: center;">Egyeztetés</a>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Course Section -->
+    <section class="course section" id="course">
+        <div class="container">
+            <div class="course-content">
+                <div class="course-info animate-on-scroll">
+                    <h2>Népi Piócaterápia Tanfolyam</h2>
+                    <p>
+                        Tanulja meg a piócaterápia alapjait, hogy saját maga vagy családtagjai
+                        kezelésére tudja alkalmazni az otthoni környezetben. A 2 napos tanfolyamon
+                        elméleti és gyakorlati ismeretekre is szert tesz.
+                    </p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <span><strong>Időtartam:</strong></span>
+                            <span>2 nap</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <span><strong>Díj:</strong></span>
+                            <span>85.000 Ft / fő</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <span><strong>Tartalom:</strong></span>
+                            <span>Elmélet + Gyakorlat</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <span><strong>Előfeltétel:</strong></span>
+                            <span>Nincs</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-primary">Jelentkezés</a>
+                </div>
+                <div class="course-image animate-on-scroll">
+                    <div class="course-image-placeholder">📚</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials section" id="testimonials">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Vélemények</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card animate-on-scroll">
+                    <p class="testimonial-text">
+                        "Krisztián professzionális hozzáállása és a kezelés hatékonysága
+                        lenyűgöző. Ízületi fájdalmaim jelentősen csökkentek a kezelések után."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">KA</div>
+                        <div>
+                            <div class="testimonial-name">Kovács Anna</div>
+                            <div class="testimonial-role">Páciens</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card animate-on-scroll">
+                    <p class="testimonial-text">
+                        "A tanfolyam után magabiztosan tudom alkalmazni a piócaterápiát
+                        családom tagjainál. Remek ismeretek, gyakorlati tanácsok!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SP</div>
+                        <div>
+                            <div class="testimonial-name">Szabó Péter</div>
+                            <div class="testimonial-role">Tanfolyam résztvevő</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card animate-on-scroll">
+                    <p class="testimonial-text">
+                        "Évek óta küzdöttem keringési problémákkal. A piócaterápia
+                        után jelentős javulást tapasztaltam. Nagyon köszönöm!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">NE</div>
+                        <div>
+                            <div class="testimonial-name">Nagy Éva</div>
+                            <div class="testimonial-role">Páciens</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Kapcsolat</h2>
+            <div class="contact-grid">
+                <div class="contact-info animate-on-scroll">
+                    <h3>Lépjen kapcsolatba velem</h3>
+                    <p style="margin-bottom: 2rem;">
+                        Kérdése van? Szívesen válaszolok és segítek megtalálni
+                        az Önnek legmegfelelőbb kezelési lehetőséget.
+                    </p>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.06l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.06-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Telefon</h4>
+                            <p>+36 30 123 4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@merenyikrisztian.hu</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Cím</h4>
+                            <p>Budapest, Magyarország</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form animate-on-scroll">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Név *</label>
+                            <input type="text" id="name" name="name" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefon</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Szolgáltatás</label>
+                            <select id="service" name="service">
+                                <option value="">Válasszon...</option>
+                                <option value="consultation">Konzultáció</option>
+                                <option value="treatment">Pióca kezelés</option>
+                                <option value="course">Tanfolyam</option>
+                                <option value="other">Egyéb</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Üzenet *</label>
+                            <textarea id="message" name="message" required aria-required="true"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            Üzenet küldése
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>Merényi Krisztián</h4>
+                    <p>Szakmai hirudoterapeuta. Természetes gyógyítás holisztikus megközelítéssel.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.665.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.687-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.687.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.687.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.687-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Gyors linkek</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">Rólam</a></li>
+                        <li><a href="#services">Szolgáltatások</a></li>
+                        <li><a href="#pricing">Árak</a></li>
+                        <li><a href="#course">Tanfolyam</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Szolgáltatások</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">Pióca kezelés</a></li>
+                        <li><a href="#services">Konzultáció</a></li>
+                        <li><a href="#course">Tanfolyam</a></li>
+                        <li><a href="#indications">Javallatok</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Nyitvatartás</h4>
+                    <ul class="footer-links">
+                        <li>Hétfő - Péntek: 9:00 - 18:00</li>
+                        <li>Szombat: 10:00 - 14:00</li>
+                        <li>Vasárnap: Zárva</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Merényi Krisztián. Minden jog fenntartva.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Vissza a tetejére">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+            mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Scroll to Top Button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Scroll Animations using Intersection Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Form submission handler
+        const contactForm = document.getElementById('contactForm');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get form data
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+
+            // Here you would normally send the data to a server
+            // For demo purposes, we'll show an alert
+            alert('Köszönöm üzenetét! Hamarosan felvesszük Önnel a kapcsolatot.');
+
+            // Reset form
+            contactForm.reset();
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading state to buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function () {
+                if (this.type === 'submit') {
+                    this.disabled = true;
+                    this.textContent = 'Küldés...';
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
