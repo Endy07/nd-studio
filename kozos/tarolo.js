@@ -102,7 +102,8 @@ export function keszitTarolo({ repo, token, fetchImpl = fetch, tarhely = localSt
         const valasz = await tavoliIr(fajlnev, adat);
         if (valasz.ok) return { mentve: true, adat };
         if (valasz.status === 409) {
-          adat = osszefesul(adat, await tavoliOlvas(fajlnev));
+          const tavoli = await tavoliOlvas(fajlnev);
+          adat = osszefesul(helyiOlvas(fajlnev), tavoli);
           helyiIr(fajlnev, adat);
           continue;
         }
@@ -114,13 +115,30 @@ export function keszitTarolo({ repo, token, fetchImpl = fetch, tarhely = localSt
     return { mentve: false, adat };
   }
 
+  /**
+   * Egy halozati kor korul zajlo olvas-modosit-ir ciklus.
+   *
+   * A kor UTAN mindig a FRISS helyi allapotot fesuljuk a tavolival, sosem a kor
+   * elott olvasott pillanatkepet. Kulonben ket atfedo mentes kozul a kesobb
+   * visszatero visszairja a sajat, INDITASKORI kepet, es a kozben mentett masik
+   * bejegyzes elveszik — hibauzenet nelkul, zold tesztek mellett.
+   *
+   * Elo probaval merve (3b, 2026-09-08): hat gyors slot-kattintasbol egy terv
+   * maradt a taroloban. `docs/tanulsagok.md` Mintazat 13.
+   *
+   * A tavoli olvasas KULON SORBAN all, es nem az osszefesul argumentumaban: a
+   * fuggveny-argumentumok balrol jobbra ertekelodnek ki, tehat egy sorba irva a
+   * `helyiOlvas()` meg az `await` ELOTT lefutna — ugyanaz a pillanatkep-hiba
+   * maradna, zold tesztek mellett. A versenyteszt fogta meg.
+   */
   async function ment(fajlnev, tervId, ertekeles) {
     let adat = helyiOlvas(fajlnev);
     adat[tervId] = { ...adat[tervId], ...ertekeles, modositva: new Date().toISOString() };
     helyiIr(fajlnev, adat);
 
     if (!shaCache.has(fajlnev)) {
-      adat = osszefesul(adat, await tavoliOlvas(fajlnev));
+      const tavoli = await tavoliOlvas(fajlnev);
+      adat = osszefesul(helyiOlvas(fajlnev), tavoli);
       helyiIr(fajlnev, adat);
     }
 
@@ -157,7 +175,8 @@ export function keszitTarolo({ repo, token, fetchImpl = fetch, tarhely = localSt
     helyiIr(fajlnev, adat);
 
     if (!shaCache.has(fajlnev)) {
-      adat = osszefesul(adat, await tavoliOlvas(fajlnev));
+      const tavoli = await tavoliOlvas(fajlnev);
+      adat = osszefesul(helyiOlvas(fajlnev), tavoli);
       helyiIr(fajlnev, adat);
     }
     return feltolt(fajlnev, adat);

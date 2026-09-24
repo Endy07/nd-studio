@@ -2761,6 +2761,9 @@
       "nev": "Karesz — Mamma Mia Pizza",
       "ugyfel_megjelenes": "Mamma Mia Pizza",
       "letrehozva": "2026-08-22",
+      "webshop": {
+        "manifest": "C:\\xampp\\htdocs\\Ugyfelek\\Karesz\\webshop-adat\\manifest.json"
+      },
       "utvonal_nev": "karesz-mamma-mia-pizza-b733b0ea",
       "tervek": [
         {
@@ -2784,6 +2787,17 @@
       "letrehozva": "2026-08-22",
       "utvonal_nev": "kriszi-4e50b0ac",
       "tervek": [
+        {
+          "cim": "_lri_v2",
+          "keszult": "2026-07-01",
+          "publikus": true,
+          "forrasok": [
+            "_lri_v2.html"
+          ],
+          "forras_hash": "00e73b921025b1df0e35d8e112a8fc6e35ef3da045e313a551378d6317720064",
+          "id": "kriszi/2026-07-01_00e73b92",
+          "utvonal": "t/2026-07-01_00e73b92/index.html"
+        },
         {
           "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_64kctx_geminiadta_Feladat_Hermes_Kriszi_1_8",
           "keszult": "2026-07-01",
@@ -2822,6 +2836,29 @@
           "forras_hash": "1898b0002bef17260800e1bcdce099fed2a17a7e4d1ec45ccb08a0ab6f8f9097",
           "id": "kriszi/2026-07-01_1898b000",
           "utvonal": "t/2026-07-01_1898b000/index.html"
+        },
+        {
+          "cim": "csatiiiiiii",
+          "keszult": "2026-07-01",
+          "publikus": true,
+          "forrasok": [
+            "csatiiiiiii.html"
+          ],
+          "forras_hash": "191f731e26389ffef00b229855bd510e710ba7c46f753fc01721a035c011fde9",
+          "id": "kriszi/2026-07-01_191f731e",
+          "utvonal": "t/2026-07-01_191f731e/index.html"
+        },
+        {
+          "cim": "Legjobb_honlap_Krisztiannak",
+          "keszult": "2026-07-01",
+          "publikus": true,
+          "forrasok": [
+            "Gemini_antigravity/Legjobb_honlap_Krisztiannak másolata.html",
+            "Gemini_antigravity/Legjobb_honlap_Krisztiannak.html"
+          ],
+          "forras_hash": "2a97787307bb0b138be9b1a705524cfb2d1595164ee708b6f86ad31e3d7e789b",
+          "id": "kriszi/2026-07-01_2a977873",
+          "utvonal": "t/2026-07-01_2a977873/index.html"
         },
         {
           "cim": "Start-Hermes_ollamamodels_Qwen3.6-27B-Q4_K_M_nommproj_n_layers_nelkul_64kctx_roocode_qwenjinja_depreservethinkingnelkul_Feladat_Hermes_Kriszi_ver2_geminis_1_2",
@@ -3030,6 +3067,18 @@
           "forras_hash": "ef671b353df91f658715d13f58bd71849e7bee3bcc5d9693c5311e945dbae972",
           "id": "kriszi/2026-07-01_ef671b35",
           "utvonal": "t/2026-07-01_ef671b35/index.html"
+        },
+        {
+          "cim": "Legjobb_honlap_Krisztiannak_2",
+          "keszult": "2026-07-01",
+          "publikus": true,
+          "forrasok": [
+            "Gemini_antigravity/Legjobb_honlap_Krisztiannak_2 másolata.html",
+            "Gemini_antigravity/Legjobb_honlap_Krisztiannak_2.html"
+          ],
+          "forras_hash": "fbf2a38c2932e6b8b13b46e4a0fcd9e430a6f5907f117edcf54dd45cd345a837",
+          "id": "kriszi/2026-07-01_fbf2a38c",
+          "utvonal": "t/2026-07-01_fbf2a38c/index.html"
         },
         {
           "cim": "Start-Hermes-MAX_Qwen3.6-35B-A3B-UD-Q4_K_M_128kctx_geminiadta_mintareap_nglnelkul_codingra_Feladat_Hermes_Kriszi_1_12",

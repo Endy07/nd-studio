@@ -99,6 +99,21 @@ button.pont.aktiv { background: var(--kiemel); border-color: var(--kiemel); colo
 .pontok { display: flex; gap: .25rem; flex-wrap: wrap; margin: .9rem 0 .4rem; }
 .valasztom { margin: .2rem 0 .6rem; padding: .35rem .7rem; background: var(--hatter); border: 1px solid var(--keret); color: var(--halvany); border-radius: 6px; cursor: pointer; }
 .valasztom.aktiv, button.elfogad.aktiv { background: var(--kiemel); border-color: var(--kiemel); color: #fff; }
+
+/* --- Szekcio- es token-slotok a terv-kartyan (3b) --- */
+.slotok { margin: .2rem 0 .7rem; }
+.slot-sugo { color: var(--halvany); font-size: .78rem; margin: 0 0 .35rem; }
+.slot-csoport { display: flex; gap: .25rem; flex-wrap: wrap; margin-bottom: .25rem; }
+.slot-csoport button.slot {
+  background: none; border: 1px solid var(--keret); color: var(--halvany);
+  padding: .22rem .5rem; border-radius: 5px; cursor: pointer; font-size: .78rem;
+}
+.slot-csoport button.slot:hover { color: var(--szoveg); }
+.slot-csoport button.slot.aktiv { background: var(--kiemel); border-color: var(--kiemel); color: #fff; }
+/* A token-slotok mas rendet allitanak, mint a szekciok — a kettot ne keverje ossze
+   a szem, akkor sem, ha a gombok egyformak. */
+.slot-csoport.token button.slot { border-style: dashed; }
+
 .admin-velemeny { margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--keret); color: var(--halvany); font-size: .9rem; }
 .kartya.elfogadott { border-color: var(--kiemel); box-shadow: 0 0 0 2px var(--kiemel); }
 .en-jegyzet { margin-top: .3rem; opacity: .85; }

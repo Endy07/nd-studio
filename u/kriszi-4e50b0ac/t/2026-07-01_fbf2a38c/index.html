@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hirudoterápia | Avantgarde</title>
+    
+    <!-- Google Fonts: Syne (Artistic/Modern) & Outfit (Clean) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #030303;
+            --text: #e0e0e0;
+            --accent: #D4AF37; /* Gold */
+            --blood: #7b1113; /* Deep Crimson */
+            --blood-glow: rgba(123, 17, 19, 0.4);
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'Outfit', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none !important; /* Custom cursor */
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background 0.3s;
+        }
+        .cursor-follower {
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background 0.3s;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .drop {
+            width: 10px; height: 10px;
+            background: var(--blood);
+            border-radius: 50%;
+            animation: drip 2s infinite ease-in;
+        }
+        @keyframes drip {
+            0% { transform: translateY(-100px) scaleY(1.5); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(100px) scaleY(1); opacity: 0; }
+        }
+        .preloader-text {
+            font-family: var(--font-display);
+            color: var(--accent);
+            margin-top: 2rem;
+            letter-spacing: 5px;
+            font-weight: 800;
+        }
+
+        /* Typography & Utility */
+        h1, h2, h3 { font-family: var(--font-display); font-weight: 800; }
+        .huge-text { font-size: clamp(4rem, 12vw, 15rem); line-height: 0.8; text-transform: uppercase; margin: 0; }
+        .gold-text { color: var(--accent); }
+        .blood-text { color: var(--blood); }
+
+        /* Fullscreen Menu */
+        .menu-btn {
+            position: fixed;
+            top: 40px; right: 40px;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            z-index: 1001;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+        .menu-btn:hover ~ .cursor { width: 0; height: 0; }
+        .menu-btn:hover ~ .cursor-follower { width: 80px; height: 80px; background: var(--accent); mix-blend-mode: difference; }
+
+        /* HERO - Image Masking */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-text-container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            mix-blend-mode: difference;
+        }
+        .hero-bg-video {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(1.2);
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            z-index: 1;
+        }
+        .hero-desc {
+            position: absolute;
+            bottom: 40px; left: 40px;
+            max-width: 300px;
+            font-size: 1.1rem;
+            z-index: 3;
+            color: #fff;
+        }
+
+        /* Sticky Split Section (Mi ez) */
+        .split-section {
+            display: flex;
+            position: relative;
+            width: 100%;
+        }
+        .split-left {
+            width: 50%;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            border-right: 1px solid rgba(255,255,255,0.05);
+        }
+        .split-left h2 {
+            font-size: 6rem;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            color: transparent;
+            -webkit-text-stroke: 1px var(--accent);
+        }
+        .split-right {
+            width: 50%;
+            padding: 10vh 5vw;
+        }
+        .reveal-text {
+            font-size: 2.5rem;
+            line-height: 1.4;
+            margin-bottom: 30vh;
+            opacity: 0.2;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Horizontal Scroll (Javallatok) */
+        .horizontal-wrapper {
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background: #0a0a0a;
+        }
+        .horizontal-container {
+            display: flex;
+            height: 100%;
+            width: max-content;
+            padding: 0 10vw;
+            align-items: center;
+        }
+        .h-title {
+            font-size: 8rem;
+            margin-right: 15vw;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+        .h-card {
+            width: 400px;
+            height: 500px;
+            margin-right: 5vw;
+            background: rgba(20,20,20,0.8);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: filter 0.3s;
+        }
+        .h-card:hover {
+            filter: drop-shadow(0 0 30px var(--blood-glow));
+        }
+        .h-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: var(--blood);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .h-card:hover::before { transform: scaleX(1); }
+        .h-icon { font-size: 3rem; color: var(--text); }
+        .h-card h3 { font-size: 2rem; margin-top: auto; margin-bottom: 1rem; }
+
+        /* Timeline SVGs */
+        .menet-section {
+            padding: 15vh 10vw;
+            background: var(--bg);
+            position: relative;
+        }
+        .path-line {
+            position: absolute;
+            left: 50vw;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: rgba(255,255,255,0.05);
+        }
+        .path-fill {
+            position: absolute;
+            left: 50vw;
+            top: 0;
+            width: 2px;
+            height: 0%;
+            background: var(--accent);
+        }
+        .step {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30vh;
+            width: 100%;
+        }
+        .step-content {
+            width: 40%;
+            font-size: 1.5rem;
+        }
+        .step-number {
+            width: 40%;
+            text-align: right;
+            font-family: var(--font-display);
+            font-size: 10rem;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.1);
+        }
+        .step:nth-child(even) { flex-direction: row-reverse; }
+        .step:nth-child(even) .step-number { text-align: left; }
+
+        /* Pricing / Course - Brutalist */
+        .pricing-section {
+            padding: 15vh 5vw;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 2rem;
+            transition: all 0.3s;
+        }
+        .price-row:hover {
+            color: var(--accent);
+            padding-left: 2rem;
+        }
+        .course-giant {
+            background: var(--accent);
+            color: var(--bg);
+            padding: 4rem;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+            overflow: hidden;
+        }
+        .course-giant h2 { font-size: 4rem; line-height: 1; margin-bottom: 2rem; }
+        .course-giant .circle-btn {
+            width: 150px; height: 150px;
+            background: var(--bg);
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-family: var(--font-display);
+            font-weight: 800;
+            text-transform: uppercase;
+            position: absolute;
+            bottom: -20px; right: -20px;
+            transition: transform 0.5s;
+        }
+        .course-giant:hover .circle-btn {
+            transform: scale(1.2);
+        }
+
+        /* Warning */
+        .warning-marquee {
+            width: 100%;
+            background: var(--blood);
+            color: #fff;
+            padding: 1.5rem 0;
+            font-family: var(--font-display);
+            font-size: 2rem;
+            text-transform: uppercase;
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        footer {
+            padding: 10vh 5vw;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="drop"></div>
+        <div class="preloader-text">MERÉNYI KRISZTIÁN</div>
+    </div>
+
+    <!-- Menu Button -->
+    <div class="menu-btn hover-target">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <img src="../../assets/hero.png" alt="Hirudo" class="hero-bg-video">
+        <div class="hero-text-container">
+            <h1 class="huge-text">Ősi<br><span class="gold-text">Erő.</span></h1>
+        </div>
+        <div class="hero-desc">
+            <p>Holisztikus egyensúly és gyógyulás a természet legősibb mikrosebészeivel.</p>
+        </div>
+    </section>
+
+    <!-- Split Section (Mi ez?) -->
+    <section class="split-section">
+        <div class="split-left">
+            <h2>HIRUDO</h2>
+        </div>
+        <div class="split-right">
+            <p class="reveal-text">A piócaterápia nem egy újkeletű hóbort. Egy több évezredes, mélyreható kezelési módszer.</p>
+            <p class="reveal-text">A titok a pióca nyálában lévő több mint 100 féle biokémiai anyagban rejlik. Természetes gyulladáscsökkentők, véralvadásgátlók.</p>
+            <p class="reveal-text">Nem csupán a fizikai testre hat. Képes feloldani a feszültséget, és helyreállítani a szervezet energetikai egyensúlyát.</p>
+        </div>
+    </section>
+
+    <!-- Horizontal Scroll (Javallatok) -->
+    <section id="javallatok-wrapper" class="horizontal-wrapper">
+        <div class="horizontal-container">
+            <h2 class="h-title">Miben<br>Segít?</h2>
+            
+            <div class="h-card hover-target">
+                <i class="fa-solid fa-bone h-icon"></i>
+                <p>Krónikus gyulladások, kopások</p>
+                <h3>Ízületi problémák</h3>
+            </div>
+            <div class="h-card hover-target">
+                <i class="fa-solid fa-heart-pulse h-icon"></i>
+                <p>Magas vérnyomás, stressz, fejzúgás</p>
+                <h3>Szív és Keringés</h3>
+            </div>
+            <div class="h-card hover-target">
+                <i class="fa-solid fa-fingerprint h-icon"></i>
+                <p>Aktív enzimek a gyors gyógyulásért</p>
+                <h3>Bőrbetegségek</h3>
+            </div>
+            <div class="h-card hover-target">
+                <i class="fa-solid fa-circle-nodes h-icon"></i>
+                <p>Baker és Ganglion ciszták felszívódása</p>
+                <h3>Ciszták, csomók</h3>
+            </div>
+            <div class="h-card hover-target">
+                <i class="fa-solid fa-tooth h-icon"></i>
+                <p>Fogínygyulladás (mesterfokú kezelés)</p>
+                <h3>Szájüreg & Fül</h3>
+            </div>
+            <div class="h-card hover-target" style="margin-right: 20vw;">
+                <i class="fa-solid fa-staff-snake h-icon"></i>
+                <p>Lábszárfekély, pajzsmirigy, ödéma</p>
+                <h3>További panaszok</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Warning Marquee -->
+    <div class="warning-marquee">
+        <div class="marquee-content">
+            SZIGORÚ ELLENJAVALLAT: VÉRALVADÁSGÁTLÓ SZEDÉSE ESETÉN A KEZELÉS TILOS! &nbsp;&nbsp;&nbsp; // &nbsp;&nbsp;&nbsp; TÁJÉKOZTASSA TERAPEUTÁJÁT A GYÓGYSZEREIRŐL! &nbsp;&nbsp;&nbsp; // &nbsp;&nbsp;&nbsp; SZIGORÚ ELLENJAVALLAT: VÉRALVADÁSGÁTLÓ SZEDÉSE ESETÉN A KEZELÉS TILOS! &nbsp;&nbsp;&nbsp; // &nbsp;&nbsp;&nbsp; TÁJÉKOZTASSA TERAPEUTÁJÁT A GYÓGYSZEREIRŐL!
+        </div>
+    </div>
+
+    <!-- Timeline -->
+    <section class="menet-section">
+        <div class="path-line"></div>
+        <div class="path-fill" id="path-fill"></div>
+
+        <div class="step">
+            <div class="step-content">
+                <h3 class="gold-text" style="font-size: 3rem; margin-bottom: 1rem;">01. Kezelés előtt</h3>
+                <p>Érkezzen kényelmes, laza, sötét ruházatban. A dohányzás és az illatosított kozmetikumok használata szigorúan kerülendő, mivel a piócák rendkívül érzékenyek.</p>
+            </div>
+            <div class="step-number">01</div>
+        </div>
+        <div class="step">
+            <div class="step-number">02</div>
+            <div class="step-content">
+                <h3 class="gold-text" style="font-size: 3rem; margin-bottom: 1rem;">02. A Kezelés</h3>
+                <p>Körülbelül 2 órát vesz igénybe. A harapás csupán egy enyhe csípés érzetét kelti. A fokozatosan felhelyezett piócák nyugtató hatása hamar érezhetővé válik. Az ideális kúra 10 alkalom.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-content">
+                <h3 class="gold-text" style="font-size: 3rem; margin-bottom: 1rem;">03. Utógondozás</h3>
+                <p>A vastag kötés 24 óráig marad! A seb szivárgása természetes méregtelenítő folyamat. Pihenés, bőséges folyadékbevitel kötelező. A seb vakarása szigorúan tilos.</p>
+            </div>
+            <div class="step-number">03</div>
+        </div>
+    </section>
+
+    <!-- Pricing & Course -->
+    <section class="pricing-section">
+        <div class="pricing-list">
+            <div class="price-row hover-target">
+                <span>Konzultáció / Állapotfelmérés</span>
+                <span class="gold-text">11.000 Ft</span>
+            </div>
+            <div class="price-row hover-target">
+                <span>Pióca Kezelés Munkadíja</span>
+                <span class="gold-text">10.000 Ft</span>
+            </div>
+            <div class="price-row hover-target">
+                <span>Orvosi Pióca (db)</span>
+                <span class="gold-text">3.000 Ft</span>
+            </div>
+        </div>
+        <div class="course-giant hover-target">
+            <h2>NÉPI PIÓCA-<br>TERÁPIA<br>TANFOLYAM</h2>
+            <p style="font-size: 1.2rem; max-width: 400px; margin-bottom: 2rem;">2 napos intenzív gyakorlati képzés otthoni használatra. Sajátítsa el az évezredes tudást felelősséggel.</p>
+            <h3 style="font-size: 3rem;">85.000 Ft</h3>
+            <div class="circle-btn">Kezdjük</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h2 class="huge-text" style="font-size: 5rem; margin-bottom: 2rem;">MERÉNYI KRISZTIÁN</h2>
+        <p style="color: var(--text); opacity: 0.5;">© 2026 Minden jog fenntartva. Az oldal információs jellegű, nem helyettesíti az orvosi diagnózist.</p>
+    </footer>
+
+    <script>
+        // Custom Cursor Logic
+        const cursor = document.querySelector('.cursor');
+        const follower = document.querySelector('.cursor-follower');
+        const hoverTargets = document.querySelectorAll('.hover-target, a');
+
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
+            gsap.to(follower, { x: e.clientX, y: e.clientY, duration: 0.3 });
+        });
+
+        hoverTargets.forEach(target => {
+            target.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(0)';
+                follower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                follower.style.background = 'var(--accent)';
+            });
+            target.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                follower.style.transform = 'translate(-50%, -50%) scale(1)';
+                follower.style.background = 'transparent';
+            });
+        });
+
+        // Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                gsap.to('.preloader', { yPercent: -100, duration: 1, ease: "power4.inOut" });
+            }, 1500);
+        });
+
+        // Lenis Smooth Scrolling
+        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Parallax
+        gsap.to(".hero-bg-video", {
+            yPercent: 30,
+            ease: "none",
+            scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
+        });
+
+        // Reveal Texts in Split Section
+        const revealTexts = document.querySelectorAll('.reveal-text');
+        revealTexts.forEach(text => {
+            gsap.to(text, {
+                opacity: 1,
+                scrollTrigger: {
+                    trigger: text,
+                    start: "top 60%",
+                    end: "top 30%",
+                    scrub: true
+                }
+            });
+        });
+
+        // Horizontal Scroll
+        const horizontalContainer = document.querySelector('.horizontal-container');
+        gsap.to(horizontalContainer, {
+            x: () => -(horizontalContainer.scrollWidth - window.innerWidth),
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#javallatok-wrapper",
+                pin: true,
+                scrub: 1,
+                end: () => "+=" + horizontalContainer.offsetWidth
+            }
+        });
+
+        // Timeline SVG Fill
+        gsap.to(".path-fill", {
+            height: "100%",
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".menet-section",
+                start: "top center",
+                end: "bottom center",
+                scrub: true
+            }
+        });
+
+        // Step numbers parallax
+        const steps = document.querySelectorAll('.step-number');
+        steps.forEach(step => {
+            gsap.to(step, {
+                y: -100,
+                scrollTrigger: { trigger: step, start: "top bottom", end: "bottom top", scrub: 1 }
+            });
+        });
+    </script>
+</body>
+</html>

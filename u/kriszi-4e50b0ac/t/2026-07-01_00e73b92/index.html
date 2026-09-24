@@ -1,0 +1,1191 @@
+﻿<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piócakezelés (Hirudoterápia) | Merényi Krisztián</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2d6a4f; --primary-dark: #1b4332; --primary-light: #52b788;
+            --accent: #d4a373; --accent-light: #e9c46a; --bg-cream: #fefae0;
+            --bg-light: #f0f7f4; --bg-white: #ffffff; --text-dark: #1a1a2e;
+            --text-medium: #4a4a5a; --text-light: #6b7280; --danger: #e63946;
+            --warning-bg: #fff8e1; --shadow-md: 0 4px 14px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.12); --shadow-xl: 0 20px 60px rgba(0,0,0,0.15);
+            --radius: 16px; --radius-sm: 10px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark); line-height: 1.7; background: var(--bg-cream);
+            overflow-x: hidden;
+        }
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(255,255,255,0.92); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(45,106,79,0.1); transition: all 0.3s ease;
+        }
+        .navbar.scrolled { box-shadow: var(--shadow-md); }
+        .nav-container {
+            max-width: 1280px; margin: 0 auto; padding: 0 2rem;
+            display: flex; align-items: center; justify-content: space-between; height: 72px;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700;
+            color: var(--primary-dark); text-decoration: none;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .nav-logo .logo-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+        }
+        .nav-links { display: flex; list-style: none; gap: 0.25rem; }
+        .nav-links a {
+            text-decoration: none; color: var(--text-medium); font-weight: 500;
+            font-size: 0.92rem; padding: 0.5rem 1rem; border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--primary); background: var(--bg-light); }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark)) !important;
+            color: white !important; padding: 0.6rem 1.4rem !important;
+            border-radius: 50px !important; font-weight: 600 !important;
+        }
+        .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(45,106,79,0.4); }
+        .hamburger {
+            display: none; flex-direction: column; gap: 5px; cursor: pointer;
+            padding: 5px; background: none; border: none;
+        }
+        .hamburger span {
+            width: 26px; height: 2.5px; background: var(--primary-dark);
+            border-radius: 2px; transition: all 0.3s ease;
+        }
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            position: relative; overflow: hidden;
+            background: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 40%, var(--primary-light) 100%);
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(82,183,136,0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(212,163,115,0.2) 0%, transparent 50%);
+        }
+        .hero-pattern {
+            position: absolute; inset: 0; opacity: 0.06;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z' fill='%23ffffff'/%3E%3C/svg%3E");
+        }
+        .hero-container {
+            max-width: 1280px; margin: 0 auto; padding: 8rem 2rem 4rem;
+            position: relative; z-index: 2;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+        }
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 800;
+            color: white; line-height: 1.15; margin-bottom: 1.5rem;
+        }
+        .hero-content h1 span {
+            display: block;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-content p {
+            font-size: 1.15rem; color: rgba(255,255,255,0.85);
+            margin-bottom: 2.5rem; max-width: 520px; line-height: 1.8;
+        }
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.9rem 2rem; border-radius: 50px; font-weight: 600;
+            font-size: 1rem; text-decoration: none; transition: all 0.3s ease;
+            cursor: pointer; border: none; font-family: inherit;
+        }
+        .btn-primary {
+            background: white; color: var(--primary-dark);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+        .btn-outline {
+            background: transparent; color: white;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7);
+        }
+        .hero-visual { display: flex; justify-content: center; align-items: center; }
+        .hero-card {
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 24px;
+            padding: 3rem; text-align: center; color: white;
+            max-width: 380px; width: 100%;
+        }
+        .hero-card-icon { font-size: 4rem; margin-bottom: 1.5rem; display: block; }
+        .hero-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1rem; }
+        .hero-card p { font-size: 0.95rem; color: rgba(255,255,255,0.75); line-height: 1.7; }
+        .hero-stats {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+            margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.15);
+        }
+        .stat-item { text-align: center; }
+        .stat-number {
+            font-family: 'Playfair Display', serif; font-size: 1.8rem;
+            font-weight: 700; color: var(--accent-light);
+        }
+        .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.65); margin-top: 0.25rem; }
+        .section { padding: 6rem 2rem; }
+        .section-container { max-width: 1280px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-badge {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: var(--bg-light); color: var(--primary);
+            padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem;
+            font-weight: 600; margin-bottom: 1rem;
+            border: 1px solid rgba(45,106,79,0.15);
+        }
+        .section-header h2 {
+            font-family: 'Playfair Display', serif; font-size: 2.8rem;
+            font-weight: 700; color: var(--text-dark); margin-bottom: 1rem;
+        }
+        .section-header p {
+            font-size: 1.1rem; color: var(--text-light);
+            max-width: 650px; margin: 0 auto;
+        }
+        .what-is { background: var(--bg-white); }
+        .what-is-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .what-is-image {
+            background: linear-gradient(135deg, var(--bg-light), #e8f5e9);
+            border-radius: 24px; padding: 3rem; display: flex;
+            align-items: center; justify-content: center; min-height: 400px;
+            position: relative; overflow: hidden;
+        }
+        .what-is-image::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(82,183,136,0.15) 0%, transparent 60%);
+        }
+        .what-is-image .big-emoji {
+            font-size: 8rem; position: relative; z-index: 1;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+        }
+        .what-is-text h3 {
+            font-family: 'Playfair Display', serif; font-size: 2rem;
+            margin-bottom: 1.5rem; color: var(--primary-dark);
+        }
+        .what-is-text p {
+            font-size: 1.05rem; color: var(--text-medium);
+            margin-bottom: 1.5rem; line-height: 1.8;
+        }
+        .benefit-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+        .benefit-tag {
+            display: inline-flex; align-items: center; gap: 0.3rem;
+            background: var(--bg-light); color: var(--primary);
+            padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.88rem;
+            font-weight: 500; border: 1px solid rgba(45,106,79,0.12);
+        }
+        .indications { background: var(--bg-cream); }
+        .indications-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+ .indication-card {
+              background: var(--bg-white);
+              border-radius: var(--radius);
+              padding: 2rem;
+              border: 1px solid rgba(0,0,0,0.06);
+              transition: all 0.3s ease;
+              position: relative;
+              overflow: hidden;
+          }
+
+          .indication-card::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              height: 4px;
+              background: linear-gradient(90deg, var(--primary),
+  var(--primary-light));
+              opacity: 0;
+              transition: opacity 0.3s ease;
+          }
+
+          .indication-card:hover {
+              transform: translateY(-4px);
+              box-shadow: var(--shadow-lg);
+          }
+
+          .indication-card:hover::before {
+              opacity: 1;
+          }
+
+          .indication-icon {
+              width: 56px;
+              height: 56px;
+              border-radius: 14px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 1.6rem;
+              margin-bottom: 1.2rem;
+          }
+
+          .indication-card:nth-child(1) .indication-icon { background: #e8f5e9; }    
+          .indication-card:nth-child(2) .indication-icon { background: #fce4ec; }    
+          .indication-card:nth-child(3) .indication-icon { background: #fff3e0; }    
+          .indication-card:nth-child(4) .indication-icon { background: #e3f2fd; }    
+          .indication-card:nth-child(5) .indication-icon { background: #f3e5f5; }    
+          .indication-card:nth-child(6) .indication-icon { background: #fff8e1; }    
+
+          .indication-card h4 {
+              font-family: 'Playfair Display', serif;
+              font-size: 1.2rem;
+              margin-bottom: 0.75rem;
+              color: var(--text-dark);
+          }
+
+          .indication-card p {
+              font-size: 0.95rem;
+              color: var(--text-medium);
+              line-height: 1.7;
+          }
+
+          .indication-note {
+              margin-top: 0.75rem;
+              padding: 0.6rem 0.9rem;
+              background: var(--warning-bg);
+              border-radius: var(--radius-sm);
+              font-size: 0.85rem;
+              color: #856404;
+              border-left: 3px solid var(--accent);
+          }
+
+          /* ===== WARNING ===== */
+          .warning-section {
+              background: linear-gradient(135deg, var(--danger), #c1121f);
+              color: white;
+              padding: 3rem 2rem;
+          }
+
+          .warning-container {
+              max-width: 1280px;
+              margin: 0 auto;
+              display: flex;
+              align-items: center;
+              gap: 2rem;
+              background: rgba(255,255,255,0.1);
+              backdrop-filter: blur(10px);
+              border: 1px solid rgba(255,255,255,0.2);
+              border-radius: var(--radius);
+              padding: 2.5rem;
+          }
+
+          .warning-icon {
+              font-size: 3.5rem;
+              flex-shrink: 0;
+          }
+
+          .warning-content h3 {
+              font-family: 'Playfair Display', serif;
+              font-size: 1.6rem;
+              margin-bottom: 0.5rem;
+          }
+
+          .warning-content p {
+              font-size: 1.05rem;
+              opacity: 0.9;
+              line-height: 1.7;
+          }
+
+          .warning-content strong {
+              color: var(--accent-light);
+          }
+
+          /* ===== BEFORE/DURING/AFTER ===== */
+          .process-section {
+              background: var(--bg-white);
+          }
+
+          .process-grid {
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 2rem;
+          }
+
+          .process-card {
+              background: var(--bg-light);
+              border-radius: var(--radius);
+              padding: 2.5rem 2rem;
+              position: relative;
+              border: 1px solid rgba(45,106,79,0.08);
+              transition: all 0.3s ease;
+          }
+
+          .process-card:hover {
+              transform: translateY(-4px);
+              box-shadow: var(--shadow-lg);
+          }
+
+          .process-step {
+              width: 48px;
+              height: 48px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, var(--primary),
+  var(--primary-light));
+              color: white;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-family: 'Playfair Display', serif;
+              font-size: 1.3rem;
+              font-weight: 700;
+              margin-bottom: 1.5rem;
+          }
+
+          .process-card h4 {
+              font-family: 'Playfair Display', serif;
+              font-size: 1.4rem;
+              margin-bottom: 1.2rem;
+              color: var(--primary-dark);
+          }
+
+          .process-list {
+              list-style: none;
+          }
+
+          .process-list li {
+              padding: 0.6rem 0;
+              font-size: 0.95rem;
+              color: var(--text-medium);
+              display: flex;
+              align-items: flex-start;
+              gap: 0.6rem;
+              line-height: 1.6;
+          }
+
+          .process-list li::before {
+              content: 'âś“';
+              color: var(--primary);
+              font-weight: 700;
+              flex-shrink: 0;
+              margin-top: 1px;
+          }
+
+          .process-list li strong {
+              color: var(--text-dark);
+          }
+
+          /* ===== PRICING ===== */
+          .pricing-section {
+              background: linear-gradient(160deg, var(--primary-dark) 0%,
+  var(--primary) 100%);
+              color: white;
+          }
+
+          .pricing-section .section-badge {
+              background: rgba(255,255,255,0.15);
+              color: white;
+              border-color: rgba(255,255,255,0.2);
+          }
+
+          .pricing-section .section-header h2 {
+              color: white;
+          }
+
+          .pricing-section .section-header p {
+              color: rgba(255,255,255,0.7);
+          }
+
+          .pricing-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 1.5rem;
+              max-width: 1100px;
+              margin: 0 auto;
+          }
+
+          .pricing-card {
+              background: rgba(255,255,255,0.1);
+              backdrop-filter: blur(20px);
+              border: 1px solid rgba(255,255,255,0.15);
+              border-radius: var(--radius);
+              padding: 2.5rem 2rem;
+              text-align: center;
+              transition: all 0.3s ease;
+          }
+
+          .pricing-card:hover {
+              transform: translateY(-6px);
+              background: rgba(255,255,255,0.15);
+              box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+          }
+
+          .pricing-card.featured {
+              background: rgba(255,255,255,0.95);
+              color: var(--text-dark);
+              transform: scale(1.05);
+              border: none;
+          }
+
+          .pricing-card.featured:hover {
+              transform: scale(1.05) translateY(-6px);
+          }
+
+          .pricing-emoji {
+              font-size: 2.5rem;
+              margin-bottom: 1rem;
+              display: block;
+          }
+
+          .pricing-card h4 {
+              font-family: 'Playfair Display', serif;
+              font-size: 1.3rem;
+              margin-bottom: 0.5rem;
+          }
+
+          .pricing-card.featured h4 {
+              color: var(--primary-dark);
+          }
+
+          .pricing-card .price {
+              font-family: 'Playfair Display', serif;
+              font-size: 2.5rem;
+              font-weight: 800;
+              margin: 1rem 0;
+          }
+
+          .pricing-card.featured .price {
+              color: var(--primary);
+          }
+
+          .pricing-card .price small {
+              font-size: 1rem;
+              font-weight: 400;
+              opacity: 0.7;
+          }
+
+          .pricing-card .price-note {
+              font-size: 0.85rem;
+              opacity: 0.6;
+              margin-top: 0.5rem;
+          }
+
+          .pricing-disclaimer {
+              text-align: center;
+              margin-top: 2.5rem;
+              font-size: 0.9rem;
+              opacity: 0.6;
+              max-width: 700px;
+              margin-left: auto;
+              margin-right: auto;
+          }
+
+          /* ===== COURSE ===== */
+          .course-section {
+              background: var(--bg-cream);
+          }
+
+          .course-card {
+              max-width: 900px;
+              margin: 0 auto;
+              background: var(--bg-white);
+              border-radius: 24px;
+              overflow: hidden;
+              box-shadow: var(--shadow-xl);
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+          }
+
+          .course-visual {
+              background: linear-gradient(135deg, var(--accent), #c9956b);
+              padding: 3rem;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              color: white;
+          }
+
+          .course-visual .course-emoji {
+              font-size: 5rem;
+              margin-bottom: 1.5rem;
+          }
+
+          .course-visual h4 {
+              font-family: 'Playfair Display', serif;
+              font-size: 1.5rem;
+              margin-bottom: 0.5rem;
+          }
+
+          .course-visual .course-duration {
+              font-size: 1rem;
+              opacity: 0.85;
+          }
+
+          .course-info {
+              padding: 3rem;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+          }
+
+          .course-info h3 {
+              font-family: 'Playfair Display', serif;
+              font-size: 1.8rem;
+              color: var(--primary-dark);
+              margin-bottom: 1rem;
+          }
+
+          .course-info p {
+              color: var(--text-medium);
+              margin-bottom: 1.5rem;
+              line-height: 1.8;
+          }
+
+          .course-price {
+              display: inline-flex;
+              align-items: center;
+              gap: 0.5rem;
+              background: var(--bg-light);
+              color: var(--primary);
+              padding: 0.75rem 1.5rem;
+              border-radius: 50px;
+              font-weight: 700;
+              font-size: 1.2rem;
+              margin-bottom: 1.5rem;
+              border: 1px solid rgba(45,106,79,0.15);
+          }
+
+          .course-features {
+              list-style: none;
+          }
+
+          .course-features li {
+              padding: 0.4rem 0;
+              font-size: 0.95rem;
+              color: var(--text-medium);
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+          }
+
+          .course-features li::before {
+              content: 'đź“Ś';
+              font-size: 0.85rem;
+          }
+
+          /* ===== FOOTER ===== */
+          .footer {
+              background: var(--primary-dark);
+              color: white;
+              padding: 4rem 2rem 2rem;
+          }
+
+          .footer-container {
+              max-width: 1280px;
+              margin: 0 auto;
+          }
+
+          .footer-grid {
+              display: grid;
+              grid-template-columns: 2fr 1fr 1fr;
+              gap: 3rem;
+              margin-bottom: 3rem;
+          }
+
+          .footer-brand h3 {
+              font-family: 'Playfair Display', serif;
+              font-size: 1.5rem;
+              margin-bottom: 1rem;
+          }
+
+          .footer-brand p {
+              color: rgba(255,255,255,0.6);
+              font-size: 0.95rem;
+              line-height: 1.7;
+          }
+
+          .footer h4 {
+              font-family: 'Playfair Display', serif;
+              font-size: 1.1rem;
+              margin-bottom: 1rem;
+              color: var(--accent-light);
+          }
+
+          .footer-links {
+              list-style: none;
+          }
+
+          .footer-links li {
+              margin-bottom: 0.5rem;
+          }
+
+          .footer-links a {
+              color: rgba(255,255,255,0.6);
+              text-decoration: none;
+              font-size: 0.92rem;
+              transition: color 0.2s ease;
+          }
+
+          .footer-links a:hover {
+              color: white;
+          }
+
+          .footer-bottom {
+              border-top: 1px solid rgba(255,255,255,0.1);
+              padding-top: 2rem;
+              text-align: center;
+              color: rgba(255,255,255,0.4);
+              font-size: 0.88rem;
+          }
+
+          /* ===== RESPONSIVE ===== */
+          @media (max-width: 1024px) {
+              .hero-container {
+                  grid-template-columns: 1fr;
+                  text-align: center;
+              }
+
+              .hero-content p {
+                  margin-left: auto;
+                  margin-right: auto;
+              }
+
+              .hero-buttons {
+                  justify-content: center;
+              }
+
+              .hero-visual {
+                  display: none;
+              }
+
+              .what-is-grid {
+                  grid-template-columns: 1fr;
+              }
+
+              .process-grid {
+                  grid-template-columns: 1fr;
+              }
+
+              .course-card {
+                  grid-template-columns: 1fr;
+              }
+
+              .footer-grid {
+                  grid-template-columns: 1fr;
+              }
+          }
+
+          @media (max-width: 768px) {
+              .nav-links {
+                  display: none;
+                  position: absolute;
+                  top: 72px;
+                  left: 0;
+                  right: 0;
+                  background: white;
+                  flex-direction: column;
+                  padding: 1rem;
+                  box-shadow: var(--shadow-lg);
+                  border-radius: 0 0 16px 16px;
+              }
+
+              .nav-links.active {
+                  display: flex;
+              }
+
+              .hamburger {
+                  display: flex;
+              }
+
+              .hero-content h1 {
+                  font-size: 2.5rem;
+              }
+
+              .section-header h2 {
+                  font-size: 2rem;
+              }
+
+              .indications-grid {
+                  grid-template-columns: 1fr;
+              }
+
+              .warning-container {
+                  flex-direction: column;
+                  text-align: center;
+              }
+
+              .pricing-grid {
+                  grid-template-columns: 1fr;
+              }
+
+              .pricing-card.featured {
+                  transform: none;
+              }
+
+              .pricing-card.featured:hover {
+                  transform: translateY(-6px);
+              }
+          }
+
+          /* ===== ANIMATIONS ===== */
+          .fade-in {
+              opacity: 0;
+              transform: translateY(30px);
+              transition: opacity 0.6s ease, transform 0.6s ease;
+          }
+
+          .fade-in.visible {
+              opacity: 1;
+              transform: translateY(0);
+          }
+
+          /* ===== SCROLL TO TOP ===== */
+          .scroll-top {
+              position: fixed;
+              bottom: 2rem;
+              right: 2rem;
+              width: 48px;
+              height: 48px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, var(--primary),
+  var(--primary-dark));
+              color: white;
+              border: none;
+              cursor: pointer;
+              font-size: 1.3rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              box-shadow: var(--shadow-md);
+              opacity: 0;
+              transform: translateY(20px);
+              transition: all 0.3s ease;
+              z-index: 999;
+          }
+
+          .scroll-top.visible {
+              opacity: 1;
+              transform: translateY(0);
+          }
+
+          .scroll-top:hover {
+              transform: translateY(-3px);
+              box-shadow: var(--shadow-lg);
+          }
+      </style>
+  </head>
+  <body>
+
+      <!-- NAVIGATION -->
+      <nav class="navbar" id="navbar">
+          <div class="nav-container">
+              <a href="#" class="nav-logo">
+                  <span class="logo-icon">đźŞ± </span>
+                  MerĂ©nyi KrisztiĂˇn
+              </a>
+              <ul class="nav-links" id="navLinks">
+                  <li><a href="#mi-az">Mi az?</a></li>
+                  <li><a href="#javallatok">Javallatok</a></li>
+                  <li><a href="#tudnivalok">TudnivalĂłk</a></li>
+                  <li><a href="#arak">Ărak</a></li>
+                  <li><a href="#tanfolyam">Tanfolyam</a></li>
+                  <li><a href="#kapcsolat" class="nav-cta">Kapcsolat</a></li>        
+              </ul>
+              <button class="hamburger" id="hamburger" onclick="toggleMenu()">       
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </button>
+          </div>
+      </nav>
+
+      <!-- HERO -->
+      <section class="hero" id="hero">
+          <div class="hero-pattern"></div>
+          <div class="hero-container">
+              <div class="hero-content">
+                  <h1>
+                      PiĂłcakezelĂ©s
+                      <span>HirudoterĂˇpia</span>
+                  </h1>
+                  <p>
+                      Ĺsi gyĂłgyĂˇszati mĂłdszer, amely a piĂłca nyĂˇlĂˇban lĂ©vĹ‘ biokĂ©miai 
+  Ă©s bioaktĂ­v anyagok
+                      jĂłtĂ©kony hatĂˇsĂˇt hasznĂˇlja fel a szervezet regenerĂˇlĂłdĂˇsĂˇnak   
+  tĂˇmogatĂˇsĂˇra.
+                  </p>
+                  <div class="hero-buttons">
+                      <a href="#kapcsolat" class="btn btn-primary">đź“ž FoglalĂˇs</a>   
+                      <a href="#mi-az" class="btn btn-outline">Tudjon meg tĂ¶bbet     
+  â†’</a>
+                  </div>
+              </div>
+              <div class="hero-visual">
+                  <div class="hero-card">
+                      <span class="hero-card-icon">đźŚż</span>
+                      <h3>Holistikus GyĂłgyĂ­tĂˇs</h3>
+                      <p>Az Ĺ‘si tudomĂˇny Ă©s a modern gyĂłgyĂˇszat Ă¶sszhangja a
+  termĂ©szetes gyĂłgyulĂˇsĂ©rt.</p>
+                      <div class="hero-stats">
+                          <div class="stat-item">
+                              <div class="stat-number">10+</div>
+                              <div class="stat-label">KezelĂ©s / ciklus</div>
+                          </div>
+                          <div class="stat-item">
+                              <div class="stat-number">2h</div>
+                              <div class="stat-label">KezelĂ©s idĹ‘tartama</div>       
+                          </div>
+                          <div class="stat-item">
+                              <div class="stat-number">100%</div>
+                              <div class="stat-label">TermĂ©szetes</div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- MI AZ A PIĂ“CAKEZELĂ‰S -->
+      <section class="section what-is" id="mi-az">
+          <div class="section-container">
+              <div class="section-header fade-in">
+                  <span class="section-badge">đźŚ± Alapok</span>
+                  <h2>Mi az a piĂłcakezelĂ©s?</h2>
+                  <p>A hirudoterĂˇpia egy alternatĂ­v, holisztikus gyĂłgyĂˇszati eljĂˇrĂˇs 
+  Ă©s egyben Ĺ‘si kezelĂ©si mĂłdszer is.</p>
+              </div>
+              <div class="what-is-grid">
+                  <div class="what-is-image fade-in">
+                      <span class="big-emoji">đźŞ± </span>
+                  </div>
+                  <div class="what-is-text fade-in">
+                      <h3>A termĂ©szet gyĂłgyĂ­tĂł ereje</h3>
+                      <p>
+                          A kezelĂ©s sorĂˇn a piĂłca nyĂˇlĂˇban lĂ©vĹ‘ biokĂ©miai Ă©s bioaktĂ­v  anyagok (pĂ©ldĂˇul a
+                          <strong>hirudin</strong>) fejtik ki jĂłtĂ©kony hatĂˇsukat.    
+  Ezek az anyagok tĂ¶bbek kĂ¶zĂ¶tt
+                          gyulladĂˇscsĂ¶kkentĹ‘k, vĂ©ralvadĂˇsgĂˇtlĂłk Ă©s mikrokeringĂ©st    
+  javĂ­tĂłk.
+                      </p>
+                      <p>
+                          Ezen felĂĽl a piĂłca <strong>energetikai hatĂˇssal</strong> is  bĂ­r, segĂ­t az energetikai
+                          egyensĂşly helyreĂˇllĂ­tĂˇsĂˇban, valamint lazĂ­tĂł Ă©s nyugtatĂł   
+  hatĂˇsa van.
+                      </p>
+                      <div class="benefit-tags">
+                          <span class="benefit-tag">đź”¬ GyulladĂˇscsĂ¶kkentĹ‘</span>     
+                          <span class="benefit-tag">đź©¸  VĂ©ralvadĂˇsgĂˇtlĂł</span>        
+                          <span class="benefit-tag">đź’š MikrokeringĂ©s-javĂ­tĂł</span>   
+                          <span class="benefit-tag">âšˇ  Energetikai egyensĂşly</span>  
+                          <span class="benefit-tag">đź§ NyugtatĂł hatĂˇs</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- JAVALLATOK -->
+      <section class="section indications" id="javallatok">
+          <div class="section-container">
+              <div class="section-header fade-in">
+                  <span class="section-badge">đź’ˇ AlkalmazĂˇsi terĂĽletek</span>        
+                  <h2>Milyen problĂ©mĂˇk esetĂ©n segĂ­t?</h2>
+                  <p>A piĂłcakezelĂ©s kiegĂ©szĂ­tĹ‘ vagy fenntartĂł kezelĂ©skĂ©nt szĂˇmos     
+  problĂ©ma esetĂ©n nyĂşjthat segĂ­tsĂ©get.</p>
+              </div>
+              <div class="indications-grid">
+                  <div class="indication-card fade-in">
+                      <div class="indication-icon">đź¦´</div>
+                      <h4>ĂŤzĂĽleti problĂ©mĂˇk</h4>
+                      <p>ĂŤzĂĽleti fĂˇjdalmak, gyulladĂˇsok gyĂłgyĂ­tĂˇsa Ă©s enyhĂ­tĂ©se.</p> 
+                  </div>
+                  <div class="indication-card fade-in">
+                      <div class="indication-icon">âť¤ď¸Ź</div>
+                      <h4>SzĂ­v- Ă©s Ă©rrendszeri betegsĂ©gek</h4>
+                      <p>KeringĂ©si betegsĂ©gek tĂĽneteinek enyhĂ­tĂ©se, mikrokeringĂ©s    
+  javĂ­tĂˇsa, magas vĂ©rnyomĂˇs kiegĂ©szĂ­tĹ‘ kezelĂ©se â€“ fejzĂşgĂˇs, ingerlĂ©kenysĂ©g, stressz  
+  enyhĂ­tĂ©se.</p>
+                  </div>
+                  <div class="indication-card fade-in">
+                      <div class="indication-icon">âś¨</div>
+                      <h4>BĹ‘rbetegsĂ©gek</h4>
+                      <p>A piĂłca nyĂˇlĂˇban lĂ©vĹ‘ anyagok segĂ­tik a bĹ‘r regenerĂˇciĂłjĂˇt  
+  Ă©s egĂ©szsĂ©gĂ©nek helyreĂˇllĂ­tĂˇsĂˇt.</p>
+                  </div>
+                  <div class="indication-card fade-in">
+                      <div class="indication-icon">đź”¬</div>
+                      <h4>CisztĂˇk, csomĂłk</h4>
+                      <p>Baker ciszta (tĂ©rd alatt), Ganglion ciszta (pl.
+  tenyĂ©ren).</p>
+                      <div class="indication-note">
+                          âš ď¸Ź LipĂłma (jĂłindulatĂş zsĂ­rdaganat) esetĂ©n kevĂ©s a
+  tapasztalat, ĂłvatossĂˇgot igĂ©nyel.
+                      </div>
+                  </div>
+                  <div class="indication-card fade-in">
+                      <div class="indication-icon">đź‘„</div>
+                      <h4>SzĂˇjĂĽregi Ă©s fĂĽlbetegsĂ©gek</h4>
+                      <p>FogĂ­nygyulladĂˇs, fogĂ­nyben lĂ©vĹ‘ cisztĂˇk, fĂĽlbetegsĂ©gek.     
+  <em>SzĂˇjĂĽregi kezelĂ©st csak nagyon tapasztalt terapeuta vĂ©gezzen!</em></p>
+                  </div>
+                  <div class="indication-card fade-in">
+                      <div class="indication-icon">đźŚź</div>
+                      <h4>EgyĂ©b panaszok</h4>
+                      <p>Pajzsmirigy problĂ©mĂˇk, lĂˇbszĂˇrfekĂ©ly, lĂˇbszĂˇr Ă¶dĂ©ma,        
+  valamint bizonyos esetekben daganatos betegek kiegĂ©szĂ­tĹ‘ kezelĂ©se.</p>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- WARNING -->
+      <section class="warning-section">
+          <div class="warning-container fade-in">
+              <span class="warning-icon">âš ď¸Ź</span>
+              <div class="warning-content">
+                  <h3>SzigorĂş ellenjavallat!</h3>
+                  <p>
+                      A piĂłcakezelĂ©s <strong>szigorĂşan ellenjavallt</strong> abban az  esetben, ha a pĂˇciens
+                      <strong>vĂ©ralvadĂˇsgĂˇtlĂłt (vĂ©rhĂ­gĂ­tĂłt)</strong> szed! KĂ©rjĂĽk,   
+  mindenkĂ©ppen tĂˇjĂ©koztassa
+                      terapeutĂˇjĂˇt a szedett gyĂłgyszerekrĹ‘l!
+                  </p>
+              </div>
+          </div>
+      </section>
+
+      <!-- TUDNIVALĂ“K -->
+      <section class="section process-section" id="tudnivalok">
+          <div class="section-container">
+              <div class="section-header fade-in">
+                  <span class="section-badge">đź“‹ Fontos tudnivalĂłk</span>
+                  <h2>KezelĂ©s elĹ‘tt, alatt Ă©s utĂˇn</h2>
+                  <p>Az alĂˇbbi szabĂˇlyok betartĂˇsa elengedhetetlen a biztonsĂˇgos Ă©s  
+  hatĂ©kony kezelĂ©s Ă©rdekĂ©ben.</p>
+              </div>
+              <div class="process-grid">
+                  <!-- BEFORE -->
+                  <div class="process-card fade-in">
+                      <div class="process-step">1</div>
+                      <h4>đź”Ť KezelĂ©s elĹ‘tt</h4>
+                      <ul class="process-list">
+                          <li>KĂ©nyelmes, <strong>sĂ¶tĂ©t szĂ­nĹ±, laza
+  ruhĂˇzatban</strong> Ă©rkezzen (a vastag kĂ¶tĂ©s Ă©s az esetlegesen ĂˇtszivĂˇrgĂł vĂ©rzĂ©s   
+  miatt).</li>
+                          <li>MellĹ‘zze az illatosĂ­tott tusfĂĽrdĹ‘ket, testĂˇpolĂłkat,    
+  krĂ©meket.</li>
+                          <li><strong>Ne dohĂˇnyozzon!</strong> (A dohĂˇnyfĂĽstĂ¶t a     
+  piĂłcĂˇk nem bĂ­rjĂˇk).</li>
+                          <li>TĂˇjĂ©koztatni kell a terapeutĂˇt, ha
+  <strong>vĂ©rnyomĂˇscsĂ¶kkentĹ‘t, bĂ©tablokkolĂłt vagy vĂ©ralvadĂˇsgĂˇtlĂłt</strong>
+  szed.</li>
+                      </ul>
+                  </div>
+                  <!-- DURING -->
+                  <div class="process-card fade-in">
+                      <div class="process-step">2</div>
+                      <h4>đźŞ±  Maga a kezelĂ©s</h4>
+                      <ul class="process-list">
+                          <li>Egy alkalom kĂ¶rĂĽlbelĂĽl <strong>2 ĂłrĂˇt</strong> vesz    
+  igĂ©nybe.</li>
+                          <li>A piĂłcĂˇk harapĂˇsa enyhe fĂˇjdalomszerĹ±, <strong>csĂ­pĂ©s  
+  Ă©rzetĹ±</strong>.</li>
+                          <li>Kezdetben kevĂ©s piĂłcĂˇt helyeznek fel, majd a pĂˇciens   
+  reakciĂłjĂˇtĂłl fĂĽggĹ‘en egyĂ©nre szabottan nĂ¶velik a szĂˇmukat.</li>
+                          <li>ĂltalĂˇban <strong>10 kezelĂ©s</strong> javasolt heti    
+  rendszeressĂ©ggel (egyĂ©ni eltĂ©rĂ©sek lehetnek).</li>
+                      </ul>
+                  </div>
+                  <!-- AFTER -->
+                  <div class="process-card fade-in">
+                      <div class="process-step">3</div>
+                      <h4>đź©ą  KezelĂ©s utĂˇn</h4>
+                      <ul class="process-list">
+                          <li>A kĂ¶tszert <strong>24 Ăłra</strong> eltelte utĂˇn szabad 
+  levenni.</li>
+                          <li>A seb akĂˇr <strong>36 ĂłrĂˇn keresztĂĽl</strong> is       
+  szivĂˇroghat, vĂ©rezhet.</li>
+                          <li><strong>Tilos</strong> intenzĂ­v tevĂ©kenysĂ©g,
+  autĂłvezetĂ©s, hosszĂş gyaloglĂˇs.</li>
+                          <li><strong>Igyon sok folyadĂ©kot!</strong></li>
+                          <li>A sebet <strong>tilos vakargatni,
+  piszkĂˇlni!</strong></li>
+                          <li>ViszketĂ©s, bĹ‘rpĂ­r esetĂ©n: jegelĂ©s, hideg borogatĂˇs,    
+  Fenistil gĂ©l, kalcium pezsgĹ‘tabletta.</li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- ĂRAK -->
+      <section class="section pricing-section" id="arak">
+          <div class="section-container">
+              <div class="section-header fade-in">
+                  <span class="section-badge">đź’° Ărak</span>
+                  <h2>SzolgĂˇltatĂˇsok Ă©s Ărak</h2>
+                  <p>TĂˇjĂ©koztatĂł jellegĹ± Ăˇrak â€“ a pontos dĂ­jakrĂłl egyeztessen        
+  velĂĽnk.</p>
+              </div>
+              <div class="pricing-grid">
+                  <div class="pricing-card fade-in">
+                      <span class="pricing-emoji">đź“‹</span>
+                      <h4>KonzultĂˇciĂł</h4>
+                      <div class="price">11.000 <small>Ft</small></div>
+                      <p class="price-note">/ ĂˇllapotfelmĂ©rĂ©s</p>
+                  </div>
+                  <div class="pricing-card featured fade-in">
+                      <span class="pricing-emoji">đźŞ± </span>
+                      <h4>PiĂłca kezelĂ©s</h4>
+                      <div class="price">13.000 <small>Ft</small></div>
+                      <p class="price-note">/ alkalom (munkadĂ­j + piĂłca)</p>
+                      <p class="price-note">MunkadĂ­j: 10.000 Ft + PiĂłca: 3.000       
+  Ft/db</p>
+                  </div>
+                  <div class="pricing-card fade-in">
+                      <span class="pricing-emoji">đźŽ“</span>
+                      <h4>Tanfolyam</h4>
+                      <div class="price">85.000 <small>Ft</small></div>
+                      <p class="price-note">/ fĹ‘, 2 napos kĂ©pzĂ©s</p>
+                  </div>
+              </div>
+              <p class="pricing-disclaimer">
+                  * A feltĂĽntetett Ăˇrak tĂˇjĂ©koztatĂł jellegĹ±ek. A pontos ĂˇrakrĂłl Ă©s   
+  elĂ©rhetĹ‘sĂ©grĹ‘l
+                  kĂ©rjĂĽk, vegye fel velĂĽnk a kapcsolatot.
+              </p>
+          </div>
+      </section>
+
+      <!-- TANFOLYAM -->
+      <section class="section course-section" id="tanfolyam">
+          <div class="section-container">
+              <div class="section-header fade-in">
+                  <span class="section-badge">đźŽ“ OktatĂˇs</span>
+                  <h2>NĂ©pi PiĂłcaterĂˇpia Tanfolyam</h2>
+                  <p>SajĂˇt vagy csalĂˇdtagjaik kezelĂ©sĂ©re tanulja meg a mĂłdszert      
+  alapos felkĂ©szĂĽlĂ©ssel.</p>
+              </div>
+              <div class="course-card fade-in">
+                  <div class="course-visual">
+                      <span class="course-emoji">đź“š</span>
+                      <h4>2 napos kĂ©pzĂ©s</h4>
+                      <span class="course-duration">Gyakorlati + ElmĂ©leti
+  oktatĂˇs</span>
+                  </div>
+                  <div class="course-info">
+                      <h3>SajĂˇt otthoni kezelĂ©s</h3>
+                      <p>
+                          Akik otthoni hasznĂˇlatra szeretnĂ©k elsajĂˇtĂ­tani a mĂłdszert,  rĂ©szt vehetnek
+                          egy 2 napos NĂ©pi PiĂłcaterĂˇpia Tanfolyamon. A terĂˇpia otthon  is vĂ©gezhetĹ‘,
+                          de nagy felelĹ‘ssĂ©ggel jĂˇr.
+                      </p>
+                      <div class="course-price">
+                          đź’° 85.000 Ft / fĹ‘
+                      </div>
+                      <ul class="course-features">
+                          <li>Alapos felkĂ©szĂĽlĂ©s a terĂˇpiĂˇra</li>
+                          <li>A szabĂˇlyok szigorĂş betartĂˇsa</li>
+                          <li>Gyakorlati ĂştmutatĂˇs</li>
+                          <li>SajĂˇt Ă©s csalĂˇdtagjaik kezelĂ©se</li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- FOOTER / KAPCSOLAT -->
+      <footer class="footer" id="kapcsolat">
+          <div class="footer-container">
+              <div class="footer-grid">
+                  <div class="footer-brand">
+                      <h3>đźŞ±  MerĂ©nyi KrisztiĂˇn</h3>
+                      <p>
+                          PiĂłcakezelĂ©s (hirudoterĂˇpia) â€“ az Ĺ‘si gyĂłgyĂ­tĂˇs ereje a    
+  modern Ă©letben.
+                          TermĂ©szetes, holisztikus megkĂ¶zelĂ­tĂ©s a gyĂłgyulĂˇs ĂştjĂˇn.   
+                      </p>
+                  </div>
+                  <div>
+                      <h4>NavigĂˇciĂł</h4>
+                      <ul class="footer-links">
+                          <li><a href="#mi-az">Mi az a piĂłcakezelĂ©s?</a></li>        
+                          <li><a href="#javallatok">Javallatok</a></li>
+                          <li><a href="#tudnivalok">TudnivalĂłk</a></li>
+                          <li><a href="#arak">Ărak</a></li>
+                          <li><a href="#tanfolyam">Tanfolyam</a></li>
+                      </ul>
+                  </div>
+                  <div>
+                      <h4>Kapcsolat</h4>
+                      <ul class="footer-links">
+                          <li><a href="#">đź“ž Telefon</a></li>
+                          <li><a href="#">đź“§ Email</a></li>
+                          <li><a href="#">đź“Ť ElĂ©rhetĹ‘sĂ©g</a></li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="footer-bottom">
+                  <p>Â© 2026 MerĂ©nyi KrisztiĂˇn â€“ PiĂłcakezelĂ©s (HirudoterĂˇpia). Minden 
+  jog fenntartva.</p>
+              </div>
+          </div>
+      </footer>
+
+      <!-- SCROLL TO TOP -->
+      <button class="scroll-top" id="scrollTop"
+  onclick="window.scrollTo({top:0,behavior:'smooth'})">â†‘</button>
+
+      <script>
+          // Mobile menu toggle
+          function toggleMenu() {
+              document.getElementById('navLinks').classList.toggle('active');        
+          }
+
+          // Navbar scroll effect
+          window.addEventListener('scroll', () => {
+              const navbar = document.getElementById('navbar');
+              const scrollTop = document.getElementById('scrollTop');
+
+              if (window.scrollY > 50) {
+                  navbar.classList.add('scrolled');
+              } else {
+                  navbar.classList.remove('scrolled');
+              }
+
+              if (window.scrollY > 500) {
+                  scrollTop.classList.add('visible');
+              } else {
+                  scrollTop.classList.remove('visible');
+              }
+          });
+
+          // Fade-in on scroll (Intersection Observer)
+          const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                      entry.target.classList.add('visible');
+                  }
+              });
+          }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+          document.querySelectorAll('.fade-in').forEach(el => observer.observe(el)); 
+
+          // Close mobile menu on link click
+          document.querySelectorAll('.nav-links a').forEach(link => {
+              link.addEventListener('click', () => {
+                  document.getElementById('navLinks').classList.remove('active');    
+              });
+          });
+      </script>
+
+  </body>
+  </html>

@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piócaterápia | Merényi Krisztián</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #080c0a;
+            --bg-card: rgba(20, 30, 25, 0.4);
+            --bg-card-hover: rgba(30, 45, 38, 0.7);
+            --accent-gold: #d4af37;
+            --accent-gold-glow: rgba(212, 175, 55, 0.4);
+            --accent-emerald: #059669;
+            --accent-emerald-glow: rgba(5, 150, 105, 0.4);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(5, 150, 105, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            background: rgba(8, 12, 10, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text-light), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-light);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-emerald), #047857);
+            color: white;
+            box-shadow: 0 4px 15px var(--accent-emerald-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--accent-emerald-glow);
+            background: linear-gradient(135deg, #047857, #065f46);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--accent-gold), #b8860b);
+            color: #000;
+            box-shadow: 0 4px 15px var(--accent-gold-glow);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--accent-gold-glow);
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('hero.png');
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+            filter: brightness(0.6) contrast(1.1);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(8,12,10,0.3) 0%, var(--bg-dark) 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--accent-gold);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title span {
+            color: var(--accent-gold);
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About (Mi ez) */
+        .glass-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        .glass-card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(212, 175, 55, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .about-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(5, 150, 105, 0.1);
+            color: var(--accent-emerald);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Indications */
+        .indications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .ind-card {
+            background: linear-gradient(145deg, rgba(20, 30, 25, 0.4) 0%, rgba(10, 15, 12, 0.2) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ind-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-emerald), var(--accent-gold));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ind-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .ind-card:hover::before {
+            opacity: 1;
+        }
+
+        .ind-icon {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .ind-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .ind-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Important Info Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: var(--glass-border);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--bg-dark);
+            border: 4px solid var(--accent-emerald);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+        }
+
+        .timeline-content h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content ul {
+            list-style-type: none;
+        }
+
+        .timeline-content ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .timeline-content ul li::before {
+            content: '•';
+            color: var(--accent-emerald);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Warning Banner */
+        .warning-banner {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(153, 27, 27, 0.05));
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin: 4rem auto;
+            max-width: 800px;
+        }
+
+        .warning-banner i {
+            color: #ef4444;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .warning-banner h3 {
+            color: #f87171;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Pricing & Course */
+        .pricing-section {
+            background: linear-gradient(to bottom, transparent, rgba(5, 150, 105, 0.05), transparent);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .price-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .price-val {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-light);
+            margin: 1.5rem 0;
+            font-family: var(--font-heading);
+        }
+
+        .price-val span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .course-banner {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(20, 30, 25, 0.8) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 24px;
+            padding: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-banner::before {
+            content: '\f19d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: -20px;
+            bottom: -50px;
+            font-size: 20rem;
+            color: rgba(212, 175, 55, 0.05);
+            z-index: 0;
+            transform: rotate(-15deg);
+        }
+
+        .course-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .course-price {
+            font-size: 2rem;
+            color: var(--accent-gold);
+            font-weight: 700;
+            margin: 1rem 0 2rem 0;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--glass-border);
+            padding: 4rem 0 2rem 0;
+            background: rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .timeline::after { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-item::after { left: 21px; }
+            .right { left: 0; }
+            .course-banner { flex-direction: column; text-align: center; padding: 2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-content">
+            <a href="#" class="logo">Merényi Krisztián</a>
+            <div class="nav-links">
+                <a href="#mi-ez">Mi ez?</a>
+                <a href="#javallatok">Javallatok</a>
+                <a href="#tudnivalok">Tudnivalók</a>
+                <a href="#arak">Árak & Tanfolyam</a>
+            </div>
+            <a href="#arak" class="btn btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Időpontfoglalás</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                <span class="hero-tag">Holisztikus Gyógyászat</span>
+                <h1>Az ősi gyógymód, <br>a modern ember harmóniája.</h1>
+                <p>A piócaterápia (hirudoterápia) természetes biokémiai és bioaktív anyagokkal állítja helyre a test és a lélek energetikai egyensúlyát.</p>
+                <div class="hero-btns">
+                    <a href="#mi-ez" class="btn btn-primary">Tudj meg többet</a>
+                    <a href="#javallatok" class="btn btn-gold">Miben segíthet?</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="mi-ez" class="container">
+        <div class="about-grid">
+            <div class="about-text" data-aos="fade-right">
+                <div class="section-title">Mi az a <span>Piócakezelés?</span></div>
+                <p>A piócaterápia egy alternatív, holisztikus gyógyászati eljárás és egyben több évezredes, ősi kezelési módszer is. A kezelés kulcsa a pióca nyálában lévő több mint 100 féle biokémiai és bioaktív anyag.</p>
+                <p>Ezek az anyagok (például a hirudin) közvetlenül a véráramba jutva fejtik ki jótékony hatásukat. Nem csupán a fizikai testre hatnak, hanem energetikai szinten is segítenek az egyensúly helyreállításában.</p>
+            </div>
+            <div class="about-features" data-aos="fade-left">
+                <div class="glass-card feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-leaf"></i></div>
+                    <div>
+                        <h4>Természetes Gyulladáscsökkentő</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">A pióca nyála erős természetes gyulladáscsökkentő anyagokat tartalmaz, mellékhatások nélkül.</p>
+                    </div>
+                </div>
+                <div class="glass-card feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-droplet"></i></div>
+                    <div>
+                        <h4>Kiváló Véralvadásgátló</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">A hirudin meggátolja a vérrögök képződését és javítja a mikrokeringést a hajszálerekben.</p>
+                    </div>
+                </div>
+                <div class="glass-card feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-spa"></i></div>
+                    <div>
+                        <h4>Energetikai Harmonizáció</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Mély, lazító és nyugtató hatás, amely segít feloldani a testben lévő stresszblokkokat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Indications Section -->
+    <section id="javallatok" style="background: rgba(0,0,0,0.3);">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Milyen problémák esetén <span>alkalmazható?</span></h2>
+                <p class="section-subtitle">A piócakezelés kiegészítő vagy fenntartó terápiaként az alábbi területeken nyújthat kiemelkedő segítséget a tapasztalatok alapján.</p>
+            </div>
+
+            <div class="indications-grid">
+                <div class="ind-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-bone ind-icon"></i>
+                    <h3>Ízületi problémák</h3>
+                    <p>Ízületi fájdalmak, krónikus és akut gyulladások hatékony kezelése és gyógyítása.</p>
+                </div>
+                <div class="ind-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-heart-pulse ind-icon"></i>
+                    <h3>Szív- és érrendszer</h3>
+                    <p>Keringési betegségek enyhítése, mikrokeringés javítása, magas vérnyomás, fejzúgás és stressz kezelése.</p>
+                </div>
+                <div class="ind-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-hand-dots ind-icon"></i>
+                    <h3>Bőrbetegségek</h3>
+                    <p>A pióca nyálában lévő bioaktív enzimek aktívan segítik és gyorsítják a bőr regenerációját.</p>
+                </div>
+                <div class="ind-card" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fa-solid fa-circle-nodes ind-icon"></i>
+                    <h3>Ciszták, csomók</h3>
+                    <p>Kiváló eredmények Baker ciszta (térd alatt) és Ganglion ciszta (tenyéren) kezelésében.</p>
+                </div>
+                <div class="ind-card" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fa-solid fa-tooth ind-icon"></i>
+                    <h3>Szájüreg & Fül</h3>
+                    <p>Fogínygyulladás és fülbetegségek kezelése. (Kizárólag tapasztalt terapeuta által!)</p>
+                </div>
+                <div class="ind-card" data-aos="fade-up" data-aos-delay="600">
+                    <i class="fa-solid fa-staff-snake ind-icon"></i>
+                    <h3>Egyéb panaszok</h3>
+                    <p>Pajzsmirigy problémák, lábszárfekély, lábszár ödéma kezelése, alternatív kiegészítés.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Info Timeline -->
+    <section id="tudnivalok" class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2 class="section-title">A kezelés <span>menete</span></h2>
+            <p class="section-subtitle">Fontos szabályok és tudnivalók a biztonságos és hatékony kezelés érdekében, lépésről lépésre.</p>
+        </div>
+
+        <div class="warning-banner" data-aos="zoom-in">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <h3>Szigorú Ellenjavallat!</h3>
+            <p style="color: #fca5a5;">A kezelés <strong>SZIGORÚAN TILOS</strong> abban az esetben, ha Ön véralvadásgátlót (vérhígítót) szed! Tájékoztassa terapeutáját minden gyógyszeréről (bétablokkoló, vérnyomáscsökkentő)!</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item left" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h3>1. Kezelés előtt</h3>
+                    <ul>
+                        <li>Érkezzen kényelmes, <strong>sötét színű, laza ruházatban</strong> (a vastag kötés miatt).</li>
+                        <li>Mellőzze az illatosított tusfürdők, krémek használatát.</li>
+                        <li><strong>Ne dohányozzon!</strong> A piócák rendkívül érzékenyek a dohányfüstre.</li>
+                        <li>Tájékoztassa a terapeutát az egészségügyi állapotáról.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item right" data-aos="fade-left">
+                <div class="timeline-content">
+                    <h3>2. Maga a kezelés</h3>
+                    <ul>
+                        <li>Egy alkalom kényelmesen, körülbelül <strong>2 órát</strong> vesz igénybe.</li>
+                        <li>A harapás enyhe, szúnyogcsípés-szerű érzés.</li>
+                        <li>Fokozatosan, egyénre szabottan növeljük a piócák számát.</li>
+                        <li>Az optimális hatás érdekében általában <strong>10 kezelés</strong> javasolt, heti rendszerességgel.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item left" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h3>3. Kezelés után</h3>
+                    <ul>
+                        <li>A vastag nedvszívó kötést <strong>24 óra eltelte után</strong> szabad csak levenni.</li>
+                        <li>A seb akár <strong>36 órán keresztül</strong> is szivároghat (ez normális, tisztulási folyamat).</li>
+                        <li>Tilos minden megerőltető fizikai tevékenység, szauna, forró fürdő.</li>
+                        <li>Igyon bőségesen tiszta vizet a méregtelenítés elősegítésére!</li>
+                        <li><strong>A sebet tilos vakarni!</strong> Viszketés esetén hűtés vagy Fenistil gél alkalmazható.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Course Section -->
+    <section id="arak" class="pricing-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Árak & <span>Szolgáltatások</span></h2>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="price-card glass-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3 style="color: var(--accent-gold);">Konzultáció</h3>
+                    <p style="color: var(--text-muted); margin-top: 1rem;">Teljeskörű állapotfelmérés és kezelési terv felállítása.</p>
+                    <div class="price-val">11.000 <span>Ft / alkalom</span></div>
+                    <button class="btn btn-primary" style="width: 100%;">Foglalás</button>
+                </div>
+                <div class="price-card glass-card" data-aos="fade-up" data-aos-delay="200" style="border-color: var(--accent-emerald);">
+                    <h3 style="color: var(--accent-emerald);">Pióca Kezelés</h3>
+                    <p style="color: var(--text-muted); margin-top: 1rem;">Professzionális kezelés munkadíja (a piócák árán felül).</p>
+                    <div class="price-val">10.000 <span>Ft / alkalom</span></div>
+                    <button class="btn btn-primary" style="width: 100%;">Foglalás</button>
+                </div>
+                <div class="price-card glass-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3 style="color: var(--accent-gold);">Orvosi Pióca</h3>
+                    <p style="color: var(--text-muted); margin-top: 1rem;">Ellenőrzött, steril körülményekből származó orvosi pióca.</p>
+                    <div class="price-val">3.000 <span>Ft / db</span></div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">A darabszám egyénre szabottan változik.</p>
+                </div>
+            </div>
+
+            <div class="course-banner" data-aos="zoom-in-up">
+                <div class="course-content">
+                    <span class="hero-tag" style="border-color: var(--accent-emerald); color: var(--text-light); background: var(--accent-emerald);">Képzés / Oktatás</span>
+                    <h2 style="font-size: 2.5rem; margin: 1rem 0;">Népi Piócaterápia Tanfolyam</h2>
+                    <p style="color: var(--text-light); font-size: 1.1rem; opacity: 0.9;">Szeretné otthoni használatra, családtagjai kezelésére elsajátítani ezt a csodálatos, ősi módszert? Jelentkezzen 2 napos, intenzív és gyakorlatias képzésünkre!</p>
+                    <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">A terápia otthon is végezhető, de nagy felelősséggel jár, ezért az alapos elméleti és gyakorlati felkészülés elengedhetetlen.</p>
+                    <div class="course-price">85.000 Ft <span>/ fő</span></div>
+                    <button class="btn btn-gold">Jelentkezem a képzésre</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">Merényi Krisztián</div>
+            <p class="footer-text">Az oldalon található információk tájékoztató jellegűek, nem helyettesítik az orvosi diagnózist és kezelést. Bármilyen egészségügyi probléma esetén konzultáljon kezelőorvosával.</p>
+            <div style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem;">
+                <a href="#" style="color: var(--text-muted); font-size: 1.5rem; transition: color 0.3s;"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" style="color: var(--text-muted); font-size: 1.5rem; transition: color 0.3s;"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" style="color: var(--text-muted); font-size: 1.5rem; transition: color 0.3s;"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 2rem;">&copy; 2026 Merényi Krisztián. Minden jog fenntartva. Design by Gemini Antigravity.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Animations
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 800,
+            easing: 'ease-out-cubic'
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.padding = '1rem 0';
+                nav.style.background = 'rgba(8, 12, 10, 0.95)';
+            } else {
+                nav.style.padding = '1.5rem 0';
+                nav.style.background = 'rgba(8, 12, 10, 0.8)';
+            }
+        });
+    </script>
+</body>
+</html>
