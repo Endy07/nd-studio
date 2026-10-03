@@ -41,11 +41,12 @@ export function kartyaAdat(terv, sajatErtekeles, adminErtekeles) {
 }
 
 /**
- * Kép-terven nincs mit szekciózni: a mockup egészében választható, részleteiben
- * nem. A `tipus` mező a 3a-ból jön (`terv.json` → katalógus).
+ * Kép- és videó-terven nincs mit szekciózni: a mockup, illetve a videó egészében
+ * választható, részleteiben nem. A `tipus` mező a `terv.json`-ból jön (katalógus).
  */
 export function vanSlotValaszto(adat) {
-  return (adat?.tipus ?? "") !== "kep";
+  const tipus = adat?.tipus ?? "";
+  return tipus !== "kep" && tipus !== "video";
 }
 
 /**
