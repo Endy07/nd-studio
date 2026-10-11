@@ -3665,6 +3665,479 @@
         }
       ],
       "rejtett_szam": 18
+    },
+    {
+      "slug": "ndart",
+      "hash": "c635ca77",
+      "nev": "ND Art — ndart.hu (saját bolt)",
+      "ugyfel_megjelenes": "ND ART",
+      "letrehozva": "2026-10-05",
+      "video": {
+        "mappa": "C:\\xampp\\htdocs\\Ugyfelek\\NDArt\\video",
+        "marka": {
+          "leiras": "marka-v2.md",
+          "kepek": {
+            "9:16": "C:\\xampp\\htdocs\\Ugyfelek\\NDArt\\videokepek-916-v2",
+            "egyeb": "C:\\xampp\\htdocs\\Ugyfelek\\NDArt\\videokepek-alap"
+          },
+          "promptba": true
+        }
+      },
+      "kirakat": true,
+      "utvonal_nev": "ndart-c635ca77",
+      "tervek": [
+        {
+          "cim": "ND ART — Hamarosan (beharangozó)",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "904ac0a36dfaf9a3dc8231b1af0cea9dd0a0a7c612dbf721163451d321ce9aff",
+            "bajt": 4318878,
+            "formatum": "9:16",
+            "hossz_mp": 20.01,
+            "kulso": "ndart-trailer_2026-10-11_23-55-21.mp4"
+          },
+          "id": "ndart/video-2026-10-12_01",
+          "utvonal": "t/video-2026-10-12_01/index.html"
+        },
+        {
+          "cim": "Csillagtérkép — Tihany (trailer)",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "bd63f920dbb28e6146352d7345010b13607a63ecf5da77b6f5b399b70a149e79",
+            "bajt": 2530311,
+            "formatum": "9:16",
+            "hossz_mp": 16.0,
+            "kulso": "csillagterkep-tihany_2026-10-11_18-56-30.mp4"
+          },
+          "id": "ndart/video-2026-10-12_02",
+          "utvonal": "t/video-2026-10-12_02/index.html"
+        },
+        {
+          "cim": "Csillagtérkép — Tihany (TikTok-változat)",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "ff237e53d9857618053a90ab8c39fd11d0b97e962205ac8aee4527c71a3b2c8a",
+            "bajt": 2330533,
+            "formatum": "9:16",
+            "hossz_mp": 15.509,
+            "kulso": "csillagterkep-tiktok_2026-10-11_19-46-23.mp4"
+          },
+          "id": "ndart/video-2026-10-12_03",
+          "utvonal": "t/video-2026-10-12_03/index.html"
+        },
+        {
+          "cim": "Egy éjszaka. Egy dátum. A te eged. (gyors trailer)",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "d34c95dc516d0d4dec0d2c2d5fce2d57f6eb492a59dc8403f6e600dc3df38505",
+            "bajt": 6926976,
+            "formatum": "9:16",
+            "hossz_mp": 12.01,
+            "kulso": "01-referencia-04-konyv-trailer_2026-10-12_00-13-47.mp4"
+          },
+          "id": "ndart/video-2026-10-12_04",
+          "utvonal": "t/video-2026-10-12_04/index.html"
+        },
+        {
+          "cim": "Égbolt-gömbből csillagtérkép",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "78ddb2e84e5504d8f113ae1f1f6f781df41c0a518db9838c3c2754ad074c3c5c",
+            "bajt": 1765663,
+            "formatum": "9:16",
+            "hossz_mp": 9.514,
+            "kulso": "02-2d-3d-morf_2026-10-12_00-20-05.mp4"
+          },
+          "id": "ndart/video-2026-10-12_05",
+          "utvonal": "t/video-2026-10-12_05/index.html"
+        },
+        {
+          "cim": "Tervezd meg — egyetlen mozdulatban",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "1fc55a708a023bd4341331a3319261de57905e2f139e697fa857916353f27c37",
+            "bajt": 566743,
+            "formatum": "9:16",
+            "hossz_mp": 9.514,
+            "kulso": "03-egy-alakzat-broll_2026-10-12_00-08-47.mp4"
+          },
+          "id": "ndart/video-2026-10-12_06",
+          "utvonal": "t/video-2026-10-12_06/index.html"
+        },
+        {
+          "cim": "Egy dátum. Egy város. Ezer csillag. (narrált)",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "17a83236f1fa69fab133647d039bc6042ddd73b940b0238322e9d471321b4f0d",
+            "bajt": 667531,
+            "formatum": "9:16",
+            "hossz_mp": 9.002,
+            "kulso": "04-hangra-idozitett_2026-10-12_00-11-47.mp4"
+          },
+          "id": "ndart/video-2026-10-12_07",
+          "utvonal": "t/video-2026-10-12_07/index.html"
+        },
+        {
+          "cim": "Akvarell égbolt",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "5e5dd81bf0f4cc55266ddf5ad76ef313da47fcadddaabc5150e3007c2c54f3c2",
+            "bajt": 2161812,
+            "formatum": "9:16",
+            "hossz_mp": 10.517,
+            "kulso": "05-akvarell-visszatero-hely_2026-10-12_00-11-17.mp4"
+          },
+          "id": "ndart/video-2026-10-12_08",
+          "utvonal": "t/video-2026-10-12_08/index.html"
+        },
+        {
+          "cim": "Az ég, ami aznap fölöttetek volt",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "6439874d903caed93aef6bfff28dad98b022b7962f6951b4db9539fc3c2adf34",
+            "bajt": 1628915,
+            "formatum": "9:16",
+            "hossz_mp": 9.514,
+            "kulso": "06-parallaxis-melysegi-savok_2026-10-12_00-25-12.mp4"
+          },
+          "id": "ndart/video-2026-10-12_09",
+          "utvonal": "t/video-2026-10-12_09/index.html"
+        },
+        {
+          "cim": "Válassz dátumot, helyet, stílust",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "a8465796d83ee0a5018eb84d818782e7b3d5ac41bc622f868ce29a979daba51c",
+            "bajt": 880375,
+            "formatum": "9:16",
+            "hossz_mp": 8.0,
+            "kulso": "07-bpm-karusszel_2026-10-12_00-18-13.mp4"
+          },
+          "id": "ndart/video-2026-10-12_10",
+          "utvonal": "t/video-2026-10-12_10/index.html"
+        },
+        {
+          "cim": "Örökre — poszter a falon",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "848b3f5713a8f6dac0831061614ff11c3931c8612ea53153d61e956527efc68e",
+            "bajt": 1428755,
+            "formatum": "9:16",
+            "hossz_mp": 9.002,
+            "kulso": "08-szoveg-a-targy-mogott_2026-10-12_01-23-21.mp4"
+          },
+          "id": "ndart/video-2026-10-12_11",
+          "utvonal": "t/video-2026-10-12_11/index.html"
+        },
+        {
+          "cim": "A termékoldal közelről",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "331f9c1d66de7b4592d513f3092313544e2ffa7b370f5402b9fe00b25be570a9",
+            "bajt": 1860175,
+            "formatum": "9:16",
+            "hossz_mp": 9.514,
+            "kulso": "09-megdontott-ui-fokusz_2026-10-12_00-18-45.mp4"
+          },
+          "id": "ndart/video-2026-10-12_12",
+          "utvonal": "t/video-2026-10-12_12/index.html"
+        },
+        {
+          "cim": "Séta a webshopban",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "21f61df261d899e5dd652519f1f744cafd1bcea18c285c5191f89daf525b4e32",
+            "bajt": 2439844,
+            "formatum": "9:16",
+            "hossz_mp": 11.52,
+            "kulso": "10-webshop-tura_2026-10-12_00-16-13.mp4"
+          },
+          "id": "ndart/video-2026-10-12_13",
+          "utvonal": "t/video-2026-10-12_13/index.html"
+        },
+        {
+          "cim": "Minden éjszaka egyforma…?",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "cee541e588bc39f9f49a7526299a0fe14b2d632db40c9a302a04b79312d72509",
+            "bajt": 6637331,
+            "formatum": "9:16",
+            "hossz_mp": 11.52,
+            "kulso": "11-stabos-minifilm-szinív_2026-10-12_00-19-37.mp4"
+          },
+          "id": "ndart/video-2026-10-12_14",
+          "utvonal": "t/video-2026-10-12_14/index.html"
+        },
+        {
+          "cim": "Három alkalom, három égbolt",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "10fca5dc42ea7a0d1914da0d93bf3cc515c48b5071d09d003ea15b66a4b3ee80",
+            "bajt": 668412,
+            "formatum": "9:16",
+            "hossz_mp": 10.602,
+            "kulso": "12-parameteres-sablon_2026-10-12_00-22-45.mp4"
+          },
+          "id": "ndart/video-2026-10-12_15",
+          "utvonal": "t/video-2026-10-12_15/index.html"
+        },
+        {
+          "cim": "Csillagokból dátum",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "f89d7ce1f002d88dc31d27bc44e189993625e8fe9e28a4b7409071d9aa529c09",
+            "bajt": 2368507,
+            "formatum": "9:16",
+            "hossz_mp": 9.514,
+            "kulso": "13-csillagokbol-datum_2026-10-12_00-05-46.mp4"
+          },
+          "id": "ndart/video-2026-10-12_16",
+          "utvonal": "t/video-2026-10-12_16/index.html"
+        },
+        {
+          "cim": "Papírkollázs",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "391df9c8c9dd6be5ac160be21dc342fe4430cd1214ac151d5174078d2f90b19b",
+            "bajt": 5750643,
+            "formatum": "9:16",
+            "hossz_mp": 10.005,
+            "kulso": "14-papirkollazs_2026-10-12_00-32-00.mp4"
+          },
+          "id": "ndart/video-2026-10-12_17",
+          "utvonal": "t/video-2026-10-12_17/index.html"
+        },
+        {
+          "cim": "Térképről az égre — Tihany",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "186216effc604b9fbb500b786272961847406da08671b9686e3739198354b48e",
+            "bajt": 1502316,
+            "formatum": "9:16",
+            "hossz_mp": 10.517,
+            "kulso": "15-terkep-12fps_2026-10-12_01-21-27.mp4"
+          },
+          "id": "ndart/video-2026-10-12_18",
+          "utvonal": "t/video-2026-10-12_18/index.html"
+        },
+        {
+          "cim": "Egyetlen éjszaka (ütemre)",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "172dea7e29ca26d75b0fad0b205247aec31154e649190b17c54dc12e20cbb9ca",
+            "bajt": 1550069,
+            "formatum": "9:16",
+            "hossz_mp": 9.514,
+            "kulso": "16-drop-reveal_2026-10-12_00-31-24.mp4"
+          },
+          "id": "ndart/video-2026-10-12_19",
+          "utvonal": "t/video-2026-10-12_19/index.html"
+        },
+        {
+          "cim": "Pillanatok",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "fe905877bfd4076e3f833e9e1722a8b198ca34c89804cada491f82516dff1141",
+            "bajt": 2278811,
+            "formatum": "9:16",
+            "hossz_mp": 9.408,
+            "kulso": "17-kenburns-seedelt_2026-10-12_00-34-32.mp4"
+          },
+          "id": "ndart/video-2026-10-12_20",
+          "utvonal": "t/video-2026-10-12_20/index.html"
+        },
+        {
+          "cim": "Egy éjszaka a város fölött",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "535fd34456735405ffff294c354f2bc8babf3bb42331323a108437312a8f50c3",
+            "bajt": 2288888,
+            "formatum": "9:16",
+            "hossz_mp": 11.008,
+            "kulso": "18-egy-vilag-sok-kamera_2026-10-12_00-38-07.mp4"
+          },
+          "id": "ndart/video-2026-10-12_21",
+          "utvonal": "t/video-2026-10-12_21/index.html"
+        },
+        {
+          "cim": "Egy csillagtól a falig",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "90236f61e127141865af7d3f47f442d209431695f4cd26b10986e0869197274f",
+            "bajt": 2525841,
+            "formatum": "9:16",
+            "hossz_mp": 10.517,
+            "kulso": "19-egy-kamera-skalakon-at_2026-10-12_01-01-05.mp4"
+          },
+          "id": "ndart/video-2026-10-12_22",
+          "utvonal": "t/video-2026-10-12_22/index.html"
+        },
+        {
+          "cim": "Belépés a logón át",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "5ce8a8d8860325c02c228376d161abde3a5b2d8551dda7631822ba1a5e93cffb",
+            "bajt": 1264133,
+            "formatum": "9:16",
+            "hossz_mp": 6.506,
+            "kulso": "20-logo-mint-portal_2026-10-12_01-08-01.mp4"
+          },
+          "id": "ndart/video-2026-10-12_23",
+          "utvonal": "t/video-2026-10-12_23/index.html"
+        },
+        {
+          "cim": "ND ART logó",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "839098fb4bd989a3f25beaa12eb2d5f9e015e236328bf22e412f1b80e679bce0",
+            "bajt": 258026,
+            "formatum": "9:16",
+            "hossz_mp": 5.504,
+            "kulso": "21-logo-sting_2026-10-12_00-14-15.mp4"
+          },
+          "id": "ndart/video-2026-10-12_24",
+          "utvonal": "t/video-2026-10-12_24/index.html"
+        },
+        {
+          "cim": "Riso-nyomat",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "ef181a7824c63723cfdc4e74a72412c240e28a3e152bb6a8224d75b7d4029925",
+            "bajt": 3007057,
+            "formatum": "9:16",
+            "hossz_mp": 7.509,
+            "kulso": "22-riso-inverzio_2026-10-12_01-20-01.mp4"
+          },
+          "id": "ndart/video-2026-10-12_25",
+          "utvonal": "t/video-2026-10-12_25/index.html"
+        }
+      ],
+      "rejtett_szam": 0
     }
   ]
 }

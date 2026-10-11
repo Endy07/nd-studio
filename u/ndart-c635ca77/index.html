@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A terveid</title>
+  <link rel="stylesheet" href="../../kozos/studio.css">
+</head>
+<body class="ugyfel">
+  <header>
+    <h1 id="megszolitas">Betöltés…</h1>
+    <p>Nézd meg a terveket, és jelezd, melyik tetszik. A válaszod automatikusan mentődik.</p>
+  </header>
+  <main id="tervek"></main>
+  <p id="mentes-jelzo" role="status"></p>
+
+  <script type="module">
+    import { BEALLITAS } from "./beallit.js";
+    import { inditUgyfelNezet } from "../../kozos/ugyfel-nezet.js";
+    inditUgyfelNezet(BEALLITAS);
+  </script>
+</body>
+</html>

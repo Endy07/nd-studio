@@ -7,6 +7,7 @@
  */
 
 import { keszitTarolo } from "./tarolo.js";
+import { keszitOsszevetes, keszitVideoMiniatur } from "./ugyfel-video.js";
 import {
   HIBAJELZESEK,
   SZEKCIO_SLOTOK,
@@ -139,7 +140,7 @@ function keszitSlotSor(adat, tervId, slotVezerlo) {
   return sor;
 }
 
-function keszitKartya(adat, tervId, mentes, slotVezerlo) {
+function keszitKartya(adat, tervId, mentes, slotVezerlo, osszevetes) {
   const kartya = document.createElement("article");
   kartya.className = "kartya" + (adat.adminElfogadva ? " elfogadott" : "");
   kartya.innerHTML = `
@@ -153,13 +154,20 @@ function keszitKartya(adat, tervId, mentes, slotVezerlo) {
     <div class="admin-velemeny"></div>`;
 
   kartya.querySelector("h2").textContent = adat.cim;
-  const keret = kartya.querySelector("iframe");
-  // allow-scripts ONMAGABAN, allow-same-origin NELKUL: az iframe igy egyedi
-  // origint kap. A terv szkriptjei futnak (a kinezet megmarad), de a szulo
-  // oldal localStorage-at nem erik el.
-  keret.setAttribute("sandbox", "allow-scripts");
-  keret.src = adat.utvonal;
-  keret.title = adat.cim;
+  if (adat.tipus === "video" && osszevetes) {
+    // Videó-terven a miniatúra maga a videó (kicsiben indítható, ⛶ teljes képernyő), nem a lejátszó-oldal iframe-je.
+    const { doboz, jelolo } = keszitVideoMiniatur(adat, tervId, osszevetes);
+    kartya.querySelector(".miniatur").replaceWith(doboz);
+    kartya.querySelector("h2").after(jelolo);
+  } else {
+    const keret = kartya.querySelector("iframe");
+    // allow-scripts ONMAGABAN, allow-same-origin NELKUL: az iframe igy egyedi
+    // origint kap. A terv szkriptjei futnak (a kinezet megmarad), de a szulo
+    // oldal localStorage-at nem erik el.
+    keret.setAttribute("sandbox", "allow-scripts");
+    keret.src = adat.utvonal;
+    keret.title = adat.cim;
+  }
   kartya.querySelector(".megnezem").href = adat.utvonal;
 
   const pontok = kartya.querySelector(".pontok");
@@ -286,6 +294,8 @@ export async function inditUgyfelNezet(beallitas, kornyezet = {}) {
   }
 
   const slotVezerlo = keszitSlotVezerlo(ertekelesek, mentesKoteg);
+  const videoTervek = adat.tervek.filter((t) => t.tipus === "video");
+  const osszevetes = videoTervek.length ? keszitOsszevetes(gyoker, videoTervek) : null;
 
   tervekElem.replaceChildren();
   for (const terv of adat.tervek) {
@@ -294,6 +304,7 @@ export async function inditUgyfelNezet(beallitas, kornyezet = {}) {
       terv.id,
       mentes,
       slotVezerlo,
+      osszevetes,
     );
     megjegyzes.value = ertekelesek[terv.id]?.megjegyzes ?? "";
     tervekElem.append(kartya);
