@@ -4423,6 +4423,24 @@
           },
           "id": "ndart/video-2026-10-12_41",
           "utvonal": "t/video-2026-10-12_41/index.html"
+        },
+        {
+          "cim": "„C” — TikTok, Onyx v2 (márka-betűk, arany kiemelés, biztonságos zóna)",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "fb0114a9e183831b688eee0e32b2596f4d7737954d5c160524802c626a99f952",
+            "bajt": 1527013,
+            "formatum": "9:16",
+            "hossz_mp": 30.0,
+            "kulso": "ndart-tiktok-onyx-v2_2026-10-12_04-07-50.mp4"
+          },
+          "id": "ndart/video-2026-10-12_42",
+          "utvonal": "t/video-2026-10-12_42/index.html"
         }
       ],
       "rejtett_szam": 0
