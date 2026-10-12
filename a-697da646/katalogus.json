@@ -4496,6 +4496,24 @@
           },
           "id": "ndart/video-2026-10-12_45",
           "utvonal": "t/video-2026-10-12_45/index.html"
+        },
+        {
+          "cim": "Réka ♥ Bence — csillagokból a késztermékig",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "68cd53b55d5ee08ea36f0780a79828e440d5f63458db133c031215a29ce9dd02",
+            "bajt": 4373491,
+            "formatum": "9:16",
+            "hossz_mp": 17.216,
+            "kulso": "13e-reka-sziv-bence-kesztermek_2026-10-12_05-39-22.mp4"
+          },
+          "id": "ndart/video-2026-10-12_46",
+          "utvonal": "t/video-2026-10-12_46/index.html"
         }
       ],
       "rejtett_szam": 0
