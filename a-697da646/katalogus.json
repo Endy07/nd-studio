@@ -4135,6 +4135,78 @@
           },
           "id": "ndart/video-2026-10-12_25",
           "utvonal": "t/video-2026-10-12_25/index.html"
+        },
+        {
+          "cim": "ND ART bemutatkozás",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "1956bcfbd1b61cd7407e4ccba726f5ee957f176000abd85c8533f2633bcc20d8",
+            "bajt": 2452410,
+            "formatum": "9:16",
+            "hossz_mp": 19.6,
+            "kulso": "ndart-bemutatkozas_9x16.mp4"
+          },
+          "id": "ndart/video-2026-10-12_26",
+          "utvonal": "t/video-2026-10-12_26/index.html"
+        },
+        {
+          "cim": "ND ART bemutatkozás — második változat",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "c8608339dc748968ba11e02b839061b712d694960305fb82ea75931e94bc299a",
+            "bajt": 2779378,
+            "formatum": "9:16",
+            "hossz_mp": 22.0,
+            "kulso": "ndart-bemutatkozas-sonnet_9x16.mp4"
+          },
+          "id": "ndart/video-2026-10-12_27",
+          "utvonal": "t/video-2026-10-12_27/index.html"
+        },
+        {
+          "cim": "ND ART bemutatkozás — harmadik változat",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "10f4b4ead71a19f8cc62e510d0b3115322cd2cff5f9ce1ef643c2877e08c4254",
+            "bajt": 2666509,
+            "formatum": "9:16",
+            "hossz_mp": 19.6,
+            "kulso": "ndart-bemutatkozas-sonnet-v2_9x16.mp4"
+          },
+          "id": "ndart/video-2026-10-12_28",
+          "utvonal": "t/video-2026-10-12_28/index.html"
+        },
+        {
+          "cim": "Művészet. Forma. Arany. — ND ART",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "23f7d1a73b96185f606a77c3e7002a643bd98fc4852a7ac0ae31e15e166c3cf1",
+            "bajt": 387570,
+            "formatum": "9:16",
+            "hossz_mp": 20.0,
+            "kulso": "teszt_9x16.mp4"
+          },
+          "id": "ndart/video-2026-10-12_29",
+          "utvonal": "t/video-2026-10-12_29/index.html"
         }
       ],
       "rejtett_szam": 0
