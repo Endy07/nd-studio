@@ -10,8 +10,13 @@
   <header>
     <a href="./index.html">← Vissza az összefoglalóra</a>
     <h1 id="cim">Betöltés…</h1>
+    <div class="nezet-valto">
+      <button type="button" data-nezet="kartya">Kártyák</button>
+      <button type="button" data-nezet="tabla">Táblázat</button>
+    </div>
   </header>
-  <div class="tabla-keret">
+  <main id="kartyak" class="kartya-racs"></main>
+  <div id="tabla-keret" class="tabla-keret" hidden>
     <table>
       <thead><tr>
         <th>Terv</th><th>Honnan</th><th>Pontom</th>

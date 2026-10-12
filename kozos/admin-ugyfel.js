@@ -1,7 +1,7 @@
 /** Admin részletes nézet egy ügyfélre: minden terv, minden adat, pontozás. */
 
 import { keszitTarolo } from "./tarolo.js";
-import { videoUtak } from "./ugyfel-video.js";
+import { keszitOsszevetes, keszitVideoMiniatur, videoUtak } from "./ugyfel-video.js";
 import { ADMIN_TOKEN_KULCS, adminToken, betoltKatalogus } from "./admin-osszefoglalo.js";
 import {
   HIBAJELZESEK,
@@ -135,7 +135,79 @@ function keszitSor(sor, ugyfelUt, mentes) {
   }
   if (sor.valasz) meta.append(valaszNyito(elem, sor.valasz));
 
-  const pontok = elem.querySelector(".pontok");
+  toltPontok(elem.querySelector(".pontok"), sor, mentes);
+  toltStatuszok(elem.querySelector(".statuszok"), sor, mentes);
+  kotJegyzetek(elem.querySelector(".en-megjegyzes"), elem.querySelector(".en-jegyzet"), sor, mentes);
+  elem.querySelector(".ovalasz").textContent = ovalaszSzoveg(sor);
+  return elem;
+}
+
+/** Az ügyfél válasza egy sorban (a tábla „Az ő válasza” oszlopa és a kártya „Az ügyfél” doboza). */
+export function ovalaszSzoveg(sor) {
+  const reszek = [];
+  if (sor.oPont !== null) reszek.push(`${sor.oPont}/10`);
+  if (sor.oHibajelzes) reszek.push(HIBAJELZES_FELIRAT[sor.oHibajelzes]);
+  if (sor.oValasztott) reszek.push("⭐ Ezt választja");
+  if (sor.oMegjegyzes) reszek.push(`„${sor.oMegjegyzes}”`);
+  return reszek.length ? reszek.join(" · ") : "–";
+}
+
+/** Kártya vagy tábla — böngészőnként megjegyezve; a tár hibája (privát ablak) sosem dob. */
+export const NEZET_KULCS = "nd-studio:admin-nezet";
+export function nezetBetolt(tarhely) {
+  try {
+    return tarhely?.getItem(NEZET_KULCS) === "tabla" ? "tabla" : "kartya";
+  } catch {
+    return "kartya";
+  }
+}
+export function nezetMent(tarhely, nezet) {
+  try {
+    tarhely?.setItem(NEZET_KULCS, nezet);
+  } catch {
+    // csak kényelmi beállítás: ha nem menthető, a következő betöltés kártyával indul
+  }
+}
+
+/**
+ * Kártyás nézet: ugyanaz a kártya, mint az ügyfélnél (élő miniatúra, illetve kicsiben lejátszható videó,
+ * ⛶, összevetés), de a TE értékelőiddel, alattuk az ügyfél válaszával. A mentés ugyanaz, mint a táblában.
+ */
+function keszitAdminKartya(sor, ugyfelUt, mentes, osszevetes) {
+  const kartya = document.createElement("article");
+  kartya.className = "kartya" + (sor.enElfogadva ? " elfogadott" : "");
+  kartya.innerHTML = `
+    <div class="miniatur"><iframe loading="lazy" title=""></iframe></div>
+    <h2></h2>
+    <p class="kartya-meta"></p>
+    <a class="megnezem" target="_blank" rel="noopener">Megnézem</a>
+    <div class="pontok"></div>
+    <div class="statuszok kartya-statuszok"></div>
+    <textarea class="megjegyzes en-megjegyzes" placeholder="Megjegyzés — az ügyfél is látja"></textarea>
+    <textarea class="megjegyzes en-jegyzet" placeholder="Belső jegyzet — csak te látod"></textarea>
+    <div class="admin-velemeny ugyfel-valasz"></div>`;
+  const ut = ugyfelUt + sor.utvonal;
+  kartya.querySelector("h2").textContent = sor.cim;
+  kartya.querySelector(".kartya-meta").textContent = sor.tipus === "video" ? "videó" : `${sor.modell} · ${sor.prompt}`;
+  kartya.querySelector(".megnezem").href = ut;
+  if (sor.tipus === "video" && osszevetes) {
+    const { doboz, jelolo } = keszitVideoMiniatur({ cim: sor.cim, utvonal: ut }, sor.id, osszevetes);
+    kartya.querySelector(".miniatur").replaceWith(doboz);
+    kartya.querySelector("h2").after(jelolo);
+  } else {
+    const keret = kartya.querySelector("iframe");
+    keret.setAttribute("sandbox", "allow-scripts");   // ugyanaz az elszigetelés, mint az ügyfélnél
+    keret.src = ut;
+    keret.title = sor.cim;
+  }
+  toltPontok(kartya.querySelector(".pontok"), sor, mentes);
+  toltStatuszok(kartya.querySelector(".statuszok"), sor, mentes, (be) => kartya.classList.toggle("elfogadott", be));
+  kotJegyzetek(kartya.querySelector(".en-megjegyzes"), kartya.querySelector(".en-jegyzet"), sor, mentes);
+  kartya.querySelector(".ugyfel-valasz").textContent = `Az ügyfél: ${ovalaszSzoveg(sor)}`;
+  return kartya;
+}
+
+function toltPontok(pontok, sor, mentes) {
   for (let pont = 0; pont <= 10; pont += 1) {
     const gomb = document.createElement("button");
     gomb.type = "button";
@@ -151,8 +223,9 @@ function keszitSor(sor, ugyfelUt, mentes) {
     });
     pontok.append(gomb);
   }
+}
 
-  const statuszok = elem.querySelector(".statuszok");
+function toltStatuszok(statuszok, sor, mentes, elfogadasValtozott = () => {}) {
   for (const jelzes of HIBAJELZESEK) {
     const gomb = document.createElement("button");
     gomb.type = "button";
@@ -178,6 +251,7 @@ function keszitSor(sor, ugyfelUt, mentes) {
     if (sor.enElfogadva && !confirm("Visszavonod az elfogadást?")) return;
     sor.enElfogadva = !sor.enElfogadva;
     elfogad.classList.toggle("aktiv", sor.enElfogadva);
+    elfogadasValtozott(sor.enElfogadva);
     mentes(sor.id, { elfogadva: sor.enElfogadva }, "publikus");
   });
   statuszok.append(elfogad);
@@ -188,8 +262,9 @@ function keszitSor(sor, ugyfelUt, mentes) {
   jelzo.className = "kapcsolo";
   jelzo.textContent = sor.publikus ? "Publikus ✓" : "Nem publikus";
   statuszok.append(jelzo);
+}
 
-  const megjegyzes = elem.querySelector(".en-megjegyzes");
+function kotJegyzetek(megjegyzes, jegyzet, sor, mentes) {
   megjegyzes.value = sor.enMegjegyzes;
   let idozito = null;
   megjegyzes.addEventListener("input", () => {
@@ -197,22 +272,12 @@ function keszitSor(sor, ugyfelUt, mentes) {
     idozito = setTimeout(() => mentes(sor.id, { megjegyzes: megjegyzes.value }, "publikus"), 800);
   });
 
-  const jegyzet = elem.querySelector(".en-jegyzet");
   jegyzet.value = sor.enJegyzet;
   let jegyzetIdozito = null;
   jegyzet.addEventListener("input", () => {
     clearTimeout(jegyzetIdozito);
     jegyzetIdozito = setTimeout(() => mentes(sor.id, { jegyzet: jegyzet.value }, "belso"), 800);
   });
-
-  const oveCella = elem.querySelector(".ovalasz");
-  const reszek = [];
-  if (sor.oPont !== null) reszek.push(`${sor.oPont}/10`);
-  if (sor.oHibajelzes) reszek.push(HIBAJELZES_FELIRAT[sor.oHibajelzes]);
-  if (sor.oValasztott) reszek.push("⭐ Ezt választja");
-  if (sor.oMegjegyzes) reszek.push(`„${sor.oMegjegyzes}”`);
-  oveCella.textContent = reszek.length ? reszek.join(" · ") : "–";
-  return elem;
 }
 
 export async function inditAdminUgyfel(beallitas, kornyezet = {}) {
@@ -290,11 +355,23 @@ export async function inditAdminUgyfel(beallitas, kornyezet = {}) {
   keszitMegosztoGomb(tarolo, sajatOsszes, sajatPublikus, publikusFajlnev, jelzo);
 
   const ugyfelUt = `../u/${ugyfel.utvonal_nev}/`;
-  sorokElem.replaceChildren(
-    ...ugyfel.tervek.map((terv) =>
-      keszitSor(sorAdat(terv, sajatOsszes[terv.id], ugyfelErtekelesek[terv.id]), ugyfelUt, mentes)
-    )
-  );
+  const sorok = ugyfel.tervek.map((terv) => sorAdat(terv, sajatOsszes[terv.id], ugyfelErtekelesek[terv.id]));
+  sorokElem.replaceChildren(...sorok.map((sor) => keszitSor(sor, ugyfelUt, mentes)));
+
+  // Kártyás nézet (alapból ez látszik): az összevetés az ügyféloldal moduljával, a videók útja az ügyfél mappájából.
+  const kartyakElem = gyoker.getElementById("kartyak");
+  const videok = sorok.filter((s) => s.tipus === "video").map((s) => ({ id: s.id, cim: s.cim, utvonal: ugyfelUt + s.utvonal }));
+  const osszevetes = videok.length ? keszitOsszevetes(gyoker, videok) : null;
+  kartyakElem.replaceChildren(...sorok.map((sor) => keszitAdminKartya(sor, ugyfelUt, mentes, osszevetes)));
+
+  const nezetGombok = [...gyoker.querySelectorAll("[data-nezet]")];
+  const mutat = (nezet) => {
+    kartyakElem.hidden = nezet !== "kartya";
+    gyoker.getElementById("tabla-keret").hidden = nezet !== "tabla";
+    for (const g of nezetGombok) g.classList.toggle("aktiv", g.dataset.nezet === nezet);
+  };
+  for (const g of nezetGombok) g.addEventListener("click", () => { nezetMent(tarhely, g.dataset.nezet); mutat(g.dataset.nezet); });
+  mutat(nezetBetolt(tarhely));
 }
 
 /**

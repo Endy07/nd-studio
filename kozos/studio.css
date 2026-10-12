@@ -42,7 +42,8 @@ body.ugyfel header { border: none; padding-top: 2.5rem; }
 body.ugyfel header p { color: var(--halvany); margin-top: .4rem; }
 #tervek { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
 .kartya { background: var(--felulet); border: 1px solid var(--keret); border-radius: 14px; padding: 1rem; }
-.kartya h2 { font-size: 1.15rem; margin: .9rem 0 .6rem; }
+.kartya h2 { font-size: 1.15rem; margin: .9rem 0 .6rem; overflow-wrap: anywhere; }
+.kartya { min-width: 0; }
 .miniatur { height: 200px; overflow: hidden; border-radius: 10px; background: #fff; }
 .miniatur iframe {
   width: 1280px; height: 800px; border: 0;
@@ -144,6 +145,15 @@ button.pont.aktiv { background: var(--kiemel); border-color: var(--kiemel); colo
 .osszevetes-racs video { flex: 1; min-height: 0; width: 100%; object-fit: contain; background: #000; border-radius: 8px; }
 .osszevetes-racs figcaption { color: var(--halvany); font-size: .82rem; text-align: center; }
 body.osszevetes-nyitva { overflow: hidden; }
+/* --- Admin ügyféloldal: kártyás nézet (ugyanaz a kártya, mint az ügyfélnél, a te értékelőiddel) --- */
+.nezet-valto { display: flex; gap: .4rem; margin: 0 0 1rem; }
+.nezet-valto button { background: none; border: 1px solid var(--keret); color: var(--halvany); padding: .35rem .9rem; border-radius: 6px; cursor: pointer; }
+.nezet-valto button.aktiv { background: var(--kiemel); border-color: var(--kiemel); color: #fff; }
+.kartya-racs { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); padding-top: 1rem; }
+.kartya-racs[hidden], .tabla-keret[hidden] { display: none; }
+.kartya-meta { color: var(--halvany); font-size: .8rem; margin: 0 0 .5rem; word-break: break-word; }
+.kartya-statuszok { flex-direction: row; flex-wrap: wrap; align-items: center; margin: .5rem 0; }
+.kartya .en-jegyzet { margin-top: .4rem; opacity: .85; }
 .admin-video { position: relative; margin-top: .5rem; width: 150px; height: 266px; background: #000; border-radius: 6px; overflow: hidden; }
 .admin-video video { width: 100%; height: 100%; object-fit: contain; display: block; }
 .admin-video button { position: absolute; top: .3rem; right: .3rem; background: rgba(0,0,0,.55); color: #fff; border: 1px solid rgba(255,255,255,.3); border-radius: 5px; cursor: pointer; }
