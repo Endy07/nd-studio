@@ -4442,6 +4442,24 @@
           },
           "id": "ndart/video-2026-10-12_42",
           "utvonal": "t/video-2026-10-12_42/index.html"
+        },
+        {
+          "cim": "Csillagokból dátum — ND ART-arculat",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "d4bb6cf59b37450c7e7e198a429dd8a4b23831652910a27a3d673864d5e0441d",
+            "bajt": 2380622,
+            "formatum": "9:16",
+            "hossz_mp": 9.514,
+            "kulso": "13b-csillagokbol-datum-arculat_2026-10-12_04-38-41.mp4"
+          },
+          "id": "ndart/video-2026-10-12_43",
+          "utvonal": "t/video-2026-10-12_43/index.html"
         }
       ],
       "rejtett_szam": 0
