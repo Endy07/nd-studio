@@ -4478,6 +4478,24 @@
           },
           "id": "ndart/video-2026-10-12_44",
           "utvonal": "t/video-2026-10-12_44/index.html"
+        },
+        {
+          "cim": "Réka ♥ Bence — csillagokból a csillagtérképig",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "ac5320a7374c2609991bde88aabe9764cd032368a51de7a1c89f02afcc037734",
+            "bajt": 4072990,
+            "formatum": "9:16",
+            "hossz_mp": 15.808,
+            "kulso": "13d-reka-sziv-bence-datum_2026-10-12_05-33-12.mp4"
+          },
+          "id": "ndart/video-2026-10-12_45",
+          "utvonal": "t/video-2026-10-12_45/index.html"
         }
       ],
       "rejtett_szam": 0
