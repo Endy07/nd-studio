@@ -4514,6 +4514,60 @@
           },
           "id": "ndart/video-2026-10-12_46",
           "utvonal": "t/video-2026-10-12_46/index.html"
+        },
+        {
+          "cim": "Sablonból: Anna ♥ Levente — első randi, Budapest",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "e1fd73c5624c189d5b8166505a890366dff8e596d282bc9dc936f3e1459693f4",
+            "bajt": 4252400,
+            "formatum": "9:16",
+            "hossz_mp": 17.216,
+            "kulso": "11-anna-levente_2026-10-12_06-03-04.mp4"
+          },
+          "id": "ndart/video-2026-10-12_47",
+          "utvonal": "t/video-2026-10-12_47/index.html"
+        },
+        {
+          "cim": "Sablonból: Mária ♥ József — aranylakodalom, Kecskemét",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "d7881644f2a8b535534a2c4e56c4e4c196f1378bb2c931ddb9937b70f0d2728e",
+            "bajt": 4219785,
+            "formatum": "9:16",
+            "hossz_mp": 17.216,
+            "kulso": "13-maria-jozsef_2026-10-12_06-03-27.mp4"
+          },
+          "id": "ndart/video-2026-10-12_48",
+          "utvonal": "t/video-2026-10-12_48/index.html"
+        },
+        {
+          "cim": "Sablonból: Nóra ♥ Bence — első otthon, Budapest",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "09302590ca7d2af564041c3cf734bc953a7856b6fb39509f3c6987059bc4bf8a",
+            "bajt": 3437021,
+            "formatum": "9:16",
+            "hossz_mp": 17.216,
+            "kulso": "19-nora-bence_2026-10-12_06-03-51.mp4"
+          },
+          "id": "ndart/video-2026-10-12_49",
+          "utvonal": "t/video-2026-10-12_49/index.html"
         }
       ],
       "rejtett_szam": 0
