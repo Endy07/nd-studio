@@ -91,9 +91,22 @@ export function keszitTarolo({ repo, token, fetchImpl = fetch, tarhely = localSt
     return valasz;
   }
 
+  /**
+   * A távoli és a helyi összefésülése — és az eredmény a helyi tárba is BEKERÜL.
+   *
+   * Enélkül a betöltés megjegyzi a sha-t, a `ment` pedig (sha birtokában, újraolvasás nélkül) csak a
+   * helyi tárat tölti fel: ami távol van, de ebben a böngészőben még nem járt, ütközés nélkül elveszik.
+   * Élőben így tűnt el 15 pont 2026-10-12-én (git-tel beírt értékelés, utána egy admin-mentés).
+   */
   async function betolt(fajlnev) {
     const tavoli = await tavoliOlvas(fajlnev);
-    return osszefesul(helyiOlvas(fajlnev), tavoli);
+    const egyesitett = osszefesul(helyiOlvas(fajlnev), tavoli);
+    try {
+      helyiIr(fajlnev, egyesitett);
+    } catch {
+      // tiltott / teli helyi tár: a betöltés ettől még nem bukhat el (4. szabály)
+    }
+    return egyesitett;
   }
 
   async function feltolt(fajlnev, adat) {
