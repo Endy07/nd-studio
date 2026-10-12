@@ -1,6 +1,7 @@
 /** Admin részletes nézet egy ügyfélre: minden terv, minden adat, pontozás. */
 
 import { keszitTarolo } from "./tarolo.js";
+import { videoUtak } from "./ugyfel-video.js";
 import { ADMIN_TOKEN_KULCS, adminToken, betoltKatalogus } from "./admin-osszefoglalo.js";
 import {
   HIBAJELZESEK,
@@ -26,6 +27,7 @@ export function sorAdat(terv, adminErtekeles, ugyfelErtekeles) {
     id: terv.id,
     cim: terv.cim,
     utvonal: terv.utvonal,
+    tipus: terv.tipus ?? "",
     modell: terv.modell ?? "–",
     prompt: terv.prompt ?? "–",
     // Csak a benchmarkbol beemelt terveknel van: a kliens teljes valasza a mereskor.
@@ -115,7 +117,22 @@ function keszitSor(sor, ugyfelUt, mentes) {
   elem.querySelector("strong").textContent = sor.cim;
   elem.querySelector("a").href = ugyfelUt + sor.utvonal;
   const meta = elem.querySelector(".meta");
-  meta.textContent = `${sor.modell} · ${sor.prompt}`;
+  meta.textContent = sor.tipus === "video" ? "videó" : `${sor.modell} · ${sor.prompt}`;
+  if (sor.tipus === "video") {
+    // A videó-tervet itt helyben is meg lehet nézni (kicsiben, ⛶ teljes képernyő) — ugyanaz a fájl, mint az ügyfélnél.
+    const { mp4, poszter } = videoUtak(ugyfelUt + sor.utvonal);
+    const doboz = document.createElement("div");
+    doboz.className = "admin-video";
+    const video = document.createElement("video");
+    Object.assign(video, { src: mp4, poster: poszter, preload: "none", controls: true, playsInline: true });
+    const nagyit = document.createElement("button");
+    nagyit.type = "button";
+    nagyit.textContent = "⛶";
+    nagyit.title = "Teljes képernyő";
+    nagyit.addEventListener("click", () => (video.requestFullscreen ?? video.webkitEnterFullscreen)?.call(video));
+    doboz.append(video, nagyit);
+    elem.querySelector(".cim").append(doboz);
+  }
   if (sor.valasz) meta.append(valaszNyito(elem, sor.valasz));
 
   const pontok = elem.querySelector(".pontok");
