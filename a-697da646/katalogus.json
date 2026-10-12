@@ -4460,6 +4460,24 @@
           },
           "id": "ndart/video-2026-10-12_43",
           "utvonal": "t/video-2026-10-12_43/index.html"
+        },
+        {
+          "cim": "Csillagokból dátum — ND ART-arculat, késztermékkel a végén",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "2ab3bf9d7ae9a4718f22dca67a62442080d2cc0d4b267b3ef4d56a3e972415a7",
+            "bajt": 2722871,
+            "formatum": "9:16",
+            "hossz_mp": 12.01,
+            "kulso": "13c-csillagokbol-datum-kesztermek_2026-10-12_05-23-21.mp4"
+          },
+          "id": "ndart/video-2026-10-12_44",
+          "utvonal": "t/video-2026-10-12_44/index.html"
         }
       ],
       "rejtett_szam": 0
