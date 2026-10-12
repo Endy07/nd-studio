@@ -4207,6 +4207,222 @@
           },
           "id": "ndart/video-2026-10-12_29",
           "utvonal": "t/video-2026-10-12_29/index.html"
+        },
+        {
+          "cim": "„A” — Celestial map hirdetés (angol)",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "d5cc2f9cb083d260921293fed3df3be24f83eb16e3f5f1cd2dc78eb10c230403",
+            "bajt": 1413034,
+            "formatum": "9:16",
+            "hossz_mp": 26.005,
+            "kulso": "celestial-map-ad_2026-10-10_07-48-23.mp4"
+          },
+          "id": "ndart/video-2026-10-12_30",
+          "utvonal": "t/video-2026-10-12_30/index.html"
+        },
+        {
+          "cim": "„B” — Teaser: Valami különleges készül",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "335bb1de3e177cadddce546e1cd2adbf4570af1e8b91b9716a352050aa20b965",
+            "bajt": 433843,
+            "formatum": "9:16",
+            "hossz_mp": 12.0,
+            "kulso": "01-teaser_2026-10-05_19-48-03.mp4"
+          },
+          "id": "ndart/video-2026-10-12_31",
+          "utvonal": "t/video-2026-10-12_31/index.html"
+        },
+        {
+          "cim": "„B” — Csillagtérkép (30 mp)",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "204637b9f2fb7fac0804dcb5e2f0bfff67fb8185324f86546c46b54dca2acd8e",
+            "bajt": 1437689,
+            "formatum": "9:16",
+            "hossz_mp": 30.0,
+            "kulso": "ndart-01-csillagterkep.mp4"
+          },
+          "id": "ndart/video-2026-10-12_32",
+          "utvonal": "t/video-2026-10-12_32/index.html"
+        },
+        {
+          "cim": "„B” — Csillagtérkép, 2. változat (30 mp)",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "cb31ef6d717336683d27f0a45185276dd1c98daad4b73c3e35a4a7954f128cee",
+            "bajt": 2296433,
+            "formatum": "9:16",
+            "hossz_mp": 30.0,
+            "kulso": "ndart-01-csillagterkep-v2.mp4"
+          },
+          "id": "ndart/video-2026-10-12_33",
+          "utvonal": "t/video-2026-10-12_33/index.html"
+        },
+        {
+          "cim": "„C” — TikTok, világos",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "9cca4eca644a01f0ea3dbdd3be2cd9d2f4f535755204523b5ee1dffe4a1ca067",
+            "bajt": 964157,
+            "formatum": "9:16",
+            "hossz_mp": 30.0,
+            "kulso": "nd-art-tiktok-1080x1920.mp4"
+          },
+          "id": "ndart/video-2026-10-12_34",
+          "utvonal": "t/video-2026-10-12_34/index.html"
+        },
+        {
+          "cim": "„C” — TikTok, Onyx (sötét)",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "f3dda081e603a681473a041b8c77399b7dc1b81597489236e4540ab6dc4de084",
+            "bajt": 1544941,
+            "formatum": "9:16",
+            "hossz_mp": 30.0,
+            "kulso": "nd-art-tiktok-onyx-1080x1920.mp4"
+          },
+          "id": "ndart/video-2026-10-12_35",
+          "utvonal": "t/video-2026-10-12_35/index.html"
+        },
+        {
+          "cim": "„D” — Csillagtérkép 16:9, vázlat",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "2e49ac7c50fd262b986be03efe14da7257a95d3aa9d42a40d0cf51735d661ae2",
+            "bajt": 6137870,
+            "formatum": "16:9",
+            "hossz_mp": 34.0,
+            "kulso": "01-csillagterkep-draft.mp4"
+          },
+          "id": "ndart/video-2026-10-12_36",
+          "utvonal": "t/video-2026-10-12_36/index.html"
+        },
+        {
+          "cim": "„D” — Csillagtérkép 16:9, végleges",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "3dd027f69986caad87d62f72fb295ab31be49160cbf90bc3e30133dae85b8ba4",
+            "bajt": 3457231,
+            "formatum": "16:9",
+            "hossz_mp": 34.0,
+            "kulso": "01-csillagterkep-final.mp4"
+          },
+          "id": "ndart/video-2026-10-12_37",
+          "utvonal": "t/video-2026-10-12_37/index.html"
+        },
+        {
+          "cim": "„D” — Csillagtérkép TikTok, vázlat",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "45b182099b5e65a21dbee391879eff5cae259c0862702ee81cdc4b3ac9d893d2",
+            "bajt": 6575132,
+            "formatum": "9:16",
+            "hossz_mp": 34.0,
+            "kulso": "01-csillagterkep-tiktok-draft.mp4"
+          },
+          "id": "ndart/video-2026-10-12_38",
+          "utvonal": "t/video-2026-10-12_38/index.html"
+        },
+        {
+          "cim": "„D” — Csillagtérkép TikTok, végleges",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "e8c4d851a9f132cf2ab753ad6e395203deb1ee11a0144548807f99607b56bb33",
+            "bajt": 3603830,
+            "formatum": "9:16",
+            "hossz_mp": 34.0,
+            "kulso": "01-csillagterkep-tiktok-final.mp4"
+          },
+          "id": "ndart/video-2026-10-12_39",
+          "utvonal": "t/video-2026-10-12_39/index.html"
+        },
+        {
+          "cim": "„D” — Csillagtérkép v3, 1. vázlat",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "e669103dc55a68917550fdd4f7c35329f81b0839500f5e429d902c31cb02ac93",
+            "bajt": 8255099,
+            "formatum": "9:16",
+            "hossz_mp": 34.0,
+            "kulso": "01-csillagterkep-v3-draft.mp4"
+          },
+          "id": "ndart/video-2026-10-12_40",
+          "utvonal": "t/video-2026-10-12_40/index.html"
+        },
+        {
+          "cim": "„D” — Csillagtérkép v3, 2. vázlat",
+          "keszult": "2026-10-12",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "585f14b8db0b1e44aaab340b07d7476965fd664e46334508d58ea665132ecdd0",
+            "bajt": 7184042,
+            "formatum": "9:16",
+            "hossz_mp": 34.0,
+            "kulso": "01-csillagterkep-v3-draft2.mp4"
+          },
+          "id": "ndart/video-2026-10-12_41",
+          "utvonal": "t/video-2026-10-12_41/index.html"
         }
       ],
       "rejtett_szam": 0
