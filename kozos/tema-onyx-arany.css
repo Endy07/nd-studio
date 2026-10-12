@@ -1,0 +1,70 @@
+/*
+ * Kirakat-téma „onyx-arany”: fekete háttér, lebegő elmosott fényfoltok, üvegkártyák, Playfair Display címek,
+ * Montserrat szöveg, arany (#C5A059) kiemelés. Az ügyfél `ugyfel.json`-jában: "kirakat_tema": "onyx-arany".
+ * A build a közös studio.css UTÁN köti be (mag/build.py `_temat_bekot`), és a <body>-ra `tema-onyx-arany` osztályt tesz.
+ * A név szándékosan általános: a kozos/ minden ügyfélhez kimegy.
+ */
+@font-face { font-family: "Playfair"; src: url("fonts/PlayfairDisplay.ttf") format("truetype"); font-weight: 400 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Playfair"; src: url("fonts/PlayfairDisplay-Italic.ttf") format("truetype"); font-weight: 400 900; font-style: italic; font-display: swap; }
+@font-face { font-family: "Montserrat"; src: url("fonts/Montserrat.ttf") format("truetype"); font-weight: 100 900; font-display: swap; }
+
+body.tema-onyx-arany {
+  --hatter: #000000; --felulet: rgba(255,255,255,.035); --keret: rgba(255,255,255,.10);
+  --szoveg: #F0F0F0; --halvany: #AAAAAA; --kiemel: #C5A059; --arany: #C5A059; --arany-halvany: rgba(197,160,89,.45);
+  --jo: #C5A059;
+  background: #000; color: var(--szoveg);
+  font-family: "Montserrat", system-ui, sans-serif; font-weight: 400;
+  position: relative; isolation: isolate;
+}
+/* a ndart.hu lassan úszó, elmosott fényfoltjai — fixen a háttérben */
+body.tema-onyx-arany::before, body.tema-onyx-arany::after {
+  content: ""; position: fixed; z-index: -1; border-radius: 50%; filter: blur(110px); pointer-events: none;
+}
+body.tema-onyx-arany::before { width: 60vw; height: 60vw; left: -18vw; top: -20vw; background: #1c1c1c; opacity: .9; animation: nd-uszas 26s ease-in-out infinite alternate; }
+body.tema-onyx-arany::after { width: 48vw; height: 48vw; right: -14vw; bottom: -18vw; background: #ffffff; opacity: .10; animation: nd-uszas 32s ease-in-out infinite alternate-reverse; }
+@keyframes nd-uszas { from { transform: translate(0,0) rotate(0deg); } to { transform: translate(6vw,4vw) rotate(8deg); } }
+@media (prefers-reduced-motion: reduce) { body.tema-onyx-arany::before, body.tema-onyx-arany::after { animation: none; } }
+
+body.tema-onyx-arany header { padding-top: 3rem; }
+body.tema-onyx-arany h1 { font-family: "Playfair", Georgia, serif; font-weight: 500; font-size: 2.3rem; letter-spacing: -.01em; line-height: 1.15; }
+body.tema-onyx-arany header p { color: var(--halvany); font-weight: 300; letter-spacing: .02em; }
+body.tema-onyx-arany header::after { content: ""; display: block; width: 90px; height: 2px; margin: 1.2rem 0 .4rem; background: var(--arany); }
+
+/* üvegkártyák */
+body.tema-onyx-arany .kartya {
+  background: var(--felulet); border: 1px solid var(--keret); border-radius: 22px;
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 18px 60px rgba(0,0,0,.55);
+}
+body.tema-onyx-arany .kartya.elfogadott { border-color: var(--arany); box-shadow: 0 0 0 1px var(--arany), 0 18px 60px rgba(0,0,0,.55); }
+body.tema-onyx-arany .kartya h2 { font-family: "Playfair", Georgia, serif; font-weight: 500; font-size: 1.3rem; }
+body.tema-onyx-arany .miniatur { border-radius: 14px; }
+body.tema-onyx-arany .miniatur.video { background: #000; border: 1px solid var(--keret); }
+body.tema-onyx-arany .miniatur.video .nagyit { border-radius: 999px; background: rgba(0,0,0,.6); border-color: var(--arany-halvany); color: var(--arany); }
+
+/* gombok: arany körvonal, a fő gomb arany kitöltéssel */
+body.tema-onyx-arany .megnezem {
+  background: var(--arany); color: #000; border-radius: 999px; padding: .55rem 1.3rem;
+  font-weight: 600; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+}
+body.tema-onyx-arany button.pont { background: transparent; border-color: var(--keret); color: var(--halvany); border-radius: 999px; font-family: inherit; }
+body.tema-onyx-arany button.pont:hover { border-color: var(--arany-halvany); color: var(--szoveg); }
+body.tema-onyx-arany button.pont.aktiv { background: var(--arany); border-color: var(--arany); color: #000; font-weight: 700; }
+body.tema-onyx-arany .hibajelzesek button, body.tema-onyx-arany .valasztom {
+  background: transparent; border-color: var(--keret); color: var(--szoveg); border-radius: 12px; font-family: inherit; font-size: .82rem;
+}
+body.tema-onyx-arany .hibajelzesek button.aktiv, body.tema-onyx-arany .valasztom.aktiv {
+  background: rgba(197,160,89,.14); border-color: var(--arany); color: var(--arany);
+}
+body.tema-onyx-arany .megjegyzes { background: rgba(0,0,0,.45); border-color: var(--keret); color: var(--szoveg); border-radius: 12px; font-family: inherit; }
+body.tema-onyx-arany .megjegyzes:focus { outline: none; border-color: var(--arany-halvany); }
+body.tema-onyx-arany .osszevet-jelolo { color: var(--halvany); font-size: .82rem; letter-spacing: .04em; }
+body.tema-onyx-arany .osszevet-jelolo input { accent-color: var(--arany); }
+body.tema-onyx-arany .admin-velemeny { border-top-color: var(--keret); color: var(--arany); font-style: italic; font-family: "Playfair", Georgia, serif; }
+body.tema-onyx-arany #mentes-jelzo { color: var(--arany); }
+
+/* összevetés: arany sáv és fejléc */
+body.tema-onyx-arany .osszevetes-sav { background: rgba(10,10,10,.9); border-color: var(--arany-halvany); border-radius: 999px; backdrop-filter: blur(12px); }
+body.tema-onyx-arany .osszevetes-sav button, body.tema-onyx-arany .osszevetes-fej button { border-radius: 999px; font-family: inherit; color: var(--szoveg); }
+body.tema-onyx-arany .osszevetes-sav button.mutat { background: var(--arany); border-color: var(--arany); color: #000; font-weight: 600; }
+body.tema-onyx-arany .osszevetes { background: #000; }
+body.tema-onyx-arany .osszevetes-racs figcaption { font-family: "Playfair", Georgia, serif; color: var(--szoveg); }
