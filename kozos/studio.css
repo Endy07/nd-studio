@@ -216,6 +216,10 @@ button.megosztas { margin: .5rem 0; padding: .4rem .8rem; cursor: pointer; }
 .nezet-valto button[hidden] { display: none; }
 .kartya.felvillan { box-shadow: 0 0 0 3px #C5A059; transition: box-shadow .3s; }
 .gombok a.swipe-link { border-color: #C5A059; color: #C5A059; }
+/* az összefoglaló tetején, ha a Műhely „Swipe ↗”-ja több ügyfélnél érkezik (`#swipe`) */
+.swipe-valaszto { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin: 0 0 1rem; padding: .8rem 1rem; border: 1px solid #C5A059; border-radius: 12px; }
+.swipe-valaszto h2 { flex-basis: 100%; margin: 0 0 .2rem; font-size: 1rem; }
+.swipe-valaszto a { border: 1px solid #C5A059; color: #C5A059; border-radius: 999px; padding: .45rem 1rem; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; text-decoration: none; }
 body.swipe-nyitva { overflow: hidden; }
 .swipe {
   --arany: #C5A059; --arany-halvany: rgba(197,160,89,.45); --uveg: rgba(255,255,255,.06); --vonal: rgba(255,255,255,.12);
@@ -253,6 +257,49 @@ body.swipe-nyitva { overflow: hidden; }
 .swipe-kartya.hatso-2 { z-index: 1; transform: translateY(28px) scale(.9); opacity: .2; pointer-events: none; }
 .swipe-kartya:not(.elol) :is(.swipe-kartya-fej, .swipe-kartya-alja, .swipe-hang, .swipe-reszletek) { visibility: hidden; }
 .swipe-kartya video { width: 100%; height: 100%; object-fit: contain; display: block; background: #000; pointer-events: none; }
+/* weboldal- és kép-kártya (2026-10-16 este): a terv iframe-je; asztalin a színpad teljes szélességét kapja, mobil
+   nézetben és képen is álló/teli; a keret kicsinyítése JS-ből (`keretMeretezes`) */
+.swipe-kartya.web, .swipe-kartya.kep { width: min(100cqw, 1280px); height: 100cqh; }
+.swipe-kartya.web.mobil { width: min(100cqw, 56.25cqh); height: min(100cqh, 177.78cqw); }
+.swipe-keret-doboz { position: absolute; inset: 0; overflow: hidden; background: #111; }
+.swipe-keret { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; background: #fff; display: block; }
+.swipe-kartya.kep .swipe-keret { width: 100%; height: 100%; background: #141414; pointer-events: none; }
+.swipe-takaro { position: absolute; inset: 0; z-index: 1; cursor: grab; background: transparent; }
+/* húzósávok a két szélen: kézi módban (a takaró nélkül) is itt fogható meg a kártya */
+.swipe-szel { position: absolute; top: 0; bottom: 0; width: 22px; z-index: 1; cursor: grab; }
+.swipe-szel.bal { left: 0; }
+.swipe-szel.jobb { right: 0; }
+.swipe-kartya.kezi .swipe-szel { background: linear-gradient(90deg, rgba(197,160,89,.28), transparent); }
+.swipe-kartya.kezi .swipe-szel.jobb { background: linear-gradient(270deg, rgba(197,160,89,.28), transparent); }
+.swipe-kartya.kezi { box-shadow: 0 0 0 2px var(--arany-halvany), 0 18px 60px rgba(0,0,0,.7); }
+.swipe-kartya.web .swipe-kartya-alja, .swipe-kartya.kep .swipe-kartya-alja { pointer-events: auto; padding: 1.6rem 1rem .7rem; cursor: grab; }
+/* a weboldal-címek gyakran hosszú gépi nevek: legfeljebb két sor, hogy a tervből minél több látsszon */
+.swipe-kartya.web .swipe-kartya-alja h2, .swipe-kartya.kep .swipe-kartya-alja h2 {
+  font-size: 1rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+/* asztalon a weboldal-kártya szélesebb lehet, mint a többi panel (az álló videó-kártyát ez nem érinti) */
+.swipe-panel.swipe-pakli { max-width: 1320px; }
+.swipe-kartya-fej { z-index: 2; }
+.swipe-fej-jobb { display: flex; gap: .35rem; flex-wrap: wrap; justify-content: flex-end; }
+.swipe-kartya-fej a.swipe-uj-lap {
+  display: inline-flex; align-items: center; justify-content: center; text-decoration: none;
+  background: rgba(0,0,0,.55); color: #fff; border: 1px solid var(--arany-halvany); border-radius: 999px;
+  min-height: 40px; min-width: 40px; box-sizing: border-box; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.swipe-kartya-alja, .swipe-belyeg, .swipe-reszletek { z-index: 2; }
+.swipe-keret-doboz:fullscreen .swipe-keret, .swipe-kartya.teljes .swipe-keret {
+  width: 100% !important; height: 100% !important; left: 0 !important; transform: none !important;
+}
+.swipe-keret-doboz:-webkit-full-screen .swipe-keret { width: 100% !important; height: 100% !important; left: 0 !important; transform: none !important; }
+.swipe-keret-doboz:fullscreen .swipe-takaro, .swipe-kartya.teljes .swipe-takaro, .swipe-kartya.teljes .swipe-szel { display: none; }
+.swipe-kartya.teljes {
+  position: fixed; inset: 0; width: auto; height: auto; margin: 0; border-radius: 0; z-index: 100;
+  transform: none !important; will-change: auto;
+}
+.swipe-teljes-bezar {
+  position: absolute; z-index: 3; bottom: .8rem; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,.75); color: #fff;
+  border: 1px solid var(--arany-halvany); border-radius: 999px; min-height: 44px; padding: .4rem 1.1rem;
+}
 .swipe-kartya.hibas-video::after { content: "A videó nem tölthető be."; position: absolute; inset: 40% 1rem auto; text-align: center; color: #aaa; }
 .swipe-belyeg {
   position: absolute; top: 18%; left: 50%; transform: translateX(-50%) rotate(-12deg); opacity: 0; pointer-events: none;
@@ -336,7 +383,7 @@ body.swipe-nyitva { overflow: hidden; }
 /* beállítások */
 .swipe-beallitasok {
   position: absolute; z-index: 10; top: 3.4rem; right: .6rem; left: .6rem; max-width: 420px; margin-left: auto;
-  max-height: calc(100% - 4.2rem); overflow-y: auto; background: rgba(12,12,12,.97); border: 1px solid var(--arany-halvany);
+  max-height: calc(100% - 4.2rem); overflow-y: auto; background: #0c0c0c; border: 1px solid var(--arany-halvany);
   border-radius: 16px; padding: 1rem; box-shadow: 0 18px 60px rgba(0,0,0,.8);
 }
 .swipe-beallitasok h2 { margin: 0 0 .8rem; font-family: "Playfair", Georgia, serif; font-weight: 500; font-size: 1.2rem; }
@@ -347,6 +394,11 @@ body.swipe-nyitva { overflow: hidden; }
 .swipe-beallitasok .swipe-jelolo { flex-direction: row; align-items: center; gap: .5rem; color: #ddd; }
 .swipe-pontok { border: 1px solid var(--vonal); border-radius: 12px; padding: .5rem .7rem .2rem; margin: 0 0 .8rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0 .7rem; }
 .swipe-pontok legend { color: #aaa; font-size: .82rem; padding: 0 .3rem; }
+.swipe-tipusok { border: 1px solid var(--vonal); border-radius: 12px; padding: .5rem .7rem .1rem; margin: 0 0 .8rem; }
+.swipe-tipusok legend { color: #aaa; font-size: .82rem; padding: 0 .3rem; }
+.swipe-beallitasok .swipe-tipusok label { flex-direction: row; align-items: center; gap: .5rem; color: #ddd; font-size: .9rem; }
+/* a jelölőnégyzet ne örökölje az általános űrlap-mező szélességét (különben 185 px széles, a felirat a jobb szélre csúszik) */
+.swipe-beallitasok input[type=checkbox] { width: auto; flex: none; margin: 0; min-width: 18px; min-height: 18px; }
 .swipe-urlap-also { display: flex; gap: .5rem; justify-content: space-between; flex-wrap: wrap; }
 .swipe-urlap-also button:not(.swipe-fo-gomb) { background: none; border: 1px solid var(--vonal); color: #ddd; border-radius: 999px; padding: .5rem 1rem; }
 
@@ -369,6 +421,10 @@ body.swipe-nyitva { overflow: hidden; }
 .swipe-lejatszo-fej button { background: none; border: 1px solid var(--vonal); color: #ddd; border-radius: 999px; padding: .4rem .8rem; min-height: 40px; }
 .swipe-lejatszo-fej .bezar { margin-left: auto; }
 .swipe-lejatszo video { flex: 1; min-height: 0; width: 100%; object-fit: contain; background: #000; }
+.swipe-lejatszo-hely { flex: 1; min-height: 0; display: flex; }
+.swipe-lejatszo-hely > * { flex: 1; min-width: 0; }
+.swipe-lejatszo-keret { border: 0; width: 100%; height: 100%; background: #fff; }
+.swipe-lejatszo-fej a.swipe-lejatszo-uj-lap { border: 1px solid var(--vonal); color: #ddd; border-radius: 999px; padding: .4rem .8rem; min-height: 40px; box-sizing: border-box; text-decoration: none; display: inline-flex; align-items: center; }
 .swipe-lejatszo-cim { text-align: center; color: #ccc; margin: .4rem 1rem .7rem; font-size: .88rem; }
 
 /* Párbaj */
@@ -379,6 +435,12 @@ body.swipe-nyitva { overflow: hidden; }
 }
 .swipe-parbaj-jelolt video { width: 100%; aspect-ratio: 9 / 16; max-height: 60vh; object-fit: contain; background: #000; border-radius: 10px; pointer-events: none; }
 .swipe-parbaj-jelolt figcaption { font-size: .85rem; text-align: center; overflow-wrap: anywhere; }
+.swipe-parbaj-jelolt figcaption a { color: var(--arany); text-decoration: none; padding: 0 .3rem; }
+/* weboldal / kép a párbajban: kicsinyített, nem interaktív keret (a húzás a jelölté) */
+.swipe-parbaj-keret { position: relative; overflow: hidden; width: 100%; aspect-ratio: 4 / 5; max-height: 60vh; background: #111; border-radius: 10px; }
+.swipe-parbaj-keret.mobil, .swipe-parbaj-jelolt.kep .swipe-parbaj-keret { aspect-ratio: 9 / 16; }
+.swipe-parbaj-keret .swipe-keret { pointer-events: none; }
+.swipe-parbaj-jelolt.kep .swipe-keret { width: 100%; height: 100%; }
 .swipe-parbaj > button:not(.swipe-fo-gomb) { background: none; border: 1px solid var(--vonal); color: #ddd; border-radius: 999px; padding: .45rem 1rem; min-height: 40px; }
 .swipe-rangsor { margin-top: 1.2rem; }
 .swipe-rangsor h3 { color: var(--arany); font-size: .95rem; margin: 0 0 .4rem; }

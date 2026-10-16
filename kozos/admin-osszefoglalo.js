@@ -45,10 +45,19 @@ export async function betoltKatalogus(lekero) {
   }
 }
 
-/** Van-e az ügyfélnek videó-terve (csak ilyenkor van Swipe-nézet). */
+/** Van-e az ügyfélnek videó-terve. */
 export function vanVideo(ugyfel) {
   return (ugyfel?.tervek ?? []).some((terv) => terv?.tipus === "video");
 }
+
+/**
+ * Kimenő tervek száma (publikus és nem rejtett — a `katalogus.ugyfelhez_megy` tükre; az admin katalógusban rejtett
+ * terv amúgy sincs). Legalább egy kell a Swipe-nézethez — típustól függetlenül (weboldal, kép, videó).
+ */
+export function kimenoSzam(ugyfel) {
+  return (ugyfel?.tervek ?? []).filter((terv) => Boolean(terv?.publikus) && !terv?.rejtett).length;
+}
+export const vanSwipe = (ugyfel) => kimenoSzam(ugyfel) > 0;
 
 /** Az ügyfél swipe-nézetének címe (az admin oldalon belül, relatív). */
 export function swipeCim(ugyfel) {
@@ -56,14 +65,37 @@ export function swipeCim(ugyfel) {
 }
 
 /**
- * A Műhely „Swipe ↗” gombja az összefoglalót nyitja `#swipe`-pal (a Műhely nem tudja, kinek van videója):
- * ha pontosan EGY ügyfélnek van videója, egyenesen az ő swipe-nézetére visz; különben `null` (a kártyákon
- * a „Swipe” gomb választ).
+ * A Műhely „Swipe ↗” gombja az összefoglalót nyitja `#swipe`-pal (a Műhely nem ismeri a katalógust):
+ * ha pontosan EGY ügyfélnek van swipe-olható (kimenő) terve, egyenesen az ő swipe-nézetére visz; különben `null`,
+ * és az összefoglaló tetején a választó (`swipeValaszto`) kérdezi meg, kinek a tervei jöjjenek.
  */
 export function swipeAtiranyitas(hash, katalogus) {
   if (hash !== "#swipe") return null;
-  const videosak = (katalogus?.ugyfelek ?? []).filter(vanVideo);
-  return videosak.length === 1 ? swipeCim(videosak[0]) : null;
+  const lista = (katalogus?.ugyfelek ?? []).filter(vanSwipe);
+  return lista.length === 1 ? swipeCim(lista[0]) : null;
+}
+
+/** A választó sorai: ügyfelenként név, a swipe-nézet címe és a kimenő tervek száma (katalógus-sorrendben). */
+export function swipeValaszto(katalogus) {
+  return (katalogus?.ugyfelek ?? [])
+    .filter(vanSwipe)
+    .map((ugyfel) => ({ nev: ugyfel.nev, cim: swipeCim(ugyfel), db: kimenoSzam(ugyfel) }));
+}
+
+function keszitSwipeValaszto(sorok) {
+  const doboz = document.createElement("nav");
+  doboz.className = "swipe-valaszto";
+  doboz.setAttribute("aria-label", "Kinek a terveit swipe-olod?");
+  const cim = document.createElement("h2");
+  cim.textContent = "Swipe — kinek a tervei jöjjenek?";
+  doboz.append(cim);
+  for (const sor of sorok) {
+    const a = document.createElement("a");
+    a.href = sor.cim;
+    a.textContent = `${sor.nev} (${sor.db})`;
+    doboz.append(a);
+  }
+  return doboz;
 }
 
 function szam(ertek) {
@@ -100,7 +132,7 @@ function keszitKartya(kartya) {
 
   const ugyfelUt = `../u/${ugyfel.utvonal_nev}/`;
   elem.querySelector(".reszletek").href = `./ugyfel.html?slug=${encodeURIComponent(ugyfel.slug)}`;
-  if (vanVideo(ugyfel)) {
+  if (vanSwipe(ugyfel)) {
     const swipe = document.createElement("a");
     swipe.className = "swipe-link";
     swipe.href = swipeCim(ugyfel);
@@ -164,4 +196,7 @@ export async function inditAdminOsszefoglalo(beallitas, kornyezet = {}) {
 
   lista.replaceChildren(...kartyak.map(keszitKartya));
   if (!kartyak.length) lista.textContent = "Még nincs egy ügyfél sem.";
+  // A Műhely „Swipe ↗”-ja több ügyfélnél ide érkezik: fölül a választó (egyetlen ügyfélnél már átirányítottunk).
+  const valaszto = location.hash === "#swipe" ? swipeValaszto(katalogus) : [];
+  if (valaszto.length > 1) lista.before(keszitSwipeValaszto(valaszto));
 }

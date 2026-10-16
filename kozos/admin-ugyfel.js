@@ -169,7 +169,7 @@ export function ovalaszSzoveg(sor) {
 
 /**
  * Kártya, tábla vagy swipe — böngészőnként megjegyezve; a tár hibája (privát ablak) sosem dob.
- * A swipe csak akkor engedett, ha az ügyfélnek van videója (`engedett`); különben a mentett „swipe” → kártya.
+ * A swipe csak akkor engedett, ha az ügyfélnek van kimenő terve (`engedett`); különben a mentett „swipe” → kártya.
  */
 export const NEZET_KULCS = "nd-studio:admin-nezet";
 export const NEZETEK = ["kartya", "tabla", "swipe"];
@@ -429,7 +429,8 @@ export async function inditAdminUgyfel(beallitas, kornyezet = {}) {
   const cimkeSzuro = keszitCimkeSzuro({ parok: kartyaParok, tarhely, azonosito: `admin:${ugyfel.slug}`, lathatosag });
   if (cimkeSzuro) kartyakElem.before(cimkeSzuro);
 
-  // Swipe-értékelés (csak videó-terveknél): a döntés a MEGLÉVŐ admin-mentésen megy (ugyanaz a `mentes`, mint a
+  // Swipe-értékelés (minden tervtípusra — weboldal / kép / videó —, ha az ügyfélnek van legalább egy kimenő terve;
+  // különben `null`, és a gomb rejtve marad): a döntés a MEGLÉVŐ admin-mentésen megy (ugyanaz a `mentes`, mint a
   // pontgomboké), a gyors indoklás a BELSŐ jegyzetbe (a `jegyzet` nincs a PUBLIKUS_MEZOK-on — az ügyfél nem látja).
   const swipe = keszitSwipe({
     dok: gyoker,
@@ -461,7 +462,7 @@ export async function inditAdminUgyfel(beallitas, kornyezet = {}) {
       const kartya = kartyaParok.find(([sor]) => sor.id === id)?.[1];
       if (!kartya) return;
       if (kartya.hidden) {
-        jelzo.textContent = "Ez a videó a kártyás nézet szűrője miatt rejtve van — állítsd „Mind”-ra a szűrőt.";
+        jelzo.textContent = "Ez a terv a kártyás nézet szűrője miatt rejtve van — állítsd „Mind”-ra a szűrőt.";
         return;
       }
       kartya.scrollIntoView({ behavior: "smooth", block: "center" });

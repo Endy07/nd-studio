@@ -981,6 +981,90 @@
         "Outró: fókuszváltás a márkára",
         "Termék: csillagtérkép"
       ]
+    },
+    {
+      "id": "ndart/video-2026-10-16_91",
+      "cim": "Körbejárás — Ötven év, egy égbolt alatt",
+      "utvonal": "t/video-2026-10-16_91/index.html",
+      "keszult": "2026-10-16",
+      "tipus": "video",
+      "leiras": "Valódi 3D-vászon sötét térben, arany porban: a kamera ütemenként lökve körbejárja (élről a körbehajtás, hátulról a feszítőkeret), közben megbillen; élességváltás az előtér-porra, súroló fény fut át az arany kereten, majd szemből megáll. Mélységélesség és mozgási elmosás, csak a kamera mozog.",
+      "cimkek": [
+        "Stílus: filmes kamera (3D)",
+        "Nyitás: dátum",
+        "Outró: fókuszváltás a márkára",
+        "Termék: csillagtérkép"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-16_92",
+      "cim": "Makró — Szerelmünk éjszakája",
+      "utvonal": "t/video-2026-10-16_92/index.html",
+      "keszult": "2026-10-16",
+      "tipus": "video",
+      "leiras": "Extrém közeli csúszások a 3D-vászon felületén súroló fényben, látszik a szövés: a kézírásos cím, a szív csillagai, a pereme, a vászon sarka és a dátum, ütemenként élességváltással vagy vágással; aztán lassú, majd gyors hátrálás a teljes képig. Az outróban az élesség előre ugrik, a logó élesedik ki.",
+      "cimkek": [
+        "Stílus: filmes kamera (3D)",
+        "Nyitás: rövid felirat",
+        "Outró: fókuszváltás a márkára",
+        "Termék: csillagtérkép"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-16_93",
+      "cim": "Whip-pan — Három éjszaka",
+      "utvonal": "t/video-2026-10-16_93/index.html",
+      "keszult": "2026-10-16",
+      "tipus": "video",
+      "leiras": "Három vászon egy sötét galériafalon, képvilágító spotokkal: a kamera ütemre ostorcsapásszerű pánnal, erős mozgási elmosással ugrál köztük, mindegyiken rövid ráközelítéssel, a végén a középső előtt áll. Outró: „Melyik a tiéd?”, a spotok egyenként kialszanak, a sötétben a logó.",
+      "cimkek": [
+        "Stílus: filmes kamera (3D)",
+        "Nyitás: rövid felirat",
+        "Outró: kérdés",
+        "Termék: vegyes"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-16_94",
+      "cim": "Kamerafutás fotókkal — Itt kezdődött minden (Budapest)",
+      "utvonal": "t/video-2026-10-16_94/index.html",
+      "keszult": "2026-10-16",
+      "tipus": "video",
+      "leiras": "Valódi budapesti éjszakai fotók (ingyenes, kereskedelmi licencű városképek) mélységi rétegekre bontva: a kamera rétegenként eltérő sebességgel fut beléjük, ütemre vált, átrepül a Lánchíd kapuján, majd a Halászbástya fölött felnéz a valódi csillagtérkép egére. A végén kirepülünk a falon lógó vászonból.",
+      "cimkek": [
+        "Stílus: kamerafutás (fotó)",
+        "Nyitás: rohanás felirattal",
+        "Outró: fénycsík-aláírás",
+        "Termék: csillagtérkép"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-16_95",
+      "cim": "Kamerafutás fotókkal — Itt lettünk otthon (Budapest XIII.)",
+      "utvonal": "t/video-2026-10-16_95/index.html",
+      "keszult": "2026-10-16",
+      "tipus": "video",
+      "leiras": "Ingyenes, kereskedelmi licencű budapesti fotók 2,5D parallaxisban: rakpart-fénycsíkok, Duna, Lánchíd, Halászbástya, áttörés a Margit híd szerkezetén, majd a Parlament fölött fel az égbe. Az éjszakai térkép a becsapódáskor pontosan a fehér, sarokkeretes nyomat körére ül.",
+      "cimkek": [
+        "Stílus: kamerafutás (fotó)",
+        "Nyitás: rohanás felirattal",
+        "Outró: fénycsík-aláírás",
+        "Termék: csillagtérkép"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-16_96",
+      "cim": "Kamerafutás fotókkal, lassú parallaxis — Itt kezdődött minden (Budapest)",
+      "utvonal": "t/video-2026-10-16_96/index.html",
+      "keszult": "2026-10-16",
+      "tipus": "video",
+      "leiras": "Lassú parallaxis négy valódi budapesti éjszakai fotón (ingyenes, kereskedelmi licencű városképek): fotónként egy másodperces dolly, a mélységi rétegek egymáshoz képest csúsznak. Ütemre fény-löket, fókuszváltás vagy szó jön, nem vágás. Átrepülés a Lánchíd kapuján, felnézés a Halászbástya fölötti csillagos égbe, kirepülés a vászonból.",
+      "cimkek": [
+        "Stílus: kamerafutás (fotó)",
+        "Nyitás: rohanás felirattal",
+        "Outró: fénycsík-aláírás",
+        "Termék: csillagtérkép"
+      ]
     }
   ]
 }

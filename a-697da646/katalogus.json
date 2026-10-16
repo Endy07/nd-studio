@@ -5544,6 +5544,156 @@
           },
           "id": "ndart/video-2026-10-16_90",
           "utvonal": "t/video-2026-10-16_90/index.html"
+        },
+        {
+          "cim": "Körbejárás — Ötven év, egy égbolt alatt",
+          "leiras": "Valódi 3D-vászon sötét térben, arany porban: a kamera ütemenként lökve körbejárja (élről a körbehajtás, hátulról a feszítőkeret), közben megbillen; élességváltás az előtér-porra, súroló fény fut át az arany kereten, majd szemből megáll. Mélységélesség és mozgási elmosás, csak a kamera mozog.",
+          "cimkek": [
+            "Stílus: filmes kamera (3D)",
+            "Nyitás: dátum",
+            "Outró: fókuszváltás a márkára",
+            "Termék: csillagtérkép"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "f574385111c7ce849727b62aa7283b994eba3d22edb85d3730f6f635727d2083",
+            "bajt": 2985785,
+            "formatum": "9:16",
+            "hossz_mp": 12.501,
+            "kulso": "v1-korbejaras-kecskemet.mp4"
+          },
+          "id": "ndart/video-2026-10-16_91",
+          "utvonal": "t/video-2026-10-16_91/index.html"
+        },
+        {
+          "cim": "Makró — Szerelmünk éjszakája",
+          "leiras": "Extrém közeli csúszások a 3D-vászon felületén súroló fényben, látszik a szövés: a kézírásos cím, a szív csillagai, a pereme, a vászon sarka és a dátum, ütemenként élességváltással vagy vágással; aztán lassú, majd gyors hátrálás a teljes képig. Az outróban az élesség előre ugrik, a logó élesedik ki.",
+          "cimkek": [
+            "Stílus: filmes kamera (3D)",
+            "Nyitás: rövid felirat",
+            "Outró: fókuszváltás a márkára",
+            "Termék: csillagtérkép"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "136bb0b02da3193b268581d384920c33f2cba9f2e109bca9700ec34afd8b2c1b",
+            "bajt": 2922579,
+            "formatum": "9:16",
+            "hossz_mp": 12.01,
+            "kulso": "v2-makro-pecs.mp4"
+          },
+          "id": "ndart/video-2026-10-16_92",
+          "utvonal": "t/video-2026-10-16_92/index.html"
+        },
+        {
+          "cim": "Whip-pan — Három éjszaka",
+          "leiras": "Három vászon egy sötét galériafalon, képvilágító spotokkal: a kamera ütemre ostorcsapásszerű pánnal, erős mozgási elmosással ugrál köztük, mindegyiken rövid ráközelítéssel, a végén a középső előtt áll. Outró: „Melyik a tiéd?”, a spotok egyenként kialszanak, a sötétben a logó.",
+          "cimkek": [
+            "Stílus: filmes kamera (3D)",
+            "Nyitás: rövid felirat",
+            "Outró: kérdés",
+            "Termék: vegyes"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "632ceece1455ff40d53ac054793c2650903f1fc9042faf4f07fc90b9c934c56e",
+            "bajt": 6141321,
+            "formatum": "9:16",
+            "hossz_mp": 12.416,
+            "kulso": "v3-whip-triptichon.mp4"
+          },
+          "id": "ndart/video-2026-10-16_93",
+          "utvonal": "t/video-2026-10-16_93/index.html"
+        },
+        {
+          "cim": "Kamerafutás fotókkal — Itt kezdődött minden (Budapest)",
+          "leiras": "Valódi budapesti éjszakai fotók (ingyenes, kereskedelmi licencű városképek) mélységi rétegekre bontva: a kamera rétegenként eltérő sebességgel fut beléjük, ütemre vált, átrepül a Lánchíd kapuján, majd a Halászbástya fölött felnéz a valódi csillagtérkép egére. A végén kirepülünk a falon lógó vászonból.",
+          "cimkek": [
+            "Stílus: kamerafutás (fotó)",
+            "Nyitás: rohanás felirattal",
+            "Outró: fénycsík-aláírás",
+            "Termék: csillagtérkép"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "06658891ed14b23540b8c65b29fd470ecd4230fbc7762a4bf3b1196b01064c87",
+            "bajt": 11540595,
+            "formatum": "9:16",
+            "hossz_mp": 13.248,
+            "kulso": "11-elso-randi-budapest.mp4"
+          },
+          "id": "ndart/video-2026-10-16_94",
+          "utvonal": "t/video-2026-10-16_94/index.html"
+        },
+        {
+          "cim": "Kamerafutás fotókkal — Itt lettünk otthon (Budapest XIII.)",
+          "leiras": "Ingyenes, kereskedelmi licencű budapesti fotók 2,5D parallaxisban: rakpart-fénycsíkok, Duna, Lánchíd, Halászbástya, áttörés a Margit híd szerkezetén, majd a Parlament fölött fel az égbe. Az éjszakai térkép a becsapódáskor pontosan a fehér, sarokkeretes nyomat körére ül.",
+          "cimkek": [
+            "Stílus: kamerafutás (fotó)",
+            "Nyitás: rohanás felirattal",
+            "Outró: fénycsík-aláírás",
+            "Termék: csillagtérkép"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "d6fdaafa5b8d28fff95295dc27c68f4c5698c8d24b3255a7784261d7c7391b25",
+            "bajt": 11155565,
+            "formatum": "9:16",
+            "hossz_mp": 13.248,
+            "kulso": "19-elso-otthon-budapest-xiii.mp4"
+          },
+          "id": "ndart/video-2026-10-16_95",
+          "utvonal": "t/video-2026-10-16_95/index.html"
+        },
+        {
+          "cim": "Kamerafutás fotókkal, lassú parallaxis — Itt kezdődött minden (Budapest)",
+          "leiras": "Lassú parallaxis négy valódi budapesti éjszakai fotón (ingyenes, kereskedelmi licencű városképek): fotónként egy másodperces dolly, a mélységi rétegek egymáshoz képest csúsznak. Ütemre fény-löket, fókuszváltás vagy szó jön, nem vágás. Átrepülés a Lánchíd kapuján, felnézés a Halászbástya fölötti csillagos égbe, kirepülés a vászonból.",
+          "cimkek": [
+            "Stílus: kamerafutás (fotó)",
+            "Nyitás: rohanás felirattal",
+            "Outró: fénycsík-aláírás",
+            "Termék: csillagtérkép"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "f691057c1e62def60fde44eba73f8fe552513e48c9f9f99a257a5aef050b40e9",
+            "bajt": 11466487,
+            "formatum": "9:16",
+            "hossz_mp": 13.76,
+            "kulso": "11b-elso-randi-budapest-mely.mp4"
+          },
+          "id": "ndart/video-2026-10-16_96",
+          "utvonal": "t/video-2026-10-16_96/index.html"
         }
       ],
       "rejtett_szam": 0
