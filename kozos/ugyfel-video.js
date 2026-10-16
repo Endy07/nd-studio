@@ -47,7 +47,8 @@ export function osszevetesOszlopok(n) {
   return n <= 4 ? Math.max(1, n) : 3;
 }
 
-function teljesKepernyo(elem) {
+/** Teljes képernyő (szabványos, webkites, iOS-videós változat) — a swipe-nézet is ezt használja. */
+export function teljesKepernyo(elem) {
   const kerd = elem.requestFullscreen ?? elem.webkitRequestFullscreen ?? elem.webkitEnterFullscreen;
   if (kerd) kerd.call(elem);
 }

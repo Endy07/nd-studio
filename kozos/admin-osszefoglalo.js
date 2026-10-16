@@ -45,6 +45,27 @@ export async function betoltKatalogus(lekero) {
   }
 }
 
+/** Van-e az ügyfélnek videó-terve (csak ilyenkor van Swipe-nézet). */
+export function vanVideo(ugyfel) {
+  return (ugyfel?.tervek ?? []).some((terv) => terv?.tipus === "video");
+}
+
+/** Az ügyfél swipe-nézetének címe (az admin oldalon belül, relatív). */
+export function swipeCim(ugyfel) {
+  return `./ugyfel.html?slug=${encodeURIComponent(ugyfel.slug)}#swipe`;
+}
+
+/**
+ * A Műhely „Swipe ↗” gombja az összefoglalót nyitja `#swipe`-pal (a Műhely nem tudja, kinek van videója):
+ * ha pontosan EGY ügyfélnek van videója, egyenesen az ő swipe-nézetére visz; különben `null` (a kártyákon
+ * a „Swipe” gomb választ).
+ */
+export function swipeAtiranyitas(hash, katalogus) {
+  if (hash !== "#swipe") return null;
+  const videosak = (katalogus?.ugyfelek ?? []).filter(vanVideo);
+  return videosak.length === 1 ? swipeCim(videosak[0]) : null;
+}
+
 function szam(ertek) {
   return ertek === null || ertek === undefined ? "–" : String(ertek);
 }
@@ -79,6 +100,13 @@ function keszitKartya(kartya) {
 
   const ugyfelUt = `../u/${ugyfel.utvonal_nev}/`;
   elem.querySelector(".reszletek").href = `./ugyfel.html?slug=${encodeURIComponent(ugyfel.slug)}`;
+  if (vanVideo(ugyfel)) {
+    const swipe = document.createElement("a");
+    swipe.className = "swipe-link";
+    swipe.href = swipeCim(ugyfel);
+    swipe.textContent = "Swipe";
+    elem.querySelector(".reszletek").after(swipe);
+  }
   elem.querySelector(".ovele").href = ugyfelUt;
   elem.querySelector(".masol").addEventListener("click", () => {
     navigator.clipboard.writeText(new URL(ugyfelUt, location.href).href);
@@ -109,6 +137,12 @@ export async function inditAdminOsszefoglalo(beallitas, kornyezet = {}) {
     gyoker.getElementById("sav").textContent = "Nem sikerült betölteni a katalógust";
     lista.textContent =
       "Frissítsd az oldalt. Ha nem múlik el, futtass egy új publikálást a Műhelyből.";
+    return;
+  }
+
+  const atiranyitas = swipeAtiranyitas(location.hash, katalogus);
+  if (atiranyitas) {
+    location.replace(atiranyitas);
     return;
   }
 

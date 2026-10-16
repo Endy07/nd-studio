@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ügyfél — ND Studio</title>
   <link rel="stylesheet" href="../kozos/studio.css">
+  <!-- csak a betűkért (Playfair a swipe-nézet címeihez); a téma szabályai a body.tema-onyx-arany osztályhoz kötöttek, itt nem élnek -->
+  <link rel="stylesheet" href="../kozos/tema-onyx-arany.css">
 </head>
 <body class="admin szeles">
   <header>
@@ -13,6 +15,7 @@
     <div class="nezet-valto">
       <button type="button" data-nezet="kartya">Kártyák</button>
       <button type="button" data-nezet="tabla">Táblázat</button>
+      <button type="button" data-nezet="swipe" hidden>Swipe</button>
     </div>
   </header>
   <main id="kartyak" class="kartya-racs"></main>

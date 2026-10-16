@@ -911,6 +911,76 @@
         "Outró: kinetikus márka",
         "Termék: Okoskép (NFC)"
       ]
+    },
+    {
+      "id": "ndart/video-2026-10-16_86",
+      "cim": "Így készül: 3 lépés a saját csillagtérképedig",
+      "utvonal": "t/video-2026-10-16_86/index.html",
+      "keszult": "2026-10-16",
+      "tipus": "video",
+      "leiras": "A valódi webshop-szerkesztő felvétele megdöntött telefon-síkon: a kamera mindig a kitöltött mezőre nagyít (hely → dátum → szöveg), mélységélességgel, kurzorral és kattintáshullámmal. A hely és a dátum után az ég ténylegesen a helyére fordul. Ütemre a késztermék, végül rövid márka-outró. 12 s, 120 BPM.",
+      "cimkek": [
+        "Stílus: így készül",
+        "Nyitás: lista-cím",
+        "Outró: HAMAROSAN-kapszula",
+        "Termék: csillagtérkép"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-16_87",
+      "cim": "Előtte / utána: fotóból vászon",
+      "utvonal": "t/video-2026-10-16_87/index.html",
+      "keszult": "2026-10-16",
+      "tipus": "video",
+      "leiras": "Osztott képernyő arany törlőcsíkkal: balra a fotó a telefonban, jobbra a kész vászon, a csík ütemre ide-oda csap. Utána a vászon négy ütemben felépül: a fotó a szív helyére repül, rázárul a szív, kinyílik a háttér és a virágos keret, végül a felirat. A fotó AI-illusztráció, a nevek kitaláltak. 10 s.",
+      "cimkek": [
+        "Stílus: így készül",
+        "Nyitás: előtte/utána",
+        "Outró: HAMAROSAN-kapszula",
+        "Termék: saját fotó"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-16_88",
+      "cim": "Szöveges kollázs: egy szó, nyolc emlék",
+      "utvonal": "t/video-2026-10-16_88/index.html",
+      "keszult": "2026-10-16",
+      "tipus": "video",
+      "leiras": "Az eredmény elöl, aztán a kollázs cellái szétrepülnek, és mögülük előjön a valódi szöveges szerkesztő: a beírt szóval a vászon betűnként nő, a cellák ütemre telnek meg képekkel. A végén a kamera betűről betűre végigmegy a kész vásznon. A fotók AI-illusztrációk. 11,5 s.",
+      "cimkek": [
+        "Stílus: így készül",
+        "Nyitás: kész termék elöl",
+        "Outró: HAMAROSAN-kapszula",
+        "Termék: szöveges kollázs"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-16_89",
+      "cim": "Égből a falra — Tihany, 2025. 06. 21.",
+      "utvonal": "t/video-2026-10-16_89/index.html",
+      "keszult": "2026-10-16",
+      "tipus": "video",
+      "leiras": "Filmes kameramunka egyetlen snittben: a kamera a dátum valódi égboltjában indul, lebillen a tó és Tihany fényei fölé, kocsizik egy ablakon át, a szobában balra fordul, a gyertyáról élességet vált a falon lógó vászonra, és ráközelít. Rétegelt térmélység, rétegenkénti elmosás, valódi mozgási elmosás; csak a termékkép valódi, a tér kódból rajzolt.",
+      "cimkek": [
+        "Stílus: filmes kamera (térben)",
+        "Nyitás: dátum az égen",
+        "Outró: fókuszváltás a márkára",
+        "Termék: csillagtérkép"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-16_90",
+      "cim": "Első otthon — Budapest XIII., 2024. 03. 01.",
+      "utvonal": "t/video-2026-10-16_90/index.html",
+      "keszult": "2026-10-16",
+      "tipus": "video",
+      "leiras": "Kocsizás a lépcsőházon át: a kamera felemelkedik a lépcsőn, az ajtó kinyílik előtte, és kiömlik a fény; végigsiklik az előszobán a költözős dobozok mellett, befordul a nappaliba, ahol az ablakban a dátum valódi ege látszik. Élességváltás a mécsesről a vászonra, ráközelítés, a végén a késztermék. Kódból rajzolt tér, valódi mozgási elmosás.",
+      "cimkek": [
+        "Stílus: filmes kamera (térben)",
+        "Nyitás: dátum a falon",
+        "Outró: fókuszváltás a márkára",
+        "Termék: csillagtérkép"
+      ]
     }
   ]
 }

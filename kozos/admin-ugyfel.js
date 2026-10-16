@@ -5,6 +5,7 @@ import { keszitDatumSzuro, keszitLathatosag } from "./datum-szuro.js";
 import { cimkeLista, keszitCimkeSzuro, keszitCimkek } from "./cimke-szuro.js";
 import { keszitLeiras, keszitOsszevetes, keszitVideoMiniatur, leirasSzoveg, videoUtak } from "./ugyfel-video.js";
 import { ADMIN_TOKEN_KULCS, adminToken, betoltKatalogus } from "./admin-osszefoglalo.js";
+import { keszitSwipe } from "./admin-swipe.js";
 import {
   HIBAJELZESEK,
   kellMegerosites,
@@ -110,7 +111,7 @@ function valaszNyito(sorElem, valasz) {
   return gomb;
 }
 
-function keszitSor(sor, ugyfelUt, mentes) {
+function keszitSor(sor, ugyfelUt, mentes, jelolok) {
   const elem = document.createElement("tr");
   elem.innerHTML = `
     <td class="cim"><strong></strong><br><a target="_blank" rel="noopener">Megnyitás</a></td>
@@ -151,6 +152,7 @@ function keszitSor(sor, ugyfelUt, mentes) {
   toltPontok(elem.querySelector(".pontok"), sor, mentes);
   toltStatuszok(elem.querySelector(".statuszok"), sor, mentes);
   kotJegyzetek(elem.querySelector(".en-megjegyzes"), elem.querySelector(".en-jegyzet"), sor, mentes);
+  jelolok?.regisztral(sor.id, elem);
   elem.querySelector(".ovalasz").textContent = ovalaszSzoveg(sor);
   return elem;
 }
@@ -165,14 +167,50 @@ export function ovalaszSzoveg(sor) {
   return reszek.length ? reszek.join(" · ") : "–";
 }
 
-/** Kártya vagy tábla — böngészőnként megjegyezve; a tár hibája (privát ablak) sosem dob. */
+/**
+ * Kártya, tábla vagy swipe — böngészőnként megjegyezve; a tár hibája (privát ablak) sosem dob.
+ * A swipe csak akkor engedett, ha az ügyfélnek van videója (`engedett`); különben a mentett „swipe” → kártya.
+ */
 export const NEZET_KULCS = "nd-studio:admin-nezet";
-export function nezetBetolt(tarhely) {
+export const NEZETEK = ["kartya", "tabla", "swipe"];
+export function nezetBetolt(tarhely, engedett = ["kartya", "tabla"]) {
   try {
-    return tarhely?.getItem(NEZET_KULCS) === "tabla" ? "tabla" : "kartya";
+    const mentett = tarhely?.getItem(NEZET_KULCS);
+    return engedett.includes(mentett) ? mentett : "kartya";
   } catch {
     return "kartya";
   }
+}
+
+/** A közvetlen link (`ugyfel.html?slug=…#swipe`) felülírja a mentett nézetet — ha az a nézet itt engedett. */
+export function kezdoNezet(hash, tarhely, engedett = ["kartya", "tabla"]) {
+  const kert = String(hash ?? "").replace(/^#/, "");
+  return NEZETEK.includes(kert) && engedett.includes(kert) ? kert : nezetBetolt(tarhely, engedett);
+}
+
+/**
+ * A pont- és jegyzet-elemek tervenként (kártya + táblasor), hogy a swipe-nézetben hozott döntés a másik két
+ * nézetben is látsszon — újrarajzolás nélkül (a begépelt, még nem mentett szöveget nem dobjuk el).
+ */
+export function keszitJelolok() {
+  const elemek = new Map();
+  return {
+    regisztral(id, gyoker) {
+      if (!elemek.has(id)) elemek.set(id, []);
+      elemek.get(id).push(gyoker);
+    },
+    pont(id, pont) {
+      for (const gy of elemek.get(id) ?? []) {
+        for (const g of gy.querySelectorAll(".pontok button")) g.classList.toggle("aktiv", Number(g.textContent) === pont);
+      }
+    },
+    jegyzet(id, szoveg) {
+      for (const gy of elemek.get(id) ?? []) {
+        const mezo = gy.querySelector(".en-jegyzet");
+        if (mezo) mezo.value = szoveg;
+      }
+    },
+  };
 }
 export function nezetMent(tarhely, nezet) {
   try {
@@ -186,7 +224,7 @@ export function nezetMent(tarhely, nezet) {
  * Kártyás nézet: ugyanaz a kártya, mint az ügyfélnél (élő miniatúra, illetve kicsiben lejátszható videó,
  * ⛶, összevetés), de a TE értékelőiddel, alattuk az ügyfél válaszával. A mentés ugyanaz, mint a táblában.
  */
-function keszitAdminKartya(sor, ugyfelUt, mentes, osszevetes) {
+function keszitAdminKartya(sor, ugyfelUt, mentes, osszevetes, jelolok) {
   const kartya = document.createElement("article");
   kartya.className = "kartya" + (sor.enElfogadva ? " elfogadott" : "");
   kartya.innerHTML = `
@@ -221,6 +259,7 @@ function keszitAdminKartya(sor, ugyfelUt, mentes, osszevetes) {
   toltStatuszok(kartya.querySelector(".statuszok"), sor, mentes, (be) => kartya.classList.toggle("elfogadott", be));
   kotJegyzetek(kartya.querySelector(".en-megjegyzes"), kartya.querySelector(".en-jegyzet"), sor, mentes);
   kartya.querySelector(".ugyfel-valasz").textContent = `Az ügyfél: ${ovalaszSzoveg(sor)}`;
+  jelolok?.regisztral(sor.id, kartya);
   return kartya;
 }
 
@@ -373,13 +412,14 @@ export async function inditAdminUgyfel(beallitas, kornyezet = {}) {
 
   const ugyfelUt = `../u/${ugyfel.utvonal_nev}/`;
   const sorok = ugyfel.tervek.map((terv) => sorAdat(terv, sajatOsszes[terv.id], ugyfelErtekelesek[terv.id]));
-  sorokElem.replaceChildren(...sorok.map((sor) => keszitSor(sor, ugyfelUt, mentes)));
+  const jelolok = keszitJelolok();
+  sorokElem.replaceChildren(...sorok.map((sor) => keszitSor(sor, ugyfelUt, mentes, jelolok)));
 
   // Kártyás nézet (alapból ez látszik): az összevetés az ügyféloldal moduljával, a videók útja az ügyfél mappájából.
   const kartyakElem = gyoker.getElementById("kartyak");
   const videok = sorok.filter((s) => s.tipus === "video").map((s) => ({ id: s.id, cim: s.cim, leiras: s.leiras, utvonal: ugyfelUt + s.utvonal }));
   const osszevetes = videok.length ? keszitOsszevetes(gyoker, videok) : null;
-  const kartyaParok = sorok.map((sor) => [sor, keszitAdminKartya(sor, ugyfelUt, mentes, osszevetes)]);
+  const kartyaParok = sorok.map((sor) => [sor, keszitAdminKartya(sor, ugyfelUt, mentes, osszevetes, jelolok)]);
   kartyakElem.replaceChildren(...kartyaParok.map(([, kartya]) => kartya));
   // Ugyanaz a dátum- és címke-szűrő, mint az ügyfélnél (közös láthatóság, ÉS) — külön kulccsal (`admin:<slug>`),
   // csak a kártyás nézetben.
@@ -389,16 +429,70 @@ export async function inditAdminUgyfel(beallitas, kornyezet = {}) {
   const cimkeSzuro = keszitCimkeSzuro({ parok: kartyaParok, tarhely, azonosito: `admin:${ugyfel.slug}`, lathatosag });
   if (cimkeSzuro) kartyakElem.before(cimkeSzuro);
 
+  // Swipe-értékelés (csak videó-terveknél): a döntés a MEGLÉVŐ admin-mentésen megy (ugyanaz a `mentes`, mint a
+  // pontgomboké), a gyors indoklás a BELSŐ jegyzetbe (a `jegyzet` nincs a PUBLIKUS_MEZOK-on — az ügyfél nem látja).
+  const swipe = keszitSwipe({
+    dok: gyoker,
+    sorok,
+    azonosito: `admin:${ugyfel.slug}`,
+    tarhely,
+    ugyfelUt,
+    async mentPont(sor, pont) {
+      jelolok.pont(sor.id, pont);
+      try {
+        await mentes(sor.id, { pont }, "publikus");
+      } catch {
+        jelzo.textContent = "Mentés folyamatban…";   // 4. szabály: a hiba nem jut a felhasználóig
+      }
+      return jelzo.textContent;
+    },
+    async mentJegyzet(sor, jegyzet) {
+      jelolok.jegyzet(sor.id, jegyzet);
+      try {
+        await mentes(sor.id, { jegyzet }, "belso");
+      } catch {
+        jelzo.textContent = "Mentés folyamatban…";
+      }
+      return jelzo.textContent;
+    },
+    kilep: () => valt("kartya"),
+    ugrik: (id) => {
+      valt("kartya");
+      const kartya = kartyaParok.find(([sor]) => sor.id === id)?.[1];
+      if (!kartya) return;
+      if (kartya.hidden) {
+        jelzo.textContent = "Ez a videó a kártyás nézet szűrője miatt rejtve van — állítsd „Mind”-ra a szűrőt.";
+        return;
+      }
+      kartya.scrollIntoView({ behavior: "smooth", block: "center" });
+      kartya.classList.add("felvillan");
+      setTimeout(() => kartya.classList.remove("felvillan"), 1600);
+    },
+  });
+
   const nezetGombok = [...gyoker.querySelectorAll("[data-nezet]")];
+  const engedett = swipe ? NEZETEK : ["kartya", "tabla"];
+  for (const g of nezetGombok) if (g.dataset.nezet === "swipe") g.hidden = !swipe;
   const mutat = (nezet) => {
     kartyakElem.hidden = nezet !== "kartya";
     if (datumSzuro) datumSzuro.hidden = nezet !== "kartya";
     if (cimkeSzuro) cimkeSzuro.hidden = nezet !== "kartya";
     gyoker.getElementById("tabla-keret").hidden = nezet !== "tabla";
     for (const g of nezetGombok) g.classList.toggle("aktiv", g.dataset.nezet === nezet);
+    if (nezet === "swipe") swipe?.megnyit();
+    else swipe?.bezar();
+    // Közvetlen link: a swipe-nézetnek saját hash-e van (`#swipe`), a másik kettő hash nélkül.
+    try {
+      history.replaceState(null, "", nezet === "swipe" ? "#swipe" : location.pathname + location.search);
+    } catch { /* nem minden környezetben van history */ }
   };
-  for (const g of nezetGombok) g.addEventListener("click", () => { nezetMent(tarhely, g.dataset.nezet); mutat(g.dataset.nezet); });
-  mutat(nezetBetolt(tarhely));
+  const valt = (nezet) => { nezetMent(tarhely, nezet); mutat(nezet); };
+  for (const g of nezetGombok) g.addEventListener("click", () => valt(g.dataset.nezet));
+  mutat(kezdoNezet(location.hash, tarhely, engedett));
+  // Ugyanazon az oldalon a címsorba írt / linkelt `#swipe` (újratöltés nélküli hash-váltás) is nyissa meg.
+  globalThis.addEventListener?.("hashchange", () => {
+    if (location.hash === "#swipe" && swipe) valt("swipe");
+  });
 }
 
 /**
