@@ -7,7 +7,8 @@
  */
 
 import { keszitTarolo } from "./tarolo.js";
-import { keszitOsszevetes, keszitVideoMiniatur } from "./ugyfel-video.js";
+import { keszitDatumSzuro } from "./datum-szuro.js";
+import { keszitLeiras, keszitOsszevetes, keszitVideoMiniatur, leirasSzoveg } from "./ugyfel-video.js";
 import {
   HIBAJELZESEK,
   SZEKCIO_SLOTOK,
@@ -27,6 +28,8 @@ export function kartyaAdat(terv, sajatErtekeles, adminErtekeles) {
   const ove = adminErtekeles ?? {};
   return {
     cim: terv.cim,
+    // Ügyfélnek szóló leírás (fehérlistás mező, `mag/katalogus.py`); hiányában üres.
+    leiras: leirasSzoveg(terv.leiras),
     utvonal: terv.utvonal,
     pont: enyem.pont ?? null,
     hibajelzes: enyem.hibajelzes ?? "",
@@ -168,6 +171,9 @@ function keszitKartya(adat, tervId, mentes, slotVezerlo, osszevetes) {
     keret.src = adat.utvonal;
     keret.title = adat.cim;
   }
+  // A leírás közvetlenül a cím alatt (a videó „Összehasonlítom” jelölője elé); üresen nincs elem.
+  const leiras = keszitLeiras(adat.leiras);
+  if (leiras) kartya.querySelector("h2").after(leiras);
   kartya.querySelector(".megnezem").href = adat.utvonal;
 
   const pontok = kartya.querySelector(".pontok");
@@ -298,6 +304,7 @@ export async function inditUgyfelNezet(beallitas, kornyezet = {}) {
   const osszevetes = videoTervek.length ? keszitOsszevetes(gyoker, videoTervek) : null;
 
   tervekElem.replaceChildren();
+  const kartyaParok = [];
   for (const terv of adat.tervek) {
     const { kartya, megjegyzes } = keszitKartya(
       kartyaAdat(terv, ertekelesek[terv.id], adminErtekelesek[terv.id]),
@@ -308,7 +315,17 @@ export async function inditUgyfelNezet(beallitas, kornyezet = {}) {
     );
     megjegyzes.value = ertekelesek[terv.id]?.megjegyzes ?? "";
     tervekElem.append(kartya);
+    kartyaParok.push([terv, kartya]);
   }
+
+  // Dátum-szűrő a kártyák fölött (csak ha legalább két készítési nap van): csak a kártyák láthatóságát
+  // állítja; a választás ügyfelenként megmarad (`datum-szuro.js`).
+  const datumSzuro = keszitDatumSzuro({
+    parok: kartyaParok,
+    tarhely: kornyezet.tarhely ?? globalThis.localStorage,
+    azonosito: beallitas.utvonalNev,
+  });
+  if (datumSzuro) tervekElem.before(datumSzuro);
 
   if (!adat.tervek.length) {
     tervekElem.textContent = "Még nincs kész terv. Hamarosan!";

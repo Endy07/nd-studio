@@ -9,6 +9,26 @@
 
 export const OSSZEVETES_MAX = 6;
 
+/** A terv `leiras` mezője megjeleníthető alakban: levágott szöveg, minden más (hiány, nem szöveg) üres. */
+export function leirasSzoveg(ertek) {
+  return typeof ertek === "string" ? ertek.trim() : "";
+}
+
+/**
+ * A kártyán a cím alatt álló, ügyfélnek szóló leírás (`terv.json` `leiras`, 2026-10-16) — pl. hogy egy
+ * motion-videó milyen technikával készült. Üres leírásra `null`: üres elem nem kerül a kártyára.
+ * CSAK `textContent`: a leírás szabad szöveg, jelölésként soha nem értelmezzük. A honlap-kártya, a
+ * videó-kártya, az összevetés és az admin nézet is ezt használja (ezért él itt, ahová mind importál).
+ */
+export function keszitLeiras(szoveg, dok = globalThis.document, cimke = "p") {
+  const tiszta = leirasSzoveg(szoveg);
+  if (!tiszta) return null;
+  const elem = dok.createElement(cimke);
+  elem.className = "leiras";
+  elem.textContent = tiszta;
+  return elem;
+}
+
 /** A build a videót és a posztert a terv `index.html`-je mellé, az `assets/` alá másolja. */
 export function videoUtak(utvonal) {
   const mappa = String(utvonal ?? "").replace(/index\.html$/, "").replace(/\/?$/, "/");
@@ -133,6 +153,8 @@ export function keszitOsszevetes(gyoker, tervek) {
       v.setAttribute("playsinline", "");
       const felirat = document.createElement("figcaption");
       felirat.textContent = terv.cim;
+      const leiras = keszitLeiras(terv.leiras, document, "small");
+      if (leiras) felirat.append(leiras);
       cella.append(v, felirat);
       racs.append(cella);
     });

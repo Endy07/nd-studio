@@ -44,6 +44,17 @@ body.ugyfel header p { color: var(--halvany); margin-top: .4rem; }
 .kartya { background: var(--felulet); border: 1px solid var(--keret); border-radius: 14px; padding: 1rem; }
 .kartya h2 { font-size: 1.15rem; margin: .9rem 0 .6rem; overflow-wrap: anywhere; }
 .kartya { min-width: 0; }
+/* Dátum-szűrő a kártyák fölött (datum-szuro.js): a szűrt kártya `hidden` — saját display-szabály ne írja felül. */
+.kartya[hidden], .datum-szuro[hidden] { display: none !important; }
+.datum-szuro { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1rem 0 1.2rem; }
+.datum-szuro button {
+  background: none; border: 1px solid var(--keret); color: var(--halvany); padding: .3rem .85rem;
+  border-radius: 999px; cursor: pointer; font-size: .85rem; font-variant-numeric: tabular-nums;
+}
+.datum-szuro button:hover { color: var(--szoveg); }
+.datum-szuro button.aktiv { background: var(--kiemel); border-color: var(--kiemel); color: #fff; }
+/* A terv ügyfélnek szóló leírása a cím alatt (terv.json `leiras`): kicsi, halvány, a címhez húzva. */
+.kartya .leiras { color: var(--halvany); font-size: .85rem; line-height: 1.45; margin: -.3rem 0 .7rem; overflow-wrap: anywhere; }
 .miniatur { height: 200px; overflow: hidden; border-radius: 10px; background: #fff; }
 .miniatur iframe {
   width: 1280px; height: 800px; border: 0;
@@ -144,6 +155,7 @@ button.pont.aktiv { background: var(--kiemel); border-color: var(--kiemel); colo
 .osszevetes-racs figure { margin: 0; min-height: 0; display: flex; flex-direction: column; gap: .3rem; }
 .osszevetes-racs video { flex: 1; min-height: 0; width: 100%; object-fit: contain; background: #000; border-radius: 8px; }
 .osszevetes-racs figcaption { color: var(--halvany); font-size: .82rem; text-align: center; }
+.osszevetes-racs figcaption .leiras { display: block; font-size: .74rem; opacity: .85; margin-top: .1rem; }
 body.osszevetes-nyitva { overflow: hidden; }
 /* --- Admin ügyféloldal: kártyás nézet (ugyanaz a kártya, mint az ügyfélnél, a te értékelőiddel) --- */
 .nezet-valto { display: flex; gap: .4rem; margin: 0 0 1rem; }
@@ -152,6 +164,7 @@ body.osszevetes-nyitva { overflow: hidden; }
 .kartya-racs { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); padding-top: 1rem; }
 .kartya-racs[hidden], .tabla-keret[hidden] { display: none; }
 .kartya-meta { color: var(--halvany); font-size: .8rem; margin: 0 0 .5rem; word-break: break-word; }
+td.cim .leiras { display: block; color: var(--halvany); font-size: .78rem; line-height: 1.4; max-width: 28rem; overflow-wrap: anywhere; }
 .kartya-statuszok { flex-direction: row; flex-wrap: wrap; align-items: center; margin: .5rem 0; }
 .kartya .en-jegyzet { margin-top: .4rem; opacity: .85; }
 .admin-video { position: relative; margin-top: .5rem; width: 150px; height: 266px; background: #000; border-radius: 6px; overflow: hidden; }
