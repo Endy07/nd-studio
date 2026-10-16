@@ -76,6 +76,24 @@ export function ervenyesKulcs(kulcs, csoportok) {
   return csoportok.some((c) => c.kulcs === kulcs) ? kulcs : "mind";
 }
 
+/**
+ * A kártyák KÖZÖS láthatósága, ha több szűrő is van (dátum + címke, `cimke-szuro.js`): minden szűrő a saját
+ * állítmányát állítja be a nevén, és a kártya akkor látszik, ha MINDEGYIK igaz (ÉS kapcsolat). Így egyik szűrő
+ * sem írja felül a másik `hidden`-jét. A `parok` = `[[terv, kartyaElem], …]`; adatot nem módosít.
+ */
+export function keszitLathatosag(parok) {
+  const allitmanyok = new Map();
+  const frissit = () => {
+    for (const [terv, kartya] of parok) kartya.hidden = ![...allitmanyok.values()].every((allitmany) => allitmany(terv));
+  };
+  return {
+    beallit(nev, allitmany) {
+      allitmanyok.set(nev, allitmany);
+      frissit();
+    },
+  };
+}
+
 /** A tár hibája (privát ablak, tiltott tár) sosem dob: a szűrő csak kényelmi beállítás. */
 export function szuroBetolt(tarhely, azonosito) {
   try {
@@ -95,9 +113,12 @@ export function szuroMent(tarhely, azonosito, kulcs) {
 
 /**
  * A gombsor (vagy `null`, ha nem kell szűrő). A `parok` = `[[terv, kartyaElem], …]`; a szűrő a kártyák
- * `hidden`-jét állítja, semmi mást. Az elején a mentett (érvényes) szűrőt alkalmazza.
+ * `hidden`-jét állítja, semmi mást. Az elején a mentett (érvényes) szűrőt alkalmazza. Ha a címke-szűrő is
+ * ugyanazokon a kártyákon dolgozik, a hívó egy közös `lathatosag`-ot ad mindkettőnek (`keszitLathatosag`).
  */
-export function keszitDatumSzuro({ parok, ma = helyiNap(), tarhely, azonosito, dok = globalThis.document }) {
+export function keszitDatumSzuro({
+  parok, ma = helyiNap(), tarhely, azonosito, dok = globalThis.document, lathatosag = keszitLathatosag(parok),
+}) {
   const csoportok = datumCsoportok(parok.map(([terv]) => terv), ma);
   if (!kellSzuro(csoportok)) return null;
 
@@ -107,7 +128,7 @@ export function keszitDatumSzuro({ parok, ma = helyiNap(), tarhely, azonosito, d
   const gombok = new Map();
 
   const alkalmaz = (kulcs) => {
-    for (const [terv, kartya] of parok) kartya.hidden = !lathato(terv, kulcs, ma);
+    lathatosag.beallit("datum", (terv) => lathato(terv, kulcs, ma));
     for (const [k, gomb] of gombok) {
       gomb.classList.toggle("aktiv", k === kulcs);
       gomb.setAttribute("aria-pressed", String(k === kulcs));

@@ -7,7 +7,8 @@
  */
 
 import { keszitTarolo } from "./tarolo.js";
-import { keszitDatumSzuro } from "./datum-szuro.js";
+import { keszitDatumSzuro, keszitLathatosag } from "./datum-szuro.js";
+import { cimkeLista, keszitCimkeSzuro, keszitCimkek } from "./cimke-szuro.js";
 import { keszitLeiras, keszitOsszevetes, keszitVideoMiniatur, leirasSzoveg } from "./ugyfel-video.js";
 import {
   HIBAJELZESEK,
@@ -30,6 +31,8 @@ export function kartyaAdat(terv, sajatErtekeles, adminErtekeles) {
     cim: terv.cim,
     // Ügyfélnek szóló leírás (fehérlistás mező, `mag/katalogus.py`); hiányában üres.
     leiras: leirasSzoveg(terv.leiras),
+    // Címkék (fehérlistás mező): a kártyán a leírás alatt; a szűrő a nyers tervből dolgozik.
+    cimkek: cimkeLista(terv.cimkek),
     utvonal: terv.utvonal,
     pont: enyem.pont ?? null,
     hibajelzes: enyem.hibajelzes ?? "",
@@ -174,6 +177,9 @@ function keszitKartya(adat, tervId, mentes, slotVezerlo, osszevetes) {
   // A leírás közvetlenül a cím alatt (a videó „Összehasonlítom” jelölője elé); üresen nincs elem.
   const leiras = keszitLeiras(adat.leiras);
   if (leiras) kartya.querySelector("h2").after(leiras);
+  // A címkék kis chipként a leírás alatt (leírás híján a cím alatt); üresen nincs elem.
+  const cimkek = keszitCimkek(adat.cimkek);
+  if (cimkek) (leiras ?? kartya.querySelector("h2")).after(cimkek);
   kartya.querySelector(".megnezem").href = adat.utvonal;
 
   const pontok = kartya.querySelector(".pontok");
@@ -318,14 +324,15 @@ export async function inditUgyfelNezet(beallitas, kornyezet = {}) {
     kartyaParok.push([terv, kartya]);
   }
 
-  // Dátum-szűrő a kártyák fölött (csak ha legalább két készítési nap van): csak a kártyák láthatóságát
-  // állítja; a választás ügyfelenként megmarad (`datum-szuro.js`).
-  const datumSzuro = keszitDatumSzuro({
-    parok: kartyaParok,
-    tarhely: kornyezet.tarhely ?? globalThis.localStorage,
-    azonosito: beallitas.utvonalNev,
-  });
+  // Dátum-szűrő a kártyák fölött (csak ha legalább két készítési nap van), alatta a címke-szűrő (csak ha egy
+  // csoportnak legalább két értéke van): csak a kártyák láthatóságát állítják, a közös `lathatosag`-on át ÉS
+  // kapcsolatban; a választás ügyfelenként megmarad (`datum-szuro.js`, `cimke-szuro.js`).
+  const tarhely = kornyezet.tarhely ?? globalThis.localStorage;
+  const lathatosag = keszitLathatosag(kartyaParok);
+  const datumSzuro = keszitDatumSzuro({ parok: kartyaParok, tarhely, azonosito: beallitas.utvonalNev, lathatosag });
   if (datumSzuro) tervekElem.before(datumSzuro);
+  const cimkeSzuro = keszitCimkeSzuro({ parok: kartyaParok, tarhely, azonosito: beallitas.utvonalNev, lathatosag });
+  if (cimkeSzuro) tervekElem.before(cimkeSzuro);
 
   if (!adat.tervek.length) {
     tervekElem.textContent = "Még nincs kész terv. Hamarosan!";

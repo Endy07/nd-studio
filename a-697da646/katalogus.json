@@ -4698,6 +4698,12 @@
         {
           "cim": "TikTok-minta A · Nyitás: dátum-csapás",
           "leiras": "Nyitás: az 1. kockán a nagy arany dátum (TIHANY), fénycsíkkal és rázkódással érkezik, csillagporrá oszlik, a csillagok név → szív → név → dátum alakba repülnek. Zárás: lenyugvás a késztermékre, majd arany aláírás (ND ART · NDART.HU). Csak CC0 hangeffekt, zene nélkül (a TikTokon alá kell tenni).",
+          "cimkek": [
+            "Stílus: csillagokból",
+            "Nyitás: dátum-csapás",
+            "Outró: arany aláírás",
+            "Termék: csillagtérkép"
+          ],
           "keszult": "2026-10-16",
           "publikus": true,
           "rejtett": false,
@@ -4717,6 +4723,12 @@
         {
           "cim": "TikTok-minta B · Nyitás: a kész termék elöl",
           "leiras": "Nyitás: az 1. kockán a kész vászon és a mondat („Az éjszaka, amikor igent mondtál.”), majd a kamera beránt a térkép közepébe (match cut, halk villanás), és onnan indulnak a csillagok. Zárás: arany aláírás.",
+          "cimkek": [
+            "Stílus: csillagokból",
+            "Nyitás: kész termék elöl",
+            "Outró: arany aláírás",
+            "Termék: csillagtérkép"
+          ],
           "keszult": "2026-10-16",
           "publikus": true,
           "rejtett": false,
@@ -4736,6 +4748,12 @@
         {
           "cim": "TikTok-minta C · Nyitás: kérdés",
           "leiras": "Nyitás: „Tudod, milyen volt az ég, amikor igent mondtál?” — szavanként, ütemre pattan (az 1. kockán már olvasható), aztán szétfúj, és a csillagok veszik át. Zárás: arany aláírás.",
+          "cimkek": [
+            "Stílus: csillagokból",
+            "Nyitás: kérdés",
+            "Outró: arany aláírás",
+            "Termék: csillagtérkép"
+          ],
           "keszult": "2026-10-16",
           "publikus": true,
           "rejtett": false,
@@ -4755,6 +4773,12 @@
         {
           "cim": "Outró 1 · Arany aláírás",
           "leiras": "A lenyugvás után a kép felúszik, középről kifelé arany vonal húzódik szikrázó végekkel, alatta ND ART (az ART dőlt arany) és NDART.HU. A legcsendesebb, legprémiumabb zárás (2,5 s).",
+          "cimkek": [
+            "Stílus: csillagokból",
+            "Nyitás: nincs (outró-minta)",
+            "Outró: arany aláírás",
+            "Termék: csillagtérkép"
+          ],
           "keszult": "2026-10-16",
           "publikus": true,
           "rejtett": false,
@@ -4774,6 +4798,12 @@
         {
           "cim": "Outró 2 · Csillagpecsét",
           "leiras": "A kép elhalványul, a térkép köréből 1400 arany szikra a szedett ND ART logó alakjába repül, érkezéskor fénycsík, és a tiszta logó áll (3 s). A legerősebb márkajel: a csillagokból lesz az ND ART.",
+          "cimkek": [
+            "Stílus: csillagokból",
+            "Nyitás: nincs (outró-minta)",
+            "Outró: csillagpecsét",
+            "Termék: csillagtérkép"
+          ],
           "keszult": "2026-10-16",
           "publikus": true,
           "rejtett": false,
@@ -4793,6 +4823,12 @@
         {
           "cim": "Outró 3 · Hurok (újranézésre)",
           "leiras": "Kis vízjel (ND ART · NDART.HU), a kamera beránt a térkép közepébe, és az utolsó kocka pontosan a videó első kockája — a TikTok újraindítása észrevétlen (1,7 s).",
+          "cimkek": [
+            "Stílus: csillagokból",
+            "Nyitás: nincs (outró-minta)",
+            "Outró: hurok",
+            "Termék: csillagtérkép"
+          ],
           "keszult": "2026-10-16",
           "publikus": true,
           "rejtett": false,
@@ -4812,6 +4848,12 @@
         {
           "cim": "Outró 4 · Kérdés kommentre",
           "leiras": "A kép felúszik, alatta szavanként: „Melyik dátumot írnád rá?”, majd ÍRD MEG KOMMENTBEN · NDART.HU. Kommentet és továbbküldést hív (3 s).",
+          "cimkek": [
+            "Stílus: csillagokból",
+            "Nyitás: nincs (outró-minta)",
+            "Outró: kérdés",
+            "Termék: csillagtérkép"
+          ],
           "keszult": "2026-10-16",
           "publikus": true,
           "rejtett": false,
@@ -4831,6 +4873,12 @@
         {
           "cim": "Első randi · dátum-csapás + csillagpecsét",
           "leiras": "Budapest, 2023. 10. 14. — nyitás: dátum-csapás; zárás: a csillagok az ND ART logóba gyűlnek. Termék: művészi hátterű csillagtérkép.",
+          "cimkek": [
+            "Stílus: csillagokból",
+            "Nyitás: dátum-csapás",
+            "Outró: csillagpecsét",
+            "Termék: csillagtérkép"
+          ],
           "keszult": "2026-10-16",
           "publikus": true,
           "rejtett": false,
@@ -4850,6 +4898,12 @@
         {
           "cim": "Első randi · kész termék elöl + kérdés",
           "leiras": "Nyitás: a kész vászon „Itt kezdődött minden.” felirattal, beránt a térképbe; zárás: „Melyik dátumot írnád rá?”.",
+          "cimkek": [
+            "Stílus: csillagokból",
+            "Nyitás: kész termék elöl",
+            "Outró: kérdés",
+            "Termék: csillagtérkép"
+          ],
           "keszult": "2026-10-16",
           "publikus": true,
           "rejtett": false,
@@ -4869,6 +4923,12 @@
         {
           "cim": "Első randi · kérdés + hurok",
           "leiras": "Nyitás: „Tudod, milyen volt az ég az első randitokon?”; zárás: hurok — a vége visszavezet a kérdéshez.",
+          "cimkek": [
+            "Stílus: csillagokból",
+            "Nyitás: kérdés",
+            "Outró: hurok",
+            "Termék: csillagtérkép"
+          ],
           "keszult": "2026-10-16",
           "publikus": true,
           "rejtett": false,
@@ -4888,6 +4948,12 @@
         {
           "cim": "Aranylakodalom · dátum-csapás + kérdés",
           "leiras": "Kecskemét, 1975. 06. 07. — nyitás: dátum-csapás; zárás: „Kinek az égboltját ajándékoznád?”. Termék: barokk keretes, pergamen hátterű csillagtérkép.",
+          "cimkek": [
+            "Stílus: csillagokból",
+            "Nyitás: dátum-csapás",
+            "Outró: kérdés",
+            "Termék: csillagtérkép"
+          ],
           "keszult": "2026-10-16",
           "publikus": true,
           "rejtett": false,
@@ -4907,6 +4973,12 @@
         {
           "cim": "Aranylakodalom · kész termék elöl + hurok",
           "leiras": "Nyitás: „Ötven év, egy égbolt alatt.” a kész vászon fölött; zárás: hurok vissza a nyitóképre.",
+          "cimkek": [
+            "Stílus: csillagokból",
+            "Nyitás: kész termék elöl",
+            "Outró: hurok",
+            "Termék: csillagtérkép"
+          ],
           "keszult": "2026-10-16",
           "publikus": true,
           "rejtett": false,
@@ -4926,6 +4998,12 @@
         {
           "cim": "Aranylakodalom · kérdés + csillagpecsét",
           "leiras": "Nyitás: „Milyen volt az ég a nagyszüleid esküvőjén?”; zárás: a csillagok az ND ART logóba gyűlnek.",
+          "cimkek": [
+            "Stílus: csillagokból",
+            "Nyitás: kérdés",
+            "Outró: csillagpecsét",
+            "Termék: csillagtérkép"
+          ],
           "keszult": "2026-10-16",
           "publikus": true,
           "rejtett": false,
@@ -4945,6 +5023,12 @@
         {
           "cim": "Első otthon · dátum-csapás + hurok",
           "leiras": "Budapest XIII., 2024. 03. 01. — nyitás: dátum-csapás; zárás: hurok vissza a dátumra. Termék: minimalista sarokkeretes, fehér hátterű csillagtérkép.",
+          "cimkek": [
+            "Stílus: csillagokból",
+            "Nyitás: dátum-csapás",
+            "Outró: hurok",
+            "Termék: csillagtérkép"
+          ],
           "keszult": "2026-10-16",
           "publikus": true,
           "rejtett": false,
@@ -4964,6 +5048,12 @@
         {
           "cim": "Első otthon · kész termék elöl + csillagpecsét",
           "leiras": "Nyitás: „Itt lettünk otthon.” a kész vászon fölött; zárás: a csillagok az ND ART logóba gyűlnek.",
+          "cimkek": [
+            "Stílus: csillagokból",
+            "Nyitás: kész termék elöl",
+            "Outró: csillagpecsét",
+            "Termék: csillagtérkép"
+          ],
           "keszult": "2026-10-16",
           "publikus": true,
           "rejtett": false,
@@ -4983,6 +5073,12 @@
         {
           "cim": "Első otthon · kérdés + arany aláírás",
           "leiras": "Nyitás: „Milyen volt az ég az első éjszakán az új otthonban?”; zárás: arany aláírás.",
+          "cimkek": [
+            "Stílus: csillagokból",
+            "Nyitás: kérdés",
+            "Outró: arany aláírás",
+            "Termék: csillagtérkép"
+          ],
           "keszult": "2026-10-16",
           "publikus": true,
           "rejtett": false,
@@ -4998,6 +5094,331 @@
           },
           "id": "ndart/video-2026-10-16_72",
           "utvonal": "t/video-2026-10-16_72/index.html"
+        },
+        {
+          "cim": "Warp-trailer · Eljegyzés, Tihany",
+          "leiras": "Gyors trailer warp-alagúttal: az 1. kockán már áll az „EGY ÉJSZAKA.”, a szavak ütemre csapódnak be (dőlt, vastag, arany kiemelés, glitch). A tihanyi csillagtérkép lebegő kártyaként érkezik hely–dátum–nevek címkével, szilánkokra törik, gépelt „IGEN.”, a térkép valódi csillagkép-vonalai körben kirajzolódnak, kártyafelhő, warp-robbanás a termék körül. CC0 hangeffektek.",
+          "cimkek": [
+            "Stílus: warp-trailer",
+            "Nyitás: szavak a warpban",
+            "Outró: HAMAROSAN-kapszula",
+            "Termék: csillagtérkép"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "b09c7e644bb2b69047da00e1e936ce200884a2480662c13ca073a247dce6b0cb",
+            "bajt": 7444352,
+            "formatum": "9:16",
+            "hossz_mp": 14.016,
+            "kulso": "01-eljegyzes-tihany.mp4"
+          },
+          "id": "ndart/video-2026-10-16_73",
+          "utvonal": "t/video-2026-10-16_73/index.html"
+        },
+        {
+          "cim": "Warp-trailer · 10. évforduló, Eger",
+          "leiras": "Az 1. kockán a dátum (EGER, 2015 · 09 · 26) a warp-alagútban, glitch-csel „TÍZ ÉV.”-re vált. A fekvő vásznon csillagtérkép és Hold: a kártya lebeg, a térkép valódi csillagkép-vonalai kirajzolódnak, a kamera a Holdra ugrik arany asztrolábium-gyűrűvel, szilánk és gépelt „EGYÜTT.”, majd warp-robbanás. Zárás: a termék a warpba zuhan, ND ART. CC0 hangeffektek.",
+          "cimkek": [
+            "Stílus: warp-trailer",
+            "Nyitás: dátum-glitch",
+            "Outró: warpba zuhanás",
+            "Termék: hold + csillag"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "ab8ca713997f651aa8739a8dfd59398f98d50bb11f800d7efee91795966720d1",
+            "bajt": 8353457,
+            "formatum": "9:16",
+            "hossz_mp": 14.016,
+            "kulso": "02-evfordulo-eger.mp4"
+          },
+          "id": "ndart/video-2026-10-16_74",
+          "utvonal": "t/video-2026-10-16_74/index.html"
+        },
+        {
+          "cim": "Warp-trailer · Születés, Debrecen",
+          "leiras": "Az 1. kockán a holdfázis-kép már a warp-alagútból száguld elő, alatta: „ILYEN VOLT / A HOLD,”. A kamera a Holdra ugrik arany gyűrűvel („AMIKOR MEGÉRKEZTÉL.”), a kártya szilánkokra törik, gépelt „04:12” kurzorral, 3D kártyafelhő, warp-robbanás a termék körül. Zárás: ND ART és gépelt HAMAROSAN kapszula. CC0 hangeffektek, 120 BPM.",
+          "cimkek": [
+            "Stílus: warp-trailer",
+            "Nyitás: termék a warpból",
+            "Outró: HAMAROSAN-kapszula",
+            "Termék: holdfázis"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "34de91e7794f70d55a482471dba9babff033d986bfe687d6af7edca1711b5af7",
+            "bajt": 6641566,
+            "formatum": "9:16",
+            "hossz_mp": 12.01,
+            "kulso": "03-szuletes-debrecen.mp4"
+          },
+          "id": "ndart/video-2026-10-16_75",
+          "utvonal": "t/video-2026-10-16_75/index.html"
+        },
+        {
+          "cim": "Warp-trailer · Esküvő, Szeged",
+          "leiras": "Fordított szilánk-nyitás: az 1. kockán a darabok már repülnek össze, a széles vászon (csillagtérkép, Hold, fotó) az első ütésre egésszé áll. Utána a térkép valódi csillagkép-vonalai, ugrás a Holdra, majd a fotóra (illusztráció) arany gyűrűvel, szilánk és gépelt „ÖRÖKRE.”, warp-robbanás. Zárás: a termék a warpba zuhan, ND ART. CC0 hangeffektek, 120 BPM.",
+          "cimkek": [
+            "Stílus: warp-trailer",
+            "Nyitás: összeálló szilánkok",
+            "Outró: warpba zuhanás",
+            "Termék: hold + csillag + fotó"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "1ad0fe2edb881473dbe20bcc826e5c6718b0f15a8d87b3fea3e72c6e7915ff7e",
+            "bajt": 7114341,
+            "formatum": "9:16",
+            "hossz_mp": 13.504,
+            "kulso": "04-eskuvo-szeged.mp4"
+          },
+          "id": "ndart/video-2026-10-16_76",
+          "utvonal": "t/video-2026-10-16_76/index.html"
+        },
+        {
+          "cim": "Melyik a tiéd? — a teljes kínálat körhintán",
+          "leiras": "Valódi 3D-körhinta a bolt 14 kirakat-kártyájával: ütemenként (0,5 s) lép egyet, valódi bemozdulásos elmosással, alatta a front kártya fajtája pattan be vastag betűkkel (csillagtérkép, holdfázis, saját fotó, szöveg, kettő és három egy vásznon). A végén a tihanyi csillagtérkép előre jön, a csillámpor elhal, rövid állás, majd ND ART zárás. Hangeffektek az ütemrácson, zene nélkül.",
+          "cimkek": [
+            "Stílus: körhinta",
+            "Nyitás: kérdés",
+            "Outró: arany aláírás",
+            "Termék: teljes kínálat"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "49372cef740172d11dca04810c71c1e8c6643917a7aff11af8fdfd406fe2c0c8",
+            "bajt": 2584209,
+            "formatum": "9:16",
+            "hossz_mp": 11.5,
+            "kulso": "02-korhinta-kinalat.mp4"
+          },
+          "id": "ndart/video-2026-10-16_77",
+          "utvonal": "t/video-2026-10-16_77/index.html"
+        },
+        {
+          "cim": "Ilyen volt a Hold — öt holdfázis körhintán",
+          "leiras": "Öt holdfázis-vászon körhintán, kártyánként két ütem: lépés és az alkalom neve, majd egy ritmikus löket a várossal és a dátummal. Utána nagy pörgés („Egy éjszaka. Egy hold.”), a soproni telihold előre jön, a csillogás elhal, rövid állás, és ND ART zárás. Tükröződő padló, arany csillámpor, hangeffektek a 120 BPM-es rácson.",
+          "cimkek": [
+            "Stílus: körhinta",
+            "Nyitás: cím",
+            "Outró: arany aláírás",
+            "Termék: holdfázis"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "fdbc247a913a7133821bc7b948a31a2fb7f82f15514c4426162ec0a874940620",
+            "bajt": 2199160,
+            "formatum": "9:16",
+            "hossz_mp": 10.261,
+            "kulso": "02-korhinta-holdfazis.mp4"
+          },
+          "id": "ndart/video-2026-10-16_78",
+          "utvonal": "t/video-2026-10-16_78/index.html"
+        },
+        {
+          "cim": "Minden alkalomra — kilenc alkalom, kilenc ütem",
+          "leiras": "Kilenc vászon körhintán, ütemenként egy alkalom: eljegyzés, első randi, Valentin-nap, aranylakodalom, kisállat, esküvő, első otthon, születés, ballagás — a név vastag, pattanó betűkkel. Három gyorsuló forgás („Egy éjszaka. Egy dátum. Egy ég.”), majd a tihanyi csillagtérkép előre jön, rövid állás és ND ART zárás.",
+          "cimkek": [
+            "Stílus: körhinta",
+            "Nyitás: cím",
+            "Outró: arany aláírás",
+            "Termék: vegyes"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "c4b29573a0c8a204966b52fd8cd99fe1a0ca508b9f682bd384e0d68e1081edac",
+            "bajt": 2501609,
+            "formatum": "9:16",
+            "hossz_mp": 10.261,
+            "kulso": "02-korhinta-alkalmak.mp4"
+          },
+          "id": "ndart/video-2026-10-16_79",
+          "utvonal": "t/video-2026-10-16_79/index.html"
+        },
+        {
+          "cim": "Kamerafutás — Itt kezdődött minden (Budapest)",
+          "leiras": "Egyetlen, vágás nélküli, folyamatosan gyorsuló kameraút: a budapesti fények csíkká nyúlnak, áttörünk a Lánchíd pillérén, a kamera felbillen az égbe, és a valódi térkép csillagai között repülünk, amíg pontosan összeállnak. A végén kirepülünk a falon lógó vászonból: a keret a portál. Ütemenként sebességlöket és új szó, valódi mozgási elmosással.",
+          "cimkek": [
+            "Stílus: kamerafutás",
+            "Nyitás: rohanás felirattal",
+            "Outró: fénycsík-aláírás",
+            "Termék: csillagtérkép"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "a6500d72caaed148434d6cb9bc9c4ba0f27bafd202ad9c314b42fc90acc0acc3",
+            "bajt": 15713306,
+            "formatum": "9:16",
+            "hossz_mp": 13.248,
+            "kulso": "11-elso-randi-budapest.mp4"
+          },
+          "id": "ndart/video-2026-10-16_80",
+          "utvonal": "t/video-2026-10-16_80/index.html"
+        },
+        {
+          "cim": "Kamerafutás — Amikor csillagaink találkoztak (Esztergom)",
+          "leiras": "Egy snitt, egyre gyorsabban: esztergomi fénycsíkok, átrepülés a híd ívei alatt, fel a tornyok között az égbe, a valódi csillagkép-vonalak közé. A csillagok a becsapódás pillanatában a termék térképévé állnak össze, majd a kamera kirepül a vásznon át; a teljes kör a végtelen-jel maszkká zárul. Ütemre sebességlöket, valódi mozgási elmosás.",
+          "cimkek": [
+            "Stílus: kamerafutás",
+            "Nyitás: rohanás felirattal",
+            "Outró: fénycsík-aláírás",
+            "Termék: csillagtérkép"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "56051956beb4525db85cea39baf3eb2d5edd0a3dd243ca82fcbe89234e5d12ae",
+            "bajt": 16272009,
+            "formatum": "9:16",
+            "hossz_mp": 13.248,
+            "kulso": "17-eskuvo-esztergom.mp4"
+          },
+          "id": "ndart/video-2026-10-16_81",
+          "utvonal": "t/video-2026-10-16_81/index.html"
+        },
+        {
+          "cim": "Kamerafutás — Egyenesen a Holdig (Sopron)",
+          "leiras": "Vágás nélküli, gyorsuló futás a soproni fények között, át a városkapun, fel az égbe — és egyenesen a Hold felé, amíg betölti a képet. Ott a kamera kirepül a falon lógó vászonból, a Hold a helyére ül a késztermékben, ragyogó szegéllyel. Ütemenként sebességlöket és kinetikus szó, valódi mozgási elmosással.",
+          "cimkek": [
+            "Stílus: kamerafutás",
+            "Nyitás: rohanás felirattal",
+            "Outró: fénycsík-aláírás",
+            "Termék: holdfázis"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "684b4e0085b5d8ea4cd10f8d8e51f7e8b2656b8450aff4fbe2496c3b7b686921",
+            "bajt": 15973106,
+            "formatum": "9:16",
+            "hossz_mp": 13.248,
+            "kulso": "15-hold-elso-kozos-este-sopron.mp4"
+          },
+          "id": "ndart/video-2026-10-16_82",
+          "utvonal": "t/video-2026-10-16_82/index.html"
+        },
+        {
+          "cim": "3 ajándék, amit sosem felejt el",
+          "leiras": "Kinetikus lista 120 BPM-re: minden ütemre új szó vagy vágás. A nagy arany listaszám becsapódik, majd jelvénnyé zsugorodik; a szavakban a termék (szöveg-maszk), a kártya alulról, körből vagy csíkokban nyílik, zoom-ütés a termékbe, whip-pan a tételek között. A végén a három ajándék egymás mellett, kérdéssel. A fotó illusztráció.",
+          "cimkek": [
+            "Stílus: kinetikus lista",
+            "Nyitás: lista-cím",
+            "Outró: kinetikus márka",
+            "Termék: vegyes"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "0fc614912f257f8eca41a191fbcdefc4dcbd30b28385fb728329a290a3842305",
+            "bajt": 2897533,
+            "formatum": "9:16",
+            "hossz_mp": 13.504,
+            "kulso": "v1-harom-ajandek.mp4"
+          },
+          "id": "ndart/video-2026-10-16_83",
+          "utvonal": "t/video-2026-10-16_83/index.html"
+        },
+        {
+          "cim": "POV: kibontja az évfordulós ajándékot",
+          "leiras": "POV-cím az 1. kockán, alatta egy rajzolt ajándékdoboz. Ütemre: leszakad a szalag, a papír szilánkokra robban, arany fénysugarak, a kamera belemerül a fénybe. Ebből csapódik be az egri évfordulós kép; kinetikus szavak, split-screen (csillagtérkép fent, Hold lent), a nevekben a termék, pörgő dátum, a végén a „10.” a kép mögött.",
+          "cimkek": [
+            "Stílus: kinetikus lista",
+            "Nyitás: POV",
+            "Outró: kinetikus márka",
+            "Termék: hold + csillag"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "2f867f786c00997c61a30868134afb0671bc2a304eb48bcc603d5133ce90537f",
+            "bajt": 2903434,
+            "formatum": "9:16",
+            "hossz_mp": 12.01,
+            "kulso": "v2-pov-evfordulo.mp4"
+          },
+          "id": "ndart/video-2026-10-16_84",
+          "utvonal": "t/video-2026-10-16_84/index.html"
+        },
+        {
+          "cim": "Egy kép, ami megszólal — Okoskép",
+          "leiras": "Okoskép (NFC) kinetikus szavakkal: egy rajzolt telefon megérinti a vásznat, NFC-hullám indul. Utána a telefon képernyőjén ütemre jön a videó, a hang és az üzenet, mindegyik egy-egy becsapódó szóval. Gyors összefoglaló lista (a „HANG” szóban a kép), majd a szív alakú csillagtérkép NFC-jellel.",
+          "cimkek": [
+            "Stílus: kinetikus lista",
+            "Nyitás: állítás + termék",
+            "Outró: kinetikus márka",
+            "Termék: Okoskép (NFC)"
+          ],
+          "keszult": "2026-10-16",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "8b02c21c744d40ad9e703012765d44035b478d955f6a3588d6180b2f7f456fd6",
+            "bajt": 2146721,
+            "formatum": "9:16",
+            "hossz_mp": 11.008,
+            "kulso": "v3-okoskep.mp4"
+          },
+          "id": "ndart/video-2026-10-16_85",
+          "utvonal": "t/video-2026-10-16_85/index.html"
         }
       ],
       "rejtett_szam": 0

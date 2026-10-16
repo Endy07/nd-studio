@@ -53,8 +53,25 @@ body.ugyfel header p { color: var(--halvany); margin-top: .4rem; }
 }
 .datum-szuro button:hover { color: var(--szoveg); }
 .datum-szuro button.aktiv { background: var(--kiemel); border-color: var(--kiemel); color: #fff; }
+/* Címke-szűrő a dátum-szűrő alatt (cimke-szuro.js): csoportonként egy sor kis gomb, elöl a csoport neve. */
+.cimke-szuro[hidden] { display: none !important; }
+.cimke-szuro { display: flex; flex-direction: column; gap: .35rem; margin: -.4rem 0 1.2rem; }
+.cimke-csoport { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem; }
+.cimke-csoport-nev { color: var(--halvany); font-size: .75rem; min-width: 4.5rem; margin-right: .2rem; }
+.cimke-csoport button {
+  background: none; border: 1px solid var(--keret); color: var(--halvany); padding: .15rem .6rem;
+  border-radius: 999px; cursor: pointer; font-size: .75rem; font-variant-numeric: tabular-nums;
+}
+.cimke-csoport button:hover { color: var(--szoveg); }
+.cimke-csoport button.aktiv { background: var(--kiemel); border-color: var(--kiemel); color: #fff; }
 /* A terv ügyfélnek szóló leírása a cím alatt (terv.json `leiras`): kicsi, halvány, a címhez húzva. */
 .kartya .leiras { color: var(--halvany); font-size: .85rem; line-height: 1.45; margin: -.3rem 0 .7rem; overflow-wrap: anywhere; }
+/* A terv címkéi (terv.json `cimkek`) kis chipként a leírás alatt. */
+.kartya .cimkek { list-style: none; display: flex; flex-wrap: wrap; gap: .3rem; padding: 0; margin: -.2rem 0 .7rem; }
+.kartya .cimke {
+  border: 1px solid var(--keret); border-radius: 999px; padding: .05rem .5rem; color: var(--halvany);
+  font-size: .72rem; line-height: 1.5; overflow-wrap: anywhere;
+}
 .miniatur { height: 200px; overflow: hidden; border-radius: 10px; background: #fff; }
 .miniatur iframe {
   width: 1280px; height: 800px; border: 0;

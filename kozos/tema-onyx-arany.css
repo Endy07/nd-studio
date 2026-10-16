@@ -38,6 +38,7 @@ body.tema-onyx-arany .kartya {
 body.tema-onyx-arany .kartya.elfogadott { border-color: var(--arany); box-shadow: 0 0 0 1px var(--arany), 0 18px 60px rgba(0,0,0,.55); }
 body.tema-onyx-arany .kartya h2 { font-family: "Playfair", Georgia, serif; font-weight: 500; font-size: 1.3rem; }
 body.tema-onyx-arany .kartya .leiras { font-weight: 300; font-size: .82rem; letter-spacing: .02em; color: var(--halvany); }
+body.tema-onyx-arany .kartya .cimke { font-weight: 300; font-size: .68rem; letter-spacing: .04em; border-color: var(--arany-halvany); color: var(--halvany); }
 body.tema-onyx-arany .miniatur { border-radius: 14px; }
 body.tema-onyx-arany .miniatur.video { background: #000; border: 1px solid var(--keret); }
 body.tema-onyx-arany .miniatur.video .nagyit { border-radius: 999px; background: rgba(0,0,0,.6); border-color: var(--arany-halvany); color: var(--arany); }
@@ -64,6 +65,13 @@ body.tema-onyx-arany .datum-szuro button {
 }
 body.tema-onyx-arany .datum-szuro button:hover { border-color: var(--arany-halvany); color: var(--szoveg); }
 body.tema-onyx-arany .datum-szuro button.aktiv { background: var(--arany); border-color: var(--arany); color: #000; font-weight: 600; }
+body.tema-onyx-arany .cimke-csoport-nev { font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--arany); }
+body.tema-onyx-arany .cimke-csoport button {
+  font-family: inherit; font-size: .68rem; letter-spacing: .06em;
+  background: transparent; border-color: var(--keret); color: var(--halvany);
+}
+body.tema-onyx-arany .cimke-csoport button:hover { border-color: var(--arany-halvany); color: var(--szoveg); }
+body.tema-onyx-arany .cimke-csoport button.aktiv { background: var(--arany); border-color: var(--arany); color: #000; font-weight: 600; }
 body.tema-onyx-arany .osszevet-jelolo { color: var(--halvany); font-size: .82rem; letter-spacing: .04em; }
 body.tema-onyx-arany .osszevet-jelolo input { accent-color: var(--arany); }
 body.tema-onyx-arany .admin-velemeny { border-top-color: var(--keret); color: var(--arany); font-style: italic; font-family: "Playfair", Georgia, serif; }

@@ -1,7 +1,8 @@
 /** Admin részletes nézet egy ügyfélre: minden terv, minden adat, pontozás. */
 
 import { keszitTarolo } from "./tarolo.js";
-import { keszitDatumSzuro } from "./datum-szuro.js";
+import { keszitDatumSzuro, keszitLathatosag } from "./datum-szuro.js";
+import { cimkeLista, keszitCimkeSzuro, keszitCimkek } from "./cimke-szuro.js";
 import { keszitLeiras, keszitOsszevetes, keszitVideoMiniatur, leirasSzoveg, videoUtak } from "./ugyfel-video.js";
 import { ADMIN_TOKEN_KULCS, adminToken, betoltKatalogus } from "./admin-osszefoglalo.js";
 import {
@@ -30,6 +31,8 @@ export function sorAdat(terv, adminErtekeles, ugyfelErtekeles) {
     leiras: leirasSzoveg(terv.leiras),
     // A kártyás nézet dátum-szűrőjéhez (`datum-szuro.js`); hiányában üres → „Dátum nélkül”.
     keszult: terv.keszult ?? "",
+    // A kártyán a leírás alatt, és a kártyás nézet címke-szűrőjéhez (`cimke-szuro.js`).
+    cimkek: cimkeLista(terv.cimkek),
     utvonal: terv.utvonal,
     tipus: terv.tipus ?? "",
     modell: terv.modell ?? "–",
@@ -212,6 +215,8 @@ function keszitAdminKartya(sor, ugyfelUt, mentes, osszevetes) {
   }
   const leiras = keszitLeiras(sor.leiras);
   if (leiras) kartya.querySelector("h2").after(leiras);
+  const cimkek = keszitCimkek(sor.cimkek);
+  if (cimkek) (leiras ?? kartya.querySelector("h2")).after(cimkek);
   toltPontok(kartya.querySelector(".pontok"), sor, mentes);
   toltStatuszok(kartya.querySelector(".statuszok"), sor, mentes, (be) => kartya.classList.toggle("elfogadott", be));
   kotJegyzetek(kartya.querySelector(".en-megjegyzes"), kartya.querySelector(".en-jegyzet"), sor, mentes);
@@ -376,14 +381,19 @@ export async function inditAdminUgyfel(beallitas, kornyezet = {}) {
   const osszevetes = videok.length ? keszitOsszevetes(gyoker, videok) : null;
   const kartyaParok = sorok.map((sor) => [sor, keszitAdminKartya(sor, ugyfelUt, mentes, osszevetes)]);
   kartyakElem.replaceChildren(...kartyaParok.map(([, kartya]) => kartya));
-  // Ugyanaz a dátum-szűrő, mint az ügyfélnél — külön kulccsal (`admin:<slug>`), csak a kártyás nézetben.
-  const datumSzuro = keszitDatumSzuro({ parok: kartyaParok, tarhely, azonosito: `admin:${ugyfel.slug}` });
+  // Ugyanaz a dátum- és címke-szűrő, mint az ügyfélnél (közös láthatóság, ÉS) — külön kulccsal (`admin:<slug>`),
+  // csak a kártyás nézetben.
+  const lathatosag = keszitLathatosag(kartyaParok);
+  const datumSzuro = keszitDatumSzuro({ parok: kartyaParok, tarhely, azonosito: `admin:${ugyfel.slug}`, lathatosag });
   if (datumSzuro) kartyakElem.before(datumSzuro);
+  const cimkeSzuro = keszitCimkeSzuro({ parok: kartyaParok, tarhely, azonosito: `admin:${ugyfel.slug}`, lathatosag });
+  if (cimkeSzuro) kartyakElem.before(cimkeSzuro);
 
   const nezetGombok = [...gyoker.querySelectorAll("[data-nezet]")];
   const mutat = (nezet) => {
     kartyakElem.hidden = nezet !== "kartya";
     if (datumSzuro) datumSzuro.hidden = nezet !== "kartya";
+    if (cimkeSzuro) cimkeSzuro.hidden = nezet !== "kartya";
     gyoker.getElementById("tabla-keret").hidden = nezet !== "tabla";
     for (const g of nezetGombok) g.classList.toggle("aktiv", g.dataset.nezet === nezet);
   };
