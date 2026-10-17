@@ -9500,6 +9500,255 @@
           },
           "id": "ndart/video-2026-10-17_05",
           "utvonal": "t/video-2026-10-17_05/index.html"
+        },
+        {
+          "cim": "Karácsonyi film valósághű szereplőkkel — a rendeléstől a falig (50 mp)",
+          "leiras": "Karácsonyi kisfilm Rékáról és Bencéről: este a kanapén megrendelik a csillagtérképet a valódi rendelőfelületen, karácsonykor a fa alatt kibontják, végül együtt akasztják a falra. A szereplők helyi AI-val készültek (FLUX.2 klein képkockák, LTX-2.5 mozgókép); a vásznon mindig a valódi termékkép látszik, utólag beillesztve. MI-generált, eljátszott reklámfilm (nem vásárlói vélemény).",
+          "cimkek": [
+            "Eszköz: FLUX.2 klein + LTX-2.5",
+            "Szereplők: valósághű AI",
+            "Stílus: karácsonyi film",
+            "Téma: karácsony",
+            "Termék: csillagtérkép",
+            "Outró: valódi logó",
+            "Jelölés: MI-generált"
+          ],
+          "keszult": "2026-10-17",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "33504aa41a0b13eb8891395c32f9d04f834754d8e62a2e057baa4d97186532c3",
+            "bajt": 4639849,
+            "formatum": "9:16",
+            "hossz_mp": 47.509,
+            "kulso": "A_szereplok_50s.mp4"
+          },
+          "id": "ndart/video-2026-10-17_06",
+          "utvonal": "t/video-2026-10-17_06/index.html"
+        },
+        {
+          "cim": "Karácsonyi film valósághű szereplőkkel — a rendeléstől a falig (35 mp)",
+          "leiras": "A karácsonyi kisfilm közepes változata: rendelés a telefonon (valódi felület), kibontás a fa alatt, közös felakasztás, ráközelítés a valódi képre. Helyi AI-val készült, a vásznon a valódi termékkép. MI-generált, eljátszott reklámfilm (nem vásárlói vélemény).",
+          "cimkek": [
+            "Eszköz: FLUX.2 klein + LTX-2.5",
+            "Szereplők: valósághű AI",
+            "Stílus: karácsonyi film",
+            "Téma: karácsony",
+            "Termék: csillagtérkép",
+            "Outró: valódi logó",
+            "Jelölés: MI-generált"
+          ],
+          "keszult": "2026-10-17",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "1c2c4f4afec27a9024bbe4a1437673f05671ed129d1d771124465070aa12a55b",
+            "bajt": 3484084,
+            "formatum": "9:16",
+            "hossz_mp": 34.41,
+            "kulso": "A_szereplok_35s.mp4"
+          },
+          "id": "ndart/video-2026-10-17_07",
+          "utvonal": "t/video-2026-10-17_07/index.html"
+        },
+        {
+          "cim": "Karácsonyi film valósághű szereplőkkel — TikTok-vágat (15 mp)",
+          "leiras": "A karácsonyi kisfilm 15 másodperces vágata: a kész előnézet a telefonon, kibontás és öröm a fa alatt, közös felakasztás, ráközelítés a valódi képre, logó. Saját generált zenei alappal. MI-generált, eljátszott reklámfilm (nem vásárlói vélemény).",
+          "cimkek": [
+            "Eszköz: FLUX.2 klein + LTX-2.5",
+            "Szereplők: valósághű AI",
+            "Stílus: karácsonyi film",
+            "Téma: karácsony",
+            "Termék: csillagtérkép",
+            "Outró: valódi logó",
+            "Jelölés: MI-generált"
+          ],
+          "keszult": "2026-10-17",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "e901a4b94c1fe7eada8464dac37e07462ccf0695fbfb662470d6a9a1df0938f9",
+            "bajt": 1584596,
+            "formatum": "9:16",
+            "hossz_mp": 15.018,
+            "kulso": "A_szereplok_15s.mp4"
+          },
+          "id": "ndart/video-2026-10-17_08",
+          "utvonal": "t/video-2026-10-17_08/index.html"
+        },
+        {
+          "cim": "Karácsonyi film kezekkel és sziluettekkel — a rendeléstől a falig (50 mp)",
+          "leiras": "Karácsonyi kisfilm arcok nélkül: kezek a telefonon, összefonódó ujjak, arany szalag, sziluettek a fa fényében, közös felakasztás. Helyi AI-val készült (FLUX.2 klein képkockák, LTX-2.5 mozgókép); a vásznon mindig a valódi termékkép látszik, utólag beillesztve. MI-generált, eljátszott reklámfilm (nem vásárlói vélemény).",
+          "cimkek": [
+            "Eszköz: FLUX.2 klein + LTX-2.5",
+            "Szereplők: kezek, sziluettek",
+            "Stílus: karácsonyi film",
+            "Téma: karácsony",
+            "Termék: csillagtérkép",
+            "Outró: valódi logó",
+            "Jelölés: MI-generált"
+          ],
+          "keszult": "2026-10-17",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "f65690c67c2c2113d73201e1c8f0c880b84834df9e6bd31a6de7cba7b14a8691",
+            "bajt": 4451254,
+            "formatum": "9:16",
+            "hossz_mp": 47.509,
+            "kulso": "B_kezek_50s.mp4"
+          },
+          "id": "ndart/video-2026-10-17_09",
+          "utvonal": "t/video-2026-10-17_09/index.html"
+        },
+        {
+          "cim": "Karácsonyi film kezekkel és sziluettekkel — a rendeléstől a falig (35 mp)",
+          "leiras": "A karácsonyi kisfilm közepes változata: rendelés a telefonon (valódi felület), kibontás a fa alatt, közös felakasztás, ráközelítés a valódi képre. Helyi AI-val készült, a vásznon a valódi termékkép. MI-generált, eljátszott reklámfilm (nem vásárlói vélemény).",
+          "cimkek": [
+            "Eszköz: FLUX.2 klein + LTX-2.5",
+            "Szereplők: kezek, sziluettek",
+            "Stílus: karácsonyi film",
+            "Téma: karácsony",
+            "Termék: csillagtérkép",
+            "Outró: valódi logó",
+            "Jelölés: MI-generált"
+          ],
+          "keszult": "2026-10-17",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "e6140a905ed3943f92e244a854d03ea6d977266d7cdeb9471462bda28f813aca",
+            "bajt": 3332348,
+            "formatum": "9:16",
+            "hossz_mp": 34.41,
+            "kulso": "B_kezek_35s.mp4"
+          },
+          "id": "ndart/video-2026-10-17_10",
+          "utvonal": "t/video-2026-10-17_10/index.html"
+        },
+        {
+          "cim": "Karácsonyi film kezekkel és sziluettekkel — TikTok-vágat (15 mp)",
+          "leiras": "A karácsonyi kisfilm 15 másodperces vágata: a kész előnézet a telefonon, kibontás és öröm a fa alatt, közös felakasztás, ráközelítés a valódi képre, logó. Saját generált zenei alappal. MI-generált, eljátszott reklámfilm (nem vásárlói vélemény).",
+          "cimkek": [
+            "Eszköz: FLUX.2 klein + LTX-2.5",
+            "Szereplők: kezek, sziluettek",
+            "Stílus: karácsonyi film",
+            "Téma: karácsony",
+            "Termék: csillagtérkép",
+            "Outró: valódi logó",
+            "Jelölés: MI-generált"
+          ],
+          "keszult": "2026-10-17",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "ee29c0a4ee22f321a179330a4daabe74040fe991036159c49764fb87fd478cde",
+            "bajt": 1460835,
+            "formatum": "9:16",
+            "hossz_mp": 15.018,
+            "kulso": "B_kezek_15s.mp4"
+          },
+          "id": "ndart/video-2026-10-17_11",
+          "utvonal": "t/video-2026-10-17_11/index.html"
+        },
+        {
+          "cim": "Karácsonyi film, illusztrálva — a rendeléstől a falig (50 mp)",
+          "leiras": "Rajzolt karácsonyi kisfilm Rékáról és Bencéről: este a kanapén megrendelik a csillagtérképet a valódi rendelőfelületen, karácsonykor a fa alatt kibontják, végül együtt akasztják a falra. Minden jelenet kódból rajzolt, a vásznon mindig a valódi termékkép látszik. A nevek és a feliratok egy szerkesztőben kézzel átírhatók.",
+          "cimkek": [
+            "Eszköz: OpenFilm",
+            "Szereplők: illusztrált",
+            "Stílus: karácsonyi film",
+            "Téma: karácsony",
+            "Termék: csillagtérkép",
+            "Outró: valódi logó"
+          ],
+          "keszult": "2026-10-17",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "dd69915bba3d5622377032ba97ecc64e226f47398913c251364cc52cbef79ad9",
+            "bajt": 3332258,
+            "formatum": "9:16",
+            "hossz_mp": 48.768,
+            "kulso": "C_50s.mp4"
+          },
+          "id": "ndart/video-2026-10-17_12",
+          "utvonal": "t/video-2026-10-17_12/index.html"
+        },
+        {
+          "cim": "Karácsonyi film, illusztrálva — a rendeléstől a falig (35 mp)",
+          "leiras": "A rajzolt karácsonyi kisfilm közepes változata: rendelés a telefonon (valódi felület), kibontás a fa alatt, közös felakasztás. Kódból rajzolt szereplők, a vásznon mindig a valódi termékkép; a nevek és a feliratok kézzel átírhatók.",
+          "cimkek": [
+            "Eszköz: OpenFilm",
+            "Szereplők: illusztrált",
+            "Stílus: karácsonyi film",
+            "Téma: karácsony",
+            "Termék: csillagtérkép",
+            "Outró: valódi logó"
+          ],
+          "keszult": "2026-10-17",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "4501285f00551ad3b774f6b05781156f295c1b9ec1a08de5d81a8fbfc8dedf1e",
+            "bajt": 2560245,
+            "formatum": "9:16",
+            "hossz_mp": 35.306,
+            "kulso": "C_35s.mp4"
+          },
+          "id": "ndart/video-2026-10-17_13",
+          "utvonal": "t/video-2026-10-17_13/index.html"
+        },
+        {
+          "cim": "Karácsonyi film, illusztrálva — TikTok-vágat (15 mp)",
+          "leiras": "A rajzolt karácsonyi kisfilm 15 másodperces vágata: a kész előnézet a telefonon, kibontás és öröm a fa alatt, közös felakasztás, ráközelítés a valódi képre, logó. Saját generált zenei alappal.",
+          "cimkek": [
+            "Eszköz: OpenFilm",
+            "Szereplők: illusztrált",
+            "Stílus: karácsonyi film",
+            "Téma: karácsony",
+            "Termék: csillagtérkép",
+            "Outró: valódi logó"
+          ],
+          "keszult": "2026-10-17",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "9426b16f7015d56ae7679f4b11c1da6453e85186d164aba3e18cf8fede554486",
+            "bajt": 1011832,
+            "formatum": "9:16",
+            "hossz_mp": 15.018,
+            "kulso": "C_15s.mp4"
+          },
+          "id": "ndart/video-2026-10-17_14",
+          "utvonal": "t/video-2026-10-17_14/index.html"
         }
       ],
       "rejtett_szam": 0
