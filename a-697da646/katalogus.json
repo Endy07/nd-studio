@@ -9475,6 +9475,31 @@
           },
           "id": "ndart/video-2026-10-17_04",
           "utvonal": "t/video-2026-10-17_04/index.html"
+        },
+        {
+          "cim": "ND ART logó-záró — fémes csillanás, szikrák (EffectCraft, saját hang)",
+          "leiras": "Animált záró a valódi, tömör ND ART logóval: a logó beúszik, a betűkön fémes csillanás fut végig (a logó saját alakja vágja ki), négyágú arany szikrák villannak, majd megjelenik az NDART.HU. Ugyanebből a forrásból Lottie (weboldalra) és átlátszó videó (bármely videó végére) is készül. A hangeffektek saját generálásúak.",
+          "cimkek": [
+            "Eszköz: EffectCraft",
+            "Stílus: logó-záró",
+            "Termék: logó",
+            "Outró: valódi logó"
+          ],
+          "keszult": "2026-10-17",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "e255462306dffef61e668787289db58947229dab7ca2b817c90b9ea005796ad3",
+            "bajt": 103132,
+            "formatum": "9:16",
+            "hossz_mp": 3.008,
+            "kulso": "ndart-logo-zaro.mp4"
+          },
+          "id": "ndart/video-2026-10-17_05",
+          "utvonal": "t/video-2026-10-17_05/index.html"
         }
       ],
       "rejtett_szam": 0
