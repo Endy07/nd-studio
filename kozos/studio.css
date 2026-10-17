@@ -92,6 +92,9 @@ body.ugyfel header p { color: var(--halvany); margin-top: .4rem; }
   border: 1px solid var(--keret); border-radius: 6px; padding: .5rem; font: inherit; font-size: .9rem;
 }
 #mentes-jelzo { text-align: right; color: var(--jo); font-size: .85rem; min-height: 1.4em; }
+/* A hangmodell kötelező feltüntetése (Stable Audio Open licenc 4.a) — csak videós kirakatban látszik (ugyfel-nezet.js). */
+.hang-lablec { text-align: center; color: var(--halvany); font-size: .8rem; padding: 2rem 1rem 2.5rem; }
+.hang-lablec[hidden] { display: none; }
 body.admin { max-width: 1000px; margin: 0 auto; }
 #sav { color: var(--halvany); font-size: .95rem; }
 .ugyfel-kartya { background: var(--felulet); border: 1px solid var(--keret); border-radius: 12px; padding: 1.1rem; margin-bottom: 1rem; }

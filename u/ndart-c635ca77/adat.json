@@ -3074,6 +3074,51 @@
         "Termék: csillagtérkép",
         "Outró: valódi logó"
       ]
+    },
+    {
+      "id": "ndart/video-2026-10-17_02",
+      "cim": "Egy dátum. Egy éjszaka. — a csillagtérkép rétegei térben",
+      "utvonal": "t/video-2026-10-17_02/index.html",
+      "keszult": "2026-10-17",
+      "tipus": "video",
+      "leiras": "A kész csillagtérképes vászonkép rétegekre bontva, mélységben szétnyitva: a kamera a dátumtól a csillagtérképen át a feliratig repül, az élesség rétegről rétegre vált, mint egy filmkamerán. A gyors mozdulatok valódi mozgási elmosást kapnak, a képet finom filmszemcse fogja össze. A végén a rétegek összeállnak a kész vászonképpé.",
+      "cimkek": [
+        "Eszköz: Multiplane",
+        "Stílus: rétegek térben, élességváltás",
+        "Téma: eljegyzés",
+        "Termék: csillagtérkép",
+        "Outró: valódi logó"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-17_03",
+      "cim": "A csillagtérkép útja — egy éjszakától a falig",
+      "utvonal": "t/video-2026-10-17_03/index.html",
+      "keszult": "2026-10-17",
+      "tipus": "video",
+      "leiras": "Rövid mesélő film hét jelenetben, ütemre vágva: egy éjszaka, egy dátum és egy hely, majd a valódi termékterv csillagai a helyükre repülnek, és a térkép köre egyezéses vágással a vászonná válik. Utána becsomagoljuk, végül a falon áll. Minden jelenet külön, kódból rajzolt weboldal; a feliratok, a helyük és a betűk utólag egy szerkesztőben kézzel is átírhatók.",
+      "cimkek": [
+        "Eszköz: OpenFilm",
+        "Stílus: mesélő film",
+        "Téma: a csillagtérkép útja",
+        "Termék: csillagtérkép",
+        "Outró: valódi logó"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-17_04",
+      "cim": "Az az éjszaka — a csillagtérkép 3D-ben, valódi fénnyel",
+      "utvonal": "t/video-2026-10-17_04/index.html",
+      "keszult": "2026-10-17",
+      "tipus": "video",
+      "leiras": "Valódi 3D-s termékfelvétel: a csillagtérképes vászon a Blenderben épült meg, kerettel, hátoldallal és vászonszövettel. Felrepül, megpördül, a csúcson lassítva lebeg, majd az alsó élén billegve landol. Stúdiófény, tükröződő padló, mélységélesség és mozgási elmosódás adja a mozifilmes hatást, a lebegő arany por életlen fénypöttyé válik.",
+      "cimkek": [
+        "Eszköz: Blender",
+        "Stílus: 3D termékbevezető",
+        "Téma: eljegyzés",
+        "Termék: csillagtérkép",
+        "Outró: valódi logó"
+      ]
     }
   ]
 }

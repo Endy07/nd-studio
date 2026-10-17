@@ -249,6 +249,15 @@ function keszitKartya(adat, tervId, mentes, slotVezerlo, osszevetes) {
   return { kartya, megjegyzes };
 }
 
+/**
+ * Kell-e a kirakat láblécébe a hangmodell feltüntetése. A Stable Audio Open licence (4.a) szerint a modellt
+ * használó szolgáltatás egy kapcsolódó oldalon mutatja a „Powered by Stability AI” feliratot; a kirakat ilyen
+ * oldal. Csak ott jelenik meg, ahol videó is van — a csak honlapos ügyfélnél zaj volna.
+ */
+export function kellHangLablec(tervek) {
+  return Array.isArray(tervek) && tervek.some((t) => t?.tipus === "video");
+}
+
 export async function inditUgyfelNezet(beallitas, kornyezet = {}) {
   const gyoker = kornyezet.gyoker ?? document;
   const lekero = kornyezet.fetchImpl ?? fetch;
@@ -337,6 +346,9 @@ export async function inditUgyfelNezet(beallitas, kornyezet = {}) {
   if (!adat.tervek.length) {
     tervekElem.textContent = "Még nincs kész terv. Hamarosan!";
   }
+
+  const hangLablec = gyoker.getElementById("hang-lablec");
+  if (hangLablec) hangLablec.hidden = !kellHangLablec(adat.tervek);
 
   // Offline sor: ami legutóbb net nélkül maradt a helyi tárban, most felmegy.
   const potlas = await tarolo.ujraprobal(fajlnev);

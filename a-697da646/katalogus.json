@@ -9397,6 +9397,84 @@
           },
           "id": "ndart/video-2026-10-17_01",
           "utvonal": "t/video-2026-10-17_01/index.html"
+        },
+        {
+          "cim": "Egy dátum. Egy éjszaka. — a csillagtérkép rétegei térben",
+          "leiras": "A kész csillagtérképes vászonkép rétegekre bontva, mélységben szétnyitva: a kamera a dátumtól a csillagtérképen át a feliratig repül, az élesség rétegről rétegre vált, mint egy filmkamerán. A gyors mozdulatok valódi mozgási elmosást kapnak, a képet finom filmszemcse fogja össze. A végén a rétegek összeállnak a kész vászonképpé.",
+          "cimkek": [
+            "Eszköz: Multiplane",
+            "Stílus: rétegek térben, élességváltás",
+            "Téma: eljegyzés",
+            "Termék: csillagtérkép",
+            "Outró: valódi logó"
+          ],
+          "keszult": "2026-10-17",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "25373bae7f376e47cea5ef34c2154377c607193d8786f5d2ecfecbd71c0b4939",
+            "bajt": 1002361,
+            "formatum": "9:16",
+            "hossz_mp": 10.517,
+            "kulso": "ndart-multiplane-tihany.mp4"
+          },
+          "id": "ndart/video-2026-10-17_02",
+          "utvonal": "t/video-2026-10-17_02/index.html"
+        },
+        {
+          "cim": "A csillagtérkép útja — egy éjszakától a falig",
+          "leiras": "Rövid mesélő film hét jelenetben, ütemre vágva: egy éjszaka, egy dátum és egy hely, majd a valódi termékterv csillagai a helyükre repülnek, és a térkép köre egyezéses vágással a vászonná válik. Utána becsomagoljuk, végül a falon áll. Minden jelenet külön, kódból rajzolt weboldal; a feliratok, a helyük és a betűk utólag egy szerkesztőben kézzel is átírhatók.",
+          "cimkek": [
+            "Eszköz: OpenFilm",
+            "Stílus: mesélő film",
+            "Téma: a csillagtérkép útja",
+            "Termék: csillagtérkép",
+            "Outró: valódi logó"
+          ],
+          "keszult": "2026-10-17",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "9410b76054dcd631243206bcd9c39c9ebedb8fcd6661bfc57200b41ddd51e755",
+            "bajt": 1608358,
+            "formatum": "9:16",
+            "hossz_mp": 14.016,
+            "kulso": "ndart-csillagterkep-utja.mp4"
+          },
+          "id": "ndart/video-2026-10-17_03",
+          "utvonal": "t/video-2026-10-17_03/index.html"
+        },
+        {
+          "cim": "Az az éjszaka — a csillagtérkép 3D-ben, valódi fénnyel",
+          "leiras": "Valódi 3D-s termékfelvétel: a csillagtérképes vászon a Blenderben épült meg, kerettel, hátoldallal és vászonszövettel. Felrepül, megpördül, a csúcson lassítva lebeg, majd az alsó élén billegve landol. Stúdiófény, tükröződő padló, mélységélesség és mozgási elmosódás adja a mozifilmes hatást, a lebegő arany por életlen fénypöttyé válik.",
+          "cimkek": [
+            "Eszköz: Blender",
+            "Stílus: 3D termékbevezető",
+            "Téma: eljegyzés",
+            "Termék: csillagtérkép",
+            "Outró: valódi logó"
+          ],
+          "keszult": "2026-10-17",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "213a7cb40a575dd621e8522cfc30ddf71de690b5a7509712741e2891a9e1d1d7",
+            "bajt": 1287812,
+            "formatum": "9:16",
+            "hossz_mp": 12.01,
+            "kulso": "ndart-blender-j3-vaszon.mp4"
+          },
+          "id": "ndart/video-2026-10-17_04",
+          "utvonal": "t/video-2026-10-17_04/index.html"
         }
       ],
       "rejtett_szam": 0
