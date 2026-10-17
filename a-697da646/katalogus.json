@@ -9371,6 +9371,32 @@
           },
           "id": "ndart/video-2026-10-16e_153",
           "utvonal": "t/video-2026-10-16e_153/index.html"
+        },
+        {
+          "cim": "Az éjszaka, amikor minden elkezdődött — effector-csillagmező (EffectCraft)",
+          "leiras": "Új eszközzel készült: EffectCraft (nyílt forrású After Effects-utód), Claude szkriptből építette. Minden csillag egyetlen szabályt követ: minél közelebb jár a fénygömb, annál nagyobb, magasabb és aranyabb — így a fény útján magától hullámzik az ég.",
+          "cimkek": [
+            "Eszköz: EffectCraft",
+            "Stílus: effector-csillagmező",
+            "Téma: évforduló",
+            "Termék: csillagtérkép",
+            "Outró: valódi logó"
+          ],
+          "keszult": "2026-10-17",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "0cb9b01010fa35c9acb0925f64c63d31d2d005e2affa8cfb8a2566e7cf59797b",
+            "bajt": 523953,
+            "formatum": "9:16",
+            "hossz_mp": 9.002,
+            "kulso": "ndart-effector-csillagmezo_hang.mp4"
+          },
+          "id": "ndart/video-2026-10-17_01",
+          "utvonal": "t/video-2026-10-17_01/index.html"
         }
       ],
       "rejtett_szam": 0
