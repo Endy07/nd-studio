@@ -1,5 +1,62 @@
 {
   "slug": "karesz-mamma-mia-pizza",
   "megjelenes": "Mamma Mia Pizza",
-  "tervek": []
+  "tervek": [
+    {
+      "id": "karesz-mamma-mia-pizza/video-2026-10-20_1",
+      "cim": "Pizzatúra 20 másodpercben (A változat)",
+      "utvonal": "t/video-2026-10-20_1/index.html",
+      "keszult": "2026-10-20",
+      "tipus": "video",
+      "leiras": "Közeli a pizzák peremére, gyors vágások a kínálaton, a „Nápolyi stílusú” pizza nagyban, végül a rendelés — alul végig egy visszaszámláló.",
+      "cimkek": [
+        "Stílus: ételvideó",
+        "Nyitás: 48 óra",
+        "Outró: Rendelj most",
+        "Változat: A"
+      ]
+    },
+    {
+      "id": "karesz-mamma-mia-pizza/video-2026-10-20_2",
+      "cim": "Pizzatúra 20 másodpercben (B változat)",
+      "utvonal": "t/video-2026-10-20_2/index.html",
+      "keszult": "2026-10-20",
+      "tipus": "video",
+      "leiras": "Ugyanaz lendületesebben: nagy visszaszámláló, hulló liszt a nagy pizzán, széles kettős képek, a rendelés felhívása a pizza fotóján.",
+      "cimkek": [
+        "Stílus: ételvideó",
+        "Nyitás: 48 óra",
+        "Outró: Rendelj most",
+        "Változat: B"
+      ]
+    },
+    {
+      "id": "karesz-mamma-mia-pizza/video-2026-10-20_3",
+      "cim": "Pizzatúra 20 másodpercben (C változat)",
+      "utvonal": "t/video-2026-10-20_3/index.html",
+      "keszult": "2026-10-20",
+      "tipus": "video",
+      "leiras": "Ugyanaz más kivitelben: a pizzák élesen, keretben, fénysáv a nagy pizzán, krémszínű záró kártya olasz csíkkal.",
+      "cimkek": [
+        "Stílus: ételvideó",
+        "Nyitás: 48 óra",
+        "Outró: Rendelj most",
+        "Változat: C"
+      ]
+    },
+    {
+      "id": "karesz-mamma-mia-pizza/video-2026-10-20_4",
+      "cim": "Pizzatúra 20 másodpercben (D változat)",
+      "utvonal": "t/video-2026-10-20_4/index.html",
+      "keszult": "2026-10-20",
+      "tipus": "video",
+      "leiras": "A lendületes változat finomabb kivitelben: élesebb pizzaképek, váltakozó feliratok, olasz csík a rendelés felhívásán.",
+      "cimkek": [
+        "Stílus: ételvideó",
+        "Nyitás: 48 óra",
+        "Outró: Rendelj most",
+        "Változat: D"
+      ]
+    }
+  ]
 }

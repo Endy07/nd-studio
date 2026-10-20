@@ -3283,6 +3283,126 @@
         "Termék: csillagtérkép",
         "Outró: valódi logó"
       ]
+    },
+    {
+      "id": "ndart/video-2026-10-20_1",
+      "cim": "Egy éjszaka — szerkesztő-film (A változat)",
+      "utvonal": "t/video-2026-10-20_1/index.html",
+      "keszult": "2026-10-20",
+      "tipus": "video",
+      "leiras": "Csillagkép-vonal, nagy óra, telefonos szerkesztő, a honlap rétegekben, négy ajándék, térkép és arany logó — tiszta, nyugodt mozgással.",
+      "cimkek": [
+        "Stílus: honlap-bemutató",
+        "Nyitás: csillagkép-vonal",
+        "Outró: arany logó",
+        "Termék: Csillagtérkép",
+        "Változat: A"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-20_2",
+      "cim": "Egy éjszaka — szerkesztő-film (B változat)",
+      "utvonal": "t/video-2026-10-20_2/index.html",
+      "keszult": "2026-10-20",
+      "tipus": "video",
+      "leiras": "Ugyanaz a történet lendületesebben: becsapódó szavak, térben forduló telefon fénypontokkal, a honlap teljes képről nyílik rétegekre, élő térkép.",
+      "cimkek": [
+        "Stílus: honlap-bemutató",
+        "Nyitás: csillagkép-vonal",
+        "Outró: arany logó",
+        "Termék: Csillagtérkép",
+        "Változat: B"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-20_3",
+      "cim": "Egy éjszaka — szerkesztő-film (C változat)",
+      "utvonal": "t/video-2026-10-20_3/index.html",
+      "keszult": "2026-10-20",
+      "tipus": "video",
+      "leiras": "Ugyanaz a történet más kivitelben: csillagos égbolt-hullám, képernyőről filmezett honlap, folyós térkép a csillagig.",
+      "cimkek": [
+        "Stílus: honlap-bemutató",
+        "Nyitás: csillagkép-vonal",
+        "Outró: arany logó",
+        "Termék: Csillagtérkép",
+        "Változat: C"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-20_4",
+      "cim": "Egy éjszaka — szerkesztő-film (D változat)",
+      "utvonal": "t/video-2026-10-20_4/index.html",
+      "keszult": "2026-10-20",
+      "tipus": "video",
+      "leiras": "A lendületes változat finomabb kivitelben: pislákoló csillagmező, lélegző arany fény, fénylő címek és élő térkép a csillagig.",
+      "cimkek": [
+        "Stílus: honlap-bemutató",
+        "Nyitás: csillagkép-vonal",
+        "Outró: arany logó",
+        "Termék: Csillagtérkép",
+        "Változat: D"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-20_5",
+      "cim": "Arany fény — termékbemutató (A változat)",
+      "utvonal": "t/video-2026-10-20_5/index.html",
+      "keszult": "2026-10-20",
+      "tipus": "video",
+      "leiras": "Egy arany fénypont nyit, a fény végigkíséri a telefont, a négy terméket és a szerkesztőt, majd a logóba fut vissza — nyugodt, prémium tempóban.",
+      "cimkek": [
+        "Stílus: minimalista fény",
+        "Nyitás: izzó pont",
+        "Outró: arany logó",
+        "Termék: Csillagtérkép",
+        "Változat: A"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-20_6",
+      "cim": "Arany fény — termékbemutató (B változat)",
+      "utvonal": "t/video-2026-10-20_6/index.html",
+      "keszult": "2026-10-20",
+      "tipus": "video",
+      "leiras": "Ugyanaz térben: a kiválasztott termék kiemelkedik, mögötte a neve nagyban, a szerkesztő megdöntve, a végén a mentés értesítése.",
+      "cimkek": [
+        "Stílus: minimalista fény",
+        "Nyitás: izzó pont",
+        "Outró: arany logó",
+        "Termék: Csillagtérkép",
+        "Változat: B"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-20_7",
+      "cim": "Arany fény — termékbemutató (C változat)",
+      "utvonal": "t/video-2026-10-20_7/index.html",
+      "keszult": "2026-10-20",
+      "tipus": "video",
+      "leiras": "Ugyanaz más kivitelben: finom filmszemcse, kirajzolódó arany keret, álló szerkesztő-elrendezés.",
+      "cimkek": [
+        "Stílus: minimalista fény",
+        "Nyitás: izzó pont",
+        "Outró: arany logó",
+        "Termék: Csillagtérkép",
+        "Változat: C"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-20_8",
+      "cim": "Arany fény — termékbemutató (D változat)",
+      "utvonal": "t/video-2026-10-20_8/index.html",
+      "keszult": "2026-10-20",
+      "tipus": "video",
+      "leiras": "A térbeli változat filmes felülettel: finom szemcse, kirajzolódó arany keret, erősebb fény.",
+      "cimkek": [
+        "Stílus: minimalista fény",
+        "Nyitás: izzó pont",
+        "Outró: arany logó",
+        "Termék: Csillagtérkép",
+        "Változat: D"
+      ]
     }
   ]
 }

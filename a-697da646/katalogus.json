@@ -2775,6 +2775,106 @@
           "benchmark_id": 318,
           "valasz": "Kész, a fájl megírva: `Start-Claude-Felho_tiszta_lappal_feladat-karesz-claude-1_1.html` (1176 sor, egyfájlos, külső függőség nélkül – csak Google Fonts).\n\n**Mi került bele**\n\n- **Fejléc**: pergamen sáv, „NÁPOLYI STÍLUSÚ” felirat, kör alakú logó, kézírásos szlogen, navigáció. Sticky, és 90 px görgetés után kompakt vízszintes sávvá húzódik össze (`.fejlec.tomor`), alatta trikolór vonal.\n- **Hero**: `assets/hero.jpg`, sötét gradiens overlay, „Vero gusto Italiano” jelvény, `tel:` gomb és Étlap gomb.\n- **Nyitvatartás-sáv**: zöld kontrasztos csík, benne élő állapotjelző. A logika a `nyitvatartas` objektumból dolgozik (hétfő/kedd `null` = zárva), és három állapotot ismer: „Most nyitva vagyunk – 22:00-ig”, „Nyitva 22:00-ig – rendelésfelvétel mára lezárult” (21:30 után), illetve „Jelenleg zárva – nyitás: ma/holnap/szerdán 11:00”. Percenként frissül, `aria-live=\"polite\"`.\n- **A mi pizzánk**: 48 órás kelesztés / prémium alapanyag / forró kemence sztori, a korlátozott kapacitás említésével, három ikonos pillérblokk (inline SVG), mellette a tésztagombócos fotó letépett szélű maszkkal.\n- **Étlap**: 7 kategóriafül (`role=\"tablist\"`, nyíl/Home/End billentyűkezeléssel), sorszámozott pizzalista, félkövér név + felső indexes allergénszámok (`title`-ben a kiírt allergénnevekkel), dőlt összetevősor, pontozott kitöltő + jobbra igazított ár. Alatta extra feltétek doboz a 150/500/1000 Ft-os kategóriákkal, és összecsukható `<details>` a 14 allergénnel.\n- **Galéria**: CSS `columns` masonry, lightbox nyilakkal, Escape-pel, fókuszcsapdával, visszatérő fókusszal a megnyitó gombra.\n- **Kiszállítás/fizetés**, **Kapcsolat** (nagy `tel:` link, cím a „Mo&Co mögött” megjegyzéssel, Google Maps iframe, Facebook-gomb), **Lábléc** a „Grazie e buon appetito!” kézírásos zárással.\n\n**Technikai**: `lang=\"hu\"`, SEO + OG meta tagek (OG kép a logó), teljes `Restaurant` JSON-LD (5 nyitvatartási nap, cím, telefon, `servesCuisine: Italian`, `priceRange: $$`), mobile-first breakpointok (600/860/1100 px), mobilon lebegő „Hívás” gomb, `prefers-reduced-motion` blokk, minden képen `loading=\"lazy\"` + leíró alt, tisztán CSS-es pergamentextúra, inline SVG ecsetvonások, `::before/::after` sarokornamentika.\n\n**Az árak frissítése**: a fájl elején lévő `ADATOK` objektumban, kommentált szerkezettel — az `ar` mező sima szám (`2490`), a formázást (`2 490 Ft`) a JS végzi.\n\nKét megjegyzés: az étvágygerjesztőknél és a köreteknél az adatblokkban nem szerepelt összetevőleírás, ezért ott csak név + darabszám + ár jelenik meg (a `leiras` mező üresen áll, bármikor kitölthető). A Google Maps iframe általános keresőlinkkel készült (`?q=Püspökladány, Rákóczi u. 5`) — ha van pontos Google Business-találatod, érdemes arra cserélni.\n",
           "utvonal": "t/benchmark-318/index.html"
+        },
+        {
+          "cim": "Pizzatúra 20 másodpercben (A változat)",
+          "leiras": "Közeli a pizzák peremére, gyors vágások a kínálaton, a „Nápolyi stílusú” pizza nagyban, végül a rendelés — alul végig egy visszaszámláló.",
+          "cimkek": [
+            "Stílus: ételvideó",
+            "Nyitás: 48 óra",
+            "Outró: Rendelj most",
+            "Változat: A"
+          ],
+          "keszult": "2026-10-20",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "8c7440a3c1a6de82e7e546971cca29f18bd23b3b035288967b41499da83cf84c",
+            "bajt": 1578946,
+            "formatum": "9:16",
+            "hossz_mp": 20.01,
+            "kulso": "a-motion-skill.mp4"
+          },
+          "id": "karesz-mamma-mia-pizza/video-2026-10-20_1",
+          "utvonal": "t/video-2026-10-20_1/index.html"
+        },
+        {
+          "cim": "Pizzatúra 20 másodpercben (B változat)",
+          "leiras": "Ugyanaz lendületesebben: nagy visszaszámláló, hulló liszt a nagy pizzán, széles kettős képek, a rendelés felhívása a pizza fotóján.",
+          "cimkek": [
+            "Stílus: ételvideó",
+            "Nyitás: 48 óra",
+            "Outró: Rendelj most",
+            "Változat: B"
+          ],
+          "keszult": "2026-10-20",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "d16f5b88cb7a318129e87840a6781e21449cb56eb9567dc033592d920a9458bd",
+            "bajt": 1737750,
+            "formatum": "9:16",
+            "hossz_mp": 20.01,
+            "kulso": "b-parlapokkal.mp4"
+          },
+          "id": "karesz-mamma-mia-pizza/video-2026-10-20_2",
+          "utvonal": "t/video-2026-10-20_2/index.html"
+        },
+        {
+          "cim": "Pizzatúra 20 másodpercben (C változat)",
+          "leiras": "Ugyanaz más kivitelben: a pizzák élesen, keretben, fénysáv a nagy pizzán, krémszínű záró kártya olasz csíkkal.",
+          "cimkek": [
+            "Stílus: ételvideó",
+            "Nyitás: 48 óra",
+            "Outró: Rendelj most",
+            "Változat: C"
+          ],
+          "keszult": "2026-10-20",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "39c64085e59e9ada4fd343971ff6e5174ce5b6755cdd8368a34a43a98c87b0aa",
+            "bajt": 1717078,
+            "formatum": "9:16",
+            "hossz_mp": 20.01,
+            "kulso": "c-hf-0.8.179.mp4"
+          },
+          "id": "karesz-mamma-mia-pizza/video-2026-10-20_3",
+          "utvonal": "t/video-2026-10-20_3/index.html"
+        },
+        {
+          "cim": "Pizzatúra 20 másodpercben (D változat)",
+          "leiras": "A lendületes változat finomabb kivitelben: élesebb pizzaképek, váltakozó feliratok, olasz csík a rendelés felhívásán.",
+          "cimkek": [
+            "Stílus: ételvideó",
+            "Nyitás: 48 óra",
+            "Outró: Rendelj most",
+            "Változat: D"
+          ],
+          "keszult": "2026-10-20",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "78f9bdd5e6684bcab955e5ce018d0a84bcf71ab9d84316a5f5be1501a8c32567",
+            "bajt": 1742323,
+            "formatum": "9:16",
+            "hossz_mp": 20.01,
+            "kulso": "d-b-plusz-c.mp4"
+          },
+          "id": "karesz-mamma-mia-pizza/video-2026-10-20_4",
+          "utvonal": "t/video-2026-10-20_4/index.html"
         }
       ],
       "rejtett_szam": 0
@@ -9749,6 +9849,214 @@
           },
           "id": "ndart/video-2026-10-17_14",
           "utvonal": "t/video-2026-10-17_14/index.html"
+        },
+        {
+          "cim": "Egy éjszaka — szerkesztő-film (A változat)",
+          "leiras": "Csillagkép-vonal, nagy óra, telefonos szerkesztő, a honlap rétegekben, négy ajándék, térkép és arany logó — tiszta, nyugodt mozgással.",
+          "cimkek": [
+            "Stílus: honlap-bemutató",
+            "Nyitás: csillagkép-vonal",
+            "Outró: arany logó",
+            "Termék: Csillagtérkép",
+            "Változat: A"
+          ],
+          "keszult": "2026-10-20",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "3663965a7c3ca2e5a953c989923d3b108260e12c9f87708dd88a638b7f695853",
+            "bajt": 1273052,
+            "formatum": "9:16",
+            "hossz_mp": 24.0,
+            "kulso": "a-motion-skill.mp4"
+          },
+          "id": "ndart/video-2026-10-20_1",
+          "utvonal": "t/video-2026-10-20_1/index.html"
+        },
+        {
+          "cim": "Egy éjszaka — szerkesztő-film (B változat)",
+          "leiras": "Ugyanaz a történet lendületesebben: becsapódó szavak, térben forduló telefon fénypontokkal, a honlap teljes képről nyílik rétegekre, élő térkép.",
+          "cimkek": [
+            "Stílus: honlap-bemutató",
+            "Nyitás: csillagkép-vonal",
+            "Outró: arany logó",
+            "Termék: Csillagtérkép",
+            "Változat: B"
+          ],
+          "keszult": "2026-10-20",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "77ffade29c5db9852f0a45c44c0c96509b66fa6247a0df24f36a3e2770f2826c",
+            "bajt": 1390501,
+            "formatum": "9:16",
+            "hossz_mp": 24.0,
+            "kulso": "b-parlapokkal.mp4"
+          },
+          "id": "ndart/video-2026-10-20_2",
+          "utvonal": "t/video-2026-10-20_2/index.html"
+        },
+        {
+          "cim": "Egy éjszaka — szerkesztő-film (C változat)",
+          "leiras": "Ugyanaz a történet más kivitelben: csillagos égbolt-hullám, képernyőről filmezett honlap, folyós térkép a csillagig.",
+          "cimkek": [
+            "Stílus: honlap-bemutató",
+            "Nyitás: csillagkép-vonal",
+            "Outró: arany logó",
+            "Termék: Csillagtérkép",
+            "Változat: C"
+          ],
+          "keszult": "2026-10-20",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "268bd8d814d9c2aebc26c83b5d80e1dd134360c67d7e9797e66168bc64d5cb48",
+            "bajt": 1264617,
+            "formatum": "9:16",
+            "hossz_mp": 24.0,
+            "kulso": "c-hf-0.8.179.mp4"
+          },
+          "id": "ndart/video-2026-10-20_3",
+          "utvonal": "t/video-2026-10-20_3/index.html"
+        },
+        {
+          "cim": "Egy éjszaka — szerkesztő-film (D változat)",
+          "leiras": "A lendületes változat finomabb kivitelben: pislákoló csillagmező, lélegző arany fény, fénylő címek és élő térkép a csillagig.",
+          "cimkek": [
+            "Stílus: honlap-bemutató",
+            "Nyitás: csillagkép-vonal",
+            "Outró: arany logó",
+            "Termék: Csillagtérkép",
+            "Változat: D"
+          ],
+          "keszult": "2026-10-20",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "5b0257f678c702c8b7ca9904c3373008bb87cdb3c08d9c8ee82063cae2156386",
+            "bajt": 1358692,
+            "formatum": "9:16",
+            "hossz_mp": 24.0,
+            "kulso": "d-b-plusz-c.mp4"
+          },
+          "id": "ndart/video-2026-10-20_4",
+          "utvonal": "t/video-2026-10-20_4/index.html"
+        },
+        {
+          "cim": "Arany fény — termékbemutató (A változat)",
+          "leiras": "Egy arany fénypont nyit, a fény végigkíséri a telefont, a négy terméket és a szerkesztőt, majd a logóba fut vissza — nyugodt, prémium tempóban.",
+          "cimkek": [
+            "Stílus: minimalista fény",
+            "Nyitás: izzó pont",
+            "Outró: arany logó",
+            "Termék: Csillagtérkép",
+            "Változat: A"
+          ],
+          "keszult": "2026-10-20",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "77da144737cff1b3c1a86c06a38042b9f431402471eeec9bb9831ef6d9239c2b",
+            "bajt": 758564,
+            "formatum": "9:16",
+            "hossz_mp": 20.01,
+            "kulso": "a-motion-skill.mp4"
+          },
+          "id": "ndart/video-2026-10-20_5",
+          "utvonal": "t/video-2026-10-20_5/index.html"
+        },
+        {
+          "cim": "Arany fény — termékbemutató (B változat)",
+          "leiras": "Ugyanaz térben: a kiválasztott termék kiemelkedik, mögötte a neve nagyban, a szerkesztő megdöntve, a végén a mentés értesítése.",
+          "cimkek": [
+            "Stílus: minimalista fény",
+            "Nyitás: izzó pont",
+            "Outró: arany logó",
+            "Termék: Csillagtérkép",
+            "Változat: B"
+          ],
+          "keszult": "2026-10-20",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "31433cd23de2ba70bdcedf507f8b740202e2615a3b5fa28fc9542e09d0905031",
+            "bajt": 797511,
+            "formatum": "9:16",
+            "hossz_mp": 20.01,
+            "kulso": "b-parlapokkal.mp4"
+          },
+          "id": "ndart/video-2026-10-20_6",
+          "utvonal": "t/video-2026-10-20_6/index.html"
+        },
+        {
+          "cim": "Arany fény — termékbemutató (C változat)",
+          "leiras": "Ugyanaz más kivitelben: finom filmszemcse, kirajzolódó arany keret, álló szerkesztő-elrendezés.",
+          "cimkek": [
+            "Stílus: minimalista fény",
+            "Nyitás: izzó pont",
+            "Outró: arany logó",
+            "Termék: Csillagtérkép",
+            "Változat: C"
+          ],
+          "keszult": "2026-10-20",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "f0bc08adb2e5bede2ff79a7951ecc44eb50069bd1e93ab7cfaeb3c9e4a3a28e8",
+            "bajt": 1133077,
+            "formatum": "9:16",
+            "hossz_mp": 20.01,
+            "kulso": "c-hf-0.8.179.mp4"
+          },
+          "id": "ndart/video-2026-10-20_7",
+          "utvonal": "t/video-2026-10-20_7/index.html"
+        },
+        {
+          "cim": "Arany fény — termékbemutató (D változat)",
+          "leiras": "A térbeli változat filmes felülettel: finom szemcse, kirajzolódó arany keret, erősebb fény.",
+          "cimkek": [
+            "Stílus: minimalista fény",
+            "Nyitás: izzó pont",
+            "Outró: arany logó",
+            "Termék: Csillagtérkép",
+            "Változat: D"
+          ],
+          "keszult": "2026-10-20",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "88b1a7bff230ccb40bf0b1688d46b1346acb5f786d8bdb62216c17c3bdbf7150",
+            "bajt": 1474418,
+            "formatum": "9:16",
+            "hossz_mp": 20.01,
+            "kulso": "d-b-plusz-c.mp4"
+          },
+          "id": "ndart/video-2026-10-20_8",
+          "utvonal": "t/video-2026-10-20_8/index.html"
         }
       ],
       "rejtett_szam": 0
