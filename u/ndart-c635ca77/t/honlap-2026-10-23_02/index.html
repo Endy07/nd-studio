@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ND ART — Az égbolt a Te faladon</title>
+<meta name="description" content="Személyre szabott vászonkép: csillagtérkép, holdfázis, saját fotó és felirat. Hamarosan indul.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/*
+  Görgetős ügyféloldal v2 (ND Studio, 2026-10-23) — „egy kamera, sok kis lépés” (a lynam/ascenta minta nyelve).
+  Egy hosszú ragadós szakasz: a KEPSOR állapotai ugyanabból a kameraállásból készültek, és egymásba úsznak;
+  a kamera végig lassan a vászonra közelít; bal lent szakaszcím + egy sor; alul szakaszos haladássáv.
+  A vászon helye (VASZON, a kép arányaiban mérve) adja a közelítés célját, az Okospont-jel helyét és a záró
+  ráközelítést, ahol a kép a valódi terv éles példányába úszik át.
+*/
+:root {
+  --fekete: #07080c; --feher: #f3efe6; --halvany: #b9b3a6; --arany: #c9a45c; --arany-vil: #e6c98a;
+  --cim: "Cormorant Garamond", Georgia, serif; --marka: "Cinzel", Georgia, serif; --test: "Inter", system-ui, "Segoe UI", sans-serif;
+  --mag: 100vh;
+}
+@supports (height: 100svh) { :root { --mag: 100svh; } }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--fekete); }
+body { color: var(--feher); font: 300 16px/1.6 var(--test); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { display: block; }
+
+.fejlec { position: fixed; inset: 0 0 auto 0; z-index: 50; display: flex; justify-content: space-between; align-items: center; padding: 16px clamp(16px, 4vw, 40px); pointer-events: none; }
+.fejlec .logo { font: 600 15px/1 var(--marka); letter-spacing: .32em; color: #fff; text-shadow: 0 1px 12px rgba(0,0,0,.5); }
+.fejlec a { pointer-events: auto; font: 400 12px/1 var(--test); letter-spacing: .18em; text-transform: uppercase; color: #fff; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 3px; text-shadow: 0 1px 12px rgba(0,0,0,.5); }
+
+/* az idősor */
+.idosor { position: relative; }
+.szinpad { position: sticky; top: 0; height: var(--mag); overflow: hidden; background: #0b0b0d; }
+.kamera { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
+.kamera img.allapot { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; will-change: opacity; user-select: none; }
+.kamera img.allapot.elso { opacity: 1; }
+.kamera img.eles { position: absolute; opacity: 0; will-change: opacity; }
+.arnyalat { position: absolute; inset: 0; pointer-events: none; background:
+  linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 18%, rgba(0,0,0,0) 55%, rgba(0,0,0,.62) 100%); }
+
+/* szakaszcím bal lent (a minta nyelve) */
+.cimek { position: absolute; left: clamp(16px, 5vw, 64px); bottom: clamp(78px, 13vh, 120px); width: min(84vw, 560px); }
+.szakasz { position: absolute; left: 0; bottom: 0; width: 100%; opacity: 0; will-change: opacity, transform; }
+.szakasz .kicsi { font: 400 11px/1.4 var(--test); letter-spacing: .32em; text-transform: uppercase; color: var(--arany); margin-bottom: 10px; }
+.szakasz h1, .szakasz h2 { font-family: var(--cim); font-weight: 400; line-height: 1.04; text-shadow: 0 2px 26px rgba(0,0,0,.55); }
+.szakasz h1 { font-size: clamp(42px, 6.6vw, 88px); }
+.szakasz h2 { font-size: clamp(34px, 4.8vw, 64px); }
+.szakasz em { font-style: italic; color: var(--arany-vil); }
+.szakasz p { margin-top: 10px; font-size: clamp(14px, 1.4vw, 17px); color: #e2ddd2; max-width: 440px; text-shadow: 0 1px 14px rgba(0,0,0,.7); }
+
+/* szakaszos haladássáv */
+.sav-lepes { position: absolute; left: clamp(16px, 5vw, 64px); right: clamp(16px, 5vw, 64px); bottom: clamp(26px, 5vh, 46px); display: flex; gap: 6px; }
+.sav-lepes div { flex: 1; min-width: 0; }
+.sav-lepes i { display: block; height: 2px; background: rgba(255,255,255,.22); overflow: hidden; }
+.sav-lepes i b { display: block; height: 100%; width: 0; background: var(--arany); }
+.sav-lepes span { display: block; margin-top: 8px; font: 400 10px/1.2 var(--test); letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.45); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color .4s; }
+.sav-lepes div.most span { color: #fff; }
+@media (max-width: 700px) { .sav-lepes span { display: none; } .gorgess { display: none; } }
+
+/* Okospont-jel a telefon hegyénél */
+.okos { position: absolute; width: 0; height: 0; opacity: 0; pointer-events: none; }
+.okos b { position: absolute; left: -46px; top: -46px; width: 92px; height: 92px; border-radius: 50%; border: 1.5px solid var(--arany-vil); opacity: 0; }
+.okos.szol b { animation: gyuru 2.4s ease-out infinite; }
+.okos b:nth-child(2) { animation-delay: .8s !important; } .okos b:nth-child(3) { animation-delay: 1.6s !important; }
+@keyframes gyuru { 0% { transform: scale(.15); opacity: .95; } 100% { transform: scale(2.4); opacity: 0; } }
+.okos .hullam { position: absolute; left: 34px; top: -64px; display: flex; gap: 4px; align-items: center; height: 40px; }
+.okos .hullam i { width: 3px; height: 6px; border-radius: 2px; background: var(--arany-vil); box-shadow: 0 0 10px rgba(230,201,138,.8); }
+.okos.szol .hullam i { animation: hullam 1s ease-in-out infinite; }
+.okos .hullam i:nth-child(2n) { animation-delay: -.3s; } .okos .hullam i:nth-child(3n) { animation-delay: -.6s; }
+@keyframes hullam { 0%, 100% { height: 6px; } 50% { height: 36px; } }
+
+.gorgess { position: absolute; left: 50%; bottom: 120px; transform: translateX(-50%); font: 400 11px/1 var(--test); letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+.gorgess::after { content: ""; display: block; width: 1px; height: 38px; margin: 12px auto 0; background: linear-gradient(var(--arany), transparent); animation: csepp 2.2s ease-in-out infinite; transform-origin: top; }
+@keyframes csepp { 0% { transform: scaleY(0); opacity: 1; } 70% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+
+/* alkalmak és zárás (a v1-ből) */
+.alkalmak { padding: clamp(70px, 12vh, 120px) 0 clamp(50px, 8vh, 90px); background: var(--fekete); }
+.alkalmak header { text-align: center; padding: 0 16px 34px; }
+.alkalmak .kicsi { font: 400 11px/1.4 var(--test); letter-spacing: .32em; text-transform: uppercase; color: var(--arany); margin-bottom: 12px; }
+.alkalmak h2 { font: 400 clamp(30px, 4.4vw, 52px)/1.1 var(--cim); }
+.alkalmak h2 em { font-style: italic; color: var(--arany-vil); }
+.sav { display: flex; gap: clamp(14px, 2vw, 26px); overflow-x: auto; padding: 0 clamp(16px, 6vw, 80px) 18px; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+.kartya { flex: 0 0 auto; width: clamp(200px, 22vw, 280px); scroll-snap-align: start; }
+.kartya img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 3px; background: #111; }
+.kartya h3 { font: 500 clamp(20px, 2vw, 25px)/1.2 var(--cim); margin-top: 12px; }
+.kartya small { display: block; font-size: 13px; color: var(--halvany); }
+.zaro { min-height: var(--mag); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 16px; background: radial-gradient(70% 55% at 50% 45%, #121a33 0%, var(--fekete) 70%); }
+.zaro img { width: clamp(150px, 20vw, 230px); height: auto; margin-bottom: 26px; }
+.zaro h2 { font: 400 clamp(30px, 4.4vw, 52px)/1.1 var(--cim); margin-bottom: 10px; }
+.zaro h2 em { font-style: italic; color: var(--arany-vil); }
+.zaro p { color: var(--halvany); max-width: 520px; }
+.gomb { display: inline-block; margin-top: 30px; padding: 15px 30px; border: 1px solid var(--arany); color: var(--arany-vil); text-decoration: none; font: 400 12px/1 var(--test); letter-spacing: .26em; text-transform: uppercase; transition: background .3s, color .3s; }
+.gomb:hover, .gomb:focus-visible { background: var(--arany); color: var(--fekete); outline: none; }
+.lab { margin-top: 56px; font-size: 12px; letter-spacing: .2em; color: #6f6a60; text-transform: uppercase; }
+.mi-jel { position: absolute; right: clamp(16px, 4vw, 40px); top: 52px; font: 400 9px/1 var(--test); letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.45); }
+
+.nyugodt .idosor { height: auto !important; }
+.nyugodt .szinpad { position: relative; }
+.nyugodt .gorgess::after, .nyugodt .okos b, .nyugodt .okos .hullam i { animation: none !important; }
+</style>
+</head>
+<body>
+<header class="fejlec"><span class="logo">ND ART</span><a href="#feliratkozas">Hamarosan</a></header>
+
+<main>
+  <section class="idosor" id="idosor">
+    <div class="szinpad">
+      <div class="kamera" id="kamera"></div>
+      <div class="arnyalat"></div>
+      <div class="okos" id="okos"><b></b><b></b><b></b><div class="hullam"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      <span class="mi-jel">A szoba MI-generált · a vásznon a valódi terv</span>
+      <div class="cimek" id="cimek"></div>
+      <div class="gorgess" id="gorgess">Görgess</div>
+      <div class="sav-lepes" id="savlepes"></div>
+    </div>
+  </section>
+
+  <section class="alkalmak">
+    <header><div class="kicsi">Alkalmak</div><h2>Minden fontos éjszakának<br><em>van egy égboltja.</em></h2></header>
+    <div class="sav">
+      <figure class="kartya"><img loading="lazy" src="../../assets/ndart-scroll-alk-valentin.webp" width="675" height="900" alt="Szív alakú csillagtérkép rózsaszínben"><h3>Szerelmünk éjszakája</h3><small>Valentin-nap, évforduló</small></figure>
+      <figure class="kartya"><img loading="lazy" src="../../assets/ndart-scroll-alk-eljegyzes.webp" width="675" height="900" alt="Szív alakú keretben fotó egy párról, virágos keret"><h3>Az igen pillanata</h3><small>Eljegyzés</small></figure>
+      <figure class="kartya"><img loading="lazy" src="../../assets/ndart-scroll-alk-eskuvo.webp" width="675" height="900" alt="Végtelen-jel alakú csillagtérkép sötétkék háttéren"><h3>Örökké</h3><small>Esküvő</small></figure>
+      <figure class="kartya"><img loading="lazy" src="../../assets/ndart-scroll-alk-szuletes.webp" width="630" height="900" alt="Holdfázis babatalp-formában, világoskék háttéren"><h3>Üdv a világon</h3><small>Születés</small></figure>
+      <figure class="kartya"><img loading="lazy" src="../../assets/ndart-scroll-alk-otthon.webp" width="675" height="900" alt="Minimalista csillagtérkép krémszínű háttéren"><h3>Itt lettünk otthon</h3><small>Első közös otthon</small></figure>
+      <figure class="kartya"><img loading="lazy" src="../../assets/ndart-scroll-alk-ballagas.webp" width="675" height="900" alt="Telihold dupla kerettel, lila-kék háttéren"><h3>Ezen az éjszakán indult</h3><small>Ballagás</small></figure>
+      <figure class="kartya"><img loading="lazy" src="../../assets/ndart-scroll-alk-kisallat.webp" width="675" height="900" alt="Szív alakú csillagtérkép meleg barna háttéren"><h3>Ő is a család</h3><small>Kedvencünk érkezése</small></figure>
+      <figure class="kartya"><img loading="lazy" src="../../assets/ndart-scroll-alk-aranylakodalom.webp" width="720" height="900" alt="Csillagtérkép barokk arany keretben, krém háttéren"><h3>Egy égbolt alatt</h3><small>Aranylakodalom</small></figure>
+    </div>
+  </section>
+
+  <section class="zaro" id="feliratkozas">
+    <img src="../../assets/ndart-scroll-logo.webp" width="800" height="789" alt="ND ART arany logó" loading="lazy">
+    <h2>Valami <em>különleges</em> készül.</h2>
+    <p>Hamarosan indul — iratkozz fel, és elsőként szólunk.</p>
+    <a class="gomb" href="https://ndart.hu" target="_blank" rel="noopener">Feliratkozom</a>
+    <div class="lab">ndart.hu</div>
+  </section>
+</main>
+
+<script>
+(() => {
+  "use strict";
+  // ---- a képsor: egy kameraállás, a sorrend a történet; a kép natív mérete és a vászon sarkai a képarányban ----
+  const KEP = { w: 2560, h: 1440 };
+  const VASZON = { x0: 1038 / 2560, y0: 250 / 1440, x1: 1530 / 2560, y1: 925 / 1440 };   // mérve az alapképen (2026-10-23)
+  const OKOS = { x: 1428 / 2560, y: 848 / 1440 };                // a telefon hegye a vászon sarkán (s6-okospont)
+  const KEPSOR = [
+    { kep: "ndart-v2-s0-tervrajz.webp", lepes: "Terv", kicsi: "ND ART · személyre szabott vászonkép",
+      cim: "<h1>Az égbolt<br><em>a Te faladon.</em></h1>" },
+    { kep: "ndart-v2-s1-ures-fal.webp", lepes: "Üres fal", cim: "<h2>Egy üres fal.</h2><p>És egy este, amit sosem felejtesz el.</p>" },
+    { kep: "ndart-v2-s2a-ures-vaszon.webp", lepes: "Vászon", cim: "<h2>Egy vászon.</h2><p>Prémium minőség, kézzel feszítve.</p>" },
+    { kep: "ndart-v2-s2-reggel.webp", lepes: "A Te égboltod", kor: true, cim: "<h2>A <em>Te</em> égboltod.</h2><p>A csillagok pontosan úgy, ahogy azon az estén álltak — egy választott helyen és pillanatban.</p>" },
+    { kep: "ndart-v2-s3-delutan.webp", lepes: "Délután", cim: "<h2>Minden fényben <em>más.</em></h2>" },
+    { kep: "ndart-v2-s4-este.webp", lepes: "Este", cim: "<h2>Este is <em>ott van.</em></h2>" },
+    { kep: "ndart-v2-s5-ejszaka.webp", lepes: "Éjjel", cim: "<h2>Éjjel <em>ragyog.</em></h2>" },
+    { kep: "ndart-v2-s6-okospont.webp", lepes: "Okospont", kicsi: "Okospont", okos: true,
+      cim: "<h2>Érintsd meg —<br><em>megszólal a dalotok.</em></h2><p>Egy láthatatlan chip a kép mögött: a közös dal, egy videóüzenet vagy egy titkos galéria.</p>" },
+    { kep: null, lepes: "Közelről", kozeli: true, cim: "<h2>Ahol <em>minden</em> kezdődött.</h2>" }
+  ];
+  const ELES = "ndart-v2-terv-eles.webp";   // a valódi terv éles példánya a záró ráközelítéshez
+  const ASSET = "../../assets/";
+
+  const nyugodt = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (nyugodt) document.documentElement.classList.add("nyugodt");
+  const korlat = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+  const lagy = t => t * t * (3 - 2 * t);
+  const lerp = (a, b, t) => a + (b - a) * t;
+
+  const idosor = document.getElementById("idosor"), kamera = document.getElementById("kamera");
+  const cimek = document.getElementById("cimek"), savlepes = document.getElementById("savlepes");
+  const okos = document.getElementById("okos"), gorgess = document.getElementById("gorgess");
+  const N = KEPSOR.length;
+  kamera.style.width = KEP.w + "px"; kamera.style.height = KEP.h + "px";
+  const kepek = [];
+  KEPSOR.forEach((a, i) => {
+    if (a.kep) {
+      const im = new Image(); im.className = "allapot" + (i === 0 ? " elso" : ""); im.src = ASSET + a.kep;
+      im.alt = ""; im.decoding = "async"; if (i > 2) im.loading = "lazy"; kamera.appendChild(im); kepek[i] = im;
+    }
+    const d = document.createElement("div"); d.className = "szakasz";
+    d.innerHTML = (a.kicsi ? `<div class="kicsi">${a.kicsi}</div>` : "") + a.cim; cimek.appendChild(d); a.el = d;
+    const s = document.createElement("div"); s.innerHTML = `<i><b></b></i><span>${a.lepes}</span>`; savlepes.appendChild(s); a.sav = s;
+  });
+  // a tervrajz vonalai a valódi szobára vetülve halványulnak el (a minta „blueprint → valóság” átmenete)
+  const vonal = new Image(); vonal.className = "allapot"; vonal.src = ASSET + KEPSOR[0].kep; vonal.alt = "";
+  vonal.style.mixBlendMode = "screen"; kamera.appendChild(vonal);
+  // a terv a csillagtérkép közepéből kör alakban terül szét (a kép natív pixeleiben, a transzformáció előtt)
+  const korX = (VASZON.x0 + .5 * (VASZON.x1 - VASZON.x0)) * KEP.w, korY = (VASZON.y0 + .5075 * (VASZON.y1 - VASZON.y0)) * KEP.h;
+  const korMax = Math.hypot(VASZON.x1 - VASZON.x0, VASZON.y1 - VASZON.y0) * KEP.w * .62;
+  const eles = new Image(); eles.className = "eles"; eles.src = ASSET + ELES; eles.alt = "A valódi terv: csillagtérkép"; eles.loading = "lazy";
+  eles.style.left = VASZON.x0 * KEP.w + "px"; eles.style.top = VASZON.y0 * KEP.h + "px";
+  eles.style.width = (VASZON.x1 - VASZON.x0) * KEP.w + "px"; eles.style.height = (VASZON.y1 - VASZON.y0) * KEP.h + "px";
+  kamera.appendChild(eles);
+
+  let vw = innerWidth, vh = innerHeight;
+  function meretez() { vw = innerWidth; vh = innerHeight; idosor.style.height = nyugodt ? "" : (N * 95 + 60) / 100 * vh + "px"; }
+
+  // a kamera: „cover” a vászon közepére fókuszálva, közben lassú ráközelítés; a végén a vászon tölti ki a képet
+  function kameraAll(t, kozeli) {
+    const vx = (VASZON.x0 + VASZON.x1) / 2 * KEP.w, vy = (VASZON.y0 + VASZON.y1) / 2 * KEP.h;
+    const cover = Math.max(vw / KEP.w, vh / KEP.h);
+    const vaszonH = (VASZON.y1 - VASZON.y0) * KEP.h, vaszonW = (VASZON.x1 - VASZON.x0) * KEP.w;
+    const kitolt = Math.min(vh * .78 / vaszonH, vw * .9 / vaszonW);   // a záró képen ekkora a vászon
+    const s = lerp(cover, cover * 1.12, t) * (1 - kozeli) + kitolt * kozeli;
+    // a fókusz: a „cover” határain belül a vászon közepe, a végén pontosan a közepe
+    const cx = korlat(vw / 2 - vx * s, vw - KEP.w * s, 0), cy = korlat(vh / 2 - vy * s, vh - KEP.h * s, 0);
+    const x = lerp(cx, vw / 2 - vx * s, kozeli), y = lerp(cy, vh * .44 - vy * s, kozeli);
+    kamera.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${s})`;
+    return { s, x, y };
+  }
+
+  let kell = false;
+  function rajzol() {
+    kell = false;
+    const r = idosor.getBoundingClientRect(), ut = r.height - vh;
+    const p = nyugodt ? 1 : korlat(-r.top / Math.max(ut, 1));
+    const t = p * (N - 1);                         // 0 .. N-1
+    const i = Math.min(N - 1, Math.floor(t)), f = t - i;
+    const atmenet = lagy(korlat((f - .45) / .55)); // minden állapot tart egy kicsit, aztán átúszik
+    const utolsoKep = N - 2;                        // a „közeli” lépés az utolsó kép ráközelítése
+    kepek.forEach((im, k) => {
+      if (!im) return;
+      let o = 0;
+      if (k === Math.min(i, utolsoKep)) o = 1;
+      if (k === i + 1 && k <= utolsoKep) o = atmenet;
+      if (KEPSOR[k].kor) {
+        // kör alakú szétterülés áttűnés helyett: ameddig nem teljes, a kép látszik, csak maszkolva
+        const r = k === i + 1 ? atmenet * korMax : (k <= i ? korMax * 1.5 : 0);
+        const maszk = `radial-gradient(circle ${r.toFixed(0)}px at ${korX.toFixed(0)}px ${korY.toFixed(0)}px, #000 92%, transparent 100%)`;
+        im.style.webkitMaskImage = im.style.maskImage = r >= korMax * 1.4 ? "none" : maszk;
+        o = (k === i + 1 || k === Math.min(i, utolsoKep)) ? 1 : 0;
+        if (k === i + 1 && atmenet === 0) o = 0;
+      }
+      im.style.opacity = o;
+    });
+    // tervrajz-vonalak: 0 → 1 között normál keverés helyett „screen” (rávetül), 1 → 2,6 között elhalványul
+    vonal.style.opacity = nyugodt ? 0 : (t < 1 ? .5 * lagy(korlat((t - .45) / .55)) : .5 * (1 - lagy(korlat((t - 1) / 1.6))));
+    const kozeli = i >= utolsoKep ? lagy(korlat(t - utolsoKep)) : 0;
+    const kam = kameraAll(korlat(t / utolsoKep), kozeli);
+    eles.style.opacity = lagy(korlat((kozeli - .55) / .45));
+    // szakaszcímek: az aktuális lépés címe; átmenetkor kereszt-úsztatás
+    KEPSOR.forEach((a, k) => {
+      let o = 0;
+      if (k === i) o = 1 - lagy(korlat((f - .5) / .3));     // előbb a régi tűnik el…
+      if (k === i + 1) o = lagy(korlat((f - .82) / .18));   // …aztán jön az új (egymásra úszva zavaros volt)
+      if (nyugodt) o = k === N - 1 ? 1 : 0;
+      a.el.style.opacity = o; a.el.style.transform = `translateY(${(1 - o) * 14}px)`;
+      const kitolt = k < i ? 1 : k === i ? f : 0;
+      a.sav.querySelector("b").style.width = (kitolt * 100) + "%";
+      a.sav.classList.toggle("most", k === Math.round(t));
+    });
+    // Okospont: a telefon hegyénél, a kamerával együtt mozog
+    const okosLepes = KEPSOR.findIndex(a => a.okos);
+    const okosO = okosLepes < 0 ? 0 : korlat(1 - Math.abs(t - okosLepes - .1) * 2.2);
+    okos.style.opacity = okosO;
+    okos.classList.toggle("szol", okosO > .3);
+    okos.style.left = (kam.x + OKOS.x * KEP.w * kam.s) + "px"; okos.style.top = (kam.y + OKOS.y * KEP.h * kam.s) + "px";
+    gorgess.style.opacity = 1 - korlat(t * 4);
+  }
+  const ker = () => { if (!kell) { kell = true; requestAnimationFrame(rajzol); } };
+  addEventListener("scroll", ker, { passive: true });
+  addEventListener("resize", () => { meretez(); ker(); });
+  kepek.forEach(im => im && im.addEventListener("error", () => { im.style.display = "none"; }));
+  meretez(); rajzol();
+})();
+</script>
+</body>
+</html>
