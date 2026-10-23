@@ -3,6 +3,21 @@
   "megjelenes": "ND ART",
   "tervek": [
     {
+      "id": "ndart/honlap-2026-10-23_01",
+      "cim": "Görgetős bemutatkozó oldal — Az égbolt a Te pillanatodban",
+      "utvonal": "t/honlap-2026-10-23_01/index.html",
+      "keszult": "2026-10-23",
+      "tipus": null,
+      "leiras": "Görgetésre felépülő történet: a csillagok csillagtérképpé rendeződnek, mellé kerül a Hold, a vászon a falra kerül, az Okospont megszólaltatja a közös dalt.",
+      "cimkek": [
+        "Stílus: görgetős történet",
+        "Téma: Okospont",
+        "Termék: csillagtérkép",
+        "Termék: holdfázis",
+        "Outró: arany logó"
+      ]
+    },
+    {
       "id": "ndart/video-2026-10-12_01",
       "cim": "ND ART — Hamarosan (beharangozó)",
       "utvonal": "t/video-2026-10-12_01/index.html",
@@ -3402,6 +3417,37 @@
         "Outró: arany logó",
         "Termék: Csillagtérkép",
         "Változat: D"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-23_1",
+      "cim": "Igaz vagy hamis? Minden évfordulón ugyanolyan a Hold (38 mp)",
+      "utvonal": "t/video-2026-10-23_1/index.html",
+      "keszult": "2026-10-23",
+      "tipus": "video",
+      "leiras": "Számokkal magyarázó videó: ugyanazon a napon, ugyanabban az órában tíz évfordulón nézzük meg a Holdat — mindig más. Ugyanilyen Hold csak 19 év múlva tér vissza, a csillagos ég viszont szinte ugyanaz. Minden szám valódi csillagászati számításból jön.",
+      "cimkek": [
+        "Stílus: számokkal magyarázó",
+        "Nyitás: igaz vagy hamis",
+        "Téma: holdfázis",
+        "Termék: holdfázis",
+        "Outró: arany logó"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-23_2",
+      "cim": "Kimerevítés egy kockával az érintés előtt — Okospont (20 mp)",
+      "utvonal": "t/video-2026-10-23_2/index.html",
+      "keszult": "2026-10-23",
+      "tipus": "video",
+      "leiras": "A kéz a vászon felé nyúl, a kép egy kockával az érintés előtt megáll, és innen motion viszi tovább: arany vonal járja körbe a keretet, a telefon megérinti az Okospontot, a csillagokból hullám, majd szív lesz. Közben egy számláló mutatja, mióta nézed. A nyitó jelenet MI-generált, eljátszott felvétel.",
+      "cimkek": [
+        "Stílus: kimerevítés + motion",
+        "Nyitás: kimerevítés",
+        "Téma: Okospont",
+        "Termék: csillagtérkép",
+        "Outró: arany logó",
+        "Jelölés: MI-generált"
       ]
     }
   ]

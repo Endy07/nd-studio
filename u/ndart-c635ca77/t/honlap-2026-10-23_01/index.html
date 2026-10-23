@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ND ART — Az égbolt a Te pillanatodban</title>
+<meta name="description" content="Személyre szabott vászonképek: csillagtérkép, holdfázis, saját fotó és felirat. Hamarosan indul.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/*
+  Görgetős ügyféloldal-sablon (ND Studio, 2026-10-23).
+  Szerkezet: minden <section class="jelenet"> egy magas tartály, benne egy ragadós (sticky) színpad.
+  A motor (lent, JS) jelenetenként 0..1 közötti haladást (p) számol, ebből rajzol, és a
+  [data-be][data-ki] szövegeket úsztatja. Új ügyfélnél: a képek, a szövegek és a JELENETEK objektum cserélendő.
+*/
+:root {
+  --fekete: #07080c;
+  --ejkek: #0b1226;
+  --feher: #f3efe6;
+  --halvany: #b9b3a6;
+  --arany: #c9a45c;
+  --arany-vil: #e6c98a;
+  --cim: "Cormorant Garamond", Georgia, serif;
+  --marka: "Cinzel", Georgia, serif;
+  --test: "Inter", system-ui, "Segoe UI", sans-serif;
+  --szinpad-mag: 100vh;
+}
+@supports (height: 100svh) { :root { --szinpad-mag: 100svh; } }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: var(--fekete); }
+body { background: var(--fekete); color: var(--feher); font: 300 16px/1.6 var(--test); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { display: block; }
+a { color: inherit; }
+
+/* felső sáv */
+.fejlec { position: fixed; inset: 0 0 auto 0; z-index: 50; display: flex; justify-content: space-between; align-items: center; padding: 16px clamp(16px, 4vw, 40px); pointer-events: none; mix-blend-mode: difference; }
+.fejlec .logo { font: 600 15px/1 var(--marka); letter-spacing: .32em; color: #fff; }
+.fejlec a { pointer-events: auto; font: 400 12px/1 var(--test); letter-spacing: .18em; text-transform: uppercase; color: #fff; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 3px; }
+.halado { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: var(--arany); z-index: 60; }
+
+/* jelenetek */
+.jelenet { position: relative; }
+.ragado { position: sticky; top: 0; height: var(--szinpad-mag); overflow: hidden; }
+.reteg { position: absolute; inset: 0; }
+.kep { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform, opacity; user-select: none; -webkit-user-drag: none; }
+/* csak a csillagkör látszik (a kép natív, nem skálázott méretében: középpont 50% / 50,75%, sugár 460 px) */
+.kor-maszk { -webkit-mask-image: radial-gradient(circle 466px at 50% 50.75%, #000 98%, transparent 100%); mask-image: radial-gradient(circle 466px at 50% 50.75%, #000 98%, transparent 100%); }
+.felso-atmenet { -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 14%); mask-image: linear-gradient(to bottom, transparent 0, #000 14%); }
+.lagy-szel { -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent 100%); mask-image: radial-gradient(closest-side, #000 72%, transparent 100%); }
+.sotet-szoveg h2 em { color: #8a6a2c; }
+canvas.csillagok { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* úsztatott szövegek */
+.szoveg { position: absolute; left: 50%; transform: translateX(-50%); width: min(92vw, 760px); text-align: center; opacity: 0; will-change: opacity, transform; pointer-events: none; }
+.szoveg.lent { bottom: clamp(56px, 10vh, 110px); }
+.szoveg.fent { top: clamp(72px, 13vh, 140px); }
+.szoveg.kozep { top: 50%; }
+.kicsi { font: 400 11px/1.4 var(--test); letter-spacing: .32em; text-transform: uppercase; color: var(--arany); margin-bottom: 14px; }
+h1, h2 { font-family: var(--cim); font-weight: 400; line-height: 1.08; letter-spacing: .005em; }
+h1 { font-size: clamp(40px, 7.4vw, 92px); }
+h2 { font-size: clamp(28px, 4.6vw, 54px); }
+h2 em, h1 em { font-style: italic; color: var(--arany-vil); }
+.szoveg p { font-size: clamp(15px, 1.6vw, 18px); color: var(--halvany); margin-top: 12px; }
+.arnyek { text-shadow: 0 2px 24px rgba(0,0,0,.65), 0 0 2px rgba(0,0,0,.4); }
+.sotet-szoveg { color: #1d1b17; text-shadow: 0 1px 18px rgba(255,255,255,.7); }
+.sotet-szoveg p { color: #4a463e; }
+.gorgess { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); font: 400 11px/1 var(--test); letter-spacing: .3em; text-transform: uppercase; color: var(--halvany); text-align: center; }
+.gorgess::after { content: ""; display: block; width: 1px; height: 38px; margin: 12px auto 0; background: linear-gradient(var(--arany), transparent); animation: csepp 2.2s ease-in-out infinite; transform-origin: top; }
+@keyframes csepp { 0% { transform: scaleY(0); opacity: 1; } 70% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+
+/* Okospont */
+.telefon { position: absolute; width: clamp(92px, 11vw, 132px); aspect-ratio: 9 / 18.5; border-radius: 18px; background: #0c0c10; border: 2px solid #2b2b33; box-shadow: 0 30px 60px rgba(0,0,0,.55), inset 0 0 0 4px #000; will-change: transform; }
+.telefon .kijelzo { position: absolute; inset: 7px; border-radius: 12px; background: radial-gradient(120% 80% at 50% 30%, #1a2244, #070912); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; overflow: hidden; }
+.telefon .kijelzo span { font: 600 8px/1 var(--marka); letter-spacing: .25em; color: var(--arany); }
+.hullam { display: flex; gap: 3px; align-items: center; height: 34px; }
+.hullam i { width: 3px; height: 6px; border-radius: 2px; background: var(--arany-vil); opacity: .35; }
+.szol .hullam i { opacity: 1; animation: hullam 1s ease-in-out infinite; }
+.hullam i:nth-child(2) { animation-delay: -.2s; } .hullam i:nth-child(3) { animation-delay: -.5s; } .hullam i:nth-child(4) { animation-delay: -.1s; } .hullam i:nth-child(5) { animation-delay: -.7s; } .hullam i:nth-child(6) { animation-delay: -.35s; } .hullam i:nth-child(7) { animation-delay: -.6s; }
+@keyframes hullam { 0%, 100% { height: 6px; } 50% { height: 30px; } }
+.pulzus { position: absolute; width: 0; height: 0; }
+.pulzus b { position: absolute; left: -40px; top: -40px; width: 80px; height: 80px; border-radius: 50%; border: 1.5px solid var(--arany-vil); opacity: 0; }
+.szol .pulzus b { animation: gyuru 2.4s ease-out infinite; }
+.pulzus b:nth-child(2) { animation-delay: .8s !important; } .pulzus b:nth-child(3) { animation-delay: 1.6s !important; }
+@keyframes gyuru { 0% { transform: scale(.2); opacity: .9; } 100% { transform: scale(2.6); opacity: 0; } }
+.pont-jel { position: absolute; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--arany-vil); box-shadow: 0 0 0 4px rgba(230,201,138,.25), 0 0 24px rgba(230,201,138,.8); opacity: 0; }
+
+/* alkalmak: vízszintes sáv */
+.sav { position: absolute; top: 50%; left: 0; display: flex; gap: clamp(14px, 2vw, 28px); padding: 0 clamp(16px, 6vw, 80px); will-change: transform; }
+.kartya { flex: 0 0 auto; width: clamp(200px, 24vw, 300px); }
+.kartya img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 3px; box-shadow: 0 24px 50px rgba(0,0,0,.5); background: #111; }
+.kartya h3 { font: 500 clamp(20px, 2vw, 26px)/1.2 var(--cim); margin-top: 14px; }
+.kartya small { display: block; font-size: 13px; color: var(--halvany); }
+
+/* zárás */
+.zaro { min-height: var(--szinpad-mag); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 16px; background: radial-gradient(70% 55% at 50% 45%, #121a33 0%, var(--fekete) 70%); }
+.zaro img { width: clamp(150px, 20vw, 230px); height: auto; margin-bottom: 26px; }
+.zaro .nev { font: 600 clamp(26px, 3.4vw, 40px)/1 var(--marka); letter-spacing: .3em; margin-bottom: 26px; padding-left: .3em; }
+.zaro h2 { margin-bottom: 10px; }
+.zaro p { color: var(--halvany); max-width: 520px; }
+.gomb { display: inline-block; margin-top: 30px; padding: 15px 30px; border: 1px solid var(--arany); color: var(--arany-vil); text-decoration: none; font: 400 12px/1 var(--test); letter-spacing: .26em; text-transform: uppercase; transition: background .3s, color .3s; }
+.gomb:hover, .gomb:focus-visible { background: var(--arany); color: var(--fekete); outline: none; }
+.lab { margin-top: 56px; font-size: 12px; letter-spacing: .2em; color: #6f6a60; text-transform: uppercase; }
+
+/* csökkentett mozgás: a motor statikus végállapotot rajzol, a jelenetek rövidek */
+.nyugodt .jelenet { height: auto !important; }
+.nyugodt .ragado { position: relative; }
+.nyugodt .gorgess::after { animation: none; }
+.nyugodt .sav { width: 100%; overflow-x: auto; scroll-snap-type: x mandatory; }
+.nyugodt .kartya { scroll-snap-align: start; }
+</style>
+</head>
+<body>
+<div class="halado" id="halado"></div>
+<header class="fejlec"><span class="logo">ND ART</span><a href="#feliratkozas">Hamarosan</a></header>
+
+<main>
+  <!-- 1. Égbolt: szétszórt csillagok rendeződnek csillagtérképpé -->
+  <section class="jelenet" data-jelenet="egbolt" data-hossz="360">
+    <div class="ragado" style="background: radial-gradient(120% 90% at 50% 40%, #0d1630 0%, var(--fekete) 75%);">
+      <canvas class="csillagok"></canvas>
+      <img class="kep kor-maszk" data-kep="egbolt" src="../../assets/ndart-scroll-egbolt.webp" width="1200" height="1600" alt="Sötétkék csillagtérkép csillagképekkel és a Tejúttal" style="opacity:0">
+      <div class="szoveg kozep arnyek" data-be="-1" data-ki="0.16" style="margin-top:-90px">
+        <div class="kicsi">ND ART · személyre szabott vászonképek</div>
+        <h1>Az égbolt<br><em>a Te pillanatodban.</em></h1>
+      </div>
+      <div class="gorgess" data-be="-1" data-ki="0.06">Görgess</div>
+      <div class="szoveg lent arnyek" data-be="0.22" data-ki="0.44"><h2>Egy hely. <em>Egy pillanat.</em></h2></div>
+      <div class="szoveg lent arnyek" data-be="0.48" data-ki="0.70"><h2>A csillagok pontosan úgy,<br>ahogy <em>akkor</em> álltak.</h2></div>
+      <div class="szoveg lent arnyek" data-be="0.80" data-ki="2"><h2>Ez a <em>Te</em> csillagtérképed.</h2></div>
+    </div>
+  </section>
+
+  <!-- 2. A Hold: ugyanaz a kör, kitárul a vászon, mellette a Hold -->
+  <section class="jelenet" data-jelenet="hold" data-hossz="280">
+    <div class="ragado" style="background: var(--ejkek);">
+      <img class="kep" data-kep="vaszon" src="../../assets/ndart-scroll-vaszon.webp" width="2000" height="1333" alt="Vászon: csillagtérkép és a Hold egymás mellett" style="opacity:0">
+      <div class="szoveg fent arnyek" data-be="0.18" data-ki="0.52"><h2>És a Hold —<br>ahogy <em>azon az éjszakán</em> ragyogott.</h2></div>
+      <div class="szoveg lent arnyek" data-be="0.60" data-ki="2"><h2>Akár három elem <em>egy vásznon.</em></h2><p>Csillagtérkép, holdfázis, saját fotó és felirat — ahogy a Te történeted kéri.</p></div>
+    </div>
+  </section>
+
+  <!-- 3. A falon: a csillagkörből kizoomolunk a reggeli falra -->
+  <section class="jelenet" data-jelenet="falon" data-hossz="300">
+    <div class="ragado" style="background:#d6d1cb;">
+      <img class="kep lagy-szel" data-kep="falon" src="../../assets/ndart-scroll-falon.webp" width="2200" height="2200" alt="Álló vászonkép csillagtérképpel egy világos falon" style="opacity:0">
+      <div class="reteg" data-kep="ejszaka" style="background: var(--ejkek);"></div>
+      <div class="szoveg lent sotet-szoveg" data-be="0.40" data-ki="0.68"><h2>Prémium vászon,<br><em>kézzel feszítve.</em></h2></div>
+      <div class="szoveg lent sotet-szoveg" data-be="0.74" data-ki="2"><h2>Ilyen lesz <em>a faladon.</em></h2></div>
+    </div>
+  </section>
+
+  <!-- 4. Okospont: telefon érinti a vásznat, megszólal a dal -->
+  <section class="jelenet" data-jelenet="okospont" data-hossz="300">
+    <div class="ragado" style="background:#0e0d0c;">
+      <img class="kep felso-atmenet" data-kep="okospont" src="../../assets/ndart-scroll-okospont.webp" width="2000" height="1124" alt="Fekvő vászonkép csillagtérképpel és fotóval egy komódon, mellette karácsonyi fények" style="opacity:0">
+      <div class="reteg" data-kep="sotetito" style="background: linear-gradient(180deg, rgba(5,5,8,.5) 0%, rgba(5,5,8,0) 40%, rgba(5,5,8,0) 80%, rgba(5,5,8,.3) 100%);"></div>
+      <span class="pont-jel" data-kep="pontjel"></span>
+      <div class="pulzus" data-kep="pulzus"><b></b><b></b><b></b></div>
+      <div class="telefon" data-kep="telefon"><div class="kijelzo"><span>OKOSPONT</span><div class="hullam"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+      <div class="szoveg fent arnyek" data-be="0.06" data-ki="0.46"><div class="kicsi">Okospont</div><h2>Egy láthatatlan chip<br><em>a kép mögött.</em></h2></div>
+      <div class="szoveg fent arnyek" data-be="0.58" data-ki="2"><h2>Érintsd meg —<br>és <em>megszólal a közös dalotok.</em></h2><p>Vagy egy videóüzenet, vagy egy titkos galéria. A telefonod elég hozzá.</p></div>
+    </div>
+  </section>
+
+  <!-- 5. Alkalmak: vízszintes sáv -->
+  <section class="jelenet" data-jelenet="alkalmak" data-hossz="320">
+    <div class="ragado" style="background: var(--fekete);">
+      <div class="szoveg fent arnyek" data-be="-1" data-ki="2" style="opacity:1"><div class="kicsi">Alkalmak</div><h2>Minden fontos éjszakának<br><em>van egy égboltja.</em></h2></div>
+      <div class="sav" data-kep="sav">
+        <figure class="kartya"><img loading="lazy" src="../../assets/ndart-scroll-alk-valentin.webp" width="675" height="900" alt="Szív alakú csillagtérkép rózsaszínben"><h3>Szerelmünk éjszakája</h3><small>Valentin-nap, évforduló</small></figure>
+        <figure class="kartya"><img loading="lazy" src="../../assets/ndart-scroll-alk-eljegyzes.webp" width="675" height="900" alt="Szív alakú keretben fotó egy párról, virágos keret"><h3>Az igen pillanata</h3><small>Eljegyzés</small></figure>
+        <figure class="kartya"><img loading="lazy" src="../../assets/ndart-scroll-alk-eskuvo.webp" width="675" height="900" alt="Végtelen-jel alakú csillagtérkép sötétkék háttéren"><h3>Örökké</h3><small>Esküvő</small></figure>
+        <figure class="kartya"><img loading="lazy" src="../../assets/ndart-scroll-alk-szuletes.webp" width="630" height="900" alt="Holdfázis babatalp-formában, világoskék háttéren"><h3>Üdv a világon</h3><small>Születés</small></figure>
+        <figure class="kartya"><img loading="lazy" src="../../assets/ndart-scroll-alk-otthon.webp" width="675" height="900" alt="Minimalista csillagtérkép krémszínű háttéren"><h3>Itt lettünk otthon</h3><small>Első közös otthon</small></figure>
+        <figure class="kartya"><img loading="lazy" src="../../assets/ndart-scroll-alk-ballagas.webp" width="675" height="900" alt="Telihold dupla kerettel, lila-kék háttéren"><h3>Ezen az éjszakán indult</h3><small>Ballagás</small></figure>
+        <figure class="kartya"><img loading="lazy" src="../../assets/ndart-scroll-alk-kisallat.webp" width="675" height="900" alt="Szív alakú csillagtérkép meleg barna háttéren"><h3>Ő is a család</h3><small>Kedvencünk érkezése</small></figure>
+        <figure class="kartya"><img loading="lazy" src="../../assets/ndart-scroll-alk-aranylakodalom.webp" width="720" height="900" alt="Csillagtérkép barokk arany keretben, krém háttéren"><h3>Egy égbolt alatt</h3><small>Aranylakodalom</small></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Zárás -->
+  <section class="zaro" id="feliratkozas">
+    <img src="../../assets/ndart-scroll-logo.webp" width="800" height="789" alt="ND ART arany logó" loading="lazy">
+    <h2>Valami <em>különleges</em> készül.</h2>
+    <p>Hamarosan indul — iratkozz fel, és elsőként szólunk.</p>
+    <a class="gomb" href="https://ndart.hu" target="_blank" rel="noopener">Feliratkozom</a>
+    <div class="lab">ndart.hu</div>
+  </section>
+</main>
+
+<script>
+(() => {
+  "use strict";
+  const nyugodt = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (nyugodt) document.documentElement.classList.add("nyugodt");
+
+  // --- segédek ---
+  const korlat = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+  const szakasz = (p, a, b) => korlat((p - a) / (b - a));           // p a..b → 0..1
+  const lagy = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; // easeInOutCubic
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const loglerp = (a, b, t) => Math.exp(lerp(Math.log(a), Math.log(b), t));
+  let vw = innerWidth, vh = innerHeight;
+
+  // Egy kép elhelyezése: a kép (u,v) relatív pontja a képernyő (x,y) pontjára kerül, a kép szélessége W.
+  function helyez(img, W, u, v, x, y, opac = 1) {
+    const nw = img.width, nh = img.height, H = W * nh / nw;
+    const s = W / nw;
+    img.style.width = nw + "px";
+    img.style.transform = `translate3d(${x - u * W}px, ${y - v * H}px, 0) scale(${s})`;
+    img.style.opacity = opac;
+  }
+  // „cover” méret egy fókuszponttal: a kép kitölti a színpadot, (fu,fv) a lehető legközelebb a közepéhez
+  function cover(img, fu, fv) {
+    const r = img.width / img.height;
+    const W = Math.max(vw, vh * r), H = W / r;
+    const bal = korlat(vw / 2 - fu * W, vw - W, 0), fent = korlat(vh / 2 - fv * H, vh - H, 0);
+    return { W, x: bal + fu * W, y: fent + fv * H };   // a fókuszpont képernyő-helye
+  }
+  // a közös „csillagkör” mérete: minden jelenet ehhez igazítja a saját körét
+  const korSugar = () => Math.min(vw, vh) * (vw < 700 ? 0.40 : 0.34);
+
+  // --- 1. Égbolt: procedurális csillagok, amelyek körbe rendeződnek ---
+  const egboltJelenet = (() => {
+    const N = 560, csillagok = [], vonalak = [];
+    let rnd = 7;
+    const veletlen = () => (rnd = (rnd * 16807) % 2147483647) / 2147483647; // determinisztikus
+    for (let i = 0; i < N; i++) {
+      const a = veletlen() * Math.PI * 2, r = Math.sqrt(veletlen());
+      csillagok.push({ sx: veletlen(), sy: veletlen(), tx: Math.cos(a) * r, ty: Math.sin(a) * r,
+                       m: veletlen() < .08 ? 1.8 : .5 + veletlen() * .9, f: veletlen() * 6.28, k: .4 + veletlen() * .6 });
+    }
+    // csillagkép-szerű vonalak: a fényesebbek közül a cél-térben legközelebbi szomszédok
+    const fenyes = csillagok.map((c, i) => i).filter(i => csillagok[i].m > 1.2 || i % 9 === 0).slice(0, 90);
+    for (const i of fenyes) {
+      let leg = -1, d = 1e9;
+      for (const j of fenyes) if (j !== i) {
+        const dd = (csillagok[i].tx - csillagok[j].tx) ** 2 + (csillagok[i].ty - csillagok[j].ty) ** 2;
+        if (dd < d) { d = dd; leg = j; }
+      }
+      if (leg >= 0 && d < .05 && !vonalak.some(v => (v[0] === leg && v[1] === i))) vonalak.push([i, leg]);
+    }
+    return { csillagok, vonalak };
+  })();
+
+  const JELENETEK = {
+    egbolt(p, el, ido) {
+      const cv = el.querySelector("canvas"), img = el.querySelector('[data-kep="egbolt"]');
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      if (cv.width !== Math.round(vw * dpr)) { cv.width = Math.round(vw * dpr); cv.height = Math.round(vh * dpr); }
+      const g = cv.getContext("2d");
+      g.setTransform(dpr, 0, 0, dpr, 0, 0);
+      g.clearRect(0, 0, vw, vh);
+      const R = korSugar(), cx = vw / 2, cy = vh / 2;
+      const t = lagy(szakasz(p, .2, .68));          // rendeződés
+      const kepBe = lagy(szakasz(p, .70, .92));      // a valódi térkép beúszik
+      const { csillagok, vonalak } = egboltJelenet;
+      const pos = csillagok.map(c => [lerp(c.sx * vw, cx + c.tx * R, t), lerp(c.sy * vh, cy + c.ty * R, t)]);
+      // vonalak
+      const vonalA = szakasz(p, .5, .7) * (1 - kepBe);
+      if (vonalA > 0) {
+        g.strokeStyle = `rgba(120,150,230,${.55 * vonalA})`; g.lineWidth = 1;
+        g.beginPath();
+        for (const [a, b] of vonalak) { g.moveTo(pos[a][0], pos[a][1]); g.lineTo(pos[b][0], pos[b][1]); }
+        g.stroke();
+      }
+      // kör
+      const korA = szakasz(p, .55, .7) * (1 - kepBe);
+      if (korA > 0) { g.strokeStyle = `rgba(243,239,230,${.7 * korA})`; g.lineWidth = 1.2; g.beginPath(); g.arc(cx, cy, R, 0, Math.PI * 2); g.stroke(); }
+      // csillagok
+      const csA = 1 - kepBe * .85;
+      for (let i = 0; i < csillagok.length; i++) {
+        const c = csillagok[i], villog = nyugodt ? 1 : .75 + .25 * Math.sin(ido * .0015 * c.k * 3 + c.f);
+        g.fillStyle = `rgba(243,239,230,${csA * villog * (c.m > 1.2 ? 1 : .75)})`;
+        g.beginPath(); g.arc(pos[i][0], pos[i][1], c.m * (vw < 700 ? .8 : 1), 0, Math.PI * 2); g.fill();
+      }
+      // a valódi csillagtérkép (a kép köre: középpont 50% / 50,75%, sugár a szélesség 38,3%-a)
+      helyez(img, R / .383, .5, .5075, cx, cy, kepBe);
+      return p > 0 && p < 1;   // amíg látszik, kell az animációs ciklus (villogás)
+    },
+
+    hold(p, el) {
+      const img = el.querySelector('[data-kep="vaszon"]');
+      const R = korSugar(), cx = vw / 2, cy = vh / 2;
+      // kezdet: a vászon bal körét (25% / 50,1%, sugár 21,6%) pontosan az előző kör helyére tesszük
+      const W0 = R / .216;
+      // vég: a teljes vászon elfér a színpadon
+      const W1 = Math.min(vw * (vw < 700 ? .96 : .74), vh * .60 * 2000 / 1333);
+      const t = lagy(szakasz(p, .08, .55));
+      const W = loglerp(W0, W1, t);
+      const u = lerp(.25, .5, t), v = lerp(.501, .5, t);
+      helyez(img, W, u, v, cx, lerp(cy, vh * (vw < 700 ? .5 : .43), t), 1);
+    },
+
+    falon(p, el) {
+      const img = el.querySelector('[data-kep="falon"]'), ej = el.querySelector('[data-kep="ejszaka"]');
+      const R = korSugar(), cx = vw / 2, cy = vh / 2;
+      // a falon lógó vászon köre: középpont 50,5% / 58,3%, sugár a kép 21,4%-a
+      const u0 = .505, v0 = .583;
+      const W0 = R / .214;
+      // vég: az egész vászon látszik (magassága a kép 66%-a, szélessége 46,4%-a), alatta hely a szövegnek
+      const W1 = Math.min(vh * (vw < 700 ? .56 : .60) / .66, vw * .9 / .464);
+      const t = lagy(szakasz(p, .1, .62));
+      const W = loglerp(W0, W1, t);
+      // a kör középpontjából a vászon középpontja (50,5% / 51%) lesz a horgony, a képernyő felső részén
+      const u = lerp(u0, .505, t), v = lerp(v0, .51, t);
+      helyez(img, W, u, v, cx, lerp(cy, vh * .43, t), 1);
+      ej.style.opacity = .9 * (1 - lagy(szakasz(p, 0, .14)));   // éjszakából reggel
+    },
+
+    okospont(p, el) {
+      const img = el.querySelector('[data-kep="okospont"]');
+      const tel = el.querySelector('[data-kep="telefon"]'), pul = el.querySelector('[data-kep="pulzus"]'), jel = el.querySelector('[data-kep="pontjel"]');
+      // fókusz a vásznon; az NFC-pont a vászon jobb alsó része felé (56% / 76%)
+      // a kép alulra igazítva, felül sötét hely marad a szövegnek; mobilon ráközelítve a vászonra
+      const r = img.width / img.height;
+      const W0 = vw < 700 ? vw * 1.9 : Math.min(vw * .94, vh * .74 * r);
+      const W = W0 * lerp(1.0, 1.06, lagy(szakasz(p, 0, 1)));
+      const H = W / r;
+      const fu = vw < 700 ? .5 : .5;
+      helyez(img, W, fu, 1, vw / 2, vh, 1);
+      const px = vw / 2 + (.56 - fu) * W, py = vh - (1 - .76) * H;
+      jel.style.left = px + "px"; jel.style.top = py + "px";
+      jel.style.opacity = szakasz(p, .18, .3);
+      pul.style.left = px + "px"; pul.style.top = py + "px";
+      // a telefon jobbról lentről érkezik, a sarkával érinti a pontot
+      const tw = tel.offsetWidth, th = tel.offsetHeight;
+      const t = lagy(szakasz(p, .2, .5));
+      const x = lerp(vw + 40, px - tw * .12, t), y = lerp(vh + 40, py - th * .1, t);
+      const forg = lerp(-24, -12, t);
+      tel.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${forg}deg)`;
+      el.classList.toggle("szol", p > .5);
+    },
+
+    alkalmak(p, el) {
+      const sav = el.querySelector('[data-kep="sav"]');
+      const tav = nyugodt ? 0 : Math.max(0, sav.scrollWidth - vw);   // csökkentett mozgásnál kézzel görgethető
+      const t = szakasz(p, .12, .92);
+      sav.style.transform = `translate3d(${-tav * t}px, ${vw < 700 ? -10 : -20}%, 0)`;
+    }
+  };
+
+  // --- motor ---
+  const jelenetek = [...document.querySelectorAll(".jelenet")].map(el => ({
+    el, nev: el.dataset.jelenet, ragado: el.querySelector(".ragado"),
+    szovegek: [...el.querySelectorAll("[data-be]")].map(s => ({ s, be: +s.dataset.be, ki: +s.dataset.ki }))
+  }));
+  function meretez() {
+    vw = innerWidth; vh = innerHeight;
+    for (const j of jelenetek) j.el.style.height = nyugodt ? "" : (j.el.dataset.hossz / 100 * vh) + "px";
+  }
+  function haladas(j) {
+    if (nyugodt) return 1;
+    const r = j.el.getBoundingClientRect(), ut = r.height - vh;
+    return ut > 0 ? korlat(-r.top / ut) : 0;
+  }
+  function szovegek(j, p) {
+    const atm = .07;
+    for (const { s, be, ki } of j.szovegek) {
+      const o = Math.min(szakasz(p, be, be + atm), 1 - szakasz(p, ki - atm, ki));
+      s.style.opacity = o;
+      const alap = s.classList.contains("kozep") ? "translate(-50%, -50%)" : "translateX(-50%)";
+      s.style.transform = `${alap} translateY(${(1 - o) * 18}px)`;
+    }
+  }
+  let kell = true;
+  function rajzol(ido) {
+    let animal = false;
+    for (const j of jelenetek) {
+      const r = j.el.getBoundingClientRect();
+      if (!nyugodt && (r.bottom < -50 || r.top > vh + 50)) continue;   // nem látszik
+      const p = haladas(j);
+      const fv = JELENETEK[j.nev];
+      if (fv && fv(p, j.ragado, ido)) animal = true;
+      szovegek(j, p);   // csökkentett mozgásnál p = 1: csak a jelenet záró szövege látszik
+    }
+    const teljes = document.documentElement.scrollHeight - vh;
+    document.getElementById("halado").style.width = (teljes > 0 ? 100 * scrollY / teljes : 0) + "%";
+    kell = false;
+    if (animal && !nyugodt) { kell = true; requestAnimationFrame(rajzol); }
+  }
+  const ker = () => { if (!kell) { kell = true; requestAnimationFrame(rajzol); } };
+  addEventListener("scroll", ker, { passive: true });
+  addEventListener("resize", () => { meretez(); ker(); });
+  // a képek méretét a betöltésük után ismerjük biztosan
+  document.querySelectorAll("img").forEach(i => { if (!i.complete) i.addEventListener("load", ker, { once: true }); });
+  meretez();
+  requestAnimationFrame(rajzol);
+  // hibatűrés: ha egy kép nem töltődik be, a színpad akkor se maradjon üres
+  document.querySelectorAll("img.kep").forEach(i => i.addEventListener("error", () => { i.style.display = "none"; }));
+})();
+</script>
+</body>
+</html>

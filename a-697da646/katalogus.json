@@ -3788,6 +3788,22 @@
       "utvonal_nev": "ndart-c635ca77",
       "tervek": [
         {
+          "cim": "Görgetős bemutatkozó oldal — Az égbolt a Te pillanatodban",
+          "keszult": "2026-10-23",
+          "publikus": true,
+          "rejtett": false,
+          "leiras": "Görgetésre felépülő történet: a csillagok csillagtérképpé rendeződnek, mellé kerül a Hold, a vászon a falra kerül, az Okospont megszólaltatja a közös dalt.",
+          "cimkek": [
+            "Stílus: görgetős történet",
+            "Téma: Okospont",
+            "Termék: csillagtérkép",
+            "Termék: holdfázis",
+            "Outró: arany logó"
+          ],
+          "id": "ndart/honlap-2026-10-23_01",
+          "utvonal": "t/honlap-2026-10-23_01/index.html"
+        },
+        {
           "cim": "ND ART — Hamarosan (beharangozó)",
           "keszult": "2026-10-12",
           "publikus": true,
@@ -10057,6 +10073,59 @@
           },
           "id": "ndart/video-2026-10-20_8",
           "utvonal": "t/video-2026-10-20_8/index.html"
+        },
+        {
+          "cim": "Igaz vagy hamis? Minden évfordulón ugyanolyan a Hold (38 mp)",
+          "leiras": "Számokkal magyarázó videó: ugyanazon a napon, ugyanabban az órában tíz évfordulón nézzük meg a Holdat — mindig más. Ugyanilyen Hold csak 19 év múlva tér vissza, a csillagos ég viszont szinte ugyanaz. Minden szám valódi csillagászati számításból jön.",
+          "cimkek": [
+            "Stílus: számokkal magyarázó",
+            "Nyitás: igaz vagy hamis",
+            "Téma: holdfázis",
+            "Termék: holdfázis",
+            "Outró: arany logó"
+          ],
+          "keszult": "2026-10-23",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "4daef6c724cb0c13891d12c74a17129379cf23aaedb07f1c749e9c8acd39ecd3",
+            "bajt": 1058183,
+            "formatum": "9:16",
+            "hossz_mp": 38.4,
+            "kulso": "ndart-magyarazo-hold_9x16.mp4"
+          },
+          "id": "ndart/video-2026-10-23_1",
+          "utvonal": "t/video-2026-10-23_1/index.html"
+        },
+        {
+          "cim": "Kimerevítés egy kockával az érintés előtt — Okospont (20 mp)",
+          "leiras": "A kéz a vászon felé nyúl, a kép egy kockával az érintés előtt megáll, és innen motion viszi tovább: arany vonal járja körbe a keretet, a telefon megérinti az Okospontot, a csillagokból hullám, majd szív lesz. Közben egy számláló mutatja, mióta nézed. A nyitó jelenet MI-generált, eljátszott felvétel.",
+          "cimkek": [
+            "Stílus: kimerevítés + motion",
+            "Nyitás: kimerevítés",
+            "Téma: Okospont",
+            "Termék: csillagtérkép",
+            "Outró: arany logó",
+            "Jelölés: MI-generált"
+          ],
+          "keszult": "2026-10-23",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "2041849da55d286fb349493dcc3f9d0ebd2b5fd986bb09f7579f523144d6e7db",
+            "bajt": 1634726,
+            "formatum": "9:16",
+            "hossz_mp": 20.01,
+            "kulso": "ndart-hook-kimerevites_9x16.mp4"
+          },
+          "id": "ndart/video-2026-10-23_2",
+          "utvonal": "t/video-2026-10-23_2/index.html"
         }
       ],
       "rejtett_szam": 0
