@@ -10143,6 +10143,34 @@
           },
           "id": "ndart/video-2026-10-23_2",
           "utvonal": "t/video-2026-10-23_2/index.html"
+        },
+        {
+          "cim": "Kimerevítés egy kockával az érintés előtt — Okospont, v2: hang a logón (20 mp)",
+          "leiras": "Ugyanaz a film, mint az eredeti, csak a hangja más: a logó érkezését most suhanás és egy lágy ütés kíséri, ahogy a kimerevítést és az érintést is. A nyitó jelenet MI-generált, eljátszott felvétel.",
+          "cimkek": [
+            "Stílus: kimerevítés + motion",
+            "Nyitás: kimerevítés",
+            "Téma: Okospont",
+            "Termék: csillagtérkép",
+            "Outró: arany logó",
+            "Jelölés: MI-generált",
+            "Változat: v2 (hang)"
+          ],
+          "keszult": "2026-10-24",
+          "publikus": true,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "07faf0e33dbcfa5b1310f266e87a3872b0ea87336de0f99e2442fb43f1b3fbd1",
+            "bajt": 1635141,
+            "formatum": "9:16",
+            "hossz_mp": 20.01,
+            "kulso": "ndart-hook-kimerevites-v2-hang_9x16.mp4"
+          },
+          "id": "ndart/video-2026-10-24_1",
+          "utvonal": "t/video-2026-10-24_1/index.html"
         }
       ],
       "rejtett_szam": 0
