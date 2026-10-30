@@ -3466,6 +3466,78 @@
         "Jelölés: MI-generált",
         "Változat: v2 (hang)"
       ]
+    },
+    {
+      "id": "ndart/video-2026-10-30_1",
+      "cim": "Kimerevítés egy kockával az elengedés előtt — szilánkokból a vászon (18 mp)",
+      "utvonal": "t/video-2026-10-30_1/index.html",
+      "keszult": "2026-10-30",
+      "tipus": "video",
+      "leiras": "A kéz a falra akasztja a csillagtérképet; a kép pontosan egy kockával az elengedés előtt megáll. Innen motion viszi tovább: tollvonal járja körbe a keretet, a kép 70 szilánkra esik, majd újra összeáll vászonná, és egy feed a mi posztunkon áll meg. A nyitó jelenet MI-generált, eljátszott felvétel.",
+      "cimkek": [
+        "Stílus: kimerevítés + motion",
+        "Nyitás: kimerevítés",
+        "Termék: csillagtérkép",
+        "Outró: arany logó",
+        "Változat: v3",
+        "Jelölés: MI-generált"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-30_2",
+      "cim": "Mikor indult a fény, amit a csillagtérképeden látsz? (21 mp)",
+      "utvonal": "t/video-2026-10-30_2/index.html",
+      "keszult": "2026-10-30",
+      "tipus": "video",
+      "leiras": "Számokkal magyarázó videó: a Hold fénye 1,28 másodperc alatt ér ide, a Napé 8 perc 19 másodperc alatt, a Szíriuszé 8,6 év alatt, a Denebé 1 410–2 620 év alatt (két mérés). Minden szám csillagászati katalógusból és számításból jön.",
+      "cimkek": [
+        "Stílus: számokkal magyarázó",
+        "Téma: a fény útja",
+        "Termék: csillagtérkép",
+        "Outró: arany logó"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-30_3",
+      "cim": "Minden évfordulón ugyanolyan a Hold? — Rézmetszet (15 mp)",
+      "utvonal": "t/video-2026-10-30_3/index.html",
+      "keszult": "2026-10-30",
+      "tipus": "video",
+      "leiras": "Ugyanaz a holdas magyarázó történet egy kódból renderelt filmstílusban (Rézmetszet): 10 évforduló, 19 év múlva visszatér, a Te estéd Holdja egyszeri. A számok csillagászati számításból jönnek. Rendezés: Lemo-Opuscar stílustár (LemoLab, CC BY 4.0) alapján, saját kóddal.",
+      "cimkek": [
+        "Stílus: Rézmetszet",
+        "Téma: a Hold az évfordulón",
+        "Termék: csillagtérkép",
+        "Forrás: Lemo-Opuscar (CC BY 4.0)"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-30_4",
+      "cim": "Minden évfordulón ugyanolyan a Hold? — Svájci grafika (15 mp)",
+      "utvonal": "t/video-2026-10-30_4/index.html",
+      "keszult": "2026-10-30",
+      "tipus": "video",
+      "leiras": "Ugyanaz a holdas magyarázó történet egy kódból renderelt filmstílusban (Svájci grafika): 10 évforduló, 19 év múlva visszatér, a Te estéd Holdja egyszeri. A számok csillagászati számításból jönnek. Rendezés: Lemo-Opuscar stílustár (LemoLab, CC BY 4.0) alapján, saját kóddal.",
+      "cimkek": [
+        "Stílus: Svájci grafika",
+        "Téma: a Hold az évfordulón",
+        "Termék: csillagtérkép",
+        "Forrás: Lemo-Opuscar (CC BY 4.0)"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-30_5",
+      "cim": "Minden évfordulón ugyanolyan a Hold? — Krétás tábla (15 mp)",
+      "utvonal": "t/video-2026-10-30_5/index.html",
+      "keszult": "2026-10-30",
+      "tipus": "video",
+      "leiras": "Ugyanaz a holdas magyarázó történet egy kódból renderelt filmstílusban (Krétás tábla): 10 évforduló, 19 év múlva visszatér, a Te estéd Holdja egyszeri. A számok csillagászati számításból jönnek. Rendezés: Lemo-Opuscar stílustár (LemoLab, CC BY 4.0) alapján, saját kóddal.",
+      "cimkek": [
+        "Stílus: Krétás tábla",
+        "Téma: a Hold az évfordulón",
+        "Termék: csillagtérkép",
+        "Forrás: Lemo-Opuscar (CC BY 4.0)"
+      ]
     }
   ]
 }

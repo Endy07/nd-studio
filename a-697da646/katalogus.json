@@ -2793,6 +2793,22 @@
           "utvonal": "t/honlap-2026-10-27_01/index.html"
         },
         {
+          "cim": "Görgetős oldal — TasteSkill-változat",
+          "keszult": "2026-10-30",
+          "publikus": false,
+          "rejtett": false,
+          "leiras": "Osztott színpad: a képernyő fele áll, mint a 48 órát pihenő tészta — a pizzák, a kelő tészta és a valódi étlap váltják egymást —, a másik fele nyugodtan görgő étlap-oszlop. Élő nyitvatartás-jelző (még meddig veszünk fel rendelést), négy pizza egy keretben, a cím nagy sorokban. Minden kép a pizzéria saját fotója.",
+          "cimkek": [
+            "Stílus: osztott színpad",
+            "Nyitás: pizzamozaik",
+            "Téma: 48 óra",
+            "Élő: nyitva most?",
+            "Változat: TasteSkill"
+          ],
+          "id": "karesz-mamma-mia-pizza/honlap-2026-10-30_01",
+          "utvonal": "t/honlap-2026-10-30_01/index.html"
+        },
+        {
           "cim": "Pizzatúra 20 másodpercben (A változat)",
           "leiras": "Közeli a pizzák peremére, gyors vágások a kínálaton, a „Nápolyi stílusú” pizza nagyban, végül a rendelés — alul végig egy visszaszámláló.",
           "cimkek": [
@@ -10199,7 +10215,7 @@
             "Jelölés: MI-generált"
           ],
           "keszult": "2026-10-30",
-          "publikus": false,
+          "publikus": true,
           "rejtett": false,
           "tipus": "video",
           "video": {
@@ -10224,7 +10240,7 @@
             "Outró: arany logó"
           ],
           "keszult": "2026-10-30",
-          "publikus": false,
+          "publikus": true,
           "rejtett": false,
           "tipus": "video",
           "video": {
@@ -10249,7 +10265,7 @@
             "Forrás: Lemo-Opuscar (CC BY 4.0)"
           ],
           "keszult": "2026-10-30",
-          "publikus": false,
+          "publikus": true,
           "rejtett": false,
           "tipus": "video",
           "video": {
@@ -10274,7 +10290,7 @@
             "Forrás: Lemo-Opuscar (CC BY 4.0)"
           ],
           "keszult": "2026-10-30",
-          "publikus": false,
+          "publikus": true,
           "rejtett": false,
           "tipus": "video",
           "video": {
@@ -10299,7 +10315,7 @@
             "Forrás: Lemo-Opuscar (CC BY 4.0)"
           ],
           "keszult": "2026-10-30",
-          "publikus": false,
+          "publikus": true,
           "rejtett": false,
           "tipus": "video",
           "video": {
