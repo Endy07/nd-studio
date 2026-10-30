@@ -10160,33 +10160,6 @@
           "utvonal": "t/video-2026-10-23_1/index.html"
         },
         {
-          "cim": "Kimerevítés egy kockával az érintés előtt — Okospont (20 mp)",
-          "leiras": "A kéz a vászon felé nyúl, a kép egy kockával az érintés előtt megáll, és innen motion viszi tovább: arany vonal járja körbe a keretet, a telefon megérinti az Okospontot, a csillagokból hullám, majd szív lesz. Közben egy számláló mutatja, mióta nézed. A nyitó jelenet MI-generált, eljátszott felvétel.",
-          "cimkek": [
-            "Stílus: kimerevítés + motion",
-            "Nyitás: kimerevítés",
-            "Téma: Okospont",
-            "Termék: csillagtérkép",
-            "Outró: arany logó",
-            "Jelölés: MI-generált"
-          ],
-          "keszult": "2026-10-23",
-          "publikus": true,
-          "rejtett": false,
-          "tipus": "video",
-          "video": {
-            "fajl": "video.mp4",
-            "poszter": "poszter.jpg",
-            "sha256": "2041849da55d286fb349493dcc3f9d0ebd2b5fd986bb09f7579f523144d6e7db",
-            "bajt": 1634726,
-            "formatum": "9:16",
-            "hossz_mp": 20.01,
-            "kulso": "ndart-hook-kimerevites_9x16.mp4"
-          },
-          "id": "ndart/video-2026-10-23_2",
-          "utvonal": "t/video-2026-10-23_2/index.html"
-        },
-        {
           "cim": "Kimerevítés egy kockával az érintés előtt — Okospont, v2: hang a logón (20 mp)",
           "leiras": "Ugyanaz a film, mint az eredeti, csak a hangja más: a logó érkezését most suhanás és egy lágy ütés kíséri, ahogy a kimerevítést és az érintést is. A nyitó jelenet MI-generált, eljátszott felvétel.",
           "cimkek": [
@@ -10213,9 +10186,136 @@
           },
           "id": "ndart/video-2026-10-24_1",
           "utvonal": "t/video-2026-10-24_1/index.html"
+        },
+        {
+          "cim": "Kimerevítés egy kockával az elengedés előtt — szilánkokból a vászon (18 mp)",
+          "leiras": "A kéz a falra akasztja a csillagtérképet; a kép pontosan egy kockával az elengedés előtt megáll. Innen motion viszi tovább: tollvonal járja körbe a keretet, a kép 70 szilánkra esik, majd újra összeáll vászonná, és egy feed a mi posztunkon áll meg. A nyitó jelenet MI-generált, eljátszott felvétel.",
+          "cimkek": [
+            "Stílus: kimerevítés + motion",
+            "Nyitás: kimerevítés",
+            "Termék: csillagtérkép",
+            "Outró: arany logó",
+            "Változat: v3",
+            "Jelölés: MI-generált"
+          ],
+          "keszult": "2026-10-30",
+          "publikus": false,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "2e49f986ba769566e2308b97b65f11a1e38389ea2660d60c1ee4d8f237230352",
+            "bajt": 1902173,
+            "formatum": "9:16",
+            "hossz_mp": 18.005,
+            "kulso": "ndart-hook-kimerevites-v3-szilank_9x16.mp4"
+          },
+          "id": "ndart/video-2026-10-30_1",
+          "utvonal": "t/video-2026-10-30_1/index.html"
+        },
+        {
+          "cim": "Mikor indult a fény, amit a csillagtérképeden látsz? (21 mp)",
+          "leiras": "Számokkal magyarázó videó: a Hold fénye 1,28 másodperc alatt ér ide, a Napé 8 perc 19 másodperc alatt, a Szíriuszé 8,6 év alatt, a Denebé 1 410–2 620 év alatt (két mérés). Minden szám csillagászati katalógusból és számításból jön.",
+          "cimkek": [
+            "Stílus: számokkal magyarázó",
+            "Téma: a fény útja",
+            "Termék: csillagtérkép",
+            "Outró: arany logó"
+          ],
+          "keszult": "2026-10-30",
+          "publikus": false,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "8dad41b248b90a3b7c9d1036856f82f0d505375ed6b351b5b6374a3bec369fe4",
+            "bajt": 774566,
+            "formatum": "9:16",
+            "hossz_mp": 21.013,
+            "kulso": "ndart-magyarazo-fenyev_9x16.mp4"
+          },
+          "id": "ndart/video-2026-10-30_2",
+          "utvonal": "t/video-2026-10-30_2/index.html"
+        },
+        {
+          "cim": "Minden évfordulón ugyanolyan a Hold? — Rézmetszet (15 mp)",
+          "leiras": "Ugyanaz a holdas magyarázó történet egy kódból renderelt filmstílusban (Rézmetszet): 10 évforduló, 19 év múlva visszatér, a Te estéd Holdja egyszeri. A számok csillagászati számításból jönnek. Rendezés: Lemo-Opuscar stílustár (LemoLab, CC BY 4.0) alapján, saját kóddal.",
+          "cimkek": [
+            "Stílus: Rézmetszet",
+            "Téma: a Hold az évfordulón",
+            "Termék: csillagtérkép",
+            "Forrás: Lemo-Opuscar (CC BY 4.0)"
+          ],
+          "keszult": "2026-10-30",
+          "publikus": false,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "203b96a86a74eb4b0781e851da34d18ad386b8a831c310bd67191a67f08230dd",
+            "bajt": 1079175,
+            "formatum": "9:16",
+            "hossz_mp": 15.509,
+            "kulso": "ndart-hold-engraving_9x16.mp4"
+          },
+          "id": "ndart/video-2026-10-30_3",
+          "utvonal": "t/video-2026-10-30_3/index.html"
+        },
+        {
+          "cim": "Minden évfordulón ugyanolyan a Hold? — Svájci grafika (15 mp)",
+          "leiras": "Ugyanaz a holdas magyarázó történet egy kódból renderelt filmstílusban (Svájci grafika): 10 évforduló, 19 év múlva visszatér, a Te estéd Holdja egyszeri. A számok csillagászati számításból jönnek. Rendezés: Lemo-Opuscar stílustár (LemoLab, CC BY 4.0) alapján, saját kóddal.",
+          "cimkek": [
+            "Stílus: Svájci grafika",
+            "Téma: a Hold az évfordulón",
+            "Termék: csillagtérkép",
+            "Forrás: Lemo-Opuscar (CC BY 4.0)"
+          ],
+          "keszult": "2026-10-30",
+          "publikus": false,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "ba3f9a3d64f82794849f85dbb8c8c88af9dfca843bf35f97a31e8c3ec02908c0",
+            "bajt": 504873,
+            "formatum": "9:16",
+            "hossz_mp": 15.5,
+            "kulso": "ndart-hold-swiss-motion_9x16.mp4"
+          },
+          "id": "ndart/video-2026-10-30_4",
+          "utvonal": "t/video-2026-10-30_4/index.html"
+        },
+        {
+          "cim": "Minden évfordulón ugyanolyan a Hold? — Krétás tábla (15 mp)",
+          "leiras": "Ugyanaz a holdas magyarázó történet egy kódból renderelt filmstílusban (Krétás tábla): 10 évforduló, 19 év múlva visszatér, a Te estéd Holdja egyszeri. A számok csillagászati számításból jönnek. Rendezés: Lemo-Opuscar stílustár (LemoLab, CC BY 4.0) alapján, saját kóddal.",
+          "cimkek": [
+            "Stílus: Krétás tábla",
+            "Téma: a Hold az évfordulón",
+            "Termék: csillagtérkép",
+            "Forrás: Lemo-Opuscar (CC BY 4.0)"
+          ],
+          "keszult": "2026-10-30",
+          "publikus": false,
+          "rejtett": false,
+          "tipus": "video",
+          "video": {
+            "fajl": "video.mp4",
+            "poszter": "poszter.jpg",
+            "sha256": "5d7d83f0ebf239004650dfcd84e64f633463a031e858f5de6dd920f9ba9b0736",
+            "bajt": 1182465,
+            "formatum": "9:16",
+            "hossz_mp": 15.509,
+            "kulso": "ndart-hold-chalkboard_9x16.mp4"
+          },
+          "id": "ndart/video-2026-10-30_5",
+          "utvonal": "t/video-2026-10-30_5/index.html"
         }
       ],
-      "rejtett_szam": 0
+      "rejtett_szam": 1
     }
   ]
 }
