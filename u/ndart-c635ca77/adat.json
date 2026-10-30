@@ -3451,23 +3451,6 @@
       ]
     },
     {
-      "id": "ndart/video-2026-10-24_1",
-      "cim": "Kimerevítés egy kockával az érintés előtt — Okospont, v2: hang a logón (20 mp)",
-      "utvonal": "t/video-2026-10-24_1/index.html",
-      "keszult": "2026-10-24",
-      "tipus": "video",
-      "leiras": "Ugyanaz a film, mint az eredeti, csak a hangja más: a logó érkezését most suhanás és egy lágy ütés kíséri, ahogy a kimerevítést és az érintést is. A nyitó jelenet MI-generált, eljátszott felvétel.",
-      "cimkek": [
-        "Stílus: kimerevítés + motion",
-        "Nyitás: kimerevítés",
-        "Téma: Okospont",
-        "Termék: csillagtérkép",
-        "Outró: arany logó",
-        "Jelölés: MI-generált",
-        "Változat: v2 (hang)"
-      ]
-    },
-    {
       "id": "ndart/video-2026-10-30_1",
       "cim": "Kimerevítés egy kockával az elengedés előtt — szilánkokból a vászon (18 mp)",
       "utvonal": "t/video-2026-10-30_1/index.html",
@@ -3537,6 +3520,53 @@
         "Téma: a Hold az évfordulón",
         "Termék: csillagtérkép",
         "Forrás: Lemo-Opuscar (CC BY 4.0)"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-30_6",
+      "cim": "Karácsonyi film valósághű szereplőkkel — TikTok-vágat, zene nélkül (15 mp)",
+      "utvonal": "t/video-2026-10-30_6/index.html",
+      "keszult": "2026-10-30",
+      "tipus": "video",
+      "leiras": "Ugyanaz a 15 másodperces vágat zenei alap nélkül, csak hangeffektekkel — a TikTok saját zenetárából választott zenéhez. MI-generált, eljátszott reklámfilm (nem vásárlói vélemény).",
+      "cimkek": [
+        "Szereplők: valósághű AI",
+        "Stílus: karácsonyi film",
+        "Téma: karácsony",
+        "Termék: csillagtérkép",
+        "Outró: valódi logó",
+        "Jelölés: MI-generált"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-30_7",
+      "cim": "Karácsonyi film kezekkel és sziluettekkel — TikTok-vágat, zene nélkül (15 mp)",
+      "utvonal": "t/video-2026-10-30_7/index.html",
+      "keszult": "2026-10-30",
+      "tipus": "video",
+      "leiras": "Ugyanaz a 15 másodperces vágat zenei alap nélkül, csak hangeffektekkel — a TikTok saját zenetárából választott zenéhez. MI-generált, eljátszott reklámfilm (nem vásárlói vélemény).",
+      "cimkek": [
+        "Szereplők: kezek, sziluettek",
+        "Stílus: karácsonyi film",
+        "Téma: karácsony",
+        "Termék: csillagtérkép",
+        "Outró: valódi logó",
+        "Jelölés: MI-generált"
+      ]
+    },
+    {
+      "id": "ndart/video-2026-10-30_8",
+      "cim": "Karácsonyi film, illusztrálva — TikTok-vágat, zene nélkül (15 mp)",
+      "utvonal": "t/video-2026-10-30_8/index.html",
+      "keszult": "2026-10-30",
+      "tipus": "video",
+      "leiras": "Ugyanaz a rajzolt, 15 másodperces vágat zenei alap nélkül, csak hangeffektekkel — a TikTok saját zenetárából választott zenéhez.",
+      "cimkek": [
+        "Szereplők: illusztrált",
+        "Stílus: karácsonyi film",
+        "Téma: karácsony",
+        "Termék: csillagtérkép",
+        "Outró: valódi logó"
       ]
     }
   ]
