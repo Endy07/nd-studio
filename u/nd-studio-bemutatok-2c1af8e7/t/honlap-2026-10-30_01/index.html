@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hársfa ház — alaprajzból 3D</title>
+<meta name="description" content="Görgetésre kinő a ház az alaprajzból: falak, anyagok, szétszedett nézet, metszet és bejárás. Kitalált bemutató ház.">
+<!--
+  ND Studio bemutató: alaprajzból görgetésre kinövő 3D ház.
+  A technika (a lapos rajz valójában a 3D modell nagyon hosszú objektívvel; az objektív "kinyitása" teszi 3D-vé)
+  Samnang Aing munkájából: https://github.com/Sam1983Aing/flat-to-3d (MIT-licenc, lásd LICENSE).
+  three.js: MIT. Betűk: Google Fonts, SIL Open Font License.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --papir: #f3eee3; --tinta: #26231f; --tinta-2: #5b554c; --vonal: rgba(38,35,31,.18);
+    --kiemel: #b4532a; --kartya: rgba(246,242,233,.92);
+    --serif: "Instrument Serif", Georgia, serif; --sans: "IBM Plex Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--papir); color: var(--tinta); font-family: var(--sans); }
+  body { overscroll-behavior-y: none; }
+  #vaszon { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100lvh; display: block; touch-action: pan-y; }
+  body.szabad #vaszon { touch-action: none; cursor: grab; }
+  #gorgeto { height: 1300vh; pointer-events: none; }
+
+  /* fejléc */
+  .fejlec { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: baseline;
+    padding: 18px 28px; pointer-events: none; z-index: 5; }
+  .fejlec .nev { font-family: var(--serif); font-size: 26px; letter-spacing: .01em; }
+  .fejlec .nev em { font-style: italic; color: var(--tinta-2); font-size: 18px; margin-left: 8px; }
+  .fejlec .jel { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--tinta-2); }
+
+  /* kártyák: rögzített helyen, a görgetés szerint áttűnnek */
+  .kartya { position: fixed; left: 28px; top: 50%; width: 380px; transform: translateY(-50%);
+    background: var(--kartya); border: 1px solid var(--vonal); padding: 22px 24px 20px; z-index: 4;
+    opacity: 0; pointer-events: none; transition: opacity .25s linear; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+  .kartya.lathato { pointer-events: auto; }
+  .kartya .szam { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; color: var(--kiemel); text-transform: uppercase; }
+  .kartya h2 { font-family: var(--serif); font-weight: 400; font-size: 38px; line-height: 1.02; margin: 8px 0 10px; }
+  .kartya p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--tinta-2); }
+  .kartya .tipp { margin-top: 14px; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: var(--tinta-2); }
+  .gombok { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .gombok button { font: 500 13px var(--sans); color: var(--tinta); background: transparent; border: 1px solid var(--tinta);
+    padding: 9px 13px; cursor: pointer; border-radius: 0; min-height: 40px; }
+  .gombok button:hover { background: var(--tinta); color: var(--papir); }
+  .gombok button[aria-pressed="true"] { background: var(--tinta); color: var(--papir); }
+  .forras { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--vonal); font-size: 12px; color: var(--tinta-2); line-height: 1.5; }
+  .forras a { color: inherit; }
+
+  /* lépésjelző jobbra */
+  .lepesek { position: fixed; right: 26px; top: 50%; transform: translateY(-50%); z-index: 5; list-style: none; margin: 0; padding: 0; }
+  .lepesek li { margin: 0; }
+  .lepesek button { display: flex; align-items: center; gap: 10px; justify-content: flex-end; width: 100%; background: none; border: 0;
+    font: 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--tinta-2); padding: 6px 0; cursor: pointer; }
+  .lepesek button i { width: 8px; height: 8px; border: 1px solid var(--tinta); border-radius: 50%; display: inline-block; }
+  .lepesek button.aktiv { color: var(--tinta); }
+  .lepesek button.aktiv i { background: var(--tinta); }
+  .lepesek button span { opacity: 0; transition: opacity .2s; }
+  .lepesek:hover button span, .lepesek button.aktiv span { opacity: 1; }
+  .sav { position: fixed; left: 0; top: 0; height: 2px; background: var(--kiemel); width: 0; z-index: 6; }
+
+  /* 3D-hez kötött feliratok */
+  #cimkek { position: fixed; inset: 0; pointer-events: none; z-index: 3; overflow: hidden; }
+  .cimke { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); text-align: center; white-space: nowrap; will-change: transform, opacity; }
+  .cimke b { display: block; font: 600 11px var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+  .cimke small { font: 11px var(--mono); color: var(--tinta-2); }
+  .cimke.meret { font: 11px var(--mono); color: var(--tinta-2); }
+  .cimke.reteg { font: 500 11px var(--mono); letter-spacing: .14em; text-transform: uppercase; text-align: left; transform: translate(0, -50%);
+    border-left: 1px solid var(--tinta); padding-left: 8px; }
+  .cimke.metszet { color: var(--kiemel); font: 500 12px var(--mono); letter-spacing: .14em; }
+  #felirat { position: fixed; left: 50%; bottom: 34px; transform: translateX(-50%); z-index: 4; max-width: calc(100vw - 32px);
+    background: var(--kartya); border: 1px solid var(--vonal); padding: 12px 18px; font-family: var(--serif); font-size: 24px;
+    opacity: 0; pointer-events: none; text-align: center; }
+  #vissza { position: fixed; right: 20px; bottom: 20px; z-index: 7; display: none; font: 500 13px var(--sans); background: var(--tinta); color: var(--papir);
+    border: 0; padding: 11px 15px; cursor: pointer; min-height: 44px; }
+  body.szabad #vissza { display: block; }
+  body.szabad .lepesek, body.szabad #felirat { display: none; }
+  #allapot { position: fixed; inset: 0; display: grid; place-items: center; z-index: 9; background: var(--papir); font: 13px var(--mono);
+    letter-spacing: .12em; text-transform: uppercase; color: var(--tinta-2); text-align: center; padding: 24px; transition: opacity .5s; }
+  #allapot.kesz { opacity: 0; pointer-events: none; }
+  .gorgess { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); font: 11px var(--mono); letter-spacing: .16em;
+    text-transform: uppercase; color: var(--tinta-2); z-index: 4; pointer-events: none; }
+  .gorgess::after { content: ""; display: block; width: 1px; height: 26px; background: var(--tinta); margin: 8px auto 0; animation: le 1.6s ease-in-out infinite; transform-origin: top; }
+  @keyframes le { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+  @media (max-width: 760px) {
+    .fejlec { padding: 14px 16px; }
+    .fejlec .nev { font-size: 22px; }
+    .fejlec .nev em { display: none; }
+    .kartya { left: 12px; right: 12px; width: auto; top: auto; bottom: 14px; transform: none; padding: 16px 16px 14px; }
+    .kartya h2 { font-size: 28px; margin: 6px 0 6px; }
+    .kartya p { font-size: 14px; line-height: 1.45; }
+    .lepesek { display: none; }
+    #felirat { font-size: 19px; bottom: 18px; }
+    .gorgess { display: none; }
+    .cimke b { font-size: 8.5px; letter-spacing: .05em; }
+    .cimke small, .cimke.meret { font-size: 9px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .gorgess::after { animation: none; } }
+</style>
+</head>
+<body>
+<canvas id="vaszon" aria-label="A ház 3D-ben"></canvas>
+<div id="cimkek" aria-hidden="true"></div>
+<div class="sav" id="sav"></div>
+
+<header class="fejlec">
+  <div class="nev" id="hazNev">Hársfa ház <em id="hazAlcim"></em></div>
+  <div class="jel">Alaprajz → 3D</div>
+</header>
+
+<ol class="lepesek" id="lepesek"></ol>
+
+<section class="kartya" data-tol="0" data-ig="0.075" data-cim="Alaprajz">
+  <div class="szam">01 / Alaprajz</div>
+  <h2>Ez egy alaprajz. Egyelőre.</h2>
+  <p>Öt helyiség, 102 m², ahogy a tervező kinyomtatja: tinta a papíron. Görgess lefelé: a rajzból ház lesz.</p>
+</section>
+<section class="kartya" data-tol="0.085" data-ig="0.25" data-cim="Falak">
+  <div class="szam">02 / A falak</div>
+  <h2>A falak kinőnek a rajzból</h2>
+  <p>A rajz nem kép, hanem maga a 3D modell, felülről, nagyon hosszú objektívvel. Ahogy a vágósík emelkedik, nőnek a falak, és kinyílik a tér.</p>
+</section>
+<section class="kartya" data-tol="0.26" data-ig="0.375" data-cim="Anyagok">
+  <div class="szam">03 / Anyagok</div>
+  <h2>Anyag, fény, berendezés</h2>
+  <p>A tinta helyére fa, csempe és vakolat kerül, besüt a délutáni nap. A bútorok valódi méretűek, így látszik, mi fér el.</p>
+</section>
+<section class="kartya" data-tol="0.385" data-ig="0.515" data-cim="Kívülről">
+  <div class="szam">04 / Kívülről</div>
+  <h2>Ráül a tető, körbejárjuk</h2>
+  <p>A déli üvegfal a teraszra nyílik, a háló a kertre néz. Egy kör a ház körül.</p>
+</section>
+<section class="kartya" data-tol="0.525" data-ig="0.635" data-cim="Szétszedve">
+  <div class="szam">05 / Szétszedett nézet</div>
+  <h2>Rétegenként</h2>
+  <p>Alap és padlók, berendezés, falak, tető: szétválnak, hogy látsszon, mi miből áll. Aztán visszaülnek a helyükre.</p>
+</section>
+<section class="kartya" data-tol="0.645" data-ig="0.755" data-cim="Metszet">
+  <div class="szam">06 / Metszet</div>
+  <h2>Kettévágjuk</h2>
+  <p>Az A–A metszet a nappalin és a hálón át fut: belátni a falak mögé, látszik a belmagasság és a födém.</p>
+</section>
+<section class="kartya" data-tol="0.765" data-ig="0.80" data-cim="Bejárás">
+  <div class="szam">07 / Bejárás</div>
+  <h2>Sétáljunk be</h2>
+  <p>Szemmagasságból, szobáról szobára, ahogy egy látogató jönne.</p>
+</section>
+<section class="kartya" data-tol="0.97" data-ig="1.01" data-cim="Te jössz">
+  <div class="szam">08 / Most te jössz</div>
+  <h2>Nézd meg, ahogy akarod</h2>
+  <p>Forgasd körbe, szedd szét, vágd ketté, vagy sétálj végig újra.</p>
+  <div class="gombok">
+    <button type="button" data-mod="forgat">Forgasd körbe</button>
+    <button type="button" data-mod="szet" aria-pressed="false">Szétszedett</button>
+    <button type="button" data-mod="metszet" aria-pressed="false">Metszet</button>
+    <button type="button" data-mod="teto" aria-pressed="false">Tető</button>
+    <button type="button" data-mod="seta">Bejárás ▶</button>
+  </div>
+  <div class="forras">
+    Kitalált ház; a méretek szemléltetők. A technika Samnang Aing <a href="https://github.com/Sam1983Aing/flat-to-3d" target="_blank" rel="noopener">flat-to-3d</a>
+    munkájából való (MIT-licenc, <a href="LICENSE" target="_blank">LICENSE</a>). three.js: MIT.
+  </div>
+</section>
+
+<div id="felirat" role="status" aria-live="polite"></div>
+<button id="vissza" type="button">↑ Vissza a görgetéshez</button>
+<div class="gorgess" id="gorgess">Görgess</div>
+<div id="gorgeto"></div>
+<div id="allapot">Rajzolás…</div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+<script type="module" src="main.js"></script>
+</body>
+</html>

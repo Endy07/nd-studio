@@ -2777,6 +2777,22 @@
           "utvonal": "t/benchmark-318/index.html"
         },
         {
+          "cim": "Görgetős oldal v3 — Az étlapból pizza",
+          "keszult": "2026-10-27",
+          "publikus": false,
+          "rejtett": false,
+          "leiras": "A színpad a valódi étlap: görgetésre a rajta lévő fotó kilép belőle, az étlap asztallá dől, és a pizzák felemelkednek a soraikból; utána a 48 órás tészta, végül az étlapra nyomtatott telefonszámból valódi hívógomb lesz. Minden kép a pizzéria saját fotója.",
+          "cimkek": [
+            "Stílus: görgetős történet",
+            "Nyitás: lapos étlap",
+            "Téma: 48 óra",
+            "Outró: hívógomb",
+            "Változat: v3"
+          ],
+          "id": "karesz-mamma-mia-pizza/honlap-2026-10-27_01",
+          "utvonal": "t/honlap-2026-10-27_01/index.html"
+        },
+        {
           "cim": "Pizzatúra 20 másodpercben (A változat)",
           "leiras": "Közeli a pizzák peremére, gyors vágások a kínálaton, a „Nápolyi stílusú” pizza nagyban, végül a rendelés — alul végig egy visszaszámláló.",
           "cimkek": [
@@ -3765,6 +3781,32 @@
         }
       ],
       "rejtett_szam": 18
+    },
+    {
+      "slug": "nd-studio-bemutatok",
+      "hash": "2c1af8e7",
+      "nev": "ND Studio — bemutatók",
+      "ugyfel_megjelenes": "ND Studio bemutatók",
+      "letrehozva": "2026-10-30",
+      "utvonal_nev": "nd-studio-bemutatok-2c1af8e7",
+      "tervek": [
+        {
+          "cim": "Alaprajzból 3D ház — görgetős bemutató",
+          "keszult": "2026-10-30",
+          "publikus": true,
+          "rejtett": false,
+          "leiras": "Görgess: egy kinyomtatott alaprajzból kinőnek a falak, beköltöznek az anyagok és a bútorok, ráül a tető. Utána szétszedett nézet, metszet és bejárás szemmagasságból; a végén szabadon forgatható. Kitalált ház, minden kódból rajzolva; a helyiségek egy adatfájlból jönnek, így bármely alaprajz betehető. Ingatlanosnak, építésznek, belsőépítésznek.",
+          "cimkek": [
+            "Stílus: görgetős 3D",
+            "Téma: alaprajz",
+            "Nézetek: szétszedett, metszet, bejárás",
+            "Ház: kitalált"
+          ],
+          "id": "nd-studio-bemutatok/honlap-2026-10-30_01",
+          "utvonal": "t/honlap-2026-10-30_01/index.html"
+        }
+      ],
+      "rejtett_szam": 0
     },
     {
       "slug": "ndart",
